@@ -18,6 +18,17 @@ import type SynSelect from '../select/select.component.js';
 import type SynSwitch from '../switch/switch.component.js';
 import type SynTextArea from '../textarea/textarea.component.js';
 
+/**
+ * Checks if the actual browser validation message matches the expected message.
+ * Can be used to test a native form elements validationMessage property against the expected message.
+ * @param actualMessage The actual browser validation message.
+ * @param expectedMessage The expected browser validation message.
+ */
+const expectBrowserValidationMessage = (actualMessage: string, expectedMessage: string) => {
+  expect(actualMessage.trim()).to.not.equal('');
+  expect(actualMessage).to.equal(expectedMessage);
+};
+
 describe('<syn-validate>', () => {
   describe('utility functions', () => {
     describe('event utils', () => {
@@ -295,9 +306,7 @@ describe('<syn-validate>', () => {
       input.focus();
       input.blur();
 
-      // email address is the only part that all three browsers have in common.
-      // Could also check for non empty values, but it makes it more brittle.
-      expect(el.validationMessage).to.include('email address');
+      expectBrowserValidationMessage(el.validationMessage, input.validationMessage);
     });
 
     it('should allow switching the event listeners via the "on" property', async () => {
@@ -315,7 +324,7 @@ describe('<syn-validate>', () => {
       input.value = 'test';
       input.dispatchEvent(new Event('change', { bubbles: true }));
 
-      expect(el.validationMessage).to.include('email address');
+      expectBrowserValidationMessage(el.validationMessage, input.validationMessage);
 
       // Step 2:
       // - Set the on property to only accept blur events
@@ -333,7 +342,7 @@ describe('<syn-validate>', () => {
       input.focus();
       input.value = 'test';
       input.blur();
-      expect(el.validationMessage).to.include('email address');
+      expectBrowserValidationMessage(el.validationMessage, input.validationMessage);
 
       input.focus();
       input.value = 'test@example';
@@ -351,7 +360,7 @@ describe('<syn-validate>', () => {
       const input = el.querySelector('input')!;
       const scrollSpy = sinon.spy(input, 'focus');
 
-      expect(el.validationMessage).to.include('email address');
+      expectBrowserValidationMessage(el.validationMessage, input.validationMessage);
       expect(scrollSpy, 'focus should have been skipped during mount on eager').to.not.have.been.called;
 
       // Trigger another validation run to make sure it works
@@ -359,7 +368,7 @@ describe('<syn-validate>', () => {
       input.focus();
       input.blur();
 
-      expect(el.validationMessage).to.include('email address');
+      expectBrowserValidationMessage(el.validationMessage, input.validationMessage);
 
       // Focus should have only be called once, because we surpress the first focus event on mount.
       expect(scrollSpy, 'focus should have been called for the second validation run').to.have.been.calledOnce;
@@ -455,9 +464,7 @@ describe('<syn-validate>', () => {
       input.blur();
       await input.updateComplete;
 
-      // email address is the only part that all three browsers have in common.
-      // Could also check for non empty values, but it makes it more brittle.
-      expect(el.validationMessage).to.include('email address');
+      expectBrowserValidationMessage(el.validationMessage, input.validationMessage);
     });
 
     it('should allow switching the event listeners via the "on" property', async () => {
@@ -476,7 +483,7 @@ describe('<syn-validate>', () => {
       input.dispatchEvent(new Event('syn-change', { bubbles: true }));
       await input.updateComplete;
 
-      expect(el.validationMessage).to.include('email address');
+      expectBrowserValidationMessage(el.validationMessage, input.validationMessage);
 
       // Step 2:
       // - Set the on property to only accept blur events
@@ -496,7 +503,7 @@ describe('<syn-validate>', () => {
       input.value = 'test';
       input.blur();
       await input.updateComplete;
-      expect(el.validationMessage).to.include('email address');
+      expectBrowserValidationMessage(el.validationMessage, input.validationMessage);
 
       input.focus();
       input.value = 'test@example';
@@ -515,7 +522,7 @@ describe('<syn-validate>', () => {
       const input = el.querySelector('syn-input')!;
       const scrollSpy = sinon.spy(input, 'focus');
 
-      expect(el.validationMessage).to.include('email address');
+      expectBrowserValidationMessage(el.validationMessage, input.validationMessage);
       expect(scrollSpy, 'focus should have been skipped during mount on eager').to.not.have.been.called;
 
       // Trigger another validation run to make sure it works
@@ -523,7 +530,7 @@ describe('<syn-validate>', () => {
       input.focus();
       input.blur();
 
-      expect(el.validationMessage).to.include('email address');
+      expectBrowserValidationMessage(el.validationMessage, input.validationMessage);
 
       // Focus should have only be called once, because we surpress the first focus event on mount.
       expect(scrollSpy, 'focus should have been called for the second validation run').to.have.been.calledOnce;
@@ -749,12 +756,12 @@ describe('<syn-validate>', () => {
         expect(el.customValidationMessage).to.equal('');
 
         // The public validationMessage should fall back to browser validation
-        expect(el.validationMessage).to.include('email address');
+        expectBrowserValidationMessage(el.validationMessage, input.validationMessage);
 
         // The rendered message should use internal validationMessage
         const alert = el.shadowRoot!.querySelector('syn-alert');
         expect(alert).to.exist;
-        expect(alert!.textContent.trim()).to.include('email address');
+        expect(alert!.textContent.trim()).to.equal(el.validationMessage);
       }); // Test for fallback when customValidationMessage is empty
 
       it('Should update displayed message when customValidationMessage changes', async () => {
@@ -783,9 +790,10 @@ describe('<syn-validate>', () => {
         await el.updateComplete;
 
         // Should fall back to internal validation message
-        expect(el.validationMessage).to.include('email address');
+        const input = el.querySelector('syn-input')!;
+        expectBrowserValidationMessage(el.validationMessage, input.validationMessage);
         alert = el.shadowRoot!.querySelector('syn-alert');
-        expect(alert!.textContent.trim()).to.include('email address');
+        expect(alert!.textContent.trim()).to.equal(el.validationMessage);
       }); // Test for dynamic changes to customValidationMessage
     }); // End test #851
 
@@ -821,13 +829,13 @@ describe('<syn-validate>', () => {
               </syn-validate>
             `);
 
-            const input = el.querySelector(tag)!;
+            const input = el.querySelector<SynInput>(tag)!;
             input.removeAttribute(prop);
 
-            await (input as SynInput).updateComplete;
+            await input.updateComplete;
             await el.updateComplete;
 
-            expect(el.validationMessage).to.include('email address');
+            expectBrowserValidationMessage(el.validationMessage, input.validationMessage);
           }); // The test
         }); // property (disabled or readonly)
       }); // Element type (SynInput or HTMLInputElement)

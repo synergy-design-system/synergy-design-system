@@ -7,6 +7,19 @@ It uses [lit](https://www.lit.dev) and parts of [shoelace](https://shoelace.styl
 
 Got any problems using our components? Please take a look at [our list of known issues and limitations](https://synergy-design-system.github.io/?path=/docs/limitations-known-issues-and-limitations--docs) before [creating a ticket](https://github.com/synergy-design-system/synergy-design-system/issues/new?assignees=&labels=&projects=&template=generic-bug.md&title=fix%3A+%F0%9F%90%9B+).
 
+## Testing
+
+Component tests run with Web Test Runner and Playwright. By default, tests run against Chromium, Firefox, and WebKit.
+
+Chrome Beta is available when future-browser launchers are enabled:
+
+```bash
+pnpm exec playwright install chrome-beta
+PLAYWRIGHT_FUTURE_BROWSERS=true BROWSERS=chrome-beta pnpm test
+```
+
+The nightly workflow runs Chrome Beta automatically for early detection of upcoming browser regressions.
+
 ## Getting started
 
 ### 1. Usage example

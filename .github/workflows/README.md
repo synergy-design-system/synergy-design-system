@@ -7,6 +7,7 @@ This document describes the purpose and dependencies of each workflow in the Syn
 | Workflow Name              | Purpose                                                                 | Dependencies / Triggers                |
 |----------------------------|-------------------------------------------------------------------------|----------------------------------------|
 | `chromatic-main.yml`       | Runs Chromatic visual regression tests for UI components.               | Depends on successful build; may be triggered after `quality-gate.yml`. |
+| `e2e-nightly.yml`          | Runs nightly and manually triggered Chrome Beta tests for components and product E2E demos. | Scheduled on the default branch; manual runs can target selected branches. |
 | `lint-changeset.yml`       | Ensures changesets are present and valid for dependency updates.        | Runs on PRs affecting dependencies; independent. |
 | `lint-pr-title.yml`        | Checks PR titles for conventional commit compliance.                    | Runs on PR creation/update; independent. |
 | `publish-docs.yml`         | Publishes documentation to the docs site (e.g., GitHub Pages).          | Triggered automatically when the "Release new version" workflow completes successfully on the main branch, or can be triggered manually via workflow_dispatch. |
@@ -39,5 +40,5 @@ This document describes the purpose and dependencies of each workflow in the Syn
 
 ## Notes
 
-- Some workflows may be triggered manually or on a schedule (e.g., `sync-figma-to-tokens.yml`).
+- Some workflows may be triggered manually or on a schedule (e.g., `sync-figma-to-tokens.yml` and `e2e-nightly.yml`).
 - For exact triggers and dependencies, review the `on:` and `needs:` sections in each workflow file.

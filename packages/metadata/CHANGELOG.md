@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.11.0
+
+### Patch Changes
+
+- [#1380](https://github.com/synergy-design-system/synergy-design-system/pull/1380) [`2625ba7`](https://github.com/synergy-design-system/synergy-design-system/commit/2625ba7c952c19f4b692a3aaf01e8242de7c9ae0) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-09-16
+
+  fix: 🐛 `<syn-input>` does not apply the correct width when `noSpinButtons` is provided as property ([#1375](https://github.com/synergy-design-system/synergy-design-system/issues/1375))
+
+  This release fixes an issue that could lead to wrong sizes for `syn-input` when `noSpinButtons` is provided as a property.
+
 ## 4.10.0
 
 ### Patch Changes

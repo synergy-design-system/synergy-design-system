@@ -39,6 +39,9 @@ export default css`
     line-height: var(--syn-line-height-normal);
     margin: inherit;
     min-height: var(--size-min-height);
+
+    /* #1347: Prevents a 1px rendering seam between the border and ::before indicator at fractional zoom levels */
+    overflow: clip;
     position: relative;
   }
 

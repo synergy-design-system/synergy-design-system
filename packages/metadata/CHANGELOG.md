@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.10.0
+
+### Patch Changes
+
+- [#1381](https://github.com/synergy-design-system/synergy-design-system/pull/1381) [`b950282`](https://github.com/synergy-design-system/synergy-design-system/commit/b950282c5be52c96419a67734268d5a6f4325547) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-09-16
+
+  fix: 🐛 `<syn-alert>` may show artifacts when page is zoomed ([#1347](https://github.com/synergy-design-system/synergy-design-system/issues/1347))
+
+  This release fixes an issue with `<syn-alert>` that may show border artifacts when zooming the page.
+
 ## 4.9.0
 
 ### Minor Changes

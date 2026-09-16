@@ -232,6 +232,7 @@ export default css`
     --input-icon-size: var(--syn-font-size-2x-large);
     --input-number-divider-height: var(--syn-font-size-2x-large);
     --input-number-divider-margin: 0 var(--syn-spacing-x-small);
+    --input-number-stepper-margin-inline-start: 0;
     --input-number-stepper-margin-inline-end: var(--syn-spacing-x-small);
     --input-password-toggle-padding-inline-start: var(--syn-spacing-x-small);
     --input-prefix-margin-inline: var(--syn-input-spacing-large) var(--syn-spacing-medium);
@@ -251,6 +252,7 @@ export default css`
     display: inline-flex;
     font-size: var(--input-icon-size);
     justify-content: center;
+    padding: 0;
     padding-inline: var(--input-clear-padding-inline-start) var(--input-clear-padding-inline-end);
     transition: var(--syn-transition-fast) color;
     width: auto;
@@ -270,19 +272,10 @@ export default css`
   }
 
   /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-  .input--small .input__clear:has(+ .input__password-toggle) {
+  .input__clear:has(+ .input__password-toggle) {
     padding-right: var(--input-password-toggle-padding-inline-start);
   }
 
-  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-  .input--medium .input__clear:has(+ .input__password-toggle) {
-    padding-right: var(--input-password-toggle-padding-inline-start);
-  }
-
-  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-  .input--large .input__clear:has(+ .input__password-toggle) {
-    padding-right: var(--input-password-toggle-padding-inline-start);
-  }
 
   /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   .form-control--has-suffix .input__clear:has(+ .input__suffix),

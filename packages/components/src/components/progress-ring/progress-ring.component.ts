@@ -1,6 +1,7 @@
-import { property, query, state } from 'lit/decorators.js';
+import { property, query } from 'lit/decorators.js';
 import {
   type CSSResultGroup,
+  type PropertyValues,
   html,
 } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
@@ -33,28 +34,26 @@ export default class SynProgressRing extends SynergyElement {
 
   @query('.progress-ring__indicator') indicator: SVGCircleElement;
 
-  @state() indicatorOffset: string;
-
   /** The current progress as a percentage, 0 to 100. */
   @property({ reflect: true, type: Number }) value = 0;
 
   /** A custom label for assistive devices. */
   @property() label = '';
 
-  updated(changedProps: Map<string, unknown>) {
+  updated(changedProps: PropertyValues<this>) {
     super.updated(changedProps);
 
-    //
-    // This block is only required for Safari because it doesn't transition the circle when the custom properties
-    // change, possibly because of a mix of pixel + unit-less values in the calc() function. It seems like a Safari bug,
-    // but I couldn't pinpoint it so this works around the problem.
-    //
+    // #1328: Safari does not transition stroke-dashoffset correctly when its
+    // value changes through custom properties, so provide a computed pixel value.
     if (changedProps.has('value')) {
       const radius = parseFloat(getComputedStyle(this.indicator).getPropertyValue('r'));
       const circumference = 2 * Math.PI * radius;
       const offset = circumference - (this.value / 100) * circumference;
 
-      this.indicatorOffset = `${offset}px`;
+      // Invalid value could break the stroke-dashoffset.
+      if (Number.isFinite(offset)) {
+        this.indicator.style.strokeDashoffset = `${offset}px`;
+      }
     }
   }
 
@@ -73,7 +72,7 @@ export default class SynProgressRing extends SynergyElement {
       >
         <svg class="progress-ring__image">
           <circle class="progress-ring__track"></circle>
-          <circle class="progress-ring__indicator" style="stroke-dashoffset: ${this.indicatorOffset}"></circle>
+          <circle class="progress-ring__indicator"></circle>
         </svg>
 
         <slot id="label" part="label" class="progress-ring__label"></slot>

@@ -1,12 +1,12 @@
-/* eslint-disable */
-import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize.js';
 import { property, query, state } from 'lit/decorators.js';
+import {
+  type CSSResultGroup,
+  html,
+} from 'lit';
+import { LocalizeController } from '../../utilities/localize.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './progress-ring.styles.js';
-import customStyles from './progress-ring.custom.styles.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Progress rings are used to show the progress of a determinate operation in a circular fashion.
@@ -27,7 +27,7 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --indicator-transition-duration - The duration of the indicator's transition when the value changes.
  */
 export default class SynProgressRing extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, styles];
 
   private readonly localize = new LocalizeController(this);
 
@@ -36,7 +36,7 @@ export default class SynProgressRing extends SynergyElement {
   @state() indicatorOffset: string;
 
   /** The current progress as a percentage, 0 to 100. */
-  @property({ type: Number, reflect: true }) value = 0;
+  @property({ reflect: true, type: Number }) value = 0;
 
   /** A custom label for assistive devices. */
   @property() label = '';
@@ -61,14 +61,14 @@ export default class SynProgressRing extends SynergyElement {
   render() {
     return html`
       <div
-        part="base"
-        class="progress-ring"
-        role="progressbar"
-        aria-label=${this.label.length > 0 ? this.label : this.localize.term('progress')}
         aria-describedby="label"
-        aria-valuemin="0"
+        aria-label=${this.label.length > 0 ? this.label : this.localize.term('progress')}
         aria-valuemax="100"
+        aria-valuemin="0"
         aria-valuenow="${this.value}"
+        class="progress-ring"
+        part="base"
+        role="progressbar"
         style="--percentage: ${this.value / 100}"
       >
         <svg class="progress-ring__image">

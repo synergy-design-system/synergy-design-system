@@ -21,8 +21,8 @@ describe('seriesDonut', () => {
       const options: DonutSeriesPresetOptions = {
         center: ['50%', '50%'],
         data: [
-          { name: 'Apples', value: 10 },
-          { name: 'Bananas', value: 20 },
+          { label: 'Apples', value: 10 },
+          { label: 'Bananas', value: 20 },
         ],
         name: 'Fruit',
         radius: '80%',
@@ -35,8 +35,8 @@ describe('seriesDonut', () => {
       expect(result.series[0]).to.deep.include({
         center: ['50%', '50%'],
         data: [
-          { name: 'Apples', value: 10 },
-          { name: 'Bananas', value: 20 },
+          { label: 'Apples', value: 10 },
+          { label: 'Bananas', value: 20 },
         ],
         name: 'Fruit',
         radius: '80%',

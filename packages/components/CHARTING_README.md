@@ -488,7 +488,8 @@ Array merge strategy:
 | -------------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------- |
 | `data`               | `DonutDataValue[]` _(required)_ | Segment values/items for the donut. Each item may be a raw number or an object with `value`, `name`, and `prefixIcon`. | `[]`             |
 | `data[i].value`      | `number` _(required)_           | Numeric value of the segment. The values are normalized to the full donut and determine each slice angle.              |                  |
-| `data[i].name`       | `string`                        | Optional label shown for the segment.                                                                                  |                  |
+| `data[i].label`      | `string`                        | Optional label shown for the segment. If not set, the value is displayed.                                              |                  |
+| `data[i].name`       | `string`                        | Optional series item name used for displaying in legend.                                                               |                  |
 | `data[i].prefixIcon` | `string`                        | Optional SVG data URL rendered before the segment label.                                                               |                  |
 | `center`             | `[LayoutValue, LayoutValue]`    | Center position inside the donut layout area. Accepts pixels or percentages.                                           | `['50%', '50%']` |
 | `radius`             | `LayoutValue`                   | Outer radius of the donut. Accepts pixels as numeric or percentages.                                                   | `'100%'`         |

@@ -1003,7 +1003,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the `name` option to render a label for each segment, aligned by index with `data`. Each label is centered on its segment and placed outside the outer ring; provide a `prefixIcon` data URL alongside the `name` to render an icon before the label.",
+          "value": "Use the `label` option to render a label for each segment, aligned by index with `data`. Each label is centered on its segment and placed outside the outer ring; provide a `prefixIcon` data URL alongside the `label` to render an icon before the label.",
           "type": "text"
         }
       },
@@ -1013,7 +1013,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use `legendShow()` to render legend entries for the donut segments. Segment names are used as legend labels and can be toggled interactively.",
+          "value": "Use `legendShow()` to render legend entries for the donut segments. Segment names are used as legend labels and can be toggled interactively. For this use the `name` option in the data items.",
           "type": "text"
         }
       },
@@ -1044,6 +1044,26 @@
         },
         "description": {
           "value": "Use `top`, `right`, `bottom`, and `left` to reduce the donut layout area from each side before `center` and `radius` are resolved. Insets can be set in pixels (number) or percentages (string).",
+          "type": "text"
+        }
+      },
+      "donut-series-status": {
+        "title": {
+          "value": "Donut Series Status",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use status colors to visualize the distribution of items across different statuses, such as error, warning, success, and neutral.",
+          "type": "text"
+        }
+      },
+      "donut-series-label-formatting": {
+        "title": {
+          "value": "Donut Series Label Formatting",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the `label` property in the data items to apply custom label formatting. This can be a string or a function that receives the segment value and returns a formatted label. If the `label` is not set, the value will be used as the label. To omit the label completely, set the `label` to `undefined`.",
           "type": "text"
         }
       },

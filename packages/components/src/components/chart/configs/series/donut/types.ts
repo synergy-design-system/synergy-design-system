@@ -56,8 +56,17 @@ export type SegmentRange = {
 export type DonutDataItem = {
   /** Numeric value of the segment; determines the slice angle relative to the other values. */
   value: number;
-  /** Label shown for the segment. */
-  name?: string;
+  /**
+   * Series item name used for displaying in legend.
+   */
+  name?: string | ((value: number) => string);
+  /**
+   * Label shown for the segment.
+   * If set to a function, it will be called with the segment value to generate the label.
+   * If not set, the value will be used as the label.
+   * To remove the label, set this to `undefined`.
+   * */
+  label?: string | ((value: number) => string);
   /** Optional prefix icon as SVG data url used to render a segment icon alongside the label. */
   prefixIcon?: string;
 };
@@ -75,6 +84,21 @@ export type DonutSeriesOption = DonutSeriesConfig & {
   data?: DonutDataValue[];
   name?: string;
   colorBy?: 'data';
+};
+
+export type ResolvedDonutDataItem = {
+  /** Numeric value of the segment; determines the slice angle relative to the other values. */
+  value: number;
+  /**
+   * Series item name used for displaying in legend.
+   */
+  name?: string;
+  /**
+   * Label shown for the segment.
+   * */
+  label?: string;
+  /** Optional prefix icon as SVG data url used to render a segment icon alongside the label. */
+  prefixIcon?: string;
 };
 
 /**

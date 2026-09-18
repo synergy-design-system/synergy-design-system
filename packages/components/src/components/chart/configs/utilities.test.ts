@@ -11,6 +11,7 @@ import {
   normalizeAngle,
   parseLayoutValue,
   polarPoint,
+  resolveText,
   toPixels,
 } from './utilities.js';
 
@@ -61,6 +62,17 @@ describe('toPixels', () => {
 
   it('uses a custom fallback for invalid values', () => {
     expect(toPixels(undefined, 200, 80)).to.equal(80);
+  });
+});
+
+describe('resolveText', () => {
+  it('returns static text and resolves callbacks with the data value', () => {
+    expect(resolveText('Total', 42)).to.equal('Total');
+    expect(resolveText(value => `Value: ${value}`, 42)).to.equal('Value: 42');
+  });
+
+  it('returns undefined when no text is provided', () => {
+    expect(resolveText(undefined, 42)).to.be.undefined;
   });
 });
 

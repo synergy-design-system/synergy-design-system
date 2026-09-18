@@ -145,6 +145,7 @@ export const Icon: Story = {
   render: () => html`
     <syn-chart id="gauge-icon"></syn-chart>
     <script type="module">
+      // Import the formatter from the chart utilities
       //import { formatter } from '@synergy-design-system/components/components/chart/index.js';
       
       const charts = document.querySelectorAll('#gauge-icon');

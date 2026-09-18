@@ -244,17 +244,17 @@ describe('SynergyDonutView', () => {
   it('does not adapt the donut size when a fixed pixel radius is set', () => {
     const shortNames = renderDonut({
       data: [
-        { name: 'Short name', value: 10 },
-        { name: 'Another name', value: 20 },
-        { name: 'Final name', value: 30 },
+        { label: 'Short name', value: 10 },
+        { label: 'Another name', value: 20 },
+        { label: 'Final name', value: 30 },
       ],
       radius: 60,
     });
     const longNames = renderDonut({
       data: [
-        { name: 'This is a very long segment name', value: 10 },
-        { name: 'Another extremely long segment name', value: 20 },
-        { name: 'Final segment label left edge', value: 30 },
+        { label: 'This is a very long segment name', value: 10 },
+        { label: 'Another extremely long segment name', value: 20 },
+        { label: 'Final segment label left edge', value: 30 },
       ],
       radius: 60,
     });
@@ -268,17 +268,17 @@ describe('SynergyDonutView', () => {
   it('adapts the donut size when a percentage radius is set', () => {
     const shortNames = renderDonut({
       data: [
-        { name: 'Short name', value: 10 },
-        { name: 'Another name', value: 20 },
-        { name: 'Final name', value: 30 },
+        { label: 'Short name', value: 10 },
+        { label: 'Another name', value: 20 },
+        { label: 'Final name', value: 30 },
       ],
       radius: '60%',
     });
     const longNames = renderDonut({
       data: [
-        { name: 'This is a very long segment name', value: 10 },
-        { name: 'Another extremely long segment name', value: 20 },
-        { name: 'Final segment label left edge', value: 30 },
+        { label: 'This is a very long segment name', value: 10 },
+        { label: 'Another extremely long segment name', value: 20 },
+        { label: 'Final segment label left edge', value: 30 },
       ],
       radius: '60%',
     });
@@ -311,43 +311,29 @@ describe('SynergyDonutView', () => {
     expect(segment.shape.cy).to.equal(140);
   });
 
-  it('renders segments only for positive finite values', () => {
+  it('renders the given string label as label and when provided in data', () => {
     const view = renderDonut({
       data: [
-        { name: 'invalid', value: Number.NaN },
-        { name: 'negative', value: -5 },
-        { name: 'positive', value: 10 },
-      ],
-    });
-
-    const segments = getSegmentSectors(view);
-
-    expect(segments).to.have.lengthOf(1);
-    expect(getLabelTexts(view)).to.deep.equal(['positive']);
-  });
-
-  it('does not render labels when data items have no name', () => {
-    const view = renderDonut({ data: toDonutData([10, 20, 30]) });
-
-    expect(getLabelTexts(view)).to.have.lengthOf(0);
-    expect(getLabelIcons(view)).to.have.lengthOf(0);
-  });
-
-  it('renders a text label centered on each segment when names are provided in data', () => {
-    const view = renderDonut({
-      data: [
-        { name: 'First', value: 10 },
-        { name: 'Second', value: 20 },
-        { name: 'Third', value: 30 },
+        { label: 'First', value: 10 },
+        { label: 'Second', value: 20 },
+        { label: 'Third', value: 30 },
       ],
     });
 
     expect(getLabelTexts(view)).to.deep.equal(['First', 'Second', 'Third']);
   });
 
+  it('skips labels for segments with an `undefined` label property', () => {
+    const view = renderDonut({
+      data: [{ label: 'Only First', value: 10 }, { label: undefined, value: 20 }, { label: undefined, value: 30 }],
+    });
+
+    expect(getLabelTexts(view)).to.deep.equal(['Only First']);
+  });
+
   it('renders an icon before the label text when prefixIcon is provided in data', () => {
     const view = renderDonut({
-      data: [{ name: 'First', prefixIcon: svgDataUrl, value: 10 }, { value: 20 }, { value: 30 }],
+      data: [{ label: 'First', prefixIcon: svgDataUrl, value: 10 }, { value: 20 }, { value: 30 }],
     });
 
     const icons = getLabelIcons(view);
@@ -357,17 +343,9 @@ describe('SynergyDonutView', () => {
     expect(getLabelTexts(view)).to.include('First');
   });
 
-  it('skips labels for segments without a name property', () => {
-    const view = renderDonut({
-      data: [{ name: 'Only First', value: 10 }, { value: 20 }, { value: 30 }],
-    });
-
-    expect(getLabelTexts(view)).to.deep.equal(['Only First']);
-  });
-
   it('does not render labels for zero-value data', () => {
     const view = renderDonut({
-      data: [{ name: 'First', value: 0 }, { name: 'Second', value: 0 }, { name: 'Third', value: 0 }],
+      data: [{ label: 'First', value: 0 }, { label: 'Second', value: 0 }, { label: 'Third', value: 0 }],
     });
 
     expect(getLabelTexts(view)).to.have.lengthOf(0);

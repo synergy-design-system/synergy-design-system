@@ -837,6 +837,7 @@ The axes labels can be formatted via the axisLabel.formatter option. You can cus
 </div>
 <syn-chart id="chart-axis-label-formatter"></syn-chart>
 <script type="module">
+  // Import the formatter from the chart utilities
   // import { formatter } from '@synergy-design-system/components/components/chart/index.js';
 
   const setConfig = (formatterSelect) => {
@@ -1438,9 +1439,55 @@ By default, each outer ring segment is assigned a color from the chart's categor
 
 ---
 
-## Labels
+## Label Formatting
 
-Use the name option to render a label for each segment, aligned by index with data. Each label is centered on its segment and placed outside the outer ring; provide a prefixIcon data URL alongside the name to render an icon before the label.
+Use the label property in the data items to apply custom label formatting. This can be a string or a function that receives the segment value and returns a formatted label. If the label is not set, the value will be used as the label. To omit the label completely, set the label to undefined.
+
+```html
+<syn-chart id="donut-label-formatting"></syn-chart>
+<script type="module">
+  // Import the formatter from the chart utilities
+  //import { formatter } from '@synergy-design-system/components/components/chart/index.js';
+
+  const charts = document.querySelectorAll("#donut-label-formatting");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesDonut({
+        data: [
+          {
+            value: 2000,
+            label: "Custom string",
+          },
+          {
+            value: 2000,
+            label: undefined,
+          },
+          {
+            value: 2000,
+            label: formatter.unitFormatter("ms"),
+          },
+          {
+            value: 2000,
+            label: formatter.numberShorthandFormatter(),
+          },
+          {
+            value: 2000,
+            label: formatter.numberFormatter(undefined, {
+              minimumFractionDigits: 2,
+            }),
+          },
+        ],
+      });
+  });
+</script>
+```
+
+---
+
+## Labels With Icons
+
+Use the label option to render a label for each segment, aligned by index with data. Each label is centered on its segment and placed outside the outer ring; provide a prefixIcon data URL alongside the label to render an icon before the label.
 
 ```html
 <syn-chart id="donut-labels"></syn-chart>
@@ -1546,7 +1593,7 @@ Use top, right, bottom, and left to reduce the donut layout area from each side 
 
 ## With Legend
 
-Use legendShow() to render legend entries for the donut segments. Segment names are used as legend labels and can be toggled interactively.
+Use legendShow() to render legend entries for the donut segments. Segment names are used as legend labels and can be toggled interactively. For this use the name option in the data items.
 
 ```html
 <syn-chart id="donut-legend"></syn-chart>
@@ -1574,6 +1621,60 @@ Use legendShow() to render legend entries for the donut segments. Segment names 
           ],
         })
         .legendShow();
+  });
+</script>
+```
+
+---
+
+## Status Donut
+
+Use status colors to visualize the distribution of items across different statuses, such as error, warning, success, and neutral.
+
+```html
+<syn-chart id="donut-status"></syn-chart>
+<script type="module">
+  // To use Synergy chart colors, import the resolved chart tokens. The chart
+  // configuration currently requires hex values, which can be retrieved
+  // directly from the chart tokens object:
+  //
+  // import { ResolvedTokens as ChartTokens } from '@synergy-design-system/tokens/charts/resolved';
+  const charts = document.querySelectorAll("#donut-status");
+  const getColor = (token) => {
+    return ComponentTokens[token]["light"];
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          color: [
+            getColor("SynNamurErrorColor"),
+            getColor("SynNamurWarningColor"),
+            getColor("SynNamurSuccessColor"),
+            getColor("SynNamurNeutralColor"),
+          ],
+        })
+        .seriesDonut({
+          data: [
+            {
+              value: 220,
+              name: "Error",
+            },
+            {
+              value: 50,
+              name: "Warning",
+            },
+            {
+              value: 120,
+              name: "Success",
+            },
+            {
+              value: 33,
+              name: "Neutral",
+            },
+          ],
+        });
   });
 </script>
 ```
@@ -1659,6 +1760,7 @@ Use the icon option to render an SVG image below the unit label, or below the va
 ```html
 <syn-chart id="gauge-icon"></syn-chart>
 <script type="module">
+  // Import the formatter from the chart utilities
   //import { formatter } from '@synergy-design-system/components/components/chart/index.js';
 
   const charts = document.querySelectorAll("#gauge-icon");

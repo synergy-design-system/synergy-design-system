@@ -13,7 +13,8 @@ import type { DonutSeriesPresetOptions, SynergyDonutSeriesOption } from './types
  * @param {DonutSeriesPresetOptions} [options] Preset options.
  * @param {DonutDataItem[]} [options.data] Data values/items used to size and label the outer ring segments.
  * @param {number} [options.data[].value] Numeric value of the segment; determines the slice angle relative to the other values. Required for each item.
- * @param {string} [options.data[].name] Label shown for the segment.
+ * @param {string|((value: number) => string)} [options.data[].label] Label shown for the segment. If set to a function, it will be called with the segment value to generate the label. If not set, the value will be used as the label. To remove the label, set this to `undefined`.
+ * @param {string|((value: number) => string)} [options.data[].name] Series item name used for displaying in legend.
  * @param {string} [options.data[].prefixIcon] Optional prefix icon as SVG data url used to render a segment icon alongside the label.
  * @param {[number|string, number|string]} [options.center] Center position within the donut layout area. Each value accepts pixels or percentages. Default: `['50%', '50%']`.
  * @param {number|string} [options.radius] Outer donut radius in pixels/percentage. Default: `'100%'`.

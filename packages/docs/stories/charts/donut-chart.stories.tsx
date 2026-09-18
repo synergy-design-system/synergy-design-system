@@ -8,7 +8,9 @@ import {
   Title,
 } from '@storybook/addon-docs/blocks';
 import { ResolvedTokens as ChartTokens } from '@synergy-design-system/tokens/charts/resolved';
+import { ResolvedTokens as ComponentTokens } from '@synergy-design-system/tokens/resolved';
 import '../../../components/src/components/chart/chart.js';
+import { formatter } from '../../../components/src/components/chart/index.js';
 import {
   generateScreenshotStory,
   generateStoryDescription,
@@ -19,10 +21,14 @@ import { waitForFinishedChartPlayFunction } from '../../src/playFunction/waitFor
 declare global {
   interface Window {
     ChartTokens: typeof ChartTokens;
+    ComponentTokens: typeof ComponentTokens;
+    formatter: typeof formatter;
   }
 }
 
 window.ChartTokens = ChartTokens;
+window.ComponentTokens = ComponentTokens;
+window.formatter = formatter;
 
 const meta: Meta = {
   component: 'syn-chart',
@@ -122,7 +128,54 @@ export const CustomColors: Story = {
   `,
 };
 
-export const Labels: Story = {
+export const LabelFormatting: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'donut-series-label-formatting'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-chart id="donut-label-formatting"></syn-chart>
+    <script type="module">
+      // Import the formatter from the chart utilities
+      //import { formatter } from '@synergy-design-system/components/components/chart/index.js';
+
+      const charts = document.querySelectorAll('#donut-label-formatting');
+
+      charts.forEach(chart => {
+        chart.config = handle => handle
+        .seriesDonut({
+            data: [
+            {
+              value: 2000,
+              label: 'Custom string',
+            },
+            {
+              value: 2000,
+              label: undefined,
+            },
+            {
+              value: 2000,
+              label: formatter.unitFormatter('ms'),
+            },
+            {
+              value: 2000,
+              label: formatter.numberShorthandFormatter(),
+            },
+            {
+              value: 2000,
+              label: formatter.numberFormatter(undefined, { minimumFractionDigits: 2 }),
+            },
+          ],
+        });
+      });
+    </script>
+  `,
+};
+
+export const LabelsWithIcons: Story = {
   parameters: {
     docs: {
       description: {
@@ -275,14 +328,72 @@ export const WithLegend: Story = {
   `,
 };
 
+export const StatusDonut: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'donut-series-status'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-chart id="donut-status"></syn-chart>
+    <script type="module">
+      // To use Synergy chart colors, import the resolved chart tokens. The chart
+      // configuration currently requires hex values, which can be retrieved
+      // directly from the chart tokens object:
+      //
+      // import { ResolvedTokens as ChartTokens } from '@synergy-design-system/tokens/charts/resolved';
+      const charts = document.querySelectorAll('#donut-status');
+      const getColor = (token) => {
+        return ComponentTokens[token]['light'];
+      };
+
+      charts.forEach(chart => {
+        chart.config = handle => handle
+        .baseConfig({ 
+          color: [
+            getColor('SynNamurErrorColor'),
+            getColor('SynNamurWarningColor'),
+            getColor('SynNamurSuccessColor'),
+            getColor('SynNamurNeutralColor'),
+          ]
+        })
+        .seriesDonut({
+          data: [
+            {
+              value: 220,
+              name: 'Error',
+            },
+            {
+              value: 50,
+              name: 'Warning',
+            },
+            {
+              value: 120,
+              name: 'Success',
+            },
+            {
+              value: 33,
+              name: 'Neutral',
+            },
+          ],
+        });
+      });
+    </script>
+  `,
+};
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   CustomColors,
-  Labels,
+  LabelFormatting,
+  LabelsWithIcons,
   Radius,
   AdjustCenterPosition,
   Insets,
   WithLegend,
+  StatusDonut,
 }, 700);
 /* eslint-enable sort-keys */

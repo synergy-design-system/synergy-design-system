@@ -454,3 +454,21 @@ export const toPixels = (value: LayoutValue | undefined, baseSize: number, fallb
 
   return parsed.kind === 'percent' ? (baseSize * parsed.value) / 100 : fallback;
 };
+
+/**
+ * Resolves static or value-dependent text.
+ *
+ * @param text - Static text or a callback that derives text from the data value.
+ * @param value - Numeric data value passed to a text callback.
+ * @returns The resolved text, or undefined when no text was provided.
+ */
+export const resolveText = (
+  text: string | ((value: number) => string) | undefined,
+  value: number,
+): string | undefined => {
+  if (typeof text === 'function') {
+    return text(value);
+  }
+
+  return text ? String(text) : undefined;
+};

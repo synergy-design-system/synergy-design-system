@@ -40,10 +40,10 @@ export const gaugeChartConfigObject: GaugeSeriesPresetOptions = {
 
 export const donutChartConfigObject: DonutSeriesPresetOptions = {
   data: [
-    { name: 'Angular', value: 10 },
-    { name: 'React', value: 20 },
-    { name: 'Vue', value: 30 },
-    { name: 'Svelte', value: 40 },
+    { label: 'Angular', value: 10 },
+    { label: 'React', value: 20 },
+    { label: 'Vue', value: 30 },
+    { label: 'Svelte', value: 40 },
   ],
   radius: '70%',
 };

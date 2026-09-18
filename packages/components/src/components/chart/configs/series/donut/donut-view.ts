@@ -3,11 +3,11 @@ import type { SeriesData } from 'echarts/types/dist/shared.js';
 import type { SynergyDonutSeriesModel } from './donut-model.js';
 import type {
   DonutDataItem,
-  DonutDataValue,
   DonutSeriesOption,
   LayoutBounds,
   LayoutCenterInput,
   LayoutRadiusInput,
+  ResolvedDonutDataItem,
   ResolvedLayout,
   SegmentRange,
 } from './types.js';
@@ -20,7 +20,6 @@ import {
   createTextGraphic,
   parseLayoutValue,
   polarPoint,
-  sanitizeFiniteNumber,
   toPixels,
 } from '../../utilities.js';
 import type { ExtensionAPI, GlobalModel } from '../../types.js';
@@ -228,10 +227,10 @@ const computeLabelDimensions = (
   const fontSize = factor * styleWithoutUnit('SynFontSizeSmall');
   const iconSize = factor * styleWithoutUnit('SynFontSizeLarge');
   const iconTextGap = factor * styleWithoutUnit('SynSpacing2xSmall');
-  const textWidth = item.name ? measureTextWidth(item.name, `${fontSize}px ${style('SynFontSans')}`) : 0;
+  const textWidth = item.label ? measureTextWidth(item.label as string, `${fontSize}px ${style('SynFontSans')}`) : 0;
   const iconWidth = item.prefixIcon ? iconSize + iconTextGap : 0;
   const totalWidth = iconWidth + textWidth;
-  const textHeight = item.name ? fontSize : 0;
+  const textHeight = item.label ? fontSize : 0;
   const contentHeight = Math.max(iconSize, textHeight);
   // Labels on the right half grow rightward from point.x; left half grow leftward.
   const labelLeft = onRightHalf ? point.x : point.x - totalWidth;
@@ -276,11 +275,11 @@ const createSegmentLabel = ({
     }));
   }
 
-  if (item.name) {
+  if (item.label) {
     group.add(createTextGraphic({
       align: 'left',
       fontSize,
-      text: item.name,
+      text: item.label as string,
       x: textX,
       y: point.y,
       z: 15,
@@ -330,14 +329,14 @@ const computeAdaptiveLayout = ({
   bounds: LayoutBounds;
   centerX: number;
   centerY: number;
-  dataItems: DonutDataItem[];
+  dataItems: ResolvedDonutDataItem[];
   factor: number;
   segmentRanges: Array<SegmentRange | null>;
 }): { adaptiveFactor: number; outerRingOuterRadius: number } => {
   const visibleLabels = segmentRanges.flatMap((range, index) => {
     const item = dataItems[index];
 
-    if (!range || (range.endAngle - range.startAngle) <= 0 || !item || (!item.name && !item.prefixIcon)) {
+    if (!range || (range.endAngle - range.startAngle) <= 0 || !item || (!item.label && !item.prefixIcon)) {
       return [];
     }
 
@@ -382,7 +381,7 @@ const computeAdaptiveLayout = ({
  * Builds the complete donut graphic group, including track, slices, and optional labels.
  */
 const buildDonutGroup = (
-  dataItems: DonutDataItem[],
+  dataItems: ResolvedDonutDataItem[],
   inputConfig: DonutSeriesOption,
   width: number,
   height: number,
@@ -451,7 +450,7 @@ const buildDonutGroup = (
   segmentRanges.forEach((range, index) => {
     const dataItem = dataItems[index];
 
-    if (!range || (range.endAngle - range.startAngle) <= 0 || (!dataItem?.name && !dataItem?.prefixIcon)) {
+    if (!range || (range.endAngle - range.startAngle) <= 0 || (!dataItem?.label && !dataItem?.prefixIcon)) {
       return;
     }
 
@@ -472,26 +471,14 @@ const buildDonutGroup = (
 };
 
 /**
- * Converts the model data for the custom donut series into the normalized item structure used by the view.
- *
- * Values are sanitized to guard against invalid or non-finite numbers before layout and rendering.
+ * Retrieves the raw data items from the series model for use in the donut view.
  */
-const toDonutDataItems = (seriesModel: SynergyDonutSeriesModel): DonutDataItem[] => {
+const toDonutDataItems = (seriesModel: SynergyDonutSeriesModel): ResolvedDonutDataItem[] => {
   const data = seriesModel.getData();
-  const dataItems: DonutDataItem[] = [];
-
+  const dataItems: ResolvedDonutDataItem[] = [];
   for (let index = 0; index < data.count(); index += 1) {
-    const value = sanitizeFiniteNumber(Number(data.get('value', index)));
-    const rawDataItem = data.getRawDataItem(index) as DonutDataValue;
-    const objectDataItem = typeof rawDataItem === 'object' && rawDataItem !== null ? rawDataItem : undefined;
-
-    dataItems.push({
-      name: objectDataItem?.name,
-      prefixIcon: objectDataItem?.prefixIcon,
-      value,
-    });
+    dataItems.push(data.getRawDataItem(index) as ResolvedDonutDataItem);
   }
-
   return dataItems;
 };
 

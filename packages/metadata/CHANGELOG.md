@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.12.0
+
+### Patch Changes
+
+- [#1387](https://github.com/synergy-design-system/synergy-design-system/pull/1387) [`d4f88d6`](https://github.com/synergy-design-system/synergy-design-system/commit/d4f88d6c197e70fe5f94f328b12ac9a73eca8c7d) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-09-18
+
+  fix: 🐛 `<syn-progress-ring>` renders twice during render and property updates ([#1328](https://github.com/synergy-design-system/synergy-design-system/issues/1328))
+
+  This release fixes an issue with `<syn-progress-ring>` that triggered multiple render calls when inserting it into the DOM.
+
 ## 4.11.0
 
 ### Patch Changes

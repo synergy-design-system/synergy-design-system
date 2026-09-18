@@ -20,8 +20,8 @@ const normalizeDonutDataItem = (dataItem: DonutDataValue): ResolvedDonutDataItem
   }
 
   const value = sanitizeFiniteNumber(dataItem.value);
-  const hasLabel = Object.prototype.hasOwnProperty.call(dataItem, 'label');
-  const hasName = Object.prototype.hasOwnProperty.call(dataItem, 'name');
+  const hasLabel = Object.hasOwn(dataItem, 'label');
+  const hasName = Object.hasOwn(dataItem, 'name');
   const label = hasLabel ? resolveText(dataItem.label, value) : String(value);
   const name = (hasName && dataItem.name !== undefined) ? String(dataItem.name) : undefined;
   const { prefixIcon } = dataItem;

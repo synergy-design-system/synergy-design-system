@@ -9,7 +9,7 @@ describe('SynergyDonutSeriesModel', () => {
     const data = model.getInitialData({
       data: [10, {
         label: (value) => `Item ${value}`,
-        name: (value) => `Name ${value}`,
+        name: 'Name',
         prefixIcon: 'data:image/svg+xml;base64,icon',
         value: 20,
       }],
@@ -21,7 +21,7 @@ describe('SynergyDonutSeriesModel', () => {
     expect(data.get('value', 1)).to.equal(20);
     expect(data.getRawDataItem(1)).to.deep.equal({
       label: 'Item 20',
-      name: 'Name 20',
+      name: 'Name',
       prefixIcon: 'data:image/svg+xml;base64,icon',
       value: 20,
     });
@@ -44,14 +44,6 @@ describe('SynergyDonutSeriesModel', () => {
       const data = createModel().getInitialData({ data: [{ name: undefined, value: 10 }] });
 
       expect(data.getRawDataItem(0)).to.not.have.property('name');
-    });
-
-    it('resolves a name callback with the data value', () => {
-      const data = createModel().getInitialData({
-        data: [{ name: (value) => `Value ${value}`, value: 10 }],
-      });
-
-      expect(data.getRawDataItem(0)).to.include({ name: 'Value 10' });
     });
   });
 

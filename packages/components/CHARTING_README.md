@@ -518,14 +518,14 @@ chart.config = handle =>
     data: [
       {
         value: 15,
-        name: "Angular",
+        label: "Angular",
         prefixIcon: "data:image/svg+xml;base64,...",
       },
-      { value: 10, name: "React" },
-      { value: 20, name: "Vue" },
-      { value: 12, name: "Svelte" },
-      { value: 18, name: "Lit" },
-      { value: 8, name: "Other" },
+      { value: 10, label: "React" },
+      { value: 20, label: "Vue" },
+      { value: 12, label: "Svelte" },
+      { value: 18, label: "Lit" },
+      { value: 8, label: "Other" },
     ],
   });
 ```

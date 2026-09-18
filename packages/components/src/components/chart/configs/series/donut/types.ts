@@ -59,7 +59,7 @@ export type DonutDataItem = {
   /**
    * Series item name used for displaying in legend.
    */
-  name?: string | ((value: number) => string);
+  name?: string;
   /**
    * Label shown for the segment.
    * If set to a function, it will be called with the segment value to generate the label.

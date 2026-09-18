@@ -275,6 +275,7 @@ const createDialogTemplate = ({ features, id, initialView = 'none' }: DialogTemp
     const confirmationDialog = root.querySelector('.confirmation-dialog');
     const editForm = root.querySelector('#edit-item-form');
     const nameInput = editForm?.querySelector('syn-input[name="name"]');
+    const nameValidator = nameInput?.closest('syn-validate');
     const statusSelect = editForm?.querySelector('syn-select[name="status"]');
     const descriptionTextarea = editForm?.querySelector('syn-textarea[name="description"]');
     const idInput = editForm?.querySelector('input[name="id"]');
@@ -326,7 +327,7 @@ const createDialogTemplate = ({ features, id, initialView = 'none' }: DialogTemp
     };
 
     const updateSubmitState = () => {
-      const isValid = Boolean(nameInput?.checkValidity()) && Boolean(statusSelect?.checkValidity());
+      const isValid = Boolean(nameInput?.validity.valid) && Boolean(statusSelect?.validity.valid);
 
       if (submitButton) {
         submitButton.disabled = !isValid;
@@ -337,6 +338,30 @@ const createDialogTemplate = ({ features, id, initialView = 'none' }: DialogTemp
       }
 
       updateEditDialogLabel();
+    };
+
+    const revalidateAfterProgrammaticFill = (control) => {
+      control?.updateComplete?.then(() => {
+        control.dispatchEvent(new Event('syn-input', { bubbles: true, composed: true }));
+      });
+    };
+
+    const resetEditFormState = () => {
+      if (editDialog?.open) {
+        return;
+      }
+
+      editForm?.reset();
+      editingIsExisting = false;
+
+      if (nameValidator) {
+        nameValidator.isValid = true;
+        nameValidator.validationMessage = '';
+        nameValidator.hasFocus = false;
+        nameValidator.requestUpdate();
+      }
+
+      updateSubmitState();
     };
 
     const fillForm = (item) => {
@@ -357,6 +382,10 @@ const createDialogTemplate = ({ features, id, initialView = 'none' }: DialogTemp
       }
 
       updateSubmitState();
+
+      if (item.name) {
+        revalidateAfterProgrammaticFill(nameInput);
+      }
     };
 
     const openAddDialog = () => {
@@ -486,6 +515,8 @@ const createDialogTemplate = ({ features, id, initialView = 'none' }: DialogTemp
         }
       });
     });
+
+    editDialog?.addEventListener('syn-after-hide', resetEditFormState);
 
     editForm?.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -1216,7 +1247,7 @@ export const ResponsiveDialog: Story = {
   },
 };
 
-export const ResponsiveDialogTablet = {
+export const ResponsiveDialogTablet: Story = {
   ...ResponsiveDialog,
   globals: {
     viewport: { value: 'tablet' },
@@ -1232,7 +1263,7 @@ export const ResponsiveDialogTablet = {
   },
 };
 
-export const ResponsiveDialogSmartphone = {
+export const ResponsiveDialogSmartphone: Story = {
   ...ResponsiveDialog,
   globals: {
     viewport: { value: 'mobile2' },

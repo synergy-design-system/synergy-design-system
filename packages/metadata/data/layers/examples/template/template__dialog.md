@@ -203,6 +203,7 @@ Use this pattern to confirm a user action. Confirmation dialogs are used to ensu
     const confirmationDialog = root.querySelector(".confirmation-dialog");
     const editForm = root.querySelector("#edit-item-form");
     const nameInput = editForm?.querySelector('syn-input[name="name"]');
+    const nameValidator = nameInput?.closest("syn-validate");
     const statusSelect = editForm?.querySelector('syn-select[name="status"]');
     const descriptionTextarea = editForm?.querySelector(
       'syn-textarea[name="description"]',
@@ -272,8 +273,8 @@ Use this pattern to confirm a user action. Confirmation dialogs are used to ensu
 
     const updateSubmitState = () => {
       const isValid =
-        Boolean(nameInput?.checkValidity()) &&
-        Boolean(statusSelect?.checkValidity());
+        Boolean(nameInput?.validity.valid) &&
+        Boolean(statusSelect?.validity.valid);
 
       if (submitButton) {
         submitButton.disabled = !isValid;
@@ -284,6 +285,32 @@ Use this pattern to confirm a user action. Confirmation dialogs are used to ensu
       }
 
       updateEditDialogLabel();
+    };
+
+    const revalidateAfterProgrammaticFill = (control) => {
+      control?.updateComplete?.then(() => {
+        control.dispatchEvent(
+          new Event("syn-input", { bubbles: true, composed: true }),
+        );
+      });
+    };
+
+    const resetEditFormState = () => {
+      if (editDialog?.open) {
+        return;
+      }
+
+      editForm?.reset();
+      editingIsExisting = false;
+
+      if (nameValidator) {
+        nameValidator.isValid = true;
+        nameValidator.validationMessage = "";
+        nameValidator.hasFocus = false;
+        nameValidator.requestUpdate();
+      }
+
+      updateSubmitState();
     };
 
     const fillForm = (item) => {
@@ -304,6 +331,10 @@ Use this pattern to confirm a user action. Confirmation dialogs are used to ensu
       }
 
       updateSubmitState();
+
+      if (item.name) {
+        revalidateAfterProgrammaticFill(nameInput);
+      }
     };
 
     const openAddDialog = () => {
@@ -438,6 +469,8 @@ Use this pattern to confirm a user action. Confirmation dialogs are used to ensu
         }
       });
     });
+
+    editDialog?.addEventListener("syn-after-hide", resetEditFormState);
 
     editForm?.addEventListener("submit", (event) => {
       event.preventDefault();
@@ -711,6 +744,7 @@ Form-focused dialog pattern for create and edit flows. Structure the dialog arou
     const confirmationDialog = root.querySelector(".confirmation-dialog");
     const editForm = root.querySelector("#edit-item-form");
     const nameInput = editForm?.querySelector('syn-input[name="name"]');
+    const nameValidator = nameInput?.closest("syn-validate");
     const statusSelect = editForm?.querySelector('syn-select[name="status"]');
     const descriptionTextarea = editForm?.querySelector(
       'syn-textarea[name="description"]',
@@ -780,8 +814,8 @@ Form-focused dialog pattern for create and edit flows. Structure the dialog arou
 
     const updateSubmitState = () => {
       const isValid =
-        Boolean(nameInput?.checkValidity()) &&
-        Boolean(statusSelect?.checkValidity());
+        Boolean(nameInput?.validity.valid) &&
+        Boolean(statusSelect?.validity.valid);
 
       if (submitButton) {
         submitButton.disabled = !isValid;
@@ -792,6 +826,32 @@ Form-focused dialog pattern for create and edit flows. Structure the dialog arou
       }
 
       updateEditDialogLabel();
+    };
+
+    const revalidateAfterProgrammaticFill = (control) => {
+      control?.updateComplete?.then(() => {
+        control.dispatchEvent(
+          new Event("syn-input", { bubbles: true, composed: true }),
+        );
+      });
+    };
+
+    const resetEditFormState = () => {
+      if (editDialog?.open) {
+        return;
+      }
+
+      editForm?.reset();
+      editingIsExisting = false;
+
+      if (nameValidator) {
+        nameValidator.isValid = true;
+        nameValidator.validationMessage = "";
+        nameValidator.hasFocus = false;
+        nameValidator.requestUpdate();
+      }
+
+      updateSubmitState();
     };
 
     const fillForm = (item) => {
@@ -812,6 +872,10 @@ Form-focused dialog pattern for create and edit flows. Structure the dialog arou
       }
 
       updateSubmitState();
+
+      if (item.name) {
+        revalidateAfterProgrammaticFill(nameInput);
+      }
     };
 
     const openAddDialog = () => {
@@ -946,6 +1010,8 @@ Form-focused dialog pattern for create and edit flows. Structure the dialog arou
         }
       });
     });
+
+    editDialog?.addEventListener("syn-after-hide", resetEditFormState);
 
     editForm?.addEventListener("submit", (event) => {
       event.preventDefault();

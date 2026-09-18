@@ -6,7 +6,6 @@ import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import styles from './breadcrumb.styles.js';
-import customStyles from './breadcrumb.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type SynBreadcrumbItem from '../breadcrumb-item/breadcrumb-item.js';
 
@@ -24,7 +23,7 @@ import type SynBreadcrumbItem from '../breadcrumb-item/breadcrumb-item.js';
  * @csspart base - The component's base wrapper.
  */
 export default class SynBreadcrumb extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, styles];
   static dependencies = { 'syn-icon': SynIcon };
 
   private readonly localize = new LocalizeController(this);

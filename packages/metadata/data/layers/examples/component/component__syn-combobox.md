@@ -3,7 +3,7 @@
 The combobox suggests items based on the user input.
 
 ```html
-<syn-combobox max-options-visible="3">
+<syn-combobox>
   <syn-option>Option 1</syn-option>
   <syn-option>Option 2</syn-option>
   <syn-option>Option 3</syn-option>

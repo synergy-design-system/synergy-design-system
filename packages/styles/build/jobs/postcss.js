@@ -1,6 +1,5 @@
-import { readFile, writeFile } from 'fs/promises';
+import { glob, readFile, writeFile } from 'fs/promises';
 import { normalize } from 'path';
-import { globby } from 'globby';
 import postcss from 'postcss';
 import atImportPlugin from 'postcss-import';
 import headerPlugin from 'postcss-header';
@@ -34,7 +33,7 @@ const getDistName = (inputPath) => {
 
 /**
  * Create the default banner
- * @returns {String} The banner to prepend to all generated files
+ * @returns {Promise<string>} The banner to prepend to all generated files
  */
 const createBanner = async () => {
   const packageJSON = await readFile(getPath('./package.json'), {
@@ -63,7 +62,7 @@ export const runPostCSS = job('Running PostCSS', async () => {
   ]);
 
   // Get a list of files that we want to process
-  const indexFiles = await globby('./src/**/index.css');
+  const indexFiles = await Array.fromAsync(glob('./src/**/index.css'));
 
   const filesToTransform = await Promise.all(
     indexFiles.map(async (indexFile) => ({

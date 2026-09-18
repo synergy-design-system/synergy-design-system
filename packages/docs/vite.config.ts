@@ -3,12 +3,12 @@ import path from 'path';
 import { defineConfig } from 'vite';
 import VitePluginCustomElementsManifest from 'vite-plugin-cem';
 import { replaceCodePlugin } from './src/vite-plugin-synergy-replace/index.js';
-import packageJson from '../components/package.json';
+import packageJson from '../components/package.json' with { type: 'json' };
 import customElementConfig from '../components/custom-elements-manifest.config.js';
 import vitePluginSynergyStyles from './src/vite-plugin-synergy-styles/index.js';
 
 const getAbsolutePath = (...pathParts: string[]) => path.join(
-  path.dirname(__filename),
+  path.dirname(import.meta.filename),
   ...pathParts,
 );
 

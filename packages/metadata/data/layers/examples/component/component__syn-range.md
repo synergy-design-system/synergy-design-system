@@ -3,7 +3,7 @@
 Ranges allow the user to select values within a given range using a thumb.
 
 ```html
-<syn-range max="100" step="1" value="50"></syn-range>
+<syn-range value="50"></syn-range>
 ```
 
 ---

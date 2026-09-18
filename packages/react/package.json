@@ -45,8 +45,8 @@
   "type": "module",
   "version": "3.24.5",
   "devDependencies": {
-    "@types/react": "^19.2.18",
-    "react": "^19.2.8"
+    "@types/react": "^19.3.0",
+    "react": "^19.3.0"
   },
   "peerDependencies": {
     "@synergy-design-system/tokens": "workspace:*"

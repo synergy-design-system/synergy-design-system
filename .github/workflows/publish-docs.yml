@@ -24,15 +24,12 @@ jobs:
           path: "synergy-design-system"
 
       # We cannot use our own action as it interferes with the checkout paths
-      - name: Set up Node
-        uses: actions/setup-node@v6
+      - name: Setup pnpm and Node.js
+        uses: pnpm/setup@v2
         with:
-          node-version: 'lts/Krypton'
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v6
-        with:
-          version: 10
+          package-json-file: synergy-design-system/package.json
+          install: false
+          cache: true
 
       - name: Install dependencies
         working-directory: ./synergy-design-system

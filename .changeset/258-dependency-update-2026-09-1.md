@@ -14,4 +14,8 @@
 fix: 🐛 dependency updates (#258)
 
 This release updates dependencies for all packages.
-It also introduces `pnpm@12` as the default package manager.
+
+It also introduces some changes to Synergies build infrastructure: 
+
+- `pnpm@12` as the default package manager.
+- `NPM Trusted Publishers` for automated releases for better security.

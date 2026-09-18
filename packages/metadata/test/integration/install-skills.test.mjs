@@ -9,7 +9,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { describe, it } from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { expect } from 'chai';
+import assert from 'node:assert/strict';
 import { execa } from 'execa';
 
 describe('install-skills bin integration', () => {
@@ -31,26 +31,26 @@ describe('install-skills bin integration', () => {
       const skillPath = path.join(tempRoot, 'synergy-component', 'SKILL.md');
       await access(skillPath);
       const skillContent = await readFile(skillPath, 'utf-8');
-      expect(skillContent).to.include('synergy-component');
-      expect(skillContent).to.include('metadata:');
-      expect(skillContent).to.include('source: "synergy-design-system"');
-      expect(skillContent).to.include('skill-type: "component-reference"');
-      expect(skillContent).to.include('interface.md');
-      expect(skillContent).to.include('rules.md');
-      expect(skillContent).to.include('examples.md');
+      assert.ok(skillContent.includes('synergy-component'));
+      assert.ok(skillContent.includes('metadata:'));
+      assert.ok(skillContent.includes('source: "synergy-design-system"'));
+      assert.ok(skillContent.includes('skill-type: "component-reference"'));
+      assert.ok(skillContent.includes('interface.md'));
+      assert.ok(skillContent.includes('rules.md'));
+      assert.ok(skillContent.includes('examples.md'));
 
       const packageJson = JSON.parse(await readFsFile(metadataPackageJsonPath, 'utf-8'));
-      expect(skillContent).to.include(`version: "${packageJson.version}"`);
+      assert.ok(skillContent.includes(`version: "${packageJson.version}"`));
 
       // Verify templates skill root exists
       const templatesSkillPath = path.join(tempRoot, 'synergy-templates', 'SKILL.md');
       await access(templatesSkillPath);
       const templatesSkillContent = await readFile(templatesSkillPath, 'utf-8');
-      expect(templatesSkillContent).to.include('synergy-templates');
-      expect(templatesSkillContent).to.include('metadata:');
-      expect(templatesSkillContent).to.include('source: "synergy-design-system"');
-      expect(templatesSkillContent).to.include('skill-type: "template-reference"');
-      expect(templatesSkillContent).to.include('Look in the `templates/` folder');
+      assert.ok(templatesSkillContent.includes('synergy-templates'));
+      assert.ok(templatesSkillContent.includes('metadata:'));
+      assert.ok(templatesSkillContent.includes('source: "synergy-design-system"'));
+      assert.ok(templatesSkillContent.includes('skill-type: "template-reference"'));
+      assert.ok(templatesSkillContent.includes('Look in the `templates/` folder'));
 
       // Verify syn-button facets exist
       const buttonInterfacePath = path.join(
@@ -84,9 +84,9 @@ describe('install-skills bin integration', () => {
       const rulesContent = await readFile(buttonRulesPath, 'utf-8');
       const examplesContent = await readFile(buttonExamplesPath, 'utf-8');
 
-      expect(interfaceContent).to.include('syn-button');
-      expect(rulesContent).to.include('syn-button');
-      expect(examplesContent).to.include('syn-button');
+      assert.ok(interfaceContent.includes('syn-button'));
+      assert.ok(rulesContent.includes('syn-button'));
+      assert.ok(examplesContent.includes('syn-button'));
 
       // Verify other components are present (spot check)
       const inputPath = path.join(
@@ -107,7 +107,7 @@ describe('install-skills bin integration', () => {
       );
       await access(templateExamplePath);
       const templateExampleContent = await readFile(templateExamplePath, 'utf-8');
-      expect(templateExampleContent).to.include('Contact Form');
+      assert.ok(templateExampleContent.includes('Contact Form'));
     } finally {
       await rm(tempRoot, { recursive: true });
     }
@@ -134,10 +134,10 @@ describe('install-skills bin integration', () => {
       await execa('node', ['dist/bin/install-skills.js'], {
         cwd: metadataPackageDir,
       });
-      expect.fail('Expected execa to throw');
+      assert.fail('Expected execa to throw');
     } catch (error) {
-      expect(error.exitCode).to.equal(1);
-      expect(error.stderr).to.include('--path argument is required');
+      assert.strictEqual(error.exitCode, 1);
+      assert.ok(error.stderr.includes('--path argument is required'));
     }
   });
 });

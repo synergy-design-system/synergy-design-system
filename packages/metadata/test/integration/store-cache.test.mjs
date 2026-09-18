@@ -7,7 +7,7 @@ import {
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { describe, it } from 'node:test';
-import { expect } from 'chai';
+import assert from 'node:assert/strict';
 
 const createFixtureDataDir = async () => {
   const root = await mkdtemp(path.join(tmpdir(), 'metadata-store-cache-'));
@@ -109,9 +109,9 @@ describe('metadata store cache integration', () => {
       const entity1 = await store1.getEntity(entityId);
       const layer1 = await store1.readLayerFile(interfaceRef);
 
-      expect(index1.builtAt).to.equal('2026-01-01T00:00:00.000Z');
-      expect(entity1?.name).to.equal('Cached Fixture V1');
-      expect(layer1).to.equal('interface-v1');
+      assert.strictEqual(index1.builtAt, '2026-01-01T00:00:00.000Z');
+      assert.strictEqual(entity1?.name, 'Cached Fixture V1');
+      assert.strictEqual(layer1, 'interface-v1');
 
       await writeUpdatedFiles();
 
@@ -120,11 +120,11 @@ describe('metadata store cache integration', () => {
       const layer2 = await store2.readLayerFile(interfaceRef);
 
       // Same process cache should keep immutable snapshot until clearMetadataStoreCache() is called.
-      expect(entity2?.name).to.equal('Cached Fixture V1');
-      expect(layer2).to.equal('interface-v1');
+      assert.strictEqual(entity2?.name, 'Cached Fixture V1');
+      assert.strictEqual(layer2, 'interface-v1');
 
       // Callers should receive cloned JSON objects, not shared mutable references.
-      expect(entity2).to.not.equal(entity1);
+      assert.notStrictEqual(entity2, entity1);
 
       clearMetadataStoreCache();
 
@@ -132,8 +132,8 @@ describe('metadata store cache integration', () => {
       const entity3 = await store3.getEntity(entityId);
       const layer3 = await store3.readLayerFile(interfaceRef);
 
-      expect(entity3?.name).to.equal('Cached Fixture V2');
-      expect(layer3).to.equal('interface-v2');
+      assert.strictEqual(entity3?.name, 'Cached Fixture V2');
+      assert.strictEqual(layer3, 'interface-v2');
     } finally {
       await cleanup();
     }

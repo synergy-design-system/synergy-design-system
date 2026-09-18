@@ -11,7 +11,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { describe, it } from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { expect } from 'chai';
+import assert from 'node:assert/strict';
 import { execa } from 'execa';
 
 describe('metadata cleanup integration', () => {
@@ -43,7 +43,7 @@ describe('metadata cleanup integration', () => {
         'component__syn-accordion',
       );
       const originalAccordionFiles = await readdir(accordionFullDir, { recursive: true });
-      expect(originalAccordionFiles.length).to.be.greaterThan(0);
+      assert.ok(originalAccordionFiles.length > 0);
 
       // Simulate orphaned file from previous build:
       // Create a fake old CSS file that doesn't exist in current source
@@ -96,7 +96,7 @@ describe('metadata cleanup integration', () => {
       // Verify initial entities exist
       const componentDir = path.join(outputDir, 'core', 'component');
       const initialFiles = await readdir(componentDir);
-      expect(initialFiles.length).to.be.greaterThan(0);
+      assert.ok(initialFiles.length > 0);
 
       // Simulate orphaned entity file from previous build
       const orphanedEntityPath = path.join(
@@ -199,7 +199,7 @@ describe('metadata cleanup integration', () => {
         },
       });
 
-      expect(firstBuild.exitCode).to.equal(0);
+      assert.strictEqual(firstBuild.exitCode, 0);
 
       // Verify essential artifacts exist
       const indexPath = path.join(outputDir, 'index.json');
@@ -221,7 +221,7 @@ describe('metadata cleanup integration', () => {
         },
       });
 
-      expect(secondBuild.exitCode).to.equal(0);
+      assert.strictEqual(secondBuild.exitCode, 0);
 
       // Essential artifacts should still exist
       await access(indexPath);
@@ -266,8 +266,8 @@ describe('metadata cleanup integration', () => {
       await access(templateCorePath);
 
       const templateCoreJson = JSON.parse(await readFile(templateCorePath, 'utf8'));
-      expect(templateCoreJson.id).to.equal('template:appshell');
-      expect(templateCoreJson.layers.examples[0].path).to.equal('layers/examples/template/template__appshell.md');
+      assert.strictEqual(templateCoreJson.id, 'template:appshell');
+      assert.strictEqual(templateCoreJson.layers.examples[0].path, 'layers/examples/template/template__appshell.md');
     } finally {
       await rm(tempRoot, { recursive: true, force: true });
     }

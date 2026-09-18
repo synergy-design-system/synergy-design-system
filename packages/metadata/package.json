@@ -24,7 +24,6 @@
     "execa": "^9.6.1",
     "playwright": "^1.63.0",
     "prettier": "^3.9.7",
-    "rimraf": "^6.1.3",
     "serve-handler": "^6.1.7",
     "typescript": "^6.0.3",
     "zod": "^4.6.5"
@@ -74,7 +73,7 @@
     "build": "METADATA_LOG_LEVEL=info pnpm run build:ts && pnpm run build:data",
     "build:data": "node dist/internal/cli/build.js",
     "build:ts": "tsc && tsc -p tsconfig.rules.json",
-    "clean": "rimraf dist && ( [ -d data ] && find data -type f ! -name '.gitkeep' -delete && find data -type d -empty -delete || true )",
+    "clean": "rm -rf dist && ( [ -d data ] && find data -type f ! -name '.gitkeep' -delete && find data -type d -empty -delete || true )",
     "lint:js": "eslint src config",
     "lint:schemas": "node src/internal/cli/schema-lint.js",
     "lint": "pnpm run /^lint:.*/",

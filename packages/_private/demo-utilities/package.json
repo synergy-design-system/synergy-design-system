@@ -14,7 +14,7 @@
     "styles"
   ],
   "scripts": {
-    "build": "rimraf dist && tsc",
+    "build": "node scripts/clean.js && tsc",
     "lint:css": "stylelint \"src/**/*.{css}\"",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/"
@@ -24,7 +24,6 @@
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
     "eslint": "^9.39.5",
-    "rimraf": "^6.1.3",
     "stylelint": "^17.15.0",
     "typescript": "^6.0.3"
   }

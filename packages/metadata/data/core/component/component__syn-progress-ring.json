@@ -180,10 +180,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component__syn-progress-ring/components/progress-ring.custom.styles.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component__syn-progress-ring/components/progress-ring.styles.ts"
       },
       {
@@ -227,7 +223,6 @@
   "sources": [
     "packages/angular/components/progress-ring/progress-ring.component.ts",
     "packages/components/src/components/progress-ring/progress-ring.component.ts",
-    "packages/components/src/components/progress-ring/progress-ring.custom.styles.ts",
     "packages/components/src/components/progress-ring/progress-ring.styles.ts",
     "packages/components/src/components/progress-ring/progress-ring.ts",
     "packages/react/src/components/progress-ring.ts",

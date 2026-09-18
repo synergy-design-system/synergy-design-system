@@ -4,7 +4,7 @@ Popup is a utility that lets you declaratively anchor “popup” containers to 
 
 ```html
 <div class="popup-default">
-  <syn-popup active="" arrow-padding="10">
+  <syn-popup active="true">
     <div class="box"></div>
     <span slot="anchor"></span>
   </syn-popup>

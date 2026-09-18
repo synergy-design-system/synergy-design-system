@@ -52,12 +52,12 @@
   "type": "module",
   "version": "3.24.4",
   "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.8",
+    "@vitejs/plugin-vue": "^6.0.9",
     "@vue/tsconfig": "^0.9.1",
     "rollup-plugin-node-externals": "^9.0.1",
-    "vite": "^8.2.0",
-    "vite-plugin-dts": "^5.0.3",
-    "vue": "^3.5.40"
+    "vite": "^8.3.0",
+    "vite-plugin-dts": "^5.1.0",
+    "vue": "^3.5.42"
   },
   "peerDependencies": {
     "@synergy-design-system/tokens": "workspace:*"

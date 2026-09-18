@@ -9,11 +9,11 @@
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
     "eslint": "^9.39.5",
     "ora": "^9.4.1",
-    "postcss": "^8.5.25",
+    "postcss": "^8.5.28",
     "postcss-header": "^3.0.3",
-    "postcss-import": "^16.1.1",
+    "postcss-import": "^16.2.0",
     "postcss-url": "^10.1.4",
-    "stylelint": "^17.14.1"
+    "stylelint": "^17.15.0"
   },
   "exports": {
     ".": {

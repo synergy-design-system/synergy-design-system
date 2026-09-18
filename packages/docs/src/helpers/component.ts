@@ -17,6 +17,14 @@ export interface ConstantDefinition {
 }
 
 /**
+ * Converts a kebab-case attribute name to its camelCase property name
+ * @example kebabToCamelCase('close-others'); // <- 'closeOthers'
+ * @param {string} value The kebab-case string to convert
+ * @returns {string} The camelCase representation
+ */
+const kebabToCamelCase = (value: string) => value.replace(/-([a-z])/g, (_, char: string) => char.toUpperCase());
+
+/**
  * Returns default arguments, events, and argument types for a given custom element tag.
  *
  * @param {string} customElementTag - Custom element tag for which the defaults are to be fetched.
@@ -35,6 +43,22 @@ export const storybookDefaults = (customElementTag: string) => {
   const checkMatchesDefaultValue = (arg: typeof argTypes[string]) => arg.table?.type?.summary
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     && arg.table.type?.summary?.includes(arg.defaultValue);
+
+  // wc-toolkit adds a duplicate "properties" entry for every attribute whose
+  // camelCase field name differs from its kebab-case attribute name (i.e. it
+  // reflects). Since both entries describe the same field, drop the duplicate.
+  const attributeKeysAsCamelCase = new Set(
+    Object.entries(argTypes)
+      .filter(([, arg]) => arg.table?.category === 'attributes')
+      .map(([key]) => kebabToCamelCase(key)),
+  );
+
+  Object.keys(argTypes).forEach(key => {
+    if (argTypes[key].table?.category === 'properties' && attributeKeysAsCamelCase.has(key)) {
+      delete argTypes[key];
+      delete args[key];
+    }
+  });
 
   // Hide controls for all properties that don´t have a valid summary
   Object.keys(argTypes).forEach(key => {

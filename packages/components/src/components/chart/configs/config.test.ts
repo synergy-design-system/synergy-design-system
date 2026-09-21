@@ -86,7 +86,6 @@ describe('resolveConfigInput', () => {
         sections: {
           show: true,
         },
-        unit: '%',
         value: 55,
       });
     });

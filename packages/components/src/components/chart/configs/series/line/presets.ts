@@ -1,7 +1,7 @@
 import {
   type ConfigModifier,
   mergeConfigs,
-} from '../utilities.js';
+} from '../../utilities.js';
 import type { LineSeriesOption } from './types.js';
 
 /**

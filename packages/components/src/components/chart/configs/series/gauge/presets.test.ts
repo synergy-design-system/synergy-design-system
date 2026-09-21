@@ -1,7 +1,7 @@
 import { expect } from '@open-wc/testing';
 import { seriesGauge } from './presets.js';
-import type { ECConfig, GaugeSeriesPresetOptions, SynergyGaugeSeriesOption } from '../../types.js';
-import { GAUGE_SERIES } from '../constants.js';
+import type { ECConfig, GaugeSeriesPresetOptions, SynergyGaugeSeriesOption } from '../../../types.js';
+import { GAUGE_SERIES } from '../../constants.js';
 
 type GaugeSeriesResult = {
   series: SynergyGaugeSeriesOption[];

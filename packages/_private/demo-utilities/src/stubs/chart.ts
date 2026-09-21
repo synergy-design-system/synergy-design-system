@@ -1,4 +1,6 @@
-import type { ECConfig, GaugeSeriesPresetOptions, LineSeriesOption } from '@synergy-design-system/components/components/chart/types.js';
+import type {
+  DonutSeriesPresetOptions, ECConfig, GaugeSeriesPresetOptions, LineSeriesOption,
+} from '@synergy-design-system/components/components/chart/types.js';
 import { formatter } from '@synergy-design-system/components/components/chart/index.js';
 
 export const lineChartSeriesData: LineSeriesOption[] = [
@@ -34,4 +36,14 @@ export const gaugeChartConfigObject: GaugeSeriesPresetOptions = {
     value: '6.5%',
   },
   value: 82,
+};
+
+export const donutChartConfigObject: DonutSeriesPresetOptions = {
+  data: [
+    { label: 'Angular', value: 10 },
+    { label: 'React', value: 20 },
+    { label: 'Vue', value: 30 },
+    { label: 'Svelte', value: 40 },
+  ],
+  radius: '70%',
 };

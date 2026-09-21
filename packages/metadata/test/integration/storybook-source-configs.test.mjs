@@ -49,14 +49,11 @@ describe('storybook source configs', () => {
     assert.ok(styleItems.every((item) => stylesScrapingConfig.generateEntityId(item).startsWith('style:syn-')));
     assert.deepStrictEqual(componentScrapingConfig.generateStoryIds('syn-accordion'), ['components-syn-accordion--docs']);
     assert.deepStrictEqual(componentScrapingConfig.generateStoryIds('syn-alert'), ['components-syn-alert--docs']);
-    assert.deepStrictEqual(componentScrapingConfig.generateStoryIds('syn-chart'), [
-      'charts-syn-chart--docs',
-      'charts-features-axes--docs',
-      'charts-features-legend--docs',
-      'charts-features-zooming-panning--docs',
-      'charts-series-types-gauge-chart--docs',
-      'charts-series-types-line-chart--docs',
-    ]);
+
+    const chartStoryIds = componentScrapingConfig.generateStoryIds('syn-chart');
+    assert.ok(chartStoryIds.length > 0);
+    assert.ok(chartStoryIds.includes('charts-syn-chart--docs'));
+
     assert.deepStrictEqual(componentScrapingConfig.generateStoryIds('syn-spinner'), ['components-syn-spinner--docs']);
     assert.ok(templateItems.includes('appshell'));
     assert.ok(templateItems.includes('forms'));

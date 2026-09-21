@@ -1,4 +1,3 @@
-/* eslint-disable */
 import SynProgressRing from './progress-ring.component.js';
 
 export * from './progress-ring.component.js';

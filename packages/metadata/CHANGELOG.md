@@ -1,5 +1,48 @@
 # Changelog
 
+## 4.14.0
+
+### Minor Changes
+
+- [#1341](https://github.com/synergy-design-system/synergy-design-system/pull/1341) [`1c5b8b0`](https://github.com/synergy-design-system/synergy-design-system/commit/1c5b8b0495b2315b38bf61f7d1f3b2b452f18df5) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-09-21
+
+  feat: ✨ vue type only wrappers ([#1340](https://github.com/synergy-design-system/synergy-design-system/issues/1340))
+
+  This release introduces typescript only wrappers in the `@synergy-design-system/vue` package.
+  You now get type safety for Synergy Components without using the Vue wrappers components for less bundle size.
+
+## 4.13.0
+
+## 4.12.0
+
+### Patch Changes
+
+- [#1387](https://github.com/synergy-design-system/synergy-design-system/pull/1387) [`d4f88d6`](https://github.com/synergy-design-system/synergy-design-system/commit/d4f88d6c197e70fe5f94f328b12ac9a73eca8c7d) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-09-18
+
+  fix: 🐛 `<syn-progress-ring>` renders twice during render and property updates ([#1328](https://github.com/synergy-design-system/synergy-design-system/issues/1328))
+
+  This release fixes an issue with `<syn-progress-ring>` that triggered multiple render calls when inserting it into the DOM.
+
+## 4.11.0
+
+### Patch Changes
+
+- [#1380](https://github.com/synergy-design-system/synergy-design-system/pull/1380) [`2625ba7`](https://github.com/synergy-design-system/synergy-design-system/commit/2625ba7c952c19f4b692a3aaf01e8242de7c9ae0) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-09-16
+
+  fix: 🐛 `<syn-input>` does not apply the correct width when `noSpinButtons` is provided as property ([#1375](https://github.com/synergy-design-system/synergy-design-system/issues/1375))
+
+  This release fixes an issue that could lead to wrong sizes for `syn-input` when `noSpinButtons` is provided as a property.
+
+## 4.10.0
+
+### Patch Changes
+
+- [#1381](https://github.com/synergy-design-system/synergy-design-system/pull/1381) [`b950282`](https://github.com/synergy-design-system/synergy-design-system/commit/b950282c5be52c96419a67734268d5a6f4325547) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-09-16
+
+  fix: 🐛 `<syn-alert>` may show artifacts when page is zoomed ([#1347](https://github.com/synergy-design-system/synergy-design-system/issues/1347))
+
+  This release fixes an issue with `<syn-alert>` that may show border artifacts when zooming the page.
+
 ## 4.9.0
 
 ### Minor Changes

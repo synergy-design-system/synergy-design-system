@@ -6,6 +6,7 @@ import {
 	getIntentCategory,
 	getIntentOptions,
 	listIntents,
+	type FrameworkProfile,
 	type IntentTargetRef,
 } from '@synergy-design-system/metadata';
 import Layout from '../../layouts/Layout.astro';
@@ -50,7 +51,8 @@ const renderFrameworks = [
 	'react-web-components',
 	'angular',
 	'vue',
-] as const;
+	'vue-web-components',
+] as const satisfies readonly FrameworkProfile[];
 
 const variantsByIntentId = new Map(
 	await Promise.all(intents.data.map(async intent => {

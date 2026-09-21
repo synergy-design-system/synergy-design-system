@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/components",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-components-3.24.2-be836d4c-eaf9-447d-bea2-39a217aaaf0c",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-components-3.25.0-d61fdead-2581-49d3-ab5c-1ffcbb6a2fa6",
   "creationInfo": {
-    "created": "2026-09-14T11:24:35.941Z",
+    "created": "2026-09-21T05:16:41.144Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/components",
-      "versionInfo": "3.24.2",
+      "versionInfo": "3.25.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -22,7 +22,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.24.2"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.25.0"
         }
       ],
       "licenseConcluded": "MIT",

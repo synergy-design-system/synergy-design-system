@@ -1,20 +1,17 @@
-<script setup lang="ts">
-import { SynVueInput, SynVueMenu, SynVueMenuItem, SynVueDivider } from '@synergy-design-system/vue';
-</script>
 <template>
   <div style="width: 200px">
-    <SynVueMenu>
-      <SynVueMenuItem value="undo">Undo</SynVueMenuItem>
-      <SynVueMenuItem value="redo">Redo</SynVueMenuItem>
-      <SynVueDivider />
-      <SynVueMenuItem value="cut">Cut</SynVueMenuItem>
-      <SynVueMenuItem value="copy">Copy</SynVueMenuItem>
-      <SynVueMenuItem value="paste">Paste</SynVueMenuItem>
-      <SynVueMenuItem value="delete">Delete</SynVueMenuItem>
-    </SynVueMenu>
+    <syn-menu>
+      <syn-menu-item value="undo">Undo</syn-menu-item>
+      <syn-menu-item value="redo">Redo</syn-menu-item>
+      <syn-divider />
+      <syn-menu-item value="cut">Cut</syn-menu-item>
+      <syn-menu-item value="copy">Copy</syn-menu-item>
+      <syn-menu-item value="paste">Paste</syn-menu-item>
+      <syn-menu-item value="delete">Delete</syn-menu-item>
+    </syn-menu>
   </div>
 
-  <SynVueDivider />
+  <syn-divider />
 
   <div
     data-testid="menu-1295-steals-focus"
@@ -25,17 +22,17 @@ import { SynVueInput, SynVueMenu, SynVueMenuItem, SynVueDivider } from '@synergy
       margin: var(--syn-spacing-large) 0;   
     "
   >
-    <SynVueInput
+    <syn-input
       name="search"
       label="#1295: Focus should not be lost when hovering over the menu"
       type="text"
     />
-    <SynVueMenu>
-      <SynVueMenuItem value="undo">Undo</SynVueMenuItem>
-      <SynVueMenuItem value="redo">Redo</SynVueMenuItem>
-      <SynVueDivider />
-      <SynVueMenuItem value="cut">Cut</SynVueMenuItem>
-      <SynVueMenuItem value="copy">Copy</SynVueMenuItem>
-    </SynVueMenu>
+    <syn-menu>
+      <syn-menu-item value="undo">Undo</syn-menu-item>
+      <syn-menu-item value="redo">Redo</syn-menu-item>
+      <syn-divider />
+      <syn-menu-item value="cut">Cut</syn-menu-item>
+      <syn-menu-item value="copy">Copy</syn-menu-item>
+    </syn-menu>
   </div>
 </template>

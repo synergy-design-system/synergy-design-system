@@ -1,5 +1,46 @@
 # @synergy-design-system/vue
 
+## 3.25.0
+
+### Minor Changes
+
+- [#1341](https://github.com/synergy-design-system/synergy-design-system/pull/1341) [`1c5b8b0`](https://github.com/synergy-design-system/synergy-design-system/commit/1c5b8b0495b2315b38bf61f7d1f3b2b452f18df5) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-09-21
+
+  feat: ✨ vue type only wrappers ([#1340](https://github.com/synergy-design-system/synergy-design-system/issues/1340))
+
+  This release introduces typescript only wrappers in the `@synergy-design-system/vue` package.
+  You now get type safety for Synergy Components without using the Vue wrappers components for less bundle size.
+
+### Patch Changes
+
+- Updated dependencies [[`1c5b8b0`](https://github.com/synergy-design-system/synergy-design-system/commit/1c5b8b0495b2315b38bf61f7d1f3b2b452f18df5)]:
+  - @synergy-design-system/components@3.25.0
+  - @synergy-design-system/tokens@3.25.0
+
+## 3.24.5
+
+### Patch Changes
+
+- Updated dependencies [[`d4f88d6`](https://github.com/synergy-design-system/synergy-design-system/commit/d4f88d6c197e70fe5f94f328b12ac9a73eca8c7d)]:
+  - @synergy-design-system/components@3.24.5
+  - @synergy-design-system/tokens@3.24.5
+
+## 3.24.4
+
+### Patch Changes
+
+- Updated dependencies [[`2625ba7`](https://github.com/synergy-design-system/synergy-design-system/commit/2625ba7c952c19f4b692a3aaf01e8242de7c9ae0)]:
+  - @synergy-design-system/components@3.24.4
+  - @synergy-design-system/tokens@3.24.4
+
+## 3.24.3
+
+### Patch Changes
+
+- Updated dependencies [[`b950282`](https://github.com/synergy-design-system/synergy-design-system/commit/b950282c5be52c96419a67734268d5a6f4325547)]:
+  - @synergy-design-system/components@3.24.3
+  - @synergy-design-system/tokens@3.24.3
+
 ## 3.24.2
 
 ### Patch Changes

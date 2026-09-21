@@ -1,9 +1,9 @@
 import type { ZRColor } from 'echarts/types/dist/shared.js';
 
 /**
- * Configuration options for the `synergySegmentChart` series.
+ * Configuration options for the `synSegment` series.
  */
-export type SegmentChartSeriesConfig = {
+export type SegmentSeriesConfig = {
   /**
    * Angular width of each segment, aligned by index with `data`. Normalized to the available
    * angle (360 degrees minus the `gap`), analogous to the donut series. When omitted, or when
@@ -40,12 +40,7 @@ export type SegmentChartSeriesConfig = {
 /**
  * Fully normalized segment chart options after defaults are resolved.
  */
-export type ResolvedSegmentChartSeriesConfig = Required<SegmentChartSeriesConfig>;
-
-export type Point = {
-  x: number;
-  y: number;
-};
+export type ResolvedSegmentChartSeriesConfig = Required<SegmentSeriesConfig>;
 
 export type Sector = {
   centerX: number;
@@ -58,33 +53,28 @@ export type Sector = {
   z: number;
 };
 
-export type SegmentRange = {
-  startAngle: number;
-  endAngle: number;
-};
-
-export type SynergySegmentChartSeriesOption = {
-  type: 'synergySegmentChart';
+export type SynergySegmentSeriesOption = {
+  type: 'synSegment';
   name?: string;
   color?: string;
   data?: number[];
-} & SegmentChartSeriesConfig;
+} & SegmentSeriesConfig;
 
 /**
- * Input options for the `seriesSegmentChart` preset.
+ * Input options for the `seriesSegment` preset.
  */
-export type SegmentChartSeriesPresetOptions = Omit<SynergySegmentChartSeriesOption, 'type'>;
+export type SegmentSeriesPresetOptions = Omit<SynergySegmentSeriesOption, 'type'>;
 
-export type SegmentChartModelOption = {
-  type: 'synergySegmentChart';
+export type SegmentModelOption = {
+  type: 'synSegment';
   data?: number[];
 };
 
 /**
- * Add the `synergySegmentChart` series type to the ECharts module.
+ * Add the `synSegment` series type to the ECharts module.
  */
 declare module 'echarts/types/dist/shared.js' {
   interface RegisteredSeriesOption {
-    synergySegmentChart: SynergySegmentChartSeriesOption;
+    synSegment: SynergySegmentSeriesOption;
   }
 }

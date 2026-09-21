@@ -18,6 +18,12 @@ export type Point = {
   y: number;
 };
 
+/** Start and end angular bounds for a single chart segment. */
+export type SegmentRange = {
+  startAngle: number;
+  endAngle: number;
+};
+
 /** Numeric pixel value or percentage string (e.g. '50%'). */
 export type LayoutValue = number | string;
 

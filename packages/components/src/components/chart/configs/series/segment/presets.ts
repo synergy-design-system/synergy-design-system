@@ -1,15 +1,15 @@
-import { type ConfigModifier, mergeConfigs } from '../utilities.js';
-import { SEGMENT_CHART_SERIES } from '../constants.js';
-import type { SegmentChartSeriesPresetOptions, SynergySegmentChartSeriesOption } from './types.js';
+import { type ConfigModifier, mergeConfigs } from '../../utilities.js';
+import { SEGMENT_CHART_SERIES } from '../../constants.js';
+import type { SegmentSeriesPresetOptions, SynergySegmentSeriesOption } from './types.js';
 
 /**
- * Adds a custom `synergySegmentChart` series.
+ * Adds a custom `synSegment` series.
  *
  * Renders concentric-free segments around a static center circle: `data` defines each segment's
  * radial fill degree (from the center outward), normalized between `min` and `max`. `weights`
  * defines each segment's angular width, normalized to the angle left available by `gap`.
  *
- * @param {SegmentChartSeriesPresetOptions} [options] Preset options.
+ * @param {SegmentSeriesPresetOptions} [options] Preset options.
  * @param {number[]} options.data Fill degree for each segment, from the center outward.
  * @param {number[]} [options.weights] Angular width for each segment. Missing entries default to `1`.
  * @param {number} [options.min] Minimum value used to normalize the segment fill ratio. Defaults to `0`.
@@ -28,8 +28,8 @@ import type { SegmentChartSeriesPresetOptions, SynergySegmentChartSeriesOption }
  *
  * @see https://echarts.apache.org/en/option.html#series
  */
-export const seriesSegmentChart = (options: SegmentChartSeriesPresetOptions): ConfigModifier => (config) => {
-  const seriesOption: SynergySegmentChartSeriesOption = {
+export const seriesSegment = (options: SegmentSeriesPresetOptions): ConfigModifier => (config) => {
+  const seriesOption: SynergySegmentSeriesOption = {
     ...options,
     type: SEGMENT_CHART_SERIES.TYPE_NAME,
   };

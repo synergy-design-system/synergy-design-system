@@ -22,7 +22,7 @@ import type { ChartConfigType, ECConfig } from './types.js';
 import { applyAxisDefaultsPreprocessor } from './configs/axes/utilities.js';
 import { getCurrentThemeFromBodyClass, getRealStyleValue, setThemeFromBodyClass } from './themes/utilities.js';
 import { getSynergyTheme } from './themes/theme.js';
-import { segmentChartInstall } from './configs/segment-chart-series/install.js';
+import { segmentInstall } from './configs/series/segment/install.js';
 import { donutInstall } from './configs/series/donut/install.js';
 import { gaugeInstall } from './configs/series/gauge/install.js';
 import { legendIconVisual, legendVisibilityIconProcessor } from './configs/legend/utilities.js';
@@ -38,8 +38,7 @@ use([
   LegendComponent,
   GridComponent,
   DataZoomComponent,
-  // @ts-expect-error - I don't know where this typescript error comes from
-  segmentChartInstall,
+  segmentInstall,
   donutInstall,
   gaugeInstall,
 ]);

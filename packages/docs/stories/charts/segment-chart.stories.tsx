@@ -60,7 +60,7 @@ export const Default: Story = {
         chart.config = {
           series: [
             {
-              type: 'synergySegmentChart',
+              type: 'synSegment',
               data: [5, 10, 50, 80, 100],
               weights: [1, 1, 1.5, 1.2, 1.6],
               segmentLabels: ['5%', '10%', '50%', '80%', '100%'],
@@ -87,7 +87,7 @@ export const NoGap: Story = {
 
       charts.forEach(chart => {
         chart.config = handle => handle
-        .seriesSegmentChart({
+        .seriesSegment({
           data: [0.9, 1, 0.2, 0.1, 0.5, 0.9, 0.1, 0, 0.2, 1, 0.3, 0.7, 0.4, 0.1, 0.3, 0.2],
           weights: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
           min: 0,
@@ -115,7 +115,7 @@ export const HalfCircle: Story = {
 
       charts.forEach(chart => {
         chart.config = handle => handle
-        .seriesSegmentChart({
+        .seriesSegment({
           data: [5, 10, 50, 80, 100],
           weights: [1, 1, 1.5, 1.2, 1.6],
           segmentLabels: ['5%', '10%', '50%', '80%', '100%'],
@@ -141,7 +141,7 @@ export const CustomStyling: Story = {
 
       charts.forEach(chart => {
         chart.config = handle => handle
-        .seriesSegmentChart({
+        .seriesSegment({
           data: [100, 30, 0, 100],
           weights: [1, 1, 1, 1],
           mainLabel: 'Contamination',

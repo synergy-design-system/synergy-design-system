@@ -9,7 +9,6 @@ import type {
   LayoutRadiusInput,
   ResolvedDonutDataItem,
   ResolvedLayout,
-  SegmentRange,
 } from './types.js';
 import { DEGREE_TO_RADIAN, DONUT_SERIES, FULL_CIRCLE_RADIAN } from '../../constants.js';
 import { measureTextWidth, getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../../../themes/utilities.js';
@@ -22,7 +21,7 @@ import {
   polarPoint,
   toPixels,
 } from '../../utilities.js';
-import type { ExtensionAPI, GlobalModel } from '../../types.js';
+import type { ExtensionAPI, GlobalModel, SegmentRange } from '../../types.js';
 
 /**
  * Resolves chart-relative inset values (`top`, `right`, `bottom`, `left`) into absolute pixel bounds.

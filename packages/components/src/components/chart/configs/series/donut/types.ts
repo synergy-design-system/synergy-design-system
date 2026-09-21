@@ -43,14 +43,6 @@ export type DonutSeriesConfig = {
 };
 
 /**
- * Start and end angular bounds for a single donut segment.
- */
-export type SegmentRange = {
-  startAngle: number;
-  endAngle: number;
-};
-
-/**
  * A single data item shown as a donut segment with optional label metadata.
  */
 export type DonutDataItem = {

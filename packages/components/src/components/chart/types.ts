@@ -58,11 +58,6 @@ export type {
 } from './configs/series/line/types.js';
 
 export type {
-  SegmentChartSeriesConfig,
-  SegmentChartSeriesPresetOptions,
-  SynergySegmentChartSeriesOption,
-} from './configs/segment-chart-series/types.js';
-export type {
   DonutSeriesConfig,
   DonutDataValue,
   DonutDataItem,
@@ -78,3 +73,9 @@ export type {
   GaugeSectionsOptions,
   GaugeTrendOptions,
 } from './configs/series/gauge/types.js';
+
+export type {
+  SegmentSeriesConfig,
+  SegmentSeriesPresetOptions,
+  SynergySegmentSeriesOption,
+} from './configs/series/segment/types.js';

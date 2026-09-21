@@ -72,7 +72,7 @@ export const GAUGE_SERIES = {
   TREND_ICON_DOWN: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMS4yNSA0LjV2MTIuMTI3bC01LjY5Ni01LjY5Nkw0LjUgMTJsNy41IDcuNSA3LjUtNy41LTEuMDU0LTEuMDctNS42OTYgNS42OTdWNC41eiIvPjwvc3ZnPg==',
   /** Default SVG data URL used when the trend indicator points upward. */
   TREND_ICON_UP: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMS4yNSAxOS41VjcuMzczbC01LjY5NiA1LjY5Nkw0LjUgMTIgMTIgNC41bDcuNSA3LjUtMS4wNTQgMS4wNy01LjY5Ni01LjY5N1YxOS41eiIvPjwvc3ZnPg==',
-  TYPE_NAME: 'synergyGauge',
+  TYPE_NAME: 'synGauge',
 } as const;
 
 /** Synergy segment chart series constants */
@@ -91,7 +91,7 @@ export const SEGMENT_CHART_SERIES = {
   REFERENCE_HEIGHT: 280,
   /** Constant pixel-width gap rendered between adjacent segments, regardless of their distance to the center. */
   SEGMENT_GAP_PX: 2,
-  TYPE_NAME: 'synergySegmentChart',
+  TYPE_NAME: 'synSegment',
 } as const;
 
 /**

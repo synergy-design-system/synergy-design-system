@@ -1,18 +1,17 @@
 import { ChartView, graphic } from 'echarts/core.js';
-import type GlobalModel from 'echarts/types/src/model/Global.js';
-import type ExtensionAPI from 'echarts/types/src/core/ExtensionAPI.js';
 import type { ZRColor } from 'echarts/types/dist/shared.js';
-import type { SynergySegmentChartSeriesModel } from './segment-chart-series-model.js';
+import type { SynergySegmentSeriesModel } from './segment-model.js';
 import type {
-  Point,
   ResolvedSegmentChartSeriesConfig,
   Sector,
-  SegmentChartSeriesConfig,
-  SegmentRange,
-  SynergySegmentChartSeriesOption,
+  SegmentSeriesConfig,
+  SynergySegmentSeriesOption,
 } from './types.js';
-import { SEGMENT_CHART_SERIES } from '../constants.js';
-import { getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../../themes/utilities.js';
+import { SEGMENT_CHART_SERIES } from '../../constants.js';
+import { getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../../../themes/utilities.js';
+import type {
+  ExtensionAPI, GlobalModel, Point, SegmentRange,
+} from '../../types.js';
 
 const FULL_CIRCLE = Math.PI * 2;
 const RADIAN = Math.PI / 180;
@@ -291,7 +290,7 @@ const createSegmentLabel = ({
 
 const buildSegmentChartGroup = (
   rawValues: number[],
-  inputConfig: SegmentChartSeriesConfig,
+  inputConfig: SegmentSeriesConfig,
   width: number,
   height: number,
   getSegmentColor: (index: number) => ZRColor,
@@ -460,13 +459,15 @@ const buildSegmentChartGroup = (
   return root;
 };
 
-export class SynergySegmentChartView extends ChartView {
+export class SynergySegmentView extends ChartView {
   static type = SEGMENT_CHART_SERIES.TYPE_NAME;
 
-  type = SynergySegmentChartView.type;
+  type = SynergySegmentView.type;
 
-  // @ts-expect-error - I don't know where this typescript error comes from. Even in echarts itself it is available..
-  render(seriesModel: SynergySegmentChartSeriesModel, ecModel: GlobalModel, api: ExtensionAPI): void {
+  /**
+   * Renders the segment chart into the ECharts group using the current model data and option config.
+   */
+  render(seriesModel: SynergySegmentSeriesModel, _ecModel: GlobalModel, api: ExtensionAPI): void {
     const { group } = this;
     group.removeAll();
 
@@ -476,7 +477,7 @@ export class SynergySegmentChartView extends ChartView {
       rawValues.push(Number(data.get('value', index)));
     }
 
-    const option = seriesModel.option as SynergySegmentChartSeriesOption;
+    const option = seriesModel.option as SynergySegmentSeriesOption;
 
     // Cycle through the categorical palette, one color per data segment.
     const paletteScope = {};

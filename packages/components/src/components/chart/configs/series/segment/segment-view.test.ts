@@ -2,25 +2,25 @@ import { expect } from '@open-wc/testing';
 import type GlobalModel from 'echarts/types/src/model/Global.js';
 import type ExtensionAPI from 'echarts/types/src/core/ExtensionAPI.js';
 import type { graphic } from 'echarts';
-import { SEGMENT_CHART_SERIES } from '../constants.js';
-import type { SynergySegmentChartSeriesModel } from './segment-chart-series-model.js';
+import { SEGMENT_CHART_SERIES } from '../../constants.js';
+import type { SynergySegmentSeriesModel } from './segment-model.js';
 import {
-  SynergySegmentChartView,
+  SynergySegmentView,
   computeGapRange,
   computeSegmentRanges,
   getSafeHalfGap,
   resolveWeights,
-} from './segment-chart-series-view.js';
-import type { SynergySegmentChartSeriesOption } from './types.js';
-import { getRealStyleValue } from '../../themes/utilities.js';
+} from './segment-view.js';
+import type { SynergySegmentSeriesOption } from './types.js';
+import { getRealStyleValue } from '../../../themes/utilities.js';
 
 const RADIAN = Math.PI / 180;
 const FULL_CIRCLE = Math.PI * 2;
 
 const createSeriesModelStub = (
-  option: SynergySegmentChartSeriesOption,
+  option: SynergySegmentSeriesOption,
   paletteColors: string[] = ['#111111', '#222222', '#333333'],
-): SynergySegmentChartSeriesModel => {
+): SynergySegmentSeriesModel => {
   const data = option.data ?? [];
 
   return {
@@ -34,7 +34,7 @@ const createSeriesModelStub = (
       get: (key: string, index: number) => (key === 'value' ? data[index] : undefined),
     }),
     option,
-  } as unknown as SynergySegmentChartSeriesModel;
+  } as unknown as SynergySegmentSeriesModel;
 };
 
 const createApiStub = (width = 280, height = 280): ExtensionAPI => ({
@@ -43,15 +43,15 @@ const createApiStub = (width = 280, height = 280): ExtensionAPI => ({
 }) as unknown as ExtensionAPI;
 
 const renderSegmentChart = (
-  partialOption: Partial<SynergySegmentChartSeriesOption> = {},
+  partialOption: Partial<SynergySegmentSeriesOption> = {},
   paletteColors?: string[],
   width = 280,
   height = 280,
-): SynergySegmentChartView => {
-  const view = new SynergySegmentChartView();
-  const option: SynergySegmentChartSeriesOption = {
+): SynergySegmentView => {
+  const view = new SynergySegmentView();
+  const option: SynergySegmentSeriesOption = {
     data: [50, 80, 100],
-    type: 'synergySegmentChart',
+    type: 'synSegment',
     ...partialOption,
   };
 
@@ -79,7 +79,7 @@ const isGraphicElementOfType = <TType extends keyof SegmentChartGraphicElementMa
 );
 
 const collectByType = <TType extends keyof SegmentChartGraphicElementMap>(
-  view: SynergySegmentChartView,
+  view: SynergySegmentView,
   type: TType,
 ): SegmentChartGraphicElementMap[TType][] => {
   const collected: SegmentChartGraphicElementMap[TType][] = [];
@@ -93,13 +93,13 @@ const collectByType = <TType extends keyof SegmentChartGraphicElementMap>(
   return collected;
 };
 
-const getSectors = (view: SynergySegmentChartView): graphic.Sector[] => collectByType(view, 'sector');
-const getCenterCircle = (view: SynergySegmentChartView): graphic.Sector | undefined => getSectors(view).find((sector) => sector.z === 1);
-const getWedges = (view: SynergySegmentChartView): graphic.Polygon[] => collectByType(view, 'polygon');
-const getBackgroundWedges = (view: SynergySegmentChartView): graphic.Polygon[] => getWedges(view).filter((wedge) => wedge.z === 3);
-const getFillWedges = (view: SynergySegmentChartView): graphic.Polygon[] => getWedges(view).filter((wedge) => wedge.z === 4);
-const getOutlineWedges = (view: SynergySegmentChartView): graphic.Polygon[] => getWedges(view).filter((wedge) => wedge.z === 5);
-const getLabelTexts = (view: SynergySegmentChartView): string[] => collectByType(view, 'text')
+const getSectors = (view: SynergySegmentView): graphic.Sector[] => collectByType(view, 'sector');
+const getCenterCircle = (view: SynergySegmentView): graphic.Sector | undefined => getSectors(view).find((sector) => sector.z === 1);
+const getWedges = (view: SynergySegmentView): graphic.Polygon[] => collectByType(view, 'polygon');
+const getBackgroundWedges = (view: SynergySegmentView): graphic.Polygon[] => getWedges(view).filter((wedge) => wedge.z === 3);
+const getFillWedges = (view: SynergySegmentView): graphic.Polygon[] => getWedges(view).filter((wedge) => wedge.z === 4);
+const getOutlineWedges = (view: SynergySegmentView): graphic.Polygon[] => getWedges(view).filter((wedge) => wedge.z === 5);
+const getLabelTexts = (view: SynergySegmentView): string[] => collectByType(view, 'text')
   .map((element) => element.style.text)
   .filter((text): text is string => text !== undefined);
 const svgDataUrl = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIvPjwvc3ZnPg==';
@@ -292,16 +292,16 @@ describe('SynergySegmentChartView', () => {
   });
 
   it('replaces previous content on repeated render calls', () => {
-    const view = new SynergySegmentChartView();
+    const view = new SynergySegmentView();
 
     view.render(
-      createSeriesModelStub({ data: [10, 20], type: 'synergySegmentChart' }),
+      createSeriesModelStub({ data: [10, 20], type: 'synSegment' }),
       {} as GlobalModel,
       createApiStub(),
     );
 
     view.render(
-      createSeriesModelStub({ data: [30], type: 'synergySegmentChart' }),
+      createSeriesModelStub({ data: [30], type: 'synSegment' }),
       {} as GlobalModel,
       createApiStub(),
     );

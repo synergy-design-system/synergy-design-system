@@ -1,6 +1,5 @@
 import * as axes from '../axes/presets.js';
 import * as legend from '../legend/presets.js';
-import * as segmentChartSeries from '../segment-chart-series/presets.js';
 import * as tooltip from '../tooltip/presets.js';
 import * as series from '../series/series.js';
 
@@ -14,5 +13,4 @@ export const ChartPresets = {
   ...legend,
   ...tooltip,
   ...series,
-  ...segmentChartSeries,
-} as typeof axes & typeof legend & typeof tooltip & typeof series & typeof segmentChartSeries;
+} as typeof axes & typeof legend & typeof tooltip & typeof series;

@@ -75,16 +75,15 @@ import "@synergy-design-system/styles/typography.css";
 
 <!-- BEGIN INLINE COMMENT -->
 
-- dist.css
-  - link-list.css
-  - link.css
-  - tables.css
-  - typography.css
-  - typography.css
-  - typography.css
-  - typography.css
-  - tables.css
-  - tables.css
+- link-list.css
+- link.css
+- tables.css
+  - table-cell.css
+  - table.css
+- typography.css
+  - body.css
+  - heading.css
+  - weight.css
 
 <!-- END INLINE COMMENT -->
 

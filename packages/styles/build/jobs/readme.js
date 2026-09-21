@@ -36,7 +36,7 @@ const createMarkDownFromStructure = (structure) => Object
   .concat('\n');
 
 const createStructure = (fileNameList) => fileNameList
-  .map(f => f.replace('./dist/', '').replace('.css', ''))
+  .map(f => f.replace('dist/', '').replace('.css', ''))
   .reduce((acc, curr) => {
     const [category, name] = curr.split('/');
     if (!acc[category]) {

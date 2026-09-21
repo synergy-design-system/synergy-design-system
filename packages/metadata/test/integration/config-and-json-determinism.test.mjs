@@ -8,7 +8,7 @@ import {
 import os from 'node:os';
 import path from 'node:path';
 import { describe, it } from 'node:test';
-import { expect } from 'chai';
+import assert from 'node:assert/strict';
 import {
   getClustersForEntity,
   getOverride,
@@ -72,20 +72,20 @@ describe('config loader integration', () => {
 
       const context = await loadConfig(configDir);
 
-      expect(context.overrides.size).to.equal(1);
-      expect(context.clustering.size).to.equal(1);
-      expect(context.artifacts.storybook).to.not.equal(undefined);
+      assert.strictEqual(context.overrides.size, 1);
+      assert.strictEqual(context.clustering.size, 1);
+      assert.notStrictEqual(context.artifacts.storybook, undefined);
 
       const override = getOverride(context, 'component:syn-accordion', true);
-      expect(override).to.not.equal(null);
-      expect(override.storyTags).to.deep.equal(['Structure']);
-      expect(override.storySourcePath).to.equal('components.accordion');
-      expect(override.stories).to.be.an('array').that.is.not.empty;
-      expect(override.stories[0].name).to.equal('default');
+      assert.notStrictEqual(override, null);
+      assert.deepStrictEqual(override.storyTags, ['Structure']);
+      assert.strictEqual(override.storySourcePath, 'components.accordion');
+      assert.ok(Array.isArray(override.stories) && override.stories.length > 0);
+      assert.strictEqual(override.stories[0].name, 'default');
 
       const clusters = getClustersForEntity(context, 'component:syn-accordion');
-      expect(clusters).to.have.length(1);
-      expect(clusters[0].name).to.equal('Structure Components');
+      assert.strictEqual(clusters.length, 1);
+      assert.strictEqual(clusters[0].name, 'Structure Components');
     } finally {
       await rm(tempRoot, { force: true, recursive: true });
     }
@@ -114,10 +114,10 @@ describe('json writer determinism', () => {
       // eslint-disable-next-line no-regex-spaces
       const topLevelKeys = Array.from(raw.matchAll(/^  "([^"]+)":/gm)).map((match) => match[1]);
 
-      expect(topLevelKeys).to.deep.equal(['a', 'arr', 'z']);
-      expect(Object.keys(parsed.a)).to.deep.equal(['a', 'b']);
-      expect(Object.keys(parsed.arr[0])).to.deep.equal(['a', 'b']);
-      expect(raw.endsWith('\n')).to.equal(true);
+      assert.deepStrictEqual(topLevelKeys, ['a', 'arr', 'z']);
+      assert.deepStrictEqual(Object.keys(parsed.a), ['a', 'b']);
+      assert.deepStrictEqual(Object.keys(parsed.arr[0]), ['a', 'b']);
+      assert.ok(raw.endsWith('\n'));
     } finally {
       await rm(tempRoot, { force: true, recursive: true });
     }

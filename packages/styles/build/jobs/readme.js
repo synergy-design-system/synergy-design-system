@@ -1,5 +1,4 @@
-import { readFile, writeFile } from 'fs/promises';
-import { globby } from 'globby';
+import { glob, readFile, writeFile } from 'fs/promises';
 import * as prettier from 'prettier';
 import { job } from '../shared.js';
 
@@ -37,7 +36,7 @@ const createMarkDownFromStructure = (structure) => Object
   .concat('\n');
 
 const createStructure = (fileNameList) => fileNameList
-  .map(f => f.replace('./dist/', '').replace('.css', ''))
+  .map(f => f.replace('dist/', '').replace('.css', ''))
   .reduce((acc, curr) => {
     const [category, name] = curr.split('/');
     if (!acc[category]) {
@@ -63,7 +62,9 @@ const prettify = async (markdown) => prettier.format(markdown, {
  * Adjust the readme file with the new markdown from filesystem
  */
 export const runAdjustReadme = job('Recreating README.md', async () => {
-  const moduleFileNames = await globby(['./dist/**/*.css', '!./dist/index.css']);
+  const moduleFileNames = await Array.fromAsync(
+    glob('./dist/**/*.css', { exclude: ['./dist/index.css'] }),
+  );
   const structure = createStructure(moduleFileNames);
   const markdown = await prettify(createMarkDownFromStructure(structure));
   return adjustReadme(markdown);

@@ -8,7 +8,7 @@ import {
 import os from 'node:os';
 import path from 'node:path';
 import { describe, it } from 'node:test';
-import { expect } from 'chai';
+import assert from 'node:assert/strict';
 import { syncCodeConnectFigmaOverrides } from '../../dist/config/index.js';
 
 describe('code-connect figma override sync', () => {
@@ -51,9 +51,9 @@ describe('code-connect figma override sync', () => {
         await readFile(path.join(overridesDir, 'component__syn-accordion.json'), 'utf8'),
       );
 
-      expect(summary.updatedCount).to.equal(1);
-      expect(summary.ambiguousCount).to.equal(0);
-      expect(syncedOverride).to.deep.equal({
+      assert.strictEqual(summary.updatedCount, 1);
+      assert.strictEqual(summary.ambiguousCount, 0);
+      assert.deepStrictEqual(syncedOverride, {
         figmaComponentId: '20877-88547',
         figmaDocsId: '41094-279501',
         storyTags: ['Structure'],

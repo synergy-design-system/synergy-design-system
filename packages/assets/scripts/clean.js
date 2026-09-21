@@ -1,4 +1,4 @@
-import { rimrafSync } from 'rimraf';
+import { rmSync } from 'node:fs';
 import { DYNAMIC_OUTPUT_PATHS } from './config.js';
 
-rimrafSync(DYNAMIC_OUTPUT_PATHS);
+DYNAMIC_OUTPUT_PATHS.forEach((path) => rmSync(path, { force: true, recursive: true }));

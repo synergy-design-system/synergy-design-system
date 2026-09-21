@@ -3,7 +3,7 @@
 Textareas collect data from the user and allow multiple lines of text.
 
 ```html
-<syn-textarea rows="4" spellcheck=""></syn-textarea>
+<syn-textarea></syn-textarea>
 ```
 
 ---

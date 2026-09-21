@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { describe, it } from 'node:test';
-import { expect } from 'chai';
+import assert from 'node:assert/strict';
 
 describe('storybook source configs', () => {
   const __filename = fileURLToPath(import.meta.url);
@@ -34,26 +34,28 @@ describe('storybook source configs', () => {
       templateScrapingConfig,
     } = await loadStorybookSourceConfigs();
 
-    expect(componentScrapingConfig.generateEntityId('syn-alert')).to.equal('component:syn-alert');
-    expect(stylesScrapingConfig.generateEntityId('syn-link')).to.equal('style:syn-link');
-    expect(templateScrapingConfig.generateEntityId('appshell')).to.equal('template:appshell');
+    assert.strictEqual(componentScrapingConfig.generateEntityId('syn-alert'), 'component:syn-alert');
+    assert.strictEqual(stylesScrapingConfig.generateEntityId('syn-link'), 'style:syn-link');
+    assert.strictEqual(templateScrapingConfig.generateEntityId('appshell'), 'template:appshell');
 
     const componentItems = await componentScrapingConfig.getItems();
     const styleItems = await stylesScrapingConfig.getItems();
     const templateItems = await templateScrapingConfig.getItems();
 
-    expect(componentItems.length).to.be.greaterThan(0);
-    expect(styleItems.length).to.be.greaterThan(0);
-    expect(templateItems.length).to.be.greaterThan(0);
+    assert.ok(componentItems.length > 0);
+    assert.ok(styleItems.length > 0);
+    assert.ok(templateItems.length > 0);
 
-    expect(styleItems.every((item) => stylesScrapingConfig.generateEntityId(item).startsWith('style:syn-'))).to.equal(true);
-    expect(componentScrapingConfig.generateStoryIds('syn-accordion')).to.deep.equal(['components-syn-accordion--docs']);
-    expect(componentScrapingConfig.generateStoryIds('syn-alert')).to.deep.equal(['components-syn-alert--docs']);
+    assert.ok(styleItems.every((item) => stylesScrapingConfig.generateEntityId(item).startsWith('style:syn-')));
+    assert.deepStrictEqual(componentScrapingConfig.generateStoryIds('syn-accordion'), ['components-syn-accordion--docs']);
+    assert.deepStrictEqual(componentScrapingConfig.generateStoryIds('syn-alert'), ['components-syn-alert--docs']);
+
     const chartStoryIds = componentScrapingConfig.generateStoryIds('syn-chart');
-    expect(chartStoryIds.length).to.be.greaterThan(0);
-    expect(chartStoryIds).to.include('charts-syn-chart--docs');
-    expect(componentScrapingConfig.generateStoryIds('syn-spinner')).to.deep.equal(['components-syn-spinner--docs']);
-    expect(templateItems).to.include('appshell');
-    expect(templateItems).to.include('forms');
+    assert.ok(chartStoryIds.length > 0);
+    assert.ok(chartStoryIds.includes('charts-syn-chart--docs'));
+
+    assert.deepStrictEqual(componentScrapingConfig.generateStoryIds('syn-spinner'), ['components-syn-spinner--docs']);
+    assert.ok(templateItems.includes('appshell'));
+    assert.ok(templateItems.includes('forms'));
   });
 });

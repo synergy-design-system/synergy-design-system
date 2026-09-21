@@ -2,7 +2,7 @@ import { mkdir, mkdtemp, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { describe, it } from 'node:test';
-import { expect } from 'chai';
+import assert from 'node:assert/strict';
 import { collect } from '../../dist/internal/collectors/components/collect.js';
 
 describe('components collector preflight', () => {
@@ -22,15 +22,15 @@ describe('components collector preflight', () => {
         },
       );
 
-      expect(result.ok).to.equal(false);
+      assert.strictEqual(result.ok, false);
 
       if (result.ok) {
         throw new Error('Expected collect to fail when manifest is missing');
       }
 
-      expect(result.error.message).to.contain('Components manifest missing');
-      expect(result.error.message).to.contain('pnpm --filter @synergy-design-system/components build');
-      expect(result.error.details).to.have.property('manifestPath');
+      assert.ok(result.error.message.includes('Components manifest missing'));
+      assert.ok(result.error.message.includes('pnpm --filter @synergy-design-system/components build'));
+      assert.ok('manifestPath' in result.error.details);
     } finally {
       await rm(tempRoot, { force: true, recursive: true });
     }

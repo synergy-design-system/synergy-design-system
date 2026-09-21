@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-14T11:24:23.291Z",
+  "builtAt": "2026-09-21T05:12:26.232Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset__sick2018-icons.json",
@@ -179,7 +179,7 @@
       "kind": "component",
       "layers": {
         "examples": 1,
-        "full": 8,
+        "full": 7,
         "interface": 2,
         "rules": 1
       },
@@ -553,7 +553,7 @@
       "kind": "component",
       "layers": {
         "examples": 1,
-        "full": 14,
+        "full": 13,
         "interface": 2,
         "rules": 1
       },
@@ -597,7 +597,7 @@
       "kind": "component",
       "layers": {
         "examples": 1,
-        "full": 10,
+        "full": 9,
         "interface": 2,
         "rules": 1
       },
@@ -839,7 +839,7 @@
       "kind": "component",
       "layers": {
         "examples": 1,
-        "full": 8,
+        "full": 7,
         "interface": 2,
         "rules": 1
       },
@@ -1587,6 +1587,20 @@
       "search": [
         "template:breadcrumb",
         "Breadcrumb",
+        "template"
+      ]
+    },
+    {
+      "corePath": "data/core/template/template__dialog.json",
+      "id": "template:dialog",
+      "kind": "template",
+      "layers": {
+        "examples": 1
+      },
+      "name": "Dialog",
+      "search": [
+        "template:dialog",
+        "Dialog",
         "template"
       ]
     },

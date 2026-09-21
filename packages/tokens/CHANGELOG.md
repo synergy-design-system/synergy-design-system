@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.26.0
+
+### Minor Changes
+
+- [#1363](https://github.com/synergy-design-system/synergy-design-system/pull/1363) [`b69bc72`](https://github.com/synergy-design-system/synergy-design-system/commit/b69bc72ec441f2697c04011fbee599d8b60669b0) Thanks [@klaarseSICKAG](https://github.com/klaarseSICKAG)! - Released on: 2026-09-21
+
+  feat: ✨ Add donut series support to `<syn-chart>` ([#1356](https://github.com/synergy-design-system/synergy-design-system/issues/1356))
+
+  This release introduces the new chart series type 'synDonut' and extends the chart configuration API with new presets `seriesDonut`
+
 ## 3.25.0
 
 ## 3.24.5

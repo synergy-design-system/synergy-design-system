@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/assets",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-assets-2.3.1-558265bf-458c-419c-99b2-482cc231b173",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-assets-2.3.2-5f7e0185-7d75-4ab5-9e78-daa2ee6cd12e",
   "creationInfo": {
-    "created": "2026-09-21T07:25:25.064Z",
+    "created": "2026-09-21T11:33:44Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,20 +14,20 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/assets",
-      "versionInfo": "2.3.1",
+      "versionInfo": "2.3.2",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/assets@2.3.1"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/assets@2.3.2"
         }
       ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
       "description": "Assets for the Synergy Design System",
       "supplier": "Person: SICK Global UX Foundation",
       "homepage": "https://github.com/synergy-design-system/synergy-design-system.git"

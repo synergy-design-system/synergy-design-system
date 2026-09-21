@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/components",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-components-3.26.0-23946ca7-03cd-4368-9b63-b80df87c0b2c",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-components-3.26.1-b2019566-8542-4ddd-808a-397a9cb32f76",
   "creationInfo": {
-    "created": "2026-09-21T07:25:25.095Z",
+    "created": "2026-09-21T11:33:44Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,20 +14,21 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/components",
-      "versionInfo": "3.26.0",
+      "versionInfo": "3.26.1",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.26.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.26.1"
         }
       ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
+      "description": "",
       "supplier": "Person: SICK Global UX Foundation",
       "homepage": "https://github.com/synergy-design-system/synergy-design-system.git"
     },
@@ -37,6 +38,9 @@
       "versionInfo": "1.8.0",
       "downloadLocation": "https://registry.npmjs.org/@floating-ui/dom/-/dom-1.8.0.tgz",
       "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
@@ -44,9 +48,6 @@
           "referenceLocator": "pkg:npm/%40floating-ui/dom@1.8.0"
         }
       ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
       "description": "Floating UI for the web",
       "homepage": "https://floating-ui.com",
       "supplier": "Person: atomiks",
@@ -58,88 +59,14 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-composed-offset-position-0.0.6-1",
-      "name": "composed-offset-position",
-      "versionInfo": "0.0.6",
-      "downloadLocation": "https://registry.npmjs.org/composed-offset-position/-/composed-offset-position-0.0.6.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/composed-offset-position@0.0.6"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "This provides a set of ponyfills to achieve the same behavior of `offsetParent`, `offsetLeft` and `offsetTop` before the `offsetParent` spec was changed.",
-      "homepage": "https://github.com/jcfranco/composed-offset-position#readme",
-      "supplier": "Person: jcfranco",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "43b74ba26a48ea553077b2d6c8870febaaf859c4bdbbb00bda1f0769e8a98917c244f2cc5aa471f1f62c8dbe0e1e2e9440589f3bb5ed342d88944275a33205c7"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-echarts-6.1.0-2",
-      "name": "echarts",
-      "versionInfo": "6.1.0",
-      "downloadLocation": "https://registry.npmjs.org/echarts/-/echarts-6.1.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/echarts@6.1.0"
-        }
-      ],
-      "licenseConcluded": "Apache-2.0",
-      "licenseDeclared": "Apache-2.0",
-      "copyrightText": "NOASSERTION",
-      "description": "Apache ECharts is a powerful, interactive charting and data visualization library for browser",
-      "homepage": "https://echarts.apache.org",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "ab4c9a14f8200bd15476c587e1b95abd15859b176b22875b92828d02326e74023a080f6034fc47b55d917193447a9655964e32bc16243a46e4e87215a48c8764"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-lit-3.3.3-3",
-      "name": "lit",
-      "versionInfo": "3.3.3",
-      "downloadLocation": "https://registry.npmjs.org/lit/-/lit-3.3.3.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lit@3.3.3"
-        }
-      ],
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "description": "A library for building fast, lightweight web components",
-      "homepage": "https://lit.dev/",
-      "supplier": "Person: Google LLC",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "7f272ebd983f864a68ccbd34966d691091f99cdfe5afd65777a9892361d2378f81cdcf8b0cd74402927a1c56cf91d14d1cbbcea65208b89bf1912e17531aa2af"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--floating-ui-core-1.8.0-4",
+      "SPDXID": "SPDXRef-Package--floating-ui-core-1.8.0-1",
       "name": "@floating-ui/core",
       "versionInfo": "1.8.0",
       "downloadLocation": "https://registry.npmjs.org/@floating-ui/core/-/core-1.8.0.tgz",
       "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
@@ -147,9 +74,6 @@
           "referenceLocator": "pkg:npm/%40floating-ui/core@1.8.0"
         }
       ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
       "description": "Positioning library for floating elements: tooltips, popovers, dropdowns, and more",
       "homepage": "https://floating-ui.com",
       "supplier": "Person: atomiks",
@@ -161,11 +85,14 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--floating-ui-utils-0.2.12-5",
+      "SPDXID": "SPDXRef-Package--floating-ui-utils-0.2.12-2",
       "name": "@floating-ui/utils",
       "versionInfo": "0.2.12",
       "downloadLocation": "https://registry.npmjs.org/@floating-ui/utils/-/utils-0.2.12.tgz",
       "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
@@ -173,9 +100,6 @@
           "referenceLocator": "pkg:npm/%40floating-ui/utils@0.2.12"
         }
       ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
       "description": "Utilities for Floating UI",
       "homepage": "https://floating-ui.com",
       "supplier": "Person: atomiks",
@@ -187,88 +111,40 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-tslib-2.3.0-6",
-      "name": "tslib",
-      "versionInfo": "2.3.0",
-      "downloadLocation": "https://registry.npmjs.org/tslib/-/tslib-2.3.0.tgz",
+      "SPDXID": "SPDXRef-Package-lit-3.3.3-3",
+      "name": "lit",
+      "versionInfo": "3.3.3",
+      "downloadLocation": "https://registry.npmjs.org/lit/-/lit-3.3.3.tgz",
       "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/tslib@2.3.0"
-        }
-      ],
-      "licenseConcluded": "0BSD",
-      "licenseDeclared": "0BSD",
-      "copyrightText": "NOASSERTION",
-      "description": "Runtime library for TypeScript helper functions",
-      "homepage": "https://www.typescriptlang.org/",
-      "supplier": "Person: Microsoft Corp.",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "37cda8a32c55366ea1d6b88b0a8c92f5eddfb89dc0306db3219b3619dd404dc4858d2036dd0d1fce38d97a1d236c9bd65436747094fcc9a34d69a5c7cee78d8e"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-zrender-6.1.0-7",
-      "name": "zrender",
-      "versionInfo": "6.1.0",
-      "downloadLocation": "https://registry.npmjs.org/zrender/-/zrender-6.1.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/zrender@6.1.0"
-        }
-      ],
       "licenseConcluded": "BSD-3-Clause",
       "licenseDeclared": "BSD-3-Clause",
       "copyrightText": "NOASSERTION",
-      "description": "A lightweight graphic library providing 2d draw for Apache ECharts",
-      "homepage": "https://github.com/ecomfe/zrender#readme",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "a0418c0c1ea938fd92e8ec114783dd56feb5d33ae39c0dc187e267486d767d826504a8ed340a046f97d252808e3883651fde88d9f537f3f03652944ab3aef161"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--lit-reactive-element-2.1.2-8",
-      "name": "@lit/reactive-element",
-      "versionInfo": "2.1.2",
-      "downloadLocation": "https://registry.npmjs.org/@lit/reactive-element/-/reactive-element-2.1.2.tgz",
-      "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40lit/reactive-element@2.1.2"
+          "referenceLocator": "pkg:npm/lit@3.3.3"
         }
       ],
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "description": "A simple low level base class for creating fast, lightweight web components",
+      "description": "A library for building fast, lightweight web components",
       "homepage": "https://lit.dev/",
       "supplier": "Person: Google LLC",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "a5b0838953279ded6561421a60d379c2bc105c3b47698b60ed81053de5be870b3a538ed6785bc84865167a43c629638fd7282bb3479fd28d5524c9357b1a2ce4"
+          "checksumValue": "7f272ebd983f864a68ccbd34966d691091f99cdfe5afd65777a9892361d2378f81cdcf8b0cd74402927a1c56cf91d14d1cbbcea65208b89bf1912e17531aa2af"
         }
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-lit-element-4.2.2-9",
+      "SPDXID": "SPDXRef-Package-lit-element-4.2.2-4",
       "name": "lit-element",
       "versionInfo": "4.2.2",
       "downloadLocation": "https://registry.npmjs.org/lit-element/-/lit-element-4.2.2.tgz",
       "filesAnalyzed": false,
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
@@ -276,9 +152,6 @@
           "referenceLocator": "pkg:npm/lit-element@4.2.2"
         }
       ],
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
       "description": "A simple base class for creating fast, lightweight web components",
       "homepage": "https://lit.dev/",
       "supplier": "Person: Google LLC",
@@ -290,11 +163,14 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-lit-html-3.3.3-10",
+      "SPDXID": "SPDXRef-Package-lit-html-3.3.3-5",
       "name": "lit-html",
       "versionInfo": "3.3.3",
       "downloadLocation": "https://registry.npmjs.org/lit-html/-/lit-html-3.3.3.tgz",
       "filesAnalyzed": false,
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
@@ -302,9 +178,6 @@
           "referenceLocator": "pkg:npm/lit-html@3.3.3"
         }
       ],
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
       "description": "HTML templates literals in JavaScript",
       "homepage": "https://lit.dev/",
       "supplier": "Person: Google LLC",
@@ -316,11 +189,65 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--lit-labs-ssr-dom-shim-1.6.0-11",
+      "SPDXID": "SPDXRef-Package--types-trusted-types-2.0.7-6",
+      "name": "@types/trusted-types",
+      "versionInfo": "2.0.7",
+      "downloadLocation": "https://registry.npmjs.org/@types/trusted-types/-/trusted-types-2.0.7.tgz",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40types/trusted-types@2.0.7"
+        }
+      ],
+      "description": "TypeScript definitions for trusted-types",
+      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/trusted-types",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "49c68f767d5d41cce06e5d101537933a65471542eddfde17260390368c95859eabdaf2e730b25f04f779dd2079d93ff71b7e95235fe0d8c65a5f47300ee5ec7f"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--lit-reactive-element-2.1.2-7",
+      "name": "@lit/reactive-element",
+      "versionInfo": "2.1.2",
+      "downloadLocation": "https://registry.npmjs.org/@lit/reactive-element/-/reactive-element-2.1.2.tgz",
+      "filesAnalyzed": false,
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40lit/reactive-element@2.1.2"
+        }
+      ],
+      "description": "A simple low level base class for creating fast, lightweight web components",
+      "homepage": "https://lit.dev/",
+      "supplier": "Person: Google LLC",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "a5b0838953279ded6561421a60d379c2bc105c3b47698b60ed81053de5be870b3a538ed6785bc84865167a43c629638fd7282bb3479fd28d5524c9357b1a2ce4"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--lit-labs-ssr-dom-shim-1.6.0-8",
       "name": "@lit-labs/ssr-dom-shim",
       "versionInfo": "1.6.0",
       "downloadLocation": "https://registry.npmjs.org/@lit-labs/ssr-dom-shim/-/ssr-dom-shim-1.6.0.tgz",
       "filesAnalyzed": false,
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
@@ -328,9 +255,6 @@
           "referenceLocator": "pkg:npm/%40lit-labs/ssr-dom-shim@1.6.0"
         }
       ],
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
       "description": "DOM shim for Lit Server Side Rendering (SSR)",
       "homepage": "https://github.com/lit/lit/tree/main/packages/labs/ssr-dom-shim",
       "supplier": "Person: Google LLC",
@@ -342,27 +266,103 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--types-trusted-types-2.0.7-12",
-      "name": "@types/trusted-types",
-      "versionInfo": "2.0.7",
-      "downloadLocation": "https://registry.npmjs.org/@types/trusted-types/-/trusted-types-2.0.7.tgz",
+      "SPDXID": "SPDXRef-Package-composed-offset-position-0.0.6-9",
+      "name": "composed-offset-position",
+      "versionInfo": "0.0.6",
+      "downloadLocation": "https://registry.npmjs.org/composed-offset-position/-/composed-offset-position-0.0.6.tgz",
       "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40types/trusted-types@2.0.7"
+          "referenceLocator": "pkg:npm/composed-offset-position@0.0.6"
         }
       ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "TypeScript definitions for trusted-types",
-      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/trusted-types",
+      "description": "This provides a set of ponyfills to achieve the same behavior of `offsetParent`, `offsetLeft` and `offsetTop` before the `offsetParent` spec was changed.",
+      "homepage": "https://github.com/jcfranco/composed-offset-position#readme",
+      "supplier": "Person: jcfranco",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "49c68f767d5d41cce06e5d101537933a65471542eddfde17260390368c95859eabdaf2e730b25f04f779dd2079d93ff71b7e95235fe0d8c65a5f47300ee5ec7f"
+          "checksumValue": "43b74ba26a48ea553077b2d6c8870febaaf859c4bdbbb00bda1f0769e8a98917c244f2cc5aa471f1f62c8dbe0e1e2e9440589f3bb5ed342d88944275a33205c7"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-echarts-6.1.0-10",
+      "name": "echarts",
+      "versionInfo": "6.1.0",
+      "downloadLocation": "https://registry.npmjs.org/echarts/-/echarts-6.1.0.tgz",
+      "filesAnalyzed": false,
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/echarts@6.1.0"
+        }
+      ],
+      "description": "Apache ECharts is a powerful, interactive charting and data visualization library for browser",
+      "homepage": "https://echarts.apache.org",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "ab4c9a14f8200bd15476c587e1b95abd15859b176b22875b92828d02326e74023a080f6034fc47b55d917193447a9655964e32bc16243a46e4e87215a48c8764"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-zrender-6.1.0-11",
+      "name": "zrender",
+      "versionInfo": "6.1.0",
+      "downloadLocation": "https://registry.npmjs.org/zrender/-/zrender-6.1.0.tgz",
+      "filesAnalyzed": false,
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/zrender@6.1.0"
+        }
+      ],
+      "description": "A lightweight graphic library providing 2d draw for Apache ECharts",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "a0418c0c1ea938fd92e8ec114783dd56feb5d33ae39c0dc187e267486d767d826504a8ed340a046f97d252808e3883651fde88d9f537f3f03652944ab3aef161"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-tslib-2.3.0-12",
+      "name": "tslib",
+      "versionInfo": "2.3.0",
+      "downloadLocation": "https://registry.npmjs.org/tslib/-/tslib-2.3.0.tgz",
+      "filesAnalyzed": false,
+      "licenseConcluded": "0BSD",
+      "licenseDeclared": "0BSD",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/tslib@2.3.0"
+        }
+      ],
+      "description": "Runtime library for TypeScript helper functions",
+      "homepage": "https://www.typescriptlang.org/",
+      "supplier": "Person: Microsoft Corp.",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "37cda8a32c55366ea1d6b88b0a8c92f5eddfb89dc0306db3219b3619dd404dc4858d2036dd0d1fce38d97a1d236c9bd65436747094fcc9a34d69a5c7cee78d8e"
         }
       ]
     }
@@ -379,13 +379,18 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-1",
+      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-0",
+      "relatedSpdxElement": "SPDXRef-Package--floating-ui-core-1.8.0-1",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-2",
+      "spdxElementId": "SPDXRef-Package--floating-ui-core-1.8.0-1",
+      "relatedSpdxElement": "SPDXRef-Package--floating-ui-utils-0.2.12-2",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-0",
+      "relatedSpdxElement": "SPDXRef-Package--floating-ui-utils-0.2.12-2",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -394,48 +399,73 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-0",
-      "relatedSpdxElement": "SPDXRef-Package--floating-ui-core-1.8.0-4",
+      "spdxElementId": "SPDXRef-Package-lit-3.3.3-3",
+      "relatedSpdxElement": "SPDXRef-Package-lit-element-4.2.2-4",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-0",
-      "relatedSpdxElement": "SPDXRef-Package--floating-ui-utils-0.2.12-5",
+      "spdxElementId": "SPDXRef-Package-lit-element-4.2.2-4",
+      "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-5",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-2",
-      "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-6",
+      "spdxElementId": "SPDXRef-Package-lit-html-3.3.3-5",
+      "relatedSpdxElement": "SPDXRef-Package--types-trusted-types-2.0.7-6",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-2",
-      "relatedSpdxElement": "SPDXRef-Package-zrender-6.1.0-7",
+      "spdxElementId": "SPDXRef-Package-lit-element-4.2.2-4",
+      "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-7",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package--lit-reactive-element-2.1.2-7",
+      "relatedSpdxElement": "SPDXRef-Package--lit-labs-ssr-dom-shim-1.6.0-8",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-lit-element-4.2.2-4",
+      "relatedSpdxElement": "SPDXRef-Package--lit-labs-ssr-dom-shim-1.6.0-8",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-lit-3.3.3-3",
-      "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-8",
+      "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-7",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-lit-3.3.3-3",
-      "relatedSpdxElement": "SPDXRef-Package-lit-element-4.2.2-9",
+      "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-5",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-3.3.3-3",
-      "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-10",
+      "spdxElementId": "SPDXRef-RootPackage",
+      "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-9",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--lit-reactive-element-2.1.2-8",
-      "relatedSpdxElement": "SPDXRef-Package--lit-labs-ssr-dom-shim-1.6.0-11",
+      "spdxElementId": "SPDXRef-Package-composed-offset-position-0.0.6-9",
+      "relatedSpdxElement": "SPDXRef-Package--floating-ui-utils-0.2.12-2",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-html-3.3.3-10",
-      "relatedSpdxElement": "SPDXRef-Package--types-trusted-types-2.0.7-12",
+      "spdxElementId": "SPDXRef-RootPackage",
+      "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-10",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-10",
+      "relatedSpdxElement": "SPDXRef-Package-zrender-6.1.0-11",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-zrender-6.1.0-11",
+      "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-12",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-10",
+      "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-12",
       "relationshipType": "DEPENDS_ON"
     }
   ]

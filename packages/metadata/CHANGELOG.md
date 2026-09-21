@@ -1,5 +1,20 @@
 # Changelog
 
+## 4.15.1
+
+### Patch Changes
+
+- [#1388](https://github.com/synergy-design-system/synergy-design-system/pull/1388) [`023724e`](https://github.com/synergy-design-system/synergy-design-system/commit/023724e04450cd82a7046d34947ff610cdb47289) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-09-21
+
+  fix: 🐛 dependency updates ([#258](https://github.com/synergy-design-system/synergy-design-system/issues/258))
+
+  This release updates dependencies for all packages.
+
+  It also introduces some changes to Synergies build infrastructure:
+
+  - `pnpm@12` as the default package manager.
+  - `NPM Trusted Publishers` for automated releases for better security.
+
 ## 4.15.0
 
 ### Minor Changes

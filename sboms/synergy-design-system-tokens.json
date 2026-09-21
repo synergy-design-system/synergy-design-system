@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/tokens",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-tokens-3.26.0-aaeedcdc-0a70-47a9-9416-3e8bd2720c59",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-tokens-3.26.1-b9041fec-ce9c-41f9-b550-2085b51fddcd",
   "creationInfo": {
-    "created": "2026-09-21T07:25:25.462Z",
+    "created": "2026-09-21T11:33:44Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,20 +14,20 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/tokens",
-      "versionInfo": "3.26.0",
+      "versionInfo": "3.26.1",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.26.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.26.1"
         }
       ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
       "description": "Design tokens for Synergy, the SICK Design System",
       "supplier": "Person: SICK Global UX Foundation",
       "homepage": "https://github.com/synergy-design-system/synergy-design-system.git"

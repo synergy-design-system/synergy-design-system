@@ -1,5 +1,21 @@
 # Changelog
 
+## 4.14.0
+
+### Minor Changes
+
+- [#1341](https://github.com/synergy-design-system/synergy-design-system/pull/1341) [`1c5b8b0`](https://github.com/synergy-design-system/synergy-design-system/commit/1c5b8b0495b2315b38bf61f7d1f3b2b452f18df5) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-09-21
+
+  feat: ✨ vue type only wrappers ([#1340](https://github.com/synergy-design-system/synergy-design-system/issues/1340))
+
+  This release introduces typescript only wrappers in the `@synergy-design-system/vue` package.
+  You now get type safety for Synergy Components without using the Vue wrappers components for less bundle size.
+
+### Patch Changes
+
+- Updated dependencies [[`1c5b8b0`](https://github.com/synergy-design-system/synergy-design-system/commit/1c5b8b0495b2315b38bf61f7d1f3b2b452f18df5)]:
+  - @synergy-design-system/metadata@4.14.0
+
 ## 4.13.0
 
 ### Minor Changes

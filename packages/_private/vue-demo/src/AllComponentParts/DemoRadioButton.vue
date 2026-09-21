@@ -1,14 +1,10 @@
-<script setup lang="ts">
-import { SynVueRadioButton, SynVueRadioGroup } from '@synergy-design-system/vue';
-</script>
-
 <template>
-  <SynVueRadioGroup
+  <syn-radio-group
     help-text="This is the help-text"
     label="This is a label"
   >
-    <SynVueRadioButton value="1">Option 1</SynVueRadioButton>
-    <SynVueRadioButton value="2">Option 2</SynVueRadioButton>
-    <SynVueRadioButton value="3">Option 3</SynVueRadioButton>
-  </SynVueRadioGroup>
+    <syn-radio-button value="1">Option 1</syn-radio-button>
+    <syn-radio-button value="2">Option 2</syn-radio-button>
+    <syn-radio-button value="3">Option 3</syn-radio-button>
+  </syn-radio-group>
 </template>

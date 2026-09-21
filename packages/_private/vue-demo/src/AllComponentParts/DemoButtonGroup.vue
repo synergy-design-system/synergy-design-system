@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { SynVueButtonGroup, SynVueButton } from '@synergy-design-system/vue';
 import { computed } from 'vue';
 
 const sizes = ['small', 'medium', 'large'] as const;
@@ -25,22 +24,22 @@ const combinations = computed(() => {
       gap: var(--syn-spacing-medium);
     "
   >
-    <SynVueButtonGroup label="Button Group - Default">
-      <SynVueButton>Left</SynVueButton>
-      <SynVueButton>Center (This Group will size adjust!)</SynVueButton>
-      <SynVueButton>Right</SynVueButton>
-    </SynVueButtonGroup>
+    <syn-button-group label="Button Group - Default">
+      <syn-button>Left</syn-button>
+      <syn-button>Center (This Group will size adjust!)</syn-button>
+      <syn-button>Right</syn-button>
+    </syn-button-group>
 
-    <SynVueButtonGroup
+    <syn-button-group
       v-for="combination in combinations"
       :key="combination.key"
       :size="combination.size"
       :variant="combination.variant"
       :label="combination.label"
     >
-      <SynVueButton>Left</SynVueButton>
-      <SynVueButton>Center</SynVueButton>
-      <SynVueButton>Right</SynVueButton>
-    </SynVueButtonGroup>
+      <syn-button>Left</syn-button>
+      <syn-button>Center</syn-button>
+      <syn-button>Right</syn-button>
+    </syn-button-group>
   </div>
 </template>

@@ -1,18 +1,15 @@
-<script setup lang="ts">
-import { SynVueInput, SynVueIcon } from '@synergy-design-system/vue';
-</script>
 <template>
-  <SynVueInput
+  <syn-input
     placeholder="Disabled"
     help-text="Help Text"
     label="Label"
   >
-    <SynVueIcon name="house" slot="prefix" />
-    <SynVueIcon name="chat" slot="suffix" />
-  </SynVueInput>
+    <syn-icon name="house" slot="prefix" />
+    <syn-icon name="chat" slot="suffix" />
+  </syn-input>
 
   <!-- #417: Numeric Strategy -->
-  <SynVueInput
+  <syn-input
     data-testid="input-417-numeric-no-value"
     label="Numeric Strategy (no value provided)"
     :max=100
@@ -22,7 +19,7 @@ import { SynVueInput, SynVueIcon } from '@synergy-design-system/vue';
     value="50"
   />
 
-  <SynVueInput
+  <syn-input
     data-testid="input-417-numeric-native"
     label="Numeric Strategy (native)"
     numericStrategy="native"
@@ -33,7 +30,7 @@ import { SynVueInput, SynVueIcon } from '@synergy-design-system/vue';
     value="50"
   />
 
-  <SynVueInput
+  <syn-input
     data-testid="input-417-numeric-modern"
     label="Numeric Strategy (modern)"
     numericStrategy="modern"
@@ -46,7 +43,7 @@ import { SynVueInput, SynVueIcon } from '@synergy-design-system/vue';
   <!-- /#417 -->
 
   <!-- #838: Numeric Strategy (min-fraction-digits) -->
-  <SynVueInput
+  <syn-input
     data-testid="input-838-numeric-native-min-fraction-digits"
     label="Numeric Strategy (native, using min-fraction-digits)"
     numericStrategy="native"
@@ -58,7 +55,7 @@ import { SynVueInput, SynVueIcon } from '@synergy-design-system/vue';
     value="50"
   />
 
-  <SynVueInput
+  <syn-input
     data-testid="input-838-numeric-modern-min-fraction-digits"
     label="Numeric Strategy (modern, using min-fraction-digits)"
     numericStrategy="modern"
@@ -72,7 +69,7 @@ import { SynVueInput, SynVueIcon } from '@synergy-design-system/vue';
   <!-- /#838 -->
 
   <!-- #872: Spin buttons out of sync with value -->
-  <SynVueInput
+  <syn-input
     data-testid="input-872-spin-buttons"
     label="Issue #872 - Spin Buttons out of sync with value"
     :max=100
@@ -83,7 +80,7 @@ import { SynVueInput, SynVueIcon } from '@synergy-design-system/vue';
   <!-- /#872 -->
 
   <!-- #1023: Autocorrect attribute -->
-  <SynVueInput
+  <syn-input
     data-testid="input-1023-autocorrect"
     label="Issue #1023 - Autocorrect attribute"
   />

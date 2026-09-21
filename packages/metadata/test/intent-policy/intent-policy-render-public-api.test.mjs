@@ -70,6 +70,30 @@ describe('intent policy render public api', () => {
     }
   });
 
+  it('exports renderIntent and renders action.primary for vue-web-components', async () => {
+    const { renderIntent } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await renderIntent({
+        framework: 'vue-web-components',
+        intent: 'action.primary',
+        target: {
+          id: 'component:syn-button',
+          kind: 'component',
+          name: 'syn-button',
+        },
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.equal('<syn-button type="button" variant="filled">CONTENT</syn-button>');
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
   it('renders with automatic target resolution when target is omitted', async () => {
     const { renderIntent } = await loadPublicApi();
     const fixture = await createFixtureDataDir();

@@ -263,6 +263,26 @@ describe('intent tools', () => {
     assert.ok(options.renderableTargets.some((target) => target.targetId === 'style:syn-link-list'));
   });
 
+  it('accepts vue-web-components framework for intent options', async () => {
+    const response = await session.client.callTool({
+      arguments: {
+        framework: 'vue-web-components',
+        includePhases: ['experimental'],
+        intentId: 'navigation.link-list.grouped',
+      },
+      name: 'intent-options',
+    });
+
+    const typed = toToolResponse(response);
+    const options = parseJsonContent<{
+      bestDefaultTargetId: string | null;
+      renderableTargets: Array<{ targetId: string }>;
+    }>(typed, 0);
+
+    assert.equal(options.bestDefaultTargetId, 'style:syn-link-list');
+    assert.ok(options.renderableTargets.some((target) => target.targetId === 'style:syn-link-list'));
+  });
+
   it('returns error message for unknown intent options query', async () => {
     const response = await session.client.callTool({
       arguments: {

@@ -1,9 +1,5 @@
-<script setup lang="ts">
-import { SynVueCard, SynVueButton } from '@synergy-design-system/vue';
-</script>
-
 <template>
-  <SynVueCard
+  <syn-card
     style="max-width: 400px;"
   >
     <h3>Headline</h3>
@@ -13,7 +9,7 @@ import { SynVueCard, SynVueButton } from '@synergy-design-system/vue';
     <footer slot="footer">
       <small>Optional information</small>
       <nav>
-        <SynVueButton variant="filled" size="small">More Info</SynVueButton>
+        <syn-button variant="filled" size="small">More Info</syn-button>
       </nav>
     </footer>
     <img
@@ -21,5 +17,5 @@ import { SynVueCard, SynVueButton } from '@synergy-design-system/vue';
       src="/card-example.jpg"
       alt="Multiple persons having lunch in SICK Academy"
     />
-  </SynVueCard>
+  </syn-card>
 </template>

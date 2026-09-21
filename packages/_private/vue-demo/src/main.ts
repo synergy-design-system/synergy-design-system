@@ -16,6 +16,7 @@ import '@synergy-design-system/demo-utilities/styles/app.css';
 
 import { createApp } from 'vue';
 import { createWebHistory, createRouter } from 'vue-router'
+import { SynModelPlugin } from '@synergy-design-system/vue';
 import App from './App.vue';
 import DemoForm from './DemoForm.vue';
 import DemoFormValidate from './DemoFormValidate.vue';
@@ -55,4 +56,5 @@ enableSettingEmitEvents();
 
 createApp(App)
   .use(router)
+  .use(SynModelPlugin)
   .mount('#root');

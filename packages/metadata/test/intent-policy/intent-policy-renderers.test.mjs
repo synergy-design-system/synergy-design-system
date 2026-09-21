@@ -50,6 +50,12 @@ describe('intent policy renderers', () => {
     }), '<SynVueButton type="button" variant="filled">CONTENT</SynVueButton>');
 
     assert.strictEqual(renderIntentFromRegistry({
+      framework: 'vue-web-components',
+      intent: 'action.primary',
+      target: buttonTarget,
+    }), '<syn-button type="button" variant="filled">CONTENT</syn-button>');
+
+    assert.strictEqual(renderIntentFromRegistry({
       framework: 'vanilla',
       intent: 'action.primary',
       target: buttonTarget,

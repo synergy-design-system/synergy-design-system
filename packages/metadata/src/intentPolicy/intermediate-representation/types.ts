@@ -12,6 +12,7 @@ export type FrameworkProfile =
   | 'react-web-components'
   | 'angular'
   | 'vue'
+  | 'vue-web-components'
   | 'vanilla';
 
 /**

@@ -19,6 +19,10 @@
     "./chart": {
       "types": "./dist/chart.d.ts",
       "import": "./dist/chart.js"
+    },
+    "./plugins/*": {
+      "types": "./dist/plugins/*.d.ts",
+      "import": "./dist/plugins/*.js"
     }
   },
   "scripts": {
@@ -50,7 +54,7 @@
     "directory": "packages/vue"
   },
   "type": "module",
-  "version": "3.24.5",
+  "version": "3.25.0",
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.9",
     "@vue/tsconfig": "^0.9.1",

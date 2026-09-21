@@ -1,14 +1,11 @@
-<script setup lang="ts">
-import { SynVuePrioNav, SynVueNavItem } from '@synergy-design-system/vue';
-</script>
 <template>
   <div
     style="display: flex; flex-direction: column; gap: var(--syn-spacing-2x-large);"
   >
-    <SynVuePrioNav style="width: 220px;">
-      <SynVueNavItem current horizontal>Domains</SynVueNavItem>
-      <SynVueNavItem horizontal>Projects</SynVueNavItem>
-      <SynVueNavItem horizontal href="javascript:void(0)">Trainings</SynVueNavItem>
-    </SynVuePrioNav>
+    <syn-prio-nav style="width: 220px;">
+      <syn-nav-item current horizontal>Domains</syn-nav-item>
+      <syn-nav-item horizontal>Projects</syn-nav-item>
+      <syn-nav-item horizontal href="javascript:void(0)">Trainings</syn-nav-item>
+    </syn-prio-nav>
   </div>
 </template>

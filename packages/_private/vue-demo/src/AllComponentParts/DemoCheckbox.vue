@@ -1,6 +1,3 @@
-<script setup lang="ts">
-import { SynVueCheckbox } from '@synergy-design-system/vue';
-</script>
 <template>
-  <SynVueCheckbox>Checkbox</SynVueCheckbox>
+  <syn-checkbox>Checkbox</syn-checkbox>
 </template>

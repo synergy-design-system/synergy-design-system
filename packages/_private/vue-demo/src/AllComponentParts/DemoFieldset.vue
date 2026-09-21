@@ -1,14 +1,10 @@
-<script setup lang="ts">
-import { SynVueFieldset, SynVueInput } from '@synergy-design-system/vue';
-</script>
-
 <template>
-  <SynVueFieldset
+  <syn-fieldset
     description="This is a fieldset with a legend and description."
     legend="Fieldset Legend"
   >
-    <SynVueInput label="Input 1" />
-    <SynVueInput label="Input 2" />
-    <SynVueInput label="Input 3" />
-  </SynVueFieldset>
+    <syn-input label="Input 1" />
+    <syn-input label="Input 2" />
+    <syn-input label="Input 3" />
+  </syn-fieldset>
 </template>

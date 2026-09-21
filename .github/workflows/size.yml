@@ -14,16 +14,11 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: pnpm/action-setup@v6
-        name: Install pnpm
-        id: pnpm-install
+      - name: Setup pnpm and Node.js
+        uses: pnpm/setup@v2
         with:
-          run_install: false
-
-      - name: Install Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24
+          install: false
+          cache: true
 
       - uses: andresz1/size-limit-action@v1.8.0
         name: Size Check

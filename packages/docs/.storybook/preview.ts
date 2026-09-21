@@ -124,6 +124,12 @@ const preview: Preview = {
       },
     },
     docs: {
+      // @storybook/web-components ships its own manifest-based argTypes inference
+      // (entry-preview-argtypes.js) that runs regardless of what wc-toolkit already
+      // produced, injecting a second, unfiltered set of rows for every component.
+      // We rely solely on wc-toolkit's `getStorybookHelpers`/`setStorybookHelpersConfig`
+      // output, so disable Storybook's own inference here.
+      extractArgTypes: () => ({}),
       source: {
         format: 'html',
         transform: async (source: string, storyContext: StoryContext) => {

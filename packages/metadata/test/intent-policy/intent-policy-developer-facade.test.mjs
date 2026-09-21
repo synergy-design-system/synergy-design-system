@@ -9,7 +9,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, it } from 'node:test';
-import { expect } from 'chai';
+import assert from 'node:assert/strict';
 
 describe('intent policy developer facade', () => {
   const __filename = fileURLToPath(import.meta.url);
@@ -141,10 +141,10 @@ describe('intent policy developer facade', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.not.equal(null);
-      expect(response.data.valid).to.equal(false);
-      expect(response.data.issues.map((issue) => issue.code)).to.include('FORBIDDEN_PROP_HREF');
+      assert.strictEqual(response.errors, undefined);
+      assert.notStrictEqual(response.data, null);
+      assert.strictEqual(response.data.valid, false);
+      assert.ok(response.data.issues.map((issue) => issue.code).includes('FORBIDDEN_PROP_HREF'));
     } finally {
       await fixture.cleanup();
     }
@@ -176,10 +176,10 @@ describe('intent policy developer facade', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.not.equal(null);
-      expect(response.data.valid).to.equal(true);
-      expect(response.data.issues.some((issue) => issue.code === 'REQUIRED_PROP_BUTTON_TYPE')).to.equal(false);
+      assert.strictEqual(response.errors, undefined);
+      assert.notStrictEqual(response.data, null);
+      assert.strictEqual(response.data.valid, true);
+      assert.ok(!response.data.issues.some((issue) => issue.code === 'REQUIRED_PROP_BUTTON_TYPE'));
     } finally {
       await fixture.cleanup();
     }
@@ -212,10 +212,10 @@ describe('intent policy developer facade', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.not.equal(null);
-      expect(response.data.valid).to.equal(false);
-      expect(response.data.issues.some((issue) => issue.code === 'REQUIRED_PROP_BUTTON_TYPE')).to.equal(true);
+      assert.strictEqual(response.errors, undefined);
+      assert.notStrictEqual(response.data, null);
+      assert.strictEqual(response.data.valid, false);
+      assert.ok(response.data.issues.some((issue) => issue.code === 'REQUIRED_PROP_BUTTON_TYPE'));
     } finally {
       await fixture.cleanup();
     }
@@ -234,10 +234,10 @@ describe('intent policy developer facade', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.not.equal(null);
-      expect(response.data.supportedIntents.map((intent) => intent.id)).to.include('action.submit');
-      expect(response.data.recommendedUsages.length).to.be.greaterThan(0);
+      assert.strictEqual(response.errors, undefined);
+      assert.notStrictEqual(response.data, null);
+      assert.ok(response.data.supportedIntents.map((intent) => intent.id).includes('action.submit'));
+      assert.ok(response.data.recommendedUsages.length > 0);
     } finally {
       await fixture.cleanup();
     }
@@ -260,12 +260,12 @@ describe('intent policy developer facade', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.not.equal(null);
-      expect(response.data.valid).to.equal(true);
-      expect(response.data.score).to.equal(90);
-      expect(response.data.issues.map((issue) => issue.code)).to.include('INTENT_TEMPORARILY_BLOCKED');
-      expect(response.data.issues.find((issue) => issue.code === 'INTENT_TEMPORARILY_BLOCKED')?.severity).to.equal('warning');
+      assert.strictEqual(response.errors, undefined);
+      assert.notStrictEqual(response.data, null);
+      assert.strictEqual(response.data.valid, true);
+      assert.strictEqual(response.data.score, 90);
+      assert.ok(response.data.issues.map((issue) => issue.code).includes('INTENT_TEMPORARILY_BLOCKED'));
+      assert.strictEqual(response.data.issues.find((issue) => issue.code === 'INTENT_TEMPORARILY_BLOCKED')?.severity, 'warning');
     } finally {
       await fixture.cleanup();
     }
@@ -291,11 +291,11 @@ describe('intent policy developer facade', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.not.equal(null);
-      expect(response.data.valid).to.equal(true);
-      expect(response.data.issues.map((issue) => issue.code)).to.include('FIELDSET_LEGEND_REQUIRED');
-      expect(response.data.issues.find((issue) => issue.code === 'FIELDSET_LEGEND_REQUIRED')?.severity).to.equal('warning');
+      assert.strictEqual(response.errors, undefined);
+      assert.notStrictEqual(response.data, null);
+      assert.strictEqual(response.data.valid, true);
+      assert.ok(response.data.issues.map((issue) => issue.code).includes('FIELDSET_LEGEND_REQUIRED'));
+      assert.strictEqual(response.data.issues.find((issue) => issue.code === 'FIELDSET_LEGEND_REQUIRED')?.severity, 'warning');
     } finally {
       await fixture.cleanup();
     }
@@ -324,9 +324,9 @@ describe('intent policy developer facade', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.not.equal(null);
-      expect(response.data.issues.some((issue) => issue.code === 'FIELDSET_LEGEND_REQUIRED')).to.equal(false);
+      assert.strictEqual(response.errors, undefined);
+      assert.notStrictEqual(response.data, null);
+      assert.ok(!response.data.issues.some((issue) => issue.code === 'FIELDSET_LEGEND_REQUIRED'));
     } finally {
       await fixture.cleanup();
     }
@@ -359,9 +359,9 @@ describe('intent policy developer facade', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.not.equal(null);
-      expect(response.data.issues.some((issue) => issue.code === 'FIELDSET_LEGEND_REQUIRED')).to.equal(false);
+      assert.strictEqual(response.errors, undefined);
+      assert.notStrictEqual(response.data, null);
+      assert.ok(!response.data.issues.some((issue) => issue.code === 'FIELDSET_LEGEND_REQUIRED'));
     } finally {
       await fixture.cleanup();
     }
@@ -387,11 +387,11 @@ describe('intent policy developer facade', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.not.equal(null);
-      expect(response.data.valid).to.equal(true);
-      expect(response.data.issues.map((issue) => issue.code)).to.include('CHECKBOX_GROUP_LABEL_REQUIRED');
-      expect(response.data.issues.find((issue) => issue.code === 'CHECKBOX_GROUP_LABEL_REQUIRED')?.severity).to.equal('warning');
+      assert.strictEqual(response.errors, undefined);
+      assert.notStrictEqual(response.data, null);
+      assert.strictEqual(response.data.valid, true);
+      assert.ok(response.data.issues.map((issue) => issue.code).includes('CHECKBOX_GROUP_LABEL_REQUIRED'));
+      assert.strictEqual(response.data.issues.find((issue) => issue.code === 'CHECKBOX_GROUP_LABEL_REQUIRED')?.severity, 'warning');
     } finally {
       await fixture.cleanup();
     }
@@ -420,9 +420,9 @@ describe('intent policy developer facade', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.not.equal(null);
-      expect(response.data.issues.some((issue) => issue.code === 'CHECKBOX_GROUP_LABEL_REQUIRED')).to.equal(false);
+      assert.strictEqual(response.errors, undefined);
+      assert.notStrictEqual(response.data, null);
+      assert.ok(!response.data.issues.some((issue) => issue.code === 'CHECKBOX_GROUP_LABEL_REQUIRED'));
     } finally {
       await fixture.cleanup();
     }
@@ -455,9 +455,9 @@ describe('intent policy developer facade', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.not.equal(null);
-      expect(response.data.issues.some((issue) => issue.code === 'CHECKBOX_GROUP_LABEL_REQUIRED')).to.equal(false);
+      assert.strictEqual(response.errors, undefined);
+      assert.notStrictEqual(response.data, null);
+      assert.ok(!response.data.issues.some((issue) => issue.code === 'CHECKBOX_GROUP_LABEL_REQUIRED'));
     } finally {
       await fixture.cleanup();
     }
@@ -476,13 +476,13 @@ describe('intent policy developer facade', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.not.equal(null);
-      expect(response.data.bestDefaultTargetId).to.equal('component:syn-fieldset');
-      expect(response.data.renderableTargets.map((target) => target.targetId)).to.deep.equal([
+      assert.strictEqual(response.errors, undefined);
+      assert.notStrictEqual(response.data, null);
+      assert.strictEqual(response.data.bestDefaultTargetId, 'component:syn-fieldset');
+      assert.deepStrictEqual(response.data.renderableTargets.map((target) => target.targetId), [
         'component:syn-fieldset',
       ]);
-      expect(response.data.nonRenderableCandidates.some((candidate) => candidate.targetId === 'component:syn-checkbox-group')).to.equal(false);
+      assert.ok(!response.data.nonRenderableCandidates.some((candidate) => candidate.targetId === 'component:syn-checkbox-group'));
     } finally {
       await fixture.cleanup();
     }
@@ -537,12 +537,12 @@ describe('intent policy developer facade', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.not.equal(null);
-      expect(response.data.valid).to.equal(false);
-      expect(response.data.issues.map((issue) => issue.code)).to.include('REQUIRED_CANCEL_VARIANT_TEXT');
-      expect(response.data.issues.map((issue) => issue.code)).to.include('REQUIRED_CONFIRM_VARIANT_FILLED');
-      expect(response.data.issues.map((issue) => issue.code)).to.include('FORBIDDEN_CONFIRM_HREF');
+      assert.strictEqual(response.errors, undefined);
+      assert.notStrictEqual(response.data, null);
+      assert.strictEqual(response.data.valid, false);
+      assert.ok(response.data.issues.map((issue) => issue.code).includes('REQUIRED_CANCEL_VARIANT_TEXT'));
+      assert.ok(response.data.issues.map((issue) => issue.code).includes('REQUIRED_CONFIRM_VARIANT_FILLED'));
+      assert.ok(response.data.issues.map((issue) => issue.code).includes('FORBIDDEN_CONFIRM_HREF'));
     } finally {
       await fixture.cleanup();
     }
@@ -561,10 +561,10 @@ describe('intent policy developer facade', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.not.equal(null);
-      expect(response.data.primaryRecommendation).to.not.equal(null);
-      expect(response.data.primaryRecommendation.targetId).to.equal('component:syn-button');
+      assert.strictEqual(response.errors, undefined);
+      assert.notStrictEqual(response.data, null);
+      assert.notStrictEqual(response.data.primaryRecommendation, null);
+      assert.strictEqual(response.data.primaryRecommendation.targetId, 'component:syn-button');
     } finally {
       await fixture.cleanup();
     }
@@ -583,11 +583,11 @@ describe('intent policy developer facade', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.not.equal(null);
-      expect(response.data.bestDefaultTargetId).to.equal('component:syn-button-group');
-      expect(response.data.renderableTargets.map((target) => target.targetId)).to.include('component:syn-button-group');
-      expect(response.data.nonRenderableCandidates).to.deep.equal([]);
+      assert.strictEqual(response.errors, undefined);
+      assert.notStrictEqual(response.data, null);
+      assert.strictEqual(response.data.bestDefaultTargetId, 'component:syn-button-group');
+      assert.ok(response.data.renderableTargets.map((target) => target.targetId).includes('component:syn-button-group'));
+      assert.deepStrictEqual(response.data.nonRenderableCandidates, []);
     } finally {
       await fixture.cleanup();
     }
@@ -607,12 +607,12 @@ describe('intent policy developer facade', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.not.equal(null);
-      expect(response.data.bestDefaultTargetId).to.equal('style:syn-link-list');
-      expect(response.data.renderableTargets.map((target) => target.targetId)).to.include('style:syn-link-list');
-      expect(response.data.nonRenderableCandidates.length).to.be.greaterThan(0);
-      expect(response.data.nonRenderableCandidates.some((candidate) => candidate.reasonCode === 'PATTERN_NOT_FOUND')).to.equal(true);
+      assert.strictEqual(response.errors, undefined);
+      assert.notStrictEqual(response.data, null);
+      assert.strictEqual(response.data.bestDefaultTargetId, 'style:syn-link-list');
+      assert.ok(response.data.renderableTargets.map((target) => target.targetId).includes('style:syn-link-list'));
+      assert.ok(response.data.nonRenderableCandidates.length > 0);
+      assert.ok(response.data.nonRenderableCandidates.some((candidate) => candidate.reasonCode === 'PATTERN_NOT_FOUND'));
     } finally {
       await fixture.cleanup();
     }
@@ -631,10 +631,10 @@ describe('intent policy developer facade', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.not.equal(null);
-      expect(response.data.bestDefaultTargetId).to.equal('component:syn-radio-group');
-      expect(response.data.renderableTargets.map((target) => target.targetId)).to.deep.equal([
+      assert.strictEqual(response.errors, undefined);
+      assert.notStrictEqual(response.data, null);
+      assert.strictEqual(response.data.bestDefaultTargetId, 'component:syn-radio-group');
+      assert.deepStrictEqual(response.data.renderableTargets.map((target) => target.targetId), [
         'component:syn-radio-group',
         'component:syn-select',
         'component:syn-radio-button',
@@ -659,10 +659,10 @@ describe('intent policy developer facade', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.not.equal(null);
-      expect(response.data.bestDefaultTargetId).to.equal('component:syn-combobox');
-      expect(response.data.renderableTargets.map((target) => target.targetId)).to.deep.equal([
+      assert.strictEqual(response.errors, undefined);
+      assert.notStrictEqual(response.data, null);
+      assert.strictEqual(response.data.bestDefaultTargetId, 'component:syn-combobox');
+      assert.deepStrictEqual(response.data.renderableTargets.map((target) => target.targetId), [
         'component:syn-combobox',
       ]);
     } finally {
@@ -683,13 +683,13 @@ describe('intent policy developer facade', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.not.equal(null);
-      expect(response.data.bestDefaultTargetId).to.equal('component:syn-validate');
-      expect(response.data.renderableTargets.map((target) => target.targetId)).to.deep.equal([
+      assert.strictEqual(response.errors, undefined);
+      assert.notStrictEqual(response.data, null);
+      assert.strictEqual(response.data.bestDefaultTargetId, 'component:syn-validate');
+      assert.deepStrictEqual(response.data.renderableTargets.map((target) => target.targetId), [
         'component:syn-validate',
       ]);
-      expect(response.data.nonRenderableCandidates).to.deep.equal([]);
+      assert.deepStrictEqual(response.data.nonRenderableCandidates, []);
     } finally {
       await fixture.cleanup();
     }

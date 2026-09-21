@@ -12,7 +12,7 @@ Side navigation lets the user navigate through the entire content of a product. 
   "
   class="side-nav-default"
 >
-  <syn-side-nav open="">
+  <syn-side-nav open="true">
     <syn-nav-item current="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item

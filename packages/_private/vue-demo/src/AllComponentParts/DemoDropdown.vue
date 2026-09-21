@@ -1,27 +1,24 @@
-<script setup lang="ts">
-import { SynVueDropdown, SynVueButton, SynVueMenu, SynVueMenuItem, SynVueDivider, SynVueIcon } from '@synergy-design-system/vue';
-</script>
 <template>
   <div style="position: relative">
-    <SynVueDropdown>
-      <SynVueButton slot="trigger" caret>Dropdown</SynVueButton>
-      <SynVueMenu style="min-width: 240px;">
-        <SynVueMenuItem>Dropdown Item 1</SynVueMenuItem>
-        <SynVueMenuItem>Dropdown Item 2</SynVueMenuItem>
-        <SynVueMenuItem>Dropdown Item 3</SynVueMenuItem>
-        <SynVueDivider />
-        <SynVueMenuItem type="checkbox" checked>Checkbox</SynVueMenuItem>
-        <SynVueMenuItem disabled>Disabled</SynVueMenuItem>
-        <SynVueDivider />
-        <SynVueMenuItem>
+    <syn-dropdown>
+      <syn-button slot="trigger" caret>Dropdown</syn-button>
+      <syn-menu style="min-width: 240px;">
+        <syn-menu-item>Dropdown Item 1</syn-menu-item>
+        <syn-menu-item>Dropdown Item 2</syn-menu-item>
+        <syn-menu-item>Dropdown Item 3</syn-menu-item>
+        <syn-divider />
+        <syn-menu-item type="checkbox" checked>Checkbox</syn-menu-item>
+        <syn-menu-item disabled>Disabled</syn-menu-item>
+        <syn-divider />
+        <syn-menu-item>
           Prefix
-          <SynVueIcon slot="prefix" name="wallpaper" />
-        </SynVueMenuItem>
-        <SynVueMenuItem>
+          <syn-icon slot="prefix" name="wallpaper" />
+        </syn-menu-item>
+        <syn-menu-item>
           Suffix Icon
-          <SynVueIcon slot="suffix" name="wallpaper" />
-        </SynVueMenuItem>
-      </SynVueMenu>
-    </SynVueDropdown>
+          <syn-icon slot="suffix" name="wallpaper" />
+        </syn-menu-item>
+      </syn-menu>
+    </syn-dropdown>
   </div>
 </template>

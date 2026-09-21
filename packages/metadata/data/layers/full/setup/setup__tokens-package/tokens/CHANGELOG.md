@@ -1,5 +1,50 @@
 # Changelog
 
+## 3.26.1
+
+### Patch Changes
+
+- [#1388](https://github.com/synergy-design-system/synergy-design-system/pull/1388) [`023724e`](https://github.com/synergy-design-system/synergy-design-system/commit/023724e04450cd82a7046d34947ff610cdb47289) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-09-21
+
+  fix: 🐛 dependency updates ([#258](https://github.com/synergy-design-system/synergy-design-system/issues/258))
+
+  This release updates dependencies for all packages.
+
+  It also introduces some changes to Synergies build infrastructure:
+
+  - `pnpm@12` as the default package manager.
+  - `NPM Trusted Publishers` for automated releases for better security.
+
+## 3.26.0
+
+### Minor Changes
+
+- [#1363](https://github.com/synergy-design-system/synergy-design-system/pull/1363) [`b69bc72`](https://github.com/synergy-design-system/synergy-design-system/commit/b69bc72ec441f2697c04011fbee599d8b60669b0) Thanks [@klaarseSICKAG](https://github.com/klaarseSICKAG)! - Released on: 2026-09-21
+
+  feat: ✨ Add donut series support to `<syn-chart>` ([#1356](https://github.com/synergy-design-system/synergy-design-system/issues/1356))
+
+  This release introduces the new chart series type 'synDonut' and extends the chart configuration API with new presets `seriesDonut`
+
+## 3.25.0
+
+## 3.24.5
+
+## 3.24.4
+
+## 3.24.3
+
+## 3.24.2
+
+## 3.24.1
+
+## 3.24.0
+
+### Minor Changes
+
+- [#1359](https://github.com/synergy-design-system/synergy-design-system/pull/1359) [`23b16cb`](https://github.com/synergy-design-system/synergy-design-system/commit/23b16cb5ba645b48b34b2dbbfe44b4ad9200edd0) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-08-31
+
+  feat: ✨ Add new chart token `--syn-chart-track-color` ([#1352](https://github.com/synergy-design-system/synergy-design-system/issues/1352))
+
 ## 3.23.0
 
 ### Minor Changes

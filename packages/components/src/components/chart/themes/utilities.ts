@@ -20,6 +20,27 @@ export const setGlobalThemeStore = (theme: Themes) => {
 };
 
 /**
+ * Finds the active Synergy theme class on the document body.
+ *
+ * @returns The matching theme class or an empty string when no Synergy theme is active.
+ */
+export const getCurrentThemeFromBodyClass = () => {
+  const synergyThemes = ['syn-theme-', 'syn-sick2025-'];
+  return document.body.classList.value.split(' ').find((cls) => synergyThemes.some((theme) => cls.includes(theme))) ?? '';
+};
+
+/**
+ * Updates the global chart theme store based on the active body theme class.
+ *
+ * Dark Synergy theme classes set the store to `dark`; all other values default to `light`.
+ */
+export const setThemeFromBodyClass = () => {
+  const darkThemes = ['syn-theme-dark', 'syn-sick2025-dark'];
+  const currentTheme = getCurrentThemeFromBodyClass();
+  setGlobalThemeStore(darkThemes.includes(currentTheme) ? 'dark' : 'light');
+};
+
+/**
  * All valid token keys supported by the merged token dictionary.
 */
 export type ResolvedTokensName = keyof typeof ChartTokens | keyof typeof ComponentTokens;
@@ -33,7 +54,7 @@ export type ResolvedTokensName = keyof typeof ChartTokens | keyof typeof Compone
  */
 export const getRealStyleValue = (token: ResolvedTokensName, mode: ThemeMode = 'auto'): string => {
   let currentMode: Themes;
-  if(mode === 'auto') {
+  if (mode === 'auto') {
     currentMode = globalThemeStore;
   } else {
     currentMode = mode;
@@ -112,28 +133,17 @@ export const getHexWithOpacity = (hexColor: string, opacity: number) => {
   return `${hexColor}${alpha}`;
 };
 
-let measureCanvas: HTMLCanvasElement | undefined;
-
 /**
- * Measures the rendered width of a text string for a given CSS font shorthand,
- * using an offscreen canvas 2D context.
+ * Measures the rendered pixel width of the given string using a canvas.
+ * Returns `0` if the canvas API is unavailable (e.g. SSR or test environments).
  *
- * @param text Text to measure.
- * @param font CSS font shorthand, e.g. `600 14px sans-serif`.
- * @returns The measured width in pixels, or `0` when no canvas context is available.
+ * @param text - The string to measure.
+ * @param font - A CSS font string (e.g. `'12px sans-serif'`) matching the target rendering context.
  */
 export const measureTextWidth = (text: string, font: string): number => {
-  if (typeof document === 'undefined') {
-    return 0;
-  }
-
-  measureCanvas ??= document.createElement('canvas');
-  const context = measureCanvas.getContext('2d');
-
-  if (!context) {
-    return 0;
-  }
-
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+  if (!context) return 0;
   context.font = font;
-  return context.measureText(text).width;
+  return Math.ceil(context.measureText(text).width);
 };

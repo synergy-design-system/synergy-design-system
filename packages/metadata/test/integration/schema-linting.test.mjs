@@ -6,7 +6,7 @@ import { readFile, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { describe, it } from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { expect } from 'chai';
+import assert from 'node:assert/strict';
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
@@ -21,7 +21,7 @@ describe('schema linting', () => {
     const files = await readdir(schemaDir);
     const schemaFiles = files.filter((f) => f.endsWith('.schema.json'));
 
-    expect(schemaFiles).to.have.lengthOf.at.least(3, 'should have at least 3 schema files');
+    assert.ok(schemaFiles.length >= 3, 'should have at least 3 schema files');
 
     for (const file of schemaFiles) {
       const content = await readFile(join(schemaDir, file), 'utf8');
@@ -32,8 +32,8 @@ describe('schema linting', () => {
         throw new Error(`Schema ${file} is not valid JSON: ${e instanceof Error ? e.message : String(e)}`);
       }
 
-      expect(parsed).to.be.an('object', `schema ${file} should be an object`);
-      expect(parsed).to.have.property('$schema');
+      assert.ok(parsed !== null && typeof parsed === 'object', `schema ${file} should be an object`);
+      assert.ok('$schema' in parsed);
     }
   });
 
@@ -42,8 +42,8 @@ describe('schema linting', () => {
     const content = await readFile(schemaPath, 'utf8');
     const schema = JSON.parse(content);
 
-    expect(schema).to.have.property('properties');
-    expect(schema.properties).to.include.keys(['id', 'kind', 'name', 'layers']);
+    assert.ok('properties' in schema);
+    assert.ok(['id', 'kind', 'name', 'layers'].every((key) => key in schema.properties));
   });
 
   it('layer-ref schema has required properties', async () => {
@@ -51,8 +51,8 @@ describe('schema linting', () => {
     const content = await readFile(schemaPath, 'utf8');
     const schema = JSON.parse(content);
 
-    expect(schema).to.have.property('properties');
-    expect(schema.properties).to.include.keys(['layer', 'path']);
+    assert.ok('properties' in schema);
+    assert.ok(['layer', 'path'].every((key) => key in schema.properties));
   });
 
   it('all core entity files pass schema structure validation', async () => {
@@ -69,13 +69,14 @@ describe('schema linting', () => {
         throw new Error(`Entity ${file} is not valid JSON: ${e instanceof Error ? e.message : String(e)}`);
       }
 
-      expect(entity, `Entity ${file} should have id`).to.have.property('id');
-      expect(entity, `Entity ${file} should have kind`).to.have.property('kind');
-      expect(entity, `Entity ${file} should have name`).to.have.property('name');
-      expect(entity, `Entity ${file} should have layers`).to.have.property('layers');
+      assert.ok('id' in entity, `Entity ${file} should have id`);
+      assert.ok('kind' in entity, `Entity ${file} should have kind`);
+      assert.ok('name' in entity, `Entity ${file} should have name`);
+      assert.ok('layers' in entity, `Entity ${file} should have layers`);
 
       // Validate id format
-      expect(entity.id).to.match(
+      assert.match(
+        entity.id,
         /^[a-z]+:[a-z0-9-]+$/,
         `Entity ID ${entity.id} should match format 'kind:name'`,
       );
@@ -83,11 +84,11 @@ describe('schema linting', () => {
       // Validate layers structure
       if (typeof entity.layers === 'object' && entity.layers !== null) {
         for (const [layerType, refs] of Object.entries(entity.layers)) {
-          expect(refs, `layers.${layerType} should be an array`).to.be.an('array');
+          assert.ok(Array.isArray(refs), `layers.${layerType} should be an array`);
           for (const ref of refs) {
-            expect(ref, `layer ref in ${file} should have layer`).to.have.property('layer');
-            expect(ref, `layer ref in ${file} should have path`).to.have.property('path');
-            expect(ref.path).to.be.a('string');
+            assert.ok('layer' in ref, `layer ref in ${file} should have layer`);
+            assert.ok('path' in ref, `layer ref in ${file} should have path`);
+            assert.strictEqual(typeof ref.path, 'string');
           }
         }
       }
@@ -108,8 +109,8 @@ describe('schema linting', () => {
     // Verify all properties in the entity exist in the schema
     const requiredFields = ['id', 'kind', 'name', 'package', 'layers', 'sources', 'status'];
     for (const field of requiredFields) {
-      expect(entity, `Entity should have ${field}`).to.have.property(field);
-      expect(schema.properties, `Schema should define ${field}`).to.have.property(field);
+      assert.ok(field in entity, `Entity should have ${field}`);
+      assert.ok(field in schema.properties, `Schema should define ${field}`);
     }
   });
 
@@ -118,15 +119,15 @@ describe('schema linting', () => {
     const content = await readFile(samplePath, 'utf8');
     const entity = JSON.parse(content);
 
-    expect(entity.layers).to.be.an('object');
-    expect(entity.layers.full).to.be.an('array').with.lengthOf.greaterThan(0);
+    assert.strictEqual(typeof entity.layers, 'object');
+    assert.ok(Array.isArray(entity.layers.full) && entity.layers.full.length > 0);
 
     // Verify first layer reference can be read
     const firstLayerRef = entity.layers.full[0];
     const layerPath = join(schemaDir, '..', firstLayerRef.path);
 
     const layerContent = await readFile(layerPath, 'utf8');
-    expect(layerContent).to.be.a('string');
-    expect(layerContent.length).to.be.greaterThan(0);
+    assert.strictEqual(typeof layerContent, 'string');
+    assert.ok(layerContent.length > 0);
   });
 });

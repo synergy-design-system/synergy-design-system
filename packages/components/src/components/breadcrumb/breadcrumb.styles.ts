@@ -1,11 +1,9 @@
-/* eslint-disable */
 import { css } from 'lit';
 
 export default css`
-	/* stylelint-disable */
   .breadcrumb {
-    display: flex;
     align-items: center;
+    display: flex;
     flex-wrap: wrap;
   }
 `;

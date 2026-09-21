@@ -967,6 +967,106 @@
           "type": "text"
         }
       },
+      "donut-series-default": {
+        "title": {
+          "value": "Donut Series",
+          "type": "text"
+        },
+        "description": {
+          "value": "The donut chart component communicates the proportion of values within a one-dimensional data set using a ring made of evenly distributed, segmented arcs. Each segment size is normalized to 360 degrees based on its share of the total. A static, neutral inner ring frames the dynamic outer data ring.",
+          "type": "text"
+        }
+      },
+      "donut-series-preset": {
+        "title": {
+          "value": "Donut Series Preset",
+          "type": "text"
+        },
+        "description": {
+          "value": "The donut chart can either be configured via config with `type: 'synDonut'` or with the `seriesDonut` preset function.",
+          "type": "text"
+        }
+      },
+      "donut-series-colors": {
+        "title": {
+          "value": "Donut Series Colors",
+          "type": "text"
+        },
+        "description": {
+          "value": "By default, each outer ring segment is assigned a color from the chart's categorical color palette. Use the `colors` option to provide explicit colors instead; colors are repeated cyclically when fewer colors than data points are provided.",
+          "type": "text"
+        }
+      },
+      "donut-series-labels": {
+        "title": {
+          "value": "Donut Series Labels",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the `label` option to render a label for each segment, aligned by index with `data`. Each label is centered on its segment and placed outside the outer ring; provide a `prefixIcon` data URL alongside the `label` to render an icon before the label.",
+          "type": "text"
+        }
+      },
+      "donut-series-legend": {
+        "title": {
+          "value": "Donut Series with Legend",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `legendShow()` to render legend entries for the donut segments. Segment names are used as legend labels and can be toggled interactively. For this use the `name` option in the data items.",
+          "type": "text"
+        }
+      },
+      "donut-series-center": {
+        "title": {
+          "value": "Donut Series Center",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the `center` option to position the donut inside the available layout area. Values can be pixels or percentages.",
+          "type": "text"
+        }
+      },
+      "donut-series-radius": {
+        "title": {
+          "value": "Donut Series Radius",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the `radius` option to define the donut's outer radius. The value can be specified either as a number (for a fixed pixel value, e.g. 20) or as a percentage string (e.g. '50%'). Percentage-based values automatically scale with the available space, while pixel values remain fixed.",
+          "type": "text"
+        }
+      },
+      "donut-series-insets": {
+        "title": {
+          "value": "Donut Series Insets",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `top`, `right`, `bottom`, and `left` to reduce the donut layout area from each side before `center` and `radius` are resolved. Insets can be set in pixels (number) or percentages (string).",
+          "type": "text"
+        }
+      },
+      "donut-series-status": {
+        "title": {
+          "value": "Donut Series Status",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use status colors to visualize the distribution of items across different statuses, such as error, warning, success, and neutral.",
+          "type": "text"
+        }
+      },
+      "donut-series-label-formatting": {
+        "title": {
+          "value": "Donut Series Label Formatting",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the `label` property in the data items to apply custom label formatting. This can be a string or a function that receives the segment value and returns a formatted label. If the `label` is not set, the value will be used as the label. To omit the label completely, set the `label` to `undefined`.",
+          "type": "text"
+        }
+      },
       "gauge-series-default": {
         "title": {
           "value": "Gauge Series",
@@ -983,7 +1083,7 @@
           "type": "text"
         },
         "description": {
-          "value": "The gauge chart can either be configured via config with `type: 'synergyGauge'` or with the `seriesGauge` preset function.",
+          "value": "The gauge chart can either be configured via config with `type: 'synGauge'` or with the `seriesGauge` preset function.",
           "type": "text"
         }
       },
@@ -993,7 +1093,7 @@
           "type": "text"
         },
         "description": {
-          "value": "The gauge series supports showing an outer sections ring. Use `showSections: true` together with `sections.boundaries` or `sections.colors` to render a color-coded outer ring around the gauge, where each adjacent pair of boundary values defines a segment. When no `progressColor` is set, the progress arc automatically adopts the color of the segment containing the current value.",
+          "value": "The gauge series supports showing an outer sections ring. Use `sections.show: true` together with `sections.boundaries` or `sections.colors` to render a color-coded outer ring around the gauge, where each adjacent pair of boundary values defines a segment. When no `progressColor` is set, the progress arc automatically adopts the color of the segment containing the current value.",
           "type": "text"
         }
       },
@@ -1003,7 +1103,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use `showTrend: true` together with `trend.value` to render a small pill trend indicator above the gauge value; set `trend.direction` to `'up'` (default) or `'down'` to control the directional icon, and optionally provide `trend.iconUp` or `trend.iconDown` with a custom data URL to replace the default icons.",
+          "value": "Use `trend.show: true` together with `trend.value` to render a small pill trend indicator above the gauge value; set `trend.direction` to `'up'` (default) or `'down'` to control the directional icon, and optionally provide `trend.iconUp` or `trend.iconDown` with a custom data URL to replace the default icons.",
           "type": "text"
         }
       },
@@ -1024,86 +1124,6 @@
         },
         "description": {
           "value": "The gauge series supports custom value formatting using `formatter.value`, `formatter.min`, and `formatter.max` options.",
-          "type": "text"
-        }
-      },
-      "donut-series-default": {
-        "title": {
-          "value": "Donut Series",
-          "type": "text"
-        },
-        "description": {
-          "value": "The donut chart component communicates the proportion of values within a one-dimensional data set using a ring made of evenly distributed, segmented arcs. Each segment size is normalized to 360 degrees based on its share of the total. A static, neutral inner ring frames the dynamic outer data ring.",
-          "type": "text"
-        }
-      },
-      "donut-series-preset": {
-        "title": {
-          "value": "Donut Series Preset",
-          "type": "text"
-        },
-        "description": {
-          "value": "The donut chart can either be configured via config with `type: 'synergyDonut'` or with the `seriesDonut` preset function.",
-          "type": "text"
-        }
-      },
-      "donut-series-colors": {
-        "title": {
-          "value": "Donut Series Colors",
-          "type": "text"
-        },
-        "description": {
-          "value": "By default, each outer ring segment is assigned a color from the chart's categorical color palette. Use the `colors` option to provide explicit colors instead; colors are repeated cyclically when fewer colors than data points are provided.",
-          "type": "text"
-        }
-      },
-      "donut-series-labels": {
-        "title": {
-          "value": "Donut Series Labels",
-          "type": "text"
-        },
-        "description": {
-          "value": "Use the `labels` option to render a label for each segment, aligned by index with `data`. Each label is centered on its segment and placed outside the outer ring; provide an `icon` data URL alongside the `text` to render an icon before the label.",
-          "type": "text"
-        }
-      },
-      "segment-chart-series-default": {
-        "title": {
-          "value": "Segment Chart Series",
-          "type": "text"
-        },
-        "description": {
-          "value": "The segment chart visualizes multiple values as radial segments arranged around a static center circle. Each segment's `data` value defines how far it fills from the center outward, while `weights` defines its angular width. A configurable `gap` reserves an empty arc, by default at the bottom, for a main label.",
-          "type": "text"
-        }
-      },
-      "segment-chart-series-preset": {
-        "title": {
-          "value": "Segment Chart Series Preset",
-          "type": "text"
-        },
-        "description": {
-          "value": "The segment chart can either be configured via config with `type: 'synergySegmentChart'` or with the `seriesSegmentChart` preset function.",
-          "type": "text"
-        }
-      },
-      "segment-chart-series-gap": {
-        "title": {
-          "value": "Segment Chart Gap",
-          "type": "text"
-        },
-        "description": {
-          "value": "Use `gap` to control the fraction (0-1) of the full circle left empty; a `gap` of `0` lets segments fill the entire circle. Use `gapOrientation` to rotate the gap's position around the circle, in degrees.",
-          "type": "text"
-        }
-      },
-      "segment-chart-series-styling": {
-        "title": {
-          "value": "Segment Chart Styling",
-          "type": "text"
-        },
-        "description": {
-          "value": "Use `segmentColors` and `segmentBackgroundColors` to override the filled and unfilled colors of each segment. Use `segmentOutlineColor` to render a 1px outline around a segment, `segmentLabels` to override the default value labels, and `segmentLabelColors` to recolor them.",
           "type": "text"
         }
       }
@@ -5296,6 +5316,48 @@
         },
         "description": {
           "value": "These examples demonstrate the use of syn-breadcrumb in desktop and mobile views. \n\nOn desktop, if there's room, always show the full breadcrumb trail.\n\nIf the viewport has not enough space for all breadcrumb items, it is possible to display a truncated version of the breadcrumb and move the items between Home and the parent page into a dropdown menu. \n\nAlternatively, an even shorter version can display only the name/link of the parent page and the prefix icon with the back arrow to navigate one level up.\n\nFor more information on breadcrumbs, visit Nielsen Norman Group: https://www.nngroup.com/articles/breadcrumbs/",
+          "type": "text"
+        }
+      }
+    },
+    "dialog": {
+      "default": {
+        "title": {
+          "value": "Dialog",
+          "type": "text"
+        },
+        "description": {
+          "value": "These examples demonstrate the usage of the `<syn-dialog>` component in various contexts.",
+          "type": "text"
+        }
+      },
+      "confirmation": {
+        "title": {
+          "value": "Confirmation Dialogs",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use this pattern to confirm a user action. Confirmation dialogs are used to ensure that users do not accidentally perform an action that may have significant consequences, such as deleting important data or making irreversible changes. \n\nThe confirmation dialog typically presents the user with a clear message about the action they are about to take, along with options to either proceed or cancel. This helps prevent mistakes and provides an opportunity for users to reconsider their decision before committing to it.",
+          "type": "text"
+        }
+      },
+      "forms": {
+        "title": {
+          "value": "Forms in Dialogs",
+          "type": "text"
+        },
+        "description": {
+          "value": "Form-focused dialog pattern for create and edit flows. Structure the dialog around required inputs and gate the primary submit action by form validity so incomplete data cannot be submitted. Keep a clear secondary Cancel action so users can always exit without saving. In this example, Add and Edit are enabled, while destructive delete is intentionally separated and disabled.",
+          "type": "text"
+        }
+      },
+      "responsive": {
+        "title": {
+          "value": "Responsive Dialogs",
+          "type": "text"
+        },
+        "description": {
+          "value": "Example demonstrating responsive dialog behavior. The dialog is designed to adapt to different screen sizes and orientations, ensuring a consistent and user-friendly experience across devices. On smaller screens, the dialog may take up the full width of the viewport, while on larger screens, it may be centered with a fixed width. This responsiveness helps maintain usability and accessibility for all users.",
           "type": "text"
         }
       }

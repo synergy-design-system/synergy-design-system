@@ -172,10 +172,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component__syn-breadcrumb/components/breadcrumb.custom.styles.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component__syn-breadcrumb/components/breadcrumb.styles.ts"
       },
       {
@@ -224,7 +220,6 @@
   "sources": [
     "packages/angular/components/breadcrumb/breadcrumb.component.ts",
     "packages/components/src/components/breadcrumb/breadcrumb.component.ts",
-    "packages/components/src/components/breadcrumb/breadcrumb.custom.styles.ts",
     "packages/components/src/components/breadcrumb/breadcrumb.styles.ts",
     "packages/components/src/components/breadcrumb/breadcrumb.ts",
     "packages/react/src/components/breadcrumb.ts",

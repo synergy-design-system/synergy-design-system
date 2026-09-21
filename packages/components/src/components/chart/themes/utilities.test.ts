@@ -1,20 +1,70 @@
 import { expect } from '@open-wc/testing';
 import { ResolvedTokens } from '@synergy-design-system/tokens/resolved';
 import {
+  getCurrentThemeFromBodyClass,
   getHexWithOpacity,
   getRealStyleValue,
   getRealValueWithoutUnit,
   normalizeArray,
   setDefaultValueIfNotAvailable,
   setGlobalThemeStore,
+  setThemeFromBodyClass,
 } from './utilities.js';
 
 describe('chart theme utilities', () => {
-  describe('getRealStyleValue', () => {
-    afterEach(() => {
-      setGlobalThemeStore('light');
+  let previousBodyClass: string;
+
+  beforeEach(() => {
+    previousBodyClass = document.body.className;
+  });
+
+  afterEach(() => {
+    document.body.className = previousBodyClass;
+    setGlobalThemeStore('light');
+  });
+
+  describe('body theme classes', () => {
+    const themeClasses = [
+      ['syn-theme-light', 'syn-theme-dark'],
+      ['syn-sick2025-light', 'syn-sick2025-dark'],
+    ];
+
+    themeClasses.forEach(([lightTheme, darkTheme]) => {
+      it(`returns the current ${lightTheme.split('-light')[0]} body theme class`, () => {
+        document.body.className = `test ${lightTheme}`;
+
+        expect(getCurrentThemeFromBodyClass()).to.equal(lightTheme);
+
+        document.body.className = `test ${darkTheme}`;
+        expect(getCurrentThemeFromBodyClass()).to.equal(darkTheme);
+      });
+
+      it(`sets the global theme from ${darkTheme}`, () => {
+        document.body.className = darkTheme;
+
+        setThemeFromBodyClass();
+
+        expect(getRealStyleValue('SynAlertErrorColorBorder')).to.equal(ResolvedTokens.SynAlertErrorColorBorder.dark);
+      });
+
+      it(`sets the global theme from ${lightTheme}`, () => {
+        setGlobalThemeStore('dark');
+        document.body.className = lightTheme;
+
+        setThemeFromBodyClass();
+
+        expect(getRealStyleValue('SynAlertErrorColorBorder')).to.equal(ResolvedTokens.SynAlertErrorColorBorder.light);
+      });
     });
 
+    it('returns an empty string when no Synergy theme class is present', () => {
+      document.body.className = 'test';
+
+      expect(getCurrentThemeFromBodyClass()).to.equal('');
+    });
+  });
+
+  describe('getRealStyleValue', () => {
     it('returns the light token value by default', () => {
       expect(getRealStyleValue('SynAlertErrorColorBorder')).to.equal(ResolvedTokens.SynAlertErrorColorBorder.light);
     });
@@ -40,10 +90,6 @@ describe('chart theme utilities', () => {
   });
 
   describe('getRealValueWithoutUnit', () => {
-    afterEach(() => {
-      setGlobalThemeStore('light');
-    });
-
     it('parses numeric values from light token strings', () => {
       expect(getRealValueWithoutUnit('SynSpacingLarge')).to.equal(24);
     });

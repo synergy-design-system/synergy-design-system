@@ -338,10 +338,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component__syn-input/components/input.custom.styles.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component__syn-input/components/input.styles.ts"
       },
       {
@@ -399,7 +395,6 @@
     "packages/angular/components/input/input.component.ts",
     "packages/components/src/components/input/formatter.ts",
     "packages/components/src/components/input/input.component.ts",
-    "packages/components/src/components/input/input.custom.styles.ts",
     "packages/components/src/components/input/input.styles.ts",
     "packages/components/src/components/input/input.ts",
     "packages/components/src/components/input/strategies.ts",

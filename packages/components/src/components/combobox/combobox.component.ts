@@ -296,7 +296,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       return true;
     }
 
-    return option?.value?.toString() === queryStr;
+    // #1362 do not do an equal test, as other filtered options should also be shown if they partially match
+    const value = option?.value?.toString() || '';
+    return value.includes(queryStr);
   };
 
   /**
@@ -1424,8 +1426,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
   /* eslint-enable no-param-reassign */
 
-  private updateSelectedOptionFromValue(): void {
-    if (!this.isUserInput) {
+  private updateSelectedOptionFromValue(skipSelection = false): void {
+    if (!this.isUserInput && !skipSelection) {
       // check if the value has corresponding options via value or text content
       // for empty values use the text content, as then the values of the options are not set
       const options = this.getOptionsFromValue();
@@ -1473,8 +1475,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
     this.handleDelimiterChange();
     this.cacheSlottedOptionsAndOptgroups();
-
-    this.updateSelectedOptionFromValue();
+    // #1358 Prevent selection changes while the user is typing and async option updates modify the slotted options.
+    const skipSelection = this.hasFocus && this.displayLabel !== '';
+    this.updateSelectedOptionFromValue(skipSelection);
 
     // Auto-open listbox for better UX when new options are added during interaction
     let hasValue: boolean;
@@ -1486,7 +1489,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       hasValue = this.value !== undefined && this.value !== null;
     }
 
-    if (this.hasFocus && hasValue && !this.open) {
+    const options = this.getOptionsFromValue();
+    // #1358: Do not open the listbox again, if the value is exactly the already selected option
+    // This can happen, if the stakeholders create and update options on demand from user input
+    const hasSelected = options.some(opt => opt.selected);
+
+    if (this.hasFocus && hasValue && !this.open && !hasSelected) {
       this.show();
     }
   }

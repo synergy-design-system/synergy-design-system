@@ -1,6 +1,18 @@
 import { expect } from '@open-wc/testing';
 import {
-  colorSvgDataUrl, colorSvgImageUri, compose, getAsArray, mergeConfigs, mergeDeep,
+  clamp,
+  colorSvgDataUrl,
+  colorSvgImageUri,
+  compose,
+  convertDegreeToRadian,
+  getAsArray,
+  mergeConfigs,
+  mergeDeep,
+  normalizeAngle,
+  parseLayoutValue,
+  polarPoint,
+  resolveText,
+  toPixels,
 } from './utilities.js';
 
 const svgWithCurrentColor = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIvPjwvc3ZnPg==';
@@ -18,6 +30,51 @@ function decodeImageSvgUri(imageUri: string): string {
   const [, encodedSvg = ''] = urlData.split(',');
   return decodeURIComponent(encodedSvg);
 }
+
+describe('parseLayoutValue', () => {
+  it('parses numbers and unitless numeric strings as pixels', () => {
+    expect(parseLayoutValue(24)).to.deep.equal({ kind: 'pixel', value: 24 });
+    expect(parseLayoutValue('  -12.5 ')).to.deep.equal({ kind: 'pixel', value: -12.5 });
+  });
+
+  it('parses percentage strings', () => {
+    expect(parseLayoutValue(' 37.5% ')).to.deep.equal({ kind: 'percent', value: 37.5 });
+  });
+
+  it('returns invalid for unsupported or non-finite values', () => {
+    expect(parseLayoutValue(undefined)).to.deep.equal({ kind: 'invalid' });
+    expect(parseLayoutValue('12px')).to.deep.equal({ kind: 'invalid' });
+    expect(parseLayoutValue('')).to.deep.equal({ kind: 'invalid' });
+    expect(parseLayoutValue(Number.NaN)).to.deep.equal({ kind: 'invalid' });
+    expect(parseLayoutValue(Number.POSITIVE_INFINITY)).to.deep.equal({ kind: 'invalid' });
+  });
+});
+
+describe('toPixels', () => {
+  it('returns pixel values unchanged and resolves percentages against the base size', () => {
+    expect(toPixels(24, 200)).to.equal(24);
+    expect(toPixels('25%', 200)).to.equal(50);
+  });
+
+  it('uses the default fallback for invalid values', () => {
+    expect(toPixels('invalid', 200)).to.equal(0);
+  });
+
+  it('uses a custom fallback for invalid values', () => {
+    expect(toPixels(undefined, 200, 80)).to.equal(80);
+  });
+});
+
+describe('resolveText', () => {
+  it('returns static text and resolves callbacks with the data value', () => {
+    expect(resolveText('Total', 42)).to.equal('Total');
+    expect(resolveText(value => `Value: ${value}`, 42)).to.equal('Value: 42');
+  });
+
+  it('returns undefined when no text is provided', () => {
+    expect(resolveText(undefined, 42)).to.be.undefined;
+  });
+});
 
 describe('mergeDeep', () => {
   it('deep-merges nested objects into a new object', () => {
@@ -305,6 +362,27 @@ describe('mergeConfigs', () => {
     ]);
   });
 
+  it('ignores nullish layers and honors arrayStrategy from the trailing options object', () => {
+    const merged = mergeConfigs(
+      null,
+      {
+        series: [{ id: 'base-0', type: 'line' }],
+      },
+      undefined,
+      {
+        series: [{ id: 'latest-0', type: 'bar' }],
+      },
+      { arrayStrategy: 'append' },
+    );
+
+    expect(merged).to.deep.equal({
+      series: [
+        { id: 'base-0', type: 'line' },
+        { id: 'latest-0', type: 'bar' },
+      ],
+    });
+  });
+
   it('merges object and array conflicts into the first array index', () => {
     const objectIntoArray = mergeConfigs(
       {
@@ -344,6 +422,43 @@ describe('mergeConfigs', () => {
         type: 'value',
       },
     ]);
+  });
+});
+
+describe('clamp', () => {
+  it('clamps values to the inclusive range bounds', () => {
+    expect(clamp(-10, 0, 10)).to.equal(0);
+    expect(clamp(5, 0, 10)).to.equal(5);
+    expect(clamp(25, 0, 10)).to.equal(10);
+  });
+});
+
+describe('normalizeAngle', () => {
+  it('wraps angles into the [0, 2π) range', () => {
+    expect(normalizeAngle(0)).to.equal(0);
+    expect(normalizeAngle(Math.PI * 2)).to.equal(0);
+    expect(normalizeAngle(-Math.PI / 2)).to.equal((3 * Math.PI) / 2);
+    expect(normalizeAngle((3 * Math.PI) / 2)).to.equal((3 * Math.PI) / 2);
+  });
+});
+
+describe('polarPoint', () => {
+  it('converts polar coordinates to cartesian coordinates', () => {
+    expect(polarPoint(10, 20, 5, 0)).to.deep.equal({ x: 15, y: 20 });
+    expect(polarPoint(10, 20, 5, Math.PI / 2)).to.deep.equal({ x: 10, y: 25 });
+    const polarPointResult = polarPoint(0, 0, 10, Math.PI);
+    expect(polarPointResult.x).to.equal(-10);
+    // Javascript floating point math produces error, so we use a tolerance for the y-coordinate check
+    expect(polarPointResult.y).to.be.closeTo(0, 1e-10);
+  });
+});
+
+describe('convertDegreeToRadian', () => {
+  it('converts degrees to radians', () => {
+    expect(convertDegreeToRadian(0)).to.equal(0);
+    expect(convertDegreeToRadian(90)).to.equal(Math.PI / 2);
+    expect(convertDegreeToRadian(180)).to.equal(Math.PI);
+    expect(convertDegreeToRadian(270)).to.equal((3 * Math.PI) / 2);
   });
 });
 

@@ -4,8 +4,6 @@ The default pagination offers the most comprehensive controls and is optimized f
 
 ```html
 <syn-pagination
-  current-page="1"
-  page-size="25"
   page-size-options="10, 25, 50, 100"
   total-items="500"
 ></syn-pagination>

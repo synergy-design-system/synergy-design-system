@@ -42,12 +42,6 @@
     },
     {
       "access": "public",
-      "description": "",
-      "name": "indicatorOffset",
-      "type": "string"
-    },
-    {
-      "access": "public",
       "default": "''",
       "description": "A custom label for assistive devices.",
       "name": "label",

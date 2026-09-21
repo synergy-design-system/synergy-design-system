@@ -3,7 +3,7 @@
 Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.
 
 ```html
-<syn-dialog open="" label="Dialog">
+<syn-dialog open="true" label="Dialog">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   <span slot="footer"> </span>
   <syn-button class="default-close-icon" variant="filled" slot="footer"

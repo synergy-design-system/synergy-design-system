@@ -1,7 +1,7 @@
 import { expect } from '@open-wc/testing';
 import { seriesLine } from './presets.js';
 import type { LineSeriesOption } from './types.js';
-import type { ECConfig } from '../../types.js';
+import type { ECConfig } from '../../../types.js';
 
 describe('seriesLine', () => {
   describe('basic functionality', () => {

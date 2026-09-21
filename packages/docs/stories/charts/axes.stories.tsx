@@ -31,6 +31,7 @@ const meta: Meta = {
   component: 'syn-chart',
   parameters: {
     chromatic: {
+      delay: 300,
       modes: Chromatic_Modes_Sick_2025,
     },
     docs: {
@@ -661,7 +662,8 @@ export const AxesLabelFormatting: Story = {
     </div>
     <syn-chart id="chart-axis-label-formatter"></syn-chart>
     <script type="module">
-      // import { formatter } from '../../../components/src/components/chart/index.js';
+      // Import the formatter from the chart utilities
+      // import { formatter } from '@synergy-design-system/components/components/chart/index.js';
 
       const setConfig = (formatterSelect) => {
         let labelFormatter;

@@ -137,10 +137,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component__syn-icon/components/icon.custom.styles.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component__syn-icon/components/icon.styles.ts"
       },
       {
@@ -208,7 +204,6 @@
   "sources": [
     "packages/angular/components/icon/icon.component.ts",
     "packages/components/src/components/icon/icon.component.ts",
-    "packages/components/src/components/icon/icon.custom.styles.ts",
     "packages/components/src/components/icon/icon.styles.ts",
     "packages/components/src/components/icon/icon.ts",
     "packages/components/src/components/icon/library.default.ts",

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { SynVueButton, SynVueTabGroup, SynVueTabPanel, SynVueTab } from '@synergy-design-system/vue';
 import { ref } from 'vue';
 const initialItems = [
     {
@@ -27,11 +26,11 @@ const createNewActiveTab = () => {
 </script>
 
 <template>
-  <SynVueTabGroup contained>
-    <SynVueTabPanel v-for="item in items" :key="item.id" :name="item.id">
+  <syn-tab-group contained>
+    <syn-tab-panel v-for="item in items" :key="item.id" :name="item.id">
       {{ item.description }}
-    </SynVueTabPanel>
-    <SynVueTab 
+    </syn-tab-panel>
+    <syn-tab 
       v-for="(item, index) in items" 
       :key="item.id"
       :panel="item.id"
@@ -39,7 +38,7 @@ const createNewActiveTab = () => {
       :active="index === items.length - 1"
       slot="nav">
       {{ item.name }}
-    </SynVueTab>
-  </SynVueTabGroup>
-  <SynVueButton @click="createNewActiveTab" >Add Tab</SynVueButton>
+    </syn-tab>
+  </syn-tab-group>
+  <syn-button @click="createNewActiveTab" >Add Tab</syn-button>
 </template>

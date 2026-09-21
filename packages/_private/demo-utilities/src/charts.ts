@@ -7,3 +7,13 @@ export const lineChartConfigCallback: ChartConfigCallback = (handle) => {
     .seriesLine(mockData('lineChartSeriesData'))
     .legendShow();
 };
+
+export const gaugeChartConfigCallback: ChartConfigCallback = (handle) => {
+  handle
+    .seriesGauge(mockData('gaugeChartConfigObject'));
+};
+
+export const donutChartConfigCallback: ChartConfigCallback = (handle) => {
+  handle
+    .seriesDonut(mockData('donutChartConfigObject'));
+};

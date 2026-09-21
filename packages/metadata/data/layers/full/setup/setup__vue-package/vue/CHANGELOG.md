@@ -1,5 +1,97 @@
 # @synergy-design-system/vue
 
+## 3.26.1
+
+### Patch Changes
+
+- [#1388](https://github.com/synergy-design-system/synergy-design-system/pull/1388) [`023724e`](https://github.com/synergy-design-system/synergy-design-system/commit/023724e04450cd82a7046d34947ff610cdb47289) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-09-21
+
+  fix: 🐛 dependency updates ([#258](https://github.com/synergy-design-system/synergy-design-system/issues/258))
+
+  This release updates dependencies for all packages.
+
+  It also introduces some changes to Synergies build infrastructure:
+
+  - `pnpm@12` as the default package manager.
+  - `NPM Trusted Publishers` for automated releases for better security.
+
+- Updated dependencies [[`023724e`](https://github.com/synergy-design-system/synergy-design-system/commit/023724e04450cd82a7046d34947ff610cdb47289)]:
+  - @synergy-design-system/components@3.26.1
+  - @synergy-design-system/tokens@3.26.1
+
+## 3.26.0
+
+### Patch Changes
+
+- Updated dependencies [[`b69bc72`](https://github.com/synergy-design-system/synergy-design-system/commit/b69bc72ec441f2697c04011fbee599d8b60669b0)]:
+  - @synergy-design-system/components@3.26.0
+  - @synergy-design-system/tokens@3.26.0
+
+## 3.25.0
+
+### Minor Changes
+
+- [#1341](https://github.com/synergy-design-system/synergy-design-system/pull/1341) [`1c5b8b0`](https://github.com/synergy-design-system/synergy-design-system/commit/1c5b8b0495b2315b38bf61f7d1f3b2b452f18df5) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-09-21
+
+  feat: ✨ vue type only wrappers ([#1340](https://github.com/synergy-design-system/synergy-design-system/issues/1340))
+
+  This release introduces typescript only wrappers in the `@synergy-design-system/vue` package.
+  You now get type safety for Synergy Components without using the Vue wrappers components for less bundle size.
+
+### Patch Changes
+
+- Updated dependencies [[`1c5b8b0`](https://github.com/synergy-design-system/synergy-design-system/commit/1c5b8b0495b2315b38bf61f7d1f3b2b452f18df5)]:
+  - @synergy-design-system/components@3.25.0
+  - @synergy-design-system/tokens@3.25.0
+
+## 3.24.5
+
+### Patch Changes
+
+- Updated dependencies [[`d4f88d6`](https://github.com/synergy-design-system/synergy-design-system/commit/d4f88d6c197e70fe5f94f328b12ac9a73eca8c7d)]:
+  - @synergy-design-system/components@3.24.5
+  - @synergy-design-system/tokens@3.24.5
+
+## 3.24.4
+
+### Patch Changes
+
+- Updated dependencies [[`2625ba7`](https://github.com/synergy-design-system/synergy-design-system/commit/2625ba7c952c19f4b692a3aaf01e8242de7c9ae0)]:
+  - @synergy-design-system/components@3.24.4
+  - @synergy-design-system/tokens@3.24.4
+
+## 3.24.3
+
+### Patch Changes
+
+- Updated dependencies [[`b950282`](https://github.com/synergy-design-system/synergy-design-system/commit/b950282c5be52c96419a67734268d5a6f4325547)]:
+  - @synergy-design-system/components@3.24.3
+  - @synergy-design-system/tokens@3.24.3
+
+## 3.24.2
+
+### Patch Changes
+
+- Updated dependencies [[`bab6db5`](https://github.com/synergy-design-system/synergy-design-system/commit/bab6db5ad18e5e17aeb69c74ee3795762102a6f0)]:
+  - @synergy-design-system/components@3.24.2
+  - @synergy-design-system/tokens@3.24.2
+
+## 3.24.1
+
+### Patch Changes
+
+- Updated dependencies [[`e9d269d`](https://github.com/synergy-design-system/synergy-design-system/commit/e9d269d9c1cf988d6a6c8d2474c96897af5a354f)]:
+  - @synergy-design-system/components@3.24.1
+  - @synergy-design-system/tokens@3.24.1
+
+## 3.24.0
+
+### Patch Changes
+
+- Updated dependencies [[`23b16cb`](https://github.com/synergy-design-system/synergy-design-system/commit/23b16cb5ba645b48b34b2dbbfe44b4ad9200edd0), [`23b16cb`](https://github.com/synergy-design-system/synergy-design-system/commit/23b16cb5ba645b48b34b2dbbfe44b4ad9200edd0)]:
+  - @synergy-design-system/tokens@3.24.0
+  - @synergy-design-system/components@3.24.0
+
 ## 3.23.0
 
 ### Patch Changes

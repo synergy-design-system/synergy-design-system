@@ -2,9 +2,9 @@
  * Returns a formatter that appends the given unit to each axis label value.
  *
  * @param unit - The unit string to append (e.g. `'kg'`, `'°C'`).
- * @returns A formatter function that concatenates the value and unit with a space.
+ * @returns A formatter function that concatenates the value and unit.
  */
-export const unitFormatter = (unit: string) => (value: string | number) => `${value} ${unit}`;
+export const unitFormatter = (unit: string) => (value: string | number) => `${value}${unit}`;
 
 /**
  * Maps powers of 10 (in steps of 3) to their SI prefix symbols.

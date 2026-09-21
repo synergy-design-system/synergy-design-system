@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, it } from 'node:test';
-import { expect } from 'chai';
+import assert from 'node:assert/strict';
 
 describe('intent policy api (separate from integration tests)', () => {
   const __filename = fileURLToPath(import.meta.url);
@@ -32,14 +32,14 @@ describe('intent policy api (separate from integration tests)', () => {
 
     try {
       const categories = await listIntentCategories({ dataDir: fixture.dataDir });
-      expect(categories.errors).to.equal(undefined);
-      expect(categories.data.map((entry) => entry.id)).to.include('action');
-      expect(categories.data.map((entry) => entry.id)).to.include('structure');
+      assert.strictEqual(categories.errors, undefined);
+      assert.ok(categories.data.map((entry) => entry.id).includes('action'));
+      assert.ok(categories.data.map((entry) => entry.id).includes('structure'));
 
       const actionIntents = await listIntents({ category: 'action' }, { dataDir: fixture.dataDir });
-      expect(actionIntents.errors).to.equal(undefined);
-      expect(actionIntents.data.every((entry) => entry.category === 'action')).to.equal(true);
-      expect(actionIntents.data.map((entry) => entry.id)).to.include('action.submit');
+      assert.strictEqual(actionIntents.errors, undefined);
+      assert.ok(actionIntents.data.every((entry) => entry.category === 'action'));
+      assert.ok(actionIntents.data.map((entry) => entry.id).includes('action.submit'));
     } finally {
       await fixture.cleanup();
     }
@@ -57,17 +57,17 @@ describe('intent policy api (separate from integration tests)', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.not.equal(null);
-      expect(response.data?.architecture).to.equal('Intent Policy Layer');
-      expect(response.data?.process).to.equal('Intent Resolution');
-      expect(response.data?.output).to.equal('Usage Pattern / Preset');
-      expect(response.data?.pattern.structure?.component).to.equal('syn-button');
-      expect(response.data?.pattern.structure?.config?.propRules).to.be.an('array');
+      assert.strictEqual(response.errors, undefined);
+      assert.notStrictEqual(response.data, null);
+      assert.strictEqual(response.data?.architecture, 'Intent Policy Layer');
+      assert.strictEqual(response.data?.process, 'Intent Resolution');
+      assert.strictEqual(response.data?.output, 'Usage Pattern / Preset');
+      assert.strictEqual(response.data?.pattern.structure?.component, 'syn-button');
+      assert.ok(Array.isArray(response.data?.pattern.structure?.config?.propRules));
       const submitRule = response.data?.pattern.structure?.config?.propRules?.find(r => r.prop === 'type');
-      expect(submitRule?.value).to.equal('submit');
+      assert.strictEqual(submitRule?.value, 'submit');
       const hrefRule = response.data?.pattern.structure?.config?.propRules?.find(r => r.prop === 'href');
-      expect(hrefRule?.kind).to.equal('forbidden');
+      assert.strictEqual(hrefRule?.kind, 'forbidden');
     } finally {
       await fixture.cleanup();
     }
@@ -85,14 +85,14 @@ describe('intent policy api (separate from integration tests)', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.not.equal(null);
-      expect(response.data?.pattern.structure?.component).to.equal('syn-dialog');
-      expect(response.data?.pattern.structure?.children?.[0]?.slot).to.equal('footer');
+      assert.strictEqual(response.errors, undefined);
+      assert.notStrictEqual(response.data, null);
+      assert.strictEqual(response.data?.pattern.structure?.component, 'syn-dialog');
+      assert.strictEqual(response.data?.pattern.structure?.children?.[0]?.slot, 'footer');
       const confirmButton = response.data?.pattern.structure?.children?.[0]?.children?.[1];
-      expect(confirmButton?.component).to.equal('syn-button');
+      assert.strictEqual(confirmButton?.component, 'syn-button');
       const variantRule = confirmButton?.config?.propRules?.find(r => r.prop === 'variant');
-      expect(variantRule?.value).to.equal('filled');
+      assert.strictEqual(variantRule?.value, 'filled');
     } finally {
       await fixture.cleanup();
     }
@@ -104,8 +104,8 @@ describe('intent policy api (separate from integration tests)', () => {
 
     try {
       const unknownComponent = await getTargetCapabilities({id: 'component:syn-unknown', kind: 'component', name: 'syn-unknown'}, { dataDir: fixture.dataDir });
-      expect(unknownComponent.data).to.equal(null);
-      expect(unknownComponent.errors?.[0]?.code).to.equal('NOT_FOUND');
+      assert.strictEqual(unknownComponent.data, null);
+      assert.strictEqual(unknownComponent.errors?.[0]?.code, 'NOT_FOUND');
 
       const incompatible = await resolveIntent({
         target: { id: 'component:syn-dialog', kind: 'component', name: 'syn-dialog' },
@@ -114,8 +114,8 @@ describe('intent policy api (separate from integration tests)', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(incompatible.data).to.equal(null);
-      expect(incompatible.errors?.[0]?.code).to.equal('INVALID_QUERY');
+      assert.strictEqual(incompatible.data, null);
+      assert.strictEqual(incompatible.errors?.[0]?.code, 'INVALID_QUERY');
     } finally {
       await fixture.cleanup();
     }

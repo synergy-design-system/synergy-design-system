@@ -137,7 +137,7 @@
       "description": "Hides the increment/decrement spin buttons for number inputs.",
       "fieldName": "noSpinButtons",
       "name": "no-spin-buttons",
-      "reflects": false,
+      "reflects": true,
       "type": "boolean"
     },
     {

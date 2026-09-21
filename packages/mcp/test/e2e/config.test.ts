@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { writeFile, unlink } from 'node:fs/promises';
+import { unlink, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import {
@@ -12,6 +12,7 @@ import {
 import {
   type ClientSession,
   createClientSession,
+  expectNoPlaceholderEntries,
   expectNoRulesPreface,
   expectRulesPreface,
   parseJsonContent,
@@ -75,7 +76,9 @@ describe('config: includeAiRules = false', () => {
   });
   after(async () => {
     await session.close();
-    await unlink(configPath).catch(() => {/* ignore cleanup errors */});
+    await unlink(configPath).catch(() => {
+      /* ignore cleanup errors */
+    });
   });
 
   it('omits AI rules from asset-list response', async () => {
@@ -100,6 +103,48 @@ describe('config: includeAiRules = false', () => {
   });
 });
 
+// Regression coverage: compression runs before the response is turned into a
+// content array, so an omitted rules entry used to be encoded as literal "null".
+describe('config: includeAiRules = false with toon compression', () => {
+  let session: ClientSession;
+  let configPath: string;
+
+  before(async () => {
+    configPath = await writeTempConfig({ compression: 'toon', includeAiRules: false });
+    session = await createClientSession({ configPath });
+  });
+  after(async () => {
+    await session.close();
+    await unlink(configPath).catch(() => {
+      /* ignore cleanup errors */
+    });
+  });
+
+  it('drops the omitted rules entry instead of encoding it', async () => {
+    const response = await session.client.callTool({
+      arguments: {},
+      name: 'asset-list',
+    });
+    const typedResponse = toToolResponse(response);
+
+    expectNoRulesPreface(typedResponse);
+    expectNoPlaceholderEntries(typedResponse);
+    assert.equal(typedResponse.content.length, 1);
+    assert.ok(typedResponse.content[0].text.trim().length > 0);
+  });
+
+  it('drops both optional rule entries in component-info', async () => {
+    const response = await session.client.callTool({
+      arguments: { component: 'syn-button', framework: 'react' },
+      name: 'component-info',
+    });
+    const typedResponse = toToolResponse(response);
+
+    expectNoRulesPreface(typedResponse);
+    expectNoPlaceholderEntries(typedResponse);
+  });
+});
+
 describe('config: component-info defaults from config', () => {
   let session: ClientSession;
   let configPath: string;
@@ -112,7 +157,9 @@ describe('config: component-info defaults from config', () => {
   });
   after(async () => {
     await session.close();
-    await unlink(configPath).catch(() => {/* ignore cleanup errors */});
+    await unlink(configPath).catch(() => {
+      /* ignore cleanup errors */
+    });
   });
 
   it('applies configured default framework when no framework is passed', async () => {
@@ -176,7 +223,9 @@ describe('config: missing or invalid config file falls back to defaults', () => 
     afterEach(() => { /* no per-test teardown needed */ });
     after(async () => {
       await session.close();
-      await unlink(configPath).catch(() => {/* ignore */});
+      await unlink(configPath).catch(() => {
+        /* ignore */
+      });
     });
 
     it('still serves requests using built-in defaults', async () => {
@@ -209,7 +258,9 @@ describe('config: intent tool defaults from config', () => {
 
   after(async () => {
     await session.close();
-    await unlink(configPath).catch(() => {/* ignore cleanup errors */});
+    await unlink(configPath).catch(() => {
+      /* ignore cleanup errors */
+    });
   });
 
   it('applies configured default framework when no framework is passed to intent-component-guide', async () => {

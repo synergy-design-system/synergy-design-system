@@ -837,7 +837,8 @@ The axes labels can be formatted via the axisLabel.formatter option. You can cus
 </div>
 <syn-chart id="chart-axis-label-formatter"></syn-chart>
 <script type="module">
-  // import { formatter } from '../../../components/src/components/chart/index.js';
+  // Import the formatter from the chart utilities
+  // import { formatter } from '@synergy-design-system/components/components/chart/index.js';
 
   const setConfig = (formatterSelect) => {
     let labelFormatter;
@@ -1367,6 +1368,453 @@ The data zoom slider (the dataZoom option with type: 'inside') allows users to d
           ],
         },
       ]);
+  });
+</script>
+```
+
+---
+
+## Default
+
+The donut chart can either be configured via config with type: 'synDonut' or with the seriesDonut preset function.
+
+```html
+<syn-chart id="donut-series-preset"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#donut-series-preset");
+
+  charts.forEach((chart) => {
+    chart.config = {
+      series: [
+        {
+          type: "synDonut",
+          data: [10, 20, 30, 40],
+        },
+      ],
+    };
+  });
+</script>
+```
+
+---
+
+## Custom Colors
+
+By default, each outer ring segment is assigned a color from the chart's categorical color palette. Use the colors option to provide explicit colors instead; colors are repeated cyclically when fewer colors than data points are provided.
+
+```html
+<syn-chart id="donut-colors"></syn-chart>
+<script type="module">
+  // To use Synergy chart colors, import the resolved chart tokens. The chart
+  // configuration currently requires hex values, which can be retrieved
+  // directly from the chart tokens object:
+  //
+  // import { ResolvedTokens as ChartTokens } from '@synergy-design-system/tokens/charts/resolved';
+
+  const charts = document.querySelectorAll("#donut-colors");
+  const getChartColor = (token) => {
+    return ChartTokens[token]["light"];
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          color: [
+            getChartColor("SynChartSequential01_100"),
+            getChartColor("SynChartSequential01_90"),
+            getChartColor("SynChartSequential01_80"),
+            getChartColor("SynChartSequential01_70"),
+            getChartColor("SynChartSequential01_60"),
+            getChartColor("SynChartSequential01_50"),
+            getChartColor("SynChartSequential01_40"),
+          ],
+        })
+        .seriesDonut({
+          data: [15, 10, 20, 12, 18, 8, 17],
+        });
+  });
+</script>
+```
+
+---
+
+## Label Formatting
+
+Use the label property in the data items to apply custom label formatting. This can be a string or a function that receives the segment value and returns a formatted label. If the label is not set, the value will be used as the label. To omit the label completely, set the label to undefined.
+
+```html
+<syn-chart id="donut-label-formatting"></syn-chart>
+<script type="module">
+  // Import the formatter from the chart utilities
+  //import { formatter } from '@synergy-design-system/components/components/chart/index.js';
+
+  const charts = document.querySelectorAll("#donut-label-formatting");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesDonut({
+        data: [
+          {
+            value: 2000,
+            label: "Custom string",
+          },
+          {
+            value: 2000,
+            label: undefined,
+          },
+          {
+            value: 2000,
+            label: formatter.unitFormatter("ms"),
+          },
+          {
+            value: 2000,
+            label: formatter.numberShorthandFormatter(),
+          },
+          {
+            value: 2000,
+            label: formatter.numberFormatter(undefined, {
+              minimumFractionDigits: 2,
+            }),
+          },
+        ],
+      });
+  });
+</script>
+```
+
+---
+
+## Labels With Icons
+
+Use the label option to render a label for each segment, aligned by index with data. Each label is centered on its segment and placed outside the outer ring; provide a prefixIcon data URL alongside the label to render an icon before the label.
+
+```html
+<syn-chart id="donut-labels"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#donut-labels");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesDonut({
+        data: [
+          {
+            value: 421,
+            label: "Angular",
+            prefixIcon:
+              "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3VycmVudENvbG9yIj48cGF0aCBkPSJNMTIgMkwyIDZsMS42IDEyLjlMMTIgMjJsOC40LTMuMUwyMiA2IDEyIDJ6bTAgMi4yIDcuNiAyLjctMS4yIDEwLjZMMTIgMTkuOGwtNi40LTIuM0w0LjQgNi45IDEyIDQuMnpNMTIgOWwtNCA5aDEuNmwuOC0yaDMuMmwuOCAySDE2bC00LTl6bTAgMi45IDEuMSAyLjdoLTIuMkwxMiAxMS45eiIvPjwvc3ZnPg==",
+          },
+          {
+            value: 552,
+            label: "React",
+            prefixIcon:
+              "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMS40Ij48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIyIiBmaWxsPSJjdXJyZW50Q29sb3IiIHN0cm9rZT0ibm9uZSIvPjxlbGxpcHNlIGN4PSIxMiIgY3k9IjEyIiByeD0iMTAiIHJ5PSI0LjIiLz48ZWxsaXBzZSBjeD0iMTIiIGN5PSIxMiIgcng9IjEwIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSg2MCAxMiAxMikiLz48ZWxsaXBzZSBjeD0iMTIiIGN5PSIxMiIgcng9IjEwIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjAgMTIgMTIpIi8+PC9zdmc+",
+          },
+          {
+            value: 36,
+            label: "Vue",
+            prefixIcon:
+              "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3VycmVudENvbG9yIj48cGF0aCBkPSJNMiAzaDQuMkwxMiAxM2w1LjgtMTBIMjJMMTIgMjEgMiAzeiIvPjxwYXRoIGQ9Ik04LjQgM2gzLjJMMTIgNS4xIDEzLjQgM2gzLjJMMTIgMTIuOSA4LjQgM3oiLz48L3N2Zz4=",
+          },
+        ],
+      });
+  });
+</script>
+```
+
+---
+
+## Radius
+
+Use the radius option to define the donut's outer radius. The value can be specified either as a number (for a fixed pixel value, e.g. 20) or as a percentage string (e.g. '50%'). Percentage-based values automatically scale with the available space, while pixel values remain fixed.
+
+```html
+<syn-chart id="donut-radius"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#donut-radius");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesDonut({
+        radius: "90%",
+        data: [10, 20, 30, 40],
+      });
+  });
+</script>
+```
+
+---
+
+## Adjust Center Position
+
+Use the center option to position the donut inside the available layout area. Values can be pixels or percentages.
+
+```html
+<syn-chart id="donut-center"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#donut-center");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesDonut({
+        center: ["35%", "65%"],
+        radius: "70",
+        data: [10, 20, 30, 40],
+      });
+  });
+</script>
+```
+
+---
+
+## Insets
+
+Use top, right, bottom, and left to reduce the donut layout area from each side before center and radius are resolved. Insets can be set in pixels (number) or percentages (string).
+
+```html
+<syn-chart id="donut-insets"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#donut-insets");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesDonut({
+        top: 20,
+        right: 120,
+        bottom: "50%",
+        left: 260,
+        data: [10, 20, 30, 40],
+      });
+  });
+</script>
+```
+
+---
+
+## With Legend
+
+Use legendShow() to render legend entries for the donut segments. Segment names are used as legend labels and can be toggled interactively. For this use the name option in the data items.
+
+```html
+<syn-chart id="donut-legend"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#donut-legend");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .seriesDonut({
+          top: 60,
+          data: [
+            {
+              value: 421,
+              name: "Angular",
+            },
+            {
+              value: 552,
+              name: "React",
+            },
+            {
+              value: 36,
+              name: "Vue",
+            },
+          ],
+        })
+        .legendShow();
+  });
+</script>
+```
+
+---
+
+## Status Donut
+
+Use status colors to visualize the distribution of items across different statuses, such as error, warning, success, and neutral.
+
+```html
+<syn-chart id="donut-status"></syn-chart>
+<script type="module">
+  // To use Synergy chart colors, import the resolved chart tokens. The chart
+  // configuration currently requires hex values, which can be retrieved
+  // directly from the chart tokens object:
+  //
+  // import { ResolvedTokens as ChartTokens } from '@synergy-design-system/tokens/charts/resolved';
+  const charts = document.querySelectorAll("#donut-status");
+  const getColor = (token) => {
+    return ComponentTokens[token]["light"];
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          color: [
+            getColor("SynNamurErrorColor"),
+            getColor("SynNamurWarningColor"),
+            getColor("SynNamurSuccessColor"),
+            getColor("SynNamurNeutralColor"),
+          ],
+        })
+        .seriesDonut({
+          top: 16,
+          data: [
+            {
+              value: 220,
+              name: "Error",
+            },
+            {
+              value: 50,
+              name: "Warning",
+            },
+            {
+              value: 120,
+              name: "Success",
+            },
+            {
+              value: 33,
+              name: "Neutral",
+            },
+          ],
+        })
+        .legendShow();
+  });
+</script>
+```
+
+---
+
+## Default
+
+The gauge chart can either be configured via config with type: 'synGauge' or with the seriesGauge preset function.
+
+```html
+<syn-chart id="gauge-series-preset"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#gauge-series-preset");
+
+  charts.forEach((chart) => {
+    chart.config = {
+      series: [
+        {
+          type: "synGauge",
+          data: [45],
+        },
+      ],
+    };
+  });
+</script>
+```
+
+---
+
+## Sections
+
+The gauge series supports showing an outer sections ring. Use sections.show: true together with sections.boundaries or sections.colors to render a color-coded outer ring around the gauge, where each adjacent pair of boundary values defines a segment. When no progressColor is set, the progress arc automatically adopts the color of the segment containing the current value.
+
+```html
+<syn-chart id="gauge-sections"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#gauge-sections");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesGauge({
+        sections: {
+          boundaries: [0, 20, 70, 100],
+          show: true,
+        },
+        value: 80,
+      });
+  });
+</script>
+```
+
+---
+
+## Trend Indicator
+
+Use trend.show: true together with trend.value to render a small pill trend indicator above the gauge value; set trend.direction to 'up' (default) or 'down' to control the directional icon, and optionally provide trend.iconUp or trend.iconDown with a custom data URL to replace the default icons.
+
+```html
+<syn-chart id="gauge-trend"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#gauge-trend");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesGauge({
+        trend: {
+          show: true,
+          value: "5",
+        },
+        value: 80,
+      });
+  });
+</script>
+```
+
+---
+
+## Icon
+
+Use the icon option to render an SVG image below the unit label, or below the value when no unit is set.
+
+```html
+<syn-chart id="gauge-icon"></syn-chart>
+<script type="module">
+  // Import the formatter from the chart utilities
+  //import { formatter } from '@synergy-design-system/components/components/chart/index.js';
+
+  const charts = document.querySelectorAll("#gauge-icon");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesGauge({
+        icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMiAyMS41cS0xLjg3MyAwLTMuMTg3LTEuMzE0UTcuNSAxOC44NzQgNy41IDE3cTAtMS4xNDMuNTMtMi4xMTdhNC41NiA0LjU2IDAgMCAxIDEuNDctMS42MTRWNXEwLTEuMDQ4LjcyNi0xLjc3NEEyLjQgMi40IDAgMCAxIDEyIDIuNXExLjA0OCAwIDEuNzc0LjcyNlQxNC41IDV2OC4yN2E0LjU2IDQuNTYgMCAwIDEgMS40NyAxLjYxM3EuNTMuOTc0LjUzIDIuMTE3IDAgMS44NzMtMS4zMTMgMy4xODZRMTMuODczIDIxLjUgMTIgMjEuNW0tMS0xMC4zMDhoMnYtMS4yNWgtMXYtLjg4NGgxVjYuOTQyaC0xdi0uODg0aDFWNWEuOTcuOTcgMCAwIDAtLjI4Ny0uNzEzQS45Ny45NyAwIDAgMCAxMiA0YS45Ny45NyAwIDAgMC0uNzEzLjI4N0EuOTcuOTcgMCAwIDAgMTEgNXoiLz48L3N2Zz4=",
+        sections: {
+          show: true,
+        },
+        value: 80,
+        formatter: {
+          max: formatter.unitFormatter("°C"),
+          min: formatter.unitFormatter("°C"),
+          value: formatter.unitFormatter("°C"),
+        },
+      });
+  });
+</script>
+```
+
+---
+
+## Value Formatting
+
+The gauge series supports custom value formatting using formatter.value, formatter.min, and formatter.max options.
+
+```html
+<syn-chart id="gauge-formatter"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#gauge-formatter");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesGauge({
+        value: 80,
+        formatter: {
+          max: (value) =>
+            Intl.NumberFormat(undefined, { minimumFractionDigits: 3 }).format(
+              value,
+            ),
+          min: (value) =>
+            Intl.NumberFormat(undefined, { minimumFractionDigits: 3 }).format(
+              value,
+            ),
+          value: (value) =>
+            Intl.NumberFormat(undefined, { minimumFractionDigits: 2 }).format(
+              value,
+            ),
+        },
+      });
   });
 </script>
 ```

@@ -9,7 +9,7 @@ import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { describe, it } from 'node:test';
-import { expect } from 'chai';
+import assert from 'node:assert/strict';
 
 describe('public metadata api', () => {
   const __filename = fileURLToPath(import.meta.url);
@@ -87,125 +87,125 @@ describe('public metadata api', () => {
     const store = createMetadataStore();
 
     const index = await store.getIndex();
-    expect(index).to.have.property('version', '1.0.0');
-    expect(index).to.have.property('builtAt').that.is.a('string');
+    assert.strictEqual(index.version, '1.0.0');
+    assert.strictEqual(typeof index.builtAt, 'string');
 
     const component = await store.getEntity('component:syn-accordion');
-    expect(component).to.not.equal(null);
-    expect(component).to.have.property('kind', 'component');
+    assert.notStrictEqual(component, null);
+    assert.strictEqual(component.kind, 'component');
 
     const setupEntity = await store.getEntity('setup:synergy-migrations');
-    expect(setupEntity).to.not.equal(null);
-    expect(setupEntity).to.have.property('kind', 'setup');
+    assert.notStrictEqual(setupEntity, null);
+    assert.strictEqual(setupEntity.kind, 'setup');
 
     const setups = await store.findEntities({ kind: 'setup' });
-    expect(setups.length).to.be.greaterThan(0);
+    assert.ok(setups.length > 0);
 
     const migrationLayerFiles = await store.getDataForLayer('migrations', 'full');
-    expect(migrationLayerFiles.length).to.be.greaterThan(0);
+    assert.ok(migrationLayerFiles.length > 0);
 
     const davinciPaths = migrationLayerFiles.flatMap(({ files }) => files.map(({ path: filePath }) => filePath));
-    expect(davinciPaths.some((filePath) => filePath.includes('/davinci/'))).to.equal(true);
+    assert.ok(davinciPaths.some((filePath) => filePath.includes('/davinci/')));
   });
 
   it('exposes token helper queries with pagination and layer fallback metadata', async () => {
     const { getDataForTokens, getTokens } = await loadPublicApi();
 
     const allTokensResponse = await getTokens();
-    expect(allTokensResponse.errors).to.equal(undefined);
-    expect(allTokensResponse.meta.resolvedLayer).to.equal('full');
-    expect(allTokensResponse.data.length).to.be.greaterThan(0);
-    expect(allTokensResponse.data.every((entity) => entity.kind === 'token')).to.equal(true);
+    assert.strictEqual(allTokensResponse.errors, undefined);
+    assert.strictEqual(allTokensResponse.meta.resolvedLayer, 'full');
+    assert.ok(allTokensResponse.data.length > 0);
+    assert.ok(allTokensResponse.data.every((entity) => entity.kind === 'token'));
 
     const pagedTokensResponse = await getTokens({
       limit: 1,
       offset: 1,
     });
-    expect(pagedTokensResponse.data.length).to.equal(1);
-    expect(pagedTokensResponse.meta.total).to.equal(allTokensResponse.meta.total);
+    assert.strictEqual(pagedTokensResponse.data.length, 1);
+    assert.strictEqual(pagedTokensResponse.meta.total, allTokensResponse.meta.total);
 
     const fallbackResponse = await getTokens({
       layer: 'interface',
     });
-    expect(fallbackResponse.errors).to.equal(undefined);
-    expect(fallbackResponse.meta.requestedLayer).to.equal('interface');
-    expect(fallbackResponse.meta.resolvedLayer).to.equal('full');
-    expect(fallbackResponse.meta.warnings).to.be.an('array').that.is.not.empty;
+    assert.strictEqual(fallbackResponse.errors, undefined);
+    assert.strictEqual(fallbackResponse.meta.requestedLayer, 'interface');
+    assert.strictEqual(fallbackResponse.meta.resolvedLayer, 'full');
+    assert.ok(Array.isArray(fallbackResponse.meta.warnings) && fallbackResponse.meta.warnings.length > 0);
 
     const strictLayerErrorResponse = await getTokens({
       layer: 'interface',
       strictLayer: true,
     });
-    expect(strictLayerErrorResponse.data).to.deep.equal([]);
-    expect(strictLayerErrorResponse.errors).to.be.an('array').that.is.not.empty;
-    expect(strictLayerErrorResponse.errors?.[0]?.code).to.equal('LAYER_NOT_AVAILABLE');
+    assert.deepStrictEqual(strictLayerErrorResponse.data, []);
+    assert.ok(Array.isArray(strictLayerErrorResponse.errors) && strictLayerErrorResponse.errors.length > 0);
+    assert.strictEqual(strictLayerErrorResponse.errors?.[0]?.code, 'LAYER_NOT_AVAILABLE');
 
     const defaultDataResponse = await getDataForTokens();
-    expect(defaultDataResponse.errors).to.equal(undefined);
-    expect(defaultDataResponse.data.format).to.equal('css');
-    expect(defaultDataResponse.data.theme).to.equal('sick2025-light');
-    expect(defaultDataResponse.data.tokens.length).to.be.greaterThan(0);
-    expect(defaultDataResponse.data.tokens.every((entry) => entry.path.endsWith('.css'))).to.equal(true);
+    assert.strictEqual(defaultDataResponse.errors, undefined);
+    assert.strictEqual(defaultDataResponse.data.format, 'css');
+    assert.strictEqual(defaultDataResponse.data.theme, 'sick2025-light');
+    assert.ok(defaultDataResponse.data.tokens.length > 0);
+    assert.ok(defaultDataResponse.data.tokens.every((entry) => entry.path.endsWith('.css')));
 
     const cssThemeResponse = await getDataForTokens({
       format: 'css',
       theme: 'sick2018-dark',
     });
-    expect(cssThemeResponse.errors).to.equal(undefined);
-    expect(cssThemeResponse.data.format).to.equal('css');
-    expect(cssThemeResponse.data.theme).to.equal('sick2018-dark');
-    expect(cssThemeResponse.data.tokens.every((entry) => entry.theme === 'sick2018-dark')).to.equal(true);
+    assert.strictEqual(cssThemeResponse.errors, undefined);
+    assert.strictEqual(cssThemeResponse.data.format, 'css');
+    assert.strictEqual(cssThemeResponse.data.theme, 'sick2018-dark');
+    assert.ok(cssThemeResponse.data.tokens.every((entry) => entry.theme === 'sick2018-dark'));
 
     const javascriptResponse = await getDataForTokens({
       format: 'javascript',
       theme: 'sick2018-dark',
     });
-    expect(javascriptResponse.errors).to.equal(undefined);
-    expect(javascriptResponse.data.format).to.equal('javascript');
-    expect(javascriptResponse.data.theme).to.equal(undefined);
-    expect(javascriptResponse.data.tokens.length).to.be.greaterThan(0);
-    expect(javascriptResponse.data.tokens.every((entry) => entry.path.endsWith('.js') || entry.path.endsWith('.d.ts'))).to.equal(true);
+    assert.strictEqual(javascriptResponse.errors, undefined);
+    assert.strictEqual(javascriptResponse.data.format, 'javascript');
+    assert.strictEqual(javascriptResponse.data.theme, undefined);
+    assert.ok(javascriptResponse.data.tokens.length > 0);
+    assert.ok(javascriptResponse.data.tokens.every((entry) => entry.path.endsWith('.js') || entry.path.endsWith('.d.ts')));
 
     const sassResponse = await getDataForTokens({
       format: 'sass',
     });
-    expect(sassResponse.errors).to.equal(undefined);
-    expect(sassResponse.data.format).to.equal('sass');
-    expect(sassResponse.data.tokens.length).to.be.greaterThan(0);
-    expect(sassResponse.data.tokens.every((entry) => entry.path.endsWith('.scss'))).to.equal(true);
+    assert.strictEqual(sassResponse.errors, undefined);
+    assert.strictEqual(sassResponse.data.format, 'sass');
+    assert.ok(sassResponse.data.tokens.length > 0);
+    assert.ok(sassResponse.data.tokens.every((entry) => entry.path.endsWith('.scss')));
   });
 
   it('exposes migration helper queries with pagination and layer fallback metadata', async () => {
     const { getMigrations } = await loadPublicApi();
 
     const allMigrationsResponse = await getMigrations();
-    expect(allMigrationsResponse.errors).to.equal(undefined);
-    expect(allMigrationsResponse.meta.resolvedLayer).to.equal('full');
-    expect(allMigrationsResponse.data.length).to.be.greaterThan(0);
-    expect(allMigrationsResponse.data.every((entity) => entity.package === 'migrations')).to.equal(true);
+    assert.strictEqual(allMigrationsResponse.errors, undefined);
+    assert.strictEqual(allMigrationsResponse.meta.resolvedLayer, 'full');
+    assert.ok(allMigrationsResponse.data.length > 0);
+    assert.ok(allMigrationsResponse.data.every((entity) => entity.package === 'migrations'));
 
     const pagedMigrationsResponse = await getMigrations({
       limit: 1,
       offset: 0,
     });
-    expect(pagedMigrationsResponse.data.length).to.equal(1);
-    expect(pagedMigrationsResponse.meta.total).to.equal(allMigrationsResponse.meta.total);
+    assert.strictEqual(pagedMigrationsResponse.data.length, 1);
+    assert.strictEqual(pagedMigrationsResponse.meta.total, allMigrationsResponse.meta.total);
 
     const fallbackResponse = await getMigrations({
       layer: 'interface',
     });
-    expect(fallbackResponse.errors).to.equal(undefined);
-    expect(fallbackResponse.meta.requestedLayer).to.equal('interface');
-    expect(fallbackResponse.meta.resolvedLayer).to.equal('full');
-    expect(fallbackResponse.meta.warnings).to.be.an('array').that.is.not.empty;
+    assert.strictEqual(fallbackResponse.errors, undefined);
+    assert.strictEqual(fallbackResponse.meta.requestedLayer, 'interface');
+    assert.strictEqual(fallbackResponse.meta.resolvedLayer, 'full');
+    assert.ok(Array.isArray(fallbackResponse.meta.warnings) && fallbackResponse.meta.warnings.length > 0);
 
     const strictLayerErrorResponse = await getMigrations({
       layer: 'interface',
       strictLayer: true,
     });
-    expect(strictLayerErrorResponse.data).to.deep.equal([]);
-    expect(strictLayerErrorResponse.errors).to.be.an('array').that.is.not.empty;
-    expect(strictLayerErrorResponse.errors?.[0]?.code).to.equal('LAYER_NOT_AVAILABLE');
+    assert.deepStrictEqual(strictLayerErrorResponse.data, []);
+    assert.ok(Array.isArray(strictLayerErrorResponse.errors) && strictLayerErrorResponse.errors.length > 0);
+    assert.strictEqual(strictLayerErrorResponse.errors?.[0]?.code, 'LAYER_NOT_AVAILABLE');
   });
 
   it('exposes setup helper queries with package/framework composition and changelog filtering', async () => {
@@ -214,107 +214,107 @@ describe('public metadata api', () => {
     const componentsResponse = await getDataForSetup({
       package: 'components',
     });
-    expect(componentsResponse.errors).to.equal(undefined);
-    expect(componentsResponse.data).to.not.equal(null);
-    expect(componentsResponse.data?.setups.some((entry) => entry.id === 'setup:components-package')).to.equal(true);
-    expect(
-      componentsResponse.data?.setups.flatMap((entry) => entry.text).some((entry) => entry.path.toLowerCase().includes('changelog.md')),
-    ).to.equal(false);
-    expect(
-      componentsResponse.data?.setups.flatMap((entry) => entry.text).some((entry) => entry.path.toLowerCase().includes('breaking_changes.md')),
-    ).to.equal(false);
-    expect(
-      componentsResponse.data?.setups.flatMap((entry) => entry.text).some((entry) => entry.path.toLowerCase().includes('package.json')),
-    ).to.equal(false);
+    assert.strictEqual(componentsResponse.errors, undefined);
+    assert.notStrictEqual(componentsResponse.data, null);
+    assert.ok(componentsResponse.data?.setups.some((entry) => entry.id === 'setup:components-package'));
+    assert.ok(
+      !componentsResponse.data?.setups.flatMap((entry) => entry.text).some((entry) => entry.path.toLowerCase().includes('changelog.md')),
+    );
+    assert.ok(
+      !componentsResponse.data?.setups.flatMap((entry) => entry.text).some((entry) => entry.path.toLowerCase().includes('breaking_changes.md')),
+    );
+    assert.ok(
+      !componentsResponse.data?.setups.flatMap((entry) => entry.text).some((entry) => entry.path.toLowerCase().includes('package.json')),
+    );
 
     const reactComponentsResponse = await getDataForSetup({
       package: 'react',
     });
-    expect(reactComponentsResponse.errors).to.equal(undefined);
-    expect(reactComponentsResponse.data).to.not.equal(null);
-    expect(reactComponentsResponse.data?.setups.some((entry) => entry.id === 'setup:components-package')).to.equal(true);
-    expect(reactComponentsResponse.data?.setups.some((entry) => entry.id === 'setup:react-package')).to.equal(true);
+    assert.strictEqual(reactComponentsResponse.errors, undefined);
+    assert.notStrictEqual(reactComponentsResponse.data, null);
+    assert.ok(reactComponentsResponse.data?.setups.some((entry) => entry.id === 'setup:components-package'));
+    assert.ok(reactComponentsResponse.data?.setups.some((entry) => entry.id === 'setup:react-package'));
 
     const angularResponse = await getDataForSetup({
       package: 'angular',
     });
-    expect(angularResponse.errors).to.equal(undefined);
-    expect(angularResponse.data).to.not.equal(null);
-    expect(angularResponse.data?.setups.length).to.equal(5); // components + 4 angular modules
-    expect(angularResponse.data?.setups.some((entry) => entry.id === 'setup:components-package')).to.equal(true);
+    assert.strictEqual(angularResponse.errors, undefined);
+    assert.notStrictEqual(angularResponse.data, null);
+    assert.strictEqual(angularResponse.data?.setups.length, 5); // components + 4 angular modules
+    assert.ok(angularResponse.data?.setups.some((entry) => entry.id === 'setup:components-package'));
 
     const withoutLimitationsResponse = await getDataForSetup({
       includeLimitations: false,
       package: 'components',
     });
-    expect(withoutLimitationsResponse.errors).to.equal(undefined);
-    expect(withoutLimitationsResponse.data).to.not.equal(null);
-    expect(
-      withoutLimitationsResponse.data?.setups.flatMap((entry) => entry.text).some((entry) => entry.path.toLowerCase().includes('limitations.md')),
-    ).to.equal(false);
+    assert.strictEqual(withoutLimitationsResponse.errors, undefined);
+    assert.notStrictEqual(withoutLimitationsResponse.data, null);
+    assert.ok(
+      !withoutLimitationsResponse.data?.setups.flatMap((entry) => entry.text).some((entry) => entry.path.toLowerCase().includes('limitations.md')),
+    );
   });
 
   it('exposes style helper queries with pagination, id/name lookup, and layer handling', async () => {
     const { getDataForStyle, getStyleMetadata, listStyles } = await loadPublicApi();
 
     const allStylesResponse = await listStyles();
-    expect(allStylesResponse.errors).to.equal(undefined);
-    expect(allStylesResponse.meta.resolvedLayer).to.equal('full');
-    expect(allStylesResponse.data.length).to.be.greaterThan(0);
-    expect(allStylesResponse.data.every((entity) => entity.kind === 'style')).to.equal(true);
+    assert.strictEqual(allStylesResponse.errors, undefined);
+    assert.strictEqual(allStylesResponse.meta.resolvedLayer, 'full');
+    assert.ok(allStylesResponse.data.length > 0);
+    assert.ok(allStylesResponse.data.every((entity) => entity.kind === 'style'));
 
     const pagedStylesResponse = await listStyles({
       limit: 2,
       offset: 1,
     });
-    expect(pagedStylesResponse.data.length).to.equal(2);
-    expect(pagedStylesResponse.meta.total).to.equal(allStylesResponse.meta.total);
+    assert.strictEqual(pagedStylesResponse.data.length, 2);
+    assert.strictEqual(pagedStylesResponse.meta.total, allStylesResponse.meta.total);
 
     const fallbackResponse = await listStyles({
       layer: 'interface',
     });
-    expect(fallbackResponse.errors).to.equal(undefined);
-    expect(fallbackResponse.meta.requestedLayer).to.equal('interface');
-    expect(fallbackResponse.meta.resolvedLayer).to.equal('full');
-    expect(fallbackResponse.meta.warnings).to.be.an('array').that.is.not.empty;
+    assert.strictEqual(fallbackResponse.errors, undefined);
+    assert.strictEqual(fallbackResponse.meta.requestedLayer, 'interface');
+    assert.strictEqual(fallbackResponse.meta.resolvedLayer, 'full');
+    assert.ok(Array.isArray(fallbackResponse.meta.warnings) && fallbackResponse.meta.warnings.length > 0);
 
     const byIdResponse = await getStyleMetadata('style:syn-link-list');
-    expect(byIdResponse.errors).to.equal(undefined);
-    expect(byIdResponse.data).to.not.equal(null);
-    expect(byIdResponse.data?.id).to.equal('style:syn-link-list');
+    assert.strictEqual(byIdResponse.errors, undefined);
+    assert.notStrictEqual(byIdResponse.data, null);
+    assert.strictEqual(byIdResponse.data?.id, 'style:syn-link-list');
 
     const byModuleResponse = await getStyleMetadata('link-list');
-    expect(byModuleResponse.errors).to.equal(undefined);
-    expect(byModuleResponse.data?.id).to.equal('style:syn-link-list');
+    assert.strictEqual(byModuleResponse.errors, undefined);
+    assert.strictEqual(byModuleResponse.data?.id, 'style:syn-link-list');
 
     const byUppercaseNameResponse = await getStyleMetadata('LINK-LIST');
-    expect(byUppercaseNameResponse.errors).to.equal(undefined);
-    expect(byUppercaseNameResponse.data?.id).to.equal('style:syn-link-list');
+    assert.strictEqual(byUppercaseNameResponse.errors, undefined);
+    assert.strictEqual(byUppercaseNameResponse.data?.id, 'style:syn-link-list');
 
     const dataResponse = await getDataForStyle('link-list', { layer: 'examples' });
-    expect(dataResponse.errors).to.equal(undefined);
-    expect(dataResponse.data).to.not.equal(null);
-    expect(dataResponse.data?.style).to.equal('style:syn-link-list');
-    expect(dataResponse.data?.layer).to.equal('examples');
-    expect(dataResponse.data?.examples).to.be.an('array');
-    expect(dataResponse.data?.examples?.[0]?.path).to.include('.md');
+    assert.strictEqual(dataResponse.errors, undefined);
+    assert.notStrictEqual(dataResponse.data, null);
+    assert.strictEqual(dataResponse.data?.style, 'style:syn-link-list');
+    assert.strictEqual(dataResponse.data?.layer, 'examples');
+    assert.ok(Array.isArray(dataResponse.data?.examples));
+    assert.ok(dataResponse.data?.examples?.[0]?.path.includes('.md'));
 
     const uppercaseDataResponse = await getDataForStyle('LINK-LIST', { layer: 'examples' });
-    expect(uppercaseDataResponse.errors).to.equal(undefined);
-    expect(uppercaseDataResponse.data?.style).to.equal('style:syn-link-list');
+    assert.strictEqual(uppercaseDataResponse.errors, undefined);
+    assert.strictEqual(uppercaseDataResponse.data?.style, 'style:syn-link-list');
 
     const strictLayerErrorResponse = await getStyleMetadata('style:syn-link-list', {
       layer: 'interface',
       strictLayer: true,
     });
-    expect(strictLayerErrorResponse.data).to.equal(null);
-    expect(strictLayerErrorResponse.errors).to.be.an('array').that.is.not.empty;
-    expect(strictLayerErrorResponse.errors?.[0]?.code).to.equal('LAYER_NOT_AVAILABLE');
+    assert.strictEqual(strictLayerErrorResponse.data, null);
+    assert.ok(Array.isArray(strictLayerErrorResponse.errors) && strictLayerErrorResponse.errors.length > 0);
+    assert.strictEqual(strictLayerErrorResponse.errors?.[0]?.code, 'LAYER_NOT_AVAILABLE');
 
     const notFoundResponse = await getStyleMetadata('this-does-not-exist');
-    expect(notFoundResponse.data).to.equal(null);
-    expect(notFoundResponse.errors).to.be.an('array').that.is.not.empty;
-    expect(notFoundResponse.errors?.[0]?.code).to.equal('NOT_FOUND');
+    assert.strictEqual(notFoundResponse.data, null);
+    assert.ok(Array.isArray(notFoundResponse.errors) && notFoundResponse.errors.length > 0);
+    assert.strictEqual(notFoundResponse.errors?.[0]?.code, 'NOT_FOUND');
   });
 
   it('exposes component helper queries with pagination, id/name lookup, and layer handling', async () => {
@@ -327,30 +327,30 @@ describe('public metadata api', () => {
     } = await loadPublicApi();
 
     const allComponentsResponse = await listComponents();
-    expect(allComponentsResponse.errors).to.equal(undefined);
-    expect(allComponentsResponse.meta.resolvedLayer).to.equal('interface');
-    expect(allComponentsResponse.data.length).to.be.greaterThan(0);
-    expect(allComponentsResponse.data.every((entity) => entity.kind === 'component')).to.equal(true);
+    assert.strictEqual(allComponentsResponse.errors, undefined);
+    assert.strictEqual(allComponentsResponse.meta.resolvedLayer, 'interface');
+    assert.ok(allComponentsResponse.data.length > 0);
+    assert.ok(allComponentsResponse.data.every((entity) => entity.kind === 'component'));
 
     const pagedComponentsResponse = await listComponents({
       limit: 2,
       offset: 1,
     });
-    expect(pagedComponentsResponse.data.length).to.equal(2);
-    expect(pagedComponentsResponse.meta.total).to.equal(allComponentsResponse.meta.total);
+    assert.strictEqual(pagedComponentsResponse.data.length, 2);
+    assert.strictEqual(pagedComponentsResponse.meta.total, allComponentsResponse.meta.total);
 
     const clustersResponse = await listComponentClusters();
-    expect(clustersResponse.errors).to.equal(undefined);
-    expect(clustersResponse.data.length).to.be.greaterThan(0);
+    assert.strictEqual(clustersResponse.errors, undefined);
+    assert.ok(clustersResponse.data.length > 0);
 
     const clusterFilteredResponse = await listComponents({
       cluster: clustersResponse.data[0].id,
     });
-    expect(clusterFilteredResponse.errors).to.equal(undefined);
-    expect(clusterFilteredResponse.data.length).to.be.greaterThan(0);
-    expect(
+    assert.strictEqual(clusterFilteredResponse.errors, undefined);
+    assert.ok(clusterFilteredResponse.data.length > 0);
+    assert.ok(
       clusterFilteredResponse.data.every((entity) => entity.custom?.clusters?.includes(clustersResponse.data[0].id)),
-    ).to.equal(true);
+    );
 
     const fixture = await createComponentFixtureDataDir();
     try {
@@ -362,82 +362,82 @@ describe('public metadata api', () => {
           dataDir: fixture.dataDir,
         },
       );
-      expect(fallbackListResponse.errors).to.equal(undefined);
-      expect(fallbackListResponse.meta.requestedLayer).to.equal('examples');
-      expect(fallbackListResponse.meta.resolvedLayer).to.equal('full');
-      expect(fallbackListResponse.meta.warnings).to.be.an('array').that.is.not.empty;
+      assert.strictEqual(fallbackListResponse.errors, undefined);
+      assert.strictEqual(fallbackListResponse.meta.requestedLayer, 'examples');
+      assert.strictEqual(fallbackListResponse.meta.resolvedLayer, 'full');
+      assert.ok(Array.isArray(fallbackListResponse.meta.warnings) && fallbackListResponse.meta.warnings.length > 0);
     } finally {
       await fixture.cleanup();
     }
 
     const byIdResponse = await getComponentMetadata('component:syn-accordion');
-    expect(byIdResponse.errors).to.equal(undefined);
-    expect(byIdResponse.data).to.not.equal(null);
-    expect(byIdResponse.data?.id).to.equal('component:syn-accordion');
+    assert.strictEqual(byIdResponse.errors, undefined);
+    assert.notStrictEqual(byIdResponse.data, null);
+    assert.strictEqual(byIdResponse.data?.id, 'component:syn-accordion');
 
     const byTagNameResponse = await getComponentMetadata('syn-accordion');
-    expect(byTagNameResponse.errors).to.equal(undefined);
-    expect(byTagNameResponse.data?.id).to.equal('component:syn-accordion');
+    assert.strictEqual(byTagNameResponse.errors, undefined);
+    assert.strictEqual(byTagNameResponse.data?.id, 'component:syn-accordion');
 
     const byUppercaseTagNameResponse = await getComponentMetadata('SYN-ACCORDION');
-    expect(byUppercaseTagNameResponse.errors).to.equal(undefined);
-    expect(byUppercaseTagNameResponse.data?.id).to.equal('component:syn-accordion');
+    assert.strictEqual(byUppercaseTagNameResponse.errors, undefined);
+    assert.strictEqual(byUppercaseTagNameResponse.data?.id, 'component:syn-accordion');
 
     const withSourcesResponse = await getComponentMetadata('syn-accordion', {
       includeLayerRefs: true,
       includeSources: true,
       layer: 'full',
     });
-    expect(withSourcesResponse.errors).to.equal(undefined);
-    expect(withSourcesResponse.data?.sources.some((source) => source.includes('.test.'))).to.equal(false);
-    expect(withSourcesResponse.data?.layers?.full.some((ref) => ref.path.includes('.test.'))).to.equal(false);
+    assert.strictEqual(withSourcesResponse.errors, undefined);
+    assert.ok(!withSourcesResponse.data?.sources.some((source) => source.includes('.test.')));
+    assert.ok(!withSourcesResponse.data?.layers?.full.some((ref) => ref.path.includes('.test.')));
 
     const withInterfaceSnapshot = await getComponentMetadata('syn-accordion', {
       includeInterfaceSnapshot: true,
     });
-    expect(withInterfaceSnapshot.errors).to.equal(undefined);
-    expect(withInterfaceSnapshot.data?.custom?.interfaceSnapshot).to.be.an('object');
-    expect(withInterfaceSnapshot.data?.custom?.interfaceSnapshot?.tagName).to.equal('syn-accordion');
+    assert.strictEqual(withInterfaceSnapshot.errors, undefined);
+    assert.strictEqual(typeof withInterfaceSnapshot.data?.custom?.interfaceSnapshot, 'object');
+    assert.strictEqual(withInterfaceSnapshot.data?.custom?.interfaceSnapshot?.tagName, 'syn-accordion');
 
     const fullLayerData = await getDataForComponent('syn-accordion', {
       framework: 'react',
       layer: 'full',
     });
-    expect(fullLayerData.errors).to.equal(undefined);
-    expect(fullLayerData.data?.layer).to.equal('full');
-    expect(fullLayerData.data?.relevantLayerCode).to.be.an('array').that.is.not.empty;
-    expect(fullLayerData.data?.relevantLayerCode?.some((entry) => entry.path.includes('.test.'))).to.equal(false);
+    assert.strictEqual(fullLayerData.errors, undefined);
+    assert.strictEqual(fullLayerData.data?.layer, 'full');
+    assert.ok(Array.isArray(fullLayerData.data?.relevantLayerCode) && fullLayerData.data.relevantLayerCode.length > 0);
+    assert.ok(!fullLayerData.data?.relevantLayerCode?.some((entry) => entry.path.includes('.test.')));
 
     const interfaceLayerData = await getDataForComponent('syn-accordion', {
       layer: 'interface',
     });
-    expect(interfaceLayerData.errors).to.equal(undefined);
-    expect(interfaceLayerData.data?.layer).to.equal('interface');
-    expect(interfaceLayerData.data?.interface).to.be.an('array').that.is.not.empty;
-    expect(interfaceLayerData.data?.interface?.every((entry) => entry.path.endsWith('.md'))).to.equal(true);
+    assert.strictEqual(interfaceLayerData.errors, undefined);
+    assert.strictEqual(interfaceLayerData.data?.layer, 'interface');
+    assert.ok(Array.isArray(interfaceLayerData.data?.interface) && interfaceLayerData.data.interface.length > 0);
+    assert.ok(interfaceLayerData.data?.interface?.every((entry) => entry.path.endsWith('.md')));
 
     const examplesLayerData = await getDataForComponent('syn-accordion', {
       layer: 'examples',
     });
-    expect(examplesLayerData.errors).to.equal(undefined);
-    expect(examplesLayerData.data?.layer).to.equal('examples');
-    expect(examplesLayerData.data?.examples).to.be.an('array').that.is.not.empty;
-    expect(examplesLayerData.data?.examples?.every((entry) => entry.path.endsWith('.md'))).to.equal(true);
+    assert.strictEqual(examplesLayerData.errors, undefined);
+    assert.strictEqual(examplesLayerData.data?.layer, 'examples');
+    assert.ok(Array.isArray(examplesLayerData.data?.examples) && examplesLayerData.data.examples.length > 0);
+    assert.ok(examplesLayerData.data?.examples?.every((entry) => entry.path.endsWith('.md')));
 
     const rulesLayerData = await getDataForComponent('syn-accordion', {
       layer: 'rules',
     });
-    expect(rulesLayerData.errors).to.equal(undefined);
-    expect(rulesLayerData.data?.layer).to.equal('rules');
-    expect(rulesLayerData.data?.rules).to.be.an('array').that.is.not.empty;
-    expect(rulesLayerData.data?.rules?.every((entry) => entry.path.endsWith('.md'))).to.equal(true);
-    expect(rulesLayerData.data?.rules?.[0]?.content).to.include('## Usage Guidelines');
+    assert.strictEqual(rulesLayerData.errors, undefined);
+    assert.strictEqual(rulesLayerData.data?.layer, 'rules');
+    assert.ok(Array.isArray(rulesLayerData.data?.rules) && rulesLayerData.data.rules.length > 0);
+    assert.ok(rulesLayerData.data?.rules?.every((entry) => entry.path.endsWith('.md')));
+    assert.ok(rulesLayerData.data?.rules?.[0]?.content.includes('## Usage Guidelines'));
 
     const focusedRulesData = await getRulesForComponent('syn-accordion');
-    expect(focusedRulesData.errors).to.equal(undefined);
-    expect(focusedRulesData.data?.layer).to.equal('rules');
-    expect(focusedRulesData.data?.rules).to.be.an('array').that.is.not.empty;
-    expect(focusedRulesData.data?.rules?.[0]?.content).to.include('## Common Use Cases');
+    assert.strictEqual(focusedRulesData.errors, undefined);
+    assert.strictEqual(focusedRulesData.data?.layer, 'rules');
+    assert.ok(Array.isArray(focusedRulesData.data?.rules) && focusedRulesData.data.rules.length > 0);
+    assert.ok(focusedRulesData.data?.rules?.[0]?.content.includes('## Common Use Cases'));
 
     const strictLayerFixture = await createComponentFixtureDataDir();
     try {
@@ -452,105 +452,105 @@ describe('public metadata api', () => {
         },
       );
 
-      expect(strictLayerErrorResponse.data).to.equal(null);
-      expect(strictLayerErrorResponse.errors).to.be.an('array').that.is.not.empty;
-      expect(strictLayerErrorResponse.errors?.[0]?.code).to.equal('LAYER_NOT_AVAILABLE');
+      assert.strictEqual(strictLayerErrorResponse.data, null);
+      assert.ok(Array.isArray(strictLayerErrorResponse.errors) && strictLayerErrorResponse.errors.length > 0);
+      assert.strictEqual(strictLayerErrorResponse.errors?.[0]?.code, 'LAYER_NOT_AVAILABLE');
 
       const missingRulesResponse = await getRulesForComponent('component:syn-fixture', {
         dataDir: strictLayerFixture.dataDir,
       });
-      expect(missingRulesResponse.data).to.equal(null);
-      expect(missingRulesResponse.errors).to.be.an('array').that.is.not.empty;
-      expect(missingRulesResponse.errors?.[0]?.code).to.equal('LAYER_NOT_AVAILABLE');
+      assert.strictEqual(missingRulesResponse.data, null);
+      assert.ok(Array.isArray(missingRulesResponse.errors) && missingRulesResponse.errors.length > 0);
+      assert.strictEqual(missingRulesResponse.errors?.[0]?.code, 'LAYER_NOT_AVAILABLE');
     } finally {
       await strictLayerFixture.cleanup();
     }
 
     const notFoundResponse = await getComponentMetadata('this-does-not-exist');
-    expect(notFoundResponse.data).to.equal(null);
-    expect(notFoundResponse.errors).to.be.an('array').that.is.not.empty;
-    expect(notFoundResponse.errors?.[0]?.code).to.equal('NOT_FOUND');
+    assert.strictEqual(notFoundResponse.data, null);
+    assert.ok(Array.isArray(notFoundResponse.errors) && notFoundResponse.errors.length > 0);
+    assert.strictEqual(notFoundResponse.errors?.[0]?.code, 'NOT_FOUND');
   });
 
   it('exposes cluster helper queries with listing and component membership lookup', async () => {
     const { listComponentClusters, listComponentsByCluster } = await loadPublicApi();
 
     const clustersResponse = await listComponentClusters();
-    expect(clustersResponse.errors).to.equal(undefined);
-    expect(clustersResponse.data).to.be.an('array').that.is.not.empty;
-    expect(clustersResponse.data[0]).to.have.property('id').that.is.a('string');
-    expect(clustersResponse.data[0]).to.have.property('name').that.is.a('string');
-    expect(clustersResponse.data[0]).to.have.property('componentCount').that.is.a('number');
-    expect(clustersResponse.data[0]).to.have.property('componentIds').that.is.an('array');
+    assert.strictEqual(clustersResponse.errors, undefined);
+    assert.ok(Array.isArray(clustersResponse.data) && clustersResponse.data.length > 0);
+    assert.strictEqual(typeof clustersResponse.data[0].id, 'string');
+    assert.strictEqual(typeof clustersResponse.data[0].name, 'string');
+    assert.strictEqual(typeof clustersResponse.data[0].componentCount, 'number');
+    assert.ok(Array.isArray(clustersResponse.data[0].componentIds));
 
     const firstCluster = clustersResponse.data[0];
     const membersResponse = await listComponentsByCluster(firstCluster.id);
-    expect(membersResponse.errors).to.equal(undefined);
-    expect(membersResponse.data).to.be.an('array').that.is.not.empty;
-    expect(membersResponse.data.every((entity) => entity.kind === 'component')).to.equal(true);
+    assert.strictEqual(membersResponse.errors, undefined);
+    assert.ok(Array.isArray(membersResponse.data) && membersResponse.data.length > 0);
+    assert.ok(membersResponse.data.every((entity) => entity.kind === 'component'));
 
     const strictLayerResponse = await listComponentsByCluster(firstCluster.id, {
       layer: 'examples',
       strictLayer: true,
     });
     if (strictLayerResponse.errors?.length) {
-      expect(strictLayerResponse.data).to.deep.equal([]);
-      expect(strictLayerResponse.errors?.[0]?.code).to.equal('LAYER_NOT_AVAILABLE');
+      assert.deepStrictEqual(strictLayerResponse.data, []);
+      assert.strictEqual(strictLayerResponse.errors?.[0]?.code, 'LAYER_NOT_AVAILABLE');
     } else {
-      expect(strictLayerResponse.data).to.be.an('array');
-      expect(strictLayerResponse.data.every((entity) => entity.kind === 'component')).to.equal(true);
-      expect(strictLayerResponse.meta.resolvedLayer).to.equal('examples');
+      assert.ok(Array.isArray(strictLayerResponse.data));
+      assert.ok(strictLayerResponse.data.every((entity) => entity.kind === 'component'));
+      assert.strictEqual(strictLayerResponse.meta.resolvedLayer, 'examples');
     }
 
     const notFoundResponse = await listComponentsByCluster('components-by-tag/does-not-exist');
-    expect(notFoundResponse.data).to.deep.equal([]);
-    expect(notFoundResponse.errors).to.be.an('array').that.is.not.empty;
-    expect(notFoundResponse.errors?.[0]?.code).to.equal('NOT_FOUND');
+    assert.deepStrictEqual(notFoundResponse.data, []);
+    assert.ok(Array.isArray(notFoundResponse.errors) && notFoundResponse.errors.length > 0);
+    assert.strictEqual(notFoundResponse.errors?.[0]?.code, 'NOT_FOUND');
   });
 
   it('exposes font helper queries with id/name lookup and layer handling', async () => {
     const { getFontMetadata, listFonts } = await loadPublicApi();
 
     const allFontsResponse = await listFonts();
-    expect(allFontsResponse.errors).to.equal(undefined);
-    expect(allFontsResponse.meta.resolvedLayer).to.equal('full');
-    expect(allFontsResponse.data.length).to.be.greaterThan(0);
-    expect(allFontsResponse.data.every((entity) => entity.kind === 'utility')).to.equal(true);
-    expect(allFontsResponse.data.every((entity) => entity.package === 'fonts')).to.equal(true);
+    assert.strictEqual(allFontsResponse.errors, undefined);
+    assert.strictEqual(allFontsResponse.meta.resolvedLayer, 'full');
+    assert.ok(allFontsResponse.data.length > 0);
+    assert.ok(allFontsResponse.data.every((entity) => entity.kind === 'utility'));
+    assert.ok(allFontsResponse.data.every((entity) => entity.package === 'fonts'));
 
     const fallbackResponse = await listFonts({
       layer: 'interface',
     });
-    expect(fallbackResponse.errors).to.equal(undefined);
-    expect(fallbackResponse.meta.requestedLayer).to.equal('interface');
-    expect(fallbackResponse.meta.resolvedLayer).to.equal('full');
-    expect(fallbackResponse.meta.warnings).to.be.an('array').that.is.not.empty;
+    assert.strictEqual(fallbackResponse.errors, undefined);
+    assert.strictEqual(fallbackResponse.meta.requestedLayer, 'interface');
+    assert.strictEqual(fallbackResponse.meta.resolvedLayer, 'full');
+    assert.ok(Array.isArray(fallbackResponse.meta.warnings) && fallbackResponse.meta.warnings.length > 0);
 
     const strictLayerErrorResponse = await listFonts({
       layer: 'interface',
       strictLayer: true,
     });
-    expect(strictLayerErrorResponse.data).to.deep.equal([]);
-    expect(strictLayerErrorResponse.errors).to.be.an('array').that.is.not.empty;
-    expect(strictLayerErrorResponse.errors?.[0]?.code).to.equal('LAYER_NOT_AVAILABLE');
+    assert.deepStrictEqual(strictLayerErrorResponse.data, []);
+    assert.ok(Array.isArray(strictLayerErrorResponse.errors) && strictLayerErrorResponse.errors.length > 0);
+    assert.strictEqual(strictLayerErrorResponse.errors?.[0]?.code, 'LAYER_NOT_AVAILABLE');
 
     const byIdResponse = await getFontMetadata('utility:fonts-sick-intl');
-    expect(byIdResponse.errors).to.equal(undefined);
-    expect(byIdResponse.data).to.not.equal(null);
-    expect(byIdResponse.data?.id).to.equal('utility:fonts-sick-intl');
+    assert.strictEqual(byIdResponse.errors, undefined);
+    assert.notStrictEqual(byIdResponse.data, null);
+    assert.strictEqual(byIdResponse.data?.id, 'utility:fonts-sick-intl');
 
     const byShortIdResponse = await getFontMetadata('fonts-sick-intl');
-    expect(byShortIdResponse.errors).to.equal(undefined);
-    expect(byShortIdResponse.data?.id).to.equal('utility:fonts-sick-intl');
+    assert.strictEqual(byShortIdResponse.errors, undefined);
+    assert.strictEqual(byShortIdResponse.data?.id, 'utility:fonts-sick-intl');
 
     const byUppercaseShortIdResponse = await getFontMetadata('FONTS-SICK-INTL');
-    expect(byUppercaseShortIdResponse.errors).to.equal(undefined);
-    expect(byUppercaseShortIdResponse.data?.id).to.equal('utility:fonts-sick-intl');
+    assert.strictEqual(byUppercaseShortIdResponse.errors, undefined);
+    assert.strictEqual(byUppercaseShortIdResponse.data?.id, 'utility:fonts-sick-intl');
 
     const notFoundResponse = await getFontMetadata('this-does-not-exist');
-    expect(notFoundResponse.data).to.equal(null);
-    expect(notFoundResponse.errors).to.be.an('array').that.is.not.empty;
-    expect(notFoundResponse.errors?.[0]?.code).to.equal('NOT_FOUND');
+    assert.strictEqual(notFoundResponse.data, null);
+    assert.ok(Array.isArray(notFoundResponse.errors) && notFoundResponse.errors.length > 0);
+    assert.strictEqual(notFoundResponse.errors?.[0]?.code, 'NOT_FOUND');
   });
 
   it('exposes asset helper queries with id/name lookup, layer handling, and icon search', async () => {
@@ -558,88 +558,88 @@ describe('public metadata api', () => {
 
     // List all assets (logos + system-icons + icon sets)
     const allAssetsResponse = await listAssets();
-    expect(allAssetsResponse.errors).to.equal(undefined);
-    expect(allAssetsResponse.meta.resolvedLayer).to.equal('full');
-    expect(allAssetsResponse.data.length).to.be.greaterThan(0);
-    expect(allAssetsResponse.data.every((entity) => entity.kind === 'asset')).to.equal(true);
+    assert.strictEqual(allAssetsResponse.errors, undefined);
+    assert.strictEqual(allAssetsResponse.meta.resolvedLayer, 'full');
+    assert.ok(allAssetsResponse.data.length > 0);
+    assert.ok(allAssetsResponse.data.every((entity) => entity.kind === 'asset'));
 
     // Pagination
     const pagedResponse = await listAssets({ limit: 2, offset: 1 });
-    expect(pagedResponse.data.length).to.equal(2);
-    expect(pagedResponse.meta.total).to.equal(allAssetsResponse.meta.total);
+    assert.strictEqual(pagedResponse.data.length, 2);
+    assert.strictEqual(pagedResponse.meta.total, allAssetsResponse.meta.total);
 
     // Layer fallback (assets only have full layer)
     const fallbackResponse = await listAssets({ layer: 'interface' });
-    expect(fallbackResponse.errors).to.equal(undefined);
-    expect(fallbackResponse.meta.requestedLayer).to.equal('interface');
-    expect(fallbackResponse.meta.resolvedLayer).to.equal('full');
-    expect(fallbackResponse.meta.warnings).to.be.an('array').that.is.not.empty;
+    assert.strictEqual(fallbackResponse.errors, undefined);
+    assert.strictEqual(fallbackResponse.meta.requestedLayer, 'interface');
+    assert.strictEqual(fallbackResponse.meta.resolvedLayer, 'full');
+    assert.ok(Array.isArray(fallbackResponse.meta.warnings) && fallbackResponse.meta.warnings.length > 0);
 
     // strictLayer error
     const strictLayerErrorResponse = await listAssets({ layer: 'interface', strictLayer: true });
-    expect(strictLayerErrorResponse.data).to.deep.equal([]);
-    expect(strictLayerErrorResponse.errors).to.be.an('array').that.is.not.empty;
-    expect(strictLayerErrorResponse.errors?.[0]?.code).to.equal('LAYER_NOT_AVAILABLE');
+    assert.deepStrictEqual(strictLayerErrorResponse.data, []);
+    assert.ok(Array.isArray(strictLayerErrorResponse.errors) && strictLayerErrorResponse.errors.length > 0);
+    assert.strictEqual(strictLayerErrorResponse.errors?.[0]?.code, 'LAYER_NOT_AVAILABLE');
 
     // Lookup by full entity id
     const byIdResponse = await getAssetMetadata('asset:sick2018-icons');
-    expect(byIdResponse.errors).to.equal(undefined);
-    expect(byIdResponse.data?.id).to.equal('asset:sick2018-icons');
+    assert.strictEqual(byIdResponse.errors, undefined);
+    assert.strictEqual(byIdResponse.data?.id, 'asset:sick2018-icons');
 
     // Lookup by short id
     const byShortIdResponse = await getAssetMetadata('sick2025-icons-fill');
-    expect(byShortIdResponse.errors).to.equal(undefined);
-    expect(byShortIdResponse.data?.id).to.equal('asset:sick2025-icons-fill');
+    assert.strictEqual(byShortIdResponse.errors, undefined);
+    assert.strictEqual(byShortIdResponse.data?.id, 'asset:sick2025-icons-fill');
 
     const byUppercaseShortIdResponse = await getAssetMetadata('SICK2025-ICONS-FILL');
-    expect(byUppercaseShortIdResponse.errors).to.equal(undefined);
-    expect(byUppercaseShortIdResponse.data?.id).to.equal('asset:sick2025-icons-fill');
+    assert.strictEqual(byUppercaseShortIdResponse.errors, undefined);
+    assert.strictEqual(byUppercaseShortIdResponse.data?.id, 'asset:sick2025-icons-fill');
 
     // Not found
     const notFoundResponse = await getAssetMetadata('this-does-not-exist');
-    expect(notFoundResponse.data).to.equal(null);
-    expect(notFoundResponse.errors?.[0]?.code).to.equal('NOT_FOUND');
+    assert.strictEqual(notFoundResponse.data, null);
+    assert.strictEqual(notFoundResponse.errors?.[0]?.code, 'NOT_FOUND');
 
     // searchIcons: search by icon name (partial)
     const byNameResponse = await searchIcons({ name: 'add' });
-    expect(byNameResponse.errors).to.equal(undefined);
-    expect(byNameResponse.data.length).to.be.greaterThan(0);
-    expect(byNameResponse.data.every((r) => r.iconName.includes('add'))).to.equal(true);
-    expect(byNameResponse.data.every((r) => typeof r.assetId === 'string')).to.equal(true);
-    expect(byNameResponse.data.every((r) => typeof r.theme === 'string' && r.theme.length > 0)).to.equal(true);
-    expect(byNameResponse.data.every((r) => typeof r.variant === 'string' && r.variant.length > 0)).to.equal(true);
+    assert.strictEqual(byNameResponse.errors, undefined);
+    assert.ok(byNameResponse.data.length > 0);
+    assert.ok(byNameResponse.data.every((r) => r.iconName.includes('add')));
+    assert.ok(byNameResponse.data.every((r) => typeof r.assetId === 'string'));
+    assert.ok(byNameResponse.data.every((r) => typeof r.theme === 'string' && r.theme.length > 0));
+    assert.ok(byNameResponse.data.every((r) => typeof r.variant === 'string' && r.variant.length > 0));
 
     // searchIcons: search by category
     const byCategoryResponse = await searchIcons({ category: 'action' });
-    expect(byCategoryResponse.errors).to.equal(undefined);
-    expect(byCategoryResponse.data.length).to.be.greaterThan(0);
-    expect(byCategoryResponse.data.every((r) => r.categories.some((c) => c.toLowerCase().includes('action')))).to.equal(true);
-    expect(byCategoryResponse.data.every((r) => typeof r.theme === 'string' && r.theme.length > 0)).to.equal(true);
-    expect(byCategoryResponse.data.every((r) => typeof r.variant === 'string' && r.variant.length > 0)).to.equal(true);
+    assert.strictEqual(byCategoryResponse.errors, undefined);
+    assert.ok(byCategoryResponse.data.length > 0);
+    assert.ok(byCategoryResponse.data.every((r) => r.categories.some((c) => c.toLowerCase().includes('action'))));
+    assert.ok(byCategoryResponse.data.every((r) => typeof r.theme === 'string' && r.theme.length > 0));
+    assert.ok(byCategoryResponse.data.every((r) => typeof r.variant === 'string' && r.variant.length > 0));
 
     // searchIcons: search by tags
     const byTagsResponse = await searchIcons({ tags: ['rotate'] });
-    expect(byTagsResponse.errors).to.equal(undefined);
-    expect(byTagsResponse.data.length).to.be.greaterThan(0);
-    expect(byTagsResponse.data.every((r) => r.tags.some((t) => t.includes('rotate')))).to.equal(true);
-    expect(byTagsResponse.data.every((r) => typeof r.theme === 'string' && r.theme.length > 0)).to.equal(true);
-    expect(byTagsResponse.data.every((r) => typeof r.variant === 'string' && r.variant.length > 0)).to.equal(true);
+    assert.strictEqual(byTagsResponse.errors, undefined);
+    assert.ok(byTagsResponse.data.length > 0);
+    assert.ok(byTagsResponse.data.every((r) => r.tags.some((t) => t.includes('rotate'))));
+    assert.ok(byTagsResponse.data.every((r) => typeof r.theme === 'string' && r.theme.length > 0));
+    assert.ok(byTagsResponse.data.every((r) => typeof r.variant === 'string' && r.variant.length > 0));
 
     // searchIcons: scoped to a specific asset
     const scopedResponse = await searchIcons({ assetId: 'asset:sick2018-icons', name: 'add' });
-    expect(scopedResponse.data.every((r) => r.assetId === 'asset:sick2018-icons')).to.equal(true);
+    assert.ok(scopedResponse.data.every((r) => r.assetId === 'asset:sick2018-icons'));
 
     // searchIcons: pagination
     const allAddResponse = await searchIcons({ name: 'add' });
     const pagedIconResponse = await searchIcons({ name: 'add' }, { limit: 2, offset: 1 });
-    expect(pagedIconResponse.data.length).to.equal(2);
-    expect(pagedIconResponse.meta.total).to.equal(allAddResponse.meta.total);
+    assert.strictEqual(pagedIconResponse.data.length, 2);
+    assert.strictEqual(pagedIconResponse.meta.total, allAddResponse.meta.total);
 
     // searchIcons: no results for unknown name returns empty data without error
     const noMatchResponse = await searchIcons({ name: 'zzz_this_icon_does_not_exist' });
-    expect(noMatchResponse.errors).to.equal(undefined);
-    expect(noMatchResponse.data).to.deep.equal([]);
-    expect(noMatchResponse.meta.total).to.equal(0);
+    assert.strictEqual(noMatchResponse.errors, undefined);
+    assert.deepStrictEqual(noMatchResponse.data, []);
+    assert.strictEqual(noMatchResponse.meta.total, 0);
   });
 
   it('exposes template helper queries with list and data retrieval', async () => {
@@ -647,54 +647,54 @@ describe('public metadata api', () => {
 
     // List all templates
     const allTemplatesResponse = await listTemplates();
-    expect(allTemplatesResponse.errors).to.equal(undefined);
-    expect(allTemplatesResponse.meta.resolvedLayer).to.equal('examples');
-    expect(allTemplatesResponse.data.length).to.be.greaterThan(0);
-    expect(allTemplatesResponse.data.every((entity) => entity.kind === 'template')).to.equal(true);
+    assert.strictEqual(allTemplatesResponse.errors, undefined);
+    assert.strictEqual(allTemplatesResponse.meta.resolvedLayer, 'examples');
+    assert.ok(allTemplatesResponse.data.length > 0);
+    assert.ok(allTemplatesResponse.data.every((entity) => entity.kind === 'template'));
 
     // Pagination
     const pagedResponse = await listTemplates({ limit: 2, offset: 0 });
-    expect(pagedResponse.data.length).to.be.at.most(2);
-    expect(pagedResponse.meta.total).to.equal(allTemplatesResponse.meta.total);
+    assert.ok(pagedResponse.data.length <= 2);
+    assert.strictEqual(pagedResponse.meta.total, allTemplatesResponse.meta.total);
 
     // Lookup by full entity id
     const firstTemplateEntity = allTemplatesResponse.data[0];
     const byIdResponse = await getTemplateMetadata(firstTemplateEntity.id);
-    expect(byIdResponse.errors).to.equal(undefined);
-    expect(byIdResponse.data?.id).to.equal(firstTemplateEntity.id);
-    expect(byIdResponse.data?.kind).to.equal('template');
+    assert.strictEqual(byIdResponse.errors, undefined);
+    assert.strictEqual(byIdResponse.data?.id, firstTemplateEntity.id);
+    assert.strictEqual(byIdResponse.data?.kind, 'template');
 
     // Lookup by short name (entity ID without 'template:' prefix)
     const shortName = firstTemplateEntity.id.replace('template:', '');
     const byNameResponse = await getTemplateMetadata(shortName);
-    expect(byNameResponse.errors).to.equal(undefined);
-    expect(byNameResponse.data?.id).to.equal(firstTemplateEntity.id);
+    assert.strictEqual(byNameResponse.errors, undefined);
+    assert.strictEqual(byNameResponse.data?.id, firstTemplateEntity.id);
 
     const byUppercaseNameResponse = await getTemplateMetadata(shortName.toUpperCase());
-    expect(byUppercaseNameResponse.errors).to.equal(undefined);
-    expect(byUppercaseNameResponse.data?.id).to.equal(firstTemplateEntity.id);
+    assert.strictEqual(byUppercaseNameResponse.errors, undefined);
+    assert.strictEqual(byUppercaseNameResponse.data?.id, firstTemplateEntity.id);
 
     // Not found
     const notFoundResponse = await getTemplateMetadata('this-does-not-exist');
-    expect(notFoundResponse.data).to.equal(null);
-    expect(notFoundResponse.errors).to.be.an('array').that.is.not.empty;
-    expect(notFoundResponse.errors?.[0]?.code).to.equal('NOT_FOUND');
+    assert.strictEqual(notFoundResponse.data, null);
+    assert.ok(Array.isArray(notFoundResponse.errors) && notFoundResponse.errors.length > 0);
+    assert.strictEqual(notFoundResponse.errors?.[0]?.code, 'NOT_FOUND');
 
     // getDataForTemplate: retrieve examples layer content
     const dataResponse = await getDataForTemplate(shortName, { layer: 'examples' });
-    expect(dataResponse.errors).to.equal(undefined);
-    expect(dataResponse.data?.layer).to.equal('examples');
-    expect(dataResponse.data?.template).to.equal(firstTemplateEntity.id);
-    expect(dataResponse.data?.examples).to.be.an('array');
+    assert.strictEqual(dataResponse.errors, undefined);
+    assert.strictEqual(dataResponse.data?.layer, 'examples');
+    assert.strictEqual(dataResponse.data?.template, firstTemplateEntity.id);
+    assert.ok(Array.isArray(dataResponse.data?.examples));
 
     const uppercaseDataResponse = await getDataForTemplate(shortName.toUpperCase(), { layer: 'examples' });
-    expect(uppercaseDataResponse.errors).to.equal(undefined);
-    expect(uppercaseDataResponse.data?.template).to.equal(firstTemplateEntity.id);
+    assert.strictEqual(uppercaseDataResponse.errors, undefined);
+    assert.strictEqual(uppercaseDataResponse.data?.template, firstTemplateEntity.id);
 
     // Verify examples content is populated
     if (dataResponse.data?.examples && dataResponse.data.examples.length > 0) {
-      expect(dataResponse.data.examples[0]).to.have.property('content').that.is.a('string');
-      expect(dataResponse.data.examples[0]).to.have.property('path').that.includes('.md');
+      assert.strictEqual(typeof dataResponse.data.examples[0].content, 'string');
+      assert.ok(dataResponse.data.examples[0].path.includes('.md'));
     }
   });
 });

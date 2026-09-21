@@ -4,6 +4,7 @@
  */
 
 export type * from './types.js';
+export { withResultCleanupMiddleware } from './cleanup.js';
 export { composeMiddlewares } from './compose.js';
 export { withCompressionMiddleware, withResourceCompressionMiddleware } from './compression.js';
 export { withErrorHandlingMiddleware } from './error-handler.js';

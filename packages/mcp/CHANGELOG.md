@@ -1,5 +1,179 @@
 # Changelog
 
+## 4.16.0
+
+### Minor Changes
+
+- Released on: 2026-09-21
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @synergy-design-system/metadata@4.16.0
+
+## 4.15.1
+
+### Patch Changes
+
+- [#1388](https://github.com/synergy-design-system/synergy-design-system/pull/1388) [`023724e`](https://github.com/synergy-design-system/synergy-design-system/commit/023724e04450cd82a7046d34947ff610cdb47289) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-09-21
+
+  fix: 🐛 dependency updates ([#258](https://github.com/synergy-design-system/synergy-design-system/issues/258))
+
+  This release updates dependencies for all packages.
+
+  It also introduces some changes to Synergies build infrastructure:
+
+  - `pnpm@12` as the default package manager.
+  - `NPM Trusted Publishers` for automated releases for better security.
+
+- Updated dependencies [[`023724e`](https://github.com/synergy-design-system/synergy-design-system/commit/023724e04450cd82a7046d34947ff610cdb47289)]:
+  - @synergy-design-system/assets@2.3.2
+  - @synergy-design-system/metadata@4.15.1
+
+## 4.15.0
+
+### Minor Changes
+
+- Released on: 2026-09-21
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+### Patch Changes
+
+- Updated dependencies [[`b69bc72`](https://github.com/synergy-design-system/synergy-design-system/commit/b69bc72ec441f2697c04011fbee599d8b60669b0)]:
+  - @synergy-design-system/metadata@4.15.0
+
+## 4.14.0
+
+### Minor Changes
+
+- [#1341](https://github.com/synergy-design-system/synergy-design-system/pull/1341) [`1c5b8b0`](https://github.com/synergy-design-system/synergy-design-system/commit/1c5b8b0495b2315b38bf61f7d1f3b2b452f18df5) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-09-21
+
+  feat: ✨ vue type only wrappers ([#1340](https://github.com/synergy-design-system/synergy-design-system/issues/1340))
+
+  This release introduces typescript only wrappers in the `@synergy-design-system/vue` package.
+  You now get type safety for Synergy Components without using the Vue wrappers components for less bundle size.
+
+### Patch Changes
+
+- Updated dependencies [[`1c5b8b0`](https://github.com/synergy-design-system/synergy-design-system/commit/1c5b8b0495b2315b38bf61f7d1f3b2b452f18df5)]:
+  - @synergy-design-system/metadata@4.14.0
+
+## 4.13.0
+
+### Minor Changes
+
+- Released on: 2026-09-18
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+### Patch Changes
+
+- Updated dependencies [[`9495ad7`](https://github.com/synergy-design-system/synergy-design-system/commit/9495ad7396af08c44413556a12c6d83c34e12c49)]:
+  - @synergy-design-system/metadata@4.13.0
+
+## 4.12.0
+
+### Minor Changes
+
+- Released on: 2026-09-18
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+### Patch Changes
+
+- Updated dependencies [[`d4f88d6`](https://github.com/synergy-design-system/synergy-design-system/commit/d4f88d6c197e70fe5f94f328b12ac9a73eca8c7d)]:
+  - @synergy-design-system/metadata@4.12.0
+
+## 4.11.0
+
+### Minor Changes
+
+- Released on: 2026-09-16
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+### Patch Changes
+
+- Updated dependencies [[`2625ba7`](https://github.com/synergy-design-system/synergy-design-system/commit/2625ba7c952c19f4b692a3aaf01e8242de7c9ae0)]:
+  - @synergy-design-system/metadata@4.11.0
+
+## 4.10.0
+
+### Minor Changes
+
+- Released on: 2026-09-16
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+### Patch Changes
+
+- Updated dependencies [[`b950282`](https://github.com/synergy-design-system/synergy-design-system/commit/b950282c5be52c96419a67734268d5a6f4325547)]:
+  - @synergy-design-system/metadata@4.10.0
+
+## 4.9.0
+
+### Patch Changes
+
+- [#1368](https://github.com/synergy-design-system/synergy-design-system/pull/1368) [`259d2cd`](https://github.com/synergy-design-system/synergy-design-system/commit/259d2cdb206417498665685b601fd306cf354238) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-09-14
+
+  fix: 🐛 mcp false positive ([#1367](https://github.com/synergy-design-system/synergy-design-system/issues/1367))
+
+  This release fixes an issue that newer Agents reported our llm rules as prompt injection.
+
+- Updated dependencies []:
+  - @synergy-design-system/metadata@4.9.0
+
+## 4.8.0
+
+### Minor Changes
+
+- Released on: 2026-09-14
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+### Patch Changes
+
+- Updated dependencies [[`bab6db5`](https://github.com/synergy-design-system/synergy-design-system/commit/bab6db5ad18e5e17aeb69c74ee3795762102a6f0)]:
+  - @synergy-design-system/metadata@4.8.0
+
+## 4.7.0
+
+### Minor Changes
+
+- Released on: 2026-09-14
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @synergy-design-system/metadata@4.7.0
+
+## 4.6.0
+
+### Minor Changes
+
+- [#1359](https://github.com/synergy-design-system/synergy-design-system/pull/1359) [`23b16cb`](https://github.com/synergy-design-system/synergy-design-system/commit/23b16cb5ba645b48b34b2dbbfe44b4ad9200edd0) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-08-31
+
+  feat: ✨ Adds gauge series support to `<syn-chart>` ([#1352](https://github.com/synergy-design-system/synergy-design-system/issues/1352))
+
+  This release introduces the new chart series type 'synGauge' and extends the chart configuration API with new presets `seriesGauge`
+
+### Patch Changes
+
+- Updated dependencies [[`23b16cb`](https://github.com/synergy-design-system/synergy-design-system/commit/23b16cb5ba645b48b34b2dbbfe44b4ad9200edd0)]:
+  - @synergy-design-system/metadata@4.6.0
+
+## 4.5.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @synergy-design-system/metadata@4.5.0
+
 ## 4.4.0
 
 ### Minor Changes

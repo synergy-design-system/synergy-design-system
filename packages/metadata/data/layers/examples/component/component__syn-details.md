@@ -3,7 +3,7 @@
 Details show a brief summary and expand to show additional content. If you want to group the details, we recommend that you use the syn-accordion component.
 
 ```html
-<syn-details summary="Toggle Me" contained="">
+<syn-details summary="Toggle Me" contained="true">
   <h3
     style="
       margin: 0 0 var(--syn-spacing-x-small);

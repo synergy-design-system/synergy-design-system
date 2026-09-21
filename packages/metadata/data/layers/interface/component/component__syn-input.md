@@ -214,7 +214,7 @@ The name of the input, submitted as a name/value pair with form data.
 ### noSpinButtons
 
 attribute: `no-spin-buttons`
-reflects: no
+reflects: yes
 type: `boolean`
 default: `false`
 

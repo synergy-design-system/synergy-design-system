@@ -10,7 +10,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { describe, it } from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { expect } from 'chai';
+import assert from 'node:assert/strict';
 import { execa } from 'execa';
 
 describe('storybook examples sync', () => {
@@ -79,7 +79,7 @@ describe('storybook examples sync', () => {
       } catch {
         staleExists = false;
       }
-      expect(staleExists).to.equal(false);
+      assert.strictEqual(staleExists, false);
 
       const accordionCorePath = path.join(
         outputDir,
@@ -88,7 +88,7 @@ describe('storybook examples sync', () => {
         'component__syn-accordion.json',
       );
       const accordionCore = JSON.parse(await readFile(accordionCorePath, 'utf8'));
-      expect(accordionCore.layers).to.not.have.property('examples');
+      assert.ok(!('examples' in accordionCore.layers));
 
       const alertExamplePath = path.join(
         outputDir,
@@ -106,7 +106,7 @@ describe('storybook examples sync', () => {
         'component__syn-alert.json',
       );
       const alertCore = JSON.parse(await readFile(alertCorePath, 'utf8'));
-      expect(alertCore.layers.examples.some((ref) => ref.path === 'layers/examples/component/component__syn-alert.md')).to.equal(true);
+      assert.ok(alertCore.layers.examples.some((ref) => ref.path === 'layers/examples/component/component__syn-alert.md'));
     } finally {
       await rm(tempRoot, { force: true, recursive: true });
     }

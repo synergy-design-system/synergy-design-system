@@ -5,11 +5,45 @@
 
 ---
 
+## Why is there a vue wrapper package in the first place?
+
+### Meta information
+
+- Framework version: Vue >= 3.0.0
+- Synergy version: < 3.22.0
+
+### Description
+
+Vue 3 has solid support for custom elements, but for a long time the easiest integration path for many teams was still framework-specific wrappers. Wrappers provided a consistent Vue-first API and reduced setup friction around events, props, and two-way form handling.
+
+### Cause
+
+The main reason was not a technical impossibility of native usage. The native web components were already usable in Vue. The missing piece was a maintained and ergonomic TypeScript layer for native `syn-*` tags, including predictable typing and guidance for framework-specific binding patterns.
+
+### Proposed Solution
+
+#### Solution 1: Wrapper components
+
+Use `@synergy-design-system/vue` wrappers when you:
+
+- want a Vue component API
+- need compatibility with existing wrapper-based code
+- need automatic two way data binding
+
+#### Solution 2: Native components + type support
+
+Use native `syn-*` components directly when you:
+
+- want to have a smaller bundle size
+- do not need wrapper-provided automatic two-way binding (or prefer plugin-based binding via `SynModelPlugin`)
+
+---
+
 ## Using Vitest for testing
 
-### Meta Information
+### Meta information
 
-- Framework version: Vue@3
+- Framework version: Vue >= 3.0.0
 - Synergy version: <= 2.11.6
 - Issues: [#476](https://github.com/synergy-design-system/synergy-design-system/issues/476), [vitest#1388](https://github.com/vitest-dev/vitest/issues/1388)
 

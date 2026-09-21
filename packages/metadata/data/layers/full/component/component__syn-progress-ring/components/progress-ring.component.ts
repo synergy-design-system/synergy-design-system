@@ -1,12 +1,13 @@
-/* eslint-disable */
-import { html } from 'lit';
+import { property, query } from 'lit/decorators.js';
+import {
+  type CSSResultGroup,
+  type PropertyValues,
+  html,
+} from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
-import { property, query, state } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './progress-ring.styles.js';
-import customStyles from './progress-ring.custom.styles.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Progress rings are used to show the progress of a determinate operation in a circular fashion.
@@ -27,53 +28,51 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --indicator-transition-duration - The duration of the indicator's transition when the value changes.
  */
 export default class SynProgressRing extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, styles];
 
   private readonly localize = new LocalizeController(this);
 
   @query('.progress-ring__indicator') indicator: SVGCircleElement;
 
-  @state() indicatorOffset: string;
-
   /** The current progress as a percentage, 0 to 100. */
-  @property({ type: Number, reflect: true }) value = 0;
+  @property({ reflect: true, type: Number }) value = 0;
 
   /** A custom label for assistive devices. */
   @property() label = '';
 
-  updated(changedProps: Map<string, unknown>) {
+  updated(changedProps: PropertyValues<this>) {
     super.updated(changedProps);
 
-    //
-    // This block is only required for Safari because it doesn't transition the circle when the custom properties
-    // change, possibly because of a mix of pixel + unit-less values in the calc() function. It seems like a Safari bug,
-    // but I couldn't pinpoint it so this works around the problem.
-    //
+    // #1328: Safari does not transition stroke-dashoffset correctly when its
+    // value changes through custom properties, so provide a computed pixel value.
     if (changedProps.has('value')) {
       const radius = parseFloat(getComputedStyle(this.indicator).getPropertyValue('r'));
       const circumference = 2 * Math.PI * radius;
       const offset = circumference - (this.value / 100) * circumference;
 
-      this.indicatorOffset = `${offset}px`;
+      // Invalid value could break the stroke-dashoffset.
+      if (Number.isFinite(offset)) {
+        this.indicator.style.strokeDashoffset = `${offset}px`;
+      }
     }
   }
 
   render() {
     return html`
       <div
-        part="base"
-        class="progress-ring"
-        role="progressbar"
-        aria-label=${this.label.length > 0 ? this.label : this.localize.term('progress')}
         aria-describedby="label"
-        aria-valuemin="0"
+        aria-label=${this.label.length > 0 ? this.label : this.localize.term('progress')}
         aria-valuemax="100"
+        aria-valuemin="0"
         aria-valuenow="${this.value}"
+        class="progress-ring"
+        part="base"
+        role="progressbar"
         style="--percentage: ${this.value / 100}"
       >
         <svg class="progress-ring__image">
           <circle class="progress-ring__track"></circle>
-          <circle class="progress-ring__indicator" style="stroke-dashoffset: ${this.indicatorOffset}"></circle>
+          <circle class="progress-ring__indicator"></circle>
         </svg>
 
         <slot id="label" part="label" class="progress-ring__label"></slot>

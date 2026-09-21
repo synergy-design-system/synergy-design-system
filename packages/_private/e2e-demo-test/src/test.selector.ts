@@ -159,10 +159,30 @@ const ComplexBugsSelectors = {
 
 };
 
+const PlatformContractsSelectors = {
+  platformDisabledContractButton: 'syn-button[data-testid="disabled-contract-button"]',
+  platformDisabledContractSelect: 'syn-select[data-testid="disabled-contract-select"]',
+  platformFocusContractButton: 'syn-button[data-testid="focus-contract-button"]',
+  platformFocusContractInput: 'syn-input[data-testid="focus-contract-input"]',
+  platformFocusContractSelect: 'syn-select[data-testid="focus-contract-select"]',
+  platformFocusContractStart: 'button[data-testid="focus-contract-start"]',
+  platformOverlayContractsDrawer: 'syn-drawer[data-testid="overlay-contract-drawer"]',
+  platformOverlayContractsDrawerContent: '[data-testid="overlay-contract-drawer-content"]',
+  platformOverlayContractsDropdown: 'syn-dropdown[data-testid="overlay-contract-dropdown"]',
+  platformOverlayContractsInsideTarget: 'syn-button[data-testid="overlay-contract-inside-target"]',
+  platformOverlayContractsOpenButton: 'syn-button[data-testid="open-overlay-contract"]',
+  platformOverlayContractsSelect: 'syn-select[data-testid="overlay-contract-select"]',
+  platformPointerContractButton: 'syn-button[data-testid="pointer-contract-button"]',
+  platformScrollContractContainer: '[data-testid="scroll-contract-container"]',
+  platformScrollContractSelect: 'syn-select[data-testid="scroll-contract-select"]',
+  platformTextEditContractInput: 'syn-input[data-testid="text-edit-contract-input"]',
+};
+
 export default {
   ...AllComponentSelectors,
   ...AppShellSelectors,
   ...ComplexBugsSelectors,
+  ...PlatformContractsSelectors,
   addInfoLoc: '#additional-info',
   angular: 'syn-option[value=angular]',
   birth: '#input-date',

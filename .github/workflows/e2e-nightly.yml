@@ -1,0 +1,111 @@
+name: E2E Nightly
+
+on:
+  # TODO: Remove before merging. This only exists to test the new workflow from this PR.
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  component-test:
+    name: Validate tests (components/nightly) ${{ matrix.browser }}
+    timeout-minutes: 45
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.62.1-noble
+      options: --memory=4g --memory-swap=4g
+    env:
+      PLAYWRIGHT_FUTURE_BROWSERS: 'true'
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chrome-beta]
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
+        with:
+          # #854: We are only building the components and tokens packages
+          # This is done to speed up the build time
+          build-command: pnpm -r --filter 'tokens' --filter 'components' build --synergy
+        env:
+          # Increase memory limit for pnpm to avoid OOM issues
+          NODE_OPTIONS: --max-old-space-size=4096
+
+      - name: Install Chrome Beta
+        run: pnpm exec playwright install chrome-beta
+        working-directory: packages/components
+
+      - name: Run tests (components)
+        run: BROWSERS=${{ matrix.browser }} pnpm test
+        working-directory: packages/components
+        # @see https://github.com/microsoft/playwright/issues/6500
+        env:
+          HOME: /root
+          PLAYWRIGHT_FUTURE_BROWSERS: 'true'
+
+  platform-contract-test:
+    name: Validate tests (platform contracts/nightly) ${{ matrix.browser }}
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.62.1-noble
+      options: --memory=4g --memory-swap=4g
+    env:
+      PLAYWRIGHT_FUTURE_BROWSERS: 'true'
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chrome-beta]
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
+        with:
+          # Make sure to exclude unneeded packages to speed up the build.
+          build-command: pnpm -r --filter='!@synergy-design-system/docs' --filter='!@synergy-design-system/metadata' --filter='!@synergy-design-system/static-docs-page' --filter='!@synergy-design-system/mcp' build
+        env:
+          # Increase memory limit for pnpm to avoid OOM issues
+          NODE_OPTIONS: --max-old-space-size=4096
+
+      - name: Install Chrome Beta
+        run: pnpm exec playwright install chrome-beta
+        working-directory: packages/_private/e2e-demo-test
+
+      - name: Run tests
+        run: pnpm test.platform --project=${{ matrix.browser }}
+        working-directory: packages/_private/e2e-demo-test
+        # @see https://github.com/microsoft/playwright/issues/6500
+        env:
+          HOME: /root
+          PLAYWRIGHT_FUTURE_BROWSERS: 'true'
+
+      - name: Upload Playwright report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-platform-${{ matrix.browser }}
+          path: packages/_private/e2e-demo-test/playwright-report
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Upload test results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-platform-${{ matrix.browser }}
+          path: packages/_private/e2e-demo-test/test-results
+          retention-days: 7
+          if-no-files-found: ignore

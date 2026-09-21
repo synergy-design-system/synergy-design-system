@@ -1,0 +1,55 @@
+:root,
+body,
+#root {
+  min-height: 100vh;
+}
+
+.main,
+.content {
+  min-height: calc(100vh - var(--syn-header-height, 64px));
+}
+
+.platform-contract-fixture {
+  min-height: inherit;
+}
+
+.positioned-overlay-host {
+  min-height: inherit;
+  padding: 24px;
+  position: relative;
+  transform: translateZ(0);
+}
+
+.overlay-contract-drawer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+.platform-contract-control-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-block-start: 24px;
+}
+
+.scroll-contract-container {
+  border: 1px solid var(--syn-color-neutral-300);
+  height: 220px;
+  margin-block-start: 24px;
+  overflow: auto;
+  padding: 16px;
+}
+
+.scroll-contract-spacer {
+  align-items: center;
+  color: var(--syn-color-neutral-600);
+  display: flex;
+  min-height: 120px;
+}
+
+[data-testid="text-edit-contract-input"] {
+  display: block;
+  margin-block-start: 24px;
+}

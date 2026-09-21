@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.16.0
+
+### Minor Changes
+
+- Released on: 2026-09-21
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
 ## 4.15.1
 
 ### Patch Changes

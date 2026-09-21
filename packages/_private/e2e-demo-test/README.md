@@ -110,17 +110,17 @@ pnpm run lint:js
 
 ## Scripts Reference
 
-| Script              | Description                                       |
-| ------------------- | ------------------------------------------------- |
-| `pnpm test`         | Build and test all frameworks across all browsers |
-| `pnpm test.react`   | Build and test React demo                         |
-| `pnpm test.angular` | Build and test Angular demo                       |
-| `pnpm test.platform` | Build and test platform contract fixtures        |
-| `pnpm test.vue`     | Build and test Vue demo                           |
-| `pnpm test.vanilla` | Build and test Vanilla JS demo                    |
-| `pnpm test.ui`      | Run tests in Playwright UI                        |
-| `pnpm run lint`     | Run all linting scripts                           |
-| `pnpm run lint:js`  | Run JS linting on `src`                           |
+| Script               | Description                                       |
+| -------------------- | ------------------------------------------------- |
+| `pnpm test`          | Build and test all frameworks across all browsers |
+| `pnpm test.react`    | Build and test React demo                         |
+| `pnpm test.angular`  | Build and test Angular demo                       |
+| `pnpm test.platform` | Build and test platform contract fixtures         |
+| `pnpm test.vue`      | Build and test Vue demo                           |
+| `pnpm test.vanilla`  | Build and test Vanilla JS demo                    |
+| `pnpm test.ui`       | Run tests in Playwright UI                        |
+| `pnpm run lint`      | Run all linting scripts                           |
+| `pnpm run lint:js`   | Run JS linting on `src`                           |
 
 ## Directory Structure
 

@@ -29,7 +29,6 @@ jobs:
         with:
           package-json-file: synergy-design-system/package.json
           install: false
-          cache: true
 
       - name: Install dependencies
         working-directory: ./synergy-design-system

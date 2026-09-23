@@ -113,6 +113,8 @@ This package also provides a CLI command to generate self-contained Synergy skil
 
 ```bash
 npx @synergy-design-system/metadata install-skills --path .github/skills
+# Install only selected skills
+npx @synergy-design-system/metadata install-skills --path .github/skills --skills component,intents
 ```
 
 The command supports both `--path ./dir` and `--path=./dir`, creates missing directories, and writes portable bundles under:
@@ -123,8 +125,31 @@ The command supports both `--path ./dir` and `--path=./dir`, creates missing dir
 - `synergy-component/components/<component-name>/examples.md`
 - `synergy-templates/SKILL.md`
 - `synergy-templates/templates/<template-name>/examples.md`
+- `synergy-intent-policy/SKILL.md`
+- `synergy-intent-policy/intents/<intent-id>/interface.md`
+- `synergy-intent-policy/intents/<intent-id>/rules.md`
+- `synergy-intent-policy/intents/<intent-id>/examples.md`
 
-After generation, reference the skills in VS Code with `@synergy-component` and `@synergy-templates`.
+By default, all skills are generated. Use `--skills component`, `--skills templates`, or `--skills intents` (including comma-separated combinations) to select the generated skills. After generation, reference them in VS Code with `/synergy-component`, `/synergy-templates`, or `/synergy-intent-policy`.
+
+### Skill authoring
+
+Skill root content is authored as Markdown in `skills-content/` and rendered when the bundle is generated. Use the shared placeholders below when generated metadata should appear in prose:
+
+| Placeholder | Value |
+| --- | --- |
+| `{{NAME}}` | Skill name |
+| `{{DESCRIPTION}}` | Skill description |
+| `{{SKILL_VERSION}}` | Metadata package version |
+| `{{SYNERGY_VERSION}}` | Synergy components package version represented by the metadata data |
+| `{{SOURCE}}` | Metadata source identifier |
+| `{{GENERATED_AT}}` | Skill generation timestamp |
+| `{{DATA_BUILT_AT}}` | Metadata data build timestamp |
+| `{{SCHEMA_VERSION}}` | Metadata schema version |
+| `{{SKILL_TYPE}}` | Skill type |
+| `{{CONTENT_LAYER}}` | Content layers included by the skill |
+
+Placeholders use uppercase snake case and are resolved from the same context used to generate each skill's frontmatter. Unknown or unresolved placeholders fail skill generation.
 
 ### Public data artifacts
 

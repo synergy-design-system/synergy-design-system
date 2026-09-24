@@ -13,10 +13,11 @@ import {
 } from './domains/intent-policy.js';
 
 export { clearMetadataStoreCache, createMetadataStore, getMetadataInfo } from './store.js';
-export { generateSkillBundle } from './skill-bundle.js';
+export { generateSkillBundle } from './skills/index.js';
 export { getSynergyLogo } from './branding.js';
-export type { SkillBundleOptions } from './skill-bundle.js';
+export type { SkillBundleOptions, SkillName } from './skills/index.js';
 export { getAssetMetadata, listAssets, searchIcons } from './domains/assets.js';
+export { getIntentPolicyDocument, getIntentPolicyDocuments } from './domains/intent-policy-document.js';
 export { listComponentClusters, listComponentsByCluster } from './domains/clusters.js';
 export {
   getComponentMetadata,
@@ -49,6 +50,13 @@ export type {
   ComponentTextLayerContent,
 } from './domains/components.js';
 export type { FontQueryOptions } from './domains/fonts.js';
+export type {
+  IntentPolicyDocument,
+  IntentPolicyDocumentOptions,
+  IntentPolicyIntent,
+  IntentPolicyPreview,
+  IntentPolicyVariant,
+} from './domains/intent-policy-document.js';
 export type {
   ComponentGuideQuery,
   ComponentGuideResult,
@@ -137,10 +145,14 @@ export type {
   MigrationEntity,
   IntentCapability,
   IntentCategory,
+  IntentContentRule,
+  IntentContentSource,
   IntentDefinition,
   IntentPhase,
   IntentPreset,
   IntentPresetValue,
+  IntentPropRule,
+  IntentRequiredPropRule,
   IntentResolutionResult,
   IntentTargetKind,
   IntentTargetRef,

@@ -26,11 +26,11 @@ export const intentCategoriesListTool = (server: McpServer) => {
     'intent-categories-list',
     {
       annotations: createToolAnnotations(),
-      description: 'List available intent categories in the intent policy layer.',
+      description: 'Deprecated compatibility tool. Do not use for new requests. Use intent-discover instead. Lists registered intent categories only.',
       inputSchema: {
         includePhases: z.array(intentPhaseSchema).optional().describe('Optional phase filter. Defaults to ["experimental"].'),
       },
-      title: 'Intent categories list',
+      title: 'Deprecated: Intent categories list',
     },
     toolHandler('intent-categories-list', async ({
       includePhases,

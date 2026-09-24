@@ -110,7 +110,7 @@ export const migrationListTool = (server: McpServer) => {
     'migration-list',
     {
       annotations: createToolAnnotations(),
-      description: 'List available migration documents for a Synergy package in a compact, token-efficient format.',
+      description: 'List available migration documents for one Synergy package in a compact format. Use a returned filename with migration-info to retrieve only the required guide.',
       inputSchema: {
         synergyPackage: z.enum([
           'assets',
@@ -119,7 +119,7 @@ export const migrationListTool = (server: McpServer) => {
           'tokens',
         ]).optional().describe('The package to list migration documents for.'),
       },
-      title: 'Package Migration Document Index',
+      title: 'List migration guides',
     },
     toolHandler('migration-list', async ({ synergyPackage }) => {
       const selectedPackage = (synergyPackage ?? getRuntimeConfig().tools.migrationList.synergyPackage);

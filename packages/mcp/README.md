@@ -195,7 +195,11 @@ Example:
       "layer": "full",
     },
     "intentCategoriesList": {
-      // Default phases for intent-categories-list
+      // Deprecated compatibility tool; prefer intentDiscover.
+      "includePhases": ["experimental"],
+    },
+    "intentDiscover": {
+      // Default phases for hierarchical intent discovery
       "includePhases": ["experimental"],
     },
     "intentComponentGuide": {
@@ -516,7 +520,9 @@ The MCP server currently registers 6 stable resources by default. Resources expo
 
 **Name:** `component-list`
 
-**Description:** A sorted JSON array of all available component names in the Synergy Design System.
+**Title:** Synergy component index
+
+**Description:** Static JSON index of Synergy component tag names. Read directly for discovery; use `component-info` for API, examples, and rules.
 
 **Example:**
 
@@ -528,29 +534,31 @@ The MCP server currently registers 6 stable resources by default. Resources expo
 
 **Name:** `asset-list`
 
-**Description:** All available icon sets in the Synergy Design System, grouped by theme. Each entry includes `id`, `name`, `since`, `theme`, and `iconCount`.
+**Title:** Synergy icon set index
+
+**Description:** Static JSON index of Synergy icon sets with IDs, names, versions, themes, and icon counts. Use `asset-info` to search icons.
 
 **Example:**
 
 ```json
-{
-  "default": [
-    {
-      "iconCount": 512,
-      "id": "current",
-      "name": "Current",
-      "since": "1.0.0",
-      "theme": "default"
-    }
-  ]
-}
+[
+  {
+    "iconCount": 512,
+    "id": "current",
+    "name": "Current",
+    "since": "1.0.0",
+    "theme": "default"
+  }
+]
 ```
 
 ### 3. `synergy://component-clusters/list`
 
 **Name:** `component-clusters-list`
 
-**Description:** All available component clusters in the Synergy Design System. Each entry includes `id`, `name`, and `description`.
+**Title:** Synergy component cluster index
+
+**Description:** Static JSON index of Synergy component clusters with IDs, names, and descriptions. Use `component-list` to retrieve cluster members.
 
 **Example:**
 
@@ -568,7 +576,9 @@ The MCP server currently registers 6 stable resources by default. Resources expo
 
 **Name:** `styles-list`
 
-**Description:** A sorted JSON array of all available style names in the Synergy Design System.
+**Title:** Synergy style index
+
+**Description:** Static JSON index of Synergy CSS utility and style names. Use `styles-info` for examples and usage.
 
 **Example:**
 
@@ -580,7 +590,9 @@ The MCP server currently registers 6 stable resources by default. Resources expo
 
 **Name:** `templates-list`
 
-**Description:** A sorted JSON array of all available template names in the Synergy Design System.
+**Title:** Synergy template index
+
+**Description:** Static JSON index of Synergy template names. Use `template-info` for example markup and documentation.
 
 **Example:**
 
@@ -592,7 +604,9 @@ The MCP server currently registers 6 stable resources by default. Resources expo
 
 **Name:** `intent-categories-list`
 
-**Description:** Available intent categories in the Synergy intent policy layer.
+**Title:** Synergy intent category index
+
+**Description:** Static JSON index of registered Synergy intent categories. Use `intent-discover` to browse exact intent IDs.
 
 **Example:**
 
@@ -602,7 +616,7 @@ The MCP server currently registers 6 stable resources by default. Resources expo
     {
       "description": "User actions and commands",
       "id": "action",
-      "label": "Action"
+      "phase": "experimental"
     }
   ]
 }
@@ -610,13 +624,13 @@ The MCP server currently registers 6 stable resources by default. Resources expo
 
 ## Available Tools
 
-The MCP server registers 22 tools by default: 17 core tools and 5 intent policy tools.
+The MCP server registers 23 tools by default: 17 core tools and 6 intent policy tools.
 
 Parameter schemas are not duplicated here. Call `tools/list` against a running server for the authoritative input schema of every tool, including defaults resolved from your runtime config.
 
 ### 1. `component-list`
 
-**Description:** Outputs a list of all available components in the Synergy Design System.
+**Description:** List Synergy component tag names, optionally filtered by cluster. Use `component-cluster-list` to discover cluster IDs and `component-info` for documentation.
 
 **Example prompts:**
 
@@ -627,7 +641,7 @@ Parameter schemas are not duplicated here. Call `tools/list` against a running s
 
 ### 2. `component-cluster-list`
 
-**Description:** Outputs all available component clusters in the Synergy Design System.
+**Description:** List Synergy component clusters with descriptions and member components. Use returned cluster IDs to filter `component-list`.
 
 **Note:** The corresponding MCP resource uses the pluralized name `component-clusters-list` at URI `synergy://component-clusters/list`.
 
@@ -651,7 +665,7 @@ Example prompts:
 
 ### 3. `component-info`
 
-**Description:** Get information about the usage of a specific component in the Synergy Design System.
+**Description:** Get API, examples, rules, or full documentation for one Synergy component and optional framework. Use an exact component tag returned by `component-list`.
 
 **Example prompts:**
 
@@ -660,9 +674,11 @@ Example prompts:
 - "Give me examples for syn-card"
 - "Show me the rules for syn-accordion"
 
+If `component-info`, `intent-component-guide`, or `intent-component-validate` receives an unknown component tag, it returns the submitted value, the complete sorted component catalog, and references to `component-list` and `synergy://components/list`. The server does not fuzzy-match or silently substitute component names.
+
 ### 4. `asset-list`
 
-**Description:** Get the available icon sets in the Synergy Design System.
+**Description:** List available Synergy icon set IDs and metadata, grouped by theme. Use returned icon set IDs with `asset-info`.
 
 **Example prompts:**
 
@@ -672,7 +688,7 @@ Example prompts:
 
 ### 5. `asset-info`
 
-**Description:** Get information about available icons in the Synergy Design System.
+**Description:** Find Synergy icons by icon set and optional name or tag filters. Returns matching icons grouped by category; use `asset-list` to discover icon set IDs.
 
 **Example prompts:**
 
@@ -682,7 +698,7 @@ Example prompts:
 
 ### 6. `token-info`
 
-**Description:** Get raw design token file contents from the Synergy Design System.
+**Description:** Get raw Synergy design token files by format, scope, and optional CSS theme. Use `tokens-list` to discover supported values and defaults.
 
 **Example prompts:**
 
@@ -692,7 +708,7 @@ Example prompts:
 
 ### 7. `tokens-list`
 
-**Description:** Outputs a list of available token output types and CSS themes in the Synergy Design System.
+**Description:** List available Synergy token formats, CSS themes, scopes, and defaults. Use supported values with `token-info`.
 
 **Example prompts:**
 
@@ -702,7 +718,7 @@ Example prompts:
 
 ### 8. `styles-list`
 
-**Description:** Outputs a list of available CSS classes and styles in the Synergy Design System.
+**Description:** List available Synergy CSS utility and style names. Use a returned name with `styles-info` for examples and usage.
 
 **Example prompts:**
 
@@ -712,7 +728,7 @@ Example prompts:
 
 ### 9. `styles-info`
 
-**Description:** Get information about CSS utilities available in the Synergy Design System.
+**Description:** Get examples and usage documentation for one Synergy CSS utility. Use an exact style name returned by `styles-list`.
 
 **Example prompts:**
 
@@ -720,9 +736,11 @@ Example prompts:
 - "What does the spacing utility package contain?"
 - "Tell me about a specific Synergy style"
 
+Unknown style names return the complete sorted style catalog with references to `styles-list` and `synergy://styles/list`.
+
 ### 10. `template-list`
 
-**Description:** Outputs a list of available static templates built with the Synergy Design System.
+**Description:** List available static templates built with Synergy components. Use a returned template name with `template-info`.
 
 **Example prompts:**
 
@@ -732,7 +750,7 @@ Example prompts:
 
 ### 11. `template-info`
 
-**Description:** Get a specific template in the Synergy Design System.
+**Description:** Get example markup and documentation for one static Synergy template. Use an exact template name returned by `template-list`.
 
 **Example prompts:**
 
@@ -740,9 +758,11 @@ Example prompts:
 - "Give me information about the dashboard template"
 - "How do I use the form template?"
 
+Unknown template names return the complete sorted template catalog with references to `template-list` and `synergy://templates/list`.
+
 ### 12. `davinci-migration-list`
 
-**Description:** Get a list of all components that have migration information from DaVinci to Synergy.
+**Description:** List DaVinci components with migration guidance for a selected package. Use a returned component name with `davinci-migration-info`.
 
 **Example prompts:**
 
@@ -752,7 +772,7 @@ Example prompts:
 
 ### 13. `davinci-migration-info`
 
-**Description:** Get information about the migration of a specific component from DaVinci to Synergy.
+**Description:** Get migration guidance from one DaVinci component to Synergy. Use an exact component name returned by `davinci-migration-list`.
 
 **Example prompts:**
 
@@ -760,9 +780,11 @@ Example prompts:
 - "Show me the migration guide for davinci-input"
 - "What's the Synergy equivalent of davinci-auto-suggest?"
 
+Unknown DaVinci component names return valid migration component names scoped to the selected package. No fuzzy matching or silent substitution is performed.
+
 ### 14. `migration-list`
 
-**Description:** List available migration documents for a Synergy package in a compact, token-efficient format.
+**Description:** List available migration documents for one Synergy package in a compact format. Use a returned filename with `migration-info` to retrieve only the required guide.
 
 **Behavior:**
 
@@ -777,13 +799,14 @@ Example prompts:
 
 ### 15. `migration-info`
 
-**Description:** Get detailed migration documentation for a Synergy package. Use together with `migration-list` to fetch only the documents you need.
+**Description:** Get detailed migration documentation for one Synergy package and optional filename. Use `migration-list` first and provide a returned filename for focused component guidance.
 
 **Behavior:**
 
 - For `components` with `filename`, returns exactly that document.
 - For `components` without `filename`, returns the overview and high-level package docs, not every path guide.
 - For `assets`, `styles`, and `tokens`, returns the available migration documents for the selected package.
+- Unknown filenames return valid filenames scoped to the selected package and point back to `migration-list`.
 
 **Example prompts:**
 
@@ -793,7 +816,7 @@ Example prompts:
 
 ### 16. `setup`
 
-**Description:** Get setup information for a Synergy package. Framework packages automatically include base components setup.
+**Description:** Get installation and initialization guidance for one Synergy package. Framework packages automatically include base component setup; optionally include known limitations.
 
 **Example prompts:**
 
@@ -803,7 +826,7 @@ Example prompts:
 
 ### 17. `create-spritesheet`
 
-**Description:** Creates a SVG sprite sheet for a provided set of icons. Only works with the Synergy 2025 icon set.
+**Description:** Create an SVG sprite sheet from selected Synergy 2025 icons. Use `asset-info` with the current icon set to discover valid icon names.
 
 **Example prompts:**
 
@@ -815,48 +838,64 @@ Example prompts:
 
 #### 18. `intent-categories-list`
 
-**Description:** List available intent categories in the intent policy layer.
+**Status:** Deprecated compatibility tool. It remains available until the next major release.
+
+**Description:** Do not use for new requests. Use `intent-discover` instead. Lists registered intent categories only.
 
 **Example prompts:**
 
 - "List intent categories"
 - "Show stable intent categories"
 
-#### 19. `intent-component-guide`
+#### 19. `intent-discover`
 
-**Description:** Answer the question: What can I do with a component in the intent system?
+**Description:** Discover registered Synergy intent categories and exact intent IDs. Omit `category` to list categories; provide an exact category ID to list its intents. Use returned IDs verbatim.
+
+**Workflow:**
+
+1. Call without `category` to discover top-level categories.
+2. Call with one returned category ID to list its intents.
+3. Pass an exact returned intent ID to validation, option, or recommendation tools.
+
+When an unknown category is provided, the tool returns the authoritative category IDs without guessing a replacement.
+
+#### 20. `intent-component-guide`
+
+**Description:** Get supported intents, recommended usages, and common misuses for one Synergy component. Use an exact component tag returned by `component-list`.
 
 **Example prompts:**
 
 - "What can I do with syn-button?"
 - "Show intent guide for syn-button in react-web-components"
 
-#### 20. `intent-component-validate`
+#### 21. `intent-component-validate`
 
-**Description:** Answer the question: Do I use a component correctly for a specific intent?
+**Description:** Validate component markup against one registered Synergy intent. Use an exact intent ID returned by `intent-discover`; do not guess or construct intent IDs. Checks intent policy, not complete accessibility or runtime behavior.
 
 **Example prompts:**
 
 - "Do I use syn-button right for action.submit?"
 - "Validate this syn-button markup for action.submit: <syn-button type=\"submit\" variant=\"filled\">Send</syn-button>"
 
-#### 21. `intent-task-recommendations`
+#### 22. `intent-task-recommendations`
 
-**Description:** Answer the question: What does Synergy provide for a specific task intent?
+**Description:** Recommend Synergy targets and snippets for one registered task intent. Use an exact intent ID returned by `intent-discover`; do not guess or construct intent IDs.
 
 **Example prompts:**
 
 - "What does Synergy provide to submit a form?"
 - "Recommend components for action.submit"
 
-#### 22. `intent-options`
+#### 23. `intent-options`
 
-**Description:** Answer the question: What are my renderable options for a specific intent?
+**Description:** Get renderable Synergy targets and preview markup for one registered intent. Use an exact intent ID returned by `intent-discover`; do not guess or construct intent IDs.
 
 **Example prompts:**
 
 - "What are my renderable options for navigation.link-list.grouped?"
 - "Show intent options for action.submit"
+
+If an exact intent ID is unknown, the validation, options, and recommendation tools return bounded recovery data: intents from a recognized category namespace, or top-level categories when the namespace is unknown. They preserve the submitted ID and never fuzzy-match or silently substitute intent semantics.
 
 ## Available Prompts
 
@@ -1026,6 +1065,7 @@ src/
 │   ├── intent-categories-list.ts
 │   ├── intent-component-guide.ts
 │   ├── intent-component-validate.ts
+│   ├── intent-discover.ts
 │   ├── intent-options.ts
 │   ├── intent-task-recommendations.ts
 │   ├── migration-info.ts
@@ -1040,8 +1080,8 @@ src/
 │   └── index.ts
 ├── transports/          # Transport factory and implementations
 ├── types/               # Shared type definitions
-└── utilities/           # Runtime config, metadata adapters, intent defaults, and CLI helpers
-rules/                   # Markdown guidance files prepended to selected tool output
+└── utilities/           # Runtime config, metadata adapters, component/intent discovery, and CLI helpers
+rules/                   # Markdown guidance files prepended to selected tool output, including compatibility notices
 test/
 ├── e2e/                 # End-to-end MCP tests
 ├── fixtures/            # Self-signed TLS test certificates
@@ -1230,7 +1270,10 @@ To add a new resource:
 1. Create a file in `src/resources/`.
 2. Register the resource with `server.registerResource(...)` using a `synergy://` URI.
 3. Export it from `src/resources/index.ts`.
-4. Update this README so the public resource inventory stays aligned with the code.
+4. Add or update an E2E resource contract test.
+5. Update this README so the public resource inventory stays aligned with the code.
+
+Static discovery resources use the title pattern `Synergy <domain> index` and begin descriptions with `Static JSON index of ...`. The remainder must describe the exact payload and point to the related detail tool when one exists.
 
 Example:
 
@@ -1246,9 +1289,9 @@ export const thingsListResource = (server: McpServer) => {
     RESOURCE_URI,
     {
       description:
-        "A list of all available things in the Synergy Design System.",
+        "Static JSON index of Synergy thing names. Use thing-info for details.",
       mimeType: "application/json",
-      title: "Things list",
+      title: "Synergy thing index",
     },
     async _uri => {
       const things = await listThings();
@@ -1277,7 +1320,10 @@ To add a new tool:
 2. Register the tool with `server.registerTool(...)`.
 3. Export it from `src/tools/index.ts`.
 4. If needed, add a matching guidance file under `rules/`.
-5. Update this README so the public tool inventory stays aligned with the code.
+5. Add unit tests for pure discovery/transformation logic and E2E tests for the MCP contract.
+6. Update this README so the public tool inventory stays aligned with the code.
+
+Tool descriptions are part of the model-facing API. Keep them to one or two concise, action-oriented sentences that state what the tool does, when to use it, what it returns, and any important prerequisite or boundary. Parameter descriptions must identify exact-value sources such as a neighboring list or discovery tool; examples must not imply that identifiers can be guessed.
 
 Example:
 

@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
+  buildDavinciRecovery,
   createToolAnnotations,
   extractMigrationSection,
   getMigrationGuideContent,
@@ -14,12 +15,12 @@ export const davinciMigrationInfoTool = (server: McpServer) => {
     'davinci-migration-info',
     {
       annotations: createToolAnnotations(),
-      description: 'Get information about the migration of a specific component from DaVinci to Synergy.',
+      description: 'Get migration guidance from one DaVinci component to Synergy. Use an exact component name returned by davinci-migration-list.',
       inputSchema: {
-        component: z.string().startsWith('davinci-').describe('The name of the davinci component to get migration information for.'),
+        component: z.string().min(1).describe('Exact DaVinci component name returned by davinci-migration-list. Do not guess or construct this value.'),
         package: z.string().optional().describe('Migration package to inspect. Can be "basic-elements", "components", "dashboard-elements", or "charts".'),
       },
-      title: 'DaVinci Migration Info',
+      title: 'Get DaVinci migration guide',
     },
     toolHandler('davinci-migration-info', async ({
       component,
@@ -30,9 +31,13 @@ export const davinciMigrationInfoTool = (server: McpServer) => {
       const migrationGuide = await getMigrationGuideContent(resolvedPackage);
       const section = extractMigrationSection(migrationGuide, component);
 
-      return section
-        ? [section]
-        : [`No migration information found for component "${component}" in package "${resolvedPackage}".`];
+      if (!section) {
+        const message = `No migration information found for component "${component}" in package "${resolvedPackage}".`;
+        // Return package-scoped component names so agents can recover without guessing migration IDs.
+        return [await buildDavinciRecovery(resolvedPackage, component, message)];
+      }
+
+      return [section];
     }),
   );
 };

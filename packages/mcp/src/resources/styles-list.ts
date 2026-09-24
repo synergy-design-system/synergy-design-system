@@ -14,9 +14,9 @@ export const stylesListResource = (server: McpServer) => {
     'styles-list',
     RESOURCE_URI,
     {
-      description: 'All available styles in the Synergy Design System, including theme metadata.',
+      description: 'Static JSON index of Synergy CSS utility and style names. Use styles-info for examples and usage.',
       mimeType: 'application/json',
-      title: 'Available styles',
+      title: 'Synergy style index',
     },
     resourceHandler('styles-list', async (_uri) => {
       const styles = await listStyles({

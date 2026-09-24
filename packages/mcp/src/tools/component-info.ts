@@ -4,6 +4,7 @@ import {
   getDataForComponent,
 } from '@synergy-design-system/metadata';
 import {
+  buildComponentRecovery,
   createToolAnnotations,
   getRuntimeConfig,
   getToolRule,
@@ -19,16 +20,15 @@ export const componentInfoTool = (server: McpServer) => {
     'component-info',
     {
       annotations: createToolAnnotations(),
-      description: 'Get information about the usage of a specific component in the Synergy Design System',
+      description: 'Get API, examples, rules, or full documentation for one Synergy component and optional framework. Use an exact component tag returned by component-list.',
       inputSchema: {
-        component: z.string().startsWith('syn-').describe('The name of the component to get information about.'),
+        component: z.string().min(1).describe('Exact component tag returned by component-list, for example syn-button. Do not guess or construct this value.'),
         framework: z.enum(['react', 'vue', 'angular', 'vanilla']).optional().describe('The framework of the component, e.g., "react", "vue", etc.'),
         layer: z.enum(['full', 'examples', 'interface', 'rules'])
           .optional()
-          .describe('Defines which type of information to return. full = filtered source files (useful for debugging), examples = markdown examples, interface = markdown API overview, rules = Usage guidelines and rules for the component. Examples and interface are only available for vanilla components at the moment.')
-        ,
+          .describe('Information layer: full source, markdown examples, API interface, or usage rules. Examples and interface are currently available only for vanilla components.'),
       },
-      title: 'Component info',
+      title: 'Get component details',
     },
     toolHandler('component-info', async ({
       component,
@@ -49,7 +49,8 @@ export const componentInfoTool = (server: McpServer) => {
 
       if (!metadata.data) {
         const notFoundMessage = metadata.errors?.[0]?.message ?? `No metadata found for component ${component}`;
-        return [notFoundMessage];
+        // Return the authoritative catalog so agents can recover without guessing component tags.
+        return [aiRules, frameworkRules, await buildComponentRecovery(component, notFoundMessage)];
       }
 
       let finalContent = [];

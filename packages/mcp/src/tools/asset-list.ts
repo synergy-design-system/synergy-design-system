@@ -15,9 +15,9 @@ export const assetListTool = (server: McpServer) => {
     'asset-list',
     {
       annotations: createToolAnnotations(),
-      description: 'Get the available iconsets in the Synergy Design System.',
+      description: 'List available Synergy icon set IDs and metadata, grouped by theme. Use returned icon set IDs with asset-info.',
       inputSchema: {},
-      title: 'Available iconsets',
+      title: 'List icon sets',
     },
     toolHandler('asset-list', async () => {
       const aiRules = await getToolRule('asset-list');

@@ -7,6 +7,7 @@ import {
 import {
   INTENT_DEFAULT_FRAMEWORK,
   INTENT_DEFAULT_PHASES,
+  buildIntentRecovery,
   createToolAnnotations,
   getRuntimeConfig,
   getToolRule,
@@ -26,16 +27,16 @@ export const intentOptionsTool = (server: McpServer) => {
     'intent-options',
     {
       annotations: createToolAnnotations(),
-      description: 'Answer the question: What are my renderable options for a specific intent?',
+      description: 'Get renderable Synergy targets and preview markup for one registered intent. Use an exact intent ID returned by intent-discover; do not guess or construct intent IDs.',
       inputSchema: {
         content: z.string().optional().describe('Optional content used in preview snippets.'),
         framework: frameworkSchema.optional().describe('Target framework profile. Defaults to vanilla.'),
-        includeDiagnostics: z.boolean().optional().describe('Include non-renderable candidates for diagnostics.'),
+        includeDiagnostics: z.boolean().optional().describe('Include targets that could not be rendered and their failure reasons. Diagnostic candidates are not usable output options.'),
         includePhases: z.array(intentPhaseSchema).optional().describe('Optional phase filter. Defaults to ["experimental"].'),
         intentId: z
           .string()
           .min(1)
-          .describe('Intent ID to resolve, for example action.submit. Can be obtained by calling intent-categories-list tool.'),
+          .describe('Exact registered intent ID returned by intent-discover. Do not guess or construct this value.'),
         maxAlternatives: z
           .number()
           .int()
@@ -44,7 +45,7 @@ export const intentOptionsTool = (server: McpServer) => {
           .optional()
           .describe('Maximum number of alternatives.'),
       },
-      title: 'Intent options',
+      title: 'Get intent rendering options',
     },
     toolHandler('intent-options', async ({
       content,
@@ -63,18 +64,20 @@ export const intentOptionsTool = (server: McpServer) => {
     }) => {
       const { tools } = getRuntimeConfig();
       const aiRules = await getToolRule('intent-options');
+      const resolvedPhases = includePhases ?? tools.intentOptions.includePhases ?? [...INTENT_DEFAULT_PHASES];
       const response = await getIntentOptions({
         content,
         framework: framework ?? tools.intentOptions.framework ?? INTENT_DEFAULT_FRAMEWORK,
         includeDiagnostics: includeDiagnostics ?? tools.intentOptions.includeDiagnostics,
-        includePhases: includePhases ?? tools.intentOptions.includePhases ?? [...INTENT_DEFAULT_PHASES],
+        includePhases: resolvedPhases,
         intentId,
         maxAlternatives: maxAlternatives ?? tools.intentOptions.maxAlternatives,
       });
 
       if (!response.data) {
         const message = response.errors?.[0]?.message ?? `No intent options found for ${intentId}.`;
-        return [aiRules, message];
+        // Return authoritative discovery options so agents can recover without guessing intent IDs.
+        return [aiRules, await buildIntentRecovery(intentId, message, resolvedPhases)];
       }
 
       return [aiRules, response.data];

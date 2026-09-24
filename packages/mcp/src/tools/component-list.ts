@@ -2,10 +2,10 @@ import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
   listComponentClusters,
-  listComponents,
 } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
+  getAvailableComponentNames,
   getToolRule,
   toolHandler,
 } from '../utilities/index.js';
@@ -20,11 +20,11 @@ export const componentListTool = (server: McpServer) => {
     'component-list',
     {
       annotations: createToolAnnotations(),
-      description: 'Outputs a list of all available components in the Synergy Design System',
+      description: 'List Synergy component tag names, optionally filtered by cluster. Use component-cluster-list to discover cluster IDs and component-info for documentation.',
       inputSchema: {
         cluster: z.string().optional().describe('Optional component cluster id to filter by, e.g. "components-by-tag/structure".'),
       },
-      title: 'Component list',
+      title: 'List components',
     },
     toolHandler('component-list', async ({
       cluster,
@@ -48,18 +48,9 @@ export const componentListTool = (server: McpServer) => {
         }
       }
 
-      const components = await listComponents({
-        cluster,
-        includeLayerRefs: false,
-        includeSources: false,
-      });
-      const componentNames = components.data
-        .map(c => c.name)
-        .toSorted();
-
       return [
         aiRules,
-        componentNames,
+        await getAvailableComponentNames(cluster),
       ];
     }),
   );

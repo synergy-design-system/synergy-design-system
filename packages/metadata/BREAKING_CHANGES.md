@@ -8,6 +8,57 @@ This guide holds the required information for migrating from one major version o
 
 ---
 
+## Version 5.0 (Upcoming, no release date yet!)
+
+<h3 id="metadata-tool-intent-categories-list-v5">Deprecated tool `intent-categories-list`</h3>
+
+**Associated Ticket(s)**:
+
+- [#1390](https://github.com/synergy-design-system/synergy-design-system/issues/1390)
+
+**Reason**:
+
+The `intent-categories-list` tool only exposes top-level intent categories. It does not provide the exact registered intent IDs required by validation, rendering-option, and recommendation tools. This encouraged clients and AI agents to construct or guess intent IDs, resulting in unnecessary failed calls before discovering valid intents.
+
+The replacement `intent-discover` tool supports hierarchical discovery through one endpoint:
+
+- Call it without a category to list registered intent categories.
+- Call it with an exact category ID to list the registered intents in that category.
+- Reuse the returned intent IDs verbatim with other intent tools.
+
+`intent-categories-list` remains available for backwards compatibility throughout version 4. It will be removed with version 5. The `synergy://intent-categories/list` MCP resource is not deprecated.
+
+**Migration Steps**:
+
+- Replace calls to `intent-categories-list` with `intent-discover`.
+- First call `intent-discover` without `category` when the category is unknown.
+- Call `intent-discover` again with a returned category ID to retrieve exact intent IDs.
+- Pass the returned intent ID to `intent-component-validate`, `intent-options`, or `intent-task-recommendations`. Do not construct intent IDs from category names.
+
+**Example (before)**:
+
+```json
+{
+  "name": "intent-categories-list",
+  "arguments": {
+    "includePhases": ["experimental"]
+  }
+}
+```
+
+**Example (after)**:
+
+```json
+{
+  "name": "intent-discover",
+  "arguments": {
+    "includePhases": ["experimental"]
+  }
+}
+```
+
+---
+
 ## Version 4.0
 
 <h3 id="metadata-source-v4">File renames for static files in `data`</h3>

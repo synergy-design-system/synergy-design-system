@@ -1,6 +1,7 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
 import {
+  buildMigrationRecovery,
   createToolAnnotations,
   getMigrationMetaData,
   getRuntimeConfig,
@@ -25,7 +26,7 @@ export const migrationInfoTool = (server: McpServer) => {
     'migration-info',
     {
       annotations: createToolAnnotations(),
-      description: 'Get detailed migration documentation for a Synergy package. Use together with `migration-list` to fetch only the documents you need.',
+      description: 'Get detailed migration documentation for one Synergy package and optional filename. Use migration-list first and provide a returned filename for focused component guidance.',
       inputSchema: {
         filename: z.string().optional().describe('Optional filename of the migration document to return. Especially recommended for the components package to avoid fetching all guides at once.'),
         synergyPackage: z.enum([
@@ -35,7 +36,7 @@ export const migrationInfoTool = (server: McpServer) => {
           'tokens',
         ]).optional().describe('The package to get migration information about.'),
       },
-      title: 'Package Migration Information',
+      title: 'Get migration documentation',
     },
     toolHandler('migration-info', async ({
       filename,
@@ -50,9 +51,9 @@ export const migrationInfoTool = (server: McpServer) => {
         const match = metadata.find(file => file && file.filename === filename);
 
         if (!match) {
-          return [
-            `No migration document named "${filename}" found for package "${selectedPackage}". Call the 'migration-list' tool first to see the available filenames.`,
-          ];
+          const message = `No migration document named "${filename}" found for package "${selectedPackage}".`;
+          // Return package-scoped filenames so agents can recover without guessing document names.
+          return [await buildMigrationRecovery(selectedPackage, filename, message)];
         }
 
         return [JSON.stringify(match, null, 2)];

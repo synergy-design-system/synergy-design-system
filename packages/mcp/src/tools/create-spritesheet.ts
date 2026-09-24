@@ -19,13 +19,13 @@ export const createSpriteSheetTool = (server: McpServer) => {
     'create-spritesheet',
     {
       annotations: createToolAnnotations(),
-      description: 'Creates a SVG sprite sheet for a provided set of icons. Only works with the Synergy 2025 icon set.',
+      description: 'Create an SVG sprite sheet from selected Synergy 2025 icons. Use asset-info with the current icon set to discover valid icon names.',
       inputSchema: {
         icons: z
           .array(z.string() as z.ZodType<Icon2025Keys>)
           .describe('The icons to include in the sprite sheet. Must be valid icon keys from the Synergy 2025 icon set.'),
       },
-      title: 'Create Sprite Sheet',
+      title: 'Generate icon spritesheet',
     },
     toolHandler('create-spritesheet', async ({
       icons,

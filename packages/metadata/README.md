@@ -136,18 +136,18 @@ By default, all skills are generated. Use `--skills component`, `--skills templa
 
 Skill root content is authored as Markdown in `skills-content/` and rendered when the bundle is generated. Use the shared placeholders below when generated metadata should appear in prose:
 
-| Placeholder | Value |
-| --- | --- |
-| `{{NAME}}` | Skill name |
-| `{{DESCRIPTION}}` | Skill description |
-| `{{SKILL_VERSION}}` | Metadata package version |
+| Placeholder           | Value                                                               |
+| --------------------- | ------------------------------------------------------------------- |
+| `{{NAME}}`            | Skill name                                                          |
+| `{{DESCRIPTION}}`     | Skill description                                                   |
+| `{{SKILL_VERSION}}`   | Metadata package version                                            |
 | `{{SYNERGY_VERSION}}` | Synergy components package version represented by the metadata data |
-| `{{SOURCE}}` | Metadata source identifier |
-| `{{GENERATED_AT}}` | Skill generation timestamp |
-| `{{DATA_BUILT_AT}}` | Metadata data build timestamp |
-| `{{SCHEMA_VERSION}}` | Metadata schema version |
-| `{{SKILL_TYPE}}` | Skill type |
-| `{{CONTENT_LAYER}}` | Content layers included by the skill |
+| `{{SOURCE}}`          | Metadata source identifier                                          |
+| `{{GENERATED_AT}}`    | Skill generation timestamp                                          |
+| `{{DATA_BUILT_AT}}`   | Metadata data build timestamp                                       |
+| `{{SCHEMA_VERSION}}`  | Metadata schema version                                             |
+| `{{SKILL_TYPE}}`      | Skill type                                                          |
+| `{{CONTENT_LAYER}}`   | Content layers included by the skill                                |
 
 Placeholders use uppercase snake case and are resolved from the same context used to generate each skill's frontmatter. Unknown or unresolved placeholders fail skill generation.
 

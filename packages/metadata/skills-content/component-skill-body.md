@@ -26,7 +26,7 @@ The component's API reference: properties, attributes, slots, methods, events, a
 
 ### `rules.md`
 
-Usage guidelines, accessibility considerations, common use cases, and best practices. Use this for understanding *when* and *how* to use a component correctly.
+Usage guidelines, accessibility considerations, common use cases, and best practices. Use this for understanding _when_ and _how_ to use a component correctly.
 
 > Rules are authoritative within the design system.
 > Best practices are recommendations, not enforceable constraints, and may require extension based on product, platform, or regulatory needs.

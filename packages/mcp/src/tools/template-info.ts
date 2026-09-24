@@ -4,6 +4,7 @@ import {
   getDataForTemplate,
 } from '@synergy-design-system/metadata';
 import {
+  buildTemplateRecovery,
   createToolAnnotations,
   getToolRule,
   toolHandler,
@@ -18,11 +19,11 @@ export const templateInfoTool = (server: McpServer) => {
     'template-info',
     {
       annotations: createToolAnnotations(),
-      description: 'Get a specific template in the Synergy Design System',
+      description: 'Get example markup and documentation for one static Synergy template. Use an exact template name returned by template-list.',
       inputSchema: {
-        template: z.string().describe('The name of the template to get information about.'),
+        template: z.string().min(1).describe('Exact template name returned by template-list. Do not guess or construct this value.'),
       },
-      title: 'Template info',
+      title: 'Get template details',
     },
     toolHandler('template-info', async ({
       template,
@@ -30,9 +31,8 @@ export const templateInfoTool = (server: McpServer) => {
       const response = await getDataForTemplate(template, { layer: 'examples' });
 
       if (!response.data) {
-        return [
-          `No template found: ${template}`,
-        ];
+        // Return the authoritative catalog so agents can recover without guessing template names.
+        return [await buildTemplateRecovery(template, `No template found: ${template}`)];
       }
 
       const aiRules = await getToolRule('template-info');

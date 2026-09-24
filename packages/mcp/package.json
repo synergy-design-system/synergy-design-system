@@ -66,7 +66,9 @@
     "lint:js": "eslint src",
     "lint:watermark": "node --experimental-strip-types test/watermarks/run.ts --fail-on-regression",
     "lint": "pnpm run /^lint:.*/",
-    "test": "node --experimental-strip-types --test test/e2e/*.test.ts",
+    "test": "pnpm run test:unit && pnpm run test:e2e",
+    "test:e2e": "node --experimental-strip-types --test test/e2e/*.test.ts",
+    "test:unit": "node --experimental-strip-types --test test/unit/*.test.ts",
     "watermark:report": "node --experimental-strip-types test/watermarks/run.ts",
     "watermark:baseline": "node --experimental-strip-types test/watermarks/run.ts --write-baseline",
     "test:watch": "node --experimental-strip-types --test --watch test/e2e/*.test.ts"

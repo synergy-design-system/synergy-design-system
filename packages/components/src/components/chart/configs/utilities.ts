@@ -3,7 +3,9 @@ import type { ZRColor } from 'echarts/types/dist/shared.js';
 import { getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../themes/utilities.js';
 import type { ECConfig } from '../types.js';
 import { DEGREE_TO_RADIAN, FULL_CIRCLE_RADIAN } from './constants.js';
-import type { LayoutValue, ParsedLayoutValue, Point } from './types.js';
+import type {
+  LayoutValue, ParsedLayoutValue, Point, ShiftedPoint, TextStyle,
+} from './types.js';
 
 // ---------------------------------------------------------------------------
 // Low-level deep-merge primitives
@@ -325,6 +327,7 @@ export const createTextGraphic = ({
   x,
   y,
   fontSize,
+  color = style('SynTypographyColorText'),
   fontWeight = styleWithoutUnit('SynFontWeightNormal'),
   align = 'center',
   verticalAlign = 'middle',
@@ -334,15 +337,16 @@ export const createTextGraphic = ({
   x: number;
   y: number;
   fontSize: number;
+  color?: string;
   fontWeight?: number | string;
   align?: 'left' | 'center' | 'right';
   verticalAlign?: 'top' | 'middle' | 'bottom';
   z?: number;
-}): graphic.Text => new graphic.Text({
+}, styleOverwrite?: TextStyle): graphic.Text => new graphic.Text({
   silent: true,
   style: {
     align,
-    fill: style('SynTypographyColorText'),
+    fill: color,
     fontFamily: style('SynFontSans'),
     fontSize,
     fontWeight: fontWeight as number,
@@ -350,6 +354,7 @@ export const createTextGraphic = ({
     verticalAlign,
     x,
     y,
+    ...styleOverwrite,
   },
   z,
 });
@@ -471,4 +476,20 @@ export const resolveText = (
   }
 
   return text ? String(text) : undefined;
+};
+
+/**
+ * Computes the point on a circle of the given radius that lies on a line parallel to,
+ * and offset by a constant pixel distance from, the radial line at `angle`. Used to build
+ * segment edges with a constant pixel-width gap, regardless of radius.
+ */
+export const getShiftedPoint = (radius: number, angle: number, tangentialOffset: number): ShiftedPoint => {
+  const safeOffset = clamp(tangentialOffset, -(radius - 0.5), radius - 0.5);
+  const radialOffset = Math.sqrt(Math.max((radius * radius) - (safeOffset * safeOffset), 0));
+
+  return {
+    angle: angle + Math.asin(safeOffset / radius),
+    x: (radialOffset * Math.cos(angle)) - (safeOffset * Math.sin(angle)),
+    y: (radialOffset * Math.sin(angle)) + (safeOffset * Math.cos(angle)),
+  };
 };

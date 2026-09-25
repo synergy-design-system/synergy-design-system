@@ -76,21 +76,31 @@ export const GAUGE_SERIES = {
 } as const;
 
 /** Synergy segment chart series constants */
-export const SEGMENT_CHART_SERIES = {
+export const SEGMENT_SERIES = {
+  /** Number of straight segments used to approximate one radian of an arc as a polygon. */
+  ARC_STEPS_PER_RADIAN: 20,
+  /** Default radius of the center circle inside the segment chart. */
+  // TODO: shouldn't this be a multiple of 8?
+  CENTER_CIRCLE_RADIUS: 51,
   /** Default weight used for a segment when no explicit `weights` entry is provided for it. */
   DEFAULT_WEIGHT: 1,
   /** Angle, in degrees, at which the gap is centered when `gapOrientation` is 0. 90 places it at the bottom of the circle. */
   GAP_CENTER_ANGLE: 90,
+  /** Distance, in pixels, from the center circle to the start of the segment ring. */
+  GAP_CENTER_CIRCLE_TO_SEGMENTS: 6,
   /** Default fraction of the full circle reserved as the empty gap, when `gap` is not set. */
   GAP_DEFAULT: 0.3,
+  /** Default icon size used for the optional center icon inside the segment chart. */
+  // TODO: shouldn't this be a multiple of 8?
+  ICON_SIZE: 68,
   /** Default maximum value used to normalize segment fill, when `max` is not set. */
   MAX_DEFAULT: 100,
   /** Default minimum value used to normalize segment fill, when `min` is not set. */
   MIN_DEFAULT: 0,
   /** Baseline height used for the default graphic layout and responsive scaling. */
-  REFERENCE_HEIGHT: 280,
-  /** Constant pixel-width gap rendered between adjacent segments, regardless of their distance to the center. */
-  SEGMENT_GAP_PX: 2,
+  REFERENCE_HEIGHT: 340,
+  /** Constant pixel-width gap rendered between adjacent segments. */
+  SEGMENTS_GAP: 2,
   TYPE_NAME: 'synSegment',
 } as const;
 

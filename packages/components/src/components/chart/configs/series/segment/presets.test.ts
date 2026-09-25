@@ -1,7 +1,7 @@
 import { expect } from '@open-wc/testing';
 import { seriesSegment } from './presets.js';
 import type { ECConfig, SegmentChartSeriesPresetOptions, SynergySegmentChartSeriesOption } from '../../../types.js';
-import { SEGMENT_CHART_SERIES } from '../../constants.js';
+import { SEGMENT_SERIES } from '../../constants.js';
 
 type SegmentChartSeriesResult = {
   series: SynergySegmentChartSeriesOption[];
@@ -40,7 +40,7 @@ describe('seriesSegment', () => {
 
     it('uses the configured type name constant', () => {
       const { series } = createSegmentChartResult({ data: [10, 20] });
-      expect(series[0].type).to.equal(SEGMENT_CHART_SERIES.TYPE_NAME);
+      expect(series[0].type).to.equal(SEGMENT_SERIES.TYPE_NAME);
     });
 
     it('forwards weights and mainLabel options to the series config', () => {

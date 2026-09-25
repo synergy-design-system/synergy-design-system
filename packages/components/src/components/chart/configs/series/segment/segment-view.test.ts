@@ -2,7 +2,7 @@ import { expect } from '@open-wc/testing';
 import type GlobalModel from 'echarts/types/src/model/Global.js';
 import type ExtensionAPI from 'echarts/types/src/core/ExtensionAPI.js';
 import type { graphic } from 'echarts';
-import { SEGMENT_CHART_SERIES } from '../../constants.js';
+import { SEGMENT_SERIES } from '../../constants.js';
 import type { SynergySegmentSeriesModel } from './segment-model.js';
 import {
   SynergySegmentView,
@@ -11,14 +11,14 @@ import {
   getSafeHalfGap,
   resolveWeights,
 } from './segment-view.js';
-import type { SynergySegmentSeriesOption } from './types.js';
+import type { SegmentSeriesOption } from './types.js';
 import { getRealStyleValue } from '../../../themes/utilities.js';
 
 const RADIAN = Math.PI / 180;
 const FULL_CIRCLE = Math.PI * 2;
 
 const createSeriesModelStub = (
-  option: SynergySegmentSeriesOption,
+  option: SegmentSeriesOption,
   paletteColors: string[] = ['#111111', '#222222', '#333333'],
 ): SynergySegmentSeriesModel => {
   const data = option.data ?? [];
@@ -43,13 +43,13 @@ const createApiStub = (width = 280, height = 280): ExtensionAPI => ({
 }) as unknown as ExtensionAPI;
 
 const renderSegmentChart = (
-  partialOption: Partial<SynergySegmentSeriesOption> = {},
+  partialOption: Partial<SegmentSeriesOption> = {},
   paletteColors?: string[],
   width = 280,
   height = 280,
 ): SynergySegmentView => {
   const view = new SynergySegmentView();
-  const option: SynergySegmentSeriesOption = {
+  const option: SegmentSeriesOption = {
     data: [50, 80, 100],
     type: 'synSegment',
     ...partialOption,
@@ -113,7 +113,7 @@ const minRadius = (wedge: graphic.Polygon): number => Math.min(...wedge.shape.po
 describe('computeGapRange', () => {
   it('centers the gap at the bottom of the circle by default', () => {
     const { startAngle } = computeGapRange(0.5, 0);
-    const expectedStartAngle = (SEGMENT_CHART_SERIES.GAP_CENTER_ANGLE * RADIAN) + (0.5 * Math.PI);
+    const expectedStartAngle = (SEGMENT_SERIES.GAP_CENTER_ANGLE * RADIAN) + (0.5 * Math.PI);
 
     expect(startAngle).to.be.closeTo(expectedStartAngle, 0.0001);
   });

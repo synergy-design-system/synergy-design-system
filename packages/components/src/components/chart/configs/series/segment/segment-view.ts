@@ -1,104 +1,26 @@
 import { ChartView, graphic } from 'echarts/core.js';
-import type { ZRColor } from 'echarts/types/dist/shared.js';
+import type { SeriesData } from 'echarts/types/dist/shared.js';
 import type { SynergySegmentSeriesModel } from './segment-model.js';
 import type {
   ResolvedSegmentChartSeriesConfig,
-  Sector,
-  SegmentSeriesConfig,
-  SynergySegmentSeriesOption,
+  SegmentDataValue,
+  SegmentWedgeShape,
+  WedgeStyle,
 } from './types.js';
-import { SEGMENT_CHART_SERIES } from '../../constants.js';
+import { DEGREE_TO_RADIAN, FULL_CIRCLE_RADIAN, SEGMENT_SERIES } from '../../constants.js';
+import {
+  clamp,
+  createImageGraphic,
+  createSectorGraphic,
+  createTextGraphic,
+  getShiftedPoint,
+  polarPoint,
+  resolveText,
+} from '../../utilities.js';
 import { getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../../../themes/utilities.js';
 import type {
-  ExtensionAPI, GlobalModel, Point, SegmentRange,
+  ExtensionAPI, GlobalModel, SegmentRange,
 } from '../../types.js';
-
-const FULL_CIRCLE = Math.PI * 2;
-const RADIAN = Math.PI / 180;
-
-const getDefaultSegmentChartConfig = (): ResolvedSegmentChartSeriesConfig => ({
-  backgroundColor: style('SynChartTrackColor'),
-  gap: SEGMENT_CHART_SERIES.GAP_DEFAULT,
-  gapOrientation: 0,
-  icon: '',
-  mainLabel: '',
-  max: SEGMENT_CHART_SERIES.MAX_DEFAULT,
-  min: SEGMENT_CHART_SERIES.MIN_DEFAULT,
-  segmentBackgroundColors: [],
-  segmentColors: [],
-  segmentLabelColors: [],
-  segmentLabels: [],
-  segmentOutlineColor: [],
-  weights: [],
-});
-
-const clamp = (value: number, minimum: number, maximum: number): number => Math.min(Math.max(value, minimum), maximum);
-
-const polarPoint = (centerX: number, centerY: number, radius: number, angle: number): Point => ({
-  x: centerX + (Math.cos(angle) * radius),
-  y: centerY + (Math.sin(angle) * radius),
-});
-
-const createSector = ({
-  centerX, centerY, innerRadius, outerRadius, startAngle, endAngle, color, z,
-}: Sector): graphic.Sector => new graphic.Sector({
-  shape: {
-    clockwise: true,
-    cx: centerX,
-    cy: centerY,
-    endAngle,
-    r: outerRadius,
-    r0: innerRadius,
-    startAngle,
-  },
-  silent: true,
-  style: {
-    fill: color,
-  },
-  z,
-});
-
-/**
- * A point shifted tangentially (perpendicular to the radial direction) by a constant pixel
- * distance from the ideal (un-shifted) angle, together with the angle at which it sits on
- * its own radius. Coordinates are relative to the shape's center.
- */
-type ShiftedPoint = Point & { angle: number };
-
-/**
- * Computes the point on a circle of the given radius that lies on a line parallel to,
- * and offset by a constant pixel distance from, the radial line at `angle`. Used to build
- * segment edges with a constant pixel-width gap, regardless of radius.
- */
-const getShiftedPoint = (radius: number, angle: number, tangentialOffset: number): ShiftedPoint => {
-  const safeOffset = clamp(tangentialOffset, -(radius - 0.5), radius - 0.5);
-  const radialOffset = Math.sqrt(Math.max((radius * radius) - (safeOffset * safeOffset), 0));
-
-  return {
-    angle: angle + Math.asin(safeOffset / radius),
-    x: (radialOffset * Math.cos(angle)) - (safeOffset * Math.sin(angle)),
-    y: (radialOffset * Math.sin(angle)) + (safeOffset * Math.cos(angle)),
-  };
-};
-
-type WedgeStyle = {
-  fill?: ZRColor;
-  lineWidth?: number;
-  stroke?: string;
-};
-
-export type SegmentWedgeShape = {
-  centerX: number;
-  centerY: number;
-  innerRadius: number;
-  outerRadius: number;
-  startAngle: number;
-  endAngle: number;
-  halfGap: number;
-};
-
-/** Number of straight segments used to approximate one radian of an arc as a polygon. */
-const ARC_STEPS_PER_RADIAN = 20;
 
 /** Samples points along a circular arc, used to approximate it as a straight-edged polygon. */
 const buildArcPoints = (
@@ -108,7 +30,7 @@ const buildArcPoints = (
   fromAngle: number,
   toAngle: number,
 ): number[][] => {
-  const steps = Math.max(1, Math.ceil(Math.abs(toAngle - fromAngle) * ARC_STEPS_PER_RADIAN));
+  const steps = Math.max(1, Math.ceil(Math.abs(toAngle - fromAngle) * SEGMENT_SERIES.ARC_STEPS_PER_RADIAN));
 
   return Array.from({ length: steps + 1 }, (_unused, index) => {
     const angle = fromAngle + (((toAngle - fromAngle) * index) / steps);
@@ -125,25 +47,32 @@ const buildArcPoints = (
  * `graphic.Polygon`) are part of the typed `graphic` namespace re-exported from `echarts/core.js`.
  */
 const createSegmentWedge = ({
-  shape, wedgeStyle, z,
+  shape, style: wedgeStyle, z,
 }: {
   shape: SegmentWedgeShape;
-  wedgeStyle: WedgeStyle;
+  style: WedgeStyle;
   z: number;
 }): graphic.Polygon => {
   const {
     centerX, centerY, innerRadius, outerRadius, startAngle, endAngle, halfGap,
   } = shape;
 
-  const startInner = getShiftedPoint(innerRadius, startAngle, halfGap);
-  const startOuter = getShiftedPoint(outerRadius, startAngle, halfGap);
-  const endOuter = getShiftedPoint(outerRadius, endAngle, -halfGap);
-  const endInner = getShiftedPoint(innerRadius, endAngle, -halfGap);
+  const lineWidth = wedgeStyle.lineWidth ?? 0;
+  // Calculate the inset if there is a border, to remove it from the polygon area
+  const halfBorderWidth = lineWidth / 2;
+  const insetInnerRadius = innerRadius + halfBorderWidth;
+  const insetOuterRadius = Math.max(insetInnerRadius, outerRadius - halfBorderWidth);
+  const insetHalfGap = halfGap + halfBorderWidth;
 
+  const startInner = getShiftedPoint(insetInnerRadius, startAngle, insetHalfGap);
+  const startOuter = getShiftedPoint(insetOuterRadius, startAngle, insetHalfGap);
+
+  const endOuter = getShiftedPoint(insetOuterRadius, endAngle, -insetHalfGap);
+  const endInner = getShiftedPoint(insetInnerRadius, endAngle, -insetHalfGap);
   const points = [
     [centerX + startInner.x, centerY + startInner.y],
-    ...buildArcPoints(centerX, centerY, outerRadius, startOuter.angle, endOuter.angle),
-    ...buildArcPoints(centerX, centerY, innerRadius, endInner.angle, startInner.angle),
+    ...buildArcPoints(centerX, centerY, insetOuterRadius, startOuter.angle, endOuter.angle),
+    ...buildArcPoints(centerX, centerY, insetInnerRadius, endInner.angle, startInner.angle),
   ];
 
   return new graphic.Polygon({
@@ -151,56 +80,12 @@ const createSegmentWedge = ({
     silent: true,
     style: {
       fill: wedgeStyle.fill ?? 'none',
-      lineWidth: wedgeStyle.lineWidth ?? 0,
+      lineWidth,
       stroke: wedgeStyle.stroke ?? 'none',
     },
     z,
   });
 };
-
-const createText = ({
-  text, x, y, fontSize, align, verticalAlign, color, fontWeight, z,
-}: {
-  text: string;
-  x: number;
-  y: number;
-  fontSize: number;
-  align: 'left' | 'center' | 'right';
-  verticalAlign: 'top' | 'middle' | 'bottom';
-  color: string;
-  fontWeight?: number;
-  z: number;
-}): graphic.Text => new graphic.Text({
-  silent: true,
-  style: {
-    align,
-    fill: color,
-    fontFamily: style('SynFontSans'),
-    fontSize,
-    fontWeight: fontWeight ?? styleWithoutUnit('SynFontWeightNormal'),
-    text,
-    verticalAlign,
-    x,
-    y,
-  },
-  z,
-});
-
-const createImage = ({
-  image, x, y, width, height, z,
-}: {
-  image: string; x: number; y: number; width: number; height: number; z: number;
-}): graphic.Image => new graphic.Image({
-  silent: true,
-  style: {
-    height,
-    image,
-    width,
-    x,
-    y,
-  },
-  z,
-});
 
 /**
  * Resolves the angular start and available angle for the segments, based on the gap
@@ -208,9 +93,9 @@ const createImage = ({
  */
 export const computeGapRange = (gap: number, gapOrientation: number): { startAngle: number; availableAngle: number } => {
   const clampedGap = clamp(gap, 0, 1);
-  const gapAngle = clampedGap * FULL_CIRCLE;
-  const availableAngle = FULL_CIRCLE - gapAngle;
-  const gapCenterAngle = (SEGMENT_CHART_SERIES.GAP_CENTER_ANGLE + gapOrientation) * RADIAN;
+  const gapAngle = clampedGap * FULL_CIRCLE_RADIAN;
+  const availableAngle = FULL_CIRCLE_RADIAN - gapAngle;
+  const gapCenterAngle = (SEGMENT_SERIES.GAP_CENTER_ANGLE + gapOrientation) * DEGREE_TO_RADIAN;
 
   return {
     availableAngle,
@@ -230,6 +115,7 @@ export const computeSegmentRanges = (
   const total = weights.reduce((sum, weight) => sum + Math.max(weight, 0), 0);
 
   if (total <= 0 || availableAngle <= 0) {
+    // TODO: TEst out this use case. What happens
     return weights.map(() => null);
   }
 
@@ -246,9 +132,14 @@ export const computeSegmentRanges = (
 };
 
 /** Pairs `data` with `weights` by index, defaulting missing weights to an equal share. */
-export const resolveWeights = (data: number[], weights: number[]): number[] => data.map(
-  (_value, index) => weights[index] ?? SEGMENT_CHART_SERIES.DEFAULT_WEIGHT,
-);
+export const resolveWeights = (data: SeriesData<SynergySegmentSeriesModel>): number[] => {
+  const weights: number[] = [];
+  data.each((idx) => {
+    const itemModel = data.getItemModel(idx);
+    weights.push(Number(itemModel.get('weight')) || SEGMENT_SERIES.DEFAULT_WEIGHT);
+  });
+  return weights;
+};
 
 /**
  * Clamps the half-gap so it never consumes more than the segment's own arc length at its
@@ -264,49 +155,21 @@ export const getSafeHalfGap = (halfGap: number, sweep: number, innerRadius: numb
   return Math.min(halfGap, Math.max(maxHalfGap - 0.5, 0));
 };
 
-/**
- * Renders a label centered on a segment, outside its outer radius. Labels on the left half of
- * the circle are right-aligned so their text ends near the ring; labels on the right half are
- * left-aligned so their text starts near the ring.
- */
-const createSegmentLabel = ({
-  text, color, point, onRightHalf, fontSize,
-}: {
-  text: string;
-  color: string;
-  point: Point;
-  onRightHalf: boolean;
-  fontSize: number;
-}): graphic.Text => createText({
-  align: onRightHalf ? 'left' : 'right',
-  color,
-  fontSize,
-  text,
-  verticalAlign: 'middle',
-  x: point.x,
-  y: point.y,
-  z: 15,
-});
-
 const buildSegmentChartGroup = (
-  rawValues: number[],
-  inputConfig: SegmentSeriesConfig,
+  model: SynergySegmentSeriesModel,
   width: number,
   height: number,
-  getSegmentColor: (index: number) => ZRColor,
 ): graphic.Group => {
-  const defaultConfig = getDefaultSegmentChartConfig();
-  const mergedConfig: ResolvedSegmentChartSeriesConfig = {
-    ...defaultConfig,
-    ...inputConfig,
-  };
+  const data = model.getData();
+
+  const config = model.option as ResolvedSegmentChartSeriesConfig;
 
   const shortestSide = Math.min(width, height);
   const centerX = width / 2;
   const centerY = height / 2;
 
-  // At a height of 280px the layout is of factor 1 and then scales linearly.
-  const factor = height / SEGMENT_CHART_SERIES.REFERENCE_HEIGHT;
+  // At a height of 340px the layout is of factor 1 and then scales linearly.
+  const factor = height / SEGMENT_SERIES.REFERENCE_HEIGHT;
 
   // Reserve room for the outer labels (offset + text height), so labels near the top or
   // bottom of the circle aren't clipped by the container edges, which sit right at the
@@ -316,10 +179,9 @@ const buildSegmentChartGroup = (
   const reservedLabelSpace = labelOffset + labelFontSize;
 
   const outerRadius = (shortestSide * 0.5) - reservedLabelSpace;
-  // 20% smaller than the previous 0.35 proportion.
-  const centerCircleRadius = outerRadius * 0.35 * 0.8;
-  // Half of the previous spacing between the center circle and the segments.
-  const ringSpacing = (factor * styleWithoutUnit('SynSpacingXSmall')) / 2;
+
+  const centerCircleRadius = factor * SEGMENT_SERIES.CENTER_CIRCLE_RADIUS;
+  const ringSpacing = factor * SEGMENT_SERIES.GAP_CENTER_CIRCLE_TO_SEGMENTS;
 
   const segmentInnerRadius = centerCircleRadius + ringSpacing;
   const segmentOuterRadius = outerRadius;
@@ -327,11 +189,11 @@ const buildSegmentChartGroup = (
   const root = new graphic.Group();
 
   // Static center circle.
-  root.add(createSector({
+  root.add(createSectorGraphic({
     centerX,
     centerY,
-    color: mergedConfig.backgroundColor,
-    endAngle: FULL_CIRCLE,
+    color: style('SynChartTrackColor'),
+    endAngle: FULL_CIRCLE_RADIAN,
     innerRadius: 0,
     outerRadius: centerCircleRadius,
     startAngle: 0,
@@ -339,25 +201,26 @@ const buildSegmentChartGroup = (
   }));
 
   // Optional icon inside the center circle.
-  if (mergedConfig.icon) {
-    const iconSize = centerCircleRadius;
+  if (config.icon) {
+    const iconSize = factor * SEGMENT_SERIES.ICON_SIZE;
+    const halfIconSize = iconSize / 2;
 
-    root.add(createImage({
+    root.add(createImageGraphic({
       height: iconSize,
-      image: mergedConfig.icon,
+      image: config.icon,
       width: iconSize,
-      x: centerX - (iconSize / 2),
-      y: centerY - (iconSize / 2),
+      x: centerX - halfIconSize,
+      y: centerY - halfIconSize,
       z: 2,
     }));
   }
 
-  const { startAngle, availableAngle } = computeGapRange(mergedConfig.gap, mergedConfig.gapOrientation);
-  const weights = resolveWeights(rawValues, mergedConfig.weights);
+  const { startAngle, availableAngle } = computeGapRange(config.gap, config.gapOrientation);
+  const weights = resolveWeights(data);
   const segmentRanges = computeSegmentRanges(weights, startAngle, availableAngle);
 
-  const valueRange = mergedConfig.max - mergedConfig.min;
-  const halfGap = (factor * SEGMENT_CHART_SERIES.SEGMENT_GAP_PX) / 2;
+  const valueRange = config.max - config.min;
+  const halfGap = (factor * SEGMENT_SERIES.SEGMENTS_GAP) / 2;
 
   segmentRanges.forEach((range, index) => {
     if (!range) {
@@ -365,10 +228,14 @@ const buildSegmentChartGroup = (
     }
 
     const segmentHalfGap = getSafeHalfGap(halfGap, range.endAngle - range.startAngle, segmentInnerRadius);
+    const segmentItemModel = data.getItemModel<SegmentDataValue>(index);
 
-    const backgroundColor = mergedConfig.segmentBackgroundColors[index] ?? style('SynChartTrackColor');
-    const fillColor = mergedConfig.segmentColors[index] ?? getSegmentColor(index);
-    const outlineColor = mergedConfig.segmentOutlineColor[index];
+    const backgroundStyle = segmentItemModel.getModel('backgroundStyle');
+
+    // TODO: Check if i somehow get all the typings fixed
+    const backgroundColor = backgroundStyle.get('color') ?? style('SynChartTrackColor');
+    const backgroundBorderColor = backgroundStyle.get('borderColor') ?? style('SynChartTrackColor');
+    const backgroundBorderWidth = backgroundStyle.get('borderWidth') as number ?? 0;
 
     // Unfilled background, spanning the full radial band.
     root.add(createSegmentWedge({
@@ -381,16 +248,21 @@ const buildSegmentChartGroup = (
         outerRadius: segmentOuterRadius,
         startAngle: range.startAngle,
       },
-      wedgeStyle: { fill: backgroundColor },
+      style: {
+        fill: backgroundColor,
+        lineWidth: backgroundBorderWidth,
+        stroke: backgroundBorderColor,
+      },
       z: 3,
     }));
 
     // Filled portion, growing from the inner radius outward based on the segment's value.
-    const fillRatio = valueRange === 0 ? 0 : clamp((rawValues[index] - mergedConfig.min) / valueRange, 0, 1);
-
+    const rawValue = Number(data.get('value', index));
+    const value = Number.isNaN(rawValue) ? 0 : rawValue;
+    const fillRatio = valueRange === 0 ? 0 : clamp((value - config.min) / valueRange, 0, 1);
     if (fillRatio > 0) {
       const filledOuterRadius = segmentInnerRadius + (fillRatio * (segmentOuterRadius - segmentInnerRadius));
-
+      const itemStyle = data.getItemVisual(index, 'style');
       root.add(createSegmentWedge({
         shape: {
           centerX,
@@ -401,66 +273,64 @@ const buildSegmentChartGroup = (
           outerRadius: filledOuterRadius,
           startAngle: range.startAngle,
         },
-        wedgeStyle: { fill: fillColor },
+        style: {
+          fill: itemStyle.fill,
+          lineWidth: itemStyle.lineWidth,
+          stroke: itemStyle.stroke,
+        },
         z: 4,
       }));
     }
 
-    if (outlineColor) {
-      root.add(createSegmentWedge({
-        shape: {
-          centerX,
-          centerY,
-          endAngle: range.endAngle,
-          halfGap: segmentHalfGap,
-          innerRadius: segmentInnerRadius,
-          outerRadius: segmentOuterRadius,
-          startAngle: range.startAngle,
-        },
-        wedgeStyle: { lineWidth: 1, stroke: outlineColor },
-        z: 5,
-      }));
+    const dataItem = segmentItemModel.option;
+    let label = '';
+    if (typeof dataItem !== 'object') {
+      label = String(value);
+    } else {
+      const hasLabel = Object.hasOwn(dataItem, 'label');
+      label = hasLabel ? resolveText(dataItem.label, value) : String(value);
     }
 
-    // Segment label, centered on the segment and placed outside the outer radius.
-    const labelText = mergedConfig.segmentLabels[index] ?? String(rawValues[index]);
-    const labelColor = mergedConfig.segmentLabelColors[index] ?? style('SynTypographyColorText');
-    const midAngle = (range.startAngle + range.endAngle) / 2;
-    const labelPoint = polarPoint(centerX, centerY, segmentOuterRadius + labelOffset, midAngle);
-    const onRightHalf = Math.cos(midAngle) >= 0;
+    if (label) {
+      const midAngle = (range.startAngle + range.endAngle) / 2;
+      const labelPoint = polarPoint(centerX, centerY, segmentOuterRadius + labelOffset, midAngle);
+      const onRightHalf = Math.cos(midAngle) >= 0;
 
-    root.add(createSegmentLabel({
-      color: labelColor,
-      fontSize: factor * styleWithoutUnit('SynFontSizeSmall'),
-      onRightHalf,
-      point: labelPoint,
-      text: labelText,
-    }));
+      const labelOverwriteStyle = segmentItemModel.get('labelTextStyle');
+
+      root.add(createTextGraphic({
+        align: onRightHalf ? 'left' : 'right',
+        fontSize: factor * styleWithoutUnit('SynFontSizeSmall'),
+        text: label,
+        x: labelPoint.x,
+        y: labelPoint.y,
+        z: 15,
+      }, labelOverwriteStyle));
+    }
   });
 
-  // Main label, centered in the gap.
-  if (mergedConfig.mainLabel) {
-    const gapCenterAngle = (SEGMENT_CHART_SERIES.GAP_CENTER_ANGLE + mergedConfig.gapOrientation) * RADIAN;
-    const mainLabelPoint = polarPoint(centerX, centerY, centerCircleRadius + labelOffset, gapCenterAngle);
-
-    root.add(createText({
-      align: 'center',
-      color: style('SynTypographyColorText'),
-      fontSize: factor * styleWithoutUnit('SynFontSizeMedium'),
-      fontWeight: styleWithoutUnit('SynFontWeightBold'),
-      text: mergedConfig.mainLabel,
-      verticalAlign: 'middle',
-      x: mainLabelPoint.x,
-      y: mainLabelPoint.y,
-      z: 15,
-    }));
+  const name = model.get('name');
+  // Main name, centered in the gap.
+  if (name) {
+    const textRadiusPosition = ((outerRadius - centerCircleRadius) / 2) + centerCircleRadius;
+    const gapCenterAngle = (SEGMENT_SERIES.GAP_CENTER_ANGLE + config.gapOrientation) * DEGREE_TO_RADIAN;
+    const namePoint = polarPoint(centerX, centerY, textRadiusPosition, gapCenterAngle);
+    // TODO: currently we do not have a token for font-size 22. Either do one, or use another font-size
+    const fontSize = 22;
+    const styleOverwrite = model.get('nameTextStyle');
+    root.add(createTextGraphic({
+      fontSize: factor * fontSize,
+      text: name,
+      x: namePoint.x,
+      y: namePoint.y,
+    }, styleOverwrite));
   }
 
   return root;
 };
 
 export class SynergySegmentView extends ChartView {
-  static type = SEGMENT_CHART_SERIES.TYPE_NAME;
+  static type = SEGMENT_SERIES.TYPE_NAME;
 
   type = SynergySegmentView.type;
 
@@ -471,19 +341,7 @@ export class SynergySegmentView extends ChartView {
     const { group } = this;
     group.removeAll();
 
-    const data = seriesModel.getData();
-    const rawValues: number[] = [];
-    for (let index = 0; index < data.count(); index += 1) {
-      rawValues.push(Number(data.get('value', index)));
-    }
-
-    const option = seriesModel.option as SynergySegmentSeriesOption;
-
-    // Cycle through the categorical palette, one color per data segment.
-    const paletteScope = {};
-    const getSegmentColor = (index: number): ZRColor => seriesModel.getColorFromPalette(`synergy-segment-chart-segment-${index}`, paletteScope);
-
-    const segmentChartGroup = buildSegmentChartGroup(rawValues, option, api.getWidth(), api.getHeight(), getSegmentColor);
+    const segmentChartGroup = buildSegmentChartGroup(seriesModel, api.getWidth(), api.getHeight());
     group.add(segmentChartGroup);
   }
 }

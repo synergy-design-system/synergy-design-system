@@ -77,5 +77,5 @@ export type {
 export type {
   SegmentSeriesConfig,
   SegmentSeriesPresetOptions,
-  SynergySegmentSeriesOption,
+  SegmentSeriesOption,
 } from './configs/series/segment/types.js';

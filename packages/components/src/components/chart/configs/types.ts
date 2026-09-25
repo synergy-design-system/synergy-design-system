@@ -1,4 +1,5 @@
 import type { ChartView, use } from 'echarts/types/dist/shared.js';
+import type { graphic } from 'echarts/core.js';
 
 /**
  * Makes selected keys required while preserving the remaining type shape.
@@ -17,6 +18,12 @@ export type Point = {
   x: number;
   y: number;
 };
+
+/**
+ * A point shifted tangentially (perpendicular to the radial direction) by a constant pixel distance from the ideal (un-shifted) angle, together with the angle at which it sits on
+ * its own radius. Coordinates are relative to the shape's center.
+ */
+export type ShiftedPoint = Point & { angle: number };
 
 /** Start and end angular bounds for a single chart segment. */
 export type SegmentRange = {
@@ -44,3 +51,6 @@ export type EChartsExtensionInstaller = Exclude<Parameters<typeof use>[0], reado
 
 /** Registry map produced by an ECharts extension installer for custom series options. */
 export type EChartsExtensionInstallRegisters = Parameters<EChartsExtensionInstaller>[0];
+
+/** Style options for an text element */
+export type TextStyle = graphic.Text['style'];

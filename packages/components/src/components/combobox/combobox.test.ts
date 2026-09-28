@@ -2561,5 +2561,35 @@ describe('<syn-combobox>', () => {
     });
   });
 
+  describe('#1391', () => {
+    it('should display the placeholder attribute when the combobox is empty and placeholder is set', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox placeholder="Select an option" multiple>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-11">Option 11</syn-option>
+        </syn-combobox>
+      `);
+
+      await el.updateComplete;
+
+      expect(el.displayInput.placeholder).to.equal('Select an option');
+    });
+
+    it('should not display the placeholder attribute when the combobox has a value and placeholder is set', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox placeholder="Select an option" multiple value="option-1">
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-11">Option 11</syn-option>
+        </syn-combobox>
+      `);
+
+      await el.updateComplete;
+
+      expect(el.displayInput.placeholder).to.equal('');
+    });
+  });
+
   runFormControlBaseTests('syn-combobox');
 });

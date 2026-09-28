@@ -1593,7 +1593,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
                 part="display-input"
                 class="combobox__display-input"
                 type="text"
-                placeholder=${this.placeholder}
+                placeholder=${isPlaceholderVisible ? this.placeholder : ''}
                 .disabled=${this.disabled}
                 .readOnly=${this.readonly}
                 .value=${this.displayLabel}

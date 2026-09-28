@@ -4,7 +4,16 @@ import { getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit
 import type { ECConfig } from '../types.js';
 import { DEGREE_TO_RADIAN, FULL_CIRCLE_RADIAN } from './constants.js';
 import type {
-  LayoutValue, ParsedLayoutValue, Point, ShiftedPoint, TextStyle,
+  CircularLayoutInput,
+  LayoutBounds,
+  LayoutCenterInput,
+  LayoutRadiusInput,
+  LayoutValue,
+  ParsedLayoutValue,
+  Point,
+  ResolvedCircularLayout,
+  ShiftedPoint,
+  TextStyle,
 } from './types.js';
 
 // ---------------------------------------------------------------------------
@@ -458,6 +467,76 @@ export const toPixels = (value: LayoutValue | undefined, baseSize: number, fallb
   }
 
   return parsed.kind === 'percent' ? (baseSize * parsed.value) / 100 : fallback;
+};
+
+/** Resolves chart-relative inset values into absolute pixel bounds. */
+export const resolveLayoutBounds = (
+  edges: CircularLayoutInput,
+  width: number,
+  height: number,
+): LayoutBounds => {
+  const top = Math.max(0, toPixels(edges.top, height));
+  const right = Math.max(0, toPixels(edges.right, width));
+  const bottom = Math.max(0, toPixels(edges.bottom, height));
+  const left = Math.max(0, toPixels(edges.left, width));
+
+  return {
+    bottom: Math.max(top, height - bottom),
+    left: Math.min(width, left),
+    right: Math.max(left, width - right),
+    top: Math.min(height, top),
+  };
+};
+
+/** Resolves a center point within the supplied layout bounds. */
+export const resolveLayoutCenter = (
+  center: LayoutCenterInput,
+  bounds: LayoutBounds,
+): Omit<ResolvedCircularLayout, 'bounds' | 'outerRadius'> => {
+  const layoutWidth = Math.max(0, bounds.right - bounds.left);
+  const layoutHeight = Math.max(0, bounds.bottom - bounds.top);
+
+  return {
+    centerX: bounds.left + toPixels(center?.[0], layoutWidth, layoutWidth / 2),
+    centerY: bounds.top + toPixels(center?.[1], layoutHeight, layoutHeight / 2),
+    layoutHeight,
+    layoutWidth,
+  };
+};
+
+/** Resolves an outer radius against the smaller dimension of a layout area. */
+export const resolveOuterRadius = (
+  radius: LayoutRadiusInput,
+  layoutWidth: number,
+  layoutHeight: number,
+): number => {
+  const size = Math.min(layoutWidth, layoutHeight);
+  const radiusBase = Math.max(0, size / 2);
+
+  if (radius === undefined) {
+    return radiusBase;
+  }
+
+  return Math.max(0, toPixels(radius, radiusBase, radiusBase / 2));
+};
+
+/** Returns whether a radius is an absolute pixel value. */
+export const isFixedRadius = (radius: LayoutRadiusInput): boolean => parseLayoutValue(radius).kind === 'pixel';
+
+/** Resolves bounds, center and radius for a circular chart layout. */
+export const resolveCircularLayout = (
+  input: CircularLayoutInput,
+  width: number,
+  height: number,
+): ResolvedCircularLayout => {
+  const bounds = resolveLayoutBounds(input, width, height);
+  const center = resolveLayoutCenter(input.center, bounds);
+
+  return {
+    ...center,
+    bounds,
+    outerRadius: resolveOuterRadius(input.radius, center.layoutWidth, center.layoutHeight),
+  };
 };
 
 /**

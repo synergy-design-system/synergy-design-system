@@ -3,7 +3,7 @@ import type { SeriesData } from 'echarts/types/dist/shared.js';
 import type { SynergySegmentSeriesModel } from './segment-model.js';
 import type {
   ResolvedSegmentChartSeriesConfig,
-  SegmentDataValue,
+  SegmentDataItem,
   SegmentWedgeShape,
   WedgeStyle,
 } from './types.js';
@@ -15,6 +15,7 @@ import {
   createTextGraphic,
   getShiftedPoint,
   polarPoint,
+  resolveCircularLayout,
   resolveText,
 } from '../../utilities.js';
 import { getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../../../themes/utilities.js';
@@ -91,7 +92,7 @@ const createSegmentWedge = ({
  * Resolves the angular start and available angle for the segments, based on the gap
  * fraction and orientation. The gap is centered at the bottom of the circle by default.
  */
-export const computeGapRange = (gap: number, gapOrientation: number): { startAngle: number; availableAngle: number } => {
+const computeGapRange = (gap: number, gapOrientation: number): { startAngle: number; availableAngle: number } => {
   const clampedGap = clamp(gap, 0, 1);
   const gapAngle = clampedGap * FULL_CIRCLE_RADIAN;
   const availableAngle = FULL_CIRCLE_RADIAN - gapAngle;
@@ -107,7 +108,7 @@ export const computeGapRange = (gap: number, gapOrientation: number): { startAng
  * Distributes the resolved weights across the available angle, proportionally to each weight.
  * Returns `null` ranges when no angle is available, so no segments or labels are rendered.
  */
-export const computeSegmentRanges = (
+const computeSegmentRanges = (
   weights: number[],
   startAngle: number,
   availableAngle: number,
@@ -131,22 +132,12 @@ export const computeSegmentRanges = (
   });
 };
 
-/** Pairs `data` with `weights` by index, defaulting missing weights to an equal share. */
-export const resolveWeights = (data: SeriesData<SynergySegmentSeriesModel>): number[] => {
-  const weights: number[] = [];
-  data.each((idx) => {
-    const itemModel = data.getItemModel(idx);
-    weights.push(Number(itemModel.get('weight')) || SEGMENT_SERIES.DEFAULT_WEIGHT);
-  });
-  return weights;
-};
-
 /**
  * Clamps the half-gap so it never consumes more than the segment's own arc length at its
  * inner radius (the most constrained point), preventing self-intersecting wedges for very
  * thin or many segments.
  */
-export const getSafeHalfGap = (halfGap: number, sweep: number, innerRadius: number): number => {
+const getSafeHalfGap = (halfGap: number, sweep: number, innerRadius: number): number => {
   if (sweep <= 0 || innerRadius <= 0) {
     return 0;
   }
@@ -155,21 +146,140 @@ export const getSafeHalfGap = (halfGap: number, sweep: number, innerRadius: numb
   return Math.min(halfGap, Math.max(maxHalfGap - 0.5, 0));
 };
 
+const resolveSegmentLabel = (dataItem: SegmentDataItem | number, value: number): string | undefined => {
+  if (typeof dataItem !== 'object') {
+    return String(value);
+  }
+
+  return Object.hasOwn(dataItem, 'label') ? resolveText(dataItem.label, value) : String(value);
+};
+
+/** Pairs `data` with `weights` by index, defaulting missing weights to an equal share. */
+const resolveWeights = (data: SeriesData<SynergySegmentSeriesModel>): number[] => {
+  const weights: number[] = [];
+  data.each((idx) => {
+    const itemModel = data.getItemModel<SegmentDataItem>(idx);
+    weights.push(Number(itemModel.get('weight')) || SEGMENT_SERIES.DEFAULT_WEIGHT);
+  });
+  return weights;
+};
+
+const getFillRatio = (value: number, min: number, max: number): number => {
+  const valueRange = max - min;
+  return valueRange === 0 ? 0 : clamp((value - min) / valueRange, 0, 1);
+};
+
+const createSegments = (
+  data: SeriesData<SynergySegmentSeriesModel>,
+  config: ResolvedSegmentChartSeriesConfig,
+  segmentRanges: Array<SegmentRange | null>,
+  centerX: number,
+  centerY: number,
+  segmentInnerRadius: number,
+  segmentOuterRadius: number,
+  halfGap: number,
+  labelOffset: number,
+  factor: number,
+) => {
+  const segments: Array<graphic.Polygon | graphic.Text> = [];
+  segmentRanges.forEach((range, index) => {
+    if (!range || !(segmentOuterRadius > segmentInnerRadius)) {
+      return;
+    }
+    const segmentHalfGap = getSafeHalfGap(halfGap, range.endAngle - range.startAngle, segmentInnerRadius);
+    const segmentItemModel = data.getItemModel<SegmentDataItem>(index);
+
+    const backgroundStyle = segmentItemModel.getModel('backgroundStyle').getItemStyle();
+
+    const backgroundColor = backgroundStyle.fill ?? style('SynChartTrackColor');
+    const backgroundBorderColor = backgroundStyle.stroke ?? style('SynChartTrackColor');
+    const backgroundBorderWidth = backgroundStyle.lineWidth ?? 0;
+
+    // Unfilled background, spanning the full radial band.
+    segments.push(createSegmentWedge({
+      shape: {
+        centerX,
+        centerY,
+        endAngle: range.endAngle,
+        halfGap: segmentHalfGap,
+        innerRadius: segmentInnerRadius,
+        outerRadius: segmentOuterRadius,
+        startAngle: range.startAngle,
+      },
+      style: {
+        fill: backgroundColor,
+        lineWidth: backgroundBorderWidth,
+        stroke: backgroundBorderColor,
+      },
+      z: 3,
+    }));
+
+    // Filled portion, growing from the inner radius outward based on the segment's value.
+    const rawValue = Number(data.get('value', index));
+    const value = Number.isNaN(rawValue) ? 0 : rawValue;
+    const fillRatio = getFillRatio(value, config.min, config.max);
+    if (fillRatio > 0) {
+      const filledOuterRadius = segmentInnerRadius + (fillRatio * (segmentOuterRadius - segmentInnerRadius));
+      const itemStyle = data.getItemVisual(index, 'style');
+      segments.push(createSegmentWedge({
+        shape: {
+          centerX,
+          centerY,
+          endAngle: range.endAngle,
+          halfGap: segmentHalfGap,
+          innerRadius: segmentInnerRadius,
+          outerRadius: filledOuterRadius,
+          startAngle: range.startAngle,
+        },
+        style: {
+          fill: itemStyle.fill,
+          lineWidth: itemStyle.lineWidth,
+          stroke: itemStyle.stroke,
+        },
+        z: 4,
+      }));
+    }
+
+    const label = resolveSegmentLabel(segmentItemModel.option, value);
+
+    if (label) {
+      const midAngle = (range.startAngle + range.endAngle) / 2;
+      const labelPoint = polarPoint(centerX, centerY, segmentOuterRadius + labelOffset, midAngle);
+      const onRightHalf = Math.cos(midAngle) >= 0;
+
+      const labelOverwriteStyle = segmentItemModel.get('labelTextStyle');
+
+      segments.push(createTextGraphic({
+        align: onRightHalf ? 'left' : 'right',
+        fontSize: factor * styleWithoutUnit('SynFontSizeSmall'),
+        text: label,
+        x: labelPoint.x,
+        y: labelPoint.y,
+        z: 15,
+      }, labelOverwriteStyle));
+    }
+  });
+  return segments;
+};
+
 const buildSegmentChartGroup = (
   model: SynergySegmentSeriesModel,
   width: number,
   height: number,
 ): graphic.Group => {
   const data = model.getData();
-
   const config = model.option as ResolvedSegmentChartSeriesConfig;
 
-  const shortestSide = Math.min(width, height);
-  const centerX = width / 2;
-  const centerY = height / 2;
+  const {
+    centerX,
+    centerY,
+    layoutHeight,
+    layoutWidth,
+    outerRadius: availableOuterRadius,
+  } = resolveCircularLayout(config, width, height);
 
   // At a height of 340px the layout is of factor 1 and then scales linearly.
-  const factor = height / SEGMENT_SERIES.REFERENCE_HEIGHT;
+  const factor = Math.min(layoutWidth, layoutHeight) / SEGMENT_SERIES.REFERENCE_HEIGHT;
 
   // Reserve room for the outer labels (offset + text height), so labels near the top or
   // bottom of the circle aren't clipped by the container edges, which sit right at the
@@ -178,7 +288,7 @@ const buildSegmentChartGroup = (
   const labelFontSize = factor * styleWithoutUnit('SynFontSizeSmall');
   const reservedLabelSpace = labelOffset + labelFontSize;
 
-  const outerRadius = (shortestSide * 0.5) - reservedLabelSpace;
+  const outerRadius = Math.max(0, availableOuterRadius - reservedLabelSpace);
 
   const centerCircleRadius = factor * SEGMENT_SERIES.CENTER_CIRCLE_RADIUS;
   const ringSpacing = factor * SEGMENT_SERIES.GAP_CENTER_CIRCLE_TO_SEGMENTS;
@@ -219,95 +329,21 @@ const buildSegmentChartGroup = (
   const weights = resolveWeights(data);
   const segmentRanges = computeSegmentRanges(weights, startAngle, availableAngle);
 
-  const valueRange = config.max - config.min;
   const halfGap = (factor * SEGMENT_SERIES.SEGMENTS_GAP) / 2;
 
-  segmentRanges.forEach((range, index) => {
-    if (!range) {
-      return;
-    }
-
-    const segmentHalfGap = getSafeHalfGap(halfGap, range.endAngle - range.startAngle, segmentInnerRadius);
-    const segmentItemModel = data.getItemModel<SegmentDataValue>(index);
-
-    const backgroundStyle = segmentItemModel.getModel('backgroundStyle');
-
-    // TODO: Check if i somehow get all the typings fixed
-    const backgroundColor = backgroundStyle.get('color') ?? style('SynChartTrackColor');
-    const backgroundBorderColor = backgroundStyle.get('borderColor') ?? style('SynChartTrackColor');
-    const backgroundBorderWidth = backgroundStyle.get('borderWidth') as number ?? 0;
-
-    // Unfilled background, spanning the full radial band.
-    root.add(createSegmentWedge({
-      shape: {
-        centerX,
-        centerY,
-        endAngle: range.endAngle,
-        halfGap: segmentHalfGap,
-        innerRadius: segmentInnerRadius,
-        outerRadius: segmentOuterRadius,
-        startAngle: range.startAngle,
-      },
-      style: {
-        fill: backgroundColor,
-        lineWidth: backgroundBorderWidth,
-        stroke: backgroundBorderColor,
-      },
-      z: 3,
-    }));
-
-    // Filled portion, growing from the inner radius outward based on the segment's value.
-    const rawValue = Number(data.get('value', index));
-    const value = Number.isNaN(rawValue) ? 0 : rawValue;
-    const fillRatio = valueRange === 0 ? 0 : clamp((value - config.min) / valueRange, 0, 1);
-    if (fillRatio > 0) {
-      const filledOuterRadius = segmentInnerRadius + (fillRatio * (segmentOuterRadius - segmentInnerRadius));
-      const itemStyle = data.getItemVisual(index, 'style');
-      root.add(createSegmentWedge({
-        shape: {
-          centerX,
-          centerY,
-          endAngle: range.endAngle,
-          halfGap: segmentHalfGap,
-          innerRadius: segmentInnerRadius,
-          outerRadius: filledOuterRadius,
-          startAngle: range.startAngle,
-        },
-        style: {
-          fill: itemStyle.fill,
-          lineWidth: itemStyle.lineWidth,
-          stroke: itemStyle.stroke,
-        },
-        z: 4,
-      }));
-    }
-
-    const dataItem = segmentItemModel.option;
-    let label = '';
-    if (typeof dataItem !== 'object') {
-      label = String(value);
-    } else {
-      const hasLabel = Object.hasOwn(dataItem, 'label');
-      label = hasLabel ? resolveText(dataItem.label, value) : String(value);
-    }
-
-    if (label) {
-      const midAngle = (range.startAngle + range.endAngle) / 2;
-      const labelPoint = polarPoint(centerX, centerY, segmentOuterRadius + labelOffset, midAngle);
-      const onRightHalf = Math.cos(midAngle) >= 0;
-
-      const labelOverwriteStyle = segmentItemModel.get('labelTextStyle');
-
-      root.add(createTextGraphic({
-        align: onRightHalf ? 'left' : 'right',
-        fontSize: factor * styleWithoutUnit('SynFontSizeSmall'),
-        text: label,
-        x: labelPoint.x,
-        y: labelPoint.y,
-        z: 15,
-      }, labelOverwriteStyle));
-    }
-  });
+  const segments = createSegments(
+    data,
+    config,
+    segmentRanges,
+    centerX,
+    centerY,
+    segmentInnerRadius,
+    segmentOuterRadius,
+    halfGap,
+    labelOffset,
+    factor,
+  );
+  segments.forEach(segment => root.add(segment));
 
   const name = model.get('name');
   // Main name, centered in the gap.

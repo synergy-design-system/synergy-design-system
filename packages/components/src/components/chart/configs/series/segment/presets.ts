@@ -16,6 +16,10 @@ import type { SegmentSeriesPresetOptions, SynergySegmentSeriesOption } from './t
  * @param {number} [options.max] Maximum value used to normalize the segment fill ratio. Defaults to `100`.
  * @param {number} [options.gap] Fraction (0-1) of the full circle left empty. Defaults to `0.3`.
  * @param {number} [options.gapOrientation] Rotates the gap, in degrees. `0` centers it at the bottom.
+ * @param {number|string} [options.top] Top inset of the drawable area in pixels or percent.
+ * @param {number|string} [options.right] Right inset of the drawable area in pixels or percent.
+ * @param {number|string} [options.bottom] Bottom inset of the drawable area in pixels or percent.
+ * @param {number|string} [options.left] Left inset of the drawable area in pixels or percent.
  * @param {string} [options.icon] SVG data URL rendered inside the static center circle.
  * @param {string} [options.name] Name rendered inside the gap.
  * @param {string[]} [options.data[].itemStyle.fill] Colors for the filled portion of each segment.

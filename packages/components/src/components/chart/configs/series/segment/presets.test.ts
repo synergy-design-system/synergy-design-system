@@ -1,14 +1,15 @@
 import { expect } from '@open-wc/testing';
 import { seriesSegment } from './presets.js';
-import type { ECConfig, SegmentChartSeriesPresetOptions, SynergySegmentChartSeriesOption } from '../../../types.js';
+import type { ECConfig } from '../../../types.js';
 import { SEGMENT_SERIES } from '../../constants.js';
+import type { SegmentSeriesPresetOptions, SynergySegmentSeriesOption } from './types.js';
 
 type SegmentChartSeriesResult = {
-  series: SynergySegmentChartSeriesOption[];
+  series: SynergySegmentSeriesOption[];
 };
 
 const createSegmentChartResult = (
-  options: SegmentChartSeriesPresetOptions,
+  options: SegmentSeriesPresetOptions,
   config: ECConfig = {},
 ) => seriesSegment(options)(config) as SegmentChartSeriesResult;
 
@@ -29,9 +30,7 @@ describe('seriesSegment', () => {
         ],
       };
 
-      const result = createSegmentChartResult({ data: [10, 20] }, existingConfig) as {
-        series: Array<{ name?: string; type?: string }>;
-      };
+      const result = createSegmentChartResult({ data: [10, 20] }, existingConfig);
 
       expect(result.series).to.be.an('array').with.lengthOf(2);
       expect(result.series[0]).to.include({ name: 'Existing Line', type: 'line' });
@@ -43,15 +42,28 @@ describe('seriesSegment', () => {
       expect(series[0].type).to.equal(SEGMENT_SERIES.TYPE_NAME);
     });
 
-    it('forwards weights and mainLabel options to the series config', () => {
+    it('forwards layout insets to the series config', () => {
       const { series } = createSegmentChartResult({
+        bottom: '15%',
         data: [10, 20],
-        mainLabel: 'Contamination',
-        weights: [1, 3],
+        left: 20,
+        right: '10%',
+        top: 10,
       });
 
-      expect(series[0].weights).to.deep.equal([1, 3]);
-      expect(series[0].mainLabel).to.equal('Contamination');
+      expect(series[0]).to.include({
+        bottom: '15%', left: 20, right: '10%', top: 10,
+      });
+    });
+
+    it('forwards weighted data and the series name', () => {
+      const { series } = createSegmentChartResult({
+        data: [{ value: 10, weight: 1 }, { value: 20, weight: 3 }],
+        name: 'Contamination',
+      });
+
+      expect(series[0].data).to.deep.equal([{ value: 10, weight: 1 }, { value: 20, weight: 3 }]);
+      expect(series[0].name).to.equal('Contamination');
     });
 
     it('does not mutate the incoming config object', () => {

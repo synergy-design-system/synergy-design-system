@@ -13,6 +13,7 @@ export class SynergySegmentSeriesModel extends SeriesModel<SegmentSeriesOption> 
     backgroundStyle: {
       borderWidth: 0,
     },
+    bottom: 0,
     colorBy: 'data',
     data: [],
     gap: SEGMENT_SERIES.GAP_DEFAULT,
@@ -20,8 +21,11 @@ export class SynergySegmentSeriesModel extends SeriesModel<SegmentSeriesOption> 
     itemStyle: {
       borderWidth: 0,
     },
+    left: 0,
     max: SEGMENT_SERIES.MAX_DEFAULT,
     min: SEGMENT_SERIES.MIN_DEFAULT,
+    right: 0,
+    top: 0,
   };
 
   type = SynergySegmentSeriesModel.type;

@@ -32,7 +32,7 @@ const meta: Meta = {
     },
     docs: {
       description: {
-        component: generateStoryDescription('chart', 'segment-chart-series-default'),
+        component: generateStoryDescription('chart', 'segment-series-default'),
       },
       page: () => (
         <>
@@ -56,14 +56,14 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'segment-chart-series-preset'),
+        story: generateStoryDescription('chart', 'segment-series-preset'),
       },
     },
   },
   render: () => html`
-    <syn-chart id="segment-chart-preset"></syn-chart>
+    <syn-chart id="segment-preset"></syn-chart>
     <script type="module">
-      const charts = document.querySelectorAll('#segment-chart-preset');
+      const charts = document.querySelectorAll('#segment-preset');
 
       charts.forEach(chart => {
         chart.config = {
@@ -83,14 +83,14 @@ export const Gap: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'segment-chart-series-gap'),
+        story: generateStoryDescription('chart', 'segment-series-gap'),
       },
     },
   },
   render: () => html`
-    <syn-chart id="segment-chart-half"></syn-chart>
+    <syn-chart id="segment-gap"></syn-chart>
     <script type="module">
-      const charts = document.querySelectorAll('#segment-chart-half');
+      const charts = document.querySelectorAll('#segment-gap');
 
       charts.forEach(chart => {
         chart.config = handle => handle
@@ -108,14 +108,14 @@ export const NoGap: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'segment-chart-series-gap'),
+        story: generateStoryDescription('chart', 'segment-series-no-gap'),
       },
     },
   },
   render: () => html`
-    <syn-chart id="segment-chart-no-gap"></syn-chart>
+    <syn-chart id="segment-no-gap"></syn-chart>
     <script type="module">
-      const charts = document.querySelectorAll('#segment-chart-no-gap');
+      const charts = document.querySelectorAll('#segment-no-gap');
       charts.forEach(chart => {
         chart.config = handle => handle
         .seriesSegment({
@@ -132,14 +132,14 @@ export const MinMax: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'segment-chart-series-gap'),
+        story: generateStoryDescription('chart', 'segment-series-min-max'),
       },
     },
   },
   render: () => html`
-    <syn-chart id="segment-chart-no-gap"></syn-chart>
+    <syn-chart id="segment-min-max"></syn-chart>
     <script type="module">
-      const charts = document.querySelectorAll('#segment-chart-no-gap');
+      const charts = document.querySelectorAll('#segment-min-max');
       charts.forEach(chart => {
         chart.config = handle => handle
         .seriesSegment({
@@ -157,14 +157,14 @@ export const LabelFormatting: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'segment-chart-series-gap'),
+        story: generateStoryDescription('chart', 'segment-series-label-formatting'),
       },
     },
   },
   render: () => html`
-    <syn-chart id="segment-chart-half"></syn-chart>
+    <syn-chart id="segment-label-formatting"></syn-chart>
     <script type="module">
-      const charts = document.querySelectorAll('#segment-chart-half');
+      const charts = document.querySelectorAll('#segment-label-formatting');
 
       charts.forEach(chart => {
         chart.config = handle => handle
@@ -204,14 +204,14 @@ export const Weights: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'segment-chart-series-gap'),
+        story: generateStoryDescription('chart', 'segment-series-weights'),
       },
     },
   },
   render: () => html`
-    <syn-chart id="segment-chart-half"></syn-chart>
+    <syn-chart id="segment-weights"></syn-chart>
     <script type="module">
-      const charts = document.querySelectorAll('#segment-chart-half');
+      const charts = document.querySelectorAll('#segment-weights');
 
       charts.forEach(chart => {
         chart.config = handle => handle
@@ -252,14 +252,14 @@ export const CustomStyling: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'segment-chart-series-styling'),
+        story: generateStoryDescription('chart', 'segment-series-styling'),
       },
     },
   },
   render: () => html`
-    <syn-chart id="segment-chart-custom"></syn-chart>
+    <syn-chart id="segment-styling"></syn-chart>
     <script type="module">
-      const charts = document.querySelectorAll('#segment-chart-custom');
+      const charts = document.querySelectorAll('#segment-styling');
 
       charts.forEach(chart => {
         chart.config = handle => handle
@@ -326,40 +326,37 @@ export const WithLegend: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'segment-chart-series-gap'),
+        story: generateStoryDescription('chart', 'segment-series-legend'),
       },
     },
   },
   render: () => html`
-    <syn-chart id="segment-chart-half"></syn-chart>
+    <syn-chart id="segment-legend"></syn-chart>
     <script type="module">
-      const charts = document.querySelectorAll('#segment-chart-half');
+      const charts = document.querySelectorAll('#segment-legend');
 
       charts.forEach(chart => {
         chart.config = handle => handle
         .seriesSegment({
           data: [
-          {
-            value: 5,
-            name: 'Five',
-          },
-          {
-            value: 10,
-            name: 'Ten',
-          },
-          {
-            value: 50,
-            name: 'Fifty',
-          },
-          {
-            value: 80,
-            name: 'Eighty',
-          },
-          {
-            value: 100,
-            name: 'One Hundred',
-          },
-        ],
+            {
+              value: 15,
+              name: 'One',
+            },
+            {
+              value: 30,
+              name: 'Two',
+            },
+            {
+              value: 50,
+              name: 'Three',
+            },
+            {
+              value: 80,
+              name: 'Four',
+            },
+          ],
+          top: 20
         })
         .legendShow()
         ;
@@ -378,5 +375,5 @@ export const Screenshot: Story = generateScreenshotStory({
   Weights,
   CustomStyling,
   WithLegend,
-}, 700);
+}, 200);
 /* eslint-enable sort-keys */

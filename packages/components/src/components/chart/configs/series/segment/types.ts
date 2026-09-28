@@ -1,10 +1,12 @@
 import type { ZRColor } from 'echarts/types/dist/shared.js';
-import type { TextStyle } from '../../types.js';
+import type {
+  BackgroundStyle, ItemStyle, LayoutInsets, TextStyle,
+} from '../../types.js';
 
 export type WedgeStyle = {
   fill?: ZRColor;
   lineWidth?: number;
-  stroke?: string;
+  stroke?: ZRColor;
 };
 
 export type SegmentWedgeShape = {
@@ -20,7 +22,7 @@ export type SegmentWedgeShape = {
 /**
  * Configuration options for the `synSegment` series.
  */
-export type SegmentSeriesConfig = {
+export type SegmentSeriesConfig = LayoutInsets & BackgroundStyle & ItemStyle & {
   /** Minimum value used to normalize the segment fill ratio. Defaults to `0`. */
   min?: number;
   /** Maximum value used to normalize the segment fill ratio. Defaults to `100`. */
@@ -32,26 +34,18 @@ export type SegmentSeriesConfig = {
   gapOrientation?: number;
   /** Optional SVG data URL rendered as an icon inside the static center circle. */
   icon?: string;
-  // TODO: Reicht es, wenn man nur für alle gleichezitig die Background color einstellen kann?
-  backgroundStyle?: {
-    /** Colors for the unfilled background of each segment's radial band, aligned by index with `data`. */
-    color?: ZRColor;
-    borderColor?: ZRColor;
-    borderWidth?: number;
-  },
-  itemStyle?: {
-    /** Colors used for the filled portion of each segment, cycled when fewer colors than data points are provided.
- * When omitted, colors are taken from the chart's categorical color palette. */
-    color?: ZRColor;
-    /** Colors for each segment's 1px outline, aligned by index with `data`. No outline is drawn when omitted. */
-    borderColor?: ZRColor;
-    borderWidth?: number;
-  },
   labelTextStyle?: TextStyle;
   /** Main name rendered inside the gap. */
   name?: string;
   nameTextStyle?: TextStyle;
 };
+/** Colors used for the filled portion of each segment, cycled when fewer colors than data points are provided.
+ * When omitted, colors are taken from the chart's categorical color palette. */
+// color?: ZRColor;
+// /** Colors for each segment's 1px outline, aligned by index with `data`. No outline is drawn when omitted. */
+// borderColor?: ZRColor;
+// borderWidth?: number;
+/** Colors for the unfilled background of each segment's radial band, aligned by index with `data`. */
 
 /**
  * Fully normalized segment chart options after defaults are resolved.
@@ -63,7 +57,7 @@ export type ResolvedSegmentChartSeriesConfig = Required<Omit<SegmentSeriesConfig
 /**
  * A single data item shown as a segment item with optional label metadata.
  */
-export type SegmentDataItem = {
+export type SegmentDataItem = BackgroundStyle & ItemStyle & {
   /** Numeric value of the segment; determines the slice angle relative to the other values. */
   value: number;
   /**
@@ -78,20 +72,6 @@ export type SegmentDataItem = {
    * */
   label?: string | ((value: number) => string);
   labelTextStyle?: TextStyle;
-  backgroundStyle?: {
-    /** Colors for the unfilled background of each segment's radial band, aligned by index with `data`. */
-    color?: ZRColor;
-    borderColor?: ZRColor;
-    borderWidth?: number;
-  };
-  itemStyle?: {
-    /** Colors used for the filled portion of each segment, cycled when fewer colors than data points are provided.
- * When omitted, colors are taken from the chart's categorical color palette. */
-    color?: ZRColor;
-    /** Colors for each segment's 1px outline, aligned by index with `data`. No outline is drawn when omitted. */
-    borderColor?: ZRColor;
-    borderWidth?: number;
-  };
   /**
  * Angular width of each segment, aligned by index with `data`. Normalized to the available
  * angle (360 degrees minus the `gap`), analogous to the donut series. When omitted, or when

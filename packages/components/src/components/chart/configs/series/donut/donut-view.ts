@@ -4,11 +4,7 @@ import type { SynergyDonutSeriesModel } from './donut-model.js';
 import type {
   DonutDataItem,
   DonutSeriesOption,
-  LayoutBounds,
-  LayoutCenterInput,
-  LayoutRadiusInput,
   ResolvedDonutDataItem,
-  ResolvedLayout,
 } from './types.js';
 import { DEGREE_TO_RADIAN, DONUT_SERIES, FULL_CIRCLE_RADIAN } from '../../constants.js';
 import { measureTextWidth, getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../../../themes/utilities.js';
@@ -17,102 +13,13 @@ import {
   createImageGraphic,
   createSectorGraphic,
   createTextGraphic,
-  parseLayoutValue,
+  isFixedRadius,
   polarPoint,
-  toPixels,
+  resolveCircularLayout,
 } from '../../utilities.js';
-import type { ExtensionAPI, GlobalModel, SegmentRange } from '../../types.js';
-
-/**
- * Resolves chart-relative inset values (`top`, `right`, `bottom`, `left`) into absolute pixel bounds.
- *
- * Inputs support numeric pixels and percentage strings; invalid inputs fall back to `0`.
- */
-const resolveLayoutBounds = (
-  edges: Pick<DonutSeriesOption, 'top' | 'right' | 'bottom' | 'left'>,
-  width: number,
-  height: number,
-): LayoutBounds => {
-  const top = Math.max(0, toPixels(edges.top, height));
-  const right = Math.max(0, toPixels(edges.right, width));
-  const bottom = Math.max(0, toPixels(edges.bottom, height));
-  const left = Math.max(0, toPixels(edges.left, width));
-
-  return {
-    bottom: Math.max(top, height - bottom),
-    left: Math.min(width, left),
-    right: Math.max(left, width - right),
-    top: Math.min(height, top),
-  };
-};
-
-/**
- * Resolves the donut center point within the previously computed layout bounds.
- *
- * The center may be provided as pixel or percentage offsets relative to the local layout area.
- */
-const resolveLayoutCenter = (
-  center: LayoutCenterInput,
-  bounds: LayoutBounds,
-): { centerX: number; centerY: number; layoutWidth: number; layoutHeight: number } => {
-  const layoutWidth = Math.max(0, bounds.right - bounds.left);
-  const layoutHeight = Math.max(0, bounds.bottom - bounds.top);
-
-  return {
-    centerX: bounds.left + toPixels(center?.[0], layoutWidth, layoutWidth / 2),
-    centerY: bounds.top + toPixels(center?.[1], layoutHeight, layoutHeight / 2),
-    layoutHeight,
-    layoutWidth,
-  };
-};
-
-/**
- * Resolves the outer radius from a pixel/percent config value based on the smaller layout dimension.
- */
-const resolveOuterRadius = (
-  radius: LayoutRadiusInput,
-  layoutWidth: number,
-  layoutHeight: number,
-): number => {
-  const size = Math.min(layoutWidth, layoutHeight);
-  const radiusBase = Math.max(0, size / 2);
-
-  if (radius === undefined) {
-    return radiusBase;
-  }
-
-  return Math.max(0, toPixels(radius, radiusBase, radiusBase / 2));
-};
-
-/**
- * Returns `true` when the radius is an absolute value (number or non-percent string),
- * meaning adaptive scaling should not change it.
- */
-const isFixedRadius = (radius: LayoutRadiusInput): boolean => parseLayoutValue(radius).kind === 'pixel';
-
-/** Resolves layout bounds/center/radius for the donut rendering area. */
-const resolveDonutLayout = (
-  inputConfig: DonutSeriesOption,
-  width: number,
-  height: number,
-): ResolvedLayout => {
-  const bounds = resolveLayoutBounds(inputConfig, width, height);
-  const {
-    centerX,
-    centerY,
-    layoutHeight,
-    layoutWidth,
-  } = resolveLayoutCenter(inputConfig.center, bounds);
-  const outerRadius = resolveOuterRadius(inputConfig.radius, layoutWidth, layoutHeight);
-  return {
-    bounds,
-    centerX,
-    centerY,
-    layoutHeight,
-    layoutWidth,
-    outerRadius,
-  };
-};
+import type {
+  ExtensionAPI, GlobalModel, LayoutBounds, SegmentRange,
+} from '../../types.js';
 
 /**
  * Distributes the data values evenly around a full circle, sized proportionally to their value.
@@ -393,7 +300,7 @@ const buildDonutGroup = (
     layoutHeight,
     layoutWidth,
     outerRadius,
-  } = resolveDonutLayout(inputConfig, width, height);
+  } = resolveCircularLayout(inputConfig, width, height);
   const factor = Math.min(layoutHeight, layoutWidth) / DONUT_SERIES.REFERENCE_HEIGHT;
 
   const segmentRanges = computeSegmentRanges(dataItems.map((item) => Number(item.value)));

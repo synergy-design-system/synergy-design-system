@@ -6,11 +6,16 @@ import {
   compose,
   convertDegreeToRadian,
   getAsArray,
+  isFixedRadius,
   mergeConfigs,
   mergeDeep,
   normalizeAngle,
   parseLayoutValue,
   polarPoint,
+  resolveCircularLayout,
+  resolveLayoutBounds,
+  resolveLayoutCenter,
+  resolveOuterRadius,
   resolveText,
   toPixels,
 } from './utilities.js';
@@ -62,6 +67,65 @@ describe('toPixels', () => {
 
   it('uses a custom fallback for invalid values', () => {
     expect(toPixels(undefined, 200, 80)).to.equal(80);
+  });
+});
+
+describe('circular layout utilities', () => {
+  it('resolves pixel and percentage insets into bounded coordinates', () => {
+    expect(resolveLayoutBounds({
+      bottom: '25%', left: 40, right: '10%', top: 20,
+    }, 300, 200)).to.deep.equal({
+      bottom: 150,
+      left: 40,
+      right: 270,
+      top: 20,
+    });
+  });
+
+  it('clamps negative and overlapping insets to a non-negative layout area', () => {
+    expect(resolveLayoutBounds({
+      bottom: 180, left: -20, right: 250, top: -10,
+    }, 200, 100)).to.deep.equal({
+      bottom: 0,
+      left: 0,
+      right: 0,
+      top: 0,
+    });
+  });
+
+  it('resolves default and configured centers within the layout bounds', () => {
+    const bounds = {
+      bottom: 180, left: 40, right: 280, top: 20,
+    };
+
+    expect(resolveLayoutCenter(undefined, bounds)).to.deep.equal({
+      centerX: 160,
+      centerY: 100,
+      layoutHeight: 160,
+      layoutWidth: 240,
+    });
+    expect(resolveLayoutCenter(['25%', 30], bounds)).to.include({ centerX: 100, centerY: 50 });
+  });
+
+  it('resolves default, percentage and pixel radii from the smaller dimension', () => {
+    expect(resolveOuterRadius(undefined, 240, 160)).to.equal(80);
+    expect(resolveOuterRadius('25%', 240, 160)).to.equal(20);
+    expect(resolveOuterRadius(60, 240, 160)).to.equal(60);
+    expect(isFixedRadius(60)).to.equal(true);
+    expect(isFixedRadius('60%')).to.equal(false);
+  });
+
+  it('resolves a complete circular layout', () => {
+    expect(resolveCircularLayout({ left: 40, top: 20 }, 280, 280)).to.deep.equal({
+      bounds: {
+        bottom: 280, left: 40, right: 280, top: 20,
+      },
+      centerX: 160,
+      centerY: 150,
+      layoutHeight: 260,
+      layoutWidth: 240,
+      outerRadius: 120,
+    });
   });
 });
 

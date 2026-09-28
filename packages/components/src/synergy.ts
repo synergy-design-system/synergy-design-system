@@ -62,6 +62,7 @@ export * from './utilities/icon-library.js';
 export * from './utilities/form.js';
 
 export * from './components/combobox/option-renderer.js';
+export * from './components/combobox/filters.js';
 
 // Global settings
 export * from './utilities/defaultSettings/index.js';

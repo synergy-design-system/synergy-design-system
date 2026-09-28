@@ -316,6 +316,17 @@
             "type": "text",
             "value": "Custom filter"
           }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Set the `filter` property to `none` to always show every option, regardless of what the user has typed. This is useful when the full list itself carries meaning, e.g. a fixed set of statuses or categories, and hiding options could make users think an option no longer exists or worry they mistyped it.\n\nWithout filtering, users lose the visual feedback that narrows the list to their input. To compensate, set the `getOption` property to `highlight` so the matching text is marked inside each option, letting users confirm their input is recognized without removing any options from view."
+          },
+          "name": "empty-filter",
+          "title": {
+            "type": "text",
+            "value": "Showing all options"
+          }
         }
       ],
       "storySourcePath": "components.combobox",
@@ -351,10 +362,19 @@
         {
           "content": [
             "Filter available options in real time as the user types; highlight or bold matching text to indicate relevance.",
-            "Consider limiting the maximum number of displayed suggestions to avoid overwhelming users. We recommend displaying 6-8 (with scrolling for additional results)."
+            "Consider limiting the maximum number of displayed suggestions to avoid overwhelming users. We recommend displaying 6-8 (with scrolling for additional results).",
+            "When showing all options regardless of user input (filter=\"none\"), always combine it with the built-in getOption=\"highlight\" renderer, or a custom renderer that provides equivalent visual feedback, so users can still tell which option matches their input."
           ],
           "id": "searching_behavior",
           "name": "Searching Behavior"
+        },
+        {
+          "content": [
+            "Use readonly when users can inspect but not change the selected option(s).",
+            "Avoid disabling comboboxes unless there is a clear blocking condition."
+          ],
+          "id": "states",
+          "name": "Validation and States"
         }
       ],
       "useCases": [
@@ -394,6 +414,10 @@
       {
         "layer": "full",
         "path": "layers/full/component/component__syn-combobox/components/combobox.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-combobox/components/filters.ts"
       },
       {
         "layer": "full",
@@ -455,6 +479,7 @@
     "packages/components/src/components/combobox/combobox.component.ts",
     "packages/components/src/components/combobox/combobox.styles.ts",
     "packages/components/src/components/combobox/combobox.ts",
+    "packages/components/src/components/combobox/filters.ts",
     "packages/components/src/components/combobox/option-renderer.ts",
     "packages/components/src/components/combobox/utils.ts",
     "packages/react/src/components/combobox.ts",

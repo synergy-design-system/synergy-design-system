@@ -637,6 +637,27 @@ export const CustomFilter: Story = {
   `,
 };
 
+export const EmptyFilter: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('combobox', 'empty-filter'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-combobox
+      class="empty-filter-combobox"
+      filter="none"
+      getOption="highlight"
+      label="Empty Filter"
+      multiple
+    >
+      ${createColorOptionsHtml()}
+    </syn-combobox>
+  `,
+};
+
 // Bundled screenshot story
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
@@ -655,5 +676,6 @@ export const Screenshot: Story = generateScreenshotStory({
   PrefixSuffixTextAndIcons,
   AsyncOptions,
   CustomFilter,
+  EmptyFilter,
 }, 500);
 /* eslint-enable sort-keys */

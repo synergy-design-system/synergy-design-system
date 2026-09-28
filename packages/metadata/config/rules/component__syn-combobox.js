@@ -30,9 +30,18 @@ export default {
       content: [
         'Filter available options in real time as the user types; highlight or bold matching text to indicate relevance.',
         'Consider limiting the maximum number of displayed suggestions to avoid overwhelming users. We recommend displaying 6-8 (with scrolling for additional results).',
+        'When showing all options regardless of user input (filter="none"), always combine it with the built-in getOption="highlight" renderer, or a custom renderer that provides equivalent visual feedback, so users can still tell which option matches their input.',
       ],
       id: 'searching_behavior',
       name: 'Searching Behavior',
+    },
+    {
+      content: [
+        'Use readonly when users can inspect but not change the selected option(s).',
+        'Avoid disabling comboboxes unless there is a clear blocking condition.',
+      ],
+      id: 'states',
+      name: 'Validation and States',
     },
   ],
   useCases: [

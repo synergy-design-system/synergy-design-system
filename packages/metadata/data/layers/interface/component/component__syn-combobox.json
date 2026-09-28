@@ -25,11 +25,12 @@
       "type": "boolean"
     },
     {
-      "description": "A function used to filter options in the combobox component.\nThe default filter method is a case- and diacritic-insensitive string comparison.",
+      "default": "containsFilter",
+      "description": "A function used to filter options in the combobox component, or the name of a predefined filter:\n- `contains`: A case- and diacritic-insensitive string comparison (default)\n- `none`: Does not filter and always shows all options. Make sure to combine this with a `getOption` highlight renderer for better UX.\n- A custom function receives the option and the query string and returns a boolean indicating whether the option should be included in the filtered results.",
       "fieldName": "filter",
       "name": "filter",
       "reflects": false,
-      "type": "(option: SynOption, queryString: string) => boolean"
+      "type": "ComboboxFilter | ComboboxFilterName"
     },
     {
       "default": "''",
@@ -41,11 +42,11 @@
     },
     {
       "default": "defaultOptionRenderer",
-      "description": "A function that customizes the rendered option. The first argument is the option, the second\nis the query string, which is typed into the combobox.\nThe function should return either a Lit TemplateResult or a string containing trusted HTML\nto render in the shown list of filtered options.\nIf the query string should be highlighted use the `highlightOptionRenderer` function.",
+      "description": "A function that customizes the rendered option, or the name of a predefined renderer:\n- `default`: Does not change the option (default)\n- `highlight`: Highlights the matching query string with a `<mark>` element\n- A custom function receives the option and the query string, which is typed into the combobox. It should return either a Lit TemplateResult or a string containing trusted HTML to render in the shown list of filtered options.",
       "fieldName": "getOption",
       "name": "getOption",
       "reflects": false,
-      "type": "OptionRenderer"
+      "type": "OptionRenderer | OptionRendererName"
     },
     {
       "description": "A function that customizes the tags to be rendered when `multiple` is true. The first argument is the option, the second\nis the current tag's index.  The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at\nthe specified value.",
@@ -457,9 +458,10 @@
     },
     {
       "access": "public",
-      "description": "A function used to filter options in the combobox component.\nThe default filter method is a case- and diacritic-insensitive string comparison.",
+      "default": "containsFilter",
+      "description": "A function used to filter options in the combobox component, or the name of a predefined filter:\n- `contains`: A case- and diacritic-insensitive string comparison (default)\n- `none`: Does not filter and always shows all options. Make sure to combine this with a `getOption` highlight renderer for better UX.\n- A custom function receives the option and the query string and returns a boolean indicating whether the option should be included in the filtered results.",
       "name": "filter",
-      "type": "(option: SynOption, queryString: string) => boolean"
+      "type": "ComboboxFilter | ComboboxFilterName"
     },
     {
       "access": "public",
@@ -471,9 +473,9 @@
     {
       "access": "public",
       "default": "defaultOptionRenderer",
-      "description": "A function that customizes the rendered option. The first argument is the option, the second\nis the query string, which is typed into the combobox.\nThe function should return either a Lit TemplateResult or a string containing trusted HTML\nto render in the shown list of filtered options.\nIf the query string should be highlighted use the `highlightOptionRenderer` function.",
+      "description": "A function that customizes the rendered option, or the name of a predefined renderer:\n- `default`: Does not change the option (default)\n- `highlight`: Highlights the matching query string with a `<mark>` element\n- A custom function receives the option and the query string, which is typed into the combobox. It should return either a Lit TemplateResult or a string containing trusted HTML to render in the shown list of filtered options.",
       "name": "getOption",
-      "type": "OptionRenderer"
+      "type": "OptionRenderer | OptionRendererName"
     },
     {
       "access": "public",

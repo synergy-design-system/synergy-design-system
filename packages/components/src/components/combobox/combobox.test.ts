@@ -1360,6 +1360,61 @@ describe('<syn-combobox>', () => {
     expect(options[2]).to.be.displayed;
   });
 
+  it('should show all options when the filter attribute is set to "none"', async () => {
+    const el = await fixture<SynCombobox>(html`
+      <syn-combobox value="green" filter="none">
+        <syn-option value="option-1">Green</syn-option>
+        <syn-option value="option-2">Red</syn-option>
+        <syn-option value="option-3">Light green</syn-option>
+      </syn-combobox>
+    `);
+
+    await el.show();
+    await el.updateComplete;
+
+    const options = el.querySelectorAll('syn-option');
+
+    expect(el.filter).to.equal('none');
+    options.forEach(option => expect(option).to.be.displayed);
+  });
+
+  it('should show all options when the filter property is set to "none"', async () => {
+    const el = await fixture<SynCombobox>(html`
+      <syn-combobox value="green">
+        <syn-option value="option-1">Green</syn-option>
+        <syn-option value="option-2">Red</syn-option>
+        <syn-option value="option-3">Light green</syn-option>
+      </syn-combobox>
+    `);
+
+    el.filter = 'none';
+
+    await el.show();
+    await el.updateComplete;
+
+    const options = el.querySelectorAll('syn-option');
+    options.forEach(option => expect(option).to.be.displayed);
+  });
+
+  it('should fall back to the default filter for unknown filter names', async () => {
+    const el = await fixture<SynCombobox>(html`
+      <syn-combobox value="green" filter="unknown">
+        <syn-option value="option-1">Green</syn-option>
+        <syn-option value="option-2">Red</syn-option>
+        <syn-option value="option-3">Light green</syn-option>
+      </syn-combobox>
+    `);
+
+    await el.show();
+    await el.updateComplete;
+
+    const options = el.querySelectorAll('syn-option');
+
+    expect(options[0]).to.be.displayed;
+    expect(options[1]).not.to.be.displayed;
+    expect(options[2]).to.be.displayed;
+  });
+
   it('should work with options that do not have a value', async () => {
     const el = await fixture<SynCombobox>(html`
       <syn-combobox>
@@ -1515,6 +1570,36 @@ describe('<syn-combobox>', () => {
         expect(option.getTextLabel()).to.equal(`Template - Option ${index + 1}`);
       });
       expect(getOptionHandler).to.have.been.calledThrice;
+    });
+
+    it('should use the highlight renderer when the getOption attribute is set to "highlight"', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox value="option-1" .getOption=${'highlight'}>
+          <syn-option value="option-1">Option 1</syn-option>
+        </syn-combobox>
+      `);
+
+      await el.show();
+      await el.updateComplete;
+
+      expect(el.getOption).to.equal('highlight');
+      const option = el.querySelector('syn-option')!;
+      expect(option.querySelector('mark')).not.to.be.null;
+    });
+
+    it('should fall back to the default renderer for unknown getOption names', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox value="option-1" .getOption=${'unknown'}>
+          <syn-option value="option-1">Option 1</syn-option>
+        </syn-combobox>
+      `);
+
+      await el.show();
+      await el.updateComplete;
+
+      const option = el.querySelector('syn-option')!;
+      expect(option.getTextLabel()).to.equal('Option 1');
+      expect(option.querySelector('mark')).to.be.null;
     });
 
     it('should use the original option if incorrect getOption renderer is used', async () => {

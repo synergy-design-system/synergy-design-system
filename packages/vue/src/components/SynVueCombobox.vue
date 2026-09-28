@@ -180,18 +180,20 @@ If `multiple` is set, the combobox will always be `restricted` to the available 
   multiple?: SynCombobox['multiple'];
 
   /**
-* A function that customizes the rendered option.
-* The first argument is the option, the second
-is the query string, which is typed into the combobox.
-The function should return either a Lit TemplateResult or a string containing trusted HTML
-to render in the shown list of filtered options.
-If the query string should be highlighted use the `highlightOptionRenderer` function.
+* A function that customizes the rendered option, or the name of a predefined renderer:
+- `default`: Does not change the option (default)
+- `highlight`: Highlights the matching query string with a `<mark>` element
+- A custom function receives the option and the query string, which is typed into the combobox.
+* It should return either a Lit TemplateResult or a string containing trusted HTML to render in the shown list of filtered options.
  */
   getOption?: SynCombobox['getOption'];
 
   /**
-* A function used to filter options in the combobox component.
-The default filter method is a case- and diacritic-insensitive string comparison.
+* A function used to filter options in the combobox component, or the name of a predefined filter:
+- `contains`: A case- and diacritic-insensitive string comparison (default)
+- `none`: Does not filter and always shows all options.
+* Make sure to combine this with a `getOption` highlight renderer for better UX.
+- A custom function receives the option and the query string and returns a boolean indicating whether the option should be included in the filtered results.
  */
   filter?: SynCombobox['filter'];
 

@@ -45,3 +45,13 @@ export const highlightOptionRenderer: OptionRenderer = (option: SynOption, query
   clonedOption.innerHTML = previousContent.concat(exchangedText, followingContent);
   return clonedOption;
 };
+
+/**
+ * The predefined option renderers that may be used via their name for the combobox `getOption` property.
+ */
+export const optionRenderers = {
+  default: defaultOptionRenderer,
+  highlight: highlightOptionRenderer,
+} as const satisfies Record<string, OptionRenderer>;
+
+export type OptionRendererName = keyof typeof optionRenderers;

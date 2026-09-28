@@ -7,6 +7,7 @@
 
 // Global imports
 import { modernNumericStrategy } from "../../components/input/strategies.js";
+import { containsFilter } from "../../components/combobox/filters.js";
 
 // Type imports
 import type SynAccordion from "../../components/accordion/accordion.js";
@@ -114,6 +115,9 @@ export type SynDefaultSettings = {
     SynOption?: AllowedValueForDefaultSetting<SynOption, "delimiter">;
     SynSelect?: AllowedValueForDefaultSetting<SynSelect, "delimiter">;
   };
+  filter: {
+    SynCombobox?: AllowedValueForDefaultSetting<SynCombobox, "filter">;
+  };
   numericStrategy: {
     SynInput?: AllowedValueForDefaultSetting<SynInput, "numericStrategy">;
   };
@@ -162,6 +166,9 @@ export const defaultSettings: SynDefaultSettings = {
     SynOption: " ",
     SynSelect: " ",
   },
+  filter: {
+    SynCombobox: containsFilter,
+  },
   numericStrategy: {
     SynInput: modernNumericStrategy,
   },
@@ -207,6 +214,9 @@ export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
     SynCombobox: " ",
     SynOption: " ",
     SynSelect: " ",
+  },
+  filter: {
+    SynCombobox: containsFilter,
   },
   numericStrategy: {
     SynInput: modernNumericStrategy,

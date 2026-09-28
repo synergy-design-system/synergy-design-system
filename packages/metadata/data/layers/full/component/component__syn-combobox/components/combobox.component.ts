@@ -27,10 +27,21 @@ import styles from './combobox.styles.js';
 import {
   checkValueBelongsToOption,
   createOptionFromDifferentTypes, filterOnlyOptgroups, getAllOptions, getAssignedElementsForSlot,
-  getValueFromOption, getValuesFromOptions, normalizeString,
+  getValueFromOption, getValuesFromOptions,
 } from './utils.js';
 import { scrollIntoView } from '../../internal/scroll.js';
-import { type OptionRenderer, defaultOptionRenderer } from './option-renderer.js';
+import {
+  type OptionRenderer,
+  type OptionRendererName,
+  defaultOptionRenderer,
+  optionRenderers,
+} from './option-renderer.js';
+import {
+  type ComboboxFilter,
+  type ComboboxFilterName,
+  comboboxFilters,
+  containsFilter,
+} from './filters.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 import type { SynRemoveEvent } from '../../events/events.js';
 import { compareValues, isAllowedValue } from '../select/utility.js';
@@ -139,6 +150,22 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   private resizeObserver: ResizeObserver;
 
   private mutationObserver: MutationObserver;
+
+  private get resolvedFilter(): ComboboxFilter {
+    if (typeof this.filter === 'function') {
+      return this.filter;
+    }
+    // Unknown names may come in via the html attribute
+    return comboboxFilters[this.filter] ?? containsFilter;
+  }
+
+  private get resolvedOption(): OptionRenderer {
+    if (typeof this.getOption === 'function') {
+      return this.getOption;
+    }
+    // Unknown names may come in via the html attribute
+    return optionRenderers[this.getOption] ?? defaultOptionRenderer;
+  }
 
   @query('.combobox') popup: SynPopup;
 
@@ -267,39 +294,20 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   @property({ reflect: true, type: Boolean }) multiple = false;
 
   /**
-   * A function that customizes the rendered option. The first argument is the option, the second
-   * is the query string, which is typed into the combobox.
-   * The function should return either a Lit TemplateResult or a string containing trusted HTML
-   * to render in the shown list of filtered options.
-   * If the query string should be highlighted use the `highlightOptionRenderer` function.
+   * A function that customizes the rendered option, or the name of a predefined renderer:
+   * - `default`: Does not change the option (default)
+   * - `highlight`: Highlights the matching query string with a `<mark>` element
+   * - A custom function receives the option and the query string, which is typed into the combobox. It should return either a Lit TemplateResult or a string containing trusted HTML to render in the shown list of filtered options.
    */
-  @property() getOption: OptionRenderer = defaultOptionRenderer;
+  @property() getOption: OptionRenderer | OptionRendererName = defaultOptionRenderer;
 
   /**
-   * A function used to filter options in the combobox component.
-   * The default filter method is a case- and diacritic-insensitive string comparison.
-   *
-   * @param option - The option to be filtered.
-   * @param queryString - The query string used for filtering.
-   * @returns A boolean indicating whether the option should be included in the filtered results.
+   * A function used to filter options in the combobox component, or the name of a predefined filter:
+   * - `contains`: A case- and diacritic-insensitive string comparison (default)
+   * - `none`: Does not filter and always shows all options. Make sure to combine this with a `getOption` highlight renderer for better UX.
+   * - A custom function receives the option and the query string and returns a boolean indicating whether the option should be included in the filtered results.
    */
-  // eslint-disable-next-line class-methods-use-this
-  @property() filter: (option: SynOption, queryString: string) => boolean = (option, queryStr) => {
-    let content = option?.textContent || '';
-    if (option instanceof SynOption) {
-      content = option.getTextLabel();
-    }
-    const normalizedOption = normalizeString(content);
-    const normalizedQuery = normalizeString(queryStr);
-
-    if (normalizedOption.includes(normalizedQuery)) {
-      return true;
-    }
-
-    // #1362 do not do an equal test, as other filtered options should also be shown if they partially match
-    const value = option?.value?.toString() || '';
-    return value.includes(queryStr);
-  };
+  @property() filter: ComboboxFilter | ComboboxFilterName = containsFilter;
 
   /**
    * The delimiter to use when setting the value when `multiple` is enabled.
@@ -1211,7 +1219,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         const cachedOption = this.cachedOptions.find(o => o.id === option.id) || option;
 
         // Apply custom option rendering
-        const optionResult = this.getOption(cachedOption, queryString);
+        const optionResult = this.resolvedOption(cachedOption, queryString);
         let updatedOption = createOptionFromDifferentTypes(optionResult);
 
         // Fall back to original option if rendering fails
@@ -1220,7 +1228,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         }
 
         // Apply filtering logic to determine visibility
-        const hideOption = !(this.filter(updatedOption, queryString) || queryString === '');
+        const hideOption = !(this.resolvedFilter(updatedOption, queryString) || queryString === '');
         updatedOption.hidden = hideOption;
 
         option.replaceWith(updatedOption);

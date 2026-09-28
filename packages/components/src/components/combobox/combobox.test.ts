@@ -1204,6 +1204,34 @@ describe('<syn-combobox>', () => {
     expect(el.displayInput.value).to.equal('');
   });
 
+  it('should not show the clear button again after clearing a multiple combobox and typing then deleting text', async () => {
+    const el = await fixture<SynCombobox>(html`
+      <syn-combobox value="option-1" clearable multiple>
+        <syn-option value="option-1">Option 1</syn-option>
+        <syn-option value="option-2">Option 2</syn-option>
+        <syn-option value="option-3">Option 3</syn-option>
+      </syn-combobox>
+    `);
+    const clearButton = () => el.shadowRoot!.querySelector('[part~="clear-button"]');
+
+    expect(clearButton()).not.to.be.null;
+
+    await clickOnElement(clearButton()!);
+    await el.updateComplete;
+
+    expect(clearButton()).to.be.null;
+
+    el.focus();
+    await sendKeys({ type: 'abc' });
+    await sendKeys({ press: 'Backspace' });
+    await sendKeys({ press: 'Backspace' });
+    await sendKeys({ press: 'Backspace' });
+    await el.updateComplete;
+
+    expect(el.value).to.deep.equal([]);
+    expect(clearButton()).to.be.null;
+  });
+
   it('should emit syn-show, syn-after-show, syn-hide, and syn-after-hide events when the listbox opens and closes', async () => {
     const el = await fixture<SynCombobox>(html`
       <syn-combobox>
@@ -1589,7 +1617,7 @@ describe('<syn-combobox>', () => {
 
     it('should fall back to the default renderer for unknown getOption names', async () => {
       const el = await fixture<SynCombobox>(html`
-        <syn-combobox value="option-1" .getOption=${'unknown'}>
+        <syn-combobox value="option-1" .getOption=${'unknown' as 'default'}>
           <syn-option value="option-1">Option 1</syn-option>
         </syn-combobox>
       `);

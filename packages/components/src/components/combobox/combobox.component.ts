@@ -1269,9 +1269,10 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     }
 
     if (this.multiple) {
-      // In multiple mode, combine selected option values with current input
+      // In multiple mode, combine selected option values with current input.
+      // Don't append an empty input value, as it does not represent an actual selection.
       const validValues = getValuesFromOptions(this.selectedOptions);
-      this.value = [...validValues, inputValue];
+      this.value = inputValue ? [...validValues, inputValue] : validValues;
     } else {
       // In single mode, replace value with current input
       this.value = inputValue;
@@ -1525,6 +1526,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
     let hasValue: boolean;
+
     if (Array.isArray(this.value)) {
       hasValue = this.value.length > 0;
     } else if (typeof this.value === 'string') {

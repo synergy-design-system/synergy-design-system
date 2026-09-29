@@ -1,0 +1,36 @@
+{
+  "name": "@synergy-design-system/platform-contract-demo",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite",
+    "_build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint:css": "stylelint \"src/**/*.{css}\" \"src/**/*.styles.ts\"",
+    "lint:html": "html-validate index.html src/**/*.txt",
+    "lint:js": "eslint src",
+    "lint": "pnpm run /^lint:.*/"
+  },
+  "devDependencies": {
+    "@synergy-design-system/assets": "workspace:^",
+    "@synergy-design-system/eslint-config-syn": "workspace:^",
+    "@synergy-design-system/stylelint-config-syn": "workspace:^",
+    "eslint": "^9.39.5",
+    "html-validate": "^11.6.1",
+    "stylelint": "^17.14.1",
+    "typescript": "^6.0.3",
+    "vite": "^8.2.0",
+    "vite-plugin-static-copy": "^4.1.1"
+  },
+  "dependencies": {
+    "@synergy-design-system/components": "workspace:*",
+    "@synergy-design-system/demo-utilities": "workspace:*",
+    "@synergy-design-system/fonts": "workspace:*",
+    "@synergy-design-system/styles": "workspace:*",
+    "@synergy-design-system/tokens": "workspace:*",
+    "history": "^5.3.0",
+    "lit": "^3.3.3"
+  }
+}

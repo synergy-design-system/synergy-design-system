@@ -1,0 +1,11 @@
+<!-- index -->
+<div class="index">
+  <h1 class="syn-heading--3x-large">
+    Platform Contract Fixtures
+  </h1>
+
+  <p class="syn-body--medium">
+    Minimal fixtures for browser behavior contracts that Synergy relies on.
+  </p>
+</div>
+<!-- /index -->

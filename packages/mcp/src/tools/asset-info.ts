@@ -43,12 +43,12 @@ export const assetInfoTool = (server: McpServer) => {
     'asset-info',
     {
       annotations: createToolAnnotations(),
-      description: 'Get information about available icons in the Synergy Design System. Will return the full list of icons in a set or just a subset',
+      description: 'Find Synergy icons by icon set and optional name or tag filters. Returns matching icons grouped by category; use asset-list to discover icon set IDs.',
       inputSchema: {
         filter: z
           .string()
           .optional()
-          .describe('A filter to apply to the icon names. If provided, only icons matching this filter will be returned. Supports multiple filters separated by "," (e.g., "home,search,menu" to find icons containing any of these terms).'),
+          .describe('Icon name or tag filters. Separate multiple terms with commas; matches for any term are returned and limit applies per term.'),
         iconset: z
           .enum([
             'legacy', // Fallback to 2018
@@ -73,7 +73,7 @@ export const assetInfoTool = (server: McpServer) => {
           .optional()
           .describe('The maximum number of icons to return. Defaults to unlimited. When using multiple filters (comma-separated), this limit applies per filter term.'),
       },
-      title: 'Available Icons',
+      title: 'Search icons',
     },
     toolHandler('asset-info', async ({
       filter,

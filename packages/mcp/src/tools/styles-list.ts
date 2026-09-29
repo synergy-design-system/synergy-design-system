@@ -1,7 +1,7 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { listStyles } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
+  getAvailableStyleNames,
   getToolRule,
   toolHandler,
 } from '../utilities/index.js';
@@ -16,23 +16,15 @@ export const stylesList = (server: McpServer) => {
     'styles-list',
     {
       annotations: createToolAnnotations(),
-      description: 'Outputs a list of available css classes and styles in the Synergy Design System',
+      description: 'List available Synergy CSS utility and style names. Use a returned name with styles-info for examples and usage.',
       inputSchema: {},
-      title: 'Styles list',
+      title: 'List CSS utilities',
     },
     toolHandler('styles-list', async () => {
       const aiRules = await getToolRule('styles-list');
-      const styles = await listStyles({
-        includeLayerRefs: false,
-        includeSources: false,
-      });
-      const styleNames = styles.data
-        .map(c => c.name)
-        .toSorted();
-
       return [
         aiRules,
-        styleNames,
+        await getAvailableStyleNames(),
       ];
     }),
   );

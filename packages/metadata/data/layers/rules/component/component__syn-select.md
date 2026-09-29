@@ -27,6 +27,11 @@ Selects allow you to choose items from a menu of predefined options.
 - Display selected options as tags within the field to help users track their selections.
 - Consider limiting the maximum number of displayed selectable options to avoid overwhelming users. We recommend displaying 6-8 (with scrolling for additional results).
 
+### Validation and States
+
+- Use readonly when users need to inspect the current selection without changing it; for multiple selections, make sure every selected value remains visible.
+- Use disabled only when selection is unavailable, and explain what must happen before users can choose an option.
+
 ## Accessibility
 
 - If multiple options can be selected, clearly announce this capability to screenreader users and offer a way to view all chosen items.

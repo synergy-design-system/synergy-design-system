@@ -34,6 +34,14 @@ export default {
       id: 'searching_behavior',
       name: 'Searching Behavior',
     },
+    {
+      content: [
+        'Use readonly when users can inspect but not change the selected option(s).',
+        'Use disabled only when selection is unavailable for a clear reason; explain why and how users can proceed.',
+      ],
+      id: 'states',
+      name: 'Validation and States',
+    },
   ],
   useCases: [
     'Allow users to select one or more options from a potentially large list by typing a search string and filtering suggestions.',

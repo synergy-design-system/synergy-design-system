@@ -27,6 +27,11 @@ allowing users to either select from predefined options or enter custom values (
 - Filter available options in real time as the user types; highlight or bold matching text to indicate relevance.
 - Consider limiting the maximum number of displayed suggestions to avoid overwhelming users. We recommend displaying 6-8 (with scrolling for additional results).
 
+### Validation and States
+
+- Use readonly when users can inspect but not change the selected option(s).
+- Use disabled only when selection is unavailable for a clear reason; explain why and how users can proceed.
+
 ## Accessibility
 
 - A visible label may be omitted for search input fields within a combobox if an associated button-complete with a clear search icon and an appropriate accessible name (e.g., aria-label="Search")-is provided.

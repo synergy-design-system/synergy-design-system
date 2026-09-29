@@ -66,7 +66,7 @@ The focus event gives the user feedback that the Dropzone has been focused by th
 
 ## Disabled
 
-Use the disabled attribute to disable a file input.
+Use disabled only when file selection is unavailable, and explain when users can upload files. Use readonly to show previously selected file names without allowing replacement.
 
 ```html
 <div style="display: flex; flex-direction: column; gap: 1rem">
@@ -79,7 +79,7 @@ Use the disabled attribute to disable a file input.
 
 ## Readonly
 
-Use the readonly attribute to set a file input to a readonly state.
+Use readonly when users should see previously selected file names but cannot replace them here. Use disabled only when file selection is unavailable.
 
 ```html
 <div style="display: flex; flex-direction: column; gap: 1rem">

@@ -1,6 +1,6 @@
 ## Default
 
-Ranges allow the user to select values within a given range using a thumb.
+Use readonly when users need to inspect the current value or interval without moving the thumb(s). Show the value in text as well.
 
 ```html
 <syn-range value="50"></syn-range>
@@ -10,7 +10,7 @@ Ranges allow the user to select values within a given range using a thumb.
 
 ## Labels
 
-Use the label attribute to give the range an accessible label. For labels that contain HTML, use the label slot instead.
+Use disabled only when adjusting the range is unavailable, and explain when it can be changed. Use readonly to display an existing value without allowing adjustments.
 
 ```html
 <syn-range label="Label" max="100" min="0" value="50"></syn-range>

@@ -199,7 +199,7 @@
         {
           "description": {
             "type": "text",
-            "value": "Use the disabled attribute to disable a combobox."
+            "value": "Use disabled only when selection is unavailable, and explain what must happen before users can choose an option. Use readonly to show existing selections without allowing changes."
           },
           "name": "disabled",
           "title": {
@@ -210,7 +210,7 @@
         {
           "description": {
             "type": "text",
-            "value": "Add the readonly attribute to draw a read-only combobox."
+            "value": "Use readonly when users should inspect selected option(s) without changing them. Use disabled only when selection is unavailable."
           },
           "name": "readonly",
           "title": {
@@ -355,6 +355,14 @@
           ],
           "id": "searching_behavior",
           "name": "Searching Behavior"
+        },
+        {
+          "content": [
+            "Use readonly when users can inspect but not change the selected option(s).",
+            "Use disabled only when selection is unavailable for a clear reason; explain why and how users can proceed."
+          ],
+          "id": "states",
+          "name": "Validation and States"
         }
       ],
       "useCases": [

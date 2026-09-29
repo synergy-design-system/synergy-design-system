@@ -1175,7 +1175,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the disabled attribute to disable the checkbox.",
+          "value": "Use disabled when this choice is unavailable, and explain why it cannot be selected. Use readonly instead when users should see an existing checked state without changing it.",
           "type": "text"
         }
       },
@@ -1185,7 +1185,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add the readonly attribute to draw a read-only checkbox.",
+          "value": "Use readonly when users need to see whether an existing choice is checked but must not change it. Use disabled only when the choice is unavailable.",
           "type": "text"
         }
       },
@@ -1307,7 +1307,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the disabled attribute on the corresponding syn-checkbox elements to set the disabled state.",
+          "value": "Set disabled on individual syn-checkbox options that are unavailable, and explain why. The checkbox group itself has no disabled attribute.",
           "type": "text"
         }
       },
@@ -1317,7 +1317,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Checkboxes can be displayed in a read-only state by applying the readonly attribute to the selected checkbox inside the checkbox group.",
+          "value": "Set readonly on each syn-checkbox whose checked state users should inspect but not change. To freeze the entire group, apply it to every option, not just the checked ones.",
           "type": "text"
         }
       },
@@ -1743,7 +1743,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Enable the disabled toggle to disable all nested elements simultaneously.",
+          "value": "Use disabled when the entire section is unavailable; it disables contained form controls. Explain how to make the section available. To keep existing values inspectable instead, set readonly on supported child controls.",
           "type": "text"
         }
       }
@@ -1805,7 +1805,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the disabled attribute to disable a file input.",
+          "value": "Use disabled only when file selection is unavailable, and explain when users can upload files. Use readonly to show previously selected file names without allowing replacement.",
           "type": "text"
         }
       },
@@ -1815,7 +1815,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the readonly attribute to set a file input to a readonly state.",
+          "value": "Use readonly when users should see previously selected file names but cannot replace them here. Use disabled only when file selection is unavailable.",
           "type": "text"
         }
       },
@@ -2023,7 +2023,7 @@
           "type": "text"
         },
         "title": {
-          "value": "Input",
+          "value": "Use readonly for a prefilled value users should review or copy without editing. Unlike disabled, the input remains available for inspection.",
           "type": "text"
         }
       },
@@ -2033,7 +2033,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the label attribute to give the input an accessible label. For labels that contain HTML, use the label slot instead.",
+          "value": "Use disabled only when the input is unavailable, and explain how to make it available. Disabled inputs leave the tab order and are not submitted; use readonly to show an existing value instead.",
           "type": "text"
         }
       },
@@ -2681,7 +2681,7 @@
       },
       "disabled": {
         "description": {
-          "value": "Use the disabled attribute to disable a radio button.",
+          "value": "Set disabled on an unavailable radio-button option and explain why it cannot be selected. Use readonly on every option when the current selection is for inspection only.",
           "type": "text"
         },
         "title": {
@@ -2691,7 +2691,7 @@
       },
       "readonly": {
         "description": {
-          "value": "Add the read-only attribute to render a readonly radio button. Please note that you need to enable the readonly state for each individual radio button.",
+          "value": "Set readonly on every syn-radio-button in the group to show the current selection without allowing changes. Setting it only on the selected option leaves other buttons available.",
           "type": "text"
         },
         "title": {
@@ -2777,7 +2777,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Radios and radio buttons can be disabled by adding the disabled attribute to the respective options inside the radio group.",
+          "value": "Set disabled on individual syn-radio or syn-radio-button options that are unavailable, and explain why they cannot be selected. The group itself has no disabled attribute.",
           "type": "text"
         }
       },
@@ -2787,7 +2787,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add the readonly attribute to a radio to draw it in a readonly state.",
+          "value": "Set readonly on every syn-radio or syn-radio-button in the group when users should inspect the selected choice without changing it. Marking only the selected option readonly leaves other choices available.",
           "type": "text"
         }
       },
@@ -2879,7 +2879,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Ranges allow the user to select values within a given range using a thumb.",
+          "value": "Use readonly when users need to inspect the current value or interval without moving the thumb(s). Show the value in text as well.",
           "type": "text"
         }
       },
@@ -2889,7 +2889,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the label attribute to give the range an accessible label. For labels that contain HTML, use the label slot instead.",
+          "value": "Use disabled only when adjusting the range is unavailable, and explain when it can be changed. Use readonly to display an existing value without allowing adjustments.",
           "type": "text"
         }
       },
@@ -3153,7 +3153,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the disabled attribute to disable a select.",
+          "value": "Use disabled only when selection is unavailable, and explain when users can choose an option. Use readonly to display the current selection without allowing changes.",
           "type": "text"
         }
       },
@@ -3163,7 +3163,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add the readonly attribute to a select to draw it in a readonly state.",
+          "value": "Use readonly when users need to inspect their current selection without changing it. For multiple selections, keep every selected value visible.",
           "type": "text"
         }
       },
@@ -3347,7 +3347,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the disabled attribute to disable the switch.",
+          "value": "Use disabled only when changing the setting is unavailable, and explain what prevents toggling it. Use readonly to show an existing on/off state without allowing changes.",
           "type": "text"
         }
       },
@@ -3357,7 +3357,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add the readonly attribute to draw a read-only switch.",
+          "value": "Use readonly to display an existing on/off setting that users may inspect but cannot toggle here. Use disabled only when the setting is unavailable.",
           "type": "text"
         }
       },
@@ -3639,7 +3639,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add the readonly attribute to draw a read-only textarea.",
+          "value": "Use readonly when users need to review or copy existing text without changing it. Use disabled only when the textarea is unavailable.",
           "type": "text"
         }
       },
@@ -3649,7 +3649,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the disabled attribute to disable a textarea.",
+          "value": "Use disabled only when the textarea is unavailable, and explain when users can edit it. Use readonly to display existing text without allowing edits.",
           "type": "text"
         }
       },
@@ -3843,7 +3843,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the disabled attribute to disable a radio.",
+          "value": "Set disabled on an unavailable radio option and explain why it cannot be selected. Use readonly on every radio in the group when users should inspect the selection without changing it.",
           "type": "text"
         }
       },
@@ -3853,7 +3853,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add the readonly attribute to draw a read-only radio.",
+          "value": "Set readonly on every syn-radio in the group when users should inspect the selected choice without changing it. Setting it only on the selected radio leaves other choices available.",
           "type": "text"
         }
       },
@@ -4407,7 +4407,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the disabled attribute to disable a combobox.",
+          "value": "Use disabled only when selection is unavailable, and explain what must happen before users can choose an option. Use readonly to show existing selections without allowing changes.",
           "type": "text"
         }
       },
@@ -4417,7 +4417,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add the readonly attribute to draw a read-only combobox.",
+          "value": "Use readonly when users should inspect selected option(s) without changing them. Use disabled only when selection is unavailable.",
           "type": "text"
         }
       },

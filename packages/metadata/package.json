@@ -40,6 +40,7 @@
   },
   "files": [
     "data/**",
+    "skills-content/**",
     "dist/index.d.ts",
     "dist/index.js",
     "dist/public/**",

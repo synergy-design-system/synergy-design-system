@@ -52,7 +52,7 @@ The focus event gives the user feedback that the Checkbox has been focused by th
 
 ## Disabled
 
-Use the disabled attribute to disable the checkbox.
+Use disabled when this choice is unavailable, and explain why it cannot be selected. Use readonly instead when users should see an existing checked state without changing it.
 
 ```html
 <syn-checkbox disabled="">Disabled</syn-checkbox>
@@ -62,7 +62,7 @@ Use the disabled attribute to disable the checkbox.
 
 ## Readonly
 
-Add the readonly attribute to draw a read-only checkbox.
+Use readonly when users need to see whether an existing choice is checked but must not change it. Use disabled only when the choice is unavailable.
 
 ```html
 <div

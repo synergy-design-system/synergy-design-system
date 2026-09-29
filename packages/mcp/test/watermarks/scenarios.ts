@@ -46,17 +46,37 @@ export type WatermarkScenario = {
   /**
    * Determines which MCP API should be used for this scenario.
    */
-  kind: 'tool' | 'prompt';
+  kind: 'tool' | 'prompt' | 'tools-list' | 'resources-list';
 
   /**
    * The name of the tool to be tested in this scenario.
    * This should correspond to a valid tool name that the MCP server recognizes and can execute with the provided arguments.
    */
-  toolName: string;
+  toolName?: string;
   promptName?: string;
 };
 
 export const WATERMARK_SCENARIOS: WatermarkScenario[] = [
+  {
+    args: {},
+    budget: {
+      maxRegressionAbs: 400,
+      maxRegressionPct: 10,
+      maxTokens: 6000,
+    },
+    id: 'catalog:tools-list',
+    kind: 'tools-list',
+  },
+  {
+    args: {},
+    budget: {
+      maxRegressionAbs: 60,
+      maxRegressionPct: 15,
+      maxTokens: 600,
+    },
+    id: 'catalog:resources-list',
+    kind: 'resources-list',
+  },
   {
     args: {
       includePhases: ['experimental'],

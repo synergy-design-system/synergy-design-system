@@ -30,6 +30,7 @@ import {
   getValueFromOption, getValuesFromOptions,
 } from './utils.js';
 import { scrollIntoView } from '../../internal/scroll.js';
+import { LoadMoreController } from '../../internal/load-more.js';
 import {
   type OptionRenderer,
   type OptionRendererName,
@@ -58,16 +59,13 @@ import { compareValues, isAllowedValue } from '../select/utility.js';
  * @dependency syn-popup
  * @dependency syn-tag
  *
- * @slot - The listbox options. Must be `<syn-option>` elements.
- *    You can use `<syn-optgroup>`'s to group items visually.
+ * @slot - The listbox options. Must be `<syn-option>` elements. You can use `<syn-optgroup>`'s to group items visually.
  * @slot label - The combobox's label. Alternatively, you can use the `label` attribute.
  * @slot prefix - Used to prepend a presentational icon or similar element to the combobox.
  * @slot suffix - Used to append a presentational icon or similar element to the combobox.
  * @slot clear-icon - An icon to use in lieu of the default clear icon.
- * @slot expand-icon - The icon to show when the control is expanded and collapsed.
- *    Rotates on open and close.
- * @slot help-text - Text that describes how to use the combobox.
- *    Alternatively, you can use the `help-text` attribute.
+ * @slot expand-icon - The icon to show when the control is expanded and collapsed. Rotates on open and close.
+ * @slot help-text - Text that describes how to use the combobox. Alternatively, you can use the `help-text` attribute.
  *
  * @event syn-change - Emitted when the control's value changes.
  * @event syn-clear - Emitted when the control's value is cleared.
@@ -78,9 +76,9 @@ import { compareValues, isAllowedValue } from '../select/utility.js';
  * @event syn-after-show - Emitted after the combobox's menu opens and all animations are complete.
  * @event syn-hide - Emitted when the combobox's menu closes.
  * @event syn-after-hide - Emitted after the combobox's menu closes and all animations are complete.
- * @event syn-invalid - Emitted when the form control has been checked for validity
- *    and its constraints aren't satisfied.
+ * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  * @event syn-error - Emitted when the combobox menu fails to open.
+ * @event syn-load-more - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source). The `detail.query` property contains the current query string typed into the combobox.
  *
  * @csspart form-control - The form control that wraps the label, combobox, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -89,16 +87,14 @@ import { compareValues, isAllowedValue } from '../select/utility.js';
  * @csspart combobox - The container that wraps the prefix, combobox, clear icon, and expand button.
  * @csspart prefix - The container that wraps the prefix slot.
  * @csspart suffix - The container that wraps the suffix slot.
- * @csspart display-input - The element that displays the selected option's label,
- *     an `<input>` element.
- * @csspart listbox - The listbox container where the options are slotted
- *   and the filtered options list exists.
+ * @csspart display-input - The element that displays the selected option's label, an `<input>` element.
+ * @csspart listbox - The listbox container where the options are slotted and the filtered options list exists.
  * @csspart filtered-listbox - The container that wraps the filtered options.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
- * @csspart popup - The popup's exported `popup` part.
- * Use this to target the tooltip's popup container.
+ * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
  * @csspart no-results - The container that wraps the "no results" message.
+ * @csspart load-more-sentinel - An invisible element used to detect when the listbox has been scrolled close to its end. Not meant to be styled directly.
  * @csspart tags - The container that houses option tags when `multiple` is used.
  * @csspart tag - The individual tags that represent each selected option in `multiple`.
  * @csspart tag__base - The tag's base part.
@@ -151,6 +147,19 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   private mutationObserver: MutationObserver;
 
+  private readonly loadMoreController = new LoadMoreController(this, {
+    onLoadMore: () => {
+      if (this.numberFilteredOptions === 0 || this.hideOptions) {
+        return;
+      }
+      this.emit('syn-load-more', {
+        detail: {
+          query: this.displayLabel,
+        },
+      });
+    },
+  });
+
   private get resolvedFilter(): ComboboxFilter {
     if (typeof this.filter === 'function') {
       return this.filter;
@@ -180,6 +189,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   @query('slot:not([name])') private defaultSlot: HTMLSlotElement;
 
   @query('.combobox__tags') tagContainer: HTMLDivElement;
+
+  @query('.listbox__sentinel') private sentinelEl: HTMLDivElement;
 
   @state() private hasFocus = false;
 
@@ -331,11 +342,11 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     <syn-tag
       part="tag"
       exportparts="
-            base:tag__base,
-            content:tag__content,
-            remove-button:tag__remove-button,
-            remove-button__base:tag__remove-button__base
-          "
+        base:tag__base,
+        content:tag__content,
+        remove-button:tag__remove-button,
+        remove-button__base:tag__remove-button__base
+      "
       size=${this.size}
       removable
       @syn-remove=${(event: SynRemoveEvent) => this.handleTagRemove(event, option)}
@@ -1269,9 +1280,10 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     }
 
     if (this.multiple) {
-      // In multiple mode, combine selected option values with current input
+      // In multiple mode, combine selected option values with current input.
+      // Don't append an empty input value, as it does not represent an actual selection.
       const validValues = getValuesFromOptions(this.selectedOptions);
-      this.value = [...validValues, inputValue];
+      this.value = inputValue ? [...validValues, inputValue] : validValues;
     } else {
       // In single mode, replace value with current input
       this.value = inputValue;
@@ -1431,6 +1443,11 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
     // Cache the slotted options
     this.cachedOptions = [...slottedOptions];
+
+    // Re-arm the load-more sentinel now that the option set has changed
+    if (this.listbox && this.sentinelEl) {
+      this.loadMoreController.observe(this.listbox, this.sentinelEl);
+    }
   }
   /* eslint-enable no-param-reassign */
 
@@ -1525,6 +1542,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
     let hasValue: boolean;
+
     if (Array.isArray(this.value)) {
       hasValue = this.value.length > 0;
     } else if (typeof this.value === 'string') {
@@ -1686,6 +1704,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
                     >`
         : ''}
                 <slot class=${classMap({ options__hide: this.hideOptions })} @slotchange=${this.handleDefaultSlotChange}></slot>      
+                <div class="listbox__sentinel" part="load-more-sentinel" aria-hidden="true"></div>
               </div>
             </div>
           </syn-popup>

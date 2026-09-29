@@ -59,6 +59,10 @@
             {
               "name": "syn-error",
               "type": "SynErrorEvent"
+            },
+            {
+              "name": "syn-load-more",
+              "type": "SynLoadMoreEvent"
             }
           ],
           "packageName": "@synergy-design-system/react",
@@ -326,6 +330,17 @@
           "title": {
             "type": "text",
             "value": "Showing all options"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Listen for the `syn-load-more` event to load additional options from a paged or async data source as the user scrolls close to the end of the listbox. The event is only emitted once per page: it won't fire again until you append new options, so it's safe to start a new request as soon as you receive it without tracking a loading flag yourself.\n\nThe event's `detail.query` property contains the current text typed into the combobox, which is useful if your data source also supports server-side search."
+          },
+          "name": "endless-scrolling",
+          "title": {
+            "type": "text",
+            "value": "Endless Scrolling"
           }
         }
       ],

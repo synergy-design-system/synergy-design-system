@@ -23,6 +23,7 @@ import type { SynAfterShowEvent } from '@synergy-design-system/components';
 import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
+import type { SynLoadMoreEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/select/select.js';
 
 /**
@@ -53,6 +54,7 @@ import '@synergy-design-system/components/components/select/select.js';
  * @event syn-hide - Emitted when the select's menu closes.
  * @event syn-after-hide - Emitted after the select's menu closes and all animations are complete.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+ * @event syn-load-more - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -72,6 +74,7 @@ import '@synergy-design-system/components/components/select/select.js';
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
  * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
+ * @csspart load-more-sentinel - An invisible element used to detect when the listbox has been scrolled close to its end. Not meant to be styled directly.
  */
 @Component({
   selector: 'syn-select',
@@ -122,6 +125,12 @@ export class SynSelectComponent {
     this.nativeElement.addEventListener('syn-invalid', (e: SynInvalidEvent) => {
       this.synInvalidEvent.emit(e);
     });
+    this.nativeElement.addEventListener(
+      'syn-load-more',
+      (e: SynLoadMoreEvent) => {
+        this.synLoadMoreEvent.emit(e);
+      },
+    );
     this.ngModelUpdateOn = 'syn-input';
   }
 
@@ -422,6 +431,12 @@ be an array.
   @Output() synInvalidEvent = new EventEmitter<SynInvalidEvent>();
 
   /**
+   * Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g.
+   * from a paged/async data source).
+   */
+  @Output() synLoadMoreEvent = new EventEmitter<SynLoadMoreEvent>();
+
+  /**
    * Support for two way data binding
    */
   @Output() valueChange = new EventEmitter<SynSelect['value']>();
@@ -437,3 +452,4 @@ export type { SynAfterShowEvent } from '@synergy-design-system/components';
 export type { SynHideEvent } from '@synergy-design-system/components';
 export type { SynAfterHideEvent } from '@synergy-design-system/components';
 export type { SynInvalidEvent } from '@synergy-design-system/components';
+export type { SynLoadMoreEvent } from '@synergy-design-system/components';

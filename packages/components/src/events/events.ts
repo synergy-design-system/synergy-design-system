@@ -20,6 +20,7 @@ export type * from './syn-hide.ts';
 export type * from './syn-initial-focus.ts';
 export type * from './syn-input.ts';
 export type * from './syn-invalid.ts';
+export type * from './syn-load-more.ts';
 export type * from './syn-load.ts';
 export type * from './syn-move.ts';
 export type * from './syn-pagination-page-changed.ts';

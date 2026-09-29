@@ -326,6 +326,7 @@ appropriate filtered options, a syn-error is emitted and the listbox stays close
 - `form-control-input`: The combobox's wrapper.
 - `form-control-label`: The label's wrapper.
 - `listbox`: The listbox container where the options are slotted and the filtered options list exists.
+- `load-more-sentinel`: An invisible element used to detect when the listbox has been scrolled close to its end. Not meant to be styled directly.
 - `no-results`: The container that wraps the "no results" message.
 - `popup`: The popup's exported `popup` part. Use this to target the tooltip's popup container.
 - `prefix`: The container that wraps the prefix slot.
@@ -398,6 +399,12 @@ Emitted when the control receives input.
 type: `SynInvalidEvent`
 
 Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+
+### syn-load-more
+
+type: `SynLoadMoreEvent`
+
+Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source). The `detail.query` property contains the current query string typed into the combobox.
 
 ### syn-show
 

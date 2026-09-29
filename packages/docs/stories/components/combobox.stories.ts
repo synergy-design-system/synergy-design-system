@@ -658,6 +658,55 @@ export const EmptyFilter: Story = {
   `,
 };
 
+export const EndlessScrolling: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('combobox', 'endless-scrolling'),
+      },
+      story: {
+        inline: false,
+      },
+    },
+  },
+  render: () => html`
+    <syn-combobox label="Option" class="endless-scrolling-combobox">
+      <syn-option value="option-1">Option 1</syn-option>
+      <syn-option value="option-2">Option 2</syn-option>
+      <syn-option value="option-3">Option 3</syn-option>
+    </syn-combobox>
+    <script type="module">
+      const comboboxes = document.querySelectorAll('.endless-scrolling-combobox');
+      comboboxes.forEach((combobox) => {
+        let index = 4;
+        const maxOptions = 40;
+
+        // In a real application, this would be an API call using the query
+        // from event.detail.query to also support server-side search.
+        const loadNextPage = () => {
+          if (index > maxOptions) {
+            return;
+          }
+
+          const fragment = document.createDocumentFragment();
+          const end = Math.min(index + 10, maxOptions + 1);
+          for (; index < end; index++) {
+            const option = document.createElement('syn-option');
+            option.value = 'option-' + index;
+            option.textContent = 'Option ' + index;
+            fragment.appendChild(option);
+          }
+          combobox.appendChild(fragment);
+        };
+
+        // syn-load-more only fires again once new options have been appended,
+        // so there is no need to track a "loading" flag yourself.
+        combobox.addEventListener('syn-load-more', loadNextPage);
+      });
+    </script>
+  `,
+};
+
 // Bundled screenshot story
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({

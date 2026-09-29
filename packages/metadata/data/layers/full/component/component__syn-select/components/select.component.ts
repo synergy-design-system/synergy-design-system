@@ -1,14 +1,18 @@
-/* eslint-disable */
-import { animateTo, stopAnimations } from '../../internal/animate.js';
+/* eslint-disable lit-a11y/click-events-have-key-events */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-underscore-dangle */
+import type { CSSResultGroup, PropertyValues, TemplateResult } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
+import { html } from 'lit';
+import { property, query, state } from 'lit/decorators.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { animateTo, stopAnimations } from '../../internal/animate.js';
 import { FormControlController } from '../../internal/form.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { HasSlotController } from '../../internal/slot.js';
-import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
-import { property, query, state } from 'lit/decorators.js';
 import { scrollIntoView } from '../../internal/scroll.js';
-import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { LoadMoreController } from '../../internal/load-more.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -17,8 +21,9 @@ import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import SynPopup from '../popup/popup.component.js';
 import SynTag from '../tag/tag.component.js';
+import type SynDrawer from '../drawer/drawer.component.js';
+import type SynDialog from '../dialog/dialog.component.js';
 import styles from './select.styles.js';
-import type { CSSResultGroup, PropertyValues, TemplateResult } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type { SynRemoveEvent } from '../../events/syn-remove.js';
 import type SynOption from '../option/option.component.js';
@@ -53,6 +58,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @event syn-hide - Emitted when the select's menu closes.
  * @event syn-after-hide - Emitted after the select's menu closes and all animations are complete.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+ * @event syn-load-more - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -72,45 +78,68 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
  * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
+ * @csspart load-more-sentinel - An invisible element used to detect when the listbox has been scrolled close to its end. Not meant to be styled directly.
  */
 @enableDefaultSettings('SynSelect')
 export default class SynSelect extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
+
   static dependencies = {
     'syn-icon': SynIcon,
     'syn-popup': SynPopup,
-    'syn-tag': SynTag
+    'syn-tag': SynTag,
   };
 
   private readonly formControlController = new FormControlController(this, {
-    assumeInteractionOn: ['syn-blur', 'syn-input']
+    assumeInteractionOn: ['syn-blur', 'syn-input'],
   });
+
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
+
   private readonly localize = new LocalizeController(this);
+
   private typeToSelectString = '';
+
   private typeToSelectTimeout: number;
+
   private closeWatcher: CloseWatcher | null;
+
   private resizeObserver: ResizeObserver;
+
   private selectedOptionObserver: MutationObserver;
+
   private isUserInput: boolean = false;
 
+  private readonly loadMoreController = new LoadMoreController(this, {
+    onLoadMore: () => this.emit('syn-load-more'),
+  });
+
   private getContainingModalHost() {
-    return this.closest('syn-dialog, syn-drawer') as
-      | (HTMLElement & { modal?: { activateExternal(): void; deactivateExternal(): void } })
-      | null;
+    return this.closest<SynDialog | SynDrawer>('syn-dialog, syn-drawer');
   }
 
   @query('.select') popup: SynPopup;
+
   @query('.select__combobox') combobox: HTMLSlotElement;
+
   @query('.select__display-input') displayInput: HTMLInputElement;
+
   @query('.select__value-input') valueInput: HTMLInputElement;
+
   @query('.select__listbox') listbox: HTMLSlotElement;
+
   @query('.select__tags') tagContainer: HTMLDivElement;
 
+  @query('.select__sentinel') private sentinelEl: HTMLDivElement;
+
   @state() private hasFocus = false;
+
   @state() displayLabel = '';
+
   @state() currentOption: SynOption;
+
   @state() selectedOptions: SynOption[] = [];
+
   @state() private valueHasChanged: boolean = false;
 
   /**
@@ -162,7 +191,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   @property() placeholder = '';
 
   /** Allows more than one option to be selected. */
-  @property({ type: Boolean, reflect: true }) multiple = false;
+  @property({ reflect: true, type: Boolean }) multiple = false;
 
   /**
    * The maximum number of selected options to show when `multiple` is true. After the maximum, "+n" will be shown to
@@ -171,7 +200,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   @property({ attribute: 'max-options-visible', type: Number }) maxOptionsVisible = 3;
 
   /** Disables the select control. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
+  @property({ reflect: true, type: Boolean }) disabled = false;
 
   /** Sets the select to a readonly state. */
   @property({ reflect: true, type: Boolean }) readonly = false;
@@ -183,7 +212,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
    * Indicates whether or not the select is open. You can toggle this attribute to show and hide the menu, or you can
    * use the `show()` and `hide()` methods and this attribute will reflect the select's open state.
    */
-  @property({ type: Boolean, reflect: true }) open = false;
+  @property({ reflect: true, type: Boolean }) open = false;
 
   /** The select's label. If you need to display HTML, use the `label` slot instead. */
   @property() label = '';
@@ -205,31 +234,29 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   @property({ reflect: true }) form = '';
 
   /** The select's required attribute. */
-  @property({ type: Boolean, reflect: true }) required = false;
+  @property({ reflect: true, type: Boolean }) required = false;
 
   /**
    * A function that customizes the tags to be rendered when multiple=true. The first argument is the option, the second
    * is the current tag's index.  The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at
    * the specified value.
    */
-  @property() getTag: (option: SynOption, index: number) => TemplateResult | string | HTMLElement = option => {
-    return html`
-      <syn-tag
-        part="tag"
-        exportparts="
-              base:tag__base,
-              content:tag__content,
-              remove-button:tag__remove-button,
-              remove-button__base:tag__remove-button__base
-            "
-        size=${this.size}
-        removable
-        @syn-remove=${(event: SynRemoveEvent) => this.handleTagRemove(event, option)}
-      >
-        ${option.getTextLabel()}
-      </syn-tag>
-    `;
-  };
+  @property() getTag: (option: SynOption, index: number) => TemplateResult | string | HTMLElement = option => html`
+    <syn-tag
+      part="tag"
+      exportparts="
+        base:tag__base,
+        content:tag__content,
+        remove-button:tag__remove-button,
+        remove-button__base:tag__remove-button__base
+      "
+      size=${this.size}
+      removable
+      @syn-remove=${(event: SynRemoveEvent) => this.handleTagRemove(event, option)}
+    >
+      ${option.getTextLabel()}
+    </syn-tag>
+  `;
 
   /** Gets the validity state object */
   get validity() {
@@ -241,7 +268,6 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     return this.valueInput.validationMessage;
   }
 
-  
   private enableResizeObserver() {
     if (this.multiple && !this.readonly && this.tagContainer) {
       this.resizeObserver = new ResizeObserver(entries => {
@@ -277,7 +303,6 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     this.open = false;
   }
 
-  
   disconnectedCallback() {
     super.disconnectedCallback();
     this.resizeObserver?.disconnect();
@@ -289,8 +314,8 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
 
     this.selectedOptions.forEach(option => {
       this.selectedOptionObserver.observe(option, {
-        childList: true,
         characterData: true,
+        childList: true,
         subtree: true,
       });
     });
@@ -319,6 +344,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
       this.closeWatcher = new CloseWatcher();
       this.closeWatcher.onclose = () => {
         if (this.open) {
+          // eslint-disable-next-line @typescript-eslint/no-floating-promises
           this.hide();
           this.displayInput.focus({ preventScroll: true });
         }
@@ -356,10 +382,13 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     // Close when focusing out of the select
     const path = event.composedPath();
     if (this && !path.includes(this)) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.hide();
     }
   };
 
+  /* eslint-disable @typescript-eslint/no-floating-promises */
+  // eslint-disable-next-line complexity
   private handleDocumentKeyDown = (event: KeyboardEvent) => {
     const target = event.target as HTMLElement;
     const isClearButton = target.closest('.select__clear') !== null;
@@ -472,7 +501,9 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
       event.preventDefault();
 
       clearTimeout(this.typeToSelectTimeout);
-      this.typeToSelectTimeout = window.setTimeout(() => (this.typeToSelectString = ''), 1000);
+      this.typeToSelectTimeout = window.setTimeout(() => {
+        this.typeToSelectString = '';
+      }, 1000);
 
       if (event.key === 'Backspace') {
         this.typeToSelectString = this.typeToSelectString.slice(0, -1);
@@ -480,6 +511,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
         this.typeToSelectString += event.key.toLowerCase();
       }
 
+      // eslint-disable-next-line no-restricted-syntax
       for (const option of allOptions) {
         const label = option.getTextLabel().toLowerCase();
 
@@ -490,11 +522,13 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
       }
     }
   };
+  /* eslint-enable @typescript-eslint/no-floating-promises */
 
   private handleDocumentMouseDown = (event: MouseEvent) => {
     // Close when clicking outside of the select
     const path = event.composedPath();
     if (this && !path.includes(this)) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.hide();
     }
   };
@@ -542,6 +576,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
       this.displayInput.focus({ preventScroll: true });
 
       // Emit after update
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.updateComplete.then(() => {
         this.emit('syn-clear');
         this.emit('syn-input');
@@ -550,6 +585,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     }
   }
 
+  // eslint-disable-next-line class-methods-use-this
   private handleClearMouseDown(event: MouseEvent) {
     // Don't lose focus or propagate events when clicking the clear button
     event.stopPropagation();
@@ -571,10 +607,12 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
       }
 
       // Set focus after updating so the value is announced by screen readers
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.updateComplete.then(() => this.displayInput.focus({ preventScroll: true }));
 
       if (this.value !== oldValue) {
         // Emit after updating
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         this.updateComplete.then(() => {
           this.emit('syn-input');
           this.emit('syn-change');
@@ -582,6 +620,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
       }
 
       if (!this.multiple) {
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
         this.hide();
         this.displayInput.focus({ preventScroll: true });
       }
@@ -591,6 +630,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   /* @internal - used by options to update labels */
   public handleDefaultSlotChange() {
     if (!customElements.get('syn-option')) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       customElements.whenDefined('syn-option').then(() => this.handleDefaultSlotChange());
     }
 
@@ -598,7 +638,11 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     const val = this.valueHasChanged ? this.value : this.defaultValue;
 
     this.handleDelimiterChange();
-    const value = Array.isArray(val) ? val :  typeof val === 'string' ? val.split(this.delimiter) : [val].filter(isAllowedValue);
+    // eslint-disable-next-line no-nested-ternary
+    const value = Array.isArray(val)
+      ? val
+      : typeof val === 'string' ? val.split(this.delimiter) : [val].filter(isAllowedValue);
+
     const values: Array<string | number> = [];
 
     // Check for duplicate values in menu items
@@ -610,7 +654,11 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
       el => valueString.includes(String(el.value)),
     );
     this.setSelectedOptions(allSelectedOptions);
-      
+
+    // Re-arm the load-more sentinel now that the option set has changed
+    if (this.listbox && this.sentinelEl) {
+      this.loadMoreController.observe(this.listbox, this.sentinelEl);
+    }
   }
 
   private handleTagRemove(event: SynRemoveEvent, option: SynOption) {
@@ -622,6 +670,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
       this.toggleOptionSelection(option, false);
 
       // Emit after updating
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.updateComplete.then(() => {
         this.emit('syn-input');
         this.emit('syn-change');
@@ -665,11 +714,15 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     const newSelectedOptions = Array.isArray(option) ? option : [option];
 
     // Clear existing selection
-    allOptions.forEach(el => (el.selected = false));
+    allOptions.forEach(el => {
+      el.selected = false;
+    });
 
     // Set the new selection
     if (newSelectedOptions.length) {
-      newSelectedOptions.forEach(el => (el.selected = true));
+      newSelectedOptions.forEach(el => {
+        el.selected = true;
+      });
     }
 
     // Update selection, value, and display label
@@ -721,6 +774,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     this.valueHasChanged = cachedValueHasChanged;
 
     // Update validity
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.updateComplete.then(() => {
       this.isUserInput = false;
       this.formControlController.updateValidity();
@@ -735,7 +789,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
         return html`<div @syn-remove=${(e: SynRemoveEvent) => this.handleTagRemove(e, option)}>
           ${typeof tag === 'string' ? unsafeHTML(tag) : tag}
         </div>`;
-      } else if (index === this.maxOptionsVisible) {
+      } if (index === this.maxOptionsVisible) {
         // Hit tag limit
         return html`<syn-tag size=${this.size}>+${this.selectedOptions.length - index}</syn-tag>`;
       }
@@ -760,11 +814,11 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     // Close the listbox when the control is disabled or readonly
     if (this.disabled || this.readonly) {
       this.open = false;
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.handleOpenChange();
     }
   }
 
-  
   protected updated(changedProperties: PropertyValues<this>) {
     super.updated(changedProperties);
     if (changedProperties.has('multiple') || changedProperties.has('readonly')) {
@@ -775,17 +829,16 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
       }
     }
   }
-      
 
-protected override willUpdate(changedProperties: PropertyValues) {
+  protected override willUpdate(changedProperties: PropertyValues) {
     super.willUpdate(changedProperties);
 
-    if(changedProperties.has('value') && !this.defaultValue && this.value  && !this.isUserInput) {
+    if(changedProperties.has('value') && !this.defaultValue && this.value && !this.isUserInput) {
       // Values set by property binding (e.g. Angular, especially with async bindings such as Observables/BehaviorSubjects)
       // have led to some malfunctions (e.g. form reset not working, dynamic reloading of options, etc.). To fix this,
       // the defaultValue must be set via property binding. However, this must NOT happen during user input,
       // as otherwise user interaction will lead to a new defaultValue.
-      this.defaultValue = this.value
+      this.defaultValue = this.value;
       this.valueHasChanged = false;
     }
   }
@@ -822,7 +875,6 @@ protected override willUpdate(changedProperties: PropertyValues) {
       el => valueString.includes(String(el.value)),
     );
     this.setSelectedOptions(allSelectedOptions);
-      
   }
 
   @watch('open', { waitUntilFirstUpdate: true })
@@ -921,6 +973,8 @@ protected override willUpdate(changedProperties: PropertyValues) {
     this.displayInput.blur();
   }
 
+  /* eslint-disable @typescript-eslint/unbound-method */
+  // eslint-disable-next-line complexity
   render() {
     const hasValue = isAllowedValue(this.value);
     const hasLabelSlot = this.hasSlotController.test('label');
@@ -932,82 +986,82 @@ protected override willUpdate(changedProperties: PropertyValues) {
 
     return html`
       <div
-        part="form-control"
         class=${classMap({
           'form-control': true,
-          'form-control--small': this.size === 'small',
-          'form-control--medium': this.size === 'medium',
-          'form-control--large': this.size === 'large',
-          'form-control--has-label': hasLabel,
           'form-control--has-help-text': hasHelpText,
+          'form-control--has-label': hasLabel,
+          'form-control--large': this.size === 'large',
+          'form-control--medium': this.size === 'medium',
+          'form-control--small': this.size === 'small',
         })}
         @click=${this.handleFormControlClick}
+        part="form-control"
       >
         <label
+          aria-hidden=${hasLabel ? 'false' : 'true'}
+          class="form-control__label"
+          @click=${this.handleLabelClick}
           id="label"
           part="form-control-label"
-          class="form-control__label"
-          aria-hidden=${hasLabel ? 'false' : 'true'}
-          @click=${this.handleLabelClick}
         >
           <slot name="label">${this.label}</slot>
         </label>
 
         <div part="form-control-input" class="form-control-input">
           <syn-popup
-            class=${classMap({
-              select: true,
-              'select--standard': true,
-              'select--open': this.open,
-              'select--disabled': this.disabled,
-              'select--readonly': this.readonly,
-              'select--multiple': this.multiple,
-              'select--focused': this.hasFocus,
-              'select--placeholder-visible': isPlaceholderVisible,
-              'select--top': this.placement === 'top',
-              'select--bottom': this.placement === 'bottom',
-              'select--small': this.size === 'small',
-              'select--medium': this.size === 'medium',
-              'select--large': this.size === 'large'
-            })}
-            placement=${this.placement + '-start'}
-            flip
-            shift
-            sync="width"
             auto-size="vertical"
             auto-size-padding="10"
+            class=${classMap({
+              select: true,
+              'select--bottom': this.placement === 'bottom',
+              'select--disabled': this.disabled,
+              'select--focused': this.hasFocus,
+              'select--large': this.size === 'large',
+              'select--medium': this.size === 'medium',
+              'select--multiple': this.multiple,
+              'select--open': this.open,
+              'select--placeholder-visible': isPlaceholderVisible,
+              'select--readonly': this.readonly,
+              'select--small': this.size === 'small',
+              'select--standard': true,
+              'select--top': this.placement === 'top',
+            })}
             exportparts="popup"
+            flip
+            placement=${`${this.placement}-start`}
+            shift
+            sync="width"
           >
             <div
-              part="combobox"
               class="select__combobox"
-              slot="anchor"
               @keydown=${this.handleComboboxKeyDown}
               @mousedown=${this.handleComboboxMouseDown}
+              part="combobox"
+              slot="anchor"
             >
-              <slot part="prefix" name="prefix" class="select__prefix"></slot>
+              <slot class="select__prefix" name="prefix" part="prefix"></slot>
 
               <input
-                part="display-input"
-                class="select__display-input"
-                type="text"
-                placeholder=${this.placeholder}
-                .disabled=${this.disabled}
-                .value=${this.displayLabel}
-                autocomplete="off"
-                spellcheck="false"
-                autocapitalize="off"
-                readonly
                 aria-controls="listbox"
+                aria-describedby="help-text"
+                aria-disabled=${this.disabled ? 'true' : 'false'}
                 aria-expanded=${this.open ? 'true' : 'false'}
                 aria-haspopup="listbox"
                 aria-labelledby="label"
-                aria-disabled=${this.disabled ? 'true' : 'false'}
-                aria-describedby="help-text"
+                autocapitalize="off"
+                autocomplete="off"
+                @blur=${this.handleBlur}
+                class="select__display-input"
+                .disabled=${this.disabled}
+                part="display-input"
+                type="text"
+                placeholder=${this.placeholder}
+                .value=${this.displayLabel}
+                spellcheck="false"
+                readonly
                 role="combobox"
                 tabindex="0"
                 @focus=${this.handleFocus}
-                @blur=${this.handleBlur}
               />
 
               ${this.multiple && !this.readonly ? html`<div part="tags" class="select__tags">${this.tags}</div>` : ''}
@@ -1028,13 +1082,13 @@ protected override willUpdate(changedProperties: PropertyValues) {
               ${hasClearIcon
                 ? html`
                     <button
-                      part="clear-button"
-                      class="select__clear"
-                      type="button"
                       aria-label=${this.localize.term('clearEntry')}
-                      @mousedown=${this.handleClearMouseDown}
+                      class="select__clear"
                       @click=${this.handleClearClick}
+                      @mousedown=${this.handleClearMouseDown}
+                      part="clear-button"
                       tabindex="-1"
+                      type="button"
                     >
                       <slot name="clear-icon">
                         <syn-icon name="x-circle-fill" library="system"></syn-icon>
@@ -1043,55 +1097,57 @@ protected override willUpdate(changedProperties: PropertyValues) {
                   `
                 : ''}
 
-              <slot name="suffix" part="suffix" class="select__suffix"></slot>
+              <slot class="select__suffix" part="suffix" name="suffix"></slot>
 
-              <slot name="expand-icon" part="expand-icon" class="select__expand-icon">
-                <syn-icon library="system" name="chevron-down"></syn-icon>
+              <slot class="select__expand-icon" name="expand-icon" part="expand-icon">
+                <syn-icon name="chevron-down" library="system"></syn-icon>
               </slot>
             </div>
 
             <div
-              id="listbox"
-              role="listbox"
               aria-expanded=${this.open ? 'true' : 'false'}
-              aria-multiselectable=${this.multiple ? 'true' : 'false'}
               aria-labelledby="label"
-              part="listbox"
+              aria-multiselectable=${this.multiple ? 'true' : 'false'}
               class="select__listbox"
-              tabindex="-1"
+              id="listbox"
               @mouseup=${this.handleOptionClick}
+              part="listbox"
+              role="listbox"
               @slotchange=${this.handleDefaultSlotChange}
+              tabindex="-1"
             >
               <slot></slot>
+              <div aria-hidden="true" class="select__sentinel" part="load-more-sentinel"></div>
             </div>
           </syn-popup>
         </div>
 
         <div
-          part="form-control-help-text"
-          id="help-text"
-          class="form-control__help-text"
           aria-hidden=${hasHelpText ? 'false' : 'true'}
+          class="form-control__help-text"
+          id="help-text"
+          part="form-control-help-text"
         >
           <slot name="help-text">${this.helpText}</slot>
         </div>
       </div>
     `;
   }
+  /* eslint-enable @typescript-eslint/unbound-method */
 }
 
 setDefaultAnimation('select.show', {
   keyframes: [
     { opacity: 0, scale: 0.9 },
-    { opacity: 1, scale: 1 }
+    { opacity: 1, scale: 1 },
   ],
-  options: { duration: 100, easing: 'ease' }
+  options: { duration: 100, easing: 'ease' },
 });
 
 setDefaultAnimation('select.hide', {
   keyframes: [
     { opacity: 1, scale: 1 },
-    { opacity: 0, scale: 0.9 }
+    { opacity: 0, scale: 0.9 },
   ],
-  options: { duration: 100, easing: 'ease' }
+  options: { duration: 100, easing: 'ease' },
 });

@@ -24,6 +24,7 @@ import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
 import type { SynErrorEvent } from '@synergy-design-system/components';
+import type { SynLoadMoreEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/combobox/combobox.js';
 
 /**
@@ -38,16 +39,13 @@ import '@synergy-design-system/components/components/combobox/combobox.js';
  * @dependency syn-popup
  * @dependency syn-tag
  *
- * @slot - The listbox options. Must be `<syn-option>` elements.
- *    You can use `<syn-optgroup>`'s to group items visually.
+ * @slot - The listbox options. Must be `<syn-option>` elements. You can use `<syn-optgroup>`'s to group items visually.
  * @slot label - The combobox's label. Alternatively, you can use the `label` attribute.
  * @slot prefix - Used to prepend a presentational icon or similar element to the combobox.
  * @slot suffix - Used to append a presentational icon or similar element to the combobox.
  * @slot clear-icon - An icon to use in lieu of the default clear icon.
- * @slot expand-icon - The icon to show when the control is expanded and collapsed.
- *    Rotates on open and close.
- * @slot help-text - Text that describes how to use the combobox.
- *    Alternatively, you can use the `help-text` attribute.
+ * @slot expand-icon - The icon to show when the control is expanded and collapsed. Rotates on open and close.
+ * @slot help-text - Text that describes how to use the combobox. Alternatively, you can use the `help-text` attribute.
  *
  * @event syn-change - Emitted when the control's value changes.
  * @event syn-clear - Emitted when the control's value is cleared.
@@ -58,9 +56,9 @@ import '@synergy-design-system/components/components/combobox/combobox.js';
  * @event syn-after-show - Emitted after the combobox's menu opens and all animations are complete.
  * @event syn-hide - Emitted when the combobox's menu closes.
  * @event syn-after-hide - Emitted after the combobox's menu closes and all animations are complete.
- * @event syn-invalid - Emitted when the form control has been checked for validity
- *    and its constraints aren't satisfied.
+ * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  * @event syn-error - Emitted when the combobox menu fails to open.
+ * @event syn-load-more - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source). The `detail.query` property contains the current query string typed into the combobox.
  *
  * @csspart form-control - The form control that wraps the label, combobox, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -69,16 +67,14 @@ import '@synergy-design-system/components/components/combobox/combobox.js';
  * @csspart combobox - The container that wraps the prefix, combobox, clear icon, and expand button.
  * @csspart prefix - The container that wraps the prefix slot.
  * @csspart suffix - The container that wraps the suffix slot.
- * @csspart display-input - The element that displays the selected option's label,
- *     an `<input>` element.
- * @csspart listbox - The listbox container where the options are slotted
- *   and the filtered options list exists.
+ * @csspart display-input - The element that displays the selected option's label, an `<input>` element.
+ * @csspart listbox - The listbox container where the options are slotted and the filtered options list exists.
  * @csspart filtered-listbox - The container that wraps the filtered options.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
- * @csspart popup - The popup's exported `popup` part.
- * Use this to target the tooltip's popup container.
+ * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
  * @csspart no-results - The container that wraps the "no results" message.
+ * @csspart load-more-sentinel - An invisible element used to detect when the listbox has been scrolled close to its end. Not meant to be styled directly.
  * @csspart tags - The container that houses option tags when `multiple` is used.
  * @csspart tag - The individual tags that represent each selected option in `multiple`.
  * @csspart tag__base - The tag's base part.
@@ -141,6 +137,12 @@ export class SynComboboxComponent {
     this.nativeElement.addEventListener('syn-error', (e: SynErrorEvent) => {
       this.synErrorEvent.emit(e);
     });
+    this.nativeElement.addEventListener(
+      'syn-load-more',
+      (e: SynLoadMoreEvent) => {
+        this.synLoadMoreEvent.emit(e);
+      },
+    );
     this.ngModelUpdateOn = 'syn-input';
   }
 
@@ -501,6 +503,13 @@ be an array.
   @Output() synErrorEvent = new EventEmitter<SynErrorEvent>();
 
   /**
+   * Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g.
+   * from a paged/async data source).
+   * The `detail.query` property contains the current query string typed into the combobox.
+   */
+  @Output() synLoadMoreEvent = new EventEmitter<SynLoadMoreEvent>();
+
+  /**
    * Support for two way data binding
    */
   @Output() valueChange = new EventEmitter<SynCombobox['value']>();
@@ -517,3 +526,4 @@ export type { SynHideEvent } from '@synergy-design-system/components';
 export type { SynAfterHideEvent } from '@synergy-design-system/components';
 export type { SynInvalidEvent } from '@synergy-design-system/components';
 export type { SynErrorEvent } from '@synergy-design-system/components';
+export type { SynLoadMoreEvent } from '@synergy-design-system/components';

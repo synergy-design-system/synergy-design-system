@@ -302,6 +302,12 @@ export default css`
     padding: var(--syn-combobox-no-results-padding);
   }
 
+  /* Used to detect when the listbox has been scrolled close to its end, see LoadMoreController */
+  .listbox__sentinel {
+    block-size: 1px;
+    pointer-events: none;
+  }
+
   /**
    * #850: Allow to measure the size of the combobox.
    * This is needed so we can automatically size and truncate the tags in the <syn-combobox multiple> component.

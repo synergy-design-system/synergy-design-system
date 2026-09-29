@@ -646,3 +646,46 @@ Set the filter property to none to always show every option, regardless of what 
   <syn-option value="Yellow">Yellow</syn-option>
 </syn-combobox>
 ```
+
+---
+
+## Endless Scrolling
+
+Listen for the syn-load-more event to load additional options from a paged or async data source as the user scrolls close to the end of the listbox. The event is only emitted once per page: it won't fire again until you append new options, so it's safe to start a new request as soon as you receive it without tracking a loading flag yourself.The event's detail.query property contains the current text typed into the combobox, which is useful if your data source also supports server-side search.
+
+```html
+<syn-combobox label="Option" class="endless-scrolling-combobox">
+  <syn-option value="option-1">Option 1</syn-option>
+  <syn-option value="option-2">Option 2</syn-option>
+  <syn-option value="option-3">Option 3</syn-option>
+</syn-combobox>
+<script type="module">
+  const comboboxes = document.querySelectorAll(".endless-scrolling-combobox");
+  comboboxes.forEach((combobox) => {
+    let index = 4;
+    const maxOptions = 40;
+
+    // In a real application, this would be an API call using the query
+    // from event.detail.query to also support server-side search.
+    const loadNextPage = () => {
+      if (index > maxOptions) {
+        return;
+      }
+
+      const fragment = document.createDocumentFragment();
+      const end = Math.min(index + 10, maxOptions + 1);
+      for (; index < end; index++) {
+        const option = document.createElement("syn-option");
+        option.value = "option-" + index;
+        option.textContent = "Option " + index;
+        fragment.appendChild(option);
+      }
+      combobox.appendChild(fragment);
+    };
+
+    // syn-load-more only fires again once new options have been appended,
+    // so there is no need to track a "loading" flag yourself.
+    combobox.addEventListener("syn-load-more", loadNextPage);
+  });
+</script>
+```

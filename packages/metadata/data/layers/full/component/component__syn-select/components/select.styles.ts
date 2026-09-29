@@ -304,6 +304,12 @@ export default css`
     --spacing: var(--syn-spacing-x-small);
   }
 
+  /* Used to detect when the listbox has been scrolled close to its end, see LoadMoreController */
+  .select__sentinel {
+    block-size: 1px;
+    pointer-events: none;
+  }
+
   .select__listbox ::slotted(small) {
     color: var(--syn-color-neutral-500);
     display: block;

@@ -55,6 +55,10 @@
             {
               "name": "syn-invalid",
               "type": "SynInvalidEvent"
+            },
+            {
+              "name": "syn-load-more",
+              "type": "SynLoadMoreEvent"
             }
           ],
           "packageName": "@synergy-design-system/react",

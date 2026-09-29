@@ -273,6 +273,7 @@ Shows the listbox.
 - `form-control-input`: The select's wrapper.
 - `form-control-label`: The label's wrapper.
 - `listbox`: The listbox container where options are slotted.
+- `load-more-sentinel`: An invisible element used to detect when the listbox has been scrolled close to its end. Not meant to be styled directly.
 - `popup`: The popup's exported `popup` part. Use this to target the tooltip's popup container.
 - `prefix`: The container that wraps the prefix slot.
 - `suffix`: The container that wraps the suffix slot.
@@ -338,6 +339,12 @@ Emitted when the control receives input.
 type: `SynInvalidEvent`
 
 Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+
+### syn-load-more
+
+type: `SynLoadMoreEvent`
+
+Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
 
 ### syn-show
 

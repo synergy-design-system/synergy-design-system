@@ -209,6 +209,10 @@
       "name": "listbox"
     },
     {
+      "description": "An invisible element used to detect when the listbox has been scrolled close to its end. Not meant to be styled directly.",
+      "name": "load-more-sentinel"
+    },
+    {
       "description": "The container that wraps the \"no results\" message.",
       "name": "no-results"
     },
@@ -305,6 +309,11 @@
       "description": "Emitted when the form control has been checked for validity and its constraints aren't satisfied.",
       "name": "syn-invalid",
       "type": "SynInvalidEvent"
+    },
+    {
+      "description": "Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source). The `detail.query` property contains the current query string typed into the combobox.",
+      "name": "syn-load-more",
+      "type": "SynLoadMoreEvent"
     },
     {
       "description": "Emitted when the combobox's menu opens.",

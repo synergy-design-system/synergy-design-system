@@ -11,6 +11,7 @@ import { clickOnElement } from '../../internal/test.js';
 import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js';
 import type SynOption from '../option/option.js';
 import type SynCombobox from './combobox.js';
+import type { SynLoadMoreEvent } from '../../events/syn-load-more.js';
 import { highlightOptionRenderer } from './option-renderer.js';
 
 describe('<syn-combobox>', () => {
@@ -1617,7 +1618,7 @@ describe('<syn-combobox>', () => {
 
     it('should fall back to the default renderer for unknown getOption names', async () => {
       const el = await fixture<SynCombobox>(html`
-        <syn-combobox value="option-1" .getOption=${'unknown' as 'default'}>
+        <syn-combobox value="option-1" .getOption=${'unknown'}>
           <syn-option value="option-1">Option 1</syn-option>
         </syn-combobox>
       `);
@@ -2701,6 +2702,95 @@ describe('<syn-combobox>', () => {
       await el.updateComplete;
 
       expect(el.displayInput.placeholder).to.equal('');
+    });
+  });
+
+  describe('load-more', () => {
+    const manyOptions = Array.from(
+      { length: 30 },
+      (_, i) => html`<syn-option value="option-${i}">Option ${i}</syn-option>`,
+    );
+
+    it('should emit syn-load-more when the listbox is scrolled close to its end', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>${manyOptions}</syn-combobox>
+      `);
+
+      await el.show();
+      el.listbox.style.maxHeight = '100px';
+      await el.updateComplete;
+
+      const eventPromise = oneEvent<SynLoadMoreEvent>(el, 'syn-load-more');
+      el.listbox.scrollTop = el.listbox.scrollHeight;
+
+      const event = await eventPromise;
+      expect(event.detail.query).to.equal('');
+    });
+
+    it('should not emit syn-load-more again until new options have been added', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>${manyOptions}</syn-combobox>
+      `);
+
+      await el.show();
+      el.listbox.style.maxHeight = '100px';
+      await el.updateComplete;
+
+      const loadMoreHandler = sinon.spy();
+      el.addEventListener('syn-load-more', loadMoreHandler);
+
+      el.listbox.scrollTop = el.listbox.scrollHeight;
+      await waitUntil(() => loadMoreHandler.calledOnce);
+
+      // Scroll away and back without adding new options
+      el.listbox.scrollTop = 0;
+      await aTimeout(50);
+      el.listbox.scrollTop = el.listbox.scrollHeight;
+      await aTimeout(300);
+
+      expect(loadMoreHandler.callCount).to.equal(1);
+
+      // Adding a new option re-arms the sentinel
+      const newOption = document.createElement('syn-option');
+      newOption.value = 'option-new';
+      newOption.textContent = 'New option';
+      el.appendChild(newOption);
+      await el.updateComplete;
+
+      el.listbox.scrollTop = 0;
+      el.listbox.scrollTop = el.listbox.scrollHeight;
+      await waitUntil(() => loadMoreHandler.calledTwice);
+
+      expect(loadMoreHandler.callCount).to.equal(2);
+    });
+
+    it('should trigger again after the cooldown elapses even if the sentinel never left the viewport', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>${manyOptions}</syn-combobox>
+      `);
+
+      await el.show();
+      el.listbox.style.maxHeight = '100px';
+      await el.updateComplete;
+
+      const loadMoreHandler = sinon.spy();
+      el.addEventListener('syn-load-more', () => {
+        loadMoreHandler();
+        // Simulate a fast data source that resolves immediately and barely grows the scrollable
+        // height, so the sentinel is still intersecting right after the controller re-arms it.
+        const option = document.createElement('syn-option');
+        option.value = `option-extra-${loadMoreHandler.callCount}`;
+        option.textContent = `Extra option ${loadMoreHandler.callCount}`;
+        el.appendChild(option);
+      });
+
+      el.listbox.scrollTop = el.listbox.scrollHeight;
+
+      // No manual scroll-away-and-back gesture here: the second trigger must arrive on its own
+      // once the cooldown elapses, since the sentinel's intersection state never actually changes.
+      await waitUntil(() => loadMoreHandler.callCount >= 2);
+
+      expect(loadMoreHandler.callCount).to.be.greaterThan(1);
     });
   });
 

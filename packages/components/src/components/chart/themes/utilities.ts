@@ -20,6 +20,27 @@ export const setGlobalThemeStore = (theme: Themes) => {
 };
 
 /**
+ * Finds the active Synergy theme class on the document body.
+ *
+ * @returns The matching theme class or an empty string when no Synergy theme is active.
+ */
+export const getCurrentThemeFromBodyClass = () => {
+  const synergyThemes = ['syn-theme-', 'syn-sick2025-'];
+  return document.body.classList.value.split(' ').find((cls) => synergyThemes.some((theme) => cls.includes(theme))) ?? '';
+};
+
+/**
+ * Updates the global chart theme store based on the active body theme class.
+ *
+ * Dark Synergy theme classes set the store to `dark`; all other values default to `light`.
+ */
+export const setThemeFromBodyClass = () => {
+  const darkThemes = ['syn-theme-dark', 'syn-sick2025-dark'];
+  const currentTheme = getCurrentThemeFromBodyClass();
+  setGlobalThemeStore(darkThemes.includes(currentTheme) ? 'dark' : 'light');
+};
+
+/**
  * All valid token keys supported by the merged token dictionary.
 */
 export type ResolvedTokensName = keyof typeof ChartTokens | keyof typeof ComponentTokens;
@@ -33,7 +54,7 @@ export type ResolvedTokensName = keyof typeof ChartTokens | keyof typeof Compone
  */
 export const getRealStyleValue = (token: ResolvedTokensName, mode: ThemeMode = 'auto'): string => {
   let currentMode: Themes;
-  if(mode === 'auto') {
+  if (mode === 'auto') {
     currentMode = globalThemeStore;
   } else {
     currentMode = mode;

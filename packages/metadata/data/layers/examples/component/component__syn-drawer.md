@@ -3,7 +3,7 @@
 Drawers slide in from a container to expose additional options and information.
 
 ```html
-<syn-drawer open="" label="Drawer">
+<syn-drawer open="true" label="Drawer">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   <span slot="footer"> </span>
   <syn-button class="close-icon" slot="footer" variant="filled"

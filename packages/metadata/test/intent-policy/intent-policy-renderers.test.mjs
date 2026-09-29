@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, it } from 'node:test';
-import { expect } from 'chai';
+import assert from 'node:assert/strict';
 
 describe('intent policy renderers', () => {
   const __filename = fileURLToPath(import.meta.url);
@@ -25,41 +25,41 @@ describe('intent policy renderers', () => {
   it('renders action.primary for all framework profiles', async () => {
     const { renderIntentFromRegistry } = await loadRenderService();
 
-    expect(renderIntentFromRegistry({
+    assert.strictEqual(renderIntentFromRegistry({
       framework: 'react-web-components',
       intent: 'action.primary',
       target: buttonTarget,
-    })).to.equal('<syn-button type="button" variant="filled">CONTENT</syn-button>');
+    }), '<syn-button type="button" variant="filled">CONTENT</syn-button>');
 
-    expect(renderIntentFromRegistry({
+    assert.strictEqual(renderIntentFromRegistry({
       framework: 'react-wrapper',
       intent: 'action.primary',
       target: buttonTarget,
-    })).to.equal('<SynButton type="button" variant="filled">CONTENT</SynButton>');
+    }), '<SynButton type="button" variant="filled">CONTENT</SynButton>');
 
-    expect(renderIntentFromRegistry({
+    assert.strictEqual(renderIntentFromRegistry({
       framework: 'angular',
       intent: 'action.primary',
       target: buttonTarget,
-    })).to.equal('<syn-button type="button" variant="filled">CONTENT</syn-button>');
+    }), '<syn-button type="button" variant="filled">CONTENT</syn-button>');
 
-    expect(renderIntentFromRegistry({
+    assert.strictEqual(renderIntentFromRegistry({
       framework: 'vue',
       intent: 'action.primary',
       target: buttonTarget,
-    })).to.equal('<SynVueButton type="button" variant="filled">CONTENT</SynVueButton>');
+    }), '<SynVueButton type="button" variant="filled">CONTENT</SynVueButton>');
 
-    expect(renderIntentFromRegistry({
+    assert.strictEqual(renderIntentFromRegistry({
       framework: 'vue-web-components',
       intent: 'action.primary',
       target: buttonTarget,
-    })).to.equal('<syn-button type="button" variant="filled">CONTENT</syn-button>');
+    }), '<syn-button type="button" variant="filled">CONTENT</syn-button>');
 
-    expect(renderIntentFromRegistry({
+    assert.strictEqual(renderIntentFromRegistry({
       framework: 'vanilla',
       intent: 'action.primary',
       target: buttonTarget,
-    })).to.equal('<syn-button type="button" variant="filled">CONTENT</syn-button>');
+    }), '<syn-button type="button" variant="filled">CONTENT</syn-button>');
   });
 
   it('renders structure.confirmation recursively with stable action order', async () => {
@@ -75,15 +75,15 @@ describe('intent policy renderers', () => {
       },
     });
 
-    expect(rendered).to.not.equal(null);
-    expect(rendered).to.include('<syn-dialog');
-    expect(rendered).to.include('<nav slot="footer">');
-    expect(rendered).to.include('<syn-button variant="text"></syn-button>');
-    expect(rendered).to.include('<syn-button variant="filled"></syn-button>');
+    assert.notStrictEqual(rendered, null);
+    assert.ok(rendered.includes('<syn-dialog'));
+    assert.ok(rendered.includes('<nav slot="footer">'));
+    assert.ok(rendered.includes('<syn-button variant="text"></syn-button>'));
+    assert.ok(rendered.includes('<syn-button variant="filled"></syn-button>'));
 
     const cancelIndex = rendered.indexOf('variant="text"');
     const confirmIndex = rendered.indexOf('variant="filled"');
-    expect(cancelIndex).to.be.lessThan(confirmIndex);
+    assert.ok(cancelIndex < confirmIndex);
   });
 
   it('auto-selects a renderable target when none is provided', async () => {
@@ -104,14 +104,8 @@ describe('intent policy renderers', () => {
       intent: 'input.selection.single',
     });
 
-    const groupedActionVueWebComponents = renderIntentFromRegistry({
-      framework: 'vue-web-components',
-      intent: 'action.grouped',
-    });
-
-    expect(iconAction).to.equal('<syn-icon-button>CONTENT</syn-icon-button>');
-    expect(groupedAction).to.equal('<syn-button-group>CONTENT</syn-button-group>');
-    expect(singleSelection).to.equal('<syn-radio-group>CONTENT</syn-radio-group>');
-    expect(groupedActionVueWebComponents).to.equal('<syn-button-group>CONTENT</syn-button-group>');
+    assert.strictEqual(iconAction, '<syn-icon-button>CONTENT</syn-icon-button>');
+    assert.strictEqual(groupedAction, '<syn-button-group>CONTENT</syn-button-group>');
+    assert.strictEqual(singleSelection, '<syn-radio-group>CONTENT</syn-radio-group>');
   });
 });

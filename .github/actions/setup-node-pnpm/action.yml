@@ -1,10 +1,6 @@
 name: 'Setup Node.js and pnpm'
 description: 'Setup Node.js, pnpm, and install dependencies'
 inputs:
-  node-version:
-    description: 'Node.js version to use'
-    required: false
-    default: 'lts/Krypton'
   skip-install:
     description: 'Skip dependency installation'
     required: false
@@ -25,17 +21,11 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - uses: pnpm/action-setup@v6
-      name: Install pnpm
-      id: pnpm-install
+    - name: Setup pnpm and Node.js
+      uses: pnpm/setup@v2
       with:
-        run_install: false
-
-    - name: Install Node.js
-      uses: actions/setup-node@v6
-      with:
-        node-version: ${{ inputs.node-version }}
-        cache: "pnpm"
+        install: false
+        cache: true
 
     - name: Install dependencies
       if: inputs.skip-install != 'true'

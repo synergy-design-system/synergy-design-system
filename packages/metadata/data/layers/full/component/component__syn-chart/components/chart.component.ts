@@ -1,5 +1,5 @@
 import {
-  type EChartsType, init, registerPreprocessor, registerTheme, use,
+  type EChartsType, init, registerPreprocessor, registerProcessor, registerTheme, registerVisual, use,
 } from 'echarts/core.js';
 import { CanvasRenderer, SVGRenderer } from 'echarts/renderers.js';
 import { html } from 'lit';
@@ -20,9 +20,11 @@ import { type ChartPalette, PALETTE_TOKENS } from './chart.palettes.js';
 import { resolveConfigInput } from './configs/config.js';
 import type { ChartConfigType, ECConfig } from './types.js';
 import { applyAxisDefaultsPreprocessor } from './configs/axes/utilities.js';
-import { getRealStyleValue, setGlobalThemeStore } from './themes/utilities.js';
+import { getCurrentThemeFromBodyClass, getRealStyleValue, setThemeFromBodyClass } from './themes/utilities.js';
 import { getSynergyTheme } from './themes/theme.js';
-import { gaugeInstall } from './configs/gauge-series/install.js';
+import { donutInstall } from './configs/series/donut/install.js';
+import { gaugeInstall } from './configs/series/gauge/install.js';
+import { legendIconVisual, legendVisibilityIconProcessor } from './configs/legend/utilities.js';
 
 // TODO: Check, should we let the user define the *use* so the bundle size is optimized for their specific use case?
 use([
@@ -35,9 +37,17 @@ use([
   LegendComponent,
   GridComponent,
   DataZoomComponent,
-  // @ts-expect-error - I don't know where this typescript error comes from
+  donutInstall,
   gaugeInstall,
 ]);
+/**
+ * Depending if x-axis or y-axis, the axis name has different positions and alignments. This preprocessor ensures that the correct styles are applied to the axis names based on the axis type.
+ * This is needed because ECharts does not provide a way to set specific styles for x and y axis, only for axis types.
+ */
+registerPreprocessor(applyAxisDefaultsPreprocessor);
+registerProcessor(legendVisibilityIconProcessor);
+// Registrations should only be done once
+registerVisual(legendIconVisual);
 
 /**
  * @summary The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts. The chart component is based on [Apache ECharts](https://echarts.apache.org)
@@ -171,6 +181,7 @@ export default class SynChart extends SynergyElement {
     if (hasLineOrBarSeries) {
       return;
     }
+
     // for other series we use svg renderer, as the font rendering is better for svg
     this.chartInstance.dispose();
     this.chartInstance = init(this.chartContainer, 'default', { renderer: 'svg' });
@@ -195,61 +206,42 @@ export default class SynChart extends SynergyElement {
     super.connectedCallback();
     registerTheme('default', getSynergyTheme('light'));
     registerTheme('dark', getSynergyTheme('dark'));
+    const synergyThemes = ['syn-theme-', 'syn-sick2025-'];
+    const darkThemes = ['syn-theme-dark', 'syn-sick2025-dark'];
 
     // Add mutation observer to detect changes of light dark mode and get the current mode to apply the correct theme
     // TODO: this is currently only a first prototype for theme switch. We need to add a more robust solution, which might also check if any other parent element has a synergy theme class.
     // Therefore the global theme story might not be the best solution, but maybe a chart instance theme store?
     this.themeObserver = new MutationObserver((entries) => {
       const themeChanged = entries.some((entry) => {
-        const oldTheme = entry.oldValue?.split(' ').find((cls) => cls.includes('syn-sick2025-'));
-        const newTheme = (entry.target as HTMLElement).classList.value.split(' ').find((cls) => cls.includes('syn-sick2025-'));
+        const oldTheme = entry.oldValue?.split(' ').find((cls) => synergyThemes.some((theme) => cls.includes(theme)));
+        const newTheme = (entry.target as HTMLElement).classList.value.split(' ').find((cls) => synergyThemes.some((theme) => cls.includes(theme)));
         return oldTheme !== newTheme;
       });
       if (themeChanged) {
         if (this.chartInstance) {
-          const newTheme = document.body.classList.value.split(' ').find((cls) => cls.includes('syn-sick2025-'));
-          setGlobalThemeStore(newTheme === 'syn-sick2025-dark' ? 'dark' : 'light');
+          setThemeFromBodyClass();
           // We need to re-resolve the config as otherwise the theme change will not be applied to the config if they contain synergy tokens
           this.resolvedConfig = resolveConfigInput(this.config);
           // We need to reapply the config as otherwise the theme change will not be applied.
           // See caveat section of https://echarts.apache.org/en/api.html#echartsInstance.setTheme
           this.chartInstance.setOption(this.resolvedConfig, { notMerge: true });
-          this.chartInstance.setTheme(newTheme === 'syn-sick2025-dark' ? 'dark' : 'default');
+          const currentTheme = getCurrentThemeFromBodyClass();
+          this.chartInstance.setTheme(darkThemes.includes(currentTheme) ? 'dark' : 'default');
 
           this.applyPalette();
         }
       }
     });
     this.themeObserver.observe(document.body, { attributeFilter: ['class'], attributeOldValue: true });
-
-    /**
-     * Depending if x-axis or y-axis, the axis name has different positions and alignments. This preprocessor ensures that the correct styles are applied to the axis names based on the axis type.
-     * This is needed because ECharts does not provide a way to set specific styles for x and y axis, only for axis types.
-     */
-    registerPreprocessor(applyAxisDefaultsPreprocessor);
-  }
-
-  private registerLegendListener() {
-    this.chartInstance?.on('legendselectchanged', (params: { selected: Record<string, boolean> }) => {
-      const legendFormatter = (name: string) => {
-        const isVisible = params.selected[name];
-        const icon = isVisible ? 'showIcon' : 'hideIcon';
-        return `${name}  {${icon}|}`;
-      };
-
-      this.chartInstance?.setOption({
-        legend: {
-          formatter: legendFormatter,
-        },
-      });
-    });
+    // Set initial theme
+    setThemeFromBodyClass();
   }
 
   // Initialize echarts instance and resize observer
   protected firstUpdated(_changedProperties: PropertyValues): void {
     if (this.chartContainer !== null && this.chartContainer !== undefined) {
       this.chartInstance = init(this.chartContainer, 'default');
-      this.registerLegendListener();
 
       // Resize observer
       this.resizeObserver = new ResizeObserver(() => {

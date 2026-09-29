@@ -3,7 +3,7 @@
 Inputs collect data from the user.
 
 ```html
-<syn-input spellcheck=""></syn-input>
+<syn-input></syn-input>
 ```
 
 ---

@@ -8,7 +8,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, it } from 'node:test';
-import { expect } from 'chai';
+import assert from 'node:assert/strict';
 
 describe('intent policy render public api', () => {
   const __filename = fileURLToPath(import.meta.url);
@@ -63,8 +63,8 @@ describe('intent policy render public api', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.equal('<syn-button type="button" variant="filled">CONTENT</syn-button>');
+      assert.strictEqual(response.errors, undefined);
+      assert.strictEqual(response.data, '<syn-button type="button" variant="filled">CONTENT</syn-button>');
     } finally {
       await fixture.cleanup();
     }
@@ -87,8 +87,8 @@ describe('intent policy render public api', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.equal('<syn-button type="button" variant="filled">CONTENT</syn-button>');
+      assert.strictEqual(response.errors, undefined);
+      assert.strictEqual(response.data, '<syn-button type="button" variant="filled">CONTENT</syn-button>');
     } finally {
       await fixture.cleanup();
     }
@@ -106,8 +106,8 @@ describe('intent policy render public api', () => {
         dataDir: fixture.dataDir,
       });
 
-      expect(response.errors).to.equal(undefined);
-      expect(response.data).to.equal('<syn-button-group>CONTENT</syn-button-group>');
+      assert.strictEqual(response.errors, undefined);
+      assert.strictEqual(response.data, '<syn-button-group>CONTENT</syn-button-group>');
     } finally {
       await fixture.cleanup();
     }

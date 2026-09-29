@@ -1,5 +1,4 @@
-import type { ZRColor } from 'echarts/types/dist/shared.js';
-import type { Override, WithRequired } from '../types.js';
+import type { Override, WithRequired } from '../../types.js';
 
 /**
  * Formatter functions for gauge value labels.
@@ -76,37 +75,6 @@ export type ResolvedGaugeSeriesConfig = Override<
     >;
   }
 >;
-
-export type Sector = {
-  centerX: number;
-  centerY: number;
-  innerRadius: number;
-  outerRadius: number;
-  startAngle: number;
-  endAngle: number;
-  color: ZRColor;
-  z: number;
-};
-
-export type TextInput = {
-  text: string;
-  x: number;
-  y: number;
-  fontSize: number;
-  fontWeight?: number | string;
-  align?: 'left' | 'center' | 'right';
-  verticalAlign?: 'top' | 'middle' | 'bottom';
-  z?: number;
-};
-
-export type ImageInput = {
-  image: string;
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  z?: number;
-};
 
 export type SynergyGaugeSeriesOption = {
   type: 'synGauge';

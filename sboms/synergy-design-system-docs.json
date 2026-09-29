@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/docs",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-docs-0.1.0-4e5eec0d-2acc-4c28-b21b-7c25d1787dbb",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-docs-0.1.0-17b436dd-1c24-4916-9a60-9b3c965dbc4b",
   "creationInfo": {
-    "created": "2026-09-21T05:16:41.151Z",
+    "created": "2026-09-21T11:58:13Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -18,6 +18,9 @@
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
@@ -25,9 +28,6 @@
           "referenceLocator": "pkg:npm/%40synergy-design-system/docs@0.1.0"
         }
       ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
       "description": "Storybook demo for static assets and components of the Synergy Design System",
       "supplier": "Person: SICK Global UX Foundation",
       "homepage": "https://github.com/synergy-design-system/synergy-design-system.git"

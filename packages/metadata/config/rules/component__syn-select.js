@@ -38,6 +38,14 @@ export default {
       id: 'selection_behavior',
       name: 'Selection Behavior',
     },
+    {
+      content: [
+        'Use readonly when users need to inspect the current selection without changing it; for multiple selections, make sure every selected value remains visible.',
+        'Use disabled only when selection is unavailable, and explain what must happen before users can choose an option.',
+      ],
+      id: 'states',
+      name: 'Validation and States',
+    },
   ],
   useCases: [
     'Enable users to select one or more options from a list of predefined choices in forms.',

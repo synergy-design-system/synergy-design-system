@@ -16,3 +16,4 @@ This release adds new features and adjustments to the Synergy MCP Server:
 - Added public metadata APIs and types for shared intent-policy documents: `getIntentPolicyDocument`, `getIntentPolicyDocuments`, `IntentPolicyDocument`, and related variant/preview types.
 - Extended skill generation. Generated skills report both the metadata package version and the Synergy version they represent.
 - Added the presence-only `required` intent property rule through `IntentRequiredPropRule`, allowing policies to require a property without enforcing a placeholder value through `requiredEquals`.
+- Added more rules for the distinction between `readonly` and `disabled` to all form fields.

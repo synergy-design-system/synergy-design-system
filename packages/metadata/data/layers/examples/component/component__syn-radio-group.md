@@ -79,7 +79,7 @@ The focus event gives the user feedback that one of the radio buttons has been f
 
 ## Disabled
 
-Radios and radio buttons can be disabled by adding the disabled attribute to the respective options inside the radio group.
+Set disabled on individual syn-radio or syn-radio-button options that are unavailable, and explain why they cannot be selected. The group itself has no disabled attribute.
 
 ```html
 <syn-radio-group label="This is a label" help-text="This is disabled" name="a">
@@ -93,7 +93,7 @@ Radios and radio buttons can be disabled by adding the disabled attribute to the
 
 ## Readonly
 
-Add the readonly attribute to a radio to draw it in a readonly state.
+Set readonly on every syn-radio or syn-radio-button in the group when users should inspect the selected choice without changing it. Marking only the selected option readonly leaves other choices available.
 
 ```html
 <syn-radio-group

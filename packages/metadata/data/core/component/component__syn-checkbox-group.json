@@ -121,7 +121,7 @@
         {
           "description": {
             "type": "text",
-            "value": "Use the disabled attribute on the corresponding syn-checkbox elements to set the disabled state."
+            "value": "Set disabled on individual syn-checkbox options that are unavailable, and explain why. The checkbox group itself has no disabled attribute."
           },
           "name": "disabled",
           "title": {
@@ -132,7 +132,7 @@
         {
           "description": {
             "type": "text",
-            "value": "Checkboxes can be displayed in a read-only state by applying the readonly attribute to the selected checkbox inside the checkbox group."
+            "value": "Set readonly on each syn-checkbox whose checked state users should inspect but not change. To freeze the entire group, apply it to every option, not just the checked ones."
           },
           "name": "readonly",
           "title": {
@@ -199,6 +199,14 @@
           ],
           "id": "layout",
           "name": "Layout"
+        },
+        {
+          "content": [
+            "Set readonly on each syn-checkbox whose checked state must not change; to freeze the entire group, apply it to every option, not just the checked ones.",
+            "Set disabled on individual unavailable checkboxes and explain why those choices cannot be selected. The group itself has no readonly or disabled attribute."
+          ],
+          "id": "states",
+          "name": "Validation and States"
         }
       ],
       "useCases": [

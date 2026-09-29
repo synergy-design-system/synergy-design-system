@@ -18,7 +18,7 @@ jobs:
     timeout-minutes: 45
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.62.1-noble
+      image: mcr.microsoft.com/playwright:v1.63.0-noble
       options: --memory=4g --memory-swap=4g
     env:
       PLAYWRIGHT_FUTURE_BROWSERS: 'true'
@@ -58,14 +58,14 @@ jobs:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.62.1-noble
+      image: mcr.microsoft.com/playwright:v1.63.0-noble
       options: --memory=4g --memory-swap=4g
     env:
       PLAYWRIGHT_FUTURE_BROWSERS: 'true'
     strategy:
       fail-fast: false
       matrix:
-        browser: [chrome-beta]
+        browser: [chrome-beta, firefox, webkit]
     steps:
       - uses: actions/checkout@v6
         with:
@@ -81,6 +81,7 @@ jobs:
           NODE_OPTIONS: --max-old-space-size=4096
 
       - name: Install Chrome Beta
+        if: matrix.browser == 'chrome-beta'
         run: pnpm exec playwright install chrome-beta
         working-directory: packages/_private/e2e-demo-test
 

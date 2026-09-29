@@ -9,6 +9,8 @@
     <syn-button data-testid="open-overlay-contract">Open Drawer</syn-button>
     <syn-drawer data-testid="overlay-contract-drawer" label="Overlay Contract Drawer">
       <div class="overlay-contract-drawer-content" data-testid="overlay-contract-drawer-content">
+        <syn-button data-testid="overlay-contract-inside-target">Inside Drawer Target</syn-button>
+
         <syn-select data-testid="overlay-contract-select" label="Contract Select">
           <syn-option value="one">One</syn-option>
           <syn-option value="two">Two</syn-option>
@@ -22,8 +24,6 @@
             <syn-menu-item value="second">Second</syn-menu-item>
           </syn-menu>
         </syn-dropdown>
-
-        <syn-button data-testid="overlay-contract-inside-target">Inside Drawer Target</syn-button>
       </div>
     </syn-drawer>
   </div>

@@ -1,9 +1,6 @@
 name: E2E Nightly
 
 on:
-  # TODO: Remove before merging. This only exists to test the new workflow from this PR.
-  pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
   schedule:
     - cron: '0 2 * * *'
   workflow_dispatch:

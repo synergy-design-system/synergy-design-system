@@ -10,26 +10,43 @@ import type { SegmentSeriesPresetOptions, SynergySegmentSeriesOption } from './t
  * defines each segment's angular width, normalized to the angle left available by `gap`.
  *
  * @param {SegmentSeriesPresetOptions} [options] Preset options.
- * @param {number[]} options.data Fill degree for each segment, from the center outward.
- * @param {number[]} [options.data[].weight] Angular width for each segment. Missing entries default to `1`.
  * @param {number} [options.min] Minimum value used to normalize the segment fill ratio. Defaults to `0`.
  * @param {number} [options.max] Maximum value used to normalize the segment fill ratio. Defaults to `100`.
  * @param {number} [options.gap] Fraction (0-1) of the full circle left empty. Defaults to `0.3`.
- * @param {number} [options.gapOrientation] Rotates the gap, in degrees. `0` centers it at the bottom.
+ * @param {number} [options.gapOrientation] Rotates the gap (and therefore the whole chart), in degrees. `0` centers the gap at the bottom. Defaults to `0`.
+ * @param {string} [options.icon] SVG data URL rendered inside the static center circle.
+ * @param {string} [options.name] Name rendered inside the gap.
+ * @param {TextStyle} [options.nameTextStyle] Text style for the name rendered inside the gap.
+ * @param {TextStyle} [options.labelTextStyle] Text style for the segment labels rendered outside each segment.
+ * @param {ItemStyle} [options.itemStyle] Item style for each segment, including fill color, border color, and border width.
+ * @param {string} [options.itemStyle.fill] Fill color for each segment.
+ * @param {string} [options.itemStyle.borderColor] Border color for each segment.
+ * @param {string} [options.itemStyle.borderWidth] Border width for each segment.
+ * @param {BackgroundStyle} [options.backgroundStyle] Background style for each segment, including fill color, border color, and border width.
+ * @param {string} [options.backgroundStyle.fill] Fill color for the background of each segment.
+ * @param {string} [options.backgroundStyle.borderColor] Border color for the background of each segment.
+ * @param {string} [options.backgroundStyle.borderWidth] Border width for the background of each segment.
  * @param {number|string} [options.top] Top inset of the drawable area in pixels or percent.
  * @param {number|string} [options.right] Right inset of the drawable area in pixels or percent.
  * @param {number|string} [options.bottom] Bottom inset of the drawable area in pixels or percent.
  * @param {number|string} [options.left] Left inset of the drawable area in pixels or percent.
- * @param {string} [options.icon] SVG data URL rendered inside the static center circle.
- * @param {string} [options.name] Name rendered inside the gap.
- * @param {string[]} [options.data[].itemStyle.fill] Colors for the filled portion of each segment.
- * When omitted, colors are taken from the chart's categorical color palette.
- * @param {string[]} [options.data[].itemStyle.borderColor] Colors for each segment's border. Default: transparent
- * @param {string[]} [options.data[].itemStyle.borderWidth] Width for each segment's border. Default: 0.
- * @param {string[]} [options.backgroundStyle.fill] Colors for the unfilled background of each segment.
- * @param {string[]} [options.data[].label] Labels rendered outside each segment. Defaults to the segment's value.
+ * @param {number[]|SegmentDataItem[]} options.data Array of segment data values or objects containing segment metadata.
+ * @param {number} [options.data[].value] Numeric value of the segment. Defines the amplitude of a segment
+ * @param {number} [options.data[].weight] Angular width for each segment. Missing entries default to `1`.
+ * @param {string} [options.data[].name] Series item name used for displaying in legend.
+ * @param {string | ((value: number) => string)} [options.data[].label] Label shown for the segment item. If set to a function, it will be called with the segment value to generate the label. If not set, the value will be used as the label. To remove the label, set this to `undefined`.
+ * @param {TextStyle} [options.data[].labelTextStyle] Text style for the segment label rendered outside each segment.
  *
- * @see https://echarts.apache.org/en/option.html#series
+ * @param {BackgroundStyle} [options.data[].backgroundStyle] Background style for the specific segment, including fill color, border color, and border width.
+ * @param {string} [options.data[].backgroundStyle.fill] Fill color for the background of the specific segment.
+ * @param {string} [options.data[].backgroundStyle.borderColor] Border color for the background of the specific segment.
+ * @param {string} [options.data[].backgroundStyle.borderWidth] Border width for the background of the specific segment.
+ * @param {ItemStyle} [options.data[].itemStyle] Item style for the specific segment, including fill color, border color, and border width.
+ * @param {string[]} [options.data[].itemStyle.fill] Colors for the filled portion of the specific segment.
+ * When omitted, colors are taken from the chart's categorical color palette.
+ * @param {string[]} [options.data[].itemStyle.borderColor] Colors for the specific segment's border. Default: transparent
+ * @param {string[]} [options.data[].itemStyle.borderWidth] Width for the specific segment's border. Default: 0.
+ *
  */
 export const seriesSegment = (options: SegmentSeriesPresetOptions): ConfigModifier => (config) => {
   const seriesOption: SynergySegmentSeriesOption = {

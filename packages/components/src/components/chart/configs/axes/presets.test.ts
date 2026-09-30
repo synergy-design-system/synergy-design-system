@@ -11,13 +11,7 @@ import {
   axesShowYSplitLines,
 } from './presets.js';
 import type { ECConfig } from '../../types.js';
-
-function decodeBase64DataUrl(dataUrl: string): string {
-  const [, base64 = ''] = dataUrl.split(',');
-  return atob(base64);
-}
-
-const svgDataUrl = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIvPjwvc3ZnPg==';
+import { decodeBase64DataUrl, CURRENT_COLOR_SVG_DATA_URL as svgDataUrl } from '../testHelper.js';
 
 describe('chart axes presets', () => {
   describe('axesShowYSplitLines', () => {

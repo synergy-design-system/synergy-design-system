@@ -3,12 +3,18 @@ import type {
   BackgroundStyle, ItemStyle, LayoutInsets, TextStyle,
 } from '../../types.js';
 
+/**
+ * Visual styling applied to an individual segment wedge.
+ */
 export type WedgeStyle = {
   fill?: ZRColor;
   lineWidth?: number;
   stroke?: ZRColor;
 };
 
+/**
+ * Geometric dimensions and angles used to render a segment wedge.
+ */
 export type SegmentWedgeShape = {
   centerX: number;
   centerY: number;
@@ -28,24 +34,19 @@ export type SegmentSeriesConfig = LayoutInsets & BackgroundStyle & ItemStyle & {
   /** Maximum value used to normalize the segment fill ratio. Defaults to `100`. */
   max?: number;
   /** Fraction (0-1) of the full circle left empty, where the main `mainLabel` is rendered. Defaults to `0.3`. */
-  // TODO: Does it make sense to have it valued by 0-1 or would it be better from 0-360 degree?
   gap?: number;
-  /** Rotates the gap (and therefore the whole chart), in degrees. `0` centers the gap at the bottom. */
+  /** Rotates the gap (and therefore the whole chart), in degrees. `0` centers the gap at the bottom. Defaults to `0`. */
   gapOrientation?: number;
   /** Optional SVG data URL rendered as an icon inside the static center circle. */
   icon?: string;
+  /** Text style for the segment labels rendered outside each segment. */
+  // TODO: make labelTextStyle work from root
   labelTextStyle?: TextStyle;
-  /** Main name rendered inside the gap. */
+  /** Name rendered inside the gap. */
   name?: string;
+  /** Text style for the name rendered inside the gap. */
   nameTextStyle?: TextStyle;
 };
-/** Colors used for the filled portion of each segment, cycled when fewer colors than data points are provided.
- * When omitted, colors are taken from the chart's categorical color palette. */
-// color?: ZRColor;
-// /** Colors for each segment's 1px outline, aligned by index with `data`. No outline is drawn when omitted. */
-// borderColor?: ZRColor;
-// borderWidth?: number;
-/** Colors for the unfilled background of each segment's radial band, aligned by index with `data`. */
 
 /**
  * Fully normalized segment chart options after defaults are resolved.
@@ -58,7 +59,7 @@ export type ResolvedSegmentChartSeriesConfig = Required<Omit<SegmentSeriesConfig
  * A single data item shown as a segment item with optional label metadata.
  */
 export type SegmentDataItem = BackgroundStyle & ItemStyle & {
-  /** Numeric value of the segment; determines the slice angle relative to the other values. */
+  /** Numeric value of the segment. Defines the amplitude of a segment. */
   value: number;
   /**
    * Series item name used for displaying in legend.
@@ -71,13 +72,12 @@ export type SegmentDataItem = BackgroundStyle & ItemStyle & {
    * To remove the label, set this to `undefined`.
    * */
   label?: string | ((value: number) => string);
+  /** Text style for the specific segment label rendered outside each segment. */
   labelTextStyle?: TextStyle;
   /**
- * Angular width of each segment, aligned by index with `data`. Normalized to the available
- * angle (360 degrees minus the `gap`), analogous to the donut series. When omitted, or when
- * shorter than `data`, missing entries default to an equal weight of `1`.
- */
-  weight: number;
+   * Angular width for each segment. Missing entries default to `1`.
+   */
+  weight?: number;
 };
 
 /**
@@ -85,6 +85,9 @@ export type SegmentDataItem = BackgroundStyle & ItemStyle & {
  */
 export type SegmentDataValue = number | SegmentDataItem;
 
+/**
+ * ECharts series options for the custom `synSegment` series.
+ */
 export type SegmentSeriesOption = SegmentSeriesConfig & {
   type?: 'synSegment';
   name?: string;

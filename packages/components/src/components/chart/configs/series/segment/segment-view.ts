@@ -10,6 +10,7 @@ import type {
 import { DEGREE_TO_RADIAN, FULL_CIRCLE_RADIAN, SEGMENT_SERIES } from '../../constants.js';
 import {
   clamp,
+  colorSvgDataUrl,
   createImageGraphic,
   createSectorGraphic,
   createTextGraphic,
@@ -314,10 +315,10 @@ const buildSegmentChartGroup = (
   if (config.icon) {
     const iconSize = factor * SEGMENT_SERIES.ICON_SIZE;
     const halfIconSize = iconSize / 2;
-
+    const coloredIcon = colorSvgDataUrl(config.icon, style('SynColorNeutral950'));
     root.add(createImageGraphic({
       height: iconSize,
-      image: config.icon,
+      image: coloredIcon,
       width: iconSize,
       x: centerX - halfIconSize,
       y: centerY - halfIconSize,

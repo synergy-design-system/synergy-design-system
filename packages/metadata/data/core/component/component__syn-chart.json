@@ -644,6 +644,127 @@
             "type": "text",
             "value": "Gauge Series Value Formatting"
           }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Segment charts visualize how values contribute to a whole by dividing data into proportional slices. They are well-suited for showing distribution, share ratios, or simple comparisons within a limited number of categories. You can choose between versions with or without gaps."
+          },
+          "name": "segment-series-default",
+          "title": {
+            "type": "text",
+            "value": "Segment Chart"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The segment chart can be configured via the chart config with `type: 'synSegment'` or with the `seriesSegment` preset function."
+          },
+          "name": "segment-series-preset",
+          "title": {
+            "type": "text",
+            "value": "Segment Chart Preset"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "By default, each segment item is assigned a color from the chart's categorical color palette. Use the `colors` option to provide explicit colors instead; colors are repeated cyclically when fewer colors than data points are provided."
+          },
+          "name": "segment-series-colors",
+          "title": {
+            "type": "text",
+            "value": "Segment Series Colors"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use `top`, `right`, `bottom`, and `left` to reduce the segment layout area from each side before segment rendering is done. Insets can be set in pixels (number) or percentages (string)."
+          },
+          "name": "segment-series-insets",
+          "title": {
+            "type": "text",
+            "value": "Segment Series Insets"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the `gap` option to set the size of the open section in the segment ring. It is defined as a fraction of the full circle (0–1) and defaults to `0.3`. Use `gapOrientation` to rotate the opening around the chart. By default, it is centered at the bottom."
+          },
+          "name": "segment-series-gap",
+          "title": {
+            "type": "text",
+            "value": "Segment Chart Gap"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Set `gap` to `0` to render no gap between the segments. Additionally a custom icon can be added to the inner circle via `icon` option."
+          },
+          "name": "segment-series-no-gap",
+          "title": {
+            "type": "text",
+            "value": "Segment Chart Without Gaps"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the `min` and `max` options to define the value range for the segment chart. This is useful when values share a known scale, such as a range from 0 to 1."
+          },
+          "name": "segment-series-min-max",
+          "title": {
+            "type": "text",
+            "value": "Segment Chart Minimum and Maximum"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Segment labels can be provided as strings or formatter functions. If no label is provided, the value is used by default; set `label` to `undefined` to omit a label."
+          },
+          "name": "segment-series-label-formatting",
+          "title": {
+            "type": "text",
+            "value": "Segment Chart Label Formatting"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the `weight` option on data items to control the relative width of each segment independently of its value. Segments without an explicit weight use the default weight."
+          },
+          "name": "segment-series-weights",
+          "title": {
+            "type": "text",
+            "value": "Segment Chart Weights"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Customize individual segments with `itemStyle`, `backgroundStyle` and `labelTextStyle`. Both `backgroundStyle` and `itemStyle` can be either set on chart or on data item level, `labelTextStyle` can only be set to the data item level. The chart level styling is inherited by all segments, while on the data item level it overrides the chart level styling for that specific segment."
+          },
+          "name": "segment-series-styling",
+          "title": {
+            "type": "text",
+            "value": "Segment Chart Custom Styling"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use `legendShow()` to display a legend for segment data items. Set the `name` option on each item to provide its legend label."
+          },
+          "name": "segment-series-legend",
+          "title": {
+            "type": "text",
+            "value": "Segment Chart with Legend"
+          }
         }
       ],
       "storySourcePath": "components.chart",

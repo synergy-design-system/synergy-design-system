@@ -1,406 +1,358 @@
 import { expect } from '@open-wc/testing';
-import type GlobalModel from 'echarts/types/src/model/Global.js';
-import type ExtensionAPI from 'echarts/types/src/core/ExtensionAPI.js';
-import type { graphic } from 'echarts';
+import { Model, type graphic } from 'echarts';
 import { SEGMENT_SERIES } from '../../constants.js';
 import { SynergySegmentSeriesModel } from './segment-model.js';
+import { SynergySegmentView } from './segment-view.js';
+import type { SegmentDataItem, SegmentDataValue, SynergySegmentSeriesOption } from './types.js';
 import {
-  SynergySegmentView,
-  computeGapRange,
-  computeSegmentRanges,
-  getSafeHalfGap,
-  resolveWeights,
-} from './segment-view.js';
-import type { SegmentSeriesOption } from './types.js';
-import { getRealStyleValue } from '../../../themes/utilities.js';
+  CURRENT_COLOR_SVG_DATA_URL, collectByType, createApiStub, getImages, getSectors, getTextElements,
+  getTextValues,
+} from '../../testHelper.js';
+import type { GlobalModel } from '../../types.js';
+import { colorSvgDataUrl } from '../../utilities.js';
+import { getRealStyleValue, getRealValueWithoutUnit } from '../../../themes/utilities.js';
 
-const RADIAN = Math.PI / 180;
-const FULL_CIRCLE = Math.PI * 2;
-
-const createSeriesModelStub = (
-  option: SegmentSeriesOption,
-  paletteColors: string[] = ['#111111', '#222222', '#333333'],
+const createSeriesModel = (
+  option: Partial<SynergySegmentSeriesOption> = {},
+  defaultData: SegmentDataValue[] = [
+    { value: 10 },
+    { value: 20 },
+    { value: 30 },
+  ],
 ): SynergySegmentSeriesModel => {
-  const resolvedOption: SegmentSeriesOption = {
-    ...SynergySegmentSeriesModel.defaultOption,
+  const seriesOption: SynergySegmentSeriesOption = {
+    data: defaultData,
+    type: SEGMENT_SERIES.TYPE_NAME,
     ...option,
   };
-  const data = resolvedOption.data ?? [];
-
-  const getDataItem = (index: number) => data[index];
-  const getDataValue = (index: number) => {
-    const item = getDataItem(index);
-    return typeof item === 'object' ? item.value : item;
-  };
-  const getItemStyle = (index: number) => {
-    const item = getDataItem(index);
-    return typeof item === 'object' ? item.itemStyle : undefined;
-  };
-  const getItemVisualStyle = (index: number) => {
-    const itemStyle = getItemStyle(index);
-    const seriesItemStyle = resolvedOption.itemStyle;
-
-    return {
-      fill: itemStyle?.color ?? paletteColors[index % paletteColors.length],
-      lineWidth: itemStyle?.borderWidth ?? seriesItemStyle?.borderWidth ?? 0,
-      stroke: itemStyle?.borderColor ?? seriesItemStyle?.borderColor,
-    };
-  };
-
-  return {
-    get: (key: keyof SegmentSeriesOption) => resolvedOption[key],
-    getColorFromPalette: (name: string) => {
-      const match = /(\d+)$/.exec(name);
-      const index = match ? Number(match[1]) : 0;
-      return paletteColors[index % paletteColors.length];
-    },
-    getData: () => ({
-      count: () => data.length,
-      each: (callback: (index: number) => void) => data.forEach((_item, index) => callback(index)),
-      get: (key: string, index: number) => (key === 'value' ? getDataValue(index) : undefined),
-      getItemModel: (index: number) => {
-        const item = getDataItem(index);
-
-        return {
-          get: (key: string) => (typeof item === 'object' ? item[key as keyof typeof item] : undefined),
-          getModel: (key: string) => ({
-            get: (property: string) => {
-              const itemValue = typeof item === 'object' ? item[key as keyof typeof item] : undefined;
-              const seriesValue = resolvedOption[key as keyof SegmentSeriesOption];
-              const value = typeof itemValue === 'object' && itemValue !== null ? itemValue : seriesValue;
-              return typeof value === 'object' && value !== null
-                ? value[property as keyof typeof value]
-                : undefined;
-            },
-          }),
-          option: item,
-        };
-      },
-      getItemVisual: (index: number, key: string) => {
-        if (key !== 'style') return undefined;
-        return getItemVisualStyle(index);
-      },
-    }),
-    option: resolvedOption,
-  } as unknown as SynergySegmentSeriesModel;
+  const ecModel = { getTheme: () => new Model({}) } as unknown as GlobalModel;
+  const model = new SynergySegmentSeriesModel(seriesOption, null as unknown as Model, ecModel);
+  model.init(seriesOption, null as unknown as Model, ecModel);
+  const data = model.getInitialData(seriesOption);
+  model.setData(data);
+  data.each((index) => {
+    data.setItemVisual(index, 'style', data.getItemModel<SegmentDataItem>(index).getModel('itemStyle').getItemStyle());
+  });
+  return model;
 };
 
-const createApiStub = (width = 280, height = 280): ExtensionAPI => ({
-  getHeight: () => height,
-  getWidth: () => width,
-}) as unknown as ExtensionAPI;
-
-const renderSegmentChart = (
-  partialOption: Partial<SegmentSeriesOption> = {},
-  paletteColors?: string[],
-  width = 280,
-  height = 280,
+const renderSegment = (
+  partialOption: Partial<SynergySegmentSeriesOption> = {},
+  data: SegmentDataValue[] = [
+    { value: 10 },
+    { value: 20 },
+    { value: 30 },
+  ],
+  width = SEGMENT_SERIES.REFERENCE_HEIGHT,
+  height = SEGMENT_SERIES.REFERENCE_HEIGHT,
 ): SynergySegmentView => {
   const view = new SynergySegmentView();
-  const option: SegmentSeriesOption = {
-    data: [50, 80, 100],
-    type: 'synSegment',
+  const option = {
+    data,
+    type: SEGMENT_SERIES.TYPE_NAME,
     ...partialOption,
-  };
+  } as SynergySegmentSeriesOption;
 
-  const seriesModel = createSeriesModelStub(option, paletteColors);
-  view.render(seriesModel, {} as GlobalModel, createApiStub(width, height));
-
+  view.render(createSeriesModel(option, data), {} as GlobalModel, createApiStub(width, height));
   return view;
 };
 
-type SegmentChartGraphicElementMap = {
-  sector: graphic.Sector;
-  polygon: graphic.Polygon;
-  text: graphic.Text;
-  image: graphic.Image;
+const getSegmentPolygons = (view: SynergySegmentView) => collectByType<graphic.Polygon>(view, 'polygon');
+
+// The first two points of the polygon define the inner and outer edges of the radial segment. The radial extent is the distance between these two points.
+const getRadialExtent = (polygon: graphic.Polygon): number => {
+  const [[innerX, innerY], [outerX, outerY]] = polygon.shape.points as [number, number][];
+  return Math.hypot(outerX - innerX, outerY - innerY);
 };
 
-const isGraphicElementOfType = <TType extends keyof SegmentChartGraphicElementMap>(
-  element: unknown,
-  type: TType,
-): element is SegmentChartGraphicElementMap[TType] & { type: TType } => (
-  typeof element === 'object'
-  && element !== null
-  && 'type' in element
-  && (element as { type?: unknown }).type === type
-);
-
-const collectByType = <TType extends keyof SegmentChartGraphicElementMap>(
-  view: SynergySegmentView,
-  type: TType,
-): SegmentChartGraphicElementMap[TType][] => {
-  const collected: SegmentChartGraphicElementMap[TType][] = [];
-
-  view.group.traverse((element: unknown) => {
-    if (isGraphicElementOfType(element, type)) {
-      collected.push(element);
-    }
-  });
-
-  return collected;
+const getAngularExtent = (polygon: graphic.Polygon, centerX: number, centerY: number): number => {
+  const points = polygon.shape.points as [number, number][];
+  const outerRadius = Math.max(...points.map(([x, y]) => Math.hypot(x - centerX, y - centerY)));
+  const outerArcPoints = points.filter(([x, y]) => (
+    Math.abs(Math.hypot(x - centerX, y - centerY) - outerRadius) < 0.001
+  ));
+  const angle = ([x, y]: [number, number]) => Math.atan2(y - centerY, x - centerX);
+  const firstAngle = angle(outerArcPoints[0]);
+  const lastAngle = angle(outerArcPoints[outerArcPoints.length - 1]);
+  return (lastAngle - firstAngle + (2 * Math.PI)) % (2 * Math.PI);
 };
 
-const getSectors = (view: SynergySegmentView): graphic.Sector[] => collectByType(view, 'sector');
-const getCenterCircle = (view: SynergySegmentView): graphic.Sector | undefined => getSectors(view).find((sector) => sector.z === 1);
-const getWedges = (view: SynergySegmentView): graphic.Polygon[] => collectByType(view, 'polygon');
-const getBackgroundWedges = (view: SynergySegmentView): graphic.Polygon[] => getWedges(view).filter((wedge) => wedge.z === 3);
-const getFillWedges = (view: SynergySegmentView): graphic.Polygon[] => getWedges(view).filter((wedge) => wedge.z === 4);
-const getLabelTexts = (view: SynergySegmentView): string[] => collectByType(view, 'text')
-  .map((element) => element.style.text)
-  .filter((text): text is string => text !== undefined);
-const svgDataUrl = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIvPjwvc3ZnPg==';
+const backgroundPolygons = (view: SynergySegmentView) => collectByType<graphic.Polygon>(view, 'polygon').filter((polygon) => polygon.z === 3);
 
-/** Approximate distance from the chart center (140, 140 for the default 280x280 test size). */
-const distanceFromCenter = (point: number[], centerX = 140, centerY = 140): number => Math.hypot(point[0] - centerX, point[1] - centerY);
+const fillPolygons = (view: SynergySegmentView) => collectByType<graphic.Polygon>(view, 'polygon').filter((polygon) => polygon.z === 4);
 
-const maxRadius = (wedge: graphic.Polygon, centerX = 140, centerY = 140): number => Math.max(
-  ...wedge.shape.points.map((point) => distanceFromCenter(point, centerX, centerY)),
-);
-const minRadius = (wedge: graphic.Polygon): number => Math.min(...wedge.shape.points.map((point) => distanceFromCenter(point)));
-
-describe('computeGapRange', () => {
-  it('centers the gap at the bottom of the circle by default', () => {
-    const { startAngle } = computeGapRange(0.5, 0);
-    const expectedStartAngle = (SEGMENT_SERIES.GAP_CENTER_ANGLE * RADIAN) + (0.5 * Math.PI);
-
-    expect(startAngle).to.be.closeTo(expectedStartAngle, 0.0001);
-  });
-
-  it('rotates the gap according to gapOrientation', () => {
-    const base = computeGapRange(0.5, 0);
-    const rotated = computeGapRange(0.5, 90);
-
-    expect(rotated.startAngle - base.startAngle).to.be.closeTo(90 * RADIAN, 0.0001);
-  });
-
-  it('reserves the full circle for segments when gap is 0', () => {
-    const { availableAngle } = computeGapRange(0, 0);
-    expect(availableAngle).to.be.closeTo(FULL_CIRCLE, 0.0001);
-  });
-
-  it('clamps the gap fraction to the 0-1 range', () => {
-    expect(computeGapRange(-1, 0).availableAngle).to.be.closeTo(FULL_CIRCLE, 0.0001);
-    expect(computeGapRange(2, 0).availableAngle).to.be.closeTo(0, 0.0001);
-  });
-});
-
-describe('computeSegmentRanges', () => {
-  it('sizes segments proportionally to their weights, normalized to the available angle', () => {
-    const { startAngle, availableAngle } = computeGapRange(0.3, 0);
-    const ranges = computeSegmentRanges([1, 1, 2], startAngle, availableAngle);
-
-    const sweep = (range: { startAngle: number; endAngle: number }) => range.endAngle - range.startAngle;
-
-    expect(sweep(ranges[2]!)).to.be.closeTo(sweep(ranges[0]!) * 2, 0.0001);
-    expect(sweep(ranges[0]!)).to.be.closeTo(sweep(ranges[1]!), 0.0001);
-  });
-
-  it('returns null ranges when no angle is available', () => {
-    const ranges = computeSegmentRanges([1, 1], 0, 0);
-    expect(ranges).to.deep.equal([null, null]);
-  });
-
-  it('returns null ranges when all weights are zero', () => {
-    const ranges = computeSegmentRanges([0, 0], 0, FULL_CIRCLE);
-    expect(ranges).to.deep.equal([null, null]);
-  });
-});
-
-describe('resolveWeights', () => {
-  it('defaults missing weight entries to an equal share', () => {
-    const model = createSeriesModelStub({ data: [{ value: 50, weight: 2 }, 50, 50], type: 'synSegment' });
-    expect(resolveWeights(model.getData())).to.deep.equal([2, 1, 1]);
-  });
-
-  it('uses all provided weights when the array is fully populated', () => {
-    const model = createSeriesModelStub({
-      data: [{ value: 50, weight: 3 }, { value: 50, weight: 5 }],
-      type: 'synSegment',
+describe('SynergySegmentView', () => {
+  it('renders a static center circle and a background + fill polygon for each data item', () => {
+    const view = renderSegment({
+      data: [10, 20, 30, 40],
     });
-    expect(resolveWeights(model.getData())).to.deep.equal([3, 5]);
-  });
-});
 
-describe('getSafeHalfGap', () => {
-  it('returns the requested half gap when there is enough room', () => {
-    expect(getSafeHalfGap(2, Math.PI / 2, 100)).to.equal(2);
-  });
+    // Static center circle
+    const centerCirlce = getSectors(view);
+    const backgroundSegments = backgroundPolygons(view);
+    const fillSegments = fillPolygons(view);
+    const texts = getTextElements(view);
 
-  it('clamps the half gap for very thin segments', () => {
-    const clamped = getSafeHalfGap(10, 0.01, 20);
-    expect(clamped).to.be.lessThan(10);
-    expect(clamped).to.be.at.least(0);
-  });
-
-  it('returns 0 for a zero sweep or radius', () => {
-    expect(getSafeHalfGap(2, 0, 100)).to.equal(0);
-    expect(getSafeHalfGap(2, Math.PI / 2, 0)).to.equal(0);
-  });
-});
-
-describe('SynergySegmentChartView', () => {
-  it('renders a static center circle and one background/fill pair per data point', () => {
-    const view = renderSegmentChart();
-
-    const centerCircle = getCenterCircle(view);
-    expect(centerCircle).to.not.equal(undefined);
-    expect(centerCircle!.style.fill).to.equal(getRealStyleValue('SynChartTrackColor'));
-
-    expect(getBackgroundWedges(view)).to.have.lengthOf(3);
-    expect(getFillWedges(view)).to.have.lengthOf(3);
+    expect(view.group.childCount()).to.equal(1);
+    expect(centerCirlce).to.have.lengthOf(1);
+    expect(backgroundSegments).to.have.lengthOf(4);
+    expect(fillSegments).to.have.lengthOf(4);
+    expect(texts).to.have.lengthOf(4);
   });
 
-  it('grows the filled portion of a segment radially based on its value', () => {
-    const view = renderSegmentChart({ data: [10, 50, 100] });
-    const fills = getFillWedges(view);
+  [{ data: [10, 20, 50, 100], title: 'with only numbers' }, { data: [{ value: 10 }, { value: 20 }, { value: 50 }, { value: 100 }], title: 'with value objects' }].forEach(({ data, title }) => {
+    it(`handles data array ${title} correctly`, () => {
+      const view = renderSegment({
+        data,
+      });
 
-    expect(maxRadius(fills[0])).to.be.lessThan(maxRadius(fills[1]));
-    expect(maxRadius(fills[1])).to.be.lessThan(maxRadius(fills[2]));
+      const fillSegments = fillPolygons(view);
+      const textValues = getTextValues(view);
+      const backgroundSegments = backgroundPolygons(view);
+      const maxSegmentLength = getRadialExtent(backgroundSegments[0]);
+
+      // Check that the filled polygon size corresponds to the data values
+      fillSegments.forEach((polygon, index) => {
+        const segmentLength = getRadialExtent(polygon);
+        const segmentPercentage = (segmentLength * 100) / maxSegmentLength;
+        const expectedValue = typeof data[index] === 'number' ? data[index] : data[index].value;
+        expect(segmentPercentage).to.be.closeTo(expectedValue, 0.01);
+      });
+
+      expect(fillSegments).to.have.lengthOf(4);
+      expect(textValues).to.deep.equal(['10', '20', '50', '100']);
+    });
   });
 
-  it('does not render a fill sector when the value is at the configured minimum', () => {
-    const view = renderSegmentChart({ data: [0, 50], min: 0 });
+  it('uses min and max to normalize the filled sector length', () => {
+    const viewNormal = renderSegment({
+      data: [{ value: 20 }],
+    });
 
-    expect(getFillWedges(view)).to.have.lengthOf(1);
+    const view = renderSegment({
+      data: [{ value: 20 }],
+      max: 50,
+      min: 10,
+    });
+
+    const filledNormal = fillPolygons(viewNormal)[0];
+    const backgroundNormal = backgroundPolygons(viewNormal)[0];
+
+    const filled = fillPolygons(view)[0];
+    const background = backgroundPolygons(view)[0];
+
+    const segmentPercentageNormal = (getRadialExtent(filledNormal) * 100) / getRadialExtent(backgroundNormal);
+    const segmentPercentage = (getRadialExtent(filled) * 100) / getRadialExtent(background);
+
+    expect(segmentPercentageNormal).to.be.closeTo(20, 0.01);
+    expect(segmentPercentageNormal).to.not.equal(segmentPercentage);
+    expect(segmentPercentage).to.be.closeTo(25, 0.01);
   });
 
-  it('normalizes the fill ratio using custom min/max values', () => {
-    const view = renderSegmentChart({ data: [0.5, 1], max: 1, min: 0 });
-    const fills = getFillWedges(view);
-
-    expect(maxRadius(fills[1])).to.be.greaterThan(maxRadius(fills[0]));
-  });
-
-  it('makes the center circle 20% smaller and the background wedges start right outside it', () => {
-    const view = renderSegmentChart();
-    const centerCircle = getCenterCircle(view)!;
-    const [background] = getBackgroundWedges(view);
-
-    // The background wedge's inner radius should sit just outside the (smaller) center circle.
-    expect(minRadius(background)).to.be.greaterThan(centerCircle.shape.r);
-    expect(minRadius(background) - centerCircle.shape.r).to.be.lessThan(centerCircle.shape.r);
-  });
-
-  it('positions the chart in the center of the inset layout area', () => {
-    const view = renderSegmentChart({
-      bottom: 40, left: 20, right: 60, top: 10,
-    }, undefined, 300, 240);
-    const centerCircle = getCenterCircle(view)!;
-
-    expect(centerCircle.shape.cx).to.equal(130);
-    expect(centerCircle.shape.cy).to.equal(105);
-  });
-
-  it('scales the complete chart from the smaller inset layout dimension', () => {
-    const fullLayout = renderSegmentChart({}, undefined, 340, 340);
-    const insetLayout = renderSegmentChart({
-      bottom: 85, left: '25%', right: '25%', top: 85,
-    }, undefined, 340, 340);
-
-    expect(getCenterCircle(insetLayout)!.shape.r).to.be.closeTo(getCenterCircle(fullLayout)!.shape.r / 2, 0.001);
-    expect(maxRadius(getBackgroundWedges(insetLayout)[0], 170, 170)).to.be.closeTo(
-      maxRadius(getBackgroundWedges(fullLayout)[0], 170, 170) / 2,
-      0.5,
-    );
-  });
-
-  it('keeps geometry finite when insets collapse the layout area', () => {
-    const view = renderSegmentChart({
-      bottom: 200, left: 200, right: 200, top: 200,
-    }, undefined, 200, 200);
-    const centerCircle = getCenterCircle(view)!;
-
-    expect(centerCircle.shape.r).to.equal(0);
-    expect(centerCircle.shape.cx).to.equal(200);
-    expect(centerCircle.shape.cy).to.equal(200);
-    expect(getWedges(view)).to.have.lengthOf(0);
-  });
-
-  it('assigns a palette color per segment when no explicit colors are provided', () => {
-    const view = renderSegmentChart({ data: [50, 80, 100] }, ['#aaaaaa', '#bbbbbb', '#cccccc']);
-    const fills = getFillWedges(view);
-
-    expect(fills.map((fill) => fill.style.fill)).to.deep.equal(['#aaaaaa', '#bbbbbb', '#cccccc']);
-  });
-
-  it('uses explicit item and background colors when provided', () => {
-    const view = renderSegmentChart({
+  it('applies backgroundStyle and itemStyle values for each item or falls back to the root styles otherwise', () => {
+    const view = renderSegment({
+      backgroundStyle: { borderColor: 'black', borderWidth: 2, color: 'white' },
       data: [
-        {
-          backgroundStyle: { color: '#000010' }, itemStyle: { color: '#ff0000' }, value: 50, weight: 1,
-        },
-        {
-          backgroundStyle: { color: '#000020' }, itemStyle: { color: '#00ff00' }, value: 80, weight: 1,
-        },
+        { itemStyle: { borderColor: 'blue', borderWidth: 1, color: 'red' }, value: 10 },
+        { backgroundStyle: { borderColor: 'green', borderWidth: 3, color: 'yellow' }, value: 20 },
+      ],
+      itemStyle: { borderColor: 'black', borderWidth: 3, color: 'white' },
+    });
+
+    const filled = fillPolygons(view);
+    const background = backgroundPolygons(view);
+
+    expect(background[0].style.fill).to.equal('white');
+    expect(background[0].style.stroke).to.equal('black');
+    expect(background[0].style.lineWidth).to.equal(2);
+    expect(filled[0].style.fill).to.equal('red');
+    expect(filled[0].style.stroke).to.equal('blue');
+    expect(filled[0].style.lineWidth).to.equal(1);
+    expect(background[1].style.fill).to.equal('yellow');
+    expect(background[1].style.stroke).to.equal('green');
+    expect(background[1].style.lineWidth).to.equal(3);
+    expect(filled[1].style.fill).to.equal('white');
+    expect(filled[1].style.stroke).to.equal('black');
+    expect(filled[1].style.lineWidth).to.equal(3);
+  });
+
+  it('renders labels from the data item via string, function based or value if not set', () => {
+    const view = renderSegment({
+      data: [
+        { label: 'First', value: 10 },
+        { label: (value: number) => `${value}%`, value: 20 },
+        { value: 30 },
+        // does not render a label at all if set to undefined
+        { label: undefined, value: 40 },
       ],
     });
 
-    expect(getFillWedges(view).map((fill) => fill.style.fill)).to.deep.equal(['#ff0000', '#00ff00']);
-    expect(getBackgroundWedges(view).map((bg) => bg.style.fill)).to.deep.equal(['#000010', '#000020']);
+    const elements = getTextValues(view);
+    expect(elements).to.deep.equal(['First', '20%', '30']);
   });
 
-  it('does not render an outline by default', () => {
-    const view = renderSegmentChart();
-    expect(getFillWedges(view).every((wedge) => wedge.style.stroke === 'none')).to.equal(true);
-  });
-
-  it('renders a configured outline for a segment', () => {
-    const view = renderSegmentChart({
+  it('default label text styling can be overwritten via labelTextStyle', () => {
+    const view = renderSegment({
       data: [
-        { itemStyle: { borderColor: '#ff0000', borderWidth: 1 }, value: 50, weight: 1 },
-        { value: 80, weight: 1 },
+        { label: 'Default', value: 10 },
+        { label: 'Custom', labelTextStyle: { fill: 'red', fontWeight: 'bold' }, value: 20 },
       ],
     });
 
-    const [outlinedSegment] = getFillWedges(view);
-    expect(outlinedSegment.style.stroke).to.equal('#ff0000');
-    expect(outlinedSegment.style.lineWidth).to.equal(1);
+    const elements = getTextElements(view);
+    expect(elements[0].style.fill).to.equal('#0d0d0d');
+    expect(elements[0].style.fontWeight).to.equal(400);
+    expect(elements[1].style.fill).to.equal('red');
+    expect(elements[1].style.fontWeight).to.equal('bold');
   });
 
-  it('defaults segment labels to the segment value', () => {
-    const view = renderSegmentChart({ data: [50, 80] });
-    expect(getLabelTexts(view)).to.include.members(['50', '80']);
+  it('uses default weight if not set explicitly and keeps the sector widths equal', () => {
+    const view = renderSegment({
+      data: [10, 20, 30],
+    });
+
+    const center = getSectors(view)[0].shape;
+    const angularExtents = backgroundPolygons(view).map((polygon) => getAngularExtent(polygon, center.cx, center.cy));
+    const totalAngularExtent = angularExtents.reduce((total, extent) => total + extent, 0);
+    const angularShares = angularExtents.map((extent) => extent / totalAngularExtent);
+    const totalShare = angularShares.reduce((total, share) => total + share, 0);
+
+    expect(angularShares[0]).to.be.closeTo(0.33, 0.01);
+    expect(angularShares[1]).to.be.closeTo(0.33, 0.01);
+    expect(angularShares[2]).to.be.closeTo(0.33, 0.01);
+    expect(totalShare).to.equal(1);
   });
 
-  it('overrides segment labels with data item labels', () => {
-    const view = renderSegmentChart({ data: [{ label: 'first', value: 50, weight: 1 }, 80] });
-    expect(getLabelTexts(view)).to.include('first');
-    expect(getLabelTexts(view)).to.include('80');
+  it('uses custom weights for the used sector widths', () => {
+    const view = renderSegment({
+      data: [{ value: 10, weight: 2 }, { value: 20, weight: 0.5 }, { value: 30 }],
+    });
+
+    const center = getSectors(view)[0].shape;
+    const angularExtents = backgroundPolygons(view).map((polygon) => getAngularExtent(polygon, center.cx, center.cy));
+    const totalAngularExtent = angularExtents.reduce((total, extent) => total + extent, 0);
+    const angularShares = angularExtents.map((extent) => extent / totalAngularExtent);
+    const totalShare = angularShares.reduce((total, share) => total + share, 0);
+
+    expect(angularShares[0]).to.be.closeTo(0.57, 0.01);
+    expect(angularShares[1]).to.be.closeTo(0.14, 0.01);
+    expect(angularShares[2]).to.be.closeTo(0.28, 0.01);
+    expect(totalShare).to.equal(1);
   });
 
-  it('renders the main label inside the gap when provided', () => {
-    const view = renderSegmentChart({ data: [50], name: 'Contamination' });
-    expect(getLabelTexts(view)).to.include('Contamination');
-  });
+  it('renders the optional center icon when icon is provided', () => {
+    const view = renderSegment({
+      data: [{ value: 10, weight: 1 }],
+      icon: CURRENT_COLOR_SVG_DATA_URL,
+    });
 
-  it('does not render a main label when not provided', () => {
-    const view = renderSegmentChart({ data: [50] });
-    expect(getLabelTexts(view)).to.not.include('');
-  });
-
-  it('renders the optional center icon', () => {
-    const view = renderSegmentChart({ data: [50], icon: svgDataUrl });
-    const images = collectByType(view, 'image');
+    const images = getImages(view);
     expect(images).to.have.lengthOf(1);
-    expect(images[0].style.image).to.equal(svgDataUrl);
+    expect(images[0].style.image).to.equal(colorSvgDataUrl(CURRENT_COLOR_SVG_DATA_URL, getRealStyleValue('SynColorNeutral950')));
+  });
+
+  it('uses default gap and gapOrientation if omitted', () => {
+    const view = renderSegment({
+      data: [{ label: undefined, value: 10 }, { label: undefined, value: 20 }],
+      name: 'Gap (30%)',
+    });
+    const center = getSectors(view)[0].shape;
+    const backgrounds = backgroundPolygons(view);
+    const angularExtent = backgrounds
+      .map((polygon) => getAngularExtent(polygon, center.cx, center.cy))
+      .reduce((total, extent) => total + extent, 0);
+
+    const percentageOfCircle = (angularExtent / (2 * Math.PI)) * 100;
+    // It is a bit inaccurate, as there is a gap between the segments, which is not integrated
+    expect(percentageOfCircle).to.be.closeTo(70, 0.5);
+    // The outer first point of the first background polygon radius
+    const [startX, startY] = backgrounds[0].shape.points[1];
+    const startAngle = (Math.atan2(startY - center.cy, startX - center.cx) + (2 * Math.PI)) % (2 * Math.PI);
+    expect(startAngle).to.be.closeTo((144 * Math.PI) / 180, 0.03);
+  });
+
+  it('supports custom gap and gapOrientation', () => {
+    const view = renderSegment({
+      data: [{ label: undefined, value: 10 }, { label: undefined, value: 20 }],
+      gap: 0.6,
+      gapOrientation: 90,
+      name: 'Gap (60%)',
+    });
+    const backgrounds = backgroundPolygons(view);
+
+    const center = getSectors(view)[0].shape;
+    const angularExtent = backgrounds
+      .map((polygon) => getAngularExtent(polygon, center.cx, center.cy))
+      .reduce((total, extent) => total + extent, 0);
+
+    const percentageOfCircle = (angularExtent / (2 * Math.PI)) * 100;
+    // It is a bit inaccurate, as there is a gap between the segments, which is not integrated
+    expect(percentageOfCircle).to.be.closeTo(40, 0.5);
+    // The outer first point of the first background polygon radius
+    const [startX, startY] = backgrounds[0].shape.points[1];
+    const startAngle = (Math.atan2(startY - center.cy, startX - center.cx) + (2 * Math.PI)) % (2 * Math.PI);
+    expect(startAngle).to.be.closeTo((288 * Math.PI) / 180, 0.03);
+  });
+
+  it('renders the series name in the gap and applies nameTextStyle overrides', () => {
+    const view = renderSegment({
+      data: [{ label: undefined, value: 10 }, { label: undefined, value: 20 }],
+      name: 'Default',
+    });
+    const viewCustomStyle = renderSegment({
+      data: [{ label: undefined, value: 10 }, { label: undefined, value: 20 }],
+      gapOrientation: 90,
+      name: 'Custom Style',
+      nameTextStyle: { fill: '#123456', fontWeight: 'bold' },
+    });
+
+    const center = getSectors(view)[0].shape;
+    const nameText = getTextElements(view).find((element) => element.style.text === 'Default')!;
+
+    // Defaults
+    expect(nameText).to.not.equal(undefined);
+    expect(nameText.style.fill).to.equal('#0d0d0d');
+    expect(nameText.style.fontWeight).to.equal(400);
+    expect(nameText.style.x).to.equal(center.cx);
+    expect(nameText.style.y).to.be.greaterThan(center.cy);
+
+    const centerCustom = getSectors(viewCustomStyle)[0].shape;
+    const nameTextCustom = getTextElements(viewCustomStyle).find((element) => element.style.text === 'Custom Style')!;
+    // Custom Style and other gapOrientation
+    expect(nameTextCustom).to.not.equal(undefined);
+    expect(nameTextCustom.style.fill).to.equal('#123456');
+    expect(nameTextCustom.style.fontWeight).to.equal('bold');
+    expect(nameTextCustom.style.x).to.be.lessThan(centerCustom.cx);
+    expect(nameTextCustom.style.y).to.equal(centerCustom.cy);
+  });
+
+  it('positions the chart within the configured layout insets', () => {
+    const view = renderSegment({
+      bottom: '25%',
+      data: [10, 20],
+      left: 40,
+      right: '10%',
+      top: 20,
+    }, undefined, SEGMENT_SERIES.REFERENCE_HEIGHT, SEGMENT_SERIES.REFERENCE_HEIGHT);
+
+    const center = getSectors(view)[0].shape;
+    expect(center.cx).to.equal(173);
+    expect(center.cy).to.equal(137.5);
+    const background = backgroundPolygons(view)[0];
+    const polygonRadius = Math.max(...background.shape.points.map(([x, y]) => Math.hypot(x - center.cx, y - center.cy)));
+    const layoutHeight = (SEGMENT_SERIES.REFERENCE_HEIGHT * 0.75) - 20;
+    const reservedLabelSpace = getRealValueWithoutUnit('SynSpacingSmall') + getRealValueWithoutUnit('SynFontSizeSmall');
+    const expectedRadius = (layoutHeight / 2) - ((layoutHeight / SEGMENT_SERIES.REFERENCE_HEIGHT) * reservedLabelSpace);
+    expect(polygonRadius).to.be.closeTo(expectedRadius, 0.001);
   });
 
   it('replaces previous content on repeated render calls', () => {
     const view = new SynergySegmentView();
 
-    view.render(
-      createSeriesModelStub({ data: [10, 20], type: 'synSegment' }),
-      {} as GlobalModel,
-      createApiStub(),
-    );
+    view.render(createSeriesModel({ data: [{ value: 10, weight: 1 }] }), {} as GlobalModel, createApiStub());
+    view.render(createSeriesModel({ data: [{ value: 20, weight: 1 }, { value: 30, weight: 1 }] }), {} as GlobalModel, createApiStub());
 
-    view.render(
-      createSeriesModelStub({ data: [30], type: 'synSegment' }),
-      {} as GlobalModel,
-      createApiStub(),
-    );
-
-    expect(getFillWedges(view)).to.have.lengthOf(1);
+    expect(getSectors(view)).to.have.lengthOf(1);
+    expect(getSegmentPolygons(view)).to.have.lengthOf(4);
   });
 });

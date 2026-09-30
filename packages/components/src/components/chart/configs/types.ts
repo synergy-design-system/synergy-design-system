@@ -1,16 +1,19 @@
 import type { ChartView, ZRColor, use } from 'echarts/types/dist/shared.js';
 import type { graphic } from 'echarts/core.js';
 
+/** Common visual style properties for chart elements. */
 export type Style = {
   color?: ZRColor;
   borderColor?: ZRColor;
   borderWidth?: number;
 };
 
+/** Background styling applied to a chart or chart area. */
 export type BackgroundStyle = {
   backgroundStyle?: Style;
 };
 
+/** Item styling applied to an individual chart data item. */
 export type ItemStyle = {
   itemStyle?: Style;
 };
@@ -108,5 +111,5 @@ export type EChartsExtensionInstaller = Exclude<Parameters<typeof use>[0], reado
 /** Registry map produced by an ECharts extension installer for custom series options. */
 export type EChartsExtensionInstallRegisters = Parameters<EChartsExtensionInstaller>[0];
 
-/** Style options for an text element */
+/** Style options for a text element. */
 export type TextStyle = graphic.Text['style'];

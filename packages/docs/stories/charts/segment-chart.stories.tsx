@@ -7,6 +7,8 @@ import {
   Subtitle,
   Title,
 } from '@storybook/addon-docs/blocks';
+import { ResolvedTokens as ChartTokens } from '@synergy-design-system/tokens/charts/resolved';
+import { ResolvedTokens as ComponentTokens } from '@synergy-design-system/tokens/resolved';
 import '../../../components/src/components/chart/chart.js';
 import { formatter } from '../../../components/src/components/chart/index.js';
 import {
@@ -18,10 +20,14 @@ import { waitForFinishedChartPlayFunction } from '../../src/playFunction/waitFor
 
 declare global {
   interface Window {
+    ChartTokens: typeof ChartTokens;
+    ComponentTokens: typeof ComponentTokens;
     formatter: typeof formatter;
   }
 }
 
+window.ChartTokens = ChartTokens;
+window.ComponentTokens = ComponentTokens;
 window.formatter = formatter;
 
 const meta: Meta = {
@@ -74,6 +80,96 @@ export const Default: Story = {
             }
           ]
         };
+      });
+    </script>
+  `,
+};
+
+export const CustomColors: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'segment-series-colors'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-chart id="segment-colors"></syn-chart>
+    <script type="module">
+      // To use Synergy chart colors, import the resolved chart tokens. The chart
+      // configuration currently requires hex values, which can be retrieved
+      // directly from the chart tokens object:
+      //
+      // import { ResolvedTokens as ChartTokens } from '@synergy-design-system/tokens/charts/resolved';
+
+      const charts = document.querySelectorAll('#segment-colors');
+      const getChartColor = (token) => {
+        return ChartTokens[token]['light'];
+      };
+
+      charts.forEach(chart => {
+        chart.config = handle => handle
+        .baseConfig({ 
+          color: [
+            getChartColor('SynChartSequential01_100'),
+            getChartColor('SynChartSequential01_90'),
+            getChartColor('SynChartSequential01_80'),
+            getChartColor('SynChartSequential01_70'),
+            getChartColor('SynChartSequential01_60'),
+            getChartColor('SynChartSequential01_50'),
+            getChartColor('SynChartSequential01_40')
+          ]
+          })
+        .seriesSegment({
+          data: [ 70, 80, 90, 75, 60, 50 ],
+        });
+      });
+    </script>
+  `,
+};
+
+export const LabelFormatting: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'segment-series-label-formatting'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-chart id="segment-label-formatting"></syn-chart>
+    <script type="module">
+      const charts = document.querySelectorAll('#segment-label-formatting');
+
+      charts.forEach(chart => {
+        chart.config = handle => handle
+        .seriesSegment({
+            data: [
+            {
+              value: 70,
+              label: 'Custom string',
+            },
+            {
+              value: 70,
+              label: undefined,
+            },
+            {
+              value: 70,
+              label: formatter.unitFormatter('ms'),
+            },
+            {
+              value: 70,
+              label: formatter.numberShorthandFormatter(),
+            },
+            {
+              value: 70,
+              label: formatter.numberFormatter(undefined, { minimumFractionDigits: 2 }),
+            },
+            {
+              value: 70,
+            },
+          ],
+        });
       });
     </script>
   `,
@@ -146,59 +242,12 @@ export const MinMax: Story = {
           data: [0.9, 1, 0.2, 0.1, 0.5, 0.9, 0.1, 0, 0.4, 1, 0.3],
           min: 0,
           max: 1,
-          icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMiAyMS41cS0xLjg3MyAwLTMuMTg3LTEuMzE0UTcuNSAxOC44NzQgNy41IDE3cTAtMS4xNDMuNTMtMi4xMTdhNC41NiA0LjU2IDAgMCAxIDEuNDctMS42MTRWNXEwLTEuMDQ4LjcyNi0xLjc3NEEyLjQgMi40IDAgMCAxIDEyIDIuNXExLjA0OCAwIDEuNzc0LjcyNlQxNC41IDV2OC4yN2E0LjU2IDQuNTYgMCAwIDEgMS40NyAxLjYxM3EuNTMuOTc0LjUzIDIuMTE3IDAgMS44NzMtMS4zMTMgMy4xODZRMTMuODczIDIxLjUgMTIgMjEuNW0tMS0xMC4zMDhoMnYtMS4yNWgtMXYtLjg4NGgxVjYuOTQyaC0xdi0uODg0aDFWNWEuOTcuOTcgMCAwIDAtLjI4Ny0uNzEzQS45Ny45NyAwIDAgMCAxMiA0YS45Ny45NyAwIDAgMC0uNzEzLjI4N0EuOTcuOTcgMCAwIDAgMTEgNXoiLz48L3N2Zz4=",
         });
       });
     </script>
   `,
 };
 
-export const LabelFormatting: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('chart', 'segment-series-label-formatting'),
-      },
-    },
-  },
-  render: () => html`
-    <syn-chart id="segment-label-formatting"></syn-chart>
-    <script type="module">
-      const charts = document.querySelectorAll('#segment-label-formatting');
-
-      charts.forEach(chart => {
-        chart.config = handle => handle
-        .seriesSegment({
-            data: [
-            {
-              value: 70,
-              label: 'Custom string',
-            },
-            {
-              value: 70,
-              label: undefined,
-            },
-            {
-              value: 70,
-              label: formatter.unitFormatter('ms'),
-            },
-            {
-              value: 70,
-              label: formatter.numberShorthandFormatter(),
-            },
-            {
-              value: 70,
-              label: formatter.numberFormatter(undefined, { minimumFractionDigits: 2 }),
-            },
-            {
-              value: 70,
-            },
-          ],
-        });
-      });
-    </script>
-  `,
-};
 
 export const Weights: Story = {
   parameters: {
@@ -261,6 +310,10 @@ export const CustomStyling: Story = {
     <script type="module">
       const charts = document.querySelectorAll('#segment-styling');
 
+      const getColor = (token) => {
+        return ComponentTokens[token]['light'];
+      };
+
       charts.forEach(chart => {
         chart.config = handle => handle
         .seriesSegment({
@@ -268,54 +321,75 @@ export const CustomStyling: Story = {
             { 
               value: 60,
               itemStyle: {
-                color: '#D98CAE',
-                borderColor: '#C7A75B',
-                borderWidth: 2,
+                color: getColor('SynNamurErrorColor'),
               },
               label: 'one',
               labelTextStyle: {
-                fill: '#C7226B',
+                fill: getColor('SynNamurErrorColor'),
               },
             },
             { 
               value: 30,
               itemStyle: {
-                borderColor: '#D6293E',
+                color: getColor('SynNamurWarningColor'),
                 borderWidth: 1,
               },
               label: 'two',
               labelTextStyle: {
-                fill: '#D6293E',
+                fill: getColor('SynNamurWarningColor'),
               },
             },
             { 
               value: 50,
               backgroundStyle: {
-                color: '#ccc',
+                 color: getColor('SynColorNeutral200'),
               },
               itemStyle: {
-                color: '#fff7d3',
+                borderColor: getColor('SynNamurErrorColor'),
+                borderWidth: 3,
+                color: getColor('SynNamurSuccessColor'),
               },
               label: 'three',
               labelTextStyle: {
-                fill: '#9AA0A6',
-              },
-            },
-            { 
-              value: 80,
-              itemStyle: {
-                color: '#7C9A6B',
-              },
-              label: 'four',
-              labelTextStyle: {
-                fill: '#4C7A3D',
+                fill: getColor('SynNamurSuccessColor'),
               },
             },
           ],
-          icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMiAyMS41cS0xLjg3MyAwLTMuMTg3LTEuMzE0UTcuNSAxOC44NzQgNy41IDE3cTAtMS4xNDMuNTMtMi4xMTdhNC41NiA0LjU2IDAgMCAxIDEuNDctMS42MTRWNXEwLTEuMDQ4LjcyNi0xLjc3NEEyLjQgMi40IDAgMCAxIDEyIDIuNXExLjA0OCAwIDEuNzc0LjcyNlQxNC41IDV2OC4yN2E0LjU2IDQuNTYgMCAwIDEgMS40NyAxLjYxM3EuNTMuOTc0LjUzIDIuMTE3IDAgMS44NzMtMS4zMTMgMy4xODZRMTMuODczIDIxLjUgMTIgMjEuNW0tMS0xMC4zMDhoMnYtMS4yNWgtMXYtLjg4NGgxVjYuOTQyaC0xdi0uODg0aDFWNWEuOTcuOTcgMCAwIDAtLjI4Ny0uNzEzQS45Ny45NyAwIDAgMCAxMiA0YS45Ny45NyAwIDAgMC0uNzEzLjI4N0EuOTcuOTcgMCAwIDAgMTEgNXoiLz48L3N2Zz4=",
-          backgroundStyle: {
-            color: '#e7e7e7',
+          itemStyle: {
+              color: getColor('SynNamurNeutralColor'),
+              borderColor: getColor('SynColorNeutral950'),
+              borderWidth: 1,
           },
+          backgroundStyle: {
+            color: getColor('SynColorNeutral100'),
+          },
+        });
+      });
+    </script>
+  `,
+};
+
+export const Insets: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'segment-series-insets'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-chart id="segment-insets"></syn-chart>
+    <script type="module">
+      const charts = document.querySelectorAll('#segment-insets');
+
+      charts.forEach(chart => {
+        chart.config = handle => handle
+        .seriesSegment({
+          top: 20,
+          right: 30,
+          bottom: '20%',
+          left: 60,
+          data: [10, 20, 30, 40],
         });
       });
     </script>
@@ -368,12 +442,14 @@ export const WithLegend: Story = {
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
+  CustomColors,
+  LabelFormatting,
   Gap,
   NoGap,
   MinMax,
-  LabelFormatting,
   Weights,
   CustomStyling,
+  Insets,
   WithLegend,
 }, 200);
 /* eslint-enable sort-keys */

@@ -1,5 +1,7 @@
 ---
 "@synergy-design-system/components": minor
+"@synergy-design-system/metadata": minor
+"@synergy-design-system/tokens": minor
 ---
 
 feat: ✨ Adds segment series support to <syn-chart> (#1355)

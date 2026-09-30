@@ -4629,6 +4629,88 @@
           "type": "text"
         }
       }
+    },
+    "date-picker": {
+      "default": {
+        "title": {
+          "value": "Date Picker",
+          "type": "text"
+        },
+        "description": {
+          "value": "A Date Picker renders an inline calendar that lets users select a single date or a continuous date range. It always shows the full month in context — giving users the spatial orientation of weekdays, weeks, and adjacent months before they commit to a choice.",
+          "type": "text"
+        }
+      },
+      "current-date": {
+        "title": {
+          "value": "Current Date",
+          "type": "text"
+        },
+        "description": {
+          "value": "Today's date is marked with a dot beneath the day number. It stays visible regardless of the selected date, so users always know where they are in time — even when navigating to other months.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Pass a date or an array of dates to the disabled property to prevent specific dates from being selected. Disabled dates remain visible in the grid but are not interactive. Use this to reflect real constraints — booked-out slots, past dates, blackout periods — rather than hiding options entirely. Keeping disabled dates visible helps users understand why a date is unavailable.",
+          "type": "text"
+        }
+      },
+      "year-month-selection": {
+        "title": {
+          "value": "Year and Month Selection",
+          "type": "text"
+        },
+        "description": {
+          "value": "Clicking the month or year label in the calendar header opens a dedicated selection overlay.\n\n- Month view displays all 12 months of the current year in a 3-column grid. Navigate between years using the chevron buttons.- Year view displays a 12-year range in a 3-column grid. Navigate between ranges using the chevron buttons. Years outside the allowed range are shown but not selectable.\n\nBoth overlays follow the same visual language as the main calendar and close as soon as a value is confirmed.",
+          "type": "text"
+        }
+      },
+      "single-date": {
+        "title": {
+          "value": "Single Date",
+          "type": "text"
+        },
+        "description": {
+          "value": "A single click selects a date and the calendar closes immediately if triggered from an input field, or keeps the selection visible if used inline. The selected date is highlighted with a filled circle.\n\nThe input field displays the selected value in the format DD.MM.YYYY, e.g. 08.12.2026. Day and month are always zero-padded to two digits; the four-digit year is never abbreviated.\n\nUse single date mode whenever the use case requires one discrete point in time: appointment dates, deadlines, birth dates, or filter fields with a single reference date. ",
+          "type": "text"
+        }
+      },
+      "date-range": {
+        "title": {
+          "value": "Date Range",
+          "type": "text"
+        },
+        "description": {
+          "value": "Enable range selection by setting the mode attribute to range. Users select a start date first; the end date is confirmed with a second click. The selected span is highlighted across the calendar grid.\n\nThe input field displays the range in a condensed format:\n\n- Same month: DD.MM. – DD.MM.YYYY → e.g. 08.12. – 16.12.2026\n- Different months: DD.MM.YYYY – DD.MM.YYYY → e.g. 28.11.2026 – 16.01.2027",
+          "type": "text"
+        }
+      },
+      "size": {
+        "title": {
+          "value": "Size",
+          "type": "text"
+        },
+        "description": {
+          "value": "The Date Picker is available in three sizes. Choose based on the surrounding layout density. Mixing sizes within the same form is not recommended.",
+          "type": "text"
+        }
+      },
+      "mobile": {
+        "title": {
+          "value": "Mobile behavior",
+          "type": "text"
+        },
+        "description": {
+          "value": "On mobile viewports, the Date Picker does not render inline. Instead, it opens inside a bottom sheet — a panel that slides up from the bottom edge of the screen and overlays the page with a dimmed backdrop.\n\nThe calendar itself is identical to the desktop version: same grid structure, same header navigation, same Today and Clear actions. What changes is the container and how it's triggered and dismissed.\n\nThe bottom sheet opens when the user taps on the icon of the input field. If the user prefers to enter the date directly, they can tap the input field instead.\n\nThe size is always rendered in medium size for mobile.",
+          "type": "text"
+        }
+      }
     }
   },
   "assets": {

@@ -479,7 +479,7 @@ A simple suggestions list shows the user a filtered list.
 The filtered options shown in the list can be customized by passing a function to the getOption property. Your function can return a string of HTML, a Lit Template, or an HTMLElement. The getOption() function will be called for each option. The first argument is an <syn-option> element and the second argument is the query string.Remember that the options are rendered in a shadow root. To style them, you can use the style attribute in your template or you can add your own parts and target them with the ::part() selector. Note: Be sure you trust the content you are outputting! Passing unsanitized user input to getOption() can result in XSS vulnerabilities.
 
 ```html
-<syn-combobox label="Preferred color" class="highlight-combobox" value="g">
+<syn-combobox label="Preferred color" value="g" getoption="highlight">
   <syn-option value="Black">Black</syn-option>
   <syn-option value="Blue">Blue</syn-option>
   <syn-option value="Brown">Brown</syn-option>
@@ -494,15 +494,6 @@ The filtered options shown in the list can be customized by passing a function t
   <syn-option value="White">White</syn-option>
   <syn-option value="Yellow">Yellow</syn-option>
 </syn-combobox>
-<script type="module">
-  // the highlight option renderer utility function can be imported via:
-  // import { highlightOptionRenderer } from '@synergy-design-system/components';
-
-  const comboboxes = document.querySelectorAll(".highlight-combobox");
-  comboboxes.forEach((combobox) => {
-    combobox.getOption = highlightOptionRenderer;
-  });
-</script>
 ```
 
 ---
@@ -685,7 +676,7 @@ Listen for the syn-load-more event to load additional options from a paged or as
 
     // syn-load-more only fires again once new options have been appended,
     // so there is no need to track a "loading" flag yourself.
-    combobox.addEventListener("syn-load-more", loadNextPage);
+    combobox.addEventListener("syn-end-reached", loadNextPage);
   });
 </script>
 ```

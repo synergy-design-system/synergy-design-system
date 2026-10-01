@@ -845,7 +845,7 @@ describe('<syn-select>', () => {
       (_, i) => html`<syn-option value="option-${i}">Option ${i}</syn-option>`,
     );
 
-    it('should emit syn-load-more when the listbox is scrolled close to its end', async () => {
+    it('should emit syn-end-reached when the listbox is scrolled close to its end', async () => {
       const el = await fixture<SynSelect>(html`
         <syn-select>${manyOptions}</syn-select>
       `);
@@ -854,7 +854,7 @@ describe('<syn-select>', () => {
       el.listbox.style.maxHeight = '100px';
       await el.updateComplete;
 
-      const eventPromise = oneEvent(el, 'syn-load-more');
+      const eventPromise = oneEvent(el, 'syn-end-reached');
       el.listbox.scrollTop = el.listbox.scrollHeight;
 
       await eventPromise;

@@ -61,8 +61,8 @@
               "type": "SynErrorEvent"
             },
             {
-              "name": "syn-load-more",
-              "type": "SynLoadMoreEvent"
+              "name": "syn-end-reached",
+              "type": "SynEndReachedEvent"
             }
           ],
           "packageName": "@synergy-design-system/react",

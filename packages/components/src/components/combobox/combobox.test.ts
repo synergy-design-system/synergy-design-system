@@ -11,7 +11,6 @@ import { clickOnElement } from '../../internal/test.js';
 import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js';
 import type SynOption from '../option/option.js';
 import type SynCombobox from './combobox.js';
-import type { SynLoadMoreEvent } from '../../events/syn-load-more.js';
 import { highlightOptionRenderer } from './option-renderer.js';
 
 describe('<syn-combobox>', () => {
@@ -1603,7 +1602,7 @@ describe('<syn-combobox>', () => {
 
     it('should use the highlight renderer when the getOption attribute is set to "highlight"', async () => {
       const el = await fixture<SynCombobox>(html`
-        <syn-combobox value="option-1" .getOption=${'highlight'}>
+        <syn-combobox value="Opt" .getOption=${'highlight'}>
           <syn-option value="option-1">Option 1</syn-option>
         </syn-combobox>
       `);
@@ -1613,7 +1612,7 @@ describe('<syn-combobox>', () => {
 
       expect(el.getOption).to.equal('highlight');
       const option = el.querySelector('syn-option')!;
-      expect(option.querySelector('mark')).not.to.be.null;
+      expect(option.querySelector('mark')!.textContent).to.equal('Opt');
     });
 
     it('should fall back to the default renderer for unknown getOption names', async () => {
@@ -1628,6 +1627,44 @@ describe('<syn-combobox>', () => {
 
       const option = el.querySelector('syn-option')!;
       expect(option.getTextLabel()).to.equal('Option 1');
+      expect(option.querySelector('mark')).to.be.null;
+    });
+
+    it('should not corrupt the option markup when getOption is set via attribute and the query changes', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox getOption="highlight" value="g">
+          <syn-option value="Green">Green</syn-option>
+          <syn-option value="Grey">Grey</syn-option>
+        </syn-combobox>
+      `);
+
+      await aTimeout(0);
+      await el.show();
+      await el.updateComplete;
+
+      el.focus();
+      await sendKeys({ type: 're' });
+      await el.updateComplete;
+
+      const options = el.querySelectorAll<SynOption>('syn-option');
+      expect(options[0].getTextLabel()).to.equal('Green');
+      expect(options[1].getTextLabel()).to.equal('Grey');
+      expect(options[0].querySelector('mark')!.textContent).to.equal('Gre');
+    });
+
+    it('should keep the option intact when the query does not match the option label', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox getOption="highlight" filter="none" value="zz">
+          <syn-option value="Green">Green</syn-option>
+        </syn-combobox>
+      `);
+
+      await aTimeout(0);
+      await el.show();
+      await el.updateComplete;
+
+      const option = el.querySelector<SynOption>('syn-option')!;
+      expect(option.getTextLabel()).to.equal('Green');
       expect(option.querySelector('mark')).to.be.null;
     });
 
@@ -2705,13 +2742,13 @@ describe('<syn-combobox>', () => {
     });
   });
 
-  describe('load-more', () => {
+  describe('end-reached', () => {
     const manyOptions = Array.from(
       { length: 30 },
       (_, i) => html`<syn-option value="option-${i}">Option ${i}</syn-option>`,
     );
 
-    it('should emit syn-load-more when the listbox is scrolled close to its end', async () => {
+    it('should emit syn-end-reached when the listbox is scrolled close to its end', async () => {
       const el = await fixture<SynCombobox>(html`
         <syn-combobox>${manyOptions}</syn-combobox>
       `);
@@ -2720,14 +2757,13 @@ describe('<syn-combobox>', () => {
       el.listbox.style.maxHeight = '100px';
       await el.updateComplete;
 
-      const eventPromise = oneEvent<SynLoadMoreEvent>(el, 'syn-load-more');
+      const eventPromise = oneEvent(el, 'syn-end-reached');
       el.listbox.scrollTop = el.listbox.scrollHeight;
 
-      const event = await eventPromise;
-      expect(event.detail.query).to.equal('');
+      await eventPromise;
     });
 
-    it('should not emit syn-load-more again until new options have been added', async () => {
+    it('should not emit syn-end-reached again until new options have been added', async () => {
       const el = await fixture<SynCombobox>(html`
         <syn-combobox>${manyOptions}</syn-combobox>
       `);
@@ -2737,7 +2773,7 @@ describe('<syn-combobox>', () => {
       await el.updateComplete;
 
       const loadMoreHandler = sinon.spy();
-      el.addEventListener('syn-load-more', loadMoreHandler);
+      el.addEventListener('syn-end-reached', loadMoreHandler);
 
       el.listbox.scrollTop = el.listbox.scrollHeight;
       await waitUntil(() => loadMoreHandler.calledOnce);
@@ -2774,7 +2810,7 @@ describe('<syn-combobox>', () => {
       await el.updateComplete;
 
       const loadMoreHandler = sinon.spy();
-      el.addEventListener('syn-load-more', () => {
+      el.addEventListener('syn-end-reached', () => {
         loadMoreHandler();
         // Simulate a fast data source that resolves immediately and barely grows the scrollable
         // height, so the sentinel is still intersecting right after the controller re-arms it.

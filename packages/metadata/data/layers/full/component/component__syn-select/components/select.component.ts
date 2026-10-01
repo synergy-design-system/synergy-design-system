@@ -58,7 +58,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @event syn-hide - Emitted when the select's menu closes.
  * @event syn-after-hide - Emitted after the select's menu closes and all animations are complete.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
- * @event syn-load-more - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
+ * @event syn-end-reached - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -78,7 +78,6 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
  * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
- * @csspart load-more-sentinel - An invisible element used to detect when the listbox has been scrolled close to its end. Not meant to be styled directly.
  */
 @enableDefaultSettings('SynSelect')
 export default class SynSelect extends SynergyElement implements SynergyFormControl {
@@ -111,7 +110,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   private isUserInput: boolean = false;
 
   private readonly loadMoreController = new LoadMoreController(this, {
-    onLoadMore: () => this.emit('syn-load-more'),
+    onLoadMore: () => this.emit('syn-end-reached'),
   });
 
   private getContainingModalHost() {
@@ -1117,7 +1116,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
               tabindex="-1"
             >
               <slot></slot>
-              <div aria-hidden="true" class="select__sentinel" part="load-more-sentinel"></div>
+              <div aria-hidden="true" class="select__sentinel"></div>
             </div>
           </syn-popup>
         </div>

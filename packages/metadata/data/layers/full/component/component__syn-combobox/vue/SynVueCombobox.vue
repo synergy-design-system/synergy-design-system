@@ -36,7 +36,7 @@
  * @event syn-after-hide - Emitted after the combobox's menu closes and all animations are complete.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  * @event syn-error - Emitted when the combobox menu fails to open.
- * @event syn-load-more - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source). The `detail.query` property contains the current query string typed into the combobox.
+ * @event syn-end-reached - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
  *
  * @csspart form-control - The form control that wraps the label, combobox, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -52,7 +52,6 @@
  * @csspart expand-icon - The container that wraps the expand icon.
  * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
  * @csspart no-results - The container that wraps the "no results" message.
- * @csspart load-more-sentinel - An invisible element used to detect when the listbox has been scrolled close to its end. Not meant to be styled directly.
  * @csspart tags - The container that houses option tags when `multiple` is used.
  * @csspart tag - The individual tags that represent each selected option in `multiple`.
  * @csspart tag__base - The tag's base part.
@@ -77,7 +76,7 @@ import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
 import type { SynErrorEvent } from '@synergy-design-system/components';
-import type { SynLoadMoreEvent } from '@synergy-design-system/components';
+import type { SynEndReachedEvent } from '@synergy-design-system/components';
 import type SynCombobox from '@synergy-design-system/components/components/combobox/combobox.component.js';
 
 // DOM Reference to the element
@@ -301,9 +300,8 @@ defineEmits<{
   /**
    * Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g.
    * from a paged/async data source).
-   * The `detail.query` property contains the current query string typed into the combobox.
    */
-  'syn-load-more': [e: SynLoadMoreEvent];
+  'syn-end-reached': [e: SynEndReachedEvent];
 
   /**
    * Support for two way data binding
@@ -324,7 +322,7 @@ export type { SynHideEvent } from '@synergy-design-system/components';
 export type { SynAfterHideEvent } from '@synergy-design-system/components';
 export type { SynInvalidEvent } from '@synergy-design-system/components';
 export type { SynErrorEvent } from '@synergy-design-system/components';
-export type { SynLoadMoreEvent } from '@synergy-design-system/components';
+export type { SynEndReachedEvent } from '@synergy-design-system/components';
 </script>
 
 <template>
@@ -343,7 +341,7 @@ export type { SynLoadMoreEvent } from '@synergy-design-system/components';
     @syn-after-hide="$emit('syn-after-hide', $event)"
     @syn-invalid="$emit('syn-invalid', $event)"
     @syn-error="$emit('syn-error', $event)"
-    @syn-load-more="$emit('syn-load-more', $event)"
+    @syn-end-reached="$emit('syn-end-reached', $event)"
     :value="
       typeof props.modelValue !== 'undefined'
         ? props.modelValue

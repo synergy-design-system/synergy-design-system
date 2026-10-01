@@ -8,7 +8,6 @@ import type { SynCombobox } from '@synergy-design-system/components';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { userEvent } from 'storybook/test';
-import { highlightOptionRenderer } from '../../../components/src/components/combobox/option-renderer.js';
 import { FormSubmitDecorator } from '../../src/decorators/index.js';
 import {
   generateScreenshotStory,
@@ -467,27 +466,11 @@ export const HighlightQuery: Story = {
     await combobox.updateComplete;
     await combobox.show();
   },
-  render: () => {
-    const optionRenderer = highlightOptionRenderer;
-    return html`
-    <syn-combobox label="Preferred color" class="highlight-combobox" value="g">
-     ${createColorOptionsHtml()}
+  render: () => html`
+    <syn-combobox label="Preferred color" value="g" getOption="highlight">
+      ${createColorOptionsHtml()}
     </syn-combobox>
-    <script type="module">
-      // the highlight option renderer utility function can be imported via:
-      // import { highlightOptionRenderer } from '@synergy-design-system/components';
-
-      // preview-ignore:start
-      const highlightOptionRenderer = ${optionRenderer};
-      // preview-ignore:end
-    
-      const comboboxes = document.querySelectorAll('.highlight-combobox');
-      comboboxes.forEach((combobox) => {
-        combobox.getOption = highlightOptionRenderer;
-      });
-    </script>
-  `;
-  },
+  `,
 };
 
 export const GroupingQuery: Story = {
@@ -701,7 +684,7 @@ export const EndlessScrolling: Story = {
 
         // syn-load-more only fires again once new options have been appended,
         // so there is no need to track a "loading" flag yourself.
-        combobox.addEventListener('syn-load-more', loadNextPage);
+        combobox.addEventListener('syn-end-reached', loadNextPage);
       });
     </script>
   `,

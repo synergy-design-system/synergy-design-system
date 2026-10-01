@@ -174,10 +174,6 @@
       "name": "listbox"
     },
     {
-      "description": "An invisible element used to detect when the listbox has been scrolled close to its end. Not meant to be styled directly.",
-      "name": "load-more-sentinel"
-    },
-    {
       "description": "The popup's exported `popup` part. Use this to target the tooltip's popup container.",
       "name": "popup"
     },
@@ -247,6 +243,11 @@
       "type": "SynClearEvent"
     },
     {
+      "description": "Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).",
+      "name": "syn-end-reached",
+      "type": "SynEndReachedEvent"
+    },
+    {
       "description": "Emitted when the control gains focus.",
       "name": "syn-focus",
       "type": "SynFocusEvent"
@@ -265,11 +266,6 @@
       "description": "Emitted when the form control has been checked for validity and its constraints aren't satisfied.",
       "name": "syn-invalid",
       "type": "SynInvalidEvent"
-    },
-    {
-      "description": "Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).",
-      "name": "syn-load-more",
-      "type": "SynLoadMoreEvent"
     },
     {
       "description": "Emitted when the select's menu opens.",

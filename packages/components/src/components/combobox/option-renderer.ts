@@ -34,11 +34,21 @@ export const highlightOptionRenderer: OptionRenderer = (option: SynOption, query
   const queryIndex = optionLabel.toLowerCase().indexOf(query.toLowerCase());
   const indexLabel = clonedOption.innerHTML.indexOf(optionLabel);
 
+  // Bail out if there is nothing to highlight or the label is not part of the markup verbatim,
+  // e.g. because the option already contains highlighting markup. Slicing with a negative index
+  // would rip the existing markup apart.
+  if (queryIndex < 0 || indexLabel < 0) {
+    return clonedOption;
+  }
+
   const mark = document.createElement('mark');
   mark.textContent = optionLabel.slice(queryIndex, queryIndex + query.length);
   mark.classList.add('syn-highlight-style');
 
-  const exchangedText = optionLabel.replace(new RegExp(query, 'i'), mark.outerHTML);
+  // Use slicing instead of String.replace, as the query may contain regular expression
+  // or replacement pattern characters
+  const exchangedText = optionLabel.slice(0, queryIndex)
+    .concat(mark.outerHTML, optionLabel.slice(queryIndex + query.length));
   const previousContent = clonedOption.innerHTML.slice(0, indexLabel);
   const followingContent = clonedOption.innerHTML.slice(indexLabel + optionLabel.length);
 

@@ -304,9 +304,12 @@ export default css`
     --spacing: var(--syn-spacing-x-small);
   }
 
-  /* Used to detect when the listbox has been scrolled close to its end, see LoadMoreController */
+  /**
+   * Marks the end of the scrollable option list, see LoadMoreController.
+   * Must not take up any space, as it would otherwise grow the listbox.
+   */
   .select__sentinel {
-    block-size: 1px;
+    block-size: 0;
     pointer-events: none;
   }
 

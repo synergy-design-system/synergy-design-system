@@ -78,7 +78,7 @@ import { compareValues, isAllowedValue } from '../select/utility.js';
  * @event syn-after-hide - Emitted after the combobox's menu closes and all animations are complete.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  * @event syn-error - Emitted when the combobox menu fails to open.
- * @event syn-load-more - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source). The `detail.query` property contains the current query string typed into the combobox.
+ * @event syn-end-reached - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
  *
  * @csspart form-control - The form control that wraps the label, combobox, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -94,7 +94,6 @@ import { compareValues, isAllowedValue } from '../select/utility.js';
  * @csspart expand-icon - The container that wraps the expand icon.
  * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
  * @csspart no-results - The container that wraps the "no results" message.
- * @csspart load-more-sentinel - An invisible element used to detect when the listbox has been scrolled close to its end. Not meant to be styled directly.
  * @csspart tags - The container that houses option tags when `multiple` is used.
  * @csspart tag - The individual tags that represent each selected option in `multiple`.
  * @csspart tag__base - The tag's base part.
@@ -143,6 +142,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
    */
   private isOptionRendererTriggered: boolean = false;
 
+  /**
+   * Options that were created by the option renderer. They must never end up in `cachedOptions`,
+   * as rendering them again would apply the renderer on top of its own output.
+   */
+  private renderedOptions = new WeakSet<SynOption>();
+
   private resizeObserver: ResizeObserver;
 
   private mutationObserver: MutationObserver;
@@ -152,11 +157,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       if (this.numberFilteredOptions === 0 || this.hideOptions) {
         return;
       }
-      this.emit('syn-load-more', {
-        detail: {
-          query: this.displayLabel,
-        },
-      });
+      this.emit('syn-end-reached');
     },
   });
 
@@ -1242,6 +1243,10 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         const hideOption = !(this.resolvedFilter(updatedOption, queryString) || queryString === '');
         updatedOption.hidden = hideOption;
 
+        if (updatedOption !== cachedOption) {
+          this.renderedOptions.add(updatedOption);
+        }
+
         option.replaceWith(updatedOption);
 
         if (!hideOption) {
@@ -1441,8 +1446,14 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       optgroup.id = optgroup.id || `syn-combobox-optgroup-${index}`;
     });
 
-    // Cache the slotted options
-    this.cachedOptions = [...slottedOptions];
+    // Cache the slotted options, but keep the pristine version of everything the option renderer
+    // produced, so the renderer always works on unmodified markup
+    this.cachedOptions = slottedOptions.map(option => {
+      if (!this.renderedOptions.has(option)) {
+        return option;
+      }
+      return this.cachedOptions.find(cached => cached.id === option.id) ?? option;
+    });
 
     // Re-arm the load-more sentinel now that the option set has changed
     if (this.listbox && this.sentinelEl) {
@@ -1704,7 +1715,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
                     >`
         : ''}
                 <slot class=${classMap({ options__hide: this.hideOptions })} @slotchange=${this.handleDefaultSlotChange}></slot>      
-                <div class="listbox__sentinel" part="load-more-sentinel" aria-hidden="true"></div>
+                <div class="listbox__sentinel" aria-hidden="true"></div>
               </div>
             </div>
           </syn-popup>

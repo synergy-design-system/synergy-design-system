@@ -18,7 +18,7 @@ import type {
   SynInputEvent,
   SynClearEvent,
   SynErrorEvent,
-  SynLoadMoreEvent,
+  SynEndReachedEvent,
   SynInitialFocusEvent,
   SynRequestCloseEvent,
   SynBurgerMenuClosedEvent,
@@ -361,7 +361,7 @@ export type SynCustomElement<
  * @event syn-after-hide - Emitted after the combobox's menu closes and all animations are complete.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  * @event syn-error - Emitted when the combobox menu fails to open.
- * @event syn-load-more - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source). The `detail.query` property contains the current query string typed into the combobox.
+ * @event syn-end-reached - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
  *
  * @csspart form-control - The form control that wraps the label, combobox, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -377,7 +377,6 @@ export type SynCustomElement<
  * @csspart expand-icon - The container that wraps the expand icon.
  * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
  * @csspart no-results - The container that wraps the "no results" message.
- * @csspart load-more-sentinel - An invisible element used to detect when the listbox has been scrolled close to its end. Not meant to be styled directly.
  * @csspart tags - The container that houses option tags when `multiple` is used.
  * @csspart tag - The individual tags that represent each selected option in `multiple`.
  * @csspart tag__base - The tag's base part.
@@ -401,7 +400,7 @@ export type SynCustomElement<
     ['syn-after-hide', SynAfterHideEvent],
     ['syn-invalid', SynInvalidEvent],
     ['syn-error', SynErrorEvent],
-    ['syn-load-more', SynLoadMoreEvent],
+    ['syn-end-reached', SynEndReachedEvent],
   ]
 >;
 /**
@@ -1282,7 +1281,7 @@ export type SynCustomElement<
  * @event syn-hide - Emitted when the select's menu closes.
  * @event syn-after-hide - Emitted after the select's menu closes and all animations are complete.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
- * @event syn-load-more - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
+ * @event syn-end-reached - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -1302,7 +1301,6 @@ export type SynCustomElement<
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
  * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
- * @csspart load-more-sentinel - An invisible element used to detect when the listbox has been scrolled close to its end. Not meant to be styled directly.
  */ export type SynSelectJSXElement = SynCustomElement<
   SynSelect,
   [
@@ -1316,7 +1314,7 @@ export type SynCustomElement<
     ['syn-hide', SynHideEvent],
     ['syn-after-hide', SynAfterHideEvent],
     ['syn-invalid', SynInvalidEvent],
-    ['syn-load-more', SynLoadMoreEvent],
+    ['syn-end-reached', SynEndReachedEvent],
   ]
 >;
 /**
@@ -1852,7 +1850,7 @@ declare module 'react' {
        * @event syn-after-hide - Emitted after the combobox's menu closes and all animations are complete.
        * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
        * @event syn-error - Emitted when the combobox menu fails to open.
-       * @event syn-load-more - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source). The `detail.query` property contains the current query string typed into the combobox.
+       * @event syn-end-reached - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
        *
        * @csspart form-control - The form control that wraps the label, combobox, and help text.
        * @csspart form-control-label - The label's wrapper.
@@ -1868,7 +1866,6 @@ declare module 'react' {
        * @csspart expand-icon - The container that wraps the expand icon.
        * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
        * @csspart no-results - The container that wraps the "no results" message.
-       * @csspart load-more-sentinel - An invisible element used to detect when the listbox has been scrolled close to its end. Not meant to be styled directly.
        * @csspart tags - The container that houses option tags when `multiple` is used.
        * @csspart tag - The individual tags that represent each selected option in `multiple`.
        * @csspart tag__base - The tag's base part.
@@ -2642,7 +2639,7 @@ declare module 'react' {
        * @event syn-hide - Emitted when the select's menu closes.
        * @event syn-after-hide - Emitted after the select's menu closes and all animations are complete.
        * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
-       * @event syn-load-more - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
+       * @event syn-end-reached - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
        *
        * @csspart form-control - The form control that wraps the label, input, and help text.
        * @csspart form-control-label - The label's wrapper.
@@ -2662,7 +2659,6 @@ declare module 'react' {
        * @csspart clear-button - The clear button.
        * @csspart expand-icon - The container that wraps the expand icon.
        * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
-       * @csspart load-more-sentinel - An invisible element used to detect when the listbox has been scrolled close to its end. Not meant to be styled directly.
        */ 'syn-select': SynSelectJSXElement;
       /**
  * @summary The <syn-side-nav /> element contains secondary navigation and fits below the header.

@@ -19,7 +19,7 @@ import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
 import type { SynErrorEvent } from '@synergy-design-system/components';
-import type { SynLoadMoreEvent } from '@synergy-design-system/components';
+import type { SynEndReachedEvent } from '@synergy-design-system/components';
 
 const tagName = 'syn-combobox';
 Component.define('syn-combobox');
@@ -55,7 +55,7 @@ Component.define('syn-combobox');
  * @event syn-after-hide - Emitted after the combobox's menu closes and all animations are complete.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  * @event syn-error - Emitted when the combobox menu fails to open.
- * @event syn-load-more - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source). The `detail.query` property contains the current query string typed into the combobox.
+ * @event syn-end-reached - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
  *
  * @csspart form-control - The form control that wraps the label, combobox, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -71,7 +71,6 @@ Component.define('syn-combobox');
  * @csspart expand-icon - The container that wraps the expand icon.
  * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
  * @csspart no-results - The container that wraps the "no results" message.
- * @csspart load-more-sentinel - An invisible element used to detect when the listbox has been scrolled close to its end. Not meant to be styled directly.
  * @csspart tags - The container that houses option tags when `multiple` is used.
  * @csspart tag - The individual tags that represent each selected option in `multiple`.
  * @csspart tag__base - The tag's base part.
@@ -97,7 +96,7 @@ export const SynCombobox = createComponent({
     onSynAfterHide: 'syn-after-hide' as EventName<SynAfterHideEvent>,
     onSynInvalid: 'syn-invalid' as EventName<SynInvalidEvent>,
     onSynError: 'syn-error' as EventName<SynErrorEvent>,
-    onSynLoadMore: 'syn-load-more' as EventName<SynLoadMoreEvent>,
+    onSynEndReached: 'syn-end-reached' as EventName<SynEndReachedEvent>,
   },
   react: React,
   tagName,
@@ -114,4 +113,4 @@ export type { SynHideEvent } from '@synergy-design-system/components';
 export type { SynAfterHideEvent } from '@synergy-design-system/components';
 export type { SynInvalidEvent } from '@synergy-design-system/components';
 export type { SynErrorEvent } from '@synergy-design-system/components';
-export type { SynLoadMoreEvent } from '@synergy-design-system/components';
+export type { SynEndReachedEvent } from '@synergy-design-system/components';

@@ -12,6 +12,6 @@ export type SynComboboxJSXElement = SynCustomElement<
     ['syn-after-hide', SynAfterHideEvent],
     ['syn-invalid', SynInvalidEvent],
     ['syn-error', SynErrorEvent],
-    ['syn-load-more', SynLoadMoreEvent],
+    ['syn-end-reached', SynEndReachedEvent],
   ]
 >;

@@ -18,7 +18,9 @@ import {
   getCalendarWeeks,
   getFirstDayOfWeek,
   getMonthLabel,
+  getMonthNames,
   getWeekdayNames,
+  getYearBlockStart,
   isSameDay,
   isSameMonth,
   parseIsoDate,
@@ -86,6 +88,16 @@ export default class SynDatePicker extends SynergyElement {
    */
   @state() private focusedDate: Date = today();
 
+  @state() private focusedMonth = today().getUTCMonth();
+
+  @state() private focusedYear = today().getUTCFullYear();
+
+  @state() private yearBlockStart = getYearBlockStart(today().getUTCFullYear());
+
+  #restoreYearFocus = false;
+
+  #restoreMonthFocus = false;
+
   /**
    * Indicates whether the date picker should restore focus to the previously focused day after a view change.
    */
@@ -123,6 +135,16 @@ export default class SynDatePicker extends SynergyElement {
    * If the date picker should restore focus to the previously focused day, it does so here.
    */
   protected updated() {
+    if (this.#restoreYearFocus) {
+      this.#restoreYearFocus = false;
+      this.renderRoot.querySelector<HTMLButtonElement>(`[data-year="${this.focusedYear}"]`)?.focus();
+    }
+
+    if (this.#restoreMonthFocus) {
+      this.#restoreMonthFocus = false;
+      this.renderRoot.querySelector<HTMLButtonElement>(`[data-month="${this.focusedMonth}"]`)?.focus();
+    }
+
     if (this.#restoreDayFocus) {
       this.#restoreDayFocus = false;
       const date = toIsoDate(this.focusedDate);
@@ -154,6 +176,88 @@ export default class SynDatePicker extends SynergyElement {
     this.#restoreDayFocus = true;
   }
 
+  #openMonth(month: number) {
+    this.#setViewMonth(createDate(this.viewDate.getUTCFullYear(), month, 1));
+    this.#showDayView();
+  }
+
+  #showDayView() {
+    const valueDate = this.valueAsDate;
+
+    if (valueDate && isSameMonth(valueDate, this.viewDate)) {
+      this.focusedDate = valueDate;
+    }
+
+    this.visibleView = 'day';
+    this.#restoreDayFocus = true;
+  }
+
+  #showYearSelector() {
+    this.focusedYear = this.viewDate.getUTCFullYear();
+    this.yearBlockStart = getYearBlockStart(this.focusedYear);
+    const valueDate = this.valueAsDate;
+
+    if (valueDate) {
+      const valueYear = valueDate.getUTCFullYear();
+
+      if (valueYear >= this.yearBlockStart && valueYear < this.yearBlockStart + 12) {
+        this.focusedYear = valueYear;
+      }
+    }
+
+    this.visibleView = 'year';
+    this.#restoreYearFocus = true;
+  }
+
+  #openYear(year: number) {
+    this.#setViewMonth(createDate(year, this.viewDate.getUTCMonth(), 1));
+    this.#showDayView();
+  }
+
+  #pageYears(offset: number) {
+    this.yearBlockStart += offset;
+    this.focusedYear += offset;
+  }
+
+  #handleYearKeydown(event: KeyboardEvent, year: number) {
+    const yearOffsets: Record<string, number> = {
+      ArrowDown: 3,
+      ArrowLeft: -1,
+      ArrowRight: 1,
+      ArrowUp: -3,
+    };
+    const offset = yearOffsets[event.key];
+
+    if (typeof offset !== 'number') {
+      return;
+    }
+
+    event.preventDefault();
+    this.focusedYear = year + offset;
+    this.yearBlockStart = getYearBlockStart(this.focusedYear);
+    this.#restoreYearFocus = true;
+  }
+
+  #handleMonthKeydown(event: KeyboardEvent, month: number) {
+    const monthOffsets: Record<string, number> = {
+      ArrowDown: 3,
+      ArrowLeft: -1,
+      ArrowRight: 1,
+      ArrowUp: -3,
+    };
+    const offset = monthOffsets[event.key];
+
+    if (typeof offset !== 'number') {
+      return;
+    }
+
+    event.preventDefault();
+    const date = addMonths(createDate(this.viewDate.getUTCFullYear(), month, 1), offset);
+    this.#setViewMonth(date);
+    this.focusedMonth = date.getUTCMonth();
+    this.#restoreMonthFocus = true;
+  }
+
   /**
    * Renders the header section of the date picker based on the currently visible view.
    * @returns The HTML template for the header section.
@@ -176,7 +280,9 @@ export default class SynDatePicker extends SynergyElement {
             ></syn-icon-button>
             <syn-button
               @click=${() => {
+                this.focusedMonth = this.viewDate.getUTCMonth();
                 this.visibleView = 'month';
+                this.#restoreMonthFocus = true;
               }}
               size="medium"
               variant="text"
@@ -207,6 +313,7 @@ export default class SynDatePicker extends SynergyElement {
               size="medium"
             ></syn-icon-button>
             <syn-button
+              @click=${() => this.#showYearSelector()}
               size="medium"
               variant="text"
             >
@@ -242,6 +349,7 @@ export default class SynDatePicker extends SynergyElement {
               size="medium"
             ></syn-icon-button>
             <syn-button
+              @click=${() => this.#showYearSelector()}
               size="medium"
               variant="text"
             >
@@ -261,10 +369,36 @@ export default class SynDatePicker extends SynergyElement {
       `;
     }
 
+    if (this.visibleView === 'year') {
+      return html`
+        <div class="selection-wrapper">
+          <div class="header--year-selection header-selection">
+            <syn-icon-button
+              @click=${() => this.#pageYears(-12)}
+              label="Previous 12 years"
+              library="system"
+              name="previous-page"
+              size="medium"
+            ></syn-icon-button>
+            <span>${this.yearBlockStart} - ${this.yearBlockStart + 11}</span>
+            <syn-icon-button
+              @click=${() => this.#pageYears(12)}
+              label="Next 12 years"
+              library="system"
+              name="next-page"
+              size="medium"
+            ></syn-icon-button>
+          </div>
+        </div>
+      `;
+    }
+
     return html``;
   }
 
   #renderContent() {
+    const valueDate = parseIsoDate(this.value);
+
     if (this.visibleView === 'day') {
       const locale = this.localize.lang();
       const firstDayOfWeek = getFirstDayOfWeek(locale);
@@ -275,7 +409,6 @@ export default class SynDatePicker extends SynergyElement {
         firstDayOfWeek,
       );
       const currentDay = today();
-      const valueDate = parseIsoDate(this.value);
 
       return html`
         <table class="day-selector">
@@ -322,28 +455,52 @@ export default class SynDatePicker extends SynergyElement {
     }
 
     if (this.visibleView === 'month') {
+      const months = getMonthNames(this.localize.lang(), 'short');
+
       return html`
-        <table class="day-selector">
-          <tbody>
-            ${Array.from({ length: 12 }, (_, monthIndex) => html`
-              <tr>
-                <td
-                  class="day-selector__day"
-                >
-                  <button
-                    class="day-selector__day-button"
-                    data-month=${monthIndex}
-                    @click=${() => {
-                      this.value = `${this.viewDate.getUTCFullYear()}-${(monthIndex + 1).toString().padStart(2, '0')}`;
-                    }}
-                  >
-                    ${monthIndex + 1}
-                  </button>
-                </td>
-              </tr>
-            `)}
-          </tbody>
-        </table>
+        <div class="month-selector">
+          ${months.map((month, monthIndex) => html`
+            <button
+              class=${classMap({
+                'day-selector__day--active': this.viewDate.getUTCMonth() === monthIndex,
+                'day-selector__day-button': true,
+              })}
+              type="button"
+              data-month=${monthIndex}
+              tabindex=${monthIndex === this.focusedMonth ? 0 : -1}
+              @focus=${() => { this.focusedMonth = monthIndex; }}
+              @keydown=${(event: KeyboardEvent) => this.#handleMonthKeydown(event, monthIndex)}
+              @click=${() => this.#openMonth(monthIndex)}
+            >
+              ${month}
+            </button>
+          `)}
+        </div>
+      `;
+    }
+
+    if (this.visibleView === 'year') {
+      const years = Array.from({ length: 12 }, (_, index) => this.yearBlockStart + index);
+
+      return html`
+        <div class="year-selector">
+          ${years.map(year => html`
+            <button
+              class=${classMap({
+                'day-selector__day--active': valueDate?.getUTCFullYear() === year,
+                'day-selector__day-button': true,
+              })}
+              type="button"
+              data-year=${year}
+              tabindex=${year === this.focusedYear ? 0 : -1}
+              @focus=${() => { this.focusedYear = year; }}
+              @keydown=${(event: KeyboardEvent) => this.#handleYearKeydown(event, year)}
+              @click=${() => this.#openYear(year)}
+            >
+              ${year}
+            </button>
+          `)}
+        </div>
       `;
     }
 
@@ -357,6 +514,7 @@ export default class SynDatePicker extends SynergyElement {
           <syn-button
             @click=${() => {
               this.#setViewDate(today());
+              this.#restoreDayFocus = true;
             }}
             variant="text"
           >Today</syn-button>
@@ -376,7 +534,9 @@ export default class SynDatePicker extends SynergyElement {
         <div class="selection-wrapper">
           <syn-button
             @click=${() => {
-              console.log('TODO');
+              this.#setViewMonth(today());
+              this.focusedMonth = this.viewDate.getUTCMonth();
+              this.#restoreMonthFocus = true;
             }}
             variant="text"
           >This month</syn-button>
@@ -384,6 +544,27 @@ export default class SynDatePicker extends SynergyElement {
             @click=${() => {
               this.value = '';
             }}
+            ?disabled=${!this.value}
+            variant="text"
+          >Clear</syn-button>
+        </div>
+      `;
+    }
+
+    if (this.visibleView === 'year') {
+      return html`
+        <div class="selection-wrapper">
+          <syn-button
+            @click=${() => {
+              this.focusedYear = today().getUTCFullYear();
+              this.yearBlockStart = getYearBlockStart(this.focusedYear);
+              this.#restoreYearFocus = true;
+              this.requestUpdate();
+            }}
+            variant="text"
+          >This year</syn-button>
+          <syn-button
+            @click=${() => { this.value = ''; }}
             ?disabled=${!this.value}
             variant="text"
           >Clear</syn-button>

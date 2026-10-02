@@ -90,13 +90,18 @@ export default css`
     font: var(--syn-body-small-regular);
     height: var(--syn-spacing-x-large);
     margin: 0;
+    overflow-wrap: anywhere;
     padding: var(--syn-spacing-x-small);
     position: relative;
+    width: 100%;
+  }
+
+  .day-selector .day-selector__day-button {
     width: var(--syn-spacing-x-large);
   }
 
   .day-selector__day-button:hover,
-  .day-selector__day-button:focus-visible {
+  .day-selector__day-button:focus {
     border-color: var(--syn-focus-ring-color);
     outline: none;
   }
@@ -124,4 +129,17 @@ export default css`
   .day-selector__day--outside {
     visibility: hidden;
   }
+
+  .date-picker--view-month .header--year-selection,
+  .date-picker--view-year .header--year-selection {
+    width: 100%;
+  }
+
+  .month-selector,
+  .year-selector {
+    display: grid;
+    gap: var(--syn-spacing-small);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
 `;

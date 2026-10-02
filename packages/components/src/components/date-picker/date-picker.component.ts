@@ -15,18 +15,17 @@ import {
   addMonths,
   addYears,
   createDate,
-  getCalendarWeeks,
-  getFirstDayOfWeek,
   getMonthLabel,
-  getMonthNames,
-  getWeekdayNames,
   getYearBlockStart,
-  isSameDay,
   isSameMonth,
   parseIsoDate,
   toIsoDate,
   today,
 } from './utils.js';
+import { renderDayView } from './renderers/day.js';
+import { renderMonthView } from './renderers/month.js';
+import { renderYearView } from './renderers/year.js';
+import type { NavigationOptions } from './renderers/shared.js';
 import styles from './date-picker.styles.js';
 
 /**
@@ -137,18 +136,18 @@ export default class SynDatePicker extends SynergyElement {
   protected updated() {
     if (this.#restoreYearFocus) {
       this.#restoreYearFocus = false;
-      this.renderRoot.querySelector<HTMLButtonElement>(`[data-year="${this.focusedYear}"]`)?.focus();
+      this.renderRoot.querySelector<HTMLButtonElement>(`[data-kind="year"][data-value="${this.focusedYear}"]`)?.focus();
     }
 
     if (this.#restoreMonthFocus) {
       this.#restoreMonthFocus = false;
-      this.renderRoot.querySelector<HTMLButtonElement>(`[data-month="${this.focusedMonth}"]`)?.focus();
+      this.renderRoot.querySelector<HTMLButtonElement>(`[data-kind="month"][data-value="${this.focusedMonth}"]`)?.focus();
     }
 
     if (this.#restoreDayFocus) {
       this.#restoreDayFocus = false;
       const date = toIsoDate(this.focusedDate);
-      this.renderRoot.querySelector<HTMLButtonElement>(`[data-date="${date}"]`)?.focus();
+      this.renderRoot.querySelector<HTMLButtonElement>(`[data-kind="day"][data-value="${date}"]`)?.focus();
     }
   }
 
@@ -258,324 +257,143 @@ export default class SynDatePicker extends SynergyElement {
     this.#restoreMonthFocus = true;
   }
 
-  /**
-   * Renders the header section of the date picker based on the currently visible view.
-   * @returns The HTML template for the header section.
-   */
-  #renderHeader() {
-    if (this.visibleView === 'day') {
-      return html`
-        <div class="selection-wrapper">
-          <div
-            class="header--month-selection header-selection"
-          >
-            <syn-icon-button
-              @click=${() => {
-                this.#setViewMonth(addMonths(this.viewDate, -1));
-              }}
-              label="Previous month"
-              library="system"
-              name="previous-page"
-              size="medium"
-            ></syn-icon-button>
-            <syn-button
-              @click=${() => {
-                this.focusedMonth = this.viewDate.getUTCMonth();
-                this.visibleView = 'month';
-                this.#restoreMonthFocus = true;
-              }}
-              size="medium"
-              variant="text"
-            >
-              ${getMonthLabel(this.viewDate)}
-            </syn-button>
-            <syn-icon-button
-              @click=${() => {
-                this.#setViewMonth(addMonths(this.viewDate, 1));
-              }}
-              label="Next month"
-              library="system"
-              name="next-page"
-              size="medium"
-            ></syn-icon-button>
-          </div>
-
-          <div
-            class="header--year-selection header-selection"
-          >
-            <syn-icon-button
-              @click=${() => {
-                this.#setViewMonth(addYears(this.viewDate, -1));
-              }}
-              label="Previous year"
-              library="system"
-              name="previous-page"
-              size="medium"
-            ></syn-icon-button>
-            <syn-button
-              @click=${() => this.#showYearSelector()}
-              size="medium"
-              variant="text"
-            >
-              ${this.viewDate.getUTCFullYear()}
-            </syn-button>
-            <syn-icon-button
-              @click=${() => {
-                this.#setViewMonth(addYears(this.viewDate, 1));
-              }}
-              label="Next year"
-              library="system"
-              name="next-page"
-              size="medium"
-            ></syn-icon-button>
-          </div>
-        </div>
-      `;
-    }
-
-    if (this.visibleView === 'month') {
-      return html`
-        <div class="selection-wrapper">
-          <div
-            class="header--year-selection header-selection"
-          >
-            <syn-icon-button
-              @click=${() => {
-                this.#setViewMonth(addYears(this.viewDate, -1));
-              }}
-              label="Previous year"
-              library="system"
-              name="previous-page"
-              size="medium"
-            ></syn-icon-button>
-            <syn-button
-              @click=${() => this.#showYearSelector()}
-              size="medium"
-              variant="text"
-            >
-              ${this.viewDate.getUTCFullYear()}
-            </syn-button>
-            <syn-icon-button
-              @click=${() => {
-                this.#setViewMonth(addYears(this.viewDate, 1));
-              }}
-              label="Next year"
-              library="system"
-              name="next-page"
-              size="medium"
-            ></syn-icon-button>
-          </div>
-        </div>
-      `;
-    }
-
-    if (this.visibleView === 'year') {
-      return html`
-        <div class="selection-wrapper">
-          <div class="header--year-selection header-selection">
-            <syn-icon-button
-              @click=${() => this.#pageYears(-12)}
-              label="Previous 12 years"
-              library="system"
-              name="previous-page"
-              size="medium"
-            ></syn-icon-button>
-            <span>${this.yearBlockStart} - ${this.yearBlockStart + 11}</span>
-            <syn-icon-button
-              @click=${() => this.#pageYears(12)}
-              label="Next 12 years"
-              library="system"
-              name="next-page"
-              size="medium"
-            ></syn-icon-button>
-          </div>
-        </div>
-      `;
-    }
-
-    return html``;
+  #getGridButton(event: Event) {
+    return event.composedPath().find((target): target is HTMLButtonElement => (
+      target instanceof HTMLButtonElement
+      && this.renderRoot.contains(target)
+      && target.matches('[data-kind][data-value]')
+    ));
   }
 
-  #renderContent() {
-    const valueDate = parseIsoDate(this.value);
+  #handleGridClick(event: MouseEvent) {
+    const button = this.#getGridButton(event);
 
-    if (this.visibleView === 'day') {
-      const locale = this.localize.lang();
-      const firstDayOfWeek = getFirstDayOfWeek(locale);
-      const weekdays = getWeekdayNames(locale, firstDayOfWeek);
-      const weeks = getCalendarWeeks(
-        this.viewDate.getUTCFullYear(),
-        this.viewDate.getUTCMonth(),
-        firstDayOfWeek,
-      );
-      const currentDay = today();
-
-      return html`
-        <table class="day-selector">
-          <thead>
-            <tr>
-              ${weekdays.map(weekday => html`
-                <th scope="col">${weekday}</th>
-              `)}
-            </tr>
-          </thead>
-          <tbody>
-            ${weeks.map(week => html`
-              <tr>
-                ${week.map(day => html`
-                  <td
-                    class="day-selector__day"
-                  >
-                    <button
-                      aria-hidden=${!isSameMonth(day, this.viewDate)}
-                      class=${classMap({
-                        'day-selector__day--active': isSameDay(day, valueDate),
-                        'day-selector__day--outside': !isSameMonth(day, this.viewDate),
-                        'day-selector__day--today': isSameDay(day, currentDay),
-                        'day-selector__day-button': true,
-                      })}
-                      data-date=${toIsoDate(day)}
-                      tabindex=${isSameDay(day, this.focusedDate) ? 0 : -1}
-                      @keydown=${(event: KeyboardEvent) => this.#handleDayKeydown(event, day)}
-                      @click=${() => {
-                        this.value = toIsoDate(day);
-                      }}
-                    >
-                      <time datetime=${toIsoDate(day)}>
-                        ${day.getUTCDate().toString().padStart(2, '0')}
-                      </time>
-                    </button>
-                  </td>
-                `)}
-              </tr>
-            `)}
-          </tbody>
-        </table>
-      `;
+    if (!button || button.dataset.value === undefined) {
+      return;
     }
 
-    if (this.visibleView === 'month') {
-      const months = getMonthNames(this.localize.lang(), 'short');
-
-      return html`
-        <div class="month-selector">
-          ${months.map((month, monthIndex) => html`
-            <button
-              class=${classMap({
-                'day-selector__day--active': this.viewDate.getUTCMonth() === monthIndex,
-                'day-selector__day-button': true,
-              })}
-              type="button"
-              data-month=${monthIndex}
-              tabindex=${monthIndex === this.focusedMonth ? 0 : -1}
-              @focus=${() => { this.focusedMonth = monthIndex; }}
-              @keydown=${(event: KeyboardEvent) => this.#handleMonthKeydown(event, monthIndex)}
-              @click=${() => this.#openMonth(monthIndex)}
-            >
-              ${month}
-            </button>
-          `)}
-        </div>
-      `;
+    if (button.dataset.kind === 'day') {
+      this.value = button.dataset.value;
+    } else if (button.dataset.kind === 'month') {
+      this.#openMonth(Number(button.dataset.value));
+    } else if (button.dataset.kind === 'year') {
+      this.#openYear(Number(button.dataset.value));
     }
-
-    if (this.visibleView === 'year') {
-      const years = Array.from({ length: 12 }, (_, index) => this.yearBlockStart + index);
-
-      return html`
-        <div class="year-selector">
-          ${years.map(year => html`
-            <button
-              class=${classMap({
-                'day-selector__day--active': valueDate?.getUTCFullYear() === year,
-                'day-selector__day-button': true,
-              })}
-              type="button"
-              data-year=${year}
-              tabindex=${year === this.focusedYear ? 0 : -1}
-              @focus=${() => { this.focusedYear = year; }}
-              @keydown=${(event: KeyboardEvent) => this.#handleYearKeydown(event, year)}
-              @click=${() => this.#openYear(year)}
-            >
-              ${year}
-            </button>
-          `)}
-        </div>
-      `;
-    }
-
-    return html``;
   }
 
-  #renderFooter() {
-    if (this.visibleView === 'day') {
-      return html`
-        <div class="selection-wrapper">
-          <syn-button
-            @click=${() => {
-              this.#setViewDate(today());
-              this.#restoreDayFocus = true;
-            }}
-            variant="text"
-          >Today</syn-button>
-          <syn-button
-            @click=${() => {
-              this.value = '';
-            }}
-            ?disabled=${!this.value}
-            variant="text"
-          >Clear</syn-button>
-        </div>
-      `;
+  #handleGridKeydown(event: KeyboardEvent) {
+    const button = this.#getGridButton(event);
+
+    if (!button) {
+      return;
     }
 
-    if (this.visibleView === 'month') {
-      return html`
-        <div class="selection-wrapper">
-          <syn-button
-            @click=${() => {
-              this.#setViewMonth(today());
-              this.focusedMonth = this.viewDate.getUTCMonth();
-              this.#restoreMonthFocus = true;
-            }}
-            variant="text"
-          >This month</syn-button>
-          <syn-button
-            @click=${() => {
-              this.value = '';
-            }}
-            ?disabled=${!this.value}
-            variant="text"
-          >Clear</syn-button>
-        </div>
-      `;
+    if (button.dataset.kind === 'day') {
+      const date = parseIsoDate(button.dataset.value);
+
+      if (date) {
+        this.#handleDayKeydown(event, date);
+      }
+    } else if (button.dataset.kind === 'month') {
+      this.#handleMonthKeydown(event, Number(button.dataset.value));
+    } else if (button.dataset.kind === 'year') {
+      this.#handleYearKeydown(event, Number(button.dataset.value));
     }
+  }
+
+  #handleGridFocus(event: FocusEvent) {
+    const button = this.#getGridButton(event);
+
+    if (button?.dataset.kind === 'month') {
+      this.focusedMonth = Number(button.dataset.value);
+    } else if (button?.dataset.kind === 'year') {
+      this.focusedYear = Number(button.dataset.value);
+    }
+  }
+
+  #showCurrentPeriod() {
+    if (this.visibleView === 'day') {
+      this.#setViewDate(today());
+      this.#restoreDayFocus = true;
+    } else if (this.visibleView === 'month') {
+      this.#setViewMonth(today());
+      this.focusedMonth = this.viewDate.getUTCMonth();
+      this.#restoreMonthFocus = true;
+    } else {
+      this.focusedYear = today().getUTCFullYear();
+      this.yearBlockStart = getYearBlockStart(this.focusedYear);
+      this.#restoreYearFocus = true;
+      this.requestUpdate();
+    }
+  }
+
+  #renderView() {
+    const footer = {
+      hasValue: Boolean(this.value),
+      onClear: () => { this.value = ''; },
+      onCurrent: () => this.#showCurrentPeriod(),
+    };
 
     if (this.visibleView === 'year') {
-      return html`
-        <div class="selection-wrapper">
-          <syn-button
-            @click=${() => {
-              this.focusedYear = today().getUTCFullYear();
-              this.yearBlockStart = getYearBlockStart(this.focusedYear);
-              this.#restoreYearFocus = true;
-              this.requestUpdate();
-            }}
-            variant="text"
-          >This year</syn-button>
-          <syn-button
-            @click=${() => { this.value = ''; }}
-            ?disabled=${!this.value}
-            variant="text"
-          >Clear</syn-button>
-        </div>
-      `;
+      return renderYearView({
+        ...footer,
+        activeYear: this.valueAsDate?.getUTCFullYear(),
+        blockStart: this.yearBlockStart,
+        focusedYear: this.focusedYear,
+        navigation: {
+          label: `${this.yearBlockStart} - ${this.yearBlockStart + 11}`,
+          nextLabel: 'Next 12 years',
+          onNext: () => this.#pageYears(12),
+          onPrevious: () => this.#pageYears(-12),
+          previousLabel: 'Previous 12 years',
+        },
+      });
     }
 
-    return html``;
+    const yearNavigation: NavigationOptions = {
+      label: this.viewDate.getUTCFullYear(),
+      nextLabel: 'Next year',
+      onChoose: () => this.#showYearSelector(),
+      onNext: () => this.#setViewMonth(addYears(this.viewDate, 1)),
+      onPrevious: () => this.#setViewMonth(addYears(this.viewDate, -1)),
+      previousLabel: 'Previous year',
+    };
+
+    if (this.visibleView === 'month') {
+      return renderMonthView({
+        ...footer,
+        activeMonth: this.viewDate.getUTCMonth(),
+        focusedMonth: this.focusedMonth,
+        locale: this.localize.lang(),
+        yearNavigation,
+      });
+    }
+
+    return renderDayView({
+      ...footer,
+      focusedDate: this.focusedDate,
+      locale: this.localize.lang(),
+      monthNavigation: {
+        label: getMonthLabel(this.viewDate),
+        nextLabel: 'Next month',
+        onChoose: () => {
+          this.focusedMonth = this.viewDate.getUTCMonth();
+          this.visibleView = 'month';
+          this.#restoreMonthFocus = true;
+        },
+        onNext: () => this.#setViewMonth(addMonths(this.viewDate, 1)),
+        onPrevious: () => this.#setViewMonth(addMonths(this.viewDate, -1)),
+        previousLabel: 'Previous month',
+      },
+      valueDate: this.valueAsDate,
+      viewDate: this.viewDate,
+      yearNavigation,
+    });
   }
 
   render() {
+    const view = this.#renderView();
+
     return html`
       <div
         class=${classMap({
@@ -585,17 +403,22 @@ export default class SynDatePicker extends SynergyElement {
         part="base"
       >
         <div class="header">
-          ${this.#renderHeader()}
+          ${view.header}
         </div>
         <!--/.header -->
 
-        <div class="content">
-          ${this.#renderContent()}
+        <div
+          class="content"
+          @click=${this.#handleGridClick}
+          @keydown=${this.#handleGridKeydown}
+          @focusin=${this.#handleGridFocus}
+        >
+          ${view.content}
         </div>
         <!--/.content -->
 
         <div class="footer">
-          ${this.#renderFooter()}
+          ${view.footer}
         </div>
         <!--/.footer -->
       </div>

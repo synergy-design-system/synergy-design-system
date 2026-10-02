@@ -40,7 +40,6 @@ export type SegmentSeriesConfig = LayoutInsets & BackgroundStyle & ItemStyle & {
   /** Optional SVG data URL rendered as an icon inside the static center circle. */
   icon?: string;
   /** Text style for the segment labels rendered outside each segment. */
-  // TODO: make labelTextStyle work from root
   labelTextStyle?: TextStyle;
   /** Name rendered inside the gap. */
   name?: string;

@@ -376,6 +376,7 @@ export const CustomStyling: Story = {
               label: 'three',
               labelTextStyle: {
                 fill: getColor('SynNamurSuccessColor'),
+                fontSize: 24
               },
             },
           ],
@@ -387,6 +388,9 @@ export const CustomStyling: Story = {
           backgroundStyle: {
             color: getColor('SynColorNeutral100'),
           },
+          labelTextStyle: {
+            fontSize: 12,
+          }
         });
       });
     </script>

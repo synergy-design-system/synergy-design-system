@@ -206,6 +206,24 @@ describe('SynergySegmentView', () => {
     expect(elements[1].style.fontWeight).to.equal('bold');
   });
 
+  it('Per item labelTextStyle has precedence over root labelTextStyle', () => {
+    const view = renderSegment({
+      data: [
+        { label: 'Default', value: 10 },
+        { label: 'Custom', labelTextStyle: { fill: 'red', fontWeight: 'bold' }, value: 20 },
+      ],
+      labelTextStyle: { fill: 'blue', fontSize: 16, fontWeight: 'normal' },
+    });
+
+    const elements = getTextElements(view);
+    expect(elements[0].style.fill).to.equal('blue');
+    expect(elements[0].style.fontWeight).to.equal('normal');
+    expect(elements[0].style.fontSize).to.equal(16);
+    expect(elements[1].style.fill).to.equal('red');
+    expect(elements[1].style.fontWeight).to.equal('bold');
+    expect(elements[1].style.fontSize).to.equal(16);
+  });
+
   it('uses default weight if not set explicitly and keeps the sector widths equal', () => {
     const view = renderSegment({
       data: [10, 20, 30],

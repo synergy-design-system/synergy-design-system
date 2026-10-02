@@ -2488,6 +2488,7 @@ Customize individual segments with itemStyle, backgroundStyle and labelTextStyle
             label: "three",
             labelTextStyle: {
               fill: getColor("SynNamurSuccessColor"),
+              fontSize: 24,
             },
           },
         ],
@@ -2498,6 +2499,9 @@ Customize individual segments with itemStyle, backgroundStyle and labelTextStyle
         },
         backgroundStyle: {
           color: getColor("SynColorNeutral100"),
+        },
+        labelTextStyle: {
+          fontSize: 12,
         },
       });
   });

@@ -15,6 +15,7 @@ import {
   createSectorGraphic,
   createTextGraphic,
   getShiftedPoint,
+  mergeDeep,
   polarPoint,
   resolveCircularLayout,
   resolveText,
@@ -171,7 +172,7 @@ const getFillRatio = (value: number, min: number, max: number): number => {
 };
 
 const createSegments = (
-  data: SeriesData<SynergySegmentSeriesModel>,
+  model: SynergySegmentSeriesModel,
   config: ResolvedSegmentChartSeriesConfig,
   segmentRanges: Array<SegmentRange | null>,
   centerX: number,
@@ -187,6 +188,7 @@ const createSegments = (
     if (!range || !(segmentOuterRadius > segmentInnerRadius)) {
       return;
     }
+    const data = model.getData();
     const segmentHalfGap = getSafeHalfGap(halfGap, range.endAngle - range.startAngle, segmentInnerRadius);
     const segmentItemModel = data.getItemModel<SegmentDataItem>(index);
 
@@ -248,7 +250,9 @@ const createSegments = (
       const labelPoint = polarPoint(centerX, centerY, segmentOuterRadius + labelOffset, midAngle);
       const onRightHalf = Math.cos(midAngle) >= 0;
 
-      const labelOverwriteStyle = segmentItemModel.get('labelTextStyle');
+      const rootLabelStyle = model.get('labelTextStyle');
+      const itemLabelStyle = segmentItemModel.get('labelTextStyle');
+      const mergedLabelStyle = mergeDeep(rootLabelStyle!, itemLabelStyle!) as graphic.Text['style'];
 
       segments.push(createTextGraphic({
         align: onRightHalf ? 'left' : 'right',
@@ -257,7 +261,7 @@ const createSegments = (
         x: labelPoint.x,
         y: labelPoint.y,
         z: 15,
-      }, labelOverwriteStyle));
+      }, mergedLabelStyle));
     }
   });
   return segments;
@@ -333,7 +337,7 @@ const buildSegmentChartGroup = (
   const halfGap = (factor * SEGMENT_SERIES.SEGMENTS_GAP) / 2;
 
   const segments = createSegments(
-    data,
+    model,
     config,
     segmentRanges,
     centerX,

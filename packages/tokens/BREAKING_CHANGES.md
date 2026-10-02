@@ -8,6 +8,56 @@ This guide holds the required information for migrating from one major version o
 
 ---
 
+## Version 4.0 (Upcoming, no release date yet!)
+
+> ⚠️ **Important**: When upgrading to Synergy v4.0, update all `@synergy-design-system/*` packages to their respective v3.x versions (or v2.x for `@synergy-design-system/assets`) to ensure compatibility.
+
+<h3 id="syn-spacing-1-5x-large-v4">`--syn-spacing-1-5x-large`</h3>
+
+#### ⚠️ Removed legacy JavaScript and SCSS export `SynSpacing15xLarge`
+
+**Reason**:
+
+The JavaScript and SCSS export `SynSpacing15xLarge` does not accurately represent the CSS custom property's 1.5x value; it can be mistaken for a 15x value. The export has therefore been renamed to `SynSpacing1_5xLarge`. In v4, the legacy `SynSpacing15xLarge` export will be removed. The CSS custom property `--syn-spacing-1-5x-large` and its value are unchanged.
+
+**Migration Steps**:
+
+- Replace every use of `SynSpacing15xLarge` with `SynSpacing1_5xLarge` before upgrading to v4.
+
+**Example SCSS (before)**:
+
+```scss
+div {
+  margin: $SynSpacing15xLarge;
+}
+```
+
+**Example SCSS (after)**:
+
+```scss
+div {
+  margin: $SynSpacing1_5xLarge;
+}
+```
+
+**Example JS (before)**:
+
+```js
+import * as tokens from "@synergy-design-system/tokens";
+const elm = document.querySelector("div");
+elm.style.margin = tokens.SynSpacing15xLarge;
+```
+
+**Example JS (after)**:
+
+```js
+import * as tokens from "@synergy-design-system/tokens";
+const elm = document.querySelector("div");
+elm.style.margin = tokens.SynSpacing1_5xLarge;
+```
+
+---
+
 ## Version 3.0
 
 <h3 id="theme-sick2025-v3">Theme: SICK 2025</h3>

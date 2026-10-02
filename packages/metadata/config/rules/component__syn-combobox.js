@@ -37,6 +37,14 @@ export default {
     },
     {
       content: [
+        'For very large option sets, load options in pages as the user scrolls rather than rendering the full dataset up front. Listen for the syn-end-reached event, fetch the next page, and append its options to the component.',
+        'Provide clear loading feedback, such as a loading indicator, while each page is being fetched.',
+      ],
+      id: 'paging_data',
+      name: 'Paging Data',
+    },
+    {
+      content: [
         'Use readonly when users can inspect but not change the selected option(s).',
         'Avoid disabling comboboxes unless there is a clear blocking condition.',
       ],

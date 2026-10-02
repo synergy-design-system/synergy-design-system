@@ -642,7 +642,7 @@ Set the filter property to none to always show every option, regardless of what 
 
 ## Endless Scrolling
 
-Listen for the syn-load-more event to load additional options from a paged or async data source as the user scrolls close to the end of the listbox. The event is only emitted once per page: it won't fire again until you append new options, so it's safe to start a new request as soon as you receive it without tracking a loading flag yourself.The event's detail.query property contains the current text typed into the combobox, which is useful if your data source also supports server-side search.
+Listen for the syn-end-reached event to load additional options from a paged or async data source as the user scrolls close to the end of the listbox. The event is only emitted once per page: it won't fire again until you append new options, so it's safe to start a new request as soon as you receive it without tracking a loading flag yourself.
 
 ```html
 <syn-combobox label="Option" class="endless-scrolling-combobox">

@@ -3266,7 +3266,7 @@
           "value": "Listen for the `syn-end-reached` event to load additional options from a paged or async data source as the user scrolls close to the end of the listbox. The event is only emitted once per page: it won't fire again until you append new options, so it's safe to start a new request as soon as you receive it without tracking a loading flag yourself.",
           "type": "text"
         }
-      }    
+      }
     },
     "skeleton": {
       "title": {

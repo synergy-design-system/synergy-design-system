@@ -64,8 +64,8 @@ describe('<syn-combobox>', () => {
     expect(el.helpText).to.equal('');
     expect(el.form).to.equal('');
     expect(el.required).to.be.false;
-    expect(el.getOption).to.be.a('function');
-    expect(el.filter).to.be.a('function');
+    expect(el.getOption).to.equal('default');
+    expect(el.filter).to.equal('contains');
     expect(el.restricted).to.be.false;
     expect(el.multiple).to.be.false;
   });
@@ -92,8 +92,8 @@ describe('<syn-combobox>', () => {
     expect(el.helpText).to.equal('');
     expect(el.form).to.equal('');
     expect(el.required).to.be.false;
-    expect(el.getOption).to.be.a('function');
-    expect(el.filter).to.be.a('function');
+    expect(el.getOption).to.equal('default');
+    expect(el.filter).to.equal('contains');
     expect(el.restricted).to.be.false;
     expect(el.multiple).to.be.false;
   });

@@ -79,7 +79,7 @@ Synergy introduced a new variant `error` that has a similar appearance.
 
 <h3 id="syn-combobox-v4">`<syn-combobox>`</h3>
 
-#### ⚠️ Removed exports for `filters` and `option-renderer` from the package entry point
+#### ⚠️ Removed exports for `option-renderer` from the package entry point
 
 **Associated Ticket(s)**:
 
@@ -87,32 +87,25 @@ Synergy introduced a new variant `error` that has a similar appearance.
 
 **Reason**:
 
-Previously, the `filter` and `getOption` properties accepted function values, so consumers imported the built-in filters and option renderers from the package entry point. The combobox now also accepts the name of a built-in filter or renderer as a ?`string`. Exporting each built-in function from the package entry point is therefore no longer necessary and increases bundle size.
-
-The built-in filters and renderers remain available through the `filter` and `getOption` properties.
+Previously, consumers could import built-in option renderers from the package entry point and assign them to `getOption`. The combobox now also accepts the name of a built-in renderer as a string, so these exports are no longer needed. Removing them also reduces bundle size.
 
 **Migration Steps**:
 
-- Replace imports of built-in filters with their corresponding string names on the `filter` property.
 - Replace imports of built-in option renderers with their corresponding string names on the `getOption` property.
 
 **Example (before)**:
 
 ```html
-<syn-combobox id="with-custom-renderer">
+<syn-combobox id="with-custom-getOption">
   <syn-option>Option 1</syn-option>
 </syn-combobox>
 
 <script type="module">
-  import {
-    highlightOptionRenderer,
-    noneFilter,
-  } from "@synergy-design-system/components";
+  import { highlightOptionRenderer } from "@synergy-design-system/components";
 
-  const combobox = document.querySelector("#with-custom-renderer");
+  const combobox = document.querySelector("#with-custom-getOption");
   if (combobox) {
     combobox.getOption = highlightOptionRenderer;
-    combobox.filter = noneFilter;
   }
 </script>
 ```
@@ -120,7 +113,7 @@ The built-in filters and renderers remain available through the `filter` and `ge
 **Example (after)**:
 
 ```html
-<syn-combobox filter="none" getoption="highlight">
+<syn-combobox getoption="highlight">
   <syn-option>Option 1</syn-option>
 </syn-combobox>
 ```

@@ -41,7 +41,14 @@ export const noneFilter: ComboboxFilter = () => true;
  * The predefined filters that may be used via their name for the combobox `filter` property.
  */
 export const comboboxFilters = {
+  /**
+   * The default filter, which performs a case- and diacritic-insensitive string comparison of the option's label and a partial match on its value.
+   */
   contains: containsFilter,
+
+  /**
+   * The filter that does not filter at all and always shows all options. Make sure to combine this with the `getOption` highlight renderer for better UX.
+   */
   none: noneFilter,
 } as const satisfies Record<string, ComboboxFilter>;
 

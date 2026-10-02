@@ -182,8 +182,6 @@ export const createDefaultSettings = job(`Synergy: Creating default settings hel
   const globalImports = [
     // #417: Add the modernNumericStrategy to the default settings
     ['{ modernNumericStrategy }', '../../components/input/strategies.js'],
-    // #1239: Add the filter utility for combobox
-    ['{ containsFilter }', '../../components/combobox/filters.js'],
   ].map(([importPath, importFrom]) => `import ${importPath} from '${importFrom}';`);
 
   // Create the needed types

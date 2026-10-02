@@ -75,7 +75,7 @@ Disables the combobox control.
 attribute: `filter`
 reflects: no
 type: `ComboboxFilter | ComboboxFilterName`
-default: `containsFilter`
+default: `'contains'`
 
 A function used to filter options in the combobox component, or the name of a predefined filter:
 
@@ -100,7 +100,7 @@ The form must be in the same document or shadow root for this to work.
 attribute: `getOption`
 reflects: no
 type: `OptionRenderer | OptionRendererName`
-default: `defaultOptionRenderer`
+default: `'default'`
 
 A function that customizes the rendered option, or the name of a predefined renderer:
 

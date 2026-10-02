@@ -311,7 +311,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
    * - `highlight`: Highlights the matching query string with a `<mark>` element
    * - A custom function receives the option and the query string, which is typed into the combobox. It should return either a Lit TemplateResult or a string containing trusted HTML to render in the shown list of filtered options.
    */
-  @property() getOption: OptionRenderer | OptionRendererName = defaultOptionRenderer;
+  @property() getOption: OptionRenderer | OptionRendererName = 'default';
 
   /**
    * A function used to filter options in the combobox component, or the name of a predefined filter:
@@ -319,7 +319,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
    * - `none`: Does not filter and always shows all options. Make sure to combine this with a `getOption` highlight renderer for better UX.
    * - A custom function receives the option and the query string and returns a boolean indicating whether the option should be included in the filtered results.
    */
-  @property() filter: ComboboxFilter | ComboboxFilterName = containsFilter;
+  @property() filter: ComboboxFilter | ComboboxFilterName = 'contains';
 
   /**
    * The delimiter to use when setting the value when `multiple` is enabled.

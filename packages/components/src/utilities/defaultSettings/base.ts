@@ -7,7 +7,6 @@
 
 // Global imports
 import { modernNumericStrategy } from "../../components/input/strategies.js";
-import { containsFilter } from "../../components/combobox/filters.js";
 
 // Type imports
 import type SynAccordion from "../../components/accordion/accordion.js";
@@ -167,7 +166,7 @@ export const defaultSettings: SynDefaultSettings = {
     SynSelect: " ",
   },
   filter: {
-    SynCombobox: containsFilter,
+    SynCombobox: "contains",
   },
   numericStrategy: {
     SynInput: modernNumericStrategy,
@@ -216,7 +215,7 @@ export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
     SynSelect: " ",
   },
   filter: {
-    SynCombobox: containsFilter,
+    SynCombobox: "contains",
   },
   numericStrategy: {
     SynInput: modernNumericStrategy,

@@ -60,7 +60,14 @@ export const highlightOptionRenderer: OptionRenderer = (option: SynOption, query
  * The predefined option renderers that may be used via their name for the combobox `getOption` property.
  */
 export const optionRenderers = {
+  /**
+   * The default option renderer, which does not change the option.
+   */
   default: defaultOptionRenderer,
+
+  /**
+   * The highlight option renderer, which highlights the query string with a `<mark>` element in the option.
+   */
   highlight: highlightOptionRenderer,
 } as const satisfies Record<string, OptionRenderer>;
 

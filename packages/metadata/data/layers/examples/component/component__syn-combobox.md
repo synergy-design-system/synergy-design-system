@@ -646,36 +646,59 @@ Listen for the syn-load-more event to load additional options from a paged or as
 
 ```html
 <syn-combobox label="Option" class="endless-scrolling-combobox">
+  <syn-spinner slot="prefix" style="display: none"></syn-spinner>
   <syn-option value="option-1">Option 1</syn-option>
   <syn-option value="option-2">Option 2</syn-option>
   <syn-option value="option-3">Option 3</syn-option>
 </syn-combobox>
+
 <script type="module">
   const comboboxes = document.querySelectorAll(".endless-scrolling-combobox");
   comboboxes.forEach((combobox) => {
-    let index = 4;
+    const loadingIndicator = combobox.querySelector("syn-spinner");
+    let nextOption = 4;
     const maxOptions = 40;
+    const pageSize = 10;
 
-    // In a real application, this would be an API call using the query
-    // from event.detail.query to also support server-side search.
-    const loadNextPage = () => {
-      if (index > maxOptions) {
+    // Replace the delay and generated data with your API request. Return each page as
+    // { value, label } items, using whatever page or cursor parameter your API expects.
+    const fetchNextPage = async (startIndex) => {
+      await new Promise((resolve) => setTimeout(resolve, 600));
+      const endIndex = Math.min(startIndex + pageSize, maxOptions + 1);
+
+      return Array.from({ length: endIndex - startIndex }, (_, offset) => {
+        const index = startIndex + offset;
+        return {
+          label: "Option " + index,
+          value: "option-" + index,
+        };
+      });
+    };
+
+    // This handler runs for each syn-end-reached event. Adapt the end-of-data check and
+    // request parameters to your API, then map its results to options and append the page.
+    const loadNextPage = async () => {
+      if (nextOption > maxOptions) {
         return;
       }
 
+      loadingIndicator.style.display = "inline-block";
+      const options = await fetchNextPage(nextOption);
       const fragment = document.createDocumentFragment();
-      const end = Math.min(index + 10, maxOptions + 1);
-      for (; index < end; index++) {
+
+      options.forEach(({ value, label }) => {
         const option = document.createElement("syn-option");
-        option.value = "option-" + index;
-        option.textContent = "Option " + index;
+        option.value = value;
+        option.textContent = label;
         fragment.appendChild(option);
-      }
+      });
+
       combobox.appendChild(fragment);
+      nextOption += options.length;
+      loadingIndicator.style.display = "none";
     };
 
-    // syn-load-more only fires again once new options have been appended,
-    // so there is no need to track a "loading" flag yourself.
+    // The combobox re-arms the sentinel after the new options are added.
     combobox.addEventListener("syn-end-reached", loadNextPage);
   });
 </script>

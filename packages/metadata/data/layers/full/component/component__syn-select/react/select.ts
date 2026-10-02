@@ -18,6 +18,7 @@ import type { SynAfterShowEvent } from '@synergy-design-system/components';
 import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
+import type { SynEndReachedEvent } from '@synergy-design-system/components';
 
 const tagName = 'syn-select';
 Component.define('syn-select');
@@ -50,6 +51,7 @@ Component.define('syn-select');
  * @event syn-hide - Emitted when the select's menu closes.
  * @event syn-after-hide - Emitted after the select's menu closes and all animations are complete.
  * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+ * @event syn-end-reached - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
  *
  * @csspart form-control - The form control that wraps the label, input, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -84,6 +86,7 @@ export const SynSelect = createComponent({
     onSynHide: 'syn-hide' as EventName<SynHideEvent>,
     onSynAfterHide: 'syn-after-hide' as EventName<SynAfterHideEvent>,
     onSynInvalid: 'syn-invalid' as EventName<SynInvalidEvent>,
+    onSynEndReached: 'syn-end-reached' as EventName<SynEndReachedEvent>,
   },
   react: React,
   tagName,
@@ -99,3 +102,4 @@ export type { SynAfterShowEvent } from '@synergy-design-system/components';
 export type { SynHideEvent } from '@synergy-design-system/components';
 export type { SynAfterHideEvent } from '@synergy-design-system/components';
 export type { SynInvalidEvent } from '@synergy-design-system/components';
+export type { SynEndReachedEvent } from '@synergy-design-system/components';

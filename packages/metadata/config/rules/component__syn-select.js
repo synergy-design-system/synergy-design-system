@@ -38,6 +38,14 @@ export default {
       id: 'selection_behavior',
       name: 'Selection Behavior',
     },
+    {
+      content: [
+        'For very large option sets, load options in pages as the user scrolls rather than rendering the full dataset up front. Listen for the syn-end-reached event, fetch the next page, and append its options to the component.',
+        'Provide clear loading feedback, such as a loading indicator, while each page is being fetched.',
+      ],
+      id: 'paging_data',
+      name: 'Paging Data',
+    },
   ],
   useCases: [
     'Enable users to select one or more options from a list of predefined choices in forms.',

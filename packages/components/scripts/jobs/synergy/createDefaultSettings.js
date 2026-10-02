@@ -13,6 +13,7 @@ import {
  */
 export const ALLOWED_ATTRIBUTES = [
   'delimiter',
+  'filter',
   'size',
   'numericStrategy',
   'variant',

@@ -1,6 +1,6 @@
 import sinon from 'sinon';
 import { expect, fixture, html } from '@open-wc/testing';
-import { INITIAL_DEFAULT_SETTINGS } from './base.js';
+import { INITIAL_DEFAULT_SETTINGS } from '../../../dist/utilities/defaultSettings/base.js';
 import {
   type ComponentNamesWithDefaultValues,
   type SynButton,

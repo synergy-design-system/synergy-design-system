@@ -114,6 +114,9 @@ export type SynDefaultSettings = {
     SynOption?: AllowedValueForDefaultSetting<SynOption, "delimiter">;
     SynSelect?: AllowedValueForDefaultSetting<SynSelect, "delimiter">;
   };
+  filter: {
+    SynCombobox?: AllowedValueForDefaultSetting<SynCombobox, "filter">;
+  };
   numericStrategy: {
     SynInput?: AllowedValueForDefaultSetting<SynInput, "numericStrategy">;
   };
@@ -162,6 +165,9 @@ export const defaultSettings: SynDefaultSettings = {
     SynOption: " ",
     SynSelect: " ",
   },
+  filter: {
+    SynCombobox: "contains",
+  },
   numericStrategy: {
     SynInput: modernNumericStrategy,
   },
@@ -207,6 +213,9 @@ export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
     SynCombobox: " ",
     SynOption: " ",
     SynSelect: " ",
+  },
+  filter: {
+    SynCombobox: "contains",
   },
   numericStrategy: {
     SynInput: modernNumericStrategy,

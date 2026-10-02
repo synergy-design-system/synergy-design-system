@@ -80,8 +80,15 @@ export default class SynDatePicker extends SynergyElement {
    */
   @state() private viewDate: Date = today();
 
+  /**
+   * The date that currently has focus within the date picker.
+   * This is used to manage keyboard navigation and focus restoration.
+   */
   @state() private focusedDate: Date = today();
 
+  /**
+   * Indicates whether the date picker should restore focus to the previously focused day after a view change.
+   */
   #restoreDayFocus = false;
 
   protected willUpdate(changedProperties: PropertyValues<this>) {
@@ -94,15 +101,27 @@ export default class SynDatePicker extends SynergyElement {
     }
   }
 
+  /**
+   * Sets the currently viewed date in the date picker.
+   * @param date The date to set as the currently viewed date in the date picker.
+   */
   #setViewDate(date: Date) {
     this.viewDate = date;
     this.focusedDate = date;
   }
 
+  /**
+   * Sets the currently viewed month in the date picker.
+   * @param date A date within the month to set as the currently viewed month.
+   */
   #setViewMonth(date: Date) {
     this.#setViewDate(createDate(date.getUTCFullYear(), date.getUTCMonth(), 1));
   }
 
+  /**
+   * Called after the component has been updated.
+   * If the date picker should restore focus to the previously focused day, it does so here.
+   */
   protected updated() {
     if (this.#restoreDayFocus) {
       this.#restoreDayFocus = false;
@@ -111,6 +130,12 @@ export default class SynDatePicker extends SynergyElement {
     }
   }
 
+  /**
+   * Handles keyboard navigation within the date picker for a specific day.
+   * @param event The keyboard event triggered by the user.
+   * @param day The date of the day that received the keyboard event.
+   * @returns void
+   */
   #handleDayKeydown(event: KeyboardEvent, day: Date) {
     const dayOffsets: Record<string, number> = {
       ArrowDown: 7,
@@ -150,6 +175,9 @@ export default class SynDatePicker extends SynergyElement {
               size="medium"
             ></syn-icon-button>
             <syn-button
+              @click=${() => {
+                this.visibleView = 'month';
+              }}
               size="medium"
               variant="text"
             >
@@ -166,6 +194,41 @@ export default class SynDatePicker extends SynergyElement {
             ></syn-icon-button>
           </div>
 
+          <div
+            class="header--year-selection header-selection"
+          >
+            <syn-icon-button
+              @click=${() => {
+                this.#setViewMonth(addYears(this.viewDate, -1));
+              }}
+              label="Previous year"
+              library="system"
+              name="previous-page"
+              size="medium"
+            ></syn-icon-button>
+            <syn-button
+              size="medium"
+              variant="text"
+            >
+              ${this.viewDate.getUTCFullYear()}
+            </syn-button>
+            <syn-icon-button
+              @click=${() => {
+                this.#setViewMonth(addYears(this.viewDate, 1));
+              }}
+              label="Next year"
+              library="system"
+              name="next-page"
+              size="medium"
+            ></syn-icon-button>
+          </div>
+        </div>
+      `;
+    }
+
+    if (this.visibleView === 'month') {
+      return html`
+        <div class="selection-wrapper">
           <div
             class="header--year-selection header-selection"
           >
@@ -258,6 +321,32 @@ export default class SynDatePicker extends SynergyElement {
       `;
     }
 
+    if (this.visibleView === 'month') {
+      return html`
+        <table class="day-selector">
+          <tbody>
+            ${Array.from({ length: 12 }, (_, monthIndex) => html`
+              <tr>
+                <td
+                  class="day-selector__day"
+                >
+                  <button
+                    class="day-selector__day-button"
+                    data-month=${monthIndex}
+                    @click=${() => {
+                      this.value = `${this.viewDate.getUTCFullYear()}-${(monthIndex + 1).toString().padStart(2, '0')}`;
+                    }}
+                  >
+                    ${monthIndex + 1}
+                  </button>
+                </td>
+              </tr>
+            `)}
+          </tbody>
+        </table>
+      `;
+    }
+
     return html``;
   }
 
@@ -271,6 +360,26 @@ export default class SynDatePicker extends SynergyElement {
             }}
             variant="text"
           >Today</syn-button>
+          <syn-button
+            @click=${() => {
+              this.value = '';
+            }}
+            ?disabled=${!this.value}
+            variant="text"
+          >Clear</syn-button>
+        </div>
+      `;
+    }
+
+    if (this.visibleView === 'month') {
+      return html`
+        <div class="selection-wrapper">
+          <syn-button
+            @click=${() => {
+              console.log('TODO');
+            }}
+            variant="text"
+          >This month</syn-button>
           <syn-button
             @click=${() => {
               this.value = '';

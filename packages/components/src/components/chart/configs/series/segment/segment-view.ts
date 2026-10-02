@@ -313,7 +313,7 @@ const buildSegmentChartGroup = (
 
   // Optional icon inside the center circle.
   if (config.icon) {
-    const iconSize = factor * SEGMENT_SERIES.ICON_SIZE;
+    const iconSize = factor * styleWithoutUnit('SynSpacing3xLarge');
     const halfIconSize = iconSize / 2;
     const coloredIcon = colorSvgDataUrl(config.icon, style('SynColorNeutral950'));
     root.add(createImageGraphic({

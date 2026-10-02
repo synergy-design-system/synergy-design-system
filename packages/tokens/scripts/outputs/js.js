@@ -22,7 +22,7 @@ export const createJS = (header, themesDir, buildPath) => {
   // TODO: we have the css variable --syn-spacing-1-5x-large, which is currently falsely parsed to scss and js as SynSpacing15XLarge, but it should be SynSpacing1_5xLarge.
   // This is now fixed, but as the falsely parsed variable is already released, we need to keep the old parsing for backwards compatibility and remove it in the next 4.0 release.
   if (!buildPath.includes('charts')) {
-    foundItems.push(['SynSpacing15XLarge', '--syn-spacing-1-5x-large']);
+    foundItems.push(['SynSpacing15xLarge', '--syn-spacing-1-5x-large']);
   }
 
   // Create the list of javascript exports

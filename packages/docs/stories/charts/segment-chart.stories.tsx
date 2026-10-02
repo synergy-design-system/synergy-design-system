@@ -15,8 +15,8 @@ import {
   generateScreenshotStory,
   generateStoryDescription,
 } from '../../src/helpers/component.js';
-import { Chromatic_Modes_Sick_2025 } from '../../.storybook/modes.js';
 import { waitForFinishedChartPlayFunction } from '../../src/playFunction/waitForFinishedCharts.js';
+import { chartChromaticConfig } from '../../src/chromatic-config/chromatic-config.js';
 
 declare global {
   interface Window {
@@ -34,7 +34,7 @@ const meta: Meta = {
   component: 'syn-chart',
   parameters: {
     chromatic: {
-      modes: Chromatic_Modes_Sick_2025,
+      ...chartChromaticConfig,
     },
     docs: {
       description: {
@@ -80,6 +80,30 @@ export const Default: Story = {
             }
           ]
         };
+      });
+    </script>
+  `,
+};
+
+export const Name: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'segment-series-name'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-chart id="segment-name"></syn-chart>
+    <script type="module">
+      const charts = document.querySelectorAll('#segment-name');
+
+      charts.forEach(chart => {
+        chart.config = handle => handle
+        .seriesSegment({
+          data: [ 5, 10, 50, 80, 100 ],
+          name: 'Contamination',
+        });
       });
     </script>
   `,
@@ -442,6 +466,7 @@ export const WithLegend: Story = {
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
+  Name,
   CustomColors,
   LabelFormatting,
   Gap,

@@ -2220,6 +2220,27 @@ The segment chart can be configured via the chart config with type: 'synSegment'
 
 ---
 
+## Name
+
+The name option sets the name of the segment chart, which is displayed in the gap of the chart when provided. The text styling can be overwritten via nameTextStyle. It can be used to e.g. change the appearance like color, overflow handling, positioning and other text-related properties.
+
+```html
+<syn-chart id="segment-name"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#segment-name");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesSegment({
+        data: [5, 10, 50, 80, 100],
+        name: "Contamination",
+      });
+  });
+</script>
+```
+
+---
+
 ## Custom Colors
 
 By default, each segment item is assigned a color from the chart's categorical color palette. Use the colors option to provide explicit colors instead; colors are repeated cyclically when fewer colors than data points are provided.

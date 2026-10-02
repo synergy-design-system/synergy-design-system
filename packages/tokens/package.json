@@ -84,7 +84,7 @@
     "clean": "node scripts/clean.js",
     "copy:test-css": "for f in dist/themes/*_*\\.css; do cp \"$f\" \"test/$(basename \"$f\")\"; done && for f in dist/charts/themes/*_*\\.css; do n=$(basename \"$f\" .css); cp \"$f\" \"test/${n}_charts.css\"; done",
     "lint:css": "stylelint \"dist/**/*.css\"",
-    "lint:js": "eslint scripts dist/js",
+    "lint:js": "eslint scripts dist/js dist/charts/js",
     "lint:types": "tsc --noEmit",
     "lint": "pnpm run /^lint:.*/",
     "format.eslint": "pnpm lint:js --fix",

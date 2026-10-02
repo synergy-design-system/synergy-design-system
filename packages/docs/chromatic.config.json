@@ -8,13 +8,14 @@
     "packages/_private/**",
     "packages/angular/**",
     "packages/react/**",
-    "packages/vue/**"
+    "packages/vue/**",
+    "packages/metadata/**",
+    "packages/mcp/**",
+    "packages/static-docs-page/**"
   ],
   "externals": [
-    "packages/tokens/src/figma-tokens/semantic/**",
-    "packages/tokens/src/figma-tokens/globals.json",
-    "packages/tokens/src/figma-tokens/color/**",
     "packages/tokens/src/figma-variables/output/**",
+    "packages/tokens/src/figma-charts/output/**",
     "packages/assets/src/**/*.svg",
     "packages/styles/src/**/*.css"
   ]

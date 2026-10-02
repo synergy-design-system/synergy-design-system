@@ -1147,6 +1147,16 @@
           "type": "text"
         }
       },
+      "segment-series-name": {
+        "title": {
+          "value": "Segment Chart Name",
+          "type": "text"
+        },
+        "description": {
+          "value": "The `name` option sets the name of the segment chart, which is displayed in the gap of the chart when provided. The text styling can be overwritten via `nameTextStyle`. It can be used to e.g. change the appearance like color, overflow handling, positioning and other text-related properties.",
+          "type": "text"
+        }
+      },
       "segment-series-colors": {
         "title": {
           "value": "Segment Series Colors",

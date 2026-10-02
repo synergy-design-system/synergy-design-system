@@ -10,9 +10,9 @@ import componentTokenCss from '@synergy-design-system/tokens/themes/light.css?in
  * @returns An object containing the base size, whether it's small, and the multiplier
  */
 const parseSize = (sizeStr: string): { base: string; isSmall: boolean; multiplier: number } => {
-  // Match patterns like "2xlarge", "xlarge", "large", "2xsmall", "xsmall", "small"
+  // Match patterns like "2xlarge", "1_5xlarge", "xlarge", "large", "2xsmall", "xsmall", "small"
   // Also handle dash variants: "2x-large", "x-large", etc.
-  const match = sizeStr.match(/^(?:(\d+)x-?)?(?:(x)-?)?(.+)$/);
+  const match = sizeStr.match(/^(?:(\d+(?:_\d+)?)x-?)?(?:(x)-?)?(.+)$/);
 
   if (!match) {
     return {
@@ -26,7 +26,9 @@ const parseSize = (sizeStr: string): { base: string; isSmall: boolean; multiplie
 
   let multiplier = 0;
   if (numPrefix) {
-    multiplier = parseInt(numPrefix, 10);
+    const number = Number.parseFloat(numPrefix.replace('_', '.'));
+    // for e.g. "0xlarge", treat 0 as 0.5 so it is bigger than large (which has a multiplier of 0), but is smaller than x-large (which has a multiplier of 1)
+    multiplier = number === 0 ? 0.5 : number;
   } else if (xPrefix) {
     multiplier = 1;
   }

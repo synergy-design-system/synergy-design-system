@@ -291,7 +291,7 @@ const buildSegmentChartGroup = (
 
   const outerRadius = Math.max(0, availableOuterRadius - reservedLabelSpace);
 
-  const centerCircleRadius = factor * SEGMENT_SERIES.CENTER_CIRCLE_RADIUS;
+  const centerCircleRadius = factor * styleWithoutUnit('SynSpacing2xLarge');
   const ringSpacing = factor * SEGMENT_SERIES.GAP_CENTER_CIRCLE_TO_SEGMENTS;
 
   const segmentInnerRadius = centerCircleRadius + ringSpacing;
@@ -352,8 +352,7 @@ const buildSegmentChartGroup = (
     const textRadiusPosition = ((outerRadius - centerCircleRadius) / 2) + centerCircleRadius;
     const gapCenterAngle = (SEGMENT_SERIES.GAP_CENTER_ANGLE + config.gapOrientation) * DEGREE_TO_RADIAN;
     const namePoint = polarPoint(centerX, centerY, textRadiusPosition, gapCenterAngle);
-    // TODO: currently we do not have a token for font-size 22. Either do one, or use another font-size
-    const fontSize = 22;
+    const fontSize = styleWithoutUnit('SynFontSize0xLarge');
     const styleOverwrite = model.get('nameTextStyle');
     root.add(createTextGraphic({
       fontSize: factor * fontSize,

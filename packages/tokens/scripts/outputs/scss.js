@@ -17,6 +17,13 @@ export const createSCSS = (header, themesDir, buildPath) => {
   /** @type {Array<[string, string]>} */
   const foundItems = parseCssVariableNames(contents)
     .map(cssVar => [cssVariableToTokenName(cssVar), cssVar]);
+
+  // TODO: we have the css variable --syn-spacing-1-5x-large, which is currently falsely parsed to scss and js as SynSpacing15XLarge, but it should be SynSpacing1_5xLarge.
+  // This is now fixed, but as the falsely parsed variable is already released, we need to keep the old parsing for backwards compatibility and remove it in the next 4.0 release.
+  if(!buildPath.includes('charts')) {
+    foundItems.push(['SynSpacing15XLarge', '--syn-spacing-1-5x-large']);
+  }
+
   const scssExports = foundItems
     .map(([sassVar, cssVar]) => `
       $${sassVar}: var(${cssVar}) !default;

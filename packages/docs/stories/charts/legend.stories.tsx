@@ -12,15 +12,14 @@ import {
   generateScreenshotStory,
   generateStoryDescription,
 } from '../../src/helpers/component.js';
-import { Chromatic_Modes_Sick_2025 } from '../../.storybook/modes.js';
 import { waitForFinishedChartPlayFunction } from '../../src/playFunction/waitForFinishedCharts.js';
+import { chartChromaticConfig } from '../../src/chromatic-config/chromatic-config.js';
 
 const meta: Meta = {
   component: 'syn-chart',
   parameters: {
     chromatic: {
-      delay: 300,
-      modes: Chromatic_Modes_Sick_2025,
+      ...chartChromaticConfig,
     },
     docs: {
       description: {

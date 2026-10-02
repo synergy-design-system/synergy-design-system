@@ -73,3 +73,9 @@ export type {
   GaugeSectionsOptions,
   GaugeTrendOptions,
 } from './configs/series/gauge/types.js';
+
+export type {
+  SegmentSeriesConfig,
+  SegmentSeriesPresetOptions,
+  SegmentSeriesOption,
+} from './configs/series/segment/types.js';

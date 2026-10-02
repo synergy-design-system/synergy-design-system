@@ -1139,6 +1139,11 @@ export const SynFontSansFallback: string;
 export const SynFontSerif: string;
 
 /**
+ * Maps to the css variable `--syn-font-size-0x-large`
+ */
+export const SynFontSize0xLarge: string;
+
+/**
  * Maps to the css variable `--syn-font-size-2x-large`
  */
 export const SynFontSize2xLarge: string;
@@ -1961,7 +1966,7 @@ export const SynShadowStickyDown: string;
 /**
  * Maps to the css variable `--syn-spacing-1-5x-large`
  */
-export const SynSpacing15xLarge: string;
+export const SynSpacing1_5xLarge: string;
 
 /**
  * Maps to the css variable `--syn-spacing-2x-large`
@@ -2332,3 +2337,8 @@ export const SynHeading4xLarge: string;
  * Maps to the css variable `--syn-focus-ring`
  */
 export const SynFocusRing: string;
+
+/**
+ * Maps to the css variable `--syn-spacing-1-5x-large`
+ */
+export const SynSpacing15xLarge: string;

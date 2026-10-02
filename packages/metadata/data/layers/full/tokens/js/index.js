@@ -1141,6 +1141,11 @@ export const SynFontSerif = 'var(--syn-font-serif)';
 /**
  * @type {string}
  */
+export const SynFontSize0xLarge = 'var(--syn-font-size-0x-large)';
+
+/**
+ * @type {string}
+ */
 export const SynFontSize2xLarge = 'var(--syn-font-size-2x-large)';
 
 /**
@@ -1961,7 +1966,7 @@ export const SynShadowStickyDown = 'var(--syn-shadow-sticky-down)';
 /**
  * @type {string}
  */
-export const SynSpacing15xLarge = 'var(--syn-spacing-1-5x-large)';
+export const SynSpacing1_5xLarge = 'var(--syn-spacing-1-5x-large)';
 
 /**
  * @type {string}
@@ -2332,3 +2337,8 @@ export const SynHeading4xLarge = 'var(--syn-heading-4x-large)';
  * @type {string}
  */
 export const SynFocusRing = 'var(--syn-focus-ring)';
+
+/**
+ * @type {string}
+ */
+export const SynSpacing15xLarge = 'var(--syn-spacing-1-5x-large)';

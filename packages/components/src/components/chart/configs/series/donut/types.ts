@@ -1,54 +1,9 @@
-import type { LayoutValue } from '../../types.js';
-
-/** Insets that define the usable bounds of the donut layout area. */
-export type LayoutBounds = {
-  top: number;
-  right: number;
-  bottom: number;
-  left: number;
-};
-
-/** Optional horizontal and vertical center values for the donut layout. */
-export type LayoutCenterInput = [LayoutValue, LayoutValue] | undefined;
-
-/** Optional outer radius value for the donut layout. */
-export type LayoutRadiusInput = LayoutValue | undefined;
-
-/** Fully resolved pixel-based layout values used to render the donut. */
-export type ResolvedLayout = {
-  centerX: number;
-  centerY: number;
-  layoutWidth: number;
-  layoutHeight: number;
-  outerRadius: number;
-  bounds: LayoutBounds;
-};
+import type { CircularLayoutInput } from '../../types.js';
 
 /**
  * Series-level configuration for the donut chart.
  */
-export type DonutSeriesConfig = {
-  /** Center position inside the donut layout area, supports pixel or percentage values. */
-  center?: [LayoutValue, LayoutValue];
-  /** Outer radius of the donut, supports pixel or percentage values. */
-  radius?: LayoutValue;
-  /** Top inset that reduces the donut layout area before center/radius are resolved. */
-  top?: LayoutValue;
-  /** Right inset that reduces the donut layout area before center/radius are resolved. */
-  right?: LayoutValue;
-  /** Bottom inset that reduces the donut layout area before center/radius are resolved. */
-  bottom?: LayoutValue;
-  /** Left inset that reduces the donut layout area before center/radius are resolved. */
-  left?: LayoutValue;
-};
-
-/**
- * Start and end angular bounds for a single donut segment.
- */
-export type SegmentRange = {
-  startAngle: number;
-  endAngle: number;
-};
+export type DonutSeriesConfig = CircularLayoutInput;
 
 /**
  * A single data item shown as a donut segment with optional label metadata.

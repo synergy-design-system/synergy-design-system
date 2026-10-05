@@ -315,6 +315,12 @@ type: `SynClearEvent`
 
 Emitted when the control's value is cleared.
 
+### syn-end-reached
+
+type: `SynEndReachedEvent`
+
+Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
+
 ### syn-focus
 
 type: `SynFocusEvent`

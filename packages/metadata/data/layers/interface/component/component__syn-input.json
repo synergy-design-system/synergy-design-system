@@ -141,7 +141,7 @@
       "type": "boolean"
     },
     {
-      "default": "modernNumericStrategy",
+      "default": "'modern'",
       "description": "Defines the strategy for handling numbers in the numeric input.\nThis is used to determine how the input behaves when the user interacts with it.\n\nIncludes the following configuration options:\n\n- **autoClamp**: If true, the input will clamp the value to the min and max attributes.\n- **noStepAlign**: If true, the input will not align the value to the step attribute.\n- **noStepValidation**: If true, the input will not validate the value against the step attribute.\n\nYou may provide this as one of the following values:\n\n- 'native': Uses the native browser implementation.\n- 'modern': Uses a more intuitive implementation:\n  - Values are clamped to the nearest min or max value.\n  - Stepping is inclusive to the provided min and max values.\n  - Provided stepping is no longer used in validation.\n- An object that matches the `NumericStrategy` type. Note this can only be set via `property`, not as an `attribute`!",
       "fieldName": "numericStrategy",
       "name": "numeric-strategy",
@@ -605,7 +605,7 @@
     },
     {
       "access": "public",
-      "default": "modernNumericStrategy",
+      "default": "'modern'",
       "description": "Defines the strategy for handling numbers in the numeric input.\nThis is used to determine how the input behaves when the user interacts with it.\n\nIncludes the following configuration options:\n\n- **autoClamp**: If true, the input will clamp the value to the min and max attributes.\n- **noStepAlign**: If true, the input will not align the value to the step attribute.\n- **noStepValidation**: If true, the input will not validate the value against the step attribute.\n\nYou may provide this as one of the following values:\n\n- 'native': Uses the native browser implementation.\n- 'modern': Uses a more intuitive implementation:\n  - Values are clamped to the nearest min or max value.\n  - Stepping is inclusive to the provided min and max values.\n  - Provided stepping is no longer used in validation.\n- An object that matches the `NumericStrategy` type. Note this can only be set via `property`, not as an `attribute`!",
       "name": "numericStrategy",
       "type": "'native' | 'modern' | Partial<NumericStrategy>"

@@ -1,6 +1,7 @@
 import '../../../components/src/components/combobox/combobox.js';
 import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/icon/icon.js';
+import '../../../components/src/components/spinner/spinner.js';
 import '../../../components/src/components/option/option.js';
 import '../../../components/src/components/optgroup/optgroup.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
@@ -8,7 +9,6 @@ import type { SynCombobox } from '@synergy-design-system/components';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { userEvent } from 'storybook/test';
-import { highlightOptionRenderer } from '../../../components/src/components/combobox/option-renderer.js';
 import { FormSubmitDecorator } from '../../src/decorators/index.js';
 import {
   generateScreenshotStory,
@@ -467,27 +467,11 @@ export const HighlightQuery: Story = {
     await combobox.updateComplete;
     await combobox.show();
   },
-  render: () => {
-    const optionRenderer = highlightOptionRenderer;
-    return html`
-    <syn-combobox label="Preferred color" class="highlight-combobox" value="g">
-     ${createColorOptionsHtml()}
+  render: () => html`
+    <syn-combobox label="Preferred color" value="g" getOption="highlight">
+      ${createColorOptionsHtml()}
     </syn-combobox>
-    <script type="module">
-      // the highlight option renderer utility function can be imported via:
-      // import { highlightOptionRenderer } from '@synergy-design-system/components';
-
-      // preview-ignore:start
-      const highlightOptionRenderer = ${optionRenderer};
-      // preview-ignore:end
-    
-      const comboboxes = document.querySelectorAll('.highlight-combobox');
-      comboboxes.forEach((combobox) => {
-        combobox.getOption = highlightOptionRenderer;
-      });
-    </script>
-  `;
-  },
+  `,
 };
 
 export const GroupingQuery: Story = {
@@ -637,6 +621,99 @@ export const CustomFilter: Story = {
   `,
 };
 
+export const EmptyFilter: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('combobox', 'empty-filter'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-combobox
+      class="empty-filter-combobox"
+      filter="none"
+      getOption="highlight"
+      label="Empty Filter"
+      multiple
+    >
+      ${createColorOptionsHtml()}
+    </syn-combobox>
+  `,
+};
+
+export const EndlessScrolling: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('combobox', 'endless-scrolling'),
+      },
+      story: {
+        inline: false,
+      },
+    },
+  },
+  render: () => html`
+    <syn-combobox label="Option" class="endless-scrolling-combobox">
+      <syn-spinner slot="prefix" style="display: none;"></syn-spinner>
+      <syn-option value="option-1">Option 1</syn-option>
+      <syn-option value="option-2">Option 2</syn-option>
+      <syn-option value="option-3">Option 3</syn-option>
+    </syn-combobox>
+
+    <script type="module">
+      const comboboxes = document.querySelectorAll('.endless-scrolling-combobox');
+      comboboxes.forEach((combobox) => {
+        const loadingIndicator = combobox.querySelector('syn-spinner');
+        let nextOption = 4;
+        const maxOptions = 40;
+        const pageSize = 10;
+
+        // Replace the delay and generated data with your API request. Return each page as
+        // { value, label } items, using whatever page or cursor parameter your API expects.
+        const fetchNextPage = async (startIndex) => {
+          await new Promise(resolve => setTimeout(resolve, 600));
+          const endIndex = Math.min(startIndex + pageSize, maxOptions + 1);
+
+          return Array.from({ length: endIndex - startIndex }, (_, offset) => {
+            const index = startIndex + offset;
+            return {
+              label: 'Option ' + index,
+              value: 'option-' + index,
+            };
+          });
+        };
+
+        // This handler runs for each syn-end-reached event. Adapt the end-of-data check and
+        // request parameters to your API, then map its results to options and append the page.
+        const loadNextPage = async () => {
+          if (nextOption > maxOptions) {
+            return;
+          }
+
+          loadingIndicator.style.display = 'inline-block';
+          const options = await fetchNextPage(nextOption);
+          const fragment = document.createDocumentFragment();
+
+          options.forEach(({ value, label }) => {
+            const option = document.createElement('syn-option');
+            option.value = value;
+            option.textContent = label;
+            fragment.appendChild(option);
+          });
+
+          combobox.appendChild(fragment);
+          nextOption += options.length;
+          loadingIndicator.style.display = 'none';
+        };
+
+        // The combobox re-arms the sentinel after the new options are added.
+        combobox.addEventListener('syn-end-reached', loadNextPage);
+      });
+    </script>
+  `,
+};
+
 // Bundled screenshot story
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
@@ -655,5 +732,7 @@ export const Screenshot: Story = generateScreenshotStory({
   PrefixSuffixTextAndIcons,
   AsyncOptions,
   CustomFilter,
+  EmptyFilter,
+  EndlessScrolling,
 }, 500);
 /* eslint-enable sort-keys */

@@ -1,6 +1,6 @@
 {
   "encoding": "o200k_base",
-  "generatedAt": "2026-10-02T10:47:55.064Z",
+  "generatedAt": "2026-10-05T08:49:47.673Z",
   "source": "current-worktree",
   "version": 1,
   "watermarks": [
@@ -42,11 +42,11 @@
     },
     {
       "id": "component-info:interface:syn-input",
-      "tokens": 3037
+      "tokens": 3036
     },
     {
       "id": "component-info:interface:syn-combobox",
-      "tokens": 2447
+      "tokens": 2577
     },
     {
       "id": "styles-info:syn-body",

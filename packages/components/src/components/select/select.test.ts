@@ -699,7 +699,7 @@ describe('<syn-select>', () => {
 
         const el = form.querySelector<SynSelect>('syn-select')!;
         expect(Array.isArray(el.value)).to.equal(true);
-        expect(el.value.length).to.equal(0);
+        expect((el.value as Array<string>).length).to.equal(0);
 
         const option = document.createElement('syn-option');
         option.value = 'option-1';
@@ -708,7 +708,7 @@ describe('<syn-select>', () => {
 
         await aTimeout(10);
         await el.updateComplete;
-        expect(el.value.length).to.equal(1);
+        expect((el.value as Array<string>).length).to.equal(1);
         expect(el.value).to.have.members(['option-1']);
         expect(new FormData(form).getAll('select')).have.members(['option-1']);
       });
@@ -752,7 +752,7 @@ describe('<syn-select>', () => {
 
         const el = form.querySelector<SynSelect>('syn-select')!;
         expect(el.value).to.be.an('array');
-        expect(el.value.length).to.equal(0);
+        expect((el.value as Array<string>).length).to.equal(0);
 
         const option = document.createElement('syn-option');
         option.value = 'foo';
@@ -777,7 +777,7 @@ describe('<syn-select>', () => {
 
         const el = form.querySelector<SynSelect>('syn-select')!;
         expect(el.value).to.have.members(['bar', 'baz']);
-        expect(el.value.length).to.equal(2);
+        expect((el.value as Array<string>).length).to.equal(2);
         expect(new FormData(form).getAll('select')).to.have.members(['bar', 'baz']);
 
         const option = document.createElement('syn-option');
@@ -836,6 +836,28 @@ describe('<syn-select>', () => {
       select.setAttribute('value', 'foo bar');
       await aTimeout(10);
       expect(select.value).to.deep.equal(['foo', 'bar']);
+    });
+  });
+
+  describe('load-more', () => {
+    const manyOptions = Array.from(
+      { length: 30 },
+      (_, i) => html`<syn-option value="option-${i}">Option ${i}</syn-option>`,
+    );
+
+    it('should emit syn-end-reached when the listbox is scrolled close to its end', async () => {
+      const el = await fixture<SynSelect>(html`
+        <syn-select>${manyOptions}</syn-select>
+      `);
+
+      await el.show();
+      el.listbox.style.maxHeight = '100px';
+      await el.updateComplete;
+
+      const eventPromise = oneEvent(el, 'syn-end-reached');
+      el.listbox.scrollTop = el.listbox.scrollHeight;
+
+      await eventPromise;
     });
   });
 

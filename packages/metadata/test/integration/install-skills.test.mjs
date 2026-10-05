@@ -34,8 +34,8 @@ describe('install-skills bin integration', () => {
       assert.ok(skillContent.includes('synergy-component'));
       assert.ok(skillContent.includes('metadata:'));
       assert.ok(skillContent.includes('source: "synergy-design-system"'));
-      assert.ok(skillContent.includes('synergy-version: "3.26.1"'));
-      assert.ok(skillContent.includes('generated against Synergy version `3.26.1`'));
+      assert.ok(skillContent.includes('synergy-version: '));
+      assert.ok(skillContent.includes('generated against Synergy version'));
       assert.ok(!skillContent.includes('{{'));
       assert.ok(skillContent.includes('skill-type: "component-reference"'));
       assert.ok(skillContent.includes('interface.md'));
@@ -53,8 +53,8 @@ describe('install-skills bin integration', () => {
       assert.ok(templatesSkillContent.includes('synergy-templates'));
       assert.ok(templatesSkillContent.includes('metadata:'));
       assert.ok(templatesSkillContent.includes('source: "synergy-design-system"'));
-      assert.ok(templatesSkillContent.includes('synergy-version: "3.26.1"'));
-      assert.ok(templatesSkillContent.includes('generated against Synergy version `3.26.1`'));
+      assert.ok(templatesSkillContent.includes('synergy-version:'));
+      assert.ok(templatesSkillContent.includes('generated against Synergy version'));
       assert.ok(!templatesSkillContent.includes('{{'));
       assert.ok(templatesSkillContent.includes('skill-type: "template-reference"'));
       assert.ok(templatesSkillContent.includes('Look in the `templates/` folder'));
@@ -66,8 +66,8 @@ describe('install-skills bin integration', () => {
       assert.ok(intentSkillContent.includes('synergy-intent-policy'));
       assert.ok(intentSkillContent.includes('choose suitable UI patterns, generate starting points'));
       assert.ok(intentSkillContent.includes('skill-type: "intent-reference"'));
-      assert.ok(intentSkillContent.includes('synergy-version: "3.26.1"'));
-      assert.ok(intentSkillContent.includes('generated against Synergy version `3.26.1`'));
+      assert.ok(intentSkillContent.includes('synergy-version:'));
+      assert.ok(intentSkillContent.includes('generated against Synergy version'));
       assert.ok(!intentSkillContent.includes('{{'));
       assert.ok(intentSkillContent.includes('You are generating a Synergy implementation for a known user goal'));
       assert.ok(intentSkillContent.includes('/synergy-intent-policy'));

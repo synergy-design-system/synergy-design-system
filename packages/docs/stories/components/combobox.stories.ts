@@ -733,5 +733,6 @@ export const Screenshot: Story = generateScreenshotStory({
   AsyncOptions,
   CustomFilter,
   EmptyFilter,
+  EndlessScrolling,
 }, 500);
 /* eslint-enable sort-keys */

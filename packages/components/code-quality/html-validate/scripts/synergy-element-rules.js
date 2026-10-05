@@ -155,6 +155,7 @@ const SynDivider = {
  * @type {import('html-validate').MetaElement}
  */
 const SynDrawer = {
+  flow: true,
   focusable: true,
   sectioning: true,
 };

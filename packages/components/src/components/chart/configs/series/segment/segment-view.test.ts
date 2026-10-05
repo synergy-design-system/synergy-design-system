@@ -43,8 +43,8 @@ const renderSegment = (
     { value: 20 },
     { value: 30 },
   ],
-  width = SEGMENT_SERIES.REFERENCE_HEIGHT,
-  height = SEGMENT_SERIES.REFERENCE_HEIGHT,
+  width: number = SEGMENT_SERIES.REFERENCE_HEIGHT,
+  height: number = SEGMENT_SERIES.REFERENCE_HEIGHT,
 ): SynergySegmentView => {
   const view = new SynergySegmentView();
   const option = {
@@ -191,6 +191,24 @@ describe('SynergySegmentView', () => {
     expect(elements).to.deep.equal(['First', '20%', '30']);
   });
 
+  it('truncates long labels to the available layout width if not overwritten by labelTextStyle', () => {
+    const view = renderSegment({
+      data: [
+        { label: 'A very long segment label that should not overflow', value: 10 },
+        { label: 'Another very long segment label that should overflow', labelTextStyle: { overflow: 'none' }, value: 10 },
+      ],
+    }, undefined, 180, 340);
+    const labelNotOverflow = getTextElements(view).find(element => element.style.text?.startsWith('A very long'));
+    const labelOverflow = getTextElements(view).find(element => element.style.text?.startsWith('Another very long'));
+
+    expect(labelNotOverflow).to.not.equal(undefined);
+    expect(labelNotOverflow!.style.overflow).to.equal('truncate');
+    expect(labelNotOverflow!.style.width).to.be.a('number').and.greaterThan(0);
+    expect(labelOverflow).to.not.equal(undefined);
+    expect(labelOverflow!.style.overflow).to.equal('none');
+    expect(labelOverflow!.style.width).to.be.a('number').and.greaterThan(0);
+  });
+
   it('default label text styling can be overwritten via labelTextStyle', () => {
     const view = renderSegment({
       data: [
@@ -256,6 +274,37 @@ describe('SynergySegmentView', () => {
     expect(angularShares[1]).to.be.closeTo(0.14, 0.01);
     expect(angularShares[2]).to.be.closeTo(0.28, 0.01);
     expect(totalShare).to.equal(1);
+  });
+
+  it.only('keeps negative and zero-weight segments out of the angular distribution', () => {
+    const view = renderSegment({
+      data: [
+        { value: 10, weight: 0 },
+        { value: 20, weight: 1 },
+        { value: 30, weight: 3 },
+        { value: 40, weight: -2 },
+      ],
+    });
+
+    const backgrounds = backgroundPolygons(view);
+    const center = getSectors(view)[0].shape;
+    const angularExtents = backgrounds.map(polygon => getAngularExtent(polygon, center.cx, center.cy));
+
+    expect(backgrounds).to.have.lengthOf(2);
+    expect(angularExtents[0] / angularExtents[1]).to.be.closeTo(1 / 3, 0.01);
+  });
+
+  it('keeps finite geometry for very large weights and falls back for non-finite weights', () => {
+    const view = renderSegment({
+      data: [
+        { value: 10, weight: Number.MAX_VALUE },
+        { value: 20, weight: Number.MAX_VALUE },
+        { value: 30, weight: Number.POSITIVE_INFINITY },
+      ],
+    });
+
+    const points = backgroundPolygons(view).flatMap(polygon => polygon.shape.points);
+    expect(points.every(([x, y]) => Number.isFinite(x) && Number.isFinite(y))).to.equal(true);
   });
 
   it('renders the optional center icon when icon is provided', () => {

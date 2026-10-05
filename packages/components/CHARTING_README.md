@@ -543,30 +543,30 @@ Array merge strategy:
 
 `SegmentSeriesPresetOptions` supports the following fields:
 
-| Option                           | Type                                    | Description                                                                                                                                              | Default         |
-| -------------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
-| `data`                           | `SegmentDataValue[]`                    | Segment values or objects containing segment metadata. Values determine radial fill; objects can additionally define labels, weights, names, and styles. | `[]`            |
-| `data[i]`                        | `number \| SegmentDataItem`             | A number is rendered with the default label. An object provides the required `value` and optional per-segment settings.                                  |                 |
-| `data[i].value`                  | `number`                                | Numeric value used to calculate the radial fill ratio between `min` and `max`.                                                                           |                 |
-| `data[i].weight`                 | `number`                                | Relative angular width of the segment. Values are normalized across all data items.                                                                      | `1`             |
-| `data[i].label`                  | `string \| ((value: number) => string)` | Label rendered outside the segment. If omitted, the numeric value is used; set it to `undefined` to remove the label.                                    | `String(value)` |
-| `data[i].name`                   | `string`                                | Series item name used for displaying the segment in the legend.                                                                                          |                 |
-| `data[i].itemStyle`              | `ItemStyle`                             | Item styling for the filled portion of the segment, including fill, border color, and border width.                                                      |                 |
-| `data[i].backgroundStyle`        | `BackgroundStyle`                       | Styling for the unfilled portion of the segment, including fill, border color, and border width.                                                         |                 |
-| `data[i].labelTextStyle`         | `TextStyle`                             | Text styling for the specific segment label.                                                                                                             |                 |
-| `min`                            | `number`                                | Minimum value used to normalize the radial fill ratio.                                                                                                   | `0`             |
-| `max`                            | `number`                                | Maximum value used to normalize the radial fill ratio.                                                                                                   | `100`           |
-| `gap`                            | `number`                                | Fraction of the full circle left empty for the main name. Values are clamped to `0`-`1`.                                                                 | `0.3`           |
-| `gapOrientation`                 | `number`                                | Rotates the gap and the segment layout in degrees. A value of `0` centers the gap at the bottom.                                                         | `0`             |
-| `icon`                           | `string`                                | SVG data URL rendered inside the static center circle.                                                                                                   |                 |
-| `name`                           | `string`                                | Text rendered in the center of the gap.                                                                                                                  |                 |
-| `nameTextStyle`                  | `TextStyle`                             | Text styling for the name rendered inside the gap.                                                                                                       |                 |
-| `labelTextStyle`                 | `TextStyle`                             | Default text styling for segment labels rendered outside the segments.                                                                                   |                 |
-| `itemStyle`                      | `ItemStyle`                             | Default item styling for all segment fills. Per-segment `data[i].itemStyle` takes precedence.                                                            |                 |
-| `backgroundStyle`                | `BackgroundStyle`                       | Default styling for all segment backgrounds. Per-segment `data[i].backgroundStyle` takes precedence.                                                     |                 |
-| `top`, `right`, `bottom`, `left` | `LayoutValue`                           | Insets of the drawable chart area.                                                                                                                       | `0`             |
+| Option                           | Type                                    | Description                                                                                                                                                                      | Default         |
+| -------------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| `data`                           | `SegmentDataValue[]`                    | Segment values or objects containing segment metadata. Values determine radial fill; objects can additionally define labels, weights, names, and styles.                         | `[]`            |
+| `data[i]`                        | `number \| SegmentDataItem`             | A number is rendered with the default label. An object provides the required `value` and optional per-segment settings.                                                          |                 |
+| `data[i].value`                  | `number`                                | Numeric value used to calculate the radial fill ratio between `min` and `max`.                                                                                                   |                 |
+| `data[i].weight`                 | `number`                                | Relative angular width of the segment. Values are normalized across all data items, `0` omits the segment from the angular distribution, and negative values are treated as `0`. | `1`             |
+| `data[i].label`                  | `string \| ((value: number) => string)` | Label rendered outside the segment. If omitted, the numeric value is used; set it to `undefined` to remove the label.                                                            | `String(value)` |
+| `data[i].name`                   | `string`                                | Series item name used for displaying the segment in the legend.                                                                                                                  |                 |
+| `data[i].itemStyle`              | `ItemStyle`                             | Item styling for the filled portion of the segment, including fill, border color, and border width.                                                                              |                 |
+| `data[i].backgroundStyle`        | `BackgroundStyle`                       | Styling for the unfilled portion of the segment, including fill, border color, and border width.                                                                                 |                 |
+| `data[i].labelTextStyle`         | `TextStyle`                             | Text styling for the specific segment label.                                                                                                                                     |                 |
+| `min`                            | `number`                                | Minimum value used to normalize the radial fill ratio.                                                                                                                           | `0`             |
+| `max`                            | `number`                                | Maximum value used to normalize the radial fill ratio.                                                                                                                           | `100`           |
+| `gap`                            | `number`                                | Fraction of the full circle left empty for the main name. Values are clamped to `0`-`1`.                                                                                         | `0.3`           |
+| `gapOrientation`                 | `number`                                | Rotates the gap and the segment layout in degrees. A value of `0` centers the gap at the bottom.                                                                                 | `0`             |
+| `icon`                           | `string`                                | SVG data URL rendered inside the static center circle.                                                                                                                           |                 |
+| `name`                           | `string`                                | Text rendered in the center of the gap.                                                                                                                                          |                 |
+| `nameTextStyle`                  | `TextStyle`                             | Text styling for the name rendered inside the gap.                                                                                                                               |                 |
+| `labelTextStyle`                 | `TextStyle`                             | Default text styling for segment labels rendered outside the segments.                                                                                                           |                 |
+| `itemStyle`                      | `ItemStyle`                             | Default item styling for all segment fills. Per-segment `data[i].itemStyle` takes precedence.                                                                                    |                 |
+| `backgroundStyle`                | `BackgroundStyle`                       | Default styling for all segment backgrounds. Per-segment `data[i].backgroundStyle` takes precedence.                                                                             |                 |
+| `top`, `right`, `bottom`, `left` | `LayoutValue`                           | Insets of the drawable chart area.                                                                                                                                               | `0`             |
 
-The available circle is divided into angular ranges according to each item's `weight`. Each segment's value controls its radial fill: values at or below `min` are empty, values at or above `max` are full, and intermediate values are linearly interpolated. The gap is reserved from the full circle before the weights are applied. The layout scales with the chart size using a reference height of `340px`.
+The available circle is divided into angular ranges according to each item's `weight`. Each segment's value controls its radial fill: values at or below `min` are empty, values at or above `max` are full, and intermediate values are linearly interpolated. The gap is reserved from the full circle before the weights are applied. Non-finite weights use the default weight of `1`. The layout scales with the chart size using a reference height of `340px`, long outside labels are truncated to fit within the configured layout insets.
 
 Example:
 
@@ -678,11 +678,12 @@ shorthand(0.002); // '2m'
 
 The following chart types are natively supported with Synergy styling:
 
-| Type        | How to use                                   |
-| ----------- | -------------------------------------------- |
-| Line chart  | `series[].type: 'line'` (standard ECharts)   |
-| Gauge chart | `series[].type: 'synGauge'` (custom Synergy) |
-| Donut chart | `series[].type: 'synDonut'` (custom Synergy) |
+| Type          | How to use                                     |
+| ------------- | ---------------------------------------------- |
+| Line chart    | `series[].type: 'line'` (standard ECharts)     |
+| Gauge chart   | `series[].type: 'synGauge'` (custom Synergy)   |
+| Donut chart   | `series[].type: 'synDonut'` (custom Synergy)   |
+| Segment chart | `series[].type: 'synSegment'` (custom Synergy) |
 
 If you want to use ECharts features beyond what is listed above, you can register the required plugins yourself.
 But keep in mind that they are not Synergy-approved and do not have Synergy styling. The registration needs to be done **before** the component is initialized.

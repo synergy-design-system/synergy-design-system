@@ -133,7 +133,7 @@ export const CustomColors: Story = {
 
       charts.forEach(chart => {
         chart.config = handle => handle
-        .baseConfig({ 
+        .baseConfig({
           color: [
             getChartColor('SynChartSequential01_100'),
             getChartColor('SynChartSequential01_90'),
@@ -342,7 +342,7 @@ export const CustomStyling: Story = {
         chart.config = handle => handle
         .seriesSegment({
           data: [
-            { 
+            {
               value: 60,
               itemStyle: {
                 color: getColor('SynNamurErrorColor'),
@@ -352,7 +352,7 @@ export const CustomStyling: Story = {
                 fill: getColor('SynNamurErrorColor'),
               },
             },
-            { 
+            {
               value: 30,
               itemStyle: {
                 color: getColor('SynNamurWarningColor'),
@@ -363,7 +363,7 @@ export const CustomStyling: Story = {
                 fill: getColor('SynNamurWarningColor'),
               },
             },
-            { 
+            {
               value: 50,
               backgroundStyle: {
                  color: getColor('SynColorNeutral200'),

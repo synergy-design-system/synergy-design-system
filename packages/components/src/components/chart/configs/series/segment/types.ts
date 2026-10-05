@@ -33,7 +33,7 @@ export type SegmentSeriesConfig = LayoutInsets & BackgroundStyle & ItemStyle & {
   min?: number;
   /** Maximum value used to normalize the segment fill ratio. Defaults to `100`. */
   max?: number;
-  /** Fraction (0-1) of the full circle left empty, where the main `mainLabel` is rendered. Defaults to `0.3`. */
+  /** Fraction (0-1) of the full circle left empty, where the series `name` is rendered. Defaults to `0.3`. */
   gap?: number;
   /** Rotates the gap (and therefore the whole chart), in degrees. `0` centers the gap at the bottom. Defaults to `0`. */
   gapOrientation?: number;
@@ -74,7 +74,7 @@ export type SegmentDataItem = BackgroundStyle & ItemStyle & {
   /** Text style for the specific segment label rendered outside each segment. */
   labelTextStyle?: TextStyle;
   /**
-   * Angular width for each segment. Missing entries default to `1`.
+  * Relative angular width for this segment. Missing or non-finite values default to `1`, negative values are treated as `0`.
    */
   weight?: number;
 };

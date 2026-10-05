@@ -6,7 +6,7 @@ import type { SegmentSeriesPresetOptions, SynergySegmentSeriesOption } from './t
  * Adds a custom `synSegment` series.
  *
  * Renders concentric-free segments around a static center circle: `data` defines each segment's
- * radial fill degree (from the center outward), normalized between `min` and `max`. `weights`
+ * radial fill degree (from the center outward), normalized between `min` and `max`. Each item's `weight`
  * defines each segment's angular width, normalized to the angle left available by `gap`.
  *
  * @param {SegmentSeriesPresetOptions} [options] Preset options.
@@ -19,18 +19,18 @@ import type { SegmentSeriesPresetOptions, SynergySegmentSeriesOption } from './t
  * @param {TextStyle} [options.nameTextStyle] Text style for the name rendered inside the gap.
  * @param {TextStyle} [options.labelTextStyle] Text style for the segment labels rendered outside each segment.
  * @param {ItemStyle} [options.itemStyle] Item style for each segment, including fill color, border color, and border width.
- * @param {string} [options.itemStyle.fill] Fill color for each segment.
+ * @param {string} [options.itemStyle.color] Fill color for each segment.
  * @param {string} [options.itemStyle.borderColor] Border color for each segment.
- * @param {string} [options.itemStyle.borderWidth] Border width for each segment.
+ * @param {number} [options.itemStyle.borderWidth] Border width for each segment.
  * @param {BackgroundStyle} [options.backgroundStyle] Background style for each segment, including fill color, border color, and border width.
- * @param {string} [options.backgroundStyle.fill] Fill color for the background of each segment.
+ * @param {string} [options.backgroundStyle.color] Fill color for the background of each segment.
  * @param {string} [options.backgroundStyle.borderColor] Border color for the background of each segment.
- * @param {string} [options.backgroundStyle.borderWidth] Border width for the background of each segment.
+ * @param {number} [options.backgroundStyle.borderWidth] Border width for the background of each segment.
  * @param {number|string} [options.top] Top inset of the drawable area in pixels or percent.
  * @param {number|string} [options.right] Right inset of the drawable area in pixels or percent.
  * @param {number|string} [options.bottom] Bottom inset of the drawable area in pixels or percent.
  * @param {number|string} [options.left] Left inset of the drawable area in pixels or percent.
- * @param {number[]|SegmentDataItem[]} options.data Array of segment data values or objects containing segment metadata.
+ * @param {(number|SegmentDataItem)[]} [options.data] Array of segment values or objects containing segment metadata.
  * @param {number} [options.data[].value] Numeric value of the segment. Defines the amplitude of a segment
  * @param {number} [options.data[].weight] Angular width for each segment. Missing entries default to `1`.
  * @param {string} [options.data[].name] Series item name used for displaying in legend.
@@ -42,10 +42,9 @@ import type { SegmentSeriesPresetOptions, SynergySegmentSeriesOption } from './t
  * @param {string} [options.data[].backgroundStyle.borderColor] Border color for the background of the specific segment.
  * @param {string} [options.data[].backgroundStyle.borderWidth] Border width for the background of the specific segment.
  * @param {ItemStyle} [options.data[].itemStyle] Item style for the specific segment, including fill color, border color, and border width.
- * @param {string[]} [options.data[].itemStyle.fill] Colors for the filled portion of the specific segment.
- * When omitted, colors are taken from the chart's categorical color palette.
- * @param {string[]} [options.data[].itemStyle.borderColor] Colors for the specific segment's border. Default: transparent
- * @param {string[]} [options.data[].itemStyle.borderWidth] Width for the specific segment's border. Default: 0.
+ * @param {string} [options.data[].itemStyle.color] Fill color for the specific segment.
+ * @param {string} [options.data[].itemStyle.borderColor] Border color for the specific segment.
+ * @param {number} [options.data[].itemStyle.borderWidth] Border width for the specific segment. Defaults to `0`.
  *
  */
 export const seriesSegment = (options: SegmentSeriesPresetOptions): ConfigModifier => (config) => {

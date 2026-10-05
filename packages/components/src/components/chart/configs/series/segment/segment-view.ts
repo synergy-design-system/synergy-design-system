@@ -19,10 +19,11 @@ import {
   polarPoint,
   resolveCircularLayout,
   resolveText,
+  sanitizeFiniteNumber,
 } from '../../utilities.js';
 import { getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../../../themes/utilities.js';
 import type {
-  ExtensionAPI, GlobalModel, SegmentRange,
+  ExtensionAPI, GlobalModel, LayoutBounds, SegmentRange,
 } from '../../types.js';
 
 /** Samples points along a circular arc, used to approximate it as a straight-edged polygon. */
@@ -115,17 +116,21 @@ const computeSegmentRanges = (
   startAngle: number,
   availableAngle: number,
 ): Array<SegmentRange | null> => {
-  const total = weights.reduce((sum, weight) => sum + Math.max(weight, 0), 0);
+  const maxWeight = weights.reduce((maximum, weight) => Math.max(maximum, weight), 0);
 
-  if (total <= 0 || availableAngle <= 0) {
-    // TODO: TEst out this use case. What happens
+  if (maxWeight <= 0 || availableAngle <= 0) {
     return weights.map(() => null);
   }
 
+  const normalizedWeights = weights.map(weight => weight / maxWeight);
+  const total = normalizedWeights.reduce((sum, weight) => sum + weight, 0);
   let currentAngle = startAngle;
 
-  return weights.map((weight) => {
-    const sweep = (Math.max(weight, 0) / total) * availableAngle;
+  return normalizedWeights.map((weight) => {
+    if (weight <= 0) {
+      return null;
+    }
+    const sweep = (weight / total) * availableAngle;
     const rangeStartAngle = currentAngle;
     const rangeEndAngle = currentAngle + sweep;
     currentAngle = rangeEndAngle;
@@ -161,7 +166,8 @@ const resolveWeights = (data: SeriesData<SynergySegmentSeriesModel>): number[] =
   const weights: number[] = [];
   data.each((idx) => {
     const itemModel = data.getItemModel<SegmentDataItem>(idx);
-    weights.push(Number(itemModel.get('weight')) || SEGMENT_SERIES.DEFAULT_WEIGHT);
+    const weight = Number(itemModel.get('weight'));
+    weights.push(Number.isFinite(weight) ? Math.max(weight, 0) : SEGMENT_SERIES.DEFAULT_WEIGHT);
   });
   return weights;
 };
@@ -182,6 +188,7 @@ const createSegments = (
   halfGap: number,
   labelOffset: number,
   factor: number,
+  bounds: LayoutBounds,
 ) => {
   const segments: Array<graphic.Polygon | graphic.Text> = [];
   segmentRanges.forEach((range, index) => {
@@ -219,7 +226,7 @@ const createSegments = (
 
     // Filled portion, growing from the inner radius outward based on the segment's value.
     const rawValue = Number(data.get('value', index));
-    const value = Number.isNaN(rawValue) ? 0 : rawValue;
+    const value = sanitizeFiniteNumber(rawValue);
     const fillRatio = getFillRatio(value, config.min, config.max);
     if (fillRatio > 0) {
       const filledOuterRadius = segmentInnerRadius + (fillRatio * (segmentOuterRadius - segmentInnerRadius));
@@ -253,6 +260,9 @@ const createSegments = (
       const rootLabelStyle = model.get('labelTextStyle');
       const itemLabelStyle = segmentItemModel.get('labelTextStyle');
       const mergedLabelStyle = mergeDeep(rootLabelStyle!, itemLabelStyle!) as graphic.Text['style'];
+      const availableLabelWidth = onRightHalf
+        ? Math.max(0, bounds.right - labelPoint.x)
+        : Math.max(0, labelPoint.x - bounds.left);
 
       segments.push(createTextGraphic({
         align: onRightHalf ? 'left' : 'right',
@@ -261,7 +271,11 @@ const createSegments = (
         x: labelPoint.x,
         y: labelPoint.y,
         z: 15,
-      }, mergedLabelStyle));
+      }, {
+        overflow: 'truncate',
+        width: availableLabelWidth,
+        ...mergedLabelStyle,
+      }));
     }
   });
   return segments;
@@ -276,6 +290,7 @@ const buildSegmentChartGroup = (
   const config = model.option as ResolvedSegmentChartSeriesConfig;
 
   const {
+    bounds,
     centerX,
     centerY,
     layoutHeight,
@@ -347,6 +362,7 @@ const buildSegmentChartGroup = (
     halfGap,
     labelOffset,
     factor,
+    bounds,
   );
   segments.forEach(segment => root.add(segment));
 

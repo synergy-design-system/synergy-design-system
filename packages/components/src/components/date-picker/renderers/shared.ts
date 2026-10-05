@@ -13,11 +13,11 @@ export interface CalendarItemOptions {
 
 export const renderCalendarItem = (options: CalendarItemOptions) => html`
   <button
-    aria-hidden=${options.kind === 'day' ? String(Boolean(options.outside)) : nothing}
+    aria-hidden=${options.kind === 'day' ? String(!!options.outside) : nothing}
     class=${classMap({
       'day-selector__day--active': options.active,
-      'day-selector__day--outside': Boolean(options.outside),
-      'day-selector__day--today': Boolean(options.today),
+      'day-selector__day--outside': !!options.outside,
+      'day-selector__day--today': !!options.today,
       'day-selector__day-button': true,
     })}
     type="button"

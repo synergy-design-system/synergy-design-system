@@ -70,7 +70,6 @@ export default css`
 
   .day-selector th,
   .day-selector td {
-    box-sizing: content-box;
     vertical-align: middle;
   }
 
@@ -85,6 +84,7 @@ export default css`
     background: none;
     border: var(--syn-border-width-small) solid transparent;
     border-radius: var(--syn-border-radius-small);
+    box-sizing: content-box;
     cursor: pointer;
     display: inline-block;
     font: var(--syn-body-small-regular);

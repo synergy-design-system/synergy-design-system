@@ -36,7 +36,6 @@ import styles from './date-picker.styles.js';
  *
  * @dependency syn-button
  * @dependency syn-icon-button
- * @dependency syn-popup
  *
  * @csspart base - The component's base wrapper.
  */
@@ -343,6 +342,7 @@ export default class SynDatePicker extends SynergyElement {
         navigation: {
           label: `${this.yearBlockStart} - ${this.yearBlockStart + 11}`,
           nextLabel: 'Next 12 years',
+          onChoose: () => this.#showDayView(),
           onNext: () => this.#pageYears(12),
           onPrevious: () => this.#pageYears(-12),
           previousLabel: 'Previous 12 years',
@@ -392,7 +392,7 @@ export default class SynDatePicker extends SynergyElement {
   }
 
   render() {
-    const view = this.#renderView();
+    const { header, content, footer} = this.#renderView();
 
     return html`
       <div
@@ -403,7 +403,7 @@ export default class SynDatePicker extends SynergyElement {
         part="base"
       >
         <div class="header">
-          ${view.header}
+          ${header}
         </div>
         <!--/.header -->
 
@@ -413,12 +413,12 @@ export default class SynDatePicker extends SynergyElement {
           @keydown=${this.#handleGridKeydown}
           @focusin=${this.#handleGridFocus}
         >
-          ${view.content}
+          ${content}
         </div>
         <!--/.content -->
 
         <div class="footer">
-          ${view.footer}
+          ${footer}
         </div>
         <!--/.footer -->
       </div>

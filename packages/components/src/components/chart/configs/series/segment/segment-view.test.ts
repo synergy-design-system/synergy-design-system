@@ -276,7 +276,7 @@ describe('SynergySegmentView', () => {
     expect(totalShare).to.equal(1);
   });
 
-  it.only('keeps negative and zero-weight segments out of the angular distribution', () => {
+  it('keeps negative and zero-weight segments out of the angular distribution', () => {
     const view = renderSegment({
       data: [
         { value: 10, weight: 0 },

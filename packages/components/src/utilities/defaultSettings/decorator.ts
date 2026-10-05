@@ -101,21 +101,13 @@ export function enableDefaultSettings(name: ComponentNamesWithDefaultValues) {
       // Get the default settings
       const defaults = extractDefaultSettingsForElement(name);
 
-      // Set the default values for all items that have no current value set
+      // Apply global defaults unless the property was explicitly set on the element.
       Object
         .entries(defaults)
         .forEach(([key, value]) => {
-          const currentProp = this[key as keyof this];
-          const originalDefaultSetting = this.#systemDefaultSettings[key];
-
-          // On initial load, the attribute is not set, but the property is.
-          // We have to check if the current PROPERTY is the same as the default value
-          // If it is, we set the attribute to the default value and add a notification item
-          // to the initialGlobalSettingEmptyProperties map
-          // We also need to check if the default value of the property was used
-          // or the property was explicitly set on the element
-          if (currentProp === originalDefaultSetting && !this.#initialProperties.includes(key)) {
-            this.#initialGlobalSettingEmptyProperties.set(key, currentProp);
+          // Explicit-set tracking avoids comparing unresolved defaults with resolved property values.
+          if (!this.#initialProperties.includes(key)) {
+            this.#initialGlobalSettingEmptyProperties.set(key, this[key as keyof this]);
             // @ts-expect-error We don´t know the type of the key,
             // but are pretty sure it exists on the element
             this[key] = value;

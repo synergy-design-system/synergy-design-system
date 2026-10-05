@@ -5,9 +5,6 @@
 // It will get recreated when running pnpm build.
 // ---------------------------------------------------------------------
 
-// Global imports
-import { modernNumericStrategy } from "../../components/input/strategies.js";
-
 // Type imports
 import type SynAccordion from "../../components/accordion/accordion.js";
 import type SynAlert from "../../components/alert/alert.js";
@@ -169,7 +166,7 @@ export const defaultSettings: SynDefaultSettings = {
     SynCombobox: "contains",
   },
   numericStrategy: {
-    SynInput: modernNumericStrategy,
+    SynInput: "modern",
   },
   size: {
     SynAccordion: "medium",
@@ -218,7 +215,7 @@ export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
     SynCombobox: "contains",
   },
   numericStrategy: {
-    SynInput: modernNumericStrategy,
+    SynInput: "modern",
   },
   size: {
     SynAccordion: "medium",

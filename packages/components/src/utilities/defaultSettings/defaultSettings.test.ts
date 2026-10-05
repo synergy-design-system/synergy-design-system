@@ -4,6 +4,7 @@ import { INITIAL_DEFAULT_SETTINGS } from '../../../dist/utilities/defaultSetting
 import {
   type ComponentNamesWithDefaultValues,
   type SynButton,
+  type SynInput,
   enableSettingEmitEvents,
   resetGlobalDefaultSettings,
   setDefaultSettingsForElement,
@@ -29,6 +30,34 @@ describe('GlobalSettings', () => {
     it('should render the button with a default size of "medium"', async () => {
       const button = await fixture<SynButton>(html`<syn-button>Button</syn-button>`);
       expect(button.size).to.equal('medium');
+    });
+  });
+
+  describe('numeric strategy defaults', () => {
+    it('should apply a global native strategy when the input has no explicit strategy', async () => {
+      setGlobalDefaultSettings({
+        numericStrategy: {
+          SynInput: 'native',
+        },
+      });
+
+      const input = await fixture<SynInput>(html`<syn-input type="number"></syn-input>`);
+
+      expect(input.numericStrategy).to.have.property('autoClamp', false);
+    });
+
+    it('should preserve an explicitly set strategy', async () => {
+      setGlobalDefaultSettings({
+        numericStrategy: {
+          SynInput: 'native',
+        },
+      });
+
+      const input = await fixture<SynInput>(html`
+        <syn-input type="number" numeric-strategy="modern"></syn-input>
+      `);
+
+      expect(input.numericStrategy).to.have.property('autoClamp', true);
     });
   });
 

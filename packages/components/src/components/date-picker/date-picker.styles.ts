@@ -8,10 +8,13 @@ export default css`
   .date-picker {
     --container-padding-block: var(--syn-spacing-medium);
     --container-padding-inline: var(--syn-spacing-small);
+    --syn-date-picker-min-width: 388px;
 
     background: var(--syn-panel-background-color);
     display: flex;
     flex-direction: column;
+    max-width: 100%;
+    min-width: min(var(--syn-date-picker-min-width), 100vw);
     user-select: none;
   }
 
@@ -56,8 +59,8 @@ export default css`
   }
 
   .header--year-selection syn-button {
-    /* We always use 4 characters, so no need to move */
-    width: 4ch;
+    /* We always use 4 characters, so no need to move the date */
+    min-width: 4ch;
   }
 
   /* Day View */
@@ -79,7 +82,7 @@ export default css`
     padding: var(--syn-spacing-x-small);
   }
 
-  .day-selector__day-button {
+  .calendar-item {
     appearance: none;
     background: none;
     border: var(--syn-border-width-small) solid transparent;
@@ -96,22 +99,22 @@ export default css`
     width: 100%;
   }
 
-  .day-selector .day-selector__day-button {
+  .day-selector .calendar-item {
     width: var(--syn-spacing-x-large);
   }
 
-  .day-selector__day-button:hover,
-  .day-selector__day-button:focus {
+  .calendar-item:hover,
+  .calendar-item:focus {
     border-color: var(--syn-focus-ring-color);
     outline: none;
   }
 
-  .day-selector__day--active {
+  .calendar-item--active {
     background-color: var(--syn-color-primary-600);
     color: var(--syn-color-neutral-0);
   }
 
-  .day-selector__day--today::after {
+  .calendar-item--today::after {
     background: var(--syn-typography-color-text);
     border-radius: var(--syn-border-radius-circle);
     bottom: 10px;
@@ -122,11 +125,11 @@ export default css`
     width: var(--syn-spacing-2x-small);
   }
 
-  .day-selector__day--active.day-selector__day--today::after {
+  .calendar-item--active.calendar-item--today::after {
     background: var(--syn-typography-color-text-inverted);
   }
 
-  .day-selector__day--outside {
+  .calendar-item--outside {
     visibility: hidden;
   }
 
@@ -135,11 +138,14 @@ export default css`
     width: 100%;
   }
 
-  .month-selector,
-  .year-selector {
+  .period-selector {
     display: grid;
     gap: var(--syn-spacing-small);
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .period-selector .calendar-item {
+    width: auto;
   }
 
 `;

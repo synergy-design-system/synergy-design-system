@@ -38,6 +38,8 @@ import styles from './date-picker.styles.js';
  * @dependency syn-icon-button
  *
  * @csspart base - The component's base wrapper.
+ *
+ * @cssproperty --syn-date-picker-min-width - The minimum width of the date picker. Defaults to 388px.
  */
 export default class SynDatePicker extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
@@ -87,6 +89,8 @@ export default class SynDatePicker extends SynergyElement {
   @state() private focusedDate: Date = today();
 
   @state() private focusedMonth = today().getUTCMonth();
+
+  @state() private monthSelectorYear = today().getUTCFullYear();
 
   @state() private focusedYear = today().getUTCFullYear();
 
@@ -175,8 +179,20 @@ export default class SynDatePicker extends SynergyElement {
   }
 
   #openMonth(month: number) {
-    this.#setViewMonth(createDate(this.viewDate.getUTCFullYear(), month, 1));
+    this.#setViewMonth(createDate(this.monthSelectorYear, month, 1));
     this.#showDayView();
+  }
+
+  #showMonthSelector() {
+    const valueDate = this.valueAsDate;
+    const viewedYear = this.viewDate.getUTCFullYear();
+
+    this.monthSelectorYear = viewedYear;
+    this.focusedMonth = valueDate?.getUTCFullYear() === viewedYear
+      ? valueDate.getUTCMonth()
+      : this.viewDate.getUTCMonth();
+    this.visibleView = 'month';
+    this.#restoreMonthFocus = true;
   }
 
   #showDayView() {
@@ -191,7 +207,9 @@ export default class SynDatePicker extends SynergyElement {
   }
 
   #showYearSelector() {
-    this.focusedYear = this.viewDate.getUTCFullYear();
+    this.focusedYear = this.visibleView === 'month'
+      ? this.monthSelectorYear
+      : this.viewDate.getUTCFullYear();
     this.yearBlockStart = getYearBlockStart(this.focusedYear);
     const valueDate = this.valueAsDate;
 
@@ -250,8 +268,8 @@ export default class SynDatePicker extends SynergyElement {
     }
 
     event.preventDefault();
-    const date = addMonths(createDate(this.viewDate.getUTCFullYear(), month, 1), offset);
-    this.#setViewMonth(date);
+    const date = addMonths(createDate(this.monthSelectorYear, month, 1), offset);
+    this.monthSelectorYear = date.getUTCFullYear();
     this.focusedMonth = date.getUTCMonth();
     this.#restoreMonthFocus = true;
   }
@@ -315,9 +333,11 @@ export default class SynDatePicker extends SynergyElement {
       this.#setViewDate(today());
       this.#restoreDayFocus = true;
     } else if (this.visibleView === 'month') {
-      this.#setViewMonth(today());
-      this.focusedMonth = this.viewDate.getUTCMonth();
+      const currentDate = today();
+      this.monthSelectorYear = currentDate.getUTCFullYear();
+      this.focusedMonth = currentDate.getUTCMonth();
       this.#restoreMonthFocus = true;
+      this.requestUpdate();
     } else {
       this.focusedYear = today().getUTCFullYear();
       this.yearBlockStart = getYearBlockStart(this.focusedYear);
@@ -351,18 +371,34 @@ export default class SynDatePicker extends SynergyElement {
     }
 
     const yearNavigation: NavigationOptions = {
-      label: this.viewDate.getUTCFullYear(),
+      label: this.visibleView === 'month'
+        ? this.monthSelectorYear
+        : this.viewDate.getUTCFullYear(),
       nextLabel: 'Next year',
       onChoose: () => this.#showYearSelector(),
-      onNext: () => this.#setViewMonth(addYears(this.viewDate, 1)),
-      onPrevious: () => this.#setViewMonth(addYears(this.viewDate, -1)),
+      onNext: () => {
+        if (this.visibleView === 'month') {
+          this.monthSelectorYear += 1;
+        } else {
+          this.#setViewMonth(addYears(this.viewDate, 1));
+        }
+      },
+      onPrevious: () => {
+        if (this.visibleView === 'month') {
+          this.monthSelectorYear -= 1;
+        } else {
+          this.#setViewMonth(addYears(this.viewDate, -1));
+        }
+      },
       previousLabel: 'Previous year',
     };
 
     if (this.visibleView === 'month') {
       return renderMonthView({
         ...footer,
-        activeMonth: this.viewDate.getUTCMonth(),
+        activeMonth: this.monthSelectorYear === this.viewDate.getUTCFullYear()
+          ? this.viewDate.getUTCMonth()
+          : undefined,
         focusedMonth: this.focusedMonth,
         locale: this.localize.lang(),
         yearNavigation,
@@ -377,9 +413,7 @@ export default class SynDatePicker extends SynergyElement {
         label: getMonthLabel(this.viewDate),
         nextLabel: 'Next month',
         onChoose: () => {
-          this.focusedMonth = this.viewDate.getUTCMonth();
-          this.visibleView = 'month';
-          this.#restoreMonthFocus = true;
+          this.#showMonthSelector();
         },
         onNext: () => this.#setViewMonth(addMonths(this.viewDate, 1)),
         onPrevious: () => this.#setViewMonth(addMonths(this.viewDate, -1)),
@@ -392,7 +426,7 @@ export default class SynDatePicker extends SynergyElement {
   }
 
   render() {
-    const { header, content, footer} = this.#renderView();
+    const { header, content, footer } = this.#renderView();
 
     return html`
       <div

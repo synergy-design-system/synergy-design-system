@@ -17,7 +17,7 @@ export interface YearViewOptions extends FooterOptions {
 
 export const renderYearView = (options: YearViewOptions): ViewTemplates => ({
   content: html`
-    <div class="year-selector">
+    <div class="period-selector">
       ${Array.from({ length: 12 }, (_, index) => options.blockStart + index).map(year => renderCalendarItem({
         active: options.activeYear === year,
         kind: 'year',

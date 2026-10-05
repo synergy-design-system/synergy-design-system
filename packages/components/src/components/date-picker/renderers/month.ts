@@ -11,14 +11,14 @@ import {
 
 export interface MonthViewOptions extends FooterOptions {
   locale: string;
-  activeMonth: number;
+  activeMonth: number | undefined;
   focusedMonth: number;
   yearNavigation: NavigationOptions;
 }
 
 export const renderMonthView = (options: MonthViewOptions): ViewTemplates => ({
   content: html`
-    <div class="month-selector">
+    <div class="period-selector">
       ${getMonthNames(options.locale, 'short').map((month, index) => renderCalendarItem({
         active: options.activeMonth === index,
         kind: 'month',

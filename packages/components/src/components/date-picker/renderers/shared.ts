@@ -1,4 +1,4 @@
-import { type TemplateResult, html, nothing } from 'lit';
+import { type TemplateResult, html } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 
 export interface CalendarItemOptions {
@@ -13,12 +13,12 @@ export interface CalendarItemOptions {
 
 export const renderCalendarItem = (options: CalendarItemOptions) => html`
   <button
-    aria-hidden=${options.kind === 'day' ? String(!!options.outside) : nothing}
+    aria-hidden=${options.kind === 'day' && options.outside ? 'true' : 'false'}
     class=${classMap({
-      'day-selector__day--active': options.active,
-      'day-selector__day--outside': !!options.outside,
-      'day-selector__day--today': !!options.today,
-      'day-selector__day-button': true,
+      'calendar-item': true,
+      'calendar-item--active': options.active,
+      'calendar-item--outside': !!options.outside,
+      'calendar-item--today': !!options.today,
     })}
     type="button"
     data-kind=${options.kind}

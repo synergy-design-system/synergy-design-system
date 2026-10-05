@@ -55,6 +55,10 @@
             {
               "name": "syn-invalid",
               "type": "SynInvalidEvent"
+            },
+            {
+              "name": "syn-end-reached",
+              "type": "SynEndReachedEvent"
             }
           ],
           "packageName": "@synergy-design-system/react",
@@ -246,6 +250,17 @@
             "type": "text",
             "value": "Invalid"
           }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Listen for the `syn-end-reached` event to load additional options from a paged or async data source as the user scrolls close to the end of the listbox. The event is only emitted once per page: it won't fire again until you append new options, so it's safe to start a new request as soon as you receive it without tracking a loading flag yourself."
+          },
+          "name": "endless-scrolling",
+          "title": {
+            "type": "text",
+            "value": "Endless Scrolling"
+          }
         }
       ],
       "storySourcePath": "components.select",
@@ -289,6 +304,14 @@
           ],
           "id": "selection_behavior",
           "name": "Selection Behavior"
+        },
+        {
+          "content": [
+            "For very large option sets, load options in pages as the user scrolls rather than rendering the full dataset up front. Listen for the syn-end-reached event, fetch the next page, and append its options to the component.",
+            "Provide clear loading feedback, such as a loading indicator, while each page is being fetched."
+          ],
+          "id": "paging_data",
+          "name": "Paging Data"
         }
       ],
       "useCases": [

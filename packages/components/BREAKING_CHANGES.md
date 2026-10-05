@@ -77,6 +77,49 @@ Synergy introduced a new variant `error` that has a similar appearance.
 
 ---
 
+<h3 id="syn-combobox-v4">`<syn-combobox>`</h3>
+
+#### ⚠️ Removed exports for `option-renderer` from the package entry point
+
+**Associated Ticket(s)**:
+
+- [#1395](https://github.com/synergy-design-system/synergy-design-system/issues/1395)
+
+**Reason**:
+
+Previously, consumers could import built-in option renderers from the package entry point and assign them to `getOption`. The combobox now also accepts the name of a built-in renderer as a string, so these exports are no longer needed. Removing them also reduces bundle size.
+
+**Migration Steps**:
+
+- Replace imports of built-in option renderers with their corresponding string names on the `getOption` property.
+
+**Example (before)**:
+
+```html
+<syn-combobox id="with-custom-getOption">
+  <syn-option>Option 1</syn-option>
+</syn-combobox>
+
+<script type="module">
+  import { highlightOptionRenderer } from "@synergy-design-system/components";
+
+  const combobox = document.querySelector("#with-custom-getOption");
+  if (combobox) {
+    combobox.getOption = highlightOptionRenderer;
+  }
+</script>
+```
+
+**Example (after)**:
+
+```html
+<syn-combobox getoption="highlight">
+  <syn-option>Option 1</syn-option>
+</syn-combobox>
+```
+
+---
+
 ## Version 3.0
 
 > ⚠️ **Important**: When upgrading to Synergy v3.0, update all `@synergy-design-system/*` packages to their respective v3.x versions (or v2.x for `@synergy-design-system/assets`) to ensure compatibility.

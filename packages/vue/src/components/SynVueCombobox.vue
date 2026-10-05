@@ -17,16 +17,13 @@
  * @dependency syn-popup
  * @dependency syn-tag
  *
- * @slot - The listbox options. Must be `<syn-option>` elements.
- *    You can use `<syn-optgroup>`'s to group items visually.
+ * @slot - The listbox options. Must be `<syn-option>` elements. You can use `<syn-optgroup>`'s to group items visually.
  * @slot label - The combobox's label. Alternatively, you can use the `label` attribute.
  * @slot prefix - Used to prepend a presentational icon or similar element to the combobox.
  * @slot suffix - Used to append a presentational icon or similar element to the combobox.
  * @slot clear-icon - An icon to use in lieu of the default clear icon.
- * @slot expand-icon - The icon to show when the control is expanded and collapsed.
- *    Rotates on open and close.
- * @slot help-text - Text that describes how to use the combobox.
- *    Alternatively, you can use the `help-text` attribute.
+ * @slot expand-icon - The icon to show when the control is expanded and collapsed. Rotates on open and close.
+ * @slot help-text - Text that describes how to use the combobox. Alternatively, you can use the `help-text` attribute.
  *
  * @event syn-change - Emitted when the control's value changes.
  * @event syn-clear - Emitted when the control's value is cleared.
@@ -37,9 +34,9 @@
  * @event syn-after-show - Emitted after the combobox's menu opens and all animations are complete.
  * @event syn-hide - Emitted when the combobox's menu closes.
  * @event syn-after-hide - Emitted after the combobox's menu closes and all animations are complete.
- * @event syn-invalid - Emitted when the form control has been checked for validity
- *    and its constraints aren't satisfied.
+ * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  * @event syn-error - Emitted when the combobox menu fails to open.
+ * @event syn-end-reached - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
  *
  * @csspart form-control - The form control that wraps the label, combobox, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -48,15 +45,12 @@
  * @csspart combobox - The container that wraps the prefix, combobox, clear icon, and expand button.
  * @csspart prefix - The container that wraps the prefix slot.
  * @csspart suffix - The container that wraps the suffix slot.
- * @csspart display-input - The element that displays the selected option's label,
- *     an `<input>` element.
- * @csspart listbox - The listbox container where the options are slotted
- *   and the filtered options list exists.
+ * @csspart display-input - The element that displays the selected option's label, an `<input>` element.
+ * @csspart listbox - The listbox container where the options are slotted and the filtered options list exists.
  * @csspart filtered-listbox - The container that wraps the filtered options.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
- * @csspart popup - The popup's exported `popup` part.
- * Use this to target the tooltip's popup container.
+ * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
  * @csspart no-results - The container that wraps the "no results" message.
  * @csspart tags - The container that houses option tags when `multiple` is used.
  * @csspart tag - The individual tags that represent each selected option in `multiple`.
@@ -82,6 +76,7 @@ import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
 import type { SynErrorEvent } from '@synergy-design-system/components';
+import type { SynEndReachedEvent } from '@synergy-design-system/components';
 import type SynCombobox from '@synergy-design-system/components/components/combobox/combobox.component.js';
 
 // DOM Reference to the element
@@ -180,18 +175,20 @@ If `multiple` is set, the combobox will always be `restricted` to the available 
   multiple?: SynCombobox['multiple'];
 
   /**
-* A function that customizes the rendered option.
-* The first argument is the option, the second
-is the query string, which is typed into the combobox.
-The function should return either a Lit TemplateResult or a string containing trusted HTML
-to render in the shown list of filtered options.
-If the query string should be highlighted use the `highlightOptionRenderer` function.
+* A function that customizes the rendered option, or the name of a predefined renderer:
+- `default`: Does not change the option (default)
+- `highlight`: Highlights the matching query string with a `<mark>` element
+- A custom function receives the option and the query string, which is typed into the combobox.
+* It should return either a Lit TemplateResult or a string containing trusted HTML to render in the shown list of filtered options.
  */
   getOption?: SynCombobox['getOption'];
 
   /**
-* A function used to filter options in the combobox component.
-The default filter method is a case- and diacritic-insensitive string comparison.
+* A function used to filter options in the combobox component, or the name of a predefined filter:
+- `contains`: A case- and diacritic-insensitive string comparison (default)
+- `none`: Does not filter and always shows all options.
+* Make sure to combine this with a `getOption` highlight renderer for better UX.
+- A custom function receives the option and the query string and returns a boolean indicating whether the option should be included in the filtered results.
  */
   filter?: SynCombobox['filter'];
 
@@ -301,6 +298,12 @@ defineEmits<{
   'syn-error': [e: SynErrorEvent];
 
   /**
+   * Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g.
+   * from a paged/async data source).
+   */
+  'syn-end-reached': [e: SynEndReachedEvent];
+
+  /**
    * Support for two way data binding
    */
   'update:modelValue': [newValue: SynCombobox['value']];
@@ -319,6 +322,7 @@ export type { SynHideEvent } from '@synergy-design-system/components';
 export type { SynAfterHideEvent } from '@synergy-design-system/components';
 export type { SynInvalidEvent } from '@synergy-design-system/components';
 export type { SynErrorEvent } from '@synergy-design-system/components';
+export type { SynEndReachedEvent } from '@synergy-design-system/components';
 </script>
 
 <template>
@@ -337,6 +341,7 @@ export type { SynErrorEvent } from '@synergy-design-system/components';
     @syn-after-hide="$emit('syn-after-hide', $event)"
     @syn-invalid="$emit('syn-invalid', $event)"
     @syn-error="$emit('syn-error', $event)"
+    @syn-end-reached="$emit('syn-end-reached', $event)"
     :value="
       typeof props.modelValue !== 'undefined'
         ? props.modelValue

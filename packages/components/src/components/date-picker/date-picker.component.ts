@@ -40,6 +40,12 @@ import styles from './date-picker.styles.js';
  * @csspart base - The component's base wrapper.
  *
  * @cssproperty --syn-date-picker-min-width - The minimum width of the date picker. Defaults to 388px.
+ *
+ * @event syn-blur - Emitted when focus leaves the date picker.
+ * @event syn-change - Emitted when a user commits a different date value.
+ * @event syn-clear - Emitted when the user clears a non-empty date value.
+ * @event syn-focus - Emitted when focus enters the date picker.
+ * @event syn-input - Emitted when a user changes the date value.
  */
 export default class SynDatePicker extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
@@ -96,6 +102,8 @@ export default class SynDatePicker extends SynergyElement {
 
   @state() private yearBlockStart = getYearBlockStart(today().getUTCFullYear());
 
+  #hasFocus = false;
+
   #restoreYearFocus = false;
 
   #restoreMonthFocus = false;
@@ -130,6 +138,43 @@ export default class SynDatePicker extends SynergyElement {
    */
   #setViewMonth(date: Date) {
     this.#setViewDate(createDate(date.getUTCFullYear(), date.getUTCMonth(), 1));
+  }
+
+  #setValueFromUser(value: string, clear = false) {
+    if (this.value === value) {
+      return;
+    }
+
+    this.value = value;
+
+    if (clear) {
+      this.emit('syn-clear');
+    }
+
+    this.emit('syn-input');
+    this.emit('syn-change');
+  }
+
+  #handleFocusIn() {
+    if (!this.#hasFocus) {
+      this.#hasFocus = true;
+      this.emit('syn-focus');
+    }
+  }
+
+  #handleFocusOut(event: FocusEvent) {
+    if (event.relatedTarget instanceof Node && this.renderRoot.contains(event.relatedTarget)) {
+      return;
+    }
+
+    if (this.#hasFocus) {
+      this.#hasFocus = false;
+      this.emit('syn-blur');
+    }
+  }
+
+  static #stopNestedFocusEvent(event: Event) {
+    event.stopPropagation();
   }
 
   /**
@@ -290,7 +335,7 @@ export default class SynDatePicker extends SynergyElement {
     }
 
     if (button.dataset.kind === 'day') {
-      this.value = button.dataset.value;
+      this.#setValueFromUser(button.dataset.value);
     } else if (button.dataset.kind === 'month') {
       this.#openMonth(Number(button.dataset.value));
     } else if (button.dataset.kind === 'year') {
@@ -349,7 +394,7 @@ export default class SynDatePicker extends SynergyElement {
   #renderView() {
     const footer = {
       hasValue: Boolean(this.value),
-      onClear: () => { this.value = ''; },
+      onClear: () => this.#setValueFromUser('', true),
       onCurrent: () => this.#showCurrentPeriod(),
     };
 
@@ -434,6 +479,10 @@ export default class SynDatePicker extends SynergyElement {
           'date-picker': true,
           [`date-picker--view-${this.visibleView}`]: true,
         })}
+        @focusin=${this.#handleFocusIn}
+        @focusout=${this.#handleFocusOut}
+        @syn-blur=${SynDatePicker.#stopNestedFocusEvent}
+        @syn-focus=${SynDatePicker.#stopNestedFocusEvent}
         part="base"
       >
         <div class="header">

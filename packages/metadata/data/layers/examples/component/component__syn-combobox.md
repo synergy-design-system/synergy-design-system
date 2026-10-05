@@ -479,7 +479,7 @@ A simple suggestions list shows the user a filtered list.
 The filtered options shown in the list can be customized by passing a function to the getOption property. Your function can return a string of HTML, a Lit Template, or an HTMLElement. The getOption() function will be called for each option. The first argument is an <syn-option> element and the second argument is the query string.Remember that the options are rendered in a shadow root. To style them, you can use the style attribute in your template or you can add your own parts and target them with the ::part() selector. Note: Be sure you trust the content you are outputting! Passing unsanitized user input to getOption() can result in XSS vulnerabilities.
 
 ```html
-<syn-combobox label="Preferred color" class="highlight-combobox" value="g">
+<syn-combobox label="Preferred color" value="g" getoption="highlight">
   <syn-option value="Black">Black</syn-option>
   <syn-option value="Blue">Blue</syn-option>
   <syn-option value="Brown">Brown</syn-option>
@@ -494,15 +494,6 @@ The filtered options shown in the list can be customized by passing a function t
   <syn-option value="White">White</syn-option>
   <syn-option value="Yellow">Yellow</syn-option>
 </syn-combobox>
-<script type="module">
-  // the highlight option renderer utility function can be imported via:
-  // import { highlightOptionRenderer } from '@synergy-design-system/components';
-
-  const comboboxes = document.querySelectorAll(".highlight-combobox");
-  comboboxes.forEach((combobox) => {
-    combobox.getOption = highlightOptionRenderer;
-  });
-</script>
 ```
 
 ---
@@ -613,6 +604,102 @@ A custom filter can be applied by passing a filter function to the filter proper
       }
       return false;
     };
+  });
+</script>
+```
+
+---
+
+## Empty Filter
+
+Set the filter property to none to always show every option, regardless of what the user has typed. This is useful when the full list itself carries meaning, e.g. a fixed set of statuses or categories, and hiding options could make users think an option no longer exists or worry they mistyped it.Without filtering, users lose the visual feedback that narrows the list to their input. To compensate, set the getOption property to highlight so the matching text is marked inside each option, letting users confirm their input is recognized without removing any options from view.
+
+```html
+<syn-combobox
+  class="empty-filter-combobox"
+  filter="none"
+  getoption="highlight"
+  label="Empty Filter"
+  multiple=""
+>
+  <syn-option value="Black">Black</syn-option>
+  <syn-option value="Blue">Blue</syn-option>
+  <syn-option value="Brown">Brown</syn-option>
+  <syn-option value="Green">Green</syn-option>
+  <syn-option value="Grey">Grey</syn-option>
+  <syn-option value="Light_Green">Light Green</syn-option>
+  <syn-option value="Magenta">Magenta</syn-option>
+  <syn-option value="Orange">Orange</syn-option>
+  <syn-option value="Pink">Pink</syn-option>
+  <syn-option value="Purple">Purple</syn-option>
+  <syn-option value="Red">Red</syn-option>
+  <syn-option value="White">White</syn-option>
+  <syn-option value="Yellow">Yellow</syn-option>
+</syn-combobox>
+```
+
+---
+
+## Endless Scrolling
+
+Listen for the syn-end-reached event to load additional options from a paged or async data source as the user scrolls close to the end of the listbox. The event is only emitted once per page: it won't fire again until you append new options, so it's safe to start a new request as soon as you receive it without tracking a loading flag yourself.
+
+```html
+<syn-combobox label="Option" class="endless-scrolling-combobox">
+  <syn-spinner slot="prefix" style="display: none"></syn-spinner>
+  <syn-option value="option-1">Option 1</syn-option>
+  <syn-option value="option-2">Option 2</syn-option>
+  <syn-option value="option-3">Option 3</syn-option>
+</syn-combobox>
+
+<script type="module">
+  const comboboxes = document.querySelectorAll(".endless-scrolling-combobox");
+  comboboxes.forEach((combobox) => {
+    const loadingIndicator = combobox.querySelector("syn-spinner");
+    let nextOption = 4;
+    const maxOptions = 40;
+    const pageSize = 10;
+
+    // Replace the delay and generated data with your API request. Return each page as
+    // { value, label } items, using whatever page or cursor parameter your API expects.
+    const fetchNextPage = async (startIndex) => {
+      await new Promise((resolve) => setTimeout(resolve, 600));
+      const endIndex = Math.min(startIndex + pageSize, maxOptions + 1);
+
+      return Array.from({ length: endIndex - startIndex }, (_, offset) => {
+        const index = startIndex + offset;
+        return {
+          label: "Option " + index,
+          value: "option-" + index,
+        };
+      });
+    };
+
+    // This handler runs for each syn-end-reached event. Adapt the end-of-data check and
+    // request parameters to your API, then map its results to options and append the page.
+    const loadNextPage = async () => {
+      if (nextOption > maxOptions) {
+        return;
+      }
+
+      loadingIndicator.style.display = "inline-block";
+      const options = await fetchNextPage(nextOption);
+      const fragment = document.createDocumentFragment();
+
+      options.forEach(({ value, label }) => {
+        const option = document.createElement("syn-option");
+        option.value = value;
+        option.textContent = label;
+        fragment.appendChild(option);
+      });
+
+      combobox.appendChild(fragment);
+      nextOption += options.length;
+      loadingIndicator.style.display = "none";
+    };
+
+    // The combobox re-arms the sentinel after the new options are added.
+    combobox.addEventListener("syn-end-reached", loadNextPage);
   });
 </script>
 ```

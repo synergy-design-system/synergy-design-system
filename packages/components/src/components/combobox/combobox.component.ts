@@ -27,10 +27,22 @@ import styles from './combobox.styles.js';
 import {
   checkValueBelongsToOption,
   createOptionFromDifferentTypes, filterOnlyOptgroups, getAllOptions, getAssignedElementsForSlot,
-  getValueFromOption, getValuesFromOptions, normalizeString,
+  getValueFromOption, getValuesFromOptions,
 } from './utils.js';
 import { scrollIntoView } from '../../internal/scroll.js';
-import { type OptionRenderer, defaultOptionRenderer } from './option-renderer.js';
+import { LoadMoreController } from '../../internal/load-more.js';
+import {
+  type OptionRenderer,
+  type OptionRendererName,
+  defaultOptionRenderer,
+  optionRenderers,
+} from './option-renderer.js';
+import {
+  type ComboboxFilter,
+  type ComboboxFilterName,
+  comboboxFilters,
+  containsFilter,
+} from './filters.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 import type { SynRemoveEvent } from '../../events/events.js';
 import { compareValues, isAllowedValue } from '../select/utility.js';
@@ -47,16 +59,13 @@ import { compareValues, isAllowedValue } from '../select/utility.js';
  * @dependency syn-popup
  * @dependency syn-tag
  *
- * @slot - The listbox options. Must be `<syn-option>` elements.
- *    You can use `<syn-optgroup>`'s to group items visually.
+ * @slot - The listbox options. Must be `<syn-option>` elements. You can use `<syn-optgroup>`'s to group items visually.
  * @slot label - The combobox's label. Alternatively, you can use the `label` attribute.
  * @slot prefix - Used to prepend a presentational icon or similar element to the combobox.
  * @slot suffix - Used to append a presentational icon or similar element to the combobox.
  * @slot clear-icon - An icon to use in lieu of the default clear icon.
- * @slot expand-icon - The icon to show when the control is expanded and collapsed.
- *    Rotates on open and close.
- * @slot help-text - Text that describes how to use the combobox.
- *    Alternatively, you can use the `help-text` attribute.
+ * @slot expand-icon - The icon to show when the control is expanded and collapsed. Rotates on open and close.
+ * @slot help-text - Text that describes how to use the combobox. Alternatively, you can use the `help-text` attribute.
  *
  * @event syn-change - Emitted when the control's value changes.
  * @event syn-clear - Emitted when the control's value is cleared.
@@ -67,9 +76,9 @@ import { compareValues, isAllowedValue } from '../select/utility.js';
  * @event syn-after-show - Emitted after the combobox's menu opens and all animations are complete.
  * @event syn-hide - Emitted when the combobox's menu closes.
  * @event syn-after-hide - Emitted after the combobox's menu closes and all animations are complete.
- * @event syn-invalid - Emitted when the form control has been checked for validity
- *    and its constraints aren't satisfied.
+ * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
  * @event syn-error - Emitted when the combobox menu fails to open.
+ * @event syn-end-reached - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
  *
  * @csspart form-control - The form control that wraps the label, combobox, and help text.
  * @csspart form-control-label - The label's wrapper.
@@ -78,15 +87,12 @@ import { compareValues, isAllowedValue } from '../select/utility.js';
  * @csspart combobox - The container that wraps the prefix, combobox, clear icon, and expand button.
  * @csspart prefix - The container that wraps the prefix slot.
  * @csspart suffix - The container that wraps the suffix slot.
- * @csspart display-input - The element that displays the selected option's label,
- *     an `<input>` element.
- * @csspart listbox - The listbox container where the options are slotted
- *   and the filtered options list exists.
+ * @csspart display-input - The element that displays the selected option's label, an `<input>` element.
+ * @csspart listbox - The listbox container where the options are slotted and the filtered options list exists.
  * @csspart filtered-listbox - The container that wraps the filtered options.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
- * @csspart popup - The popup's exported `popup` part.
- * Use this to target the tooltip's popup container.
+ * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
  * @csspart no-results - The container that wraps the "no results" message.
  * @csspart tags - The container that houses option tags when `multiple` is used.
  * @csspart tag - The individual tags that represent each selected option in `multiple`.
@@ -136,9 +142,40 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
    */
   private isOptionRendererTriggered: boolean = false;
 
+  /**
+   * Options that were created by the option renderer. They must never end up in `cachedOptions`,
+   * as rendering them again would apply the renderer on top of its own output.
+   */
+  private renderedOptions = new WeakSet<SynOption>();
+
   private resizeObserver: ResizeObserver;
 
   private mutationObserver: MutationObserver;
+
+  private readonly loadMoreController = new LoadMoreController(this, {
+    onLoadMore: () => {
+      if (this.numberFilteredOptions === 0 || this.hideOptions) {
+        return;
+      }
+      this.emit('syn-end-reached');
+    },
+  });
+
+  private get resolvedFilter(): ComboboxFilter {
+    if (typeof this.filter === 'function') {
+      return this.filter;
+    }
+    // Unknown names may come in via the html attribute
+    return comboboxFilters[this.filter] ?? containsFilter;
+  }
+
+  private get resolvedOption(): OptionRenderer {
+    if (typeof this.getOption === 'function') {
+      return this.getOption;
+    }
+    // Unknown names may come in via the html attribute
+    return optionRenderers[this.getOption] ?? defaultOptionRenderer;
+  }
 
   @query('.combobox') popup: SynPopup;
 
@@ -153,6 +190,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   @query('slot:not([name])') private defaultSlot: HTMLSlotElement;
 
   @query('.combobox__tags') tagContainer: HTMLDivElement;
+
+  @query('.listbox__sentinel') private sentinelEl: HTMLDivElement;
 
   @state() private hasFocus = false;
 
@@ -267,39 +306,20 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   @property({ reflect: true, type: Boolean }) multiple = false;
 
   /**
-   * A function that customizes the rendered option. The first argument is the option, the second
-   * is the query string, which is typed into the combobox.
-   * The function should return either a Lit TemplateResult or a string containing trusted HTML
-   * to render in the shown list of filtered options.
-   * If the query string should be highlighted use the `highlightOptionRenderer` function.
+   * A function that customizes the rendered option, or the name of a predefined renderer:
+   * - `default`: Does not change the option (default)
+   * - `highlight`: Highlights the matching query string with a `<mark>` element
+   * - A custom function receives the option and the query string, which is typed into the combobox. It should return either a Lit TemplateResult or a string containing trusted HTML to render in the shown list of filtered options.
    */
-  @property() getOption: OptionRenderer = defaultOptionRenderer;
+  @property() getOption: OptionRenderer | OptionRendererName = 'default';
 
   /**
-   * A function used to filter options in the combobox component.
-   * The default filter method is a case- and diacritic-insensitive string comparison.
-   *
-   * @param option - The option to be filtered.
-   * @param queryString - The query string used for filtering.
-   * @returns A boolean indicating whether the option should be included in the filtered results.
+   * A function used to filter options in the combobox component, or the name of a predefined filter:
+   * - `contains`: A case- and diacritic-insensitive string comparison (default)
+   * - `none`: Does not filter and always shows all options. Make sure to combine this with a `getOption` highlight renderer for better UX.
+   * - A custom function receives the option and the query string and returns a boolean indicating whether the option should be included in the filtered results.
    */
-  // eslint-disable-next-line class-methods-use-this
-  @property() filter: (option: SynOption, queryString: string) => boolean = (option, queryStr) => {
-    let content = option?.textContent || '';
-    if (option instanceof SynOption) {
-      content = option.getTextLabel();
-    }
-    const normalizedOption = normalizeString(content);
-    const normalizedQuery = normalizeString(queryStr);
-
-    if (normalizedOption.includes(normalizedQuery)) {
-      return true;
-    }
-
-    // #1362 do not do an equal test, as other filtered options should also be shown if they partially match
-    const value = option?.value?.toString() || '';
-    return value.includes(queryStr);
-  };
+  @property() filter: ComboboxFilter | ComboboxFilterName = 'contains';
 
   /**
    * The delimiter to use when setting the value when `multiple` is enabled.
@@ -323,11 +343,11 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     <syn-tag
       part="tag"
       exportparts="
-            base:tag__base,
-            content:tag__content,
-            remove-button:tag__remove-button,
-            remove-button__base:tag__remove-button__base
-          "
+        base:tag__base,
+        content:tag__content,
+        remove-button:tag__remove-button,
+        remove-button__base:tag__remove-button__base
+      "
       size=${this.size}
       removable
       @syn-remove=${(event: SynRemoveEvent) => this.handleTagRemove(event, option)}
@@ -1211,7 +1231,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         const cachedOption = this.cachedOptions.find(o => o.id === option.id) || option;
 
         // Apply custom option rendering
-        const optionResult = this.getOption(cachedOption, queryString);
+        const optionResult = this.resolvedOption(cachedOption, queryString);
         let updatedOption = createOptionFromDifferentTypes(optionResult);
 
         // Fall back to original option if rendering fails
@@ -1220,8 +1240,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         }
 
         // Apply filtering logic to determine visibility
-        const hideOption = !(this.filter(updatedOption, queryString) || queryString === '');
+        const hideOption = !(this.resolvedFilter(updatedOption, queryString) || queryString === '');
         updatedOption.hidden = hideOption;
+
+        if (updatedOption !== cachedOption) {
+          this.renderedOptions.add(updatedOption);
+        }
 
         option.replaceWith(updatedOption);
 
@@ -1261,9 +1285,10 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     }
 
     if (this.multiple) {
-      // In multiple mode, combine selected option values with current input
+      // In multiple mode, combine selected option values with current input.
+      // Don't append an empty input value, as it does not represent an actual selection.
       const validValues = getValuesFromOptions(this.selectedOptions);
-      this.value = [...validValues, inputValue];
+      this.value = inputValue ? [...validValues, inputValue] : validValues;
     } else {
       // In single mode, replace value with current input
       this.value = inputValue;
@@ -1421,8 +1446,19 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       optgroup.id = optgroup.id || `syn-combobox-optgroup-${index}`;
     });
 
-    // Cache the slotted options
-    this.cachedOptions = [...slottedOptions];
+    // Cache the slotted options, but keep the pristine version of everything the option renderer
+    // produced, so the renderer always works on unmodified markup
+    this.cachedOptions = slottedOptions.map(option => {
+      if (!this.renderedOptions.has(option)) {
+        return option;
+      }
+      return this.cachedOptions.find(cached => cached.id === option.id) ?? option;
+    });
+
+    // Re-arm the load-more sentinel now that the option set has changed
+    if (this.listbox && this.sentinelEl) {
+      this.loadMoreController.observe(this.listbox, this.sentinelEl);
+    }
   }
   /* eslint-enable no-param-reassign */
 
@@ -1517,6 +1553,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
     let hasValue: boolean;
+
     if (Array.isArray(this.value)) {
       hasValue = this.value.length > 0;
     } else if (typeof this.value === 'string') {
@@ -1593,7 +1630,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
                 part="display-input"
                 class="combobox__display-input"
                 type="text"
-                placeholder=${this.placeholder}
+                placeholder=${isPlaceholderVisible ? this.placeholder : ''}
                 .disabled=${this.disabled}
                 .readOnly=${this.readonly}
                 .value=${this.displayLabel}
@@ -1678,6 +1715,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
                     >`
         : ''}
                 <slot class=${classMap({ options__hide: this.hideOptions })} @slotchange=${this.handleDefaultSlotChange}></slot>      
+                <div class="listbox__sentinel" aria-hidden="true"></div>
               </div>
             </div>
           </syn-popup>

@@ -303,6 +303,15 @@ export default css`
   }
 
   /**
+   * Marks the end of the scrollable option list, see LoadMoreController.
+   * Must not take up any space, as it would otherwise grow the listbox.
+   */
+  .listbox__sentinel {
+    block-size: 0;
+    pointer-events: none;
+  }
+
+  /**
    * #850: Allow to measure the size of the combobox.
    * This is needed so we can automatically size and truncate the tags in the <syn-combobox multiple> component.
    * Scoped to multiple to not break the single select per accident.

@@ -40,11 +40,11 @@ export default {
     },
     {
       content: [
-        'Use readonly when users need to inspect the current selection without changing it; for multiple selections, make sure every selected value remains visible.',
-        'Use disabled only when selection is unavailable, and explain what must happen before users can choose an option.',
+        'For very large option sets, load options in pages as the user scrolls rather than rendering the full dataset up front. Listen for the syn-end-reached event, fetch the next page, and append its options to the component.',
+        'Provide clear loading feedback, such as a loading indicator, while each page is being fetched.',
       ],
-      id: 'states',
-      name: 'Validation and States',
+      id: 'paging_data',
+      name: 'Paging Data',
     },
   ],
   useCases: [

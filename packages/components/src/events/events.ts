@@ -14,6 +14,7 @@ export type * from './syn-clamp.ts';
 export type * from './syn-clear.ts';
 export type * from './syn-close.ts';
 export type * from './syn-default-settings-changed.ts';
+export type * from './syn-end-reached.ts';
 export type * from './syn-error.ts';
 export type * from './syn-focus.ts';
 export type * from './syn-hide.ts';

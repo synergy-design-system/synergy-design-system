@@ -27,10 +27,10 @@ Selects allow you to choose items from a menu of predefined options.
 - Display selected options as tags within the field to help users track their selections.
 - Consider limiting the maximum number of displayed selectable options to avoid overwhelming users. We recommend displaying 6-8 (with scrolling for additional results).
 
-### Validation and States
+### Paging Data
 
-- Use readonly when users need to inspect the current selection without changing it; for multiple selections, make sure every selected value remains visible.
-- Use disabled only when selection is unavailable, and explain what must happen before users can choose an option.
+- For very large option sets, load options in pages as the user scrolls rather than rendering the full dataset up front. Listen for the syn-end-reached event, fetch the next page, and append its options to the component.
+- Provide clear loading feedback, such as a loading indicator, while each page is being fetched.
 
 ## Accessibility
 

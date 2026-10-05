@@ -3256,6 +3256,16 @@
           "value": "The invalid status is used to warn the user that the Select is invalid. For example, if the entry of text is mandatory and nothing has been entered.",
           "type": "text"
         }
+      },
+      "endless-scrolling": {
+        "title": {
+          "value": "Endless Scrolling",
+          "type": "text"
+        },
+        "description": {
+          "value": "Listen for the `syn-end-reached` event to load additional options from a paged or async data source as the user scrolls close to the end of the listbox. The event is only emitted once per page: it won't fire again until you append new options, so it's safe to start a new request as soon as you receive it without tracking a loading flag yourself.",
+          "type": "text"
+        }
       }
     },
     "skeleton": {
@@ -4508,6 +4518,26 @@
         },
         "description": {
           "value": "A custom filter can be applied by passing a filter function to the `filter` property. This filter() function will be called for each option. The first argument is an <syn-option> element and the second argument is the query string.",
+          "type": "text"
+        }
+      },
+      "empty-filter": {
+        "title": {
+          "value": "Showing all options",
+          "type": "text"
+        },
+        "description": {
+          "value": "Set the `filter` property to `none` to always show every option, regardless of what the user has typed. This is useful when the full list itself carries meaning, e.g. a fixed set of statuses or categories, and hiding options could make users think an option no longer exists or worry they mistyped it.\n\nWithout filtering, users lose the visual feedback that narrows the list to their input. To compensate, set the `getOption` property to `highlight` so the matching text is marked inside each option, letting users confirm their input is recognized without removing any options from view.",
+          "type": "text"
+        }
+      },
+      "endless-scrolling": {
+        "title": {
+          "value": "Endless Scrolling",
+          "type": "text"
+        },
+        "description": {
+          "value": "Listen for the `syn-end-reached` event to load additional options from a paged or async data source as the user scrolls close to the end of the listbox. The event is only emitted once per page: it won't fire again until you append new options, so it's safe to start a new request as soon as you receive it without tracking a loading flag yourself.",
           "type": "text"
         }
       }

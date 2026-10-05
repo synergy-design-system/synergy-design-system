@@ -30,14 +30,23 @@ export default {
       content: [
         'Filter available options in real time as the user types; highlight or bold matching text to indicate relevance.',
         'Consider limiting the maximum number of displayed suggestions to avoid overwhelming users. We recommend displaying 6-8 (with scrolling for additional results).',
+        'When showing all options regardless of user input (filter="none"), always combine it with the built-in getOption="highlight" renderer, or a custom renderer that provides equivalent visual feedback, so users can still tell which option matches their input.',
       ],
       id: 'searching_behavior',
       name: 'Searching Behavior',
     },
     {
       content: [
+        'For very large option sets, load options in pages as the user scrolls rather than rendering the full dataset up front. Listen for the syn-end-reached event, fetch the next page, and append its options to the component.',
+        'Provide clear loading feedback, such as a loading indicator, while each page is being fetched.',
+      ],
+      id: 'paging_data',
+      name: 'Paging Data',
+    },
+    {
+      content: [
         'Use readonly when users can inspect but not change the selected option(s).',
-        'Use disabled only when selection is unavailable for a clear reason; explain why and how users can proceed.',
+        'Avoid disabling comboboxes unless there is a clear blocking condition.',
       ],
       id: 'states',
       name: 'Validation and States',

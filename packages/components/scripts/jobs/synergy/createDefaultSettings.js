@@ -13,6 +13,7 @@ import {
  */
 export const ALLOWED_ATTRIBUTES = [
   'delimiter',
+  'filter',
   'size',
   'numericStrategy',
   'variant',
@@ -178,11 +179,6 @@ export const createDefaultSettings = job(`Synergy: Creating default settings hel
 
   const typeImports = await createTypeImports(componentsHavingDefaults);
 
-  const globalImports = [
-    // #417: Add the modernNumericStrategy to the default settings
-    ['{ modernNumericStrategy }', '../../components/input/strategies.js'],
-  ].map(([importPath, importFrom]) => `import ${importPath} from '${importFrom}';`);
-
   // Create the needed types
   const coreTypes = [
     `
@@ -233,9 +229,6 @@ export const createDefaultSettings = job(`Synergy: Creating default settings hel
   const outFile = `
     /* eslint-disable @stylistic/quotes */
     ${createHeader()}
-
-    // Global imports
-    ${globalImports.join('\n')}
 
     // Type imports
     ${typeImports.join('\n')}

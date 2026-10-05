@@ -1,5 +1,31 @@
 # @synergy-design-system/angular
 
+## 3.27.0
+
+### Minor Changes
+
+- [#1395](https://github.com/synergy-design-system/synergy-design-system/pull/1395) [`c200c20`](https://github.com/synergy-design-system/synergy-design-system/commit/c200c2004a7884f4b6f9c10d84c0f52666252b8f) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-10-05
+
+  feat: ✨ New features and fixes for `<syn-combobox>` and `<syn-select>` ([#1394](https://github.com/synergy-design-system/synergy-design-system/issues/1394))
+
+  This release adds various smaller adjustments and features to the `<syn-combobox>` and `<syn-select>` components:
+
+  **Features**:
+
+  - [#1239](https://github.com/synergy-design-system/synergy-design-system/issues/1239): Filtering can now use string values (e.g. `contains` or `none`). This is also included in the default settings.
+  - [#1371](https://github.com/synergy-design-system/synergy-design-system/issues/1371): Added a custom event that is emitted when the bottom of the scroll list is reached. This makes it possible to create endless scrolling with `<syn-combobox>` and `<syn-select>`.
+
+  **Fixes**:
+
+  - [#1391](https://github.com/synergy-design-system/synergy-design-system/issues/1391): Fixed an issue where `<syn-combobox>` would still show the `clear` icon in an empty combobox after resetting the value and with an empty search field.
+  - [#1391](https://github.com/synergy-design-system/synergy-design-system/issues/1391): Fixed an issue with `<syn-combobox>` showing the placeholder attribute when the user has already selected a value.
+
+### Patch Changes
+
+- Updated dependencies [[`c200c20`](https://github.com/synergy-design-system/synergy-design-system/commit/c200c2004a7884f4b6f9c10d84c0f52666252b8f)]:
+  - @synergy-design-system/components@3.27.0
+  - @synergy-design-system/tokens@3.27.0
+
 ## 3.26.1
 
 ### Patch Changes

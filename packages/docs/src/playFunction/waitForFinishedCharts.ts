@@ -30,6 +30,7 @@ import { PlayFunction } from 'storybook/internal/csf';
  */
 export const waitForFinishedChartPlayFunction: PlayFunction = async ({ canvasElement }) => {
   if(isChromatic()) {
+    const time1 = Date.now();
     const charts = (canvasElement as HTMLElement).querySelectorAll('syn-chart');
     const finishedPromises: Promise<void>[] = [];
     charts.forEach((chart) => {
@@ -42,6 +43,8 @@ export const waitForFinishedChartPlayFunction: PlayFunction = async ({ canvasEle
       });
       finishedPromises.push(finishedPromise);
     });
+    console.log('##########', charts.length);
     await Promise.all(finishedPromises);
+    console.log('==??? All charts finished', Date.now() - time1);
   }
 };

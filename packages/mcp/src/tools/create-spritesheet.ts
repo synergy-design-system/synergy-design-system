@@ -23,7 +23,7 @@ export const createSpriteSheetTool = (server: McpServer) => {
       inputSchema: {
         icons: z
           .array(z.string() as z.ZodType<Icon2025Keys>)
-          .describe('The icons to include in the sprite sheet. Must be valid icon keys from the Synergy 2025 icon set.'),
+          .describe('An array of icon keys to include in the sprite sheet. Must be valid icon keys from the Synergy 2025 icon set.'),
       },
       title: 'Generate icon spritesheet',
     },

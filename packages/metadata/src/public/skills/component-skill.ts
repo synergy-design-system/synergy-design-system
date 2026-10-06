@@ -17,7 +17,7 @@ export const generateComponentSkill = async (
     join(skillPath, 'SKILL.md'),
     buildSkillRootMarkdown(
       'synergy-component',
-      'Local Synergy Design System component reference without MCP. Use to understand component APIs, usage guidelines, examples, and best practices for your local development.',
+      'Local reference for implementing, adapting, and reviewing Synergy Design System components. Provides offline component APIs, usage rules, accessibility guidance, and examples without MCP.',
       {
         ...metadata,
         contentLayer: 'interface,rules,examples',

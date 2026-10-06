@@ -17,7 +17,7 @@ export const generateTemplateSkill = async (
     join(skillPath, 'SKILL.md'),
     buildSkillRootMarkdown(
       'synergy-templates',
-      'Local Synergy Design System template reference without MCP. Use to explore implementation examples for common layout and interaction patterns for local development.',
+      'Local reference for generating, adapting, and reviewing common multi-component layouts and interaction patterns with the Synergy Design System. Provides offline composition examples and structural starting points without MCP.',
       {
         ...metadata,
         contentLayer: 'examples',

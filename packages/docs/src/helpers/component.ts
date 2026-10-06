@@ -330,7 +330,6 @@ export const generateScreenshotStory = (
   return {
     parameters: {
       chromatic: {
-        ...storyBookPreviewConfig?.parameters?.chromatic,
         ...additionalChromaticOptions,
         disableSnapshot: false,
       } as Parameters,

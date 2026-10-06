@@ -15,7 +15,6 @@ import {
   generateScreenshotStory,
   generateStoryDescription,
 } from '../../src/helpers/component.js';
-import { waitForFinishedChartPlayFunction } from '../../src/playFunction/waitForFinishedCharts.js';
 import { chartChromaticConfig } from '../../src/chromatic-config/chromatic-config.js';
 
 declare global {
@@ -50,7 +49,6 @@ const meta: Meta = {
       ),
     },
   },
-  play: waitForFinishedChartPlayFunction,
   tags: ['Charting', 'Data Visualization'],
   title: 'Charts/Series Types/Segment Chart',
 };

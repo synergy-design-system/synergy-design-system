@@ -9,7 +9,6 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
-import { waitForFinishedChartPlayFunction } from '../../src/playFunction/waitForFinishedCharts.js';
 import { chartChromaticConfig } from '../../src/chromatic-config/chromatic-config.js';
 
 const { overrideArgs } = storybookHelpers('syn-chart');
@@ -51,7 +50,6 @@ const meta: Meta = {
       },
     },
   },
-  play: waitForFinishedChartPlayFunction,
   tags: ['Charting', 'Data Visualization'],
   title: 'Charts/syn-chart',
 };

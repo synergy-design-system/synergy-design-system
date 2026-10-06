@@ -12,7 +12,6 @@ import {
   generateScreenshotStory,
   generateStoryDescription,
 } from '../../src/helpers/component.js';
-import { waitForFinishedChartPlayFunction } from '../../src/playFunction/waitForFinishedCharts.js';
 import { chartChromaticConfig } from '../../src/chromatic-config/chromatic-config.js';
 
 const meta: Meta = {
@@ -35,7 +34,6 @@ const meta: Meta = {
       ),
     },
   },
-  play: waitForFinishedChartPlayFunction,
   tags: ['Charting', 'Data Visualization'],
   title: 'Charts/Features/Legend',
 };

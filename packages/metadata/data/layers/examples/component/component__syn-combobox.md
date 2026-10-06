@@ -100,7 +100,7 @@ Add the clearable attribute to add a clear button when the combobox has content.
 
 ## Disabled
 
-Use the disabled attribute to disable a combobox.
+Use disabled only when selection is unavailable, and explain what must happen before users can choose an option. Use readonly to show existing selections without allowing changes.
 
 ```html
 <syn-combobox disabled="" placeholder="Disabled">
@@ -124,7 +124,7 @@ Use the disabled attribute to disable a combobox.
 
 ## Readonly
 
-Add the readonly attribute to draw a read-only combobox.
+Use readonly when users should inspect selected option(s) without changing them. Use disabled only when selection is unavailable.
 
 ```html
 <div

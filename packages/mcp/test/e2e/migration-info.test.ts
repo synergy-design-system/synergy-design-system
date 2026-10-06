@@ -39,4 +39,22 @@ describe('migration-info tool', () => {
     const payload = parseJsonContent<{ filename?: string }>(typedResponse, 0);
     assert.equal(payload.filename, 'index.md');
   });
+
+  it('returns package-scoped filenames for an unknown migration document', async () => {
+    const response = await session.client.callTool({
+      arguments: {
+        filename: 'unknown.md',
+        synergyPackage: 'components',
+      },
+      name: 'migration-info',
+    });
+    const recovery = parseJsonContent<{
+      availableFilenames: string[];
+      package: string;
+      submittedFilename: string;
+    }>(toToolResponse(response), 0);
+    assert.equal(recovery.submittedFilename, 'unknown.md');
+    assert.equal(recovery.package, 'components');
+    assert.ok(recovery.availableFilenames.includes('index.md'));
+  });
 });

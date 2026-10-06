@@ -86,7 +86,7 @@ The focus event gives the user feedback that the Select has been focused by the 
 
 ## Disabled
 
-Use the disabled attribute to disable a select.
+Use disabled only when selection is unavailable, and explain when users can choose an option. Use readonly to display the current selection without allowing changes.
 
 ```html
 <syn-select placeholder="Disabled" disabled="">
@@ -100,7 +100,7 @@ Use the disabled attribute to disable a select.
 
 ## Readonly
 
-Add the readonly attribute to a select to draw it in a readonly state.
+Use readonly when users need to inspect their current selection without changing it. For multiple selections, keep every selected value visible.
 
 ```html
 <div

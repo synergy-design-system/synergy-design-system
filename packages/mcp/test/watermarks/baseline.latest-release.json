@@ -1,9 +1,17 @@
 {
   "encoding": "o200k_base",
-  "generatedAt": "2026-10-05T08:49:47.673Z",
+  "generatedAt": "2026-10-05T05:51:01.635Z",
   "source": "current-worktree",
   "version": 1,
   "watermarks": [
+    {
+      "id": "catalog:tools-list",
+      "tokens": 3934
+    },
+    {
+      "id": "catalog:resources-list",
+      "tokens": 320
+    },
     {
       "id": "intent-categories-list:experimental",
       "tokens": 166
@@ -42,11 +50,11 @@
     },
     {
       "id": "component-info:interface:syn-input",
-      "tokens": 3036
+      "tokens": 3037
     },
     {
       "id": "component-info:interface:syn-combobox",
-      "tokens": 2577
+      "tokens": 2447
     },
     {
       "id": "styles-info:syn-body",

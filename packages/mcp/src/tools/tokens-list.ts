@@ -18,9 +18,9 @@ export const tokenListTool = (server: McpServer) => {
     'tokens-list',
     {
       annotations: createToolAnnotations(),
-      description: 'Outputs a list of available token output types and css themes in the Synergy Design System',
+      description: 'List available Synergy token formats, CSS themes, scopes, and defaults. Use supported values with token-info.',
       inputSchema: {},
-      title: 'Tokens list',
+      title: 'List token metadata',
     },
     toolHandler('tokens-list', async () => {
       const cssCandidates: TokenTheme[] = ['sick2018-dark', 'sick2018-light', 'sick2025-dark', 'sick2025-light'];

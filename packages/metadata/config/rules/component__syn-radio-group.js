@@ -50,6 +50,14 @@ export default {
       id: 'layout',
       name: 'Layout',
     },
+    {
+      content: [
+        'To show a selection without allowing changes, set readonly on every syn-radio or syn-radio-button in the group; marking only the selected option readonly does not lock the others.',
+        'Set disabled on individual unavailable options and explain why they cannot be selected. The radio group itself has no readonly or disabled attribute.',
+      ],
+      id: 'states',
+      name: 'Validation and States',
+    },
   ],
   useCases: [
     'Present options in forms where only one selection is allowed (e.g., gender selection, payment methods).',

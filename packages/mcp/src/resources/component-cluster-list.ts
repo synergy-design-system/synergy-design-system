@@ -14,9 +14,9 @@ export const componentClustersListRessource = (server: McpServer) => {
     'component-clusters-list',
     RESOURCE_URI,
     {
-      description: 'Available component clusters in the Synergy Design System.',
+      description: 'Static JSON index of Synergy component clusters with IDs, names, and descriptions. Use component-list to retrieve cluster members.',
       mimeType: 'application/json',
-      title: 'Available component clusters',
+      title: 'Synergy component cluster index',
     },
     resourceHandler('component-clusters-list', async (_uri) => {
       const clusters = await listComponentClusters();

@@ -87,4 +87,22 @@ describe('davinci-migration-info tool', () => {
       'Both alias and official name should return identical results',
     );
   });
+
+  it('returns package-scoped components for an unknown migration component', async () => {
+    const response = await session.client.callTool({
+      arguments: {
+        component: 'unknown-component',
+        package: 'components',
+      },
+      name: 'davinci-migration-info',
+    });
+    const recovery = parseJsonContent<{
+      availableComponentNames: string[];
+      package: string;
+      submittedComponent: string;
+    }>(toToolResponse(response), 0);
+    assert.equal(recovery.submittedComponent, 'unknown-component');
+    assert.equal(recovery.package, 'basic-elements');
+    assert.ok(recovery.availableComponentNames.every((component) => component.startsWith('davinci-')));
+  });
 });

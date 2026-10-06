@@ -43,6 +43,14 @@ export default {
       id: 'range_definition',
       name: 'Range Definition',
     },
+    {
+      content: [
+        'Use readonly when users need to inspect the current value or interval but must not move the thumb(s); show the value in text as well.',
+        'Use disabled only when adjusting the range is unavailable, and explain what must happen before it can be changed.',
+      ],
+      id: 'states',
+      name: 'Validation and States',
+    },
   ],
   useCases: [
     'Adjust settings within a defined range (e.g., volume, brightness).',

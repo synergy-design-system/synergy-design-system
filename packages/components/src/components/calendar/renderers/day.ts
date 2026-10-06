@@ -9,24 +9,24 @@ import {
   today,
 } from '../utils.js';
 import {
-  type FooterOptions,
-  type NavigationOptions,
-  type ViewTemplates,
+  type CalendarFooterOptions,
+  type CalendarNavigationOptions,
+  type CalendarViewTemplates,
+  renderCalendarFooter,
   renderCalendarItem,
-  renderFooter,
-  renderNavigation,
+  renderCalendarNavigation,
 } from './shared.js';
 
-export interface DayViewOptions extends FooterOptions {
+export interface DayViewOptions extends CalendarFooterOptions {
   locale: string;
   viewDate: Date;
   focusedDate: Date;
   valueDate: Date | null;
-  monthNavigation: NavigationOptions;
-  yearNavigation: NavigationOptions;
+  monthNavigation: CalendarNavigationOptions;
+  yearNavigation: CalendarNavigationOptions;
 }
 
-export const renderDayView = (options: DayViewOptions): ViewTemplates => {
+export const renderDayView = (options: DayViewOptions): CalendarViewTemplates => {
   const firstDay = getFirstDayOfWeek(options.locale);
   const weekdays = getWeekdayNames(options.locale, firstDay);
   const weeks = getCalendarWeeks(
@@ -38,7 +38,7 @@ export const renderDayView = (options: DayViewOptions): ViewTemplates => {
 
   return {
     content: html`
-      <table class="day-selector">
+      <table class="day-selector" part="day-grid">
         <thead>
           <tr>${weekdays.map(weekday => html`<th scope="col">${weekday}</th>`)}</tr>
         </thead>
@@ -67,14 +67,14 @@ export const renderDayView = (options: DayViewOptions): ViewTemplates => {
         </tbody>
       </table>
     `,
-    footer: renderFooter('Today', options),
+    footer: renderCalendarFooter('Today', options),
     header: html`
       <div class="selection-wrapper">
-        <div class="header--month-selection header-selection">
-          ${renderNavigation(options.monthNavigation)}
+        <div class="header--month-selection header-selection" part="month-navigation">
+          ${renderCalendarNavigation(options.monthNavigation)}
         </div>
-        <div class="header--year-selection header-selection">
-          ${renderNavigation(options.yearNavigation)}
+        <div class="header--year-selection header-selection" part="year-navigation">
+          ${renderCalendarNavigation(options.yearNavigation)}
         </div>
       </div>
     `,

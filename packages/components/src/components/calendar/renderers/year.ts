@@ -1,23 +1,23 @@
 import { html } from 'lit';
 import {
-  type FooterOptions,
-  type NavigationOptions,
-  type ViewTemplates,
+  type CalendarFooterOptions,
+  type CalendarNavigationOptions,
+  type CalendarViewTemplates,
+  renderCalendarFooter,
   renderCalendarItem,
-  renderFooter,
-  renderNavigation,
+  renderCalendarNavigation,
 } from './shared.js';
 
-export interface YearViewOptions extends FooterOptions {
+export interface YearViewOptions extends CalendarFooterOptions {
   blockStart: number;
   focusedYear: number;
   activeYear: number | undefined;
-  navigation: NavigationOptions;
+  navigation: CalendarNavigationOptions;
 }
 
-export const renderYearView = (options: YearViewOptions): ViewTemplates => ({
+export const renderYearView = (options: YearViewOptions): CalendarViewTemplates => ({
   content: html`
-    <div class="period-selector">
+    <div class="period-selector" part="year-grid">
       ${Array.from({ length: 12 }, (_, index) => options.blockStart + index).map(year => renderCalendarItem({
         active: options.activeYear === year,
         kind: 'year',
@@ -27,11 +27,11 @@ export const renderYearView = (options: YearViewOptions): ViewTemplates => ({
       }))}
     </div>
   `,
-  footer: renderFooter('This year', options),
+  footer: renderCalendarFooter('This year', options),
   header: html`
     <div class="selection-wrapper">
-      <div class="header--year-selection header-selection">
-        ${renderNavigation(options.navigation)}
+      <div class="header--year-selection header-selection" part="year-navigation">
+        ${renderCalendarNavigation(options.navigation)}
       </div>
     </div>
   `,

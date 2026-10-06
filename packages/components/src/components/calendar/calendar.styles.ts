@@ -8,13 +8,12 @@ export default css`
   .calendar {
     --container-padding-block: var(--syn-spacing-medium);
     --container-padding-inline: var(--syn-spacing-small);
-    --syn-date-picker-min-width: 388px;
 
     background: var(--syn-panel-background-color);
     display: flex;
     flex-direction: column;
     max-width: 100%;
-    min-width: min(var(--syn-date-picker-min-width), 100vw);
+    min-width: min(var(--syn-calendar-min-width, 388px), 100vw);
     user-select: none;
   }
 
@@ -114,6 +113,15 @@ export default css`
     color: var(--syn-color-neutral-0);
   }
 
+  .calendar-item--outside {
+    box-shadow: inset 0 0 0 var(--syn-border-width-small) hotpink;
+  }
+
+  .calendar-item--disabled {
+    background-color: red;
+    cursor: not-allowed;
+  }
+
   .calendar-item--today::after {
     background: var(--syn-typography-color-text);
     border-radius: var(--syn-border-radius-circle);
@@ -127,10 +135,6 @@ export default css`
 
   .calendar-item--active.calendar-item--today::after {
     background: var(--syn-typography-color-text-inverted);
-  }
-
-  .calendar-item--outside {
-    visibility: hidden;
   }
 
   .calendar--view-month .header--year-selection,

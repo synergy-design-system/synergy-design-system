@@ -25,7 +25,7 @@ import {
 import { renderDayView } from './renderers/day.js';
 import { renderMonthView } from './renderers/month.js';
 import { renderYearView } from './renderers/year.js';
-import type { NavigationOptions } from './renderers/shared.js';
+import type { CalendarNavigationOptions } from './renderers/shared.js';
 import styles from './calendar.styles.js';
 
 /**
@@ -38,6 +38,27 @@ import styles from './calendar.styles.js';
  * @dependency syn-icon-button
  *
  * @csspart base - The component's base wrapper.
+ * @csspart header - The calendar header.
+ * @csspart content - The calendar view content.
+ * @csspart footer - The calendar footer actions.
+ * @csspart day-grid - The day-of-month table.
+ * @csspart month-grid - The month selection grid.
+ * @csspart year-grid - The year selection grid.
+ * @csspart calendar-item - A day, month, or year button.
+ * @csspart calendar-item-day - A day button.
+ * @csspart calendar-item-month - A month button.
+ * @csspart calendar-item-year - A year button.
+ * @csspart calendar-item-active - An active calendar item.
+ * @csspart calendar-item-today - The item representing today.
+ * @csspart calendar-item-outside - A day item belonging to an adjacent month.
+ * @csspart calendar-item-disabled - A disabled calendar item.
+ * @csspart month-navigation - The month navigation controls.
+ * @csspart year-navigation - The year navigation controls.
+ * @csspart previous-button - The previous-period navigation button.
+ * @csspart navigation-label - The current month, year, or year range in the navigation header.
+ * @csspart next-button - The next-period navigation button.
+ * @csspart current-period-button - The button for navigating to the current day, month, or year.
+ * @csspart clear-button - The button for clearing the selected value.
  *
  * @cssproperty --syn-calendar-min-width - The minimum width of the calendar. Defaults to 388px.
  *
@@ -94,18 +115,43 @@ export default class SynCalendar extends SynergyElement {
    */
   @state() private focusedDate: Date = today();
 
+  /**
+   * The month that currently has focus within the calendar.
+   * This is used to manage keyboard navigation and focus restoration for the month view.
+   */
   @state() private focusedMonth = today().getUTCMonth();
 
+  /**
+   * The year that is currently selected in the month selector.
+   * This is used to manage keyboard navigation and focus restoration for the month selector.
+   */
   @state() private monthSelectorYear = today().getUTCFullYear();
 
+  /**
+   * The year that currently has focus within the calendar.
+   * This is used to manage keyboard navigation and focus restoration for the year view.
+   */
   @state() private focusedYear = today().getUTCFullYear();
 
+  /**
+   * The start year of the currently visible year block in the calendar.
+   * This is used to manage keyboard navigation and focus restoration for the year block view.
+   */
   @state() private yearBlockStart = getYearBlockStart(today().getUTCFullYear());
 
+  /**
+   * Indicates whether the calendar currently has focus.
+   */
   #hasFocus = false;
 
+  /**
+   * Indicates whether the calendar should restore focus to the previously focused year after a view change.
+   */
   #restoreYearFocus = false;
 
+  /**
+   * Indicates whether the calendar should restore focus to the previously focused month after a view change.
+   */
   #restoreMonthFocus = false;
 
   /**
@@ -140,6 +186,11 @@ export default class SynCalendar extends SynergyElement {
     this.#setViewDate(createDate(date.getUTCFullYear(), date.getUTCMonth(), 1));
   }
 
+  /**
+   * Sets the calendar's value based on user input.
+   * @param value The new value to set for the calendar.
+   * @param clear Whether to clear the current value before setting the new one.
+   */
   #setValueFromUser(value: string, clear = false) {
     if (this.value === value) {
       return;
@@ -155,6 +206,10 @@ export default class SynCalendar extends SynergyElement {
     this.emit('syn-change');
   }
 
+  /**
+   * Handles focus in events for the calendar component.
+   * Emits a 'syn-focus' event if the calendar gains focus.
+   */
   #handleFocusIn() {
     if (!this.#hasFocus) {
       this.#hasFocus = true;
@@ -162,6 +217,11 @@ export default class SynCalendar extends SynergyElement {
     }
   }
 
+  /**
+   * Suppresses focus out events when the focus moves within the calendar component.
+   * Emits a 'syn-blur' event if the focus moves out of the calendar component.
+   * @param event The focus out event triggered by the calendar component.
+   */
   #handleFocusOut(event: FocusEvent) {
     if (event.relatedTarget instanceof Node && this.renderRoot.contains(event.relatedTarget)) {
       return;
@@ -173,6 +233,10 @@ export default class SynCalendar extends SynergyElement {
     }
   }
 
+  /**
+   * Suppresses nested focus events within the calendar component.
+   * @param event The focus event to stop from propagating.
+   */
   static #stopNestedFocusEvent(event: Event) {
     event.stopPropagation();
   }
@@ -223,11 +287,18 @@ export default class SynCalendar extends SynergyElement {
     this.#restoreDayFocus = true;
   }
 
+  /**
+   * Opens the month view for a specific month.
+   * @param month The month to open (0-11).
+   */
   #openMonth(month: number) {
     this.#setViewMonth(createDate(this.monthSelectorYear, month, 1));
     this.#showDayView();
   }
 
+  /**
+   * Shows the month selector view.
+   */
   #showMonthSelector() {
     const valueDate = this.valueAsDate;
     const viewedYear = this.viewDate.getUTCFullYear();
@@ -240,6 +311,9 @@ export default class SynCalendar extends SynergyElement {
     this.#restoreMonthFocus = true;
   }
 
+  /**
+   * Shows the day view of the calendar.
+   */
   #showDayView() {
     const valueDate = this.valueAsDate;
 
@@ -251,6 +325,9 @@ export default class SynCalendar extends SynergyElement {
     this.#restoreDayFocus = true;
   }
 
+  /**
+   * Shows the year selector view.
+   */
   #showYearSelector() {
     this.focusedYear = this.visibleView === 'month'
       ? this.monthSelectorYear
@@ -270,16 +347,29 @@ export default class SynCalendar extends SynergyElement {
     this.#restoreYearFocus = true;
   }
 
+  /**
+   * Opens the day view for a specific year.
+   * @param year The year to open.
+   */
   #openYear(year: number) {
     this.#setViewMonth(createDate(year, this.viewDate.getUTCMonth(), 1));
     this.#showDayView();
   }
 
+  /**
+   * Pages the year block by a given offset.
+   * @param offset The number of years to offset the year block by.
+   */
   #pageYears(offset: number) {
     this.yearBlockStart += offset;
     this.focusedYear += offset;
   }
 
+  /**
+   * Handles keydown events for the year view.
+   * @param event The keyboard event.
+   * @param year The currently focused year.
+   */
   #handleYearKeydown(event: KeyboardEvent, year: number) {
     const yearOffsets: Record<string, number> = {
       ArrowDown: 3,
@@ -299,6 +389,11 @@ export default class SynCalendar extends SynergyElement {
     this.#restoreYearFocus = true;
   }
 
+  /**
+   * Handles keydown events for the month view.
+   * @param event The keyboard event.
+   * @param month The currently focused month (0-11).
+   */
   #handleMonthKeydown(event: KeyboardEvent, month: number) {
     const monthOffsets: Record<string, number> = {
       ArrowDown: 3,
@@ -319,7 +414,12 @@ export default class SynCalendar extends SynergyElement {
     this.#restoreMonthFocus = true;
   }
 
-  #getGridButton(event: Event) {
+  /**
+   * Retrieves the grid button element from an event.
+   * @param event The event triggered by the grid.
+   * @returns The HTMLButtonElement if found, otherwise undefined.
+   */
+  #getCalendarItem(event: Event) {
     return event.composedPath().find((target): target is HTMLButtonElement => (
       target instanceof HTMLButtonElement
       && this.renderRoot.contains(target)
@@ -327,8 +427,12 @@ export default class SynCalendar extends SynergyElement {
     ));
   }
 
+  /**
+   * Handles click events on the calendar grid.
+   * @param event The mouse event triggered by the grid.
+   */
   #handleGridClick(event: MouseEvent) {
-    const button = this.#getGridButton(event);
+    const button = this.#getCalendarItem(event);
 
     if (!button || button.dataset.value === undefined) {
       return;
@@ -343,8 +447,12 @@ export default class SynCalendar extends SynergyElement {
     }
   }
 
+  /**
+   * Handles keydown events on the calendar grid.
+   * @param event The keyboard event triggered by the grid.
+   */
   #handleGridKeydown(event: KeyboardEvent) {
-    const button = this.#getGridButton(event);
+    const button = this.#getCalendarItem(event);
 
     if (!button) {
       return;
@@ -363,8 +471,12 @@ export default class SynCalendar extends SynergyElement {
     }
   }
 
+  /**
+   * Handles focus events on the calendar grid.
+   * @param event The focus event triggered by the grid.
+   */
   #handleGridFocus(event: FocusEvent) {
-    const button = this.#getGridButton(event);
+    const button = this.#getCalendarItem(event);
 
     if (button?.dataset.kind === 'month') {
       this.focusedMonth = Number(button.dataset.value);
@@ -373,27 +485,36 @@ export default class SynCalendar extends SynergyElement {
     }
   }
 
+  /**
+   * Shows the current period (day, month, or year) based on the visible view.
+   */
   #showCurrentPeriod() {
-    if (this.visibleView === 'day') {
-      this.#setViewDate(today());
-      this.#restoreDayFocus = true;
-    } else if (this.visibleView === 'month') {
-      const currentDate = today();
-      this.monthSelectorYear = currentDate.getUTCFullYear();
-      this.focusedMonth = currentDate.getUTCMonth();
-      this.#restoreMonthFocus = true;
-      this.requestUpdate();
-    } else {
-      this.focusedYear = today().getUTCFullYear();
-      this.yearBlockStart = getYearBlockStart(this.focusedYear);
-      this.#restoreYearFocus = true;
-      this.requestUpdate();
+    const current = today();
+
+    switch (this.visibleView) {
+      case 'day':
+        this.#setViewDate(current);
+        this.#restoreDayFocus = true;
+        break;
+
+      case 'month':
+        this.monthSelectorYear = current.getUTCFullYear();
+        this.focusedMonth = current.getUTCMonth();
+        this.#restoreMonthFocus = true;
+        break;
+
+      case 'year':
+      default:
+        this.focusedYear = current.getUTCFullYear();
+        this.yearBlockStart = getYearBlockStart(this.focusedYear);
+        this.#restoreYearFocus = true;
+        break;
     }
   }
 
   #renderView() {
     const footer = {
-      hasValue: Boolean(this.value),
+      hasValue: !!this.value,
       onClear: () => this.#setValueFromUser('', true),
       onCurrent: () => this.#showCurrentPeriod(),
     };
@@ -415,7 +536,7 @@ export default class SynCalendar extends SynergyElement {
       });
     }
 
-    const yearNavigation: NavigationOptions = {
+    const yearNavigation: CalendarNavigationOptions = {
       label: this.visibleView === 'month'
         ? this.monthSelectorYear
         : this.viewDate.getUTCFullYear(),
@@ -485,13 +606,14 @@ export default class SynCalendar extends SynergyElement {
         @syn-focus=${SynCalendar.#stopNestedFocusEvent}
         part="base"
       >
-        <div class="header">
+        <div class="header" part="header">
           ${header}
         </div>
         <!--/.header -->
 
         <div
           class="content"
+          part="content"
           @click=${this.#handleGridClick}
           @keydown=${this.#handleGridKeydown}
           @focusin=${this.#handleGridFocus}
@@ -500,7 +622,7 @@ export default class SynCalendar extends SynergyElement {
         </div>
         <!--/.content -->
 
-        <div class="footer">
+        <div class="footer" part="footer">
           ${footer}
         </div>
         <!--/.footer -->

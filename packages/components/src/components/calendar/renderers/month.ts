@@ -1,24 +1,24 @@
 import { html } from 'lit';
 import { getMonthNames } from '../utils.js';
 import {
-  type FooterOptions,
-  type NavigationOptions,
-  type ViewTemplates,
+  type CalendarFooterOptions,
+  type CalendarNavigationOptions,
+  type CalendarViewTemplates,
+  renderCalendarFooter,
   renderCalendarItem,
-  renderFooter,
-  renderNavigation,
+  renderCalendarNavigation,
 } from './shared.js';
 
-export interface MonthViewOptions extends FooterOptions {
+export interface MonthViewOptions extends CalendarFooterOptions {
   locale: string;
   activeMonth: number | undefined;
   focusedMonth: number;
-  yearNavigation: NavigationOptions;
+  yearNavigation: CalendarNavigationOptions;
 }
 
-export const renderMonthView = (options: MonthViewOptions): ViewTemplates => ({
+export const renderMonthView = (options: MonthViewOptions): CalendarViewTemplates => ({
   content: html`
-    <div class="period-selector">
+    <div class="period-selector" part="month-grid">
       ${getMonthNames(options.locale, 'short').map((month, index) => renderCalendarItem({
         active: options.activeMonth === index,
         kind: 'month',
@@ -28,11 +28,11 @@ export const renderMonthView = (options: MonthViewOptions): ViewTemplates => ({
       }))}
     </div>
   `,
-  footer: renderFooter('This month', options),
+  footer: renderCalendarFooter('This month', options),
   header: html`
     <div class="selection-wrapper">
-      <div class="header--year-selection header-selection">
-        ${renderNavigation(options.yearNavigation)}
+      <div class="header--year-selection header-selection" part="year-navigation">
+        ${renderCalendarNavigation(options.yearNavigation)}
       </div>
     </div>
   `,

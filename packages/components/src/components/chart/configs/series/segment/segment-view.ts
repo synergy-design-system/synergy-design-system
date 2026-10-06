@@ -190,47 +190,24 @@ const createSegments = (
   factor: number,
   bounds: LayoutBounds,
 ) => {
-  const segments: Array<graphic.Polygon | graphic.Text> = [];
-  segmentRanges.forEach((range, index) => {
-    if (!range || !(segmentOuterRadius > segmentInnerRadius)) {
-      return;
-    }
-    const data = model.getData();
-    const segmentHalfGap = getSafeHalfGap(halfGap, range.endAngle - range.startAngle, segmentInnerRadius);
-    const segmentItemModel = data.getItemModel<SegmentDataItem>(index);
+  const data = model.getData();
 
-    const backgroundStyle = segmentItemModel.getModel('backgroundStyle').getItemStyle();
+  return segmentRanges
+    .map((range, index) => {
+      if (!range || !(segmentOuterRadius > segmentInnerRadius)) {
+        return null;
+      }
+      const segments: Array<graphic.Polygon | graphic.Text> = [];
+      const segmentHalfGap = getSafeHalfGap(halfGap, range.endAngle - range.startAngle, segmentInnerRadius);
+      const segmentItemModel = data.getItemModel<SegmentDataItem>(index);
 
-    const backgroundColor = backgroundStyle.fill ?? style('SynChartTrackColor');
-    const backgroundBorderColor = backgroundStyle.stroke ?? style('SynChartTrackColor');
-    const backgroundBorderWidth = backgroundStyle.lineWidth ?? 0;
+      const backgroundStyle = segmentItemModel.getModel('backgroundStyle').getItemStyle();
 
-    // Unfilled background, spanning the full radial band.
-    segments.push(createSegmentWedge({
-      shape: {
-        centerX,
-        centerY,
-        endAngle: range.endAngle,
-        halfGap: segmentHalfGap,
-        innerRadius: segmentInnerRadius,
-        outerRadius: segmentOuterRadius,
-        startAngle: range.startAngle,
-      },
-      style: {
-        fill: backgroundColor,
-        lineWidth: backgroundBorderWidth,
-        stroke: backgroundBorderColor,
-      },
-      z: 3,
-    }));
+      const backgroundColor = backgroundStyle.fill ?? style('SynChartTrackColor');
+      const backgroundBorderColor = backgroundStyle.stroke ?? style('SynChartTrackColor');
+      const backgroundBorderWidth = backgroundStyle.lineWidth ?? 0;
 
-    // Filled portion, growing from the inner radius outward based on the segment's value.
-    const rawValue = Number(data.get('value', index));
-    const value = sanitizeFiniteNumber(rawValue);
-    const fillRatio = getFillRatio(value, config.min, config.max);
-    if (fillRatio > 0) {
-      const filledOuterRadius = segmentInnerRadius + (fillRatio * (segmentOuterRadius - segmentInnerRadius));
-      const itemStyle = data.getItemVisual(index, 'style');
+      // Unfilled background, spanning the full radial band.
       segments.push(createSegmentWedge({
         shape: {
           centerX,
@@ -238,47 +215,74 @@ const createSegments = (
           endAngle: range.endAngle,
           halfGap: segmentHalfGap,
           innerRadius: segmentInnerRadius,
-          outerRadius: filledOuterRadius,
+          outerRadius: segmentOuterRadius,
           startAngle: range.startAngle,
         },
         style: {
-          fill: itemStyle.fill,
-          lineWidth: itemStyle.lineWidth,
-          stroke: itemStyle.stroke,
+          fill: backgroundColor,
+          lineWidth: backgroundBorderWidth,
+          stroke: backgroundBorderColor,
         },
-        z: 4,
+        z: 3,
       }));
-    }
 
-    const label = resolveSegmentLabel(segmentItemModel.option, value);
+      // Filled portion, growing from the inner radius outward based on the segment's value.
+      const rawValue = Number(data.get('value', index));
+      const value = sanitizeFiniteNumber(rawValue);
+      const fillRatio = getFillRatio(value, config.min, config.max);
+      if (fillRatio > 0) {
+        const filledOuterRadius = segmentInnerRadius + (fillRatio * (segmentOuterRadius - segmentInnerRadius));
+        const itemStyle = data.getItemVisual(index, 'style');
+        segments.push(createSegmentWedge({
+          shape: {
+            centerX,
+            centerY,
+            endAngle: range.endAngle,
+            halfGap: segmentHalfGap,
+            innerRadius: segmentInnerRadius,
+            outerRadius: filledOuterRadius,
+            startAngle: range.startAngle,
+          },
+          style: {
+            fill: itemStyle.fill,
+            lineWidth: itemStyle.lineWidth,
+            stroke: itemStyle.stroke,
+          },
+          z: 4,
+        }));
+      }
 
-    if (label) {
-      const midAngle = (range.startAngle + range.endAngle) / 2;
-      const labelPoint = polarPoint(centerX, centerY, segmentOuterRadius + labelOffset, midAngle);
-      const onRightHalf = Math.cos(midAngle) >= 0;
+      const label = resolveSegmentLabel(segmentItemModel.option, value);
 
-      const rootLabelStyle = model.get('labelTextStyle');
-      const itemLabelStyle = segmentItemModel.get('labelTextStyle');
-      const mergedLabelStyle = mergeDeep(rootLabelStyle!, itemLabelStyle!) as graphic.Text['style'];
-      const availableLabelWidth = onRightHalf
-        ? Math.max(0, bounds.right - labelPoint.x)
-        : Math.max(0, labelPoint.x - bounds.left);
+      if (label) {
+        const midAngle = (range.startAngle + range.endAngle) / 2;
+        const labelPoint = polarPoint(centerX, centerY, segmentOuterRadius + labelOffset, midAngle);
+        const onRightHalf = Math.cos(midAngle) >= 0;
 
-      segments.push(createTextGraphic({
-        align: onRightHalf ? 'left' : 'right',
-        fontSize: factor * styleWithoutUnit('SynFontSizeSmall'),
-        text: label,
-        x: labelPoint.x,
-        y: labelPoint.y,
-        z: 15,
-      }, {
-        overflow: 'truncate',
-        width: availableLabelWidth,
-        ...mergedLabelStyle,
-      }));
-    }
-  });
-  return segments;
+        const rootLabelStyle = model.get('labelTextStyle');
+        const itemLabelStyle = segmentItemModel.get('labelTextStyle');
+        const mergedLabelStyle = mergeDeep(rootLabelStyle!, itemLabelStyle!) as graphic.Text['style'];
+        const availableLabelWidth = onRightHalf
+          ? Math.max(0, bounds.right - labelPoint.x)
+          : Math.max(0, labelPoint.x - bounds.left);
+
+        segments.push(createTextGraphic({
+          align: onRightHalf ? 'left' : 'right',
+          fontSize: factor * styleWithoutUnit('SynFontSizeSmall'),
+          text: label,
+          x: labelPoint.x,
+          y: labelPoint.y,
+          z: 15,
+        }, {
+          overflow: 'truncate',
+          width: availableLabelWidth,
+          ...mergedLabelStyle,
+        }));
+      }
+      return segments;
+    })
+    .filter((segments) => segments != null)
+    .flat();
 };
 
 const buildSegmentChartGroup = (

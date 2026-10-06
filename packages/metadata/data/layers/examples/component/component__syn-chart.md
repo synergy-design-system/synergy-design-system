@@ -2228,13 +2228,30 @@ The name option sets the name of the segment chart, which is displayed in the ga
 <syn-chart id="segment-name"></syn-chart>
 <script type="module">
   const charts = document.querySelectorAll("#segment-name");
-
   charts.forEach((chart) => {
+    const halfChartSize = () =>
+      Math.min(chart.offsetWidth, chart.offsetHeight) / 2;
+    let nameWidth = halfChartSize();
     chart.config = (handle) =>
       handle.seriesSegment({
         data: [5, 10, 50, 80, 100],
-        name: "Contamination",
+        name: "This is a very long name",
+        nameTextStyle: {
+          overflow: "break",
+          width: nameWidth,
+        },
       });
+
+    setTimeout(() => {
+      const instance = chart.getInstance();
+      // Adapt the name width when the chart is resized, so it breaks correctly
+      window.addEventListener("resize", () => {
+        nameWidth = halfChartSize();
+        instance.setOption({
+          series: [{ nameTextStyle: { width: nameWidth } }],
+        });
+      });
+    });
   });
 </script>
 ```
@@ -2381,11 +2398,52 @@ Use the min and max options to define the value range for the segment chart. Thi
   const charts = document.querySelectorAll("#segment-min-max");
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle.seriesSegment({
-        data: [0.9, 1, 0.2, 0.1, 0.5, 0.9, 0.1, 0, 0.4, 1, 0.3],
-        min: 0,
-        max: 1,
-      });
+      handle
+        .seriesSegment({
+          top: 80,
+          min: -5,
+          max: 20,
+          data: [
+            {
+              value: -1,
+              name: "January",
+              label: formatter.unitFormatter("°C"),
+            },
+            {
+              value: 2,
+              name: "February",
+              label: formatter.unitFormatter("°C"),
+            },
+            { value: 5, name: "March", label: formatter.unitFormatter("°C") },
+            { value: 9, name: "April", label: formatter.unitFormatter("°C") },
+            { value: 14, name: "May", label: formatter.unitFormatter("°C") },
+            { value: 17, name: "June", label: formatter.unitFormatter("°C") },
+            { value: 19, name: "July", label: formatter.unitFormatter("°C") },
+            { value: 18, name: "August", label: formatter.unitFormatter("°C") },
+            {
+              value: 14,
+              name: "September",
+              label: formatter.unitFormatter("°C"),
+            },
+            {
+              value: 10,
+              name: "October",
+              label: formatter.unitFormatter("°C"),
+            },
+            {
+              value: 5,
+              name: "November",
+              label: formatter.unitFormatter("°C"),
+            },
+            {
+              value: -0.5,
+              name: "December",
+              label: formatter.unitFormatter("°C"),
+            },
+          ],
+          name: "Temperature",
+        })
+        .legendShow();
   });
 </script>
 ```

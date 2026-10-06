@@ -77,7 +77,7 @@ export const GAUGE_SERIES = {
 
 /** Synergy segment chart series constants */
 export const SEGMENT_SERIES = {
-  /** Number of straight segments used to approximate one radian of an arc as a polygon. */
+  /** Straight segments used per radian to approximate an arc. More steps make it smoother but require more points to render. */
   ARC_STEPS_PER_RADIAN: 20,
   /** Default weight used for a segment when no explicit `weights` entry is provided for it. */
   DEFAULT_WEIGHT: 1,
@@ -91,7 +91,7 @@ export const SEGMENT_SERIES = {
   MAX_DEFAULT: 100,
   /** Default minimum value used to normalize segment fill, when `min` is not set. */
   MIN_DEFAULT: 0,
-  /** Baseline height used for the default graphic layout and responsive scaling. */
+  /** Reference height matches the Figma design and keeps graphic elements proportional when the chart resizes. */
   REFERENCE_HEIGHT: 340,
   /** Constant pixel-width gap rendered between adjacent segments. */
   SEGMENTS_GAP: 2,

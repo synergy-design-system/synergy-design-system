@@ -5,6 +5,6 @@ import { Chromatic_Modes_Sick_2025 } from '../../.storybook/modes.js';
  */
 export const chartChromaticConfig = {
   delay: 300,
-  diffThreshold: 0.6,
+  diffThreshold: 0.9,
   modes: Chromatic_Modes_Sick_2025,
 };

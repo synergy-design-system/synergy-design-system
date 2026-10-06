@@ -3,6 +3,7 @@ import {
   getCalendarWeeks,
   getFirstDayOfWeek,
   getWeekdayNames,
+  isDateInRange,
   isSameDay,
   isSameMonth,
   toIsoDate,
@@ -22,6 +23,8 @@ export interface DayViewOptions extends CalendarFooterOptions {
   viewDate: Date;
   focusedDate: Date;
   valueDate: Date | null;
+  min: Date | null;
+  max: Date | null;
   monthNavigation: CalendarNavigationOptions;
   yearNavigation: CalendarNavigationOptions;
 }
@@ -49,6 +52,7 @@ export const renderDayView = (options: DayViewOptions): CalendarViewTemplates =>
                 <td class="day-selector__day">
                   ${renderCalendarItem({
                     active: isSameDay(day, options.valueDate),
+                    disabled: !isDateInRange(day, options.min, options.max),
                     kind: 'day',
                     label: html`
                       <time datetime=${toIsoDate(day)}>

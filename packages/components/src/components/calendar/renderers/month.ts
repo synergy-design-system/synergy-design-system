@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import { getMonthNames } from '../utils.js';
+import { getMonthNames, isMonthInRange } from '../utils.js';
 import {
   type CalendarFooterOptions,
   type CalendarNavigationOptions,
@@ -13,6 +13,9 @@ export interface MonthViewOptions extends CalendarFooterOptions {
   locale: string;
   activeMonth: number | undefined;
   focusedMonth: number;
+  year: number;
+  min: Date | null;
+  max: Date | null;
   yearNavigation: CalendarNavigationOptions;
 }
 
@@ -21,6 +24,7 @@ export const renderMonthView = (options: MonthViewOptions): CalendarViewTemplate
     <div class="period-selector" part="month-grid">
       ${getMonthNames(options.locale, 'short').map((month, index) => renderCalendarItem({
         active: options.activeMonth === index,
+        disabled: !isMonthInRange(options.year, index, options.min, options.max),
         kind: 'month',
         label: month,
         tabbable: index === options.focusedMonth,

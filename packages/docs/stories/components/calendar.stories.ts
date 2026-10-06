@@ -49,8 +49,42 @@ export const Default: Story = {
   render: args => generateTemplate({ args }),
 };
 
+export const MinDate: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('calendar', 'min-date'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-calendar
+      min="2026-12-15"
+      value="2026-12-24"
+    ></syn-calendar>
+  `,
+};
+
+export const MaxDate: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('calendar', 'max-date'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-calendar
+      max="2026-12-31"
+      value="2026-12-24"
+    ></syn-calendar>
+  `,
+};
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
+  MinDate,
+  MaxDate,
 }, 100);
 /* eslint-enable sort-keys */

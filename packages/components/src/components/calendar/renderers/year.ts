@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { isYearInRange } from '../utils.js';
 import {
   type CalendarFooterOptions,
   type CalendarNavigationOptions,
@@ -12,6 +13,8 @@ export interface YearViewOptions extends CalendarFooterOptions {
   blockStart: number;
   focusedYear: number;
   activeYear: number | undefined;
+  min: Date | null;
+  max: Date | null;
   navigation: CalendarNavigationOptions;
 }
 
@@ -20,6 +23,7 @@ export const renderYearView = (options: YearViewOptions): CalendarViewTemplates 
     <div class="period-selector" part="year-grid">
       ${Array.from({ length: 12 }, (_, index) => options.blockStart + index).map(year => renderCalendarItem({
         active: options.activeYear === year,
+        disabled: !isYearInRange(year, options.min, options.max),
         kind: 'year',
         label: year,
         tabbable: year === options.focusedYear,

@@ -56,6 +56,7 @@ export interface CalendarViewTemplates {
 
 export interface CalendarFooterOptions {
   hasValue: boolean;
+  currentDisabled?: boolean;
   onClear: () => void;
   onCurrent: () => void;
 }
@@ -67,6 +68,8 @@ export interface CalendarNavigationOptions {
   onPrevious: () => void;
   onNext: () => void;
   onChoose?: () => void;
+  previousDisabled?: boolean;
+  nextDisabled?: boolean;
 }
 
 export const renderCalendarNavigation = (options: CalendarNavigationOptions) => html`
@@ -77,6 +80,7 @@ export const renderCalendarNavigation = (options: CalendarNavigationOptions) => 
     name="previous-page"
     part="previous-button"
     size="medium"
+    ?disabled=${!!options.previousDisabled}
   ></syn-icon-button>
   ${options.onChoose ? html`
     <syn-button @click=${options.onChoose} part="navigation-label" size="medium" variant="text">
@@ -90,12 +94,18 @@ export const renderCalendarNavigation = (options: CalendarNavigationOptions) => 
     name="next-page"
     part="next-button"
     size="medium"
+    ?disabled=${!!options.nextDisabled}
   ></syn-icon-button>
 `;
 
 export const renderCalendarFooter = (label: string, options: CalendarFooterOptions) => html`
   <div class="selection-wrapper">
-    <syn-button @click=${options.onCurrent} part="current-period-button" variant="text">
+    <syn-button
+      @click=${options.onCurrent}
+      ?disabled=${!!options.currentDisabled}
+      part="current-period-button"
+      variant="text"
+    >
       ${label}
     </syn-button>
     <syn-button

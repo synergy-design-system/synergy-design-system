@@ -13,11 +13,14 @@ import { LocalizeController } from '../../utilities/localize.js';
 import {
   addDays,
   addMonths,
-  addYears,
   createDate,
   getMonthLabel,
+  getNearestDateInRange,
   getYearBlockStart,
+  isDateInRange,
+  isMonthInRange,
   isSameMonth,
+  isYearInRange,
   parseIsoDate,
   toIsoDate,
   today,
@@ -88,6 +91,12 @@ export default class SynCalendar extends SynergyElement {
    * The selected date as an ISO `YYYY-MM-DD` string, or an empty string when unset.
    */
   @property() value = '';
+
+  /** The first selectable date, inclusive, as an ISO `YYYY-MM-DD` string. */
+  @property() min = '';
+
+  /** The last selectable date, inclusive, as an ISO `YYYY-MM-DD` string. */
+  @property() max = '';
 
   /**
    * Gets or sets the selected value as a UTC date-only `Date`.
@@ -163,9 +172,178 @@ export default class SynCalendar extends SynergyElement {
     if (changedProperties.has('value')) {
       const valueDate = parseIsoDate(this.value);
 
-      if (valueDate) {
+      if (valueDate && this.#isDateSelectable(valueDate)) {
         this.#setViewDate(valueDate);
       }
+    }
+
+    if (changedProperties.has('value') || changedProperties.has('min') || changedProperties.has('max')) {
+      this.#normalizeFocusToRange();
+    }
+  }
+
+  #getBounds() {
+    return {
+      max: parseIsoDate(this.max),
+      min: parseIsoDate(this.min),
+    };
+  }
+
+  #isDateSelectable(date: Date) {
+    const { max, min } = this.#getBounds();
+    return isDateInRange(date, min, max);
+  }
+
+  #isMonthSelectable(year: number, month: number) {
+    const { max, min } = this.#getBounds();
+    return isMonthInRange(year, month, min, max);
+  }
+
+  #isYearSelectable(year: number) {
+    const { max, min } = this.#getBounds();
+    return isYearInRange(year, min, max);
+  }
+
+  #isMonthNavigationDisabled(year: number, month: number, offset: -1 | 1) {
+    if (!this.#hasSelectableDates()) {
+      return true;
+    }
+
+    const { max, min } = this.#getBounds();
+    const targetMonth = year * 12 + month + offset;
+
+    return offset < 0
+      ? !!min && targetMonth < min.getUTCFullYear() * 12 + min.getUTCMonth()
+      : !!max && targetMonth > max.getUTCFullYear() * 12 + max.getUTCMonth();
+  }
+
+  #isYearNavigationDisabled(year: number, offset: -1 | 1) {
+    if (!this.#hasSelectableDates()) {
+      return true;
+    }
+
+    const { max, min } = this.#getBounds();
+
+    const targetYear = year + offset;
+
+    return offset < 0
+      ? !!min && targetYear < min.getUTCFullYear()
+      : !!max && targetYear > max.getUTCFullYear();
+  }
+
+  #isYearBlockNavigationDisabled(blockStart: number, offset: -12 | 12) {
+    if (!this.#hasSelectableDates()) {
+      return true;
+    }
+
+    const { max, min } = this.#getBounds();
+
+    const targetBlockStart = blockStart + offset;
+
+    return offset < 0
+      ? !!min && targetBlockStart + 11 < min.getUTCFullYear()
+      : !!max && targetBlockStart > max.getUTCFullYear();
+  }
+
+  #hasSelectableDates() {
+    const { max, min } = this.#getBounds();
+    return !(min && max && min.getTime() > max.getTime());
+  }
+
+  #getFirstSelectableDateInMonth(year: number, month: number) {
+    const firstOfMonth = createDate(year, month, 1);
+    const { max, min } = this.#getBounds();
+    const nearestDate = getNearestDateInRange(firstOfMonth, min, max);
+
+    return nearestDate && isSameMonth(nearestDate, firstOfMonth) ? nearestDate : null;
+  }
+
+  #getMonthForYear(year: number, preferredMonth: number) {
+    const months = Array.from({ length: 12 }, (_, month) => month)
+      .filter(month => this.#isMonthSelectable(year, month));
+
+    return months.sort((a, b) => (
+      Math.abs(a - preferredMonth) - Math.abs(b - preferredMonth)
+    ))[0];
+  }
+
+  #getSelectableYear(blockStart: number, preferredYear: number) {
+    return Array.from({ length: 12 }, (_, index) => blockStart + index)
+      .filter(year => this.#isYearSelectable(year))
+      .sort((a, b) => Math.abs(a - preferredYear) - Math.abs(b - preferredYear))[0];
+  }
+
+  #moveViewYear(offset: -1 | 1) {
+    const currentYear = this.viewDate.getUTCFullYear();
+
+    if (this.#isYearNavigationDisabled(currentYear, offset)) {
+      return;
+    }
+
+    this.#setViewMonth(createDate(currentYear + offset, this.viewDate.getUTCMonth(), 1));
+  }
+
+  #moveMonthSelectorYear(offset: -1 | 1) {
+    if (this.#isYearNavigationDisabled(this.monthSelectorYear, offset)) {
+      return;
+    }
+
+    const year = this.monthSelectorYear + offset;
+    const month = this.#getMonthForYear(year, this.focusedMonth);
+    this.monthSelectorYear = year;
+
+    if (typeof month === 'number') {
+      this.focusedMonth = month;
+      this.#restoreMonthFocus = true;
+    }
+  }
+
+  #normalizeFocusToRange() {
+    const { max, min } = this.#getBounds();
+    this.#normalizeDayFocus(min, max);
+    this.#normalizeMonthFocus(min, max);
+    this.#normalizeYearFocus(min, max);
+  }
+
+  #normalizeDayFocus(min: Date | null, max: Date | null) {
+    const nearestDate = getNearestDateInRange(this.focusedDate, min, max);
+
+    if (nearestDate && nearestDate.getTime() !== this.focusedDate.getTime()) {
+      this.#setViewDate(nearestDate);
+    }
+
+    if (this.visibleView === 'day' && nearestDate) {
+      this.#restoreDayFocus = true;
+    }
+  }
+
+  #normalizeMonthFocus(min: Date | null, max: Date | null) {
+    const nearestMonth = getNearestDateInRange(
+      createDate(this.monthSelectorYear, this.focusedMonth, 1),
+      min,
+      max,
+    );
+
+    if (nearestMonth) {
+      this.monthSelectorYear = nearestMonth.getUTCFullYear();
+      this.focusedMonth = nearestMonth.getUTCMonth();
+    }
+
+    if (this.visibleView === 'month' && nearestMonth) {
+      this.#restoreMonthFocus = true;
+    }
+  }
+
+  #normalizeYearFocus(min: Date | null, max: Date | null) {
+    const nearestYear = getNearestDateInRange(createDate(this.focusedYear, 0, 1), min, max);
+
+    if (nearestYear) {
+      this.focusedYear = nearestYear.getUTCFullYear();
+      this.yearBlockStart = getYearBlockStart(this.focusedYear);
+    }
+
+    if (this.visibleView === 'year' && nearestYear) {
+      this.#restoreYearFocus = true;
     }
   }
 
@@ -183,7 +361,16 @@ export default class SynCalendar extends SynergyElement {
    * @param date A date within the month to set as the currently viewed month.
    */
   #setViewMonth(date: Date) {
-    this.#setViewDate(createDate(date.getUTCFullYear(), date.getUTCMonth(), 1));
+    const year = date.getUTCFullYear();
+    const requestedMonth = date.getUTCMonth();
+    const month = this.#isMonthSelectable(year, requestedMonth)
+      ? requestedMonth
+      : this.#getMonthForYear(year, requestedMonth);
+    const visibleMonth = typeof month === 'number' ? month : requestedMonth;
+    const firstSelectableDate = this.#getFirstSelectableDateInMonth(year, visibleMonth);
+
+    this.viewDate = createDate(year, visibleMonth, 1);
+    this.focusedDate = firstSelectableDate ?? this.viewDate;
   }
 
   /**
@@ -283,7 +470,18 @@ export default class SynCalendar extends SynergyElement {
     }
 
     event.preventDefault();
-    this.#setViewDate(addDays(day, dayOffset));
+    const { max, min } = this.#getBounds();
+    const nextDate = getNearestDateInRange(addDays(day, dayOffset), min, max);
+
+    if (!nextDate || !this.#isDateSelectable(nextDate)) {
+      return;
+    }
+
+    if (isSameMonth(nextDate, day) && nextDate.getTime() === day.getTime()) {
+      return;
+    }
+
+    this.#setViewDate(nextDate);
     this.#restoreDayFocus = true;
   }
 
@@ -292,6 +490,10 @@ export default class SynCalendar extends SynergyElement {
    * @param month The month to open (0-11).
    */
   #openMonth(month: number) {
+    if (!this.#isMonthSelectable(this.monthSelectorYear, month)) {
+      return;
+    }
+
     this.#setViewMonth(createDate(this.monthSelectorYear, month, 1));
     this.#showDayView();
   }
@@ -304,9 +506,16 @@ export default class SynCalendar extends SynergyElement {
     const viewedYear = this.viewDate.getUTCFullYear();
 
     this.monthSelectorYear = viewedYear;
-    this.focusedMonth = valueDate?.getUTCFullYear() === viewedYear
+    const preferredMonth = valueDate
+      && this.#isDateSelectable(valueDate)
+      && valueDate.getUTCFullYear() === viewedYear
       ? valueDate.getUTCMonth()
       : this.viewDate.getUTCMonth();
+    const selectableMonth = this.#getMonthForYear(viewedYear, preferredMonth);
+
+    if (typeof selectableMonth === 'number') {
+      this.focusedMonth = selectableMonth;
+    }
     this.visibleView = 'month';
     this.#restoreMonthFocus = true;
   }
@@ -317,7 +526,7 @@ export default class SynCalendar extends SynergyElement {
   #showDayView() {
     const valueDate = this.valueAsDate;
 
-    if (valueDate && isSameMonth(valueDate, this.viewDate)) {
+    if (valueDate && this.#isDateSelectable(valueDate) && isSameMonth(valueDate, this.viewDate)) {
       this.focusedDate = valueDate;
     }
 
@@ -338,9 +547,17 @@ export default class SynCalendar extends SynergyElement {
     if (valueDate) {
       const valueYear = valueDate.getUTCFullYear();
 
-      if (valueYear >= this.yearBlockStart && valueYear < this.yearBlockStart + 12) {
+      if (valueYear >= this.yearBlockStart
+        && valueYear < this.yearBlockStart + 12
+        && this.#isYearSelectable(valueYear)) {
         this.focusedYear = valueYear;
       }
+    }
+
+    const selectableYear = this.#getSelectableYear(this.yearBlockStart, this.focusedYear);
+
+    if (typeof selectableYear === 'number') {
+      this.focusedYear = selectableYear;
     }
 
     this.visibleView = 'year';
@@ -352,7 +569,17 @@ export default class SynCalendar extends SynergyElement {
    * @param year The year to open.
    */
   #openYear(year: number) {
-    this.#setViewMonth(createDate(year, this.viewDate.getUTCMonth(), 1));
+    if (!this.#isYearSelectable(year)) {
+      return;
+    }
+
+    const month = this.#getMonthForYear(year, this.viewDate.getUTCMonth());
+
+    if (typeof month !== 'number') {
+      return;
+    }
+
+    this.#setViewMonth(createDate(year, month, 1));
     this.#showDayView();
   }
 
@@ -360,9 +587,22 @@ export default class SynCalendar extends SynergyElement {
    * Pages the year block by a given offset.
    * @param offset The number of years to offset the year block by.
    */
-  #pageYears(offset: number) {
-    this.yearBlockStart += offset;
-    this.focusedYear += offset;
+  #pageYears(offset: -12 | 12) {
+    const nextBlock = this.yearBlockStart + offset;
+
+    if (this.#isYearBlockNavigationDisabled(this.yearBlockStart, offset)) {
+      return;
+    }
+
+    const nextYear = this.#getSelectableYear(nextBlock, this.focusedYear + offset);
+    this.yearBlockStart = nextBlock;
+
+    if (typeof nextYear === 'number') {
+      this.focusedYear = nextYear;
+      this.#restoreYearFocus = true;
+    } else {
+      this.focusedYear = offset > 0 ? nextBlock : nextBlock + 11;
+    }
   }
 
   /**
@@ -384,7 +624,14 @@ export default class SynCalendar extends SynergyElement {
     }
 
     event.preventDefault();
-    this.focusedYear = year + offset;
+    const { max, min } = this.#getBounds();
+    const nextDate = getNearestDateInRange(createDate(year + offset, 0, 1), min, max);
+
+    if (!nextDate || !this.#isYearSelectable(nextDate.getUTCFullYear())) {
+      return;
+    }
+
+    this.focusedYear = nextDate.getUTCFullYear();
     this.yearBlockStart = getYearBlockStart(this.focusedYear);
     this.#restoreYearFocus = true;
   }
@@ -408,7 +655,17 @@ export default class SynCalendar extends SynergyElement {
     }
 
     event.preventDefault();
-    const date = addMonths(createDate(this.monthSelectorYear, month, 1), offset);
+    const { max, min } = this.#getBounds();
+    const date = getNearestDateInRange(
+      addMonths(createDate(this.monthSelectorYear, month, 1), offset),
+      min,
+      max,
+    );
+
+    if (!date || !this.#isMonthSelectable(date.getUTCFullYear(), date.getUTCMonth())) {
+      return;
+    }
+
     this.monthSelectorYear = date.getUTCFullYear();
     this.focusedMonth = date.getUTCMonth();
     this.#restoreMonthFocus = true;
@@ -434,16 +691,27 @@ export default class SynCalendar extends SynergyElement {
   #handleGridClick(event: MouseEvent) {
     const button = this.#getCalendarItem(event);
 
-    if (!button || button.dataset.value === undefined) {
+    if (!button || button.disabled || button.dataset.value === undefined) {
       return;
     }
 
-    if (button.dataset.kind === 'day') {
-      this.#setValueFromUser(button.dataset.value);
-    } else if (button.dataset.kind === 'month') {
-      this.#openMonth(Number(button.dataset.value));
-    } else if (button.dataset.kind === 'year') {
-      this.#openYear(Number(button.dataset.value));
+    switch (button.dataset.kind) {
+      case 'day': {
+        const date = parseIsoDate(button.dataset.value);
+
+        if (date && this.#isDateSelectable(date)) {
+          this.#setValueFromUser(button.dataset.value);
+        }
+        break;
+      }
+      case 'month':
+        this.#openMonth(Number(button.dataset.value));
+        break;
+      case 'year':
+        this.#openYear(Number(button.dataset.value));
+        break;
+      default:
+        break;
     }
   }
 
@@ -454,7 +722,7 @@ export default class SynCalendar extends SynergyElement {
   #handleGridKeydown(event: KeyboardEvent) {
     const button = this.#getCalendarItem(event);
 
-    if (!button) {
+    if (!button || button.disabled) {
       return;
     }
 
@@ -489,7 +757,12 @@ export default class SynCalendar extends SynergyElement {
    * Shows the current period (day, month, or year) based on the visible view.
    */
   #showCurrentPeriod() {
-    const current = today();
+    const { max, min } = this.#getBounds();
+    const current = getNearestDateInRange(today(), min, max);
+
+    if (!current) {
+      return;
+    }
 
     switch (this.visibleView) {
       case 'day':
@@ -499,7 +772,8 @@ export default class SynCalendar extends SynergyElement {
 
       case 'month':
         this.monthSelectorYear = current.getUTCFullYear();
-        this.focusedMonth = current.getUTCMonth();
+        this.focusedMonth = this.#getMonthForYear(current.getUTCFullYear(), current.getUTCMonth())
+          ?? current.getUTCMonth();
         this.#restoreMonthFocus = true;
         break;
 
@@ -514,6 +788,7 @@ export default class SynCalendar extends SynergyElement {
 
   #renderView() {
     const footer = {
+      currentDisabled: !this.#hasSelectableDates(),
       hasValue: !!this.value,
       onClear: () => this.#setValueFromUser('', true),
       onCurrent: () => this.#showCurrentPeriod(),
@@ -525,12 +800,16 @@ export default class SynCalendar extends SynergyElement {
         activeYear: this.valueAsDate?.getUTCFullYear(),
         blockStart: this.yearBlockStart,
         focusedYear: this.focusedYear,
+        max: this.#getBounds().max,
+        min: this.#getBounds().min,
         navigation: {
           label: `${this.yearBlockStart} - ${this.yearBlockStart + 11}`,
+          nextDisabled: this.#isYearBlockNavigationDisabled(this.yearBlockStart, 12),
           nextLabel: 'Next 12 years',
           onChoose: () => this.#showDayView(),
           onNext: () => this.#pageYears(12),
           onPrevious: () => this.#pageYears(-12),
+          previousDisabled: this.#isYearBlockNavigationDisabled(this.yearBlockStart, -12),
           previousLabel: 'Previous 12 years',
         },
       });
@@ -540,22 +819,28 @@ export default class SynCalendar extends SynergyElement {
       label: this.visibleView === 'month'
         ? this.monthSelectorYear
         : this.viewDate.getUTCFullYear(),
+      nextDisabled: this.visibleView === 'month'
+        ? this.#isYearNavigationDisabled(this.monthSelectorYear, 1)
+        : this.#isYearNavigationDisabled(this.viewDate.getUTCFullYear(), 1),
       nextLabel: 'Next year',
       onChoose: () => this.#showYearSelector(),
       onNext: () => {
         if (this.visibleView === 'month') {
-          this.monthSelectorYear += 1;
+          this.#moveMonthSelectorYear(1);
         } else {
-          this.#setViewMonth(addYears(this.viewDate, 1));
+          this.#moveViewYear(1);
         }
       },
       onPrevious: () => {
         if (this.visibleView === 'month') {
-          this.monthSelectorYear -= 1;
+          this.#moveMonthSelectorYear(-1);
         } else {
-          this.#setViewMonth(addYears(this.viewDate, -1));
+          this.#moveViewYear(-1);
         }
       },
+      previousDisabled: this.visibleView === 'month'
+        ? this.#isYearNavigationDisabled(this.monthSelectorYear, -1)
+        : this.#isYearNavigationDisabled(this.viewDate.getUTCFullYear(), -1),
       previousLabel: 'Previous year',
     };
 
@@ -567,6 +852,9 @@ export default class SynCalendar extends SynergyElement {
           : undefined,
         focusedMonth: this.focusedMonth,
         locale: this.localize.lang(),
+        max: this.#getBounds().max,
+        min: this.#getBounds().min,
+        year: this.monthSelectorYear,
         yearNavigation,
       });
     }
@@ -575,14 +863,24 @@ export default class SynCalendar extends SynergyElement {
       ...footer,
       focusedDate: this.focusedDate,
       locale: this.localize.lang(),
+      max: this.#getBounds().max,
+      min: this.#getBounds().min,
       monthNavigation: {
         label: getMonthLabel(this.viewDate),
+        nextDisabled: this.#isMonthNavigationDisabled(
+          this.viewDate.getUTCFullYear(),
+          this.viewDate.getUTCMonth(),
+          1,
+        ),
         nextLabel: 'Next month',
-        onChoose: () => {
-          this.#showMonthSelector();
-        },
+        onChoose: () => this.#showMonthSelector(),
         onNext: () => this.#setViewMonth(addMonths(this.viewDate, 1)),
         onPrevious: () => this.#setViewMonth(addMonths(this.viewDate, -1)),
+        previousDisabled: this.#isMonthNavigationDisabled(
+          this.viewDate.getUTCFullYear(),
+          this.viewDate.getUTCMonth(),
+          -1,
+        ),
         previousLabel: 'Previous month',
       },
       valueDate: this.valueAsDate,

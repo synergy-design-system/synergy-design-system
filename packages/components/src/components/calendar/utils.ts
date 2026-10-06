@@ -213,9 +213,63 @@ export const clampDate = (date: Date, min?: Date | null, max?: Date | null) => {
  * @returns True if the date is within the boundaries
  */
 export const isDateInRange = (date: Date, min?: Date | null, max?: Date | null) => (
-  (!isValidDate(min) || date.getTime() >= min.getTime())
+  (!isValidDate(min) || !isValidDate(max) || min.getTime() <= max.getTime())
+  && (!isValidDate(min) || date.getTime() >= min.getTime())
   && (!isValidDate(max) || date.getTime() <= max.getTime())
 );
+
+/**
+ * Checks whether a month contains at least one date inside the given boundaries.
+ * @param year The full year
+ * @param month The zero based month
+ * @param min The lower boundary or null for no boundary
+ * @param max The upper boundary or null for no boundary
+ * @returns True if at least one day in the month is in range
+ */
+export const isMonthInRange = (year: number, month: number, min?: Date | null, max?: Date | null) => {
+  const firstDay = createDate(year, month, 1);
+  const lastDay = createDate(year, month + 1, 0);
+
+  return (!isValidDate(min) || !isValidDate(max) || min.getTime() <= max.getTime())
+    && (!isValidDate(min) || lastDay.getTime() >= min.getTime())
+    && (!isValidDate(max) || firstDay.getTime() <= max.getTime());
+};
+
+/**
+ * Checks whether a year contains at least one date inside the given boundaries.
+ * @param year The full year
+ * @param min The lower boundary or null for no boundary
+ * @param max The upper boundary or null for no boundary
+ * @returns True if at least one day in the year is in range
+ */
+export const isYearInRange = (year: number, min?: Date | null, max?: Date | null) => (
+  (!isValidDate(min) || !isValidDate(max) || min.getTime() <= max.getTime())
+  && (!isValidDate(min) || createDate(year, 11, 31).getTime() >= min.getTime())
+  && (!isValidDate(max) || createDate(year, 0, 1).getTime() <= max.getTime())
+);
+
+/**
+ * Clamps a date to the nearest boundary, or returns null when the range is empty.
+ * @param date The date to clamp
+ * @param min The lower boundary or null for no boundary
+ * @param max The upper boundary or null for no boundary
+ * @returns The nearest in-range date, or null if no dates are selectable
+ */
+export const getNearestDateInRange = (date: Date, min?: Date | null, max?: Date | null) => {
+  if (isValidDate(min) && isValidDate(max) && min.getTime() > max.getTime()) {
+    return null;
+  }
+
+  if (isValidDate(min) && date.getTime() < min.getTime()) {
+    return min;
+  }
+
+  if (isValidDate(max) && date.getTime() > max.getTime()) {
+    return max;
+  }
+
+  return date;
+};
 
 /**
  * Gets the first day of the week for the given locale.

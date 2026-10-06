@@ -4641,6 +4641,26 @@
           "type": "text"
         }
       },
+      "min-date": {
+        "title": {
+          "value": "Minimum Date",
+          "type": "text"
+        },
+        "description": {
+          "value": "The `min` attribute sets the earliest selectable date in the calendar. Dates before this will be visible but not selectable.",
+          "type": "text"
+        }
+      },
+      "max-date": {
+        "title": {
+          "value": "Maximum Date",
+          "type": "text"
+        },
+        "description": {
+          "value": "The `max` attribute sets the latest selectable date in the calendar. Dates after this will be visible but not selectable.",
+          "type": "text"
+        }
+      },
       "current-date": {
         "title": {
           "value": "Current Date",

@@ -1,12 +1,12 @@
 {
   "encoding": "o200k_base",
-  "generatedAt": "2026-10-05T05:51:01.635Z",
+  "generatedAt": "2026-10-06T13:52:58.777Z",
   "source": "current-worktree",
   "version": 1,
   "watermarks": [
     {
       "id": "catalog:tools-list",
-      "tokens": 3934
+      "tokens": 3937
     },
     {
       "id": "catalog:resources-list",
@@ -50,11 +50,11 @@
     },
     {
       "id": "component-info:interface:syn-input",
-      "tokens": 3037
+      "tokens": 3036
     },
     {
       "id": "component-info:interface:syn-combobox",
-      "tokens": 2447
+      "tokens": 2577
     },
     {
       "id": "styles-info:syn-body",

@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/angular",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-angular-3.27.0-cbe6c3d6-127c-465d-86a0-c716e53ac63e",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-angular-3.27.0-071a90b4-f696-4851-89b1-80ac341b3e54",
   "creationInfo": {
-    "created": "2026-10-05T08:49:47Z",
+    "created": "2026-10-06T13:52:58Z",
     "creators": [
       "Tool: pnpm"
     ]

@@ -5,7 +5,7 @@ export default css`
     display: inline-flex;
   }
 
-  .date-picker {
+  .calendar {
     --container-padding-block: var(--syn-spacing-medium);
     --container-padding-inline: var(--syn-spacing-small);
     --syn-date-picker-min-width: 388px;
@@ -133,8 +133,8 @@ export default css`
     visibility: hidden;
   }
 
-  .date-picker--view-month .header--year-selection,
-  .date-picker--view-year .header--year-selection {
+  .calendar--view-month .header--year-selection,
+  .calendar--view-year .header--year-selection {
     width: 100%;
   }
 
@@ -147,5 +147,4 @@ export default css`
   .period-selector .calendar-item {
     width: auto;
   }
-
 `;

@@ -4630,14 +4630,14 @@
         }
       }
     },
-    "date-picker": {
+    "calendar": {
       "default": {
         "title": {
-          "value": "Date Picker",
+          "value": "Calendar",
           "type": "text"
         },
         "description": {
-          "value": "A Date Picker renders an inline calendar that lets users select a single date or a continuous date range. It always shows the full month in context — giving users the spatial orientation of weekdays, weeks, and adjacent months before they commit to a choice.",
+          "value": "A Calendar renders an inline calendar that lets users select a single date or a continuous date range. It always shows the full month in context — giving users the spatial orientation of weekdays, weeks, and adjacent months before they commit to a choice.",
           "type": "text"
         }
       },

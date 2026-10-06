@@ -26,11 +26,11 @@ import { renderDayView } from './renderers/day.js';
 import { renderMonthView } from './renderers/month.js';
 import { renderYearView } from './renderers/year.js';
 import type { NavigationOptions } from './renderers/shared.js';
-import styles from './date-picker.styles.js';
+import styles from './calendar.styles.js';
 
 /**
- * @summary Date pickers allow users to select dates from a calendar interface.
- * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-date-picker--docs
+ * @summary Calendars allow users to select dates from a calendar interface.
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-calendar--docs
  * @status experimental
  * @since 0.0.0
  *
@@ -39,15 +39,15 @@ import styles from './date-picker.styles.js';
  *
  * @csspart base - The component's base wrapper.
  *
- * @cssproperty --syn-date-picker-min-width - The minimum width of the date picker. Defaults to 388px.
+ * @cssproperty --syn-calendar-min-width - The minimum width of the calendar. Defaults to 388px.
  *
- * @event syn-blur - Emitted when focus leaves the date picker.
+ * @event syn-blur - Emitted when focus leaves the calendar.
  * @event syn-change - Emitted when a user commits a different date value.
  * @event syn-clear - Emitted when the user clears a non-empty date value.
- * @event syn-focus - Emitted when focus enters the date picker.
+ * @event syn-focus - Emitted when focus enters the calendar.
  * @event syn-input - Emitted when a user changes the date value.
  */
-export default class SynDatePicker extends SynergyElement {
+export default class SynCalendar extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
   static dependencies = {
@@ -58,7 +58,7 @@ export default class SynDatePicker extends SynergyElement {
   private readonly localize = new LocalizeController(this);
 
   /**
-   * The currently visible view in the date picker ('month', 'year', or 'day').
+   * The currently visible view in the calendar ('month', 'year', or 'day').
    * Can be changed via user interaction, e.g. by clicking the header buttons to switch between views.
    */
   @state() private visibleView: 'month' | 'year' | 'day' = 'day';
@@ -83,13 +83,13 @@ export default class SynDatePicker extends SynergyElement {
   }
 
   /**
-   * The date currently being viewed in the date picker.
+   * The date currently being viewed in the calendar.
    * This is used to determine which month or year is displayed.
    */
   @state() private viewDate: Date = today();
 
   /**
-   * The date that currently has focus within the date picker.
+   * The date that currently has focus within the calendar.
    * This is used to manage keyboard navigation and focus restoration.
    */
   @state() private focusedDate: Date = today();
@@ -109,7 +109,7 @@ export default class SynDatePicker extends SynergyElement {
   #restoreMonthFocus = false;
 
   /**
-   * Indicates whether the date picker should restore focus to the previously focused day after a view change.
+   * Indicates whether the calendar should restore focus to the previously focused day after a view change.
    */
   #restoreDayFocus = false;
 
@@ -124,8 +124,8 @@ export default class SynDatePicker extends SynergyElement {
   }
 
   /**
-   * Sets the currently viewed date in the date picker.
-   * @param date The date to set as the currently viewed date in the date picker.
+   * Sets the currently viewed date in the calendar.
+   * @param date The date to set as the currently viewed date in the calendar.
    */
   #setViewDate(date: Date) {
     this.viewDate = date;
@@ -133,7 +133,7 @@ export default class SynDatePicker extends SynergyElement {
   }
 
   /**
-   * Sets the currently viewed month in the date picker.
+   * Sets the currently viewed month in the calendar.
    * @param date A date within the month to set as the currently viewed month.
    */
   #setViewMonth(date: Date) {
@@ -179,7 +179,7 @@ export default class SynDatePicker extends SynergyElement {
 
   /**
    * Called after the component has been updated.
-   * If the date picker should restore focus to the previously focused day, it does so here.
+   * If the calendar should restore focus to the previously focused day, it does so here.
    */
   protected updated() {
     if (this.#restoreYearFocus) {
@@ -200,7 +200,7 @@ export default class SynDatePicker extends SynergyElement {
   }
 
   /**
-   * Handles keyboard navigation within the date picker for a specific day.
+   * Handles keyboard navigation within the calendar for a specific day.
    * @param event The keyboard event triggered by the user.
    * @param day The date of the day that received the keyboard event.
    * @returns void
@@ -476,13 +476,13 @@ export default class SynDatePicker extends SynergyElement {
     return html`
       <div
         class=${classMap({
-          'date-picker': true,
-          [`date-picker--view-${this.visibleView}`]: true,
+          calendar: true,
+          [`calendar--view-${this.visibleView}`]: true,
         })}
         @focusin=${this.#handleFocusIn}
         @focusout=${this.#handleFocusOut}
-        @syn-blur=${SynDatePicker.#stopNestedFocusEvent}
-        @syn-focus=${SynDatePicker.#stopNestedFocusEvent}
+        @syn-blur=${SynCalendar.#stopNestedFocusEvent}
+        @syn-focus=${SynCalendar.#stopNestedFocusEvent}
         part="base"
       >
         <div class="header">

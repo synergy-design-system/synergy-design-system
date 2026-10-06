@@ -5,10 +5,10 @@ export default {
   accessibility: [
     'TODO',
   ],
-  component: 'syn-date-picker',
+  component: 'syn-calendar',
   related: {
     components: [
-      'syn-input',
+      'syn-date-picker',
     ],
   },
   usageGuidelines: [

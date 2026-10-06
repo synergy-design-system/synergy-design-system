@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
-import '../../../components/src/components/date-picker/date-picker.js';
+import '../../../components/src/components/calendar/calendar.js';
 import {
   generateScreenshotStory,
   generateStoryDescription,
@@ -10,26 +10,26 @@ import {
 } from '../../src/helpers/component.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
-const { args: defaultArgs, argTypes } = storybookDefaults('syn-date-picker');
-const { overrideArgs } = storybookHelpers('syn-date-picker');
-const { generateTemplate } = storybookTemplate('syn-date-picker');
+const { args: defaultArgs, argTypes } = storybookDefaults('syn-calendar');
+const { overrideArgs } = storybookHelpers('syn-calendar');
+const { generateTemplate } = storybookTemplate('syn-calendar');
 
 const meta: Meta = {
   args: overrideArgs([], defaultArgs),
   argTypes,
-  component: 'syn-date-picker',
+  component: 'syn-calendar',
   parameters: {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
     docs: {
       description: {
-        component: generateStoryDescription('date-picker', 'default'),
+        component: generateStoryDescription('calendar', 'default'),
       },
     },
   },
   tags: ['Forms'],
-  title: 'Components/syn-date-picker',
+  title: 'Components/syn-calendar',
 };
 export default meta;
 
@@ -42,7 +42,7 @@ export const Default: Story = {
     },
     docs: {
       description: {
-        story: generateStoryDescription('date-picker', 'default'),
+        story: generateStoryDescription('calendar', 'default'),
       },
     },
   },

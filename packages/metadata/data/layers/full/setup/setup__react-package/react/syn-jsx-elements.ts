@@ -15,8 +15,8 @@ import type {
   SynFocusEvent,
   SynInvalidEvent,
   SynChangeEvent,
-  SynInputEvent,
   SynClearEvent,
+  SynInputEvent,
   SynErrorEvent,
   SynInitialFocusEvent,
   SynRequestCloseEvent,
@@ -41,6 +41,7 @@ import type {
   SynBreadcrumbItem,
   SynButton,
   SynButtonGroup,
+  SynCalendar,
   SynCard,
   SynCheckbox,
   SynCheckboxGroup,
@@ -244,6 +245,55 @@ export type SynCustomElement<
  *
  * @csspart base - The component's base wrapper.
  */ export type SynButtonGroupJSXElement = SynCustomElement<SynButtonGroup, []>;
+/**
+ * @summary Calendars allow users to select dates from a calendar interface.
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-calendar--docs
+ * @status experimental
+ * @since 0.0.0
+ *
+ * @dependency syn-button
+ * @dependency syn-icon-button
+ *
+ * @csspart base - The component's base wrapper.
+ * @csspart header - The calendar header.
+ * @csspart content - The calendar view content.
+ * @csspart footer - The calendar footer actions.
+ * @csspart day-grid - The day-of-month table.
+ * @csspart month-grid - The month selection grid.
+ * @csspart year-grid - The year selection grid.
+ * @csspart calendar-item - A day, month, or year button.
+ * @csspart calendar-item-day - A day button.
+ * @csspart calendar-item-month - A month button.
+ * @csspart calendar-item-year - A year button.
+ * @csspart calendar-item-active - An active calendar item.
+ * @csspart calendar-item-today - The item representing today.
+ * @csspart calendar-item-outside - A day item belonging to an adjacent month.
+ * @csspart calendar-item-disabled - A disabled calendar item.
+ * @csspart month-navigation - The month navigation controls.
+ * @csspart year-navigation - The year navigation controls.
+ * @csspart previous-button - The previous-period navigation button.
+ * @csspart navigation-label - The current month, year, or year range in the navigation header.
+ * @csspart next-button - The next-period navigation button.
+ * @csspart current-period-button - The button for navigating to the current day, month, or year.
+ * @csspart clear-button - The button for clearing the selected value.
+ *
+ * @cssproperty --syn-calendar-min-width - The minimum width of the calendar. Defaults to 388px.
+ *
+ * @event syn-blur - Emitted when focus leaves the calendar.
+ * @event syn-change - Emitted when a user commits a different date value.
+ * @event syn-clear - Emitted when the user clears a non-empty date value.
+ * @event syn-focus - Emitted when focus enters the calendar.
+ * @event syn-input - Emitted when a user changes the date value.
+ */ export type SynCalendarJSXElement = SynCustomElement<
+  SynCalendar,
+  [
+    ['syn-blur', SynBlurEvent],
+    ['syn-change', SynChangeEvent],
+    ['syn-clear', SynClearEvent],
+    ['syn-focus', SynFocusEvent],
+    ['syn-input', SynInputEvent],
+  ]
+>;
 /**
  * @summary Cards can be used to group related subjects in a container.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-card--docs
@@ -1748,6 +1798,46 @@ declare module 'react' {
        *
        * @csspart base - The component's base wrapper.
        */ 'syn-button-group': SynButtonGroupJSXElement;
+      /**
+       * @summary Calendars allow users to select dates from a calendar interface.
+       * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-calendar--docs
+       * @status experimental
+       * @since 0.0.0
+       *
+       * @dependency syn-button
+       * @dependency syn-icon-button
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart header - The calendar header.
+       * @csspart content - The calendar view content.
+       * @csspart footer - The calendar footer actions.
+       * @csspart day-grid - The day-of-month table.
+       * @csspart month-grid - The month selection grid.
+       * @csspart year-grid - The year selection grid.
+       * @csspart calendar-item - A day, month, or year button.
+       * @csspart calendar-item-day - A day button.
+       * @csspart calendar-item-month - A month button.
+       * @csspart calendar-item-year - A year button.
+       * @csspart calendar-item-active - An active calendar item.
+       * @csspart calendar-item-today - The item representing today.
+       * @csspart calendar-item-outside - A day item belonging to an adjacent month.
+       * @csspart calendar-item-disabled - A disabled calendar item.
+       * @csspart month-navigation - The month navigation controls.
+       * @csspart year-navigation - The year navigation controls.
+       * @csspart previous-button - The previous-period navigation button.
+       * @csspart navigation-label - The current month, year, or year range in the navigation header.
+       * @csspart next-button - The next-period navigation button.
+       * @csspart current-period-button - The button for navigating to the current day, month, or year.
+       * @csspart clear-button - The button for clearing the selected value.
+       *
+       * @cssproperty --syn-calendar-min-width - The minimum width of the calendar. Defaults to 388px.
+       *
+       * @event syn-blur - Emitted when focus leaves the calendar.
+       * @event syn-change - Emitted when a user commits a different date value.
+       * @event syn-clear - Emitted when the user clears a non-empty date value.
+       * @event syn-focus - Emitted when focus enters the calendar.
+       * @event syn-input - Emitted when a user changes the date value.
+       */ 'syn-calendar': SynCalendarJSXElement;
       /**
        * @summary Cards can be used to group related subjects in a container.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-card--docs

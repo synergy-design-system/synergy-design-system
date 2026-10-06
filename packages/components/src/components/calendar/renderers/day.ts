@@ -1,9 +1,10 @@
 import { html } from 'lit';
 import {
+  type CalendarWeekday,
   getCalendarWeeks,
   getFirstDayOfWeek,
   getWeekdayNames,
-  isDateInRange,
+  isDateDisabled,
   isSameDay,
   isSameMonth,
   toIsoDate,
@@ -25,6 +26,8 @@ export interface DayViewOptions extends CalendarFooterOptions {
   valueDate: Date | null;
   min: Date | null;
   max: Date | null;
+  disabledDates: readonly string[];
+  disabledWeekdays: readonly CalendarWeekday[];
   monthNavigation: CalendarNavigationOptions;
   yearNavigation: CalendarNavigationOptions;
 }
@@ -52,7 +55,13 @@ export const renderDayView = (options: DayViewOptions): CalendarViewTemplates =>
                 <td class="day-selector__day">
                   ${renderCalendarItem({
                     active: isSameDay(day, options.valueDate),
-                    disabled: !isDateInRange(day, options.min, options.max),
+                    disabled: isDateDisabled(
+                      day,
+                      options.min,
+                      options.max,
+                      options.disabledDates,
+                      options.disabledWeekdays,
+                    ),
                     kind: 'day',
                     label: html`
                       <time datetime=${toIsoDate(day)}>

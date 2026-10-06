@@ -1,0 +1,215 @@
+{
+  "attributes": [
+    {
+      "default": "[]",
+      "description": "An array of dates that should be disabled in the calendar.\nDates should be provided as ISO `YYYY-MM-DD` strings.",
+      "fieldName": "disabledDates",
+      "name": "disabled-dates",
+      "reflects": false,
+      "type": "string[]"
+    },
+    {
+      "default": "[]",
+      "description": "Use disabled-weekdays to disable specific weekdays.\nThe attribute accepts a space-separated list of three-letter weekday names (sun, mon, tue, wed, thu, fri, sat), in any order.",
+      "fieldName": "disabledWeekdays",
+      "name": "disabled-weekdays",
+      "reflects": false,
+      "type": "Array<'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun'>"
+    },
+    {
+      "default": "''",
+      "description": "",
+      "fieldName": "max",
+      "name": "max",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "''",
+      "description": "",
+      "fieldName": "min",
+      "name": "min",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "''",
+      "description": "The selected date as an ISO `YYYY-MM-DD` string, or an empty string when unset.",
+      "fieldName": "value",
+      "name": "value",
+      "reflects": false,
+      "type": "string"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "A day, month, or year button.",
+      "name": "calendar-item"
+    },
+    {
+      "description": "An active calendar item.",
+      "name": "calendar-item-active"
+    },
+    {
+      "description": "A day button.",
+      "name": "calendar-item-day"
+    },
+    {
+      "description": "A disabled calendar item.",
+      "name": "calendar-item-disabled"
+    },
+    {
+      "description": "A month button.",
+      "name": "calendar-item-month"
+    },
+    {
+      "description": "A day item belonging to an adjacent month.",
+      "name": "calendar-item-outside"
+    },
+    {
+      "description": "The item representing today.",
+      "name": "calendar-item-today"
+    },
+    {
+      "description": "A year button.",
+      "name": "calendar-item-year"
+    },
+    {
+      "description": "The button for clearing the selected value.",
+      "name": "clear-button"
+    },
+    {
+      "description": "The calendar view content.",
+      "name": "content"
+    },
+    {
+      "description": "The button for navigating to the current day, month, or year.",
+      "name": "current-period-button"
+    },
+    {
+      "description": "The day-of-month table.",
+      "name": "day-grid"
+    },
+    {
+      "description": "The calendar footer actions.",
+      "name": "footer"
+    },
+    {
+      "description": "The calendar header.",
+      "name": "header"
+    },
+    {
+      "description": "The month selection grid.",
+      "name": "month-grid"
+    },
+    {
+      "description": "The month navigation controls.",
+      "name": "month-navigation"
+    },
+    {
+      "description": "The current month, year, or year range in the navigation header.",
+      "name": "navigation-label"
+    },
+    {
+      "description": "The next-period navigation button.",
+      "name": "next-button"
+    },
+    {
+      "description": "The previous-period navigation button.",
+      "name": "previous-button"
+    },
+    {
+      "description": "The year selection grid.",
+      "name": "year-grid"
+    },
+    {
+      "description": "The year navigation controls.",
+      "name": "year-navigation"
+    }
+  ],
+  "dependencies": [
+    "syn-button",
+    "syn-icon-button"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-calendar--docs",
+  "events": [
+    {
+      "description": "Emitted when focus leaves the calendar.",
+      "name": "syn-blur",
+      "type": "SynBlurEvent"
+    },
+    {
+      "description": "Emitted when a user commits a different date value.",
+      "name": "syn-change",
+      "type": "SynChangeEvent"
+    },
+    {
+      "description": "Emitted when the user clears a non-empty date value.",
+      "name": "syn-clear",
+      "type": "SynClearEvent"
+    },
+    {
+      "description": "Emitted when focus enters the calendar.",
+      "name": "syn-focus",
+      "type": "SynFocusEvent"
+    },
+    {
+      "description": "Emitted when a user changes the date value.",
+      "name": "syn-input",
+      "type": "SynInputEvent"
+    }
+  ],
+  "methods": [],
+  "properties": [
+    {
+      "access": "public",
+      "default": "[]",
+      "description": "An array of dates that should be disabled in the calendar.\nDates should be provided as ISO `YYYY-MM-DD` strings.",
+      "name": "disabledDates",
+      "type": "string[]"
+    },
+    {
+      "access": "public",
+      "default": "[]",
+      "description": "Use disabled-weekdays to disable specific weekdays.\nThe attribute accepts a space-separated list of three-letter weekday names (sun, mon, tue, wed, thu, fri, sat), in any order.",
+      "name": "disabledWeekdays",
+      "type": "Array<'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun'>"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "",
+      "name": "max",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "",
+      "name": "min",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The selected date as an ISO `YYYY-MM-DD` string, or an empty string when unset.",
+      "name": "value",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "Sets the selected value as a UTC date-only `Date`.",
+      "name": "valueAsDate"
+    }
+  ],
+  "since": "0.0.0",
+  "slots": [],
+  "sourceModulePath": "components/calendar/calendar.js",
+  "status": "experimental",
+  "summary": "Calendars allow users to select dates from a calendar interface.",
+  "tagName": "syn-calendar"
+}

@@ -81,10 +81,41 @@ export const MaxDate: Story = {
   `,
 };
 
+export const DisabledWeekDays: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('calendar', 'disabled-weekdays'),
+      },
+    },
+  },
+  render: () => html`
+  <syn-calendar
+    disabled-weekdays="sat sun"
+    value="2026-10-06"
+  ></syn-calendar>`,
+};
+
+export const DisabledDates: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('calendar', 'disabled-dates'),
+      },
+    },
+  },
+  render: () => html`<syn-calendar
+    disabled-dates="2026-12-25"
+    value="2026-12-24"
+  ></syn-calendar>`,
+};
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   MinDate,
   MaxDate,
+  DisabledWeekDays,
+  DisabledDates,
 }, 100);
 /* eslint-enable sort-keys */

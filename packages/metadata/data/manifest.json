@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-29T09:46:28.418Z",
+  "builtAt": "2026-10-06T13:45:59.889Z",
   "sources": [
     {
       "entityCount": 4,
@@ -12,7 +12,7 @@
       "status": "success"
     },
     {
-      "entityCount": 59,
+      "entityCount": 60,
       "source": "components",
       "status": "success"
     },

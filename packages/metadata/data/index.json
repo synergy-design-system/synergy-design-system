@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-09-29T09:46:28.418Z",
+  "builtAt": "2026-10-06T13:45:59.888Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset__sick2018-icons.json",
@@ -258,6 +258,28 @@
         "component",
         "react",
         "syn-button-group",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component__syn-calendar.json",
+      "id": "component:syn-calendar",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 9,
+        "interface": 2,
+        "rules": 1
+      },
+      "name": "syn-calendar",
+      "search": [
+        "component:syn-calendar",
+        "syn-calendar",
+        "angular",
+        "calendar",
+        "component",
+        "react",
+        "syn-calendar",
         "vue"
       ]
     },

@@ -4681,6 +4681,26 @@
           "type": "text"
         }
       },
+      "disabled-dates": {
+        "title": {
+          "value": "Disabled dates",
+          "type": "text"
+        },
+        "description": {
+          "value": "The `disabled-dates` attribute accepts a whitespace-separated list of ISO dates. Dates remain visible in the calendar but cannot be selected. This example disables Christmas Day 2026 while keeping December 24 selected.",
+          "type": "text"
+        }
+      },
+      "disabled-weekdays": {
+        "title": {
+          "value": "Disabled weekdays",
+          "type": "text"
+        },
+        "description": {
+          "value": "The `disabled-weekdays` attribute accepts a whitespace-separated list of three-letter weekday values. This example disables Saturday and Sunday while keeping October 6, 2026 selected.",
+          "type": "text"
+        }
+      },
       "year-month-selection": {
         "title": {
           "value": "Year and Month Selection",

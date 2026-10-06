@@ -1,0 +1,187 @@
+{
+  "custom": {
+    "frameworks": {
+      "angular": {
+        "componentName": "SynCalendarComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-calendar",
+        "sourcePath": "packages/angular/components/calendar/calendar.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynCalendar",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-calendar--docs",
+          "events": [
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-change",
+              "type": "SynChangeEvent"
+            },
+            {
+              "name": "syn-clear",
+              "type": "SynClearEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            },
+            {
+              "name": "syn-input",
+              "type": "SynInputEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "0.0.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "experimental",
+          "subpathExport": "./types/latest",
+          "typeName": "SynCalendarJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynCalendar",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/calendar.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueCalendar",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueCalendar.vue"
+      }
+    },
+    "rules": {
+      "accessibility": [
+        "TODO"
+      ],
+      "component": "syn-calendar",
+      "related": {
+        "components": [
+          "syn-date-picker"
+        ]
+      },
+      "usageGuidelines": [
+        {
+          "content": [
+            "TODO"
+          ],
+          "id": "Behavior",
+          "name": "Behavior"
+        },
+        {
+          "content": [
+            "TODO"
+          ],
+          "id": "content",
+          "name": "Content"
+        }
+      ],
+      "useCases": [
+        "TODO"
+      ]
+    },
+    "sourceModulePath": "components/calendar/calendar.js",
+    "summary": "Calendars allow users to select dates from a calendar interface."
+  },
+  "id": "component:syn-calendar",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-calendar.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-calendar/angular/calendar.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-calendar/components/calendar.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-calendar/components/calendar.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-calendar/components/calendar.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-calendar/components/implementation-details.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-calendar/components/utils.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-calendar/react/calendar.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-calendar/vue/SynVueCalendar.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-calendar/react/SynCalendarJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component__syn-calendar.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component__syn-calendar.md"
+      }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component__syn-calendar.md"
+      }
+    ]
+  },
+  "name": "syn-calendar",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-button",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-icon-button",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "0.0.0",
+  "sources": [
+    "packages/angular/components/calendar/calendar.component.ts",
+    "packages/components/src/components/calendar/calendar.component.ts",
+    "packages/components/src/components/calendar/calendar.styles.ts",
+    "packages/components/src/components/calendar/calendar.ts",
+    "packages/components/src/components/calendar/implementation-details.md",
+    "packages/components/src/components/calendar/utils.ts",
+    "packages/react/src/components/calendar.ts",
+    "packages/vue/src/components/SynVueCalendar.vue"
+  ],
+  "status": "experimental",
+  "tags": [
+    "angular",
+    "calendar",
+    "component",
+    "react",
+    "syn-calendar",
+    "vue"
+  ]
+}

@@ -16,6 +16,18 @@
  */
 export type WeekdayIndex = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 
+export type CalendarWeekday = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun';
+
+const UTC_WEEKDAYS: readonly CalendarWeekday[] = [
+  'sun',
+  'mon',
+  'tue',
+  'wed',
+  'thu',
+  'fri',
+  'sat',
+];
+
 const MILLISECONDS_PER_DAY = 86400000;
 const ISO_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -109,6 +121,33 @@ export const parseIsoDate = (value: string | null | undefined) => {
   const date = createDate(year, month - 1, day);
 
   return toIsoDate(date) === value ? date : null;
+};
+
+export const parseDisabledDates = (value: string | null) => {
+  const dates = new Set<string>();
+
+  (value ?? '').trim().split(/\s+/).forEach(token => {
+    const date = parseIsoDate(token);
+
+    if (date) {
+      dates.add(toIsoDate(date));
+    }
+  });
+
+  return [...dates];
+};
+
+export const parseDisabledWeekdays = (value: string | null) => {
+  const validWeekdays = new Set<string>(UTC_WEEKDAYS);
+  const weekdays = new Set<CalendarWeekday>();
+
+  (value ?? '').trim().toLowerCase().split(/\s+/).forEach(token => {
+    if (validWeekdays.has(token)) {
+      weekdays.add(token as CalendarWeekday);
+    }
+  });
+
+  return [...weekdays];
 };
 
 /**
@@ -226,14 +265,65 @@ export const isDateInRange = (date: Date, min?: Date | null, max?: Date | null) 
  * @param max The upper boundary or null for no boundary
  * @returns True if at least one day in the month is in range
  */
-export const isMonthInRange = (year: number, month: number, min?: Date | null, max?: Date | null) => {
-  const firstDay = createDate(year, month, 1);
-  const lastDay = createDate(year, month + 1, 0);
+export const isDateDisabled = (
+  date: Date,
+  min?: Date | null,
+  max?: Date | null,
+  disabledDates: readonly string[] = [],
+  disabledWeekdays: readonly CalendarWeekday[] = [],
+) => (
+  !isDateInRange(date, min, max)
+  || disabledDates.includes(toIsoDate(date))
+  || disabledWeekdays.includes(UTC_WEEKDAYS[date.getUTCDay()])
+);
 
-  return (!isValidDate(min) || !isValidDate(max) || min.getTime() <= max.getTime())
-    && (!isValidDate(min) || lastDay.getTime() >= min.getTime())
-    && (!isValidDate(max) || firstDay.getTime() <= max.getTime());
+export const hasSelectableDateInRange = (
+  start: Date,
+  end: Date,
+  min?: Date | null,
+  max?: Date | null,
+  disabledDates: readonly string[] = [],
+  disabledWeekdays: readonly CalendarWeekday[] = [],
+) => {
+  if (start.getTime() > end.getTime()) {
+    return false;
+  }
+
+  const numberOfDays = Math.floor((end.getTime() - start.getTime()) / MILLISECONDS_PER_DAY);
+
+  return Array.from({ length: numberOfDays + 1 }, (_, offset) => addDays(start, offset))
+    .some(date => !isDateDisabled(date, min, max, disabledDates, disabledWeekdays));
 };
+
+export const getFirstSelectableDateInRange = (
+  start: Date,
+  end: Date,
+  min?: Date | null,
+  max?: Date | null,
+  disabledDates: readonly string[] = [],
+  disabledWeekdays: readonly CalendarWeekday[] = [],
+) => {
+  const numberOfDays = Math.floor((end.getTime() - start.getTime()) / MILLISECONDS_PER_DAY);
+
+  return Array.from({ length: numberOfDays + 1 }, (_, offset) => addDays(start, offset))
+    .find(date => !isDateDisabled(date, min, max, disabledDates, disabledWeekdays)) ?? null;
+};
+
+export const isMonthInRange = (
+  year: number,
+  month: number,
+  min?: Date | null,
+  max?: Date | null,
+  disabledDates: readonly string[] = [],
+  disabledWeekdays: readonly CalendarWeekday[] = [],
+) => hasSelectableDateInRange(
+  createDate(year, month, 1),
+  createDate(year, month + 1, 0),
+  min,
+  max,
+  disabledDates,
+  disabledWeekdays,
+);
 
 /**
  * Checks whether a year contains at least one date inside the given boundaries.
@@ -242,10 +332,19 @@ export const isMonthInRange = (year: number, month: number, min?: Date | null, m
  * @param max The upper boundary or null for no boundary
  * @returns True if at least one day in the year is in range
  */
-export const isYearInRange = (year: number, min?: Date | null, max?: Date | null) => (
-  (!isValidDate(min) || !isValidDate(max) || min.getTime() <= max.getTime())
-  && (!isValidDate(min) || createDate(year, 11, 31).getTime() >= min.getTime())
-  && (!isValidDate(max) || createDate(year, 0, 1).getTime() <= max.getTime())
+export const isYearInRange = (
+  year: number,
+  min?: Date | null,
+  max?: Date | null,
+  disabledDates: readonly string[] = [],
+  disabledWeekdays: readonly CalendarWeekday[] = [],
+) => hasSelectableDateInRange(
+  createDate(year, 0, 1),
+  createDate(year, 11, 31),
+  min,
+  max,
+  disabledDates,
+  disabledWeekdays,
 );
 
 /**
@@ -255,20 +354,100 @@ export const isYearInRange = (year: number, min?: Date | null, max?: Date | null
  * @param max The upper boundary or null for no boundary
  * @returns The nearest in-range date, or null if no dates are selectable
  */
-export const getNearestDateInRange = (date: Date, min?: Date | null, max?: Date | null) => {
-  if (isValidDate(min) && isValidDate(max) && min.getTime() > max.getTime()) {
+export const getNearestSelectableDate = (
+  date: Date,
+  min?: Date | null,
+  max?: Date | null,
+  disabledDates: readonly string[] = [],
+  disabledWeekdays: readonly CalendarWeekday[] = [],
+) => {
+  if ((isValidDate(min) && isValidDate(max) && min.getTime() > max.getTime())
+    || disabledWeekdays.length === UTC_WEEKDAYS.length) {
     return null;
   }
 
-  if (isValidDate(min) && date.getTime() < min.getTime()) {
-    return min;
+  const start = clampDate(date, min, max);
+
+  const maxDistance = (disabledDates.length + 1) * 7;
+
+  return Array.from({ length: maxDistance * 2 + 1 }, (_, index) => {
+    const distance = Math.ceil(index / 2) * (index % 2 === 0 ? -1 : 1);
+    return addDays(start, distance);
+  }).find(candidate => (
+    isDateInRange(candidate, min, max)
+    && !isDateDisabled(candidate, min, max, disabledDates, disabledWeekdays)
+  )) ?? null;
+};
+
+const findSelectableDateInDirection = (
+  date: Date,
+  direction: number,
+  step: number,
+  attempts: number,
+  min: Date | null,
+  max: Date | null,
+  disabledDates: readonly string[],
+  disabledWeekdays: readonly CalendarWeekday[],
+) => {
+  let candidate = date;
+
+  for (let attempt = 0; attempt < attempts; attempt += 1) {
+    candidate = addDays(candidate, direction * step);
+    const boundedCandidate = clampDate(candidate, min, max);
+
+    if (boundedCandidate.getTime() === date.getTime()) {
+      return null;
+    }
+
+    if (!isDateDisabled(boundedCandidate, min, max, disabledDates, disabledWeekdays)) {
+      return boundedCandidate;
+    }
+
+    if (boundedCandidate.getTime() !== candidate.getTime()) {
+      return null;
+    }
   }
 
-  if (isValidDate(max) && date.getTime() > max.getTime()) {
-    return max;
+  return null;
+};
+
+export const getNextSelectableDate = (
+  date: Date,
+  offset: -7 | -1 | 1 | 7,
+  min: Date | null,
+  max: Date | null,
+  disabledDates: readonly string[],
+  disabledWeekdays: readonly CalendarWeekday[],
+) => {
+  if ((isValidDate(min) && isValidDate(max) && min.getTime() > max.getTime())
+    || disabledWeekdays.length === UTC_WEEKDAYS.length) {
+    return null;
   }
 
-  return date;
+  const direction = Math.sign(offset);
+  const attempts = disabledDates.length + 8;
+  const step = Math.abs(offset);
+  const dateAtStep = findSelectableDateInDirection(
+    date,
+    direction,
+    step,
+    attempts,
+    min,
+    max,
+    disabledDates,
+    disabledWeekdays,
+  );
+
+  return dateAtStep ?? (step === 1 ? null : findSelectableDateInDirection(
+    date,
+    direction,
+    1,
+    attempts,
+    min,
+    max,
+    disabledDates,
+    disabledWeekdays,
+  ));
 };
 
 /**

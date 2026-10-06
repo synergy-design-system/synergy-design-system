@@ -10,6 +10,7 @@ export { SynBreadcrumbComponent } from '@synergy-design-system/angular/component
 export { SynBreadcrumbItemComponent } from '@synergy-design-system/angular/components/breadcrumb-item';
 export { SynButtonComponent } from '@synergy-design-system/angular/components/button';
 export { SynButtonGroupComponent } from '@synergy-design-system/angular/components/button-group';
+export { SynCalendarComponent } from '@synergy-design-system/angular/components/calendar';
 export { SynCardComponent } from '@synergy-design-system/angular/components/card';
 export { SynCheckboxComponent } from '@synergy-design-system/angular/components/checkbox';
 export { SynCheckboxGroupComponent } from '@synergy-design-system/angular/components/checkbox-group';

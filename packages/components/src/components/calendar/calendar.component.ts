@@ -840,6 +840,9 @@ export default class SynCalendar extends SynergyElement {
         this.#restoreYearFocus = true;
         break;
     }
+
+    // Makes sure that focus is restored to the correct element after updating the view.
+    this.requestUpdate();
   }
 
   #renderView() {

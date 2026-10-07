@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.21.0
+
+### Minor Changes
+
+- [#1366](https://github.com/synergy-design-system/synergy-design-system/pull/1366) [`8e87307`](https://github.com/synergy-design-system/synergy-design-system/commit/8e87307ed8688155e2927639f4dd7a8964cb385c) Thanks [@klaarseSICKAG](https://github.com/klaarseSICKAG)! - Released on: 2026-10-07
+
+  feat: ✨ Adds segment series support to <syn-chart> ([#1355](https://github.com/synergy-design-system/synergy-design-system/issues/1355))
+
+  This release introduces the new chart series type 'synSegment' and extends the chart configuration API with new presets seriesSegment
+
 ## 4.20.0
 
 ### Minor Changes

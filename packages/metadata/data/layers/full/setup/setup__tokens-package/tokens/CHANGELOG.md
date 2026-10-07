@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.28.0
+
+### Minor Changes
+
+- [#1366](https://github.com/synergy-design-system/synergy-design-system/pull/1366) [`8e87307`](https://github.com/synergy-design-system/synergy-design-system/commit/8e87307ed8688155e2927639f4dd7a8964cb385c) Thanks [@klaarseSICKAG](https://github.com/klaarseSICKAG)! - Released on: 2026-10-07
+
+  feat: ✨ Add new component token `--syn-font-size-0x-large`
+
+  - The new font-size token `--syn-font-size-0x-large` was added
+  - Corrected the export name for --syn-spacing-1-5x-large to SynSpacing1_5xLarge. The previous name, SynSpacing15xLarge, remains available as a backwards-compatible alias until the next major version 4.0.
+
 ## 3.27.0
 
 ### Minor Changes

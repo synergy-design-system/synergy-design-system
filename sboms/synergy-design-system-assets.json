@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/assets",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-assets-2.3.2-b8e47bd1-78d9-469c-abdb-39e6bb002d30",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-assets-2.3.2-4dd0defe-608a-4b17-aaa5-d813177a718c",
   "creationInfo": {
-    "created": "2026-10-06T13:52:58Z",
+    "created": "2026-10-07T08:30:59Z",
     "creators": [
       "Tool: pnpm"
     ]

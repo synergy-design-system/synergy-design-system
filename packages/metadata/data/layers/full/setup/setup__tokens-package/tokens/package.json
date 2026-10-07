@@ -94,5 +94,5 @@
   },
   "type": "module",
   "types": "./dist/js/index.d.ts",
-  "version": "3.27.0"
+  "version": "3.28.0"
 }

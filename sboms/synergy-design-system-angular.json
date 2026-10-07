@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/angular",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-angular-3.27.0-071a90b4-f696-4851-89b1-80ac341b3e54",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-angular-3.28.0-a15f6827-aa8b-4f73-9ed3-b1e774dc31b7",
   "creationInfo": {
-    "created": "2026-10-06T13:52:58Z",
+    "created": "2026-10-07T08:30:59Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/angular",
-      "versionInfo": "3.27.0",
+      "versionInfo": "3.28.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -25,7 +25,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/angular@3.27.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/angular@3.28.0"
         }
       ],
       "description": "Angular wrappers for the Synergy Design System",
@@ -33,9 +33,9 @@
       "homepage": "https://github.com/synergy-design-system/synergy-design-system.git"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.27.0-0",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.28.0-0",
       "name": "@synergy-design-system/tokens",
-      "versionInfo": "3.27.0",
+      "versionInfo": "3.28.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "licenseConcluded": "MIT",
@@ -45,7 +45,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.27.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.28.0"
         }
       ],
       "description": "Design tokens for Synergy, the SICK Design System",
@@ -61,7 +61,7 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.27.0-0",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.28.0-0",
       "relationshipType": "DEPENDS_ON"
     }
   ]

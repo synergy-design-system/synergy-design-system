@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/styles",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-styles-2.2.2-fc7a4722-3e02-45c2-8609-b4b013d3aeba",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-styles-2.2.2-c6538d35-609d-4570-b001-e32d763f3ede",
   "creationInfo": {
-    "created": "2026-10-05T08:49:47Z",
+    "created": "2026-10-06T13:52:58Z",
     "creators": [
       "Tool: pnpm"
     ]

@@ -1,9 +1,17 @@
 {
   "encoding": "o200k_base",
-  "generatedAt": "2026-10-05T08:49:47.673Z",
+  "generatedAt": "2026-10-06T13:52:58.777Z",
   "source": "current-worktree",
   "version": 1,
   "watermarks": [
+    {
+      "id": "catalog:tools-list",
+      "tokens": 3937
+    },
+    {
+      "id": "catalog:resources-list",
+      "tokens": 320
+    },
     {
       "id": "intent-categories-list:experimental",
       "tokens": 166

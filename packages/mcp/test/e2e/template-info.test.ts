@@ -41,4 +41,17 @@ describe('template-info tool', () => {
     assert.equal(infoContent.type, 'text');
     assert.ok(infoContent.text.length > 0);
   });
+
+  it('returns the template catalog for an unknown template', async () => {
+    const response = await session.client.callTool({
+      arguments: { template: 'unknown-template' },
+      name: 'template-info',
+    });
+    const recovery = JSON.parse(toToolResponse(response).content[0]?.text ?? '{}') as {
+      availableNames: string[];
+      submittedValue: string;
+    };
+    assert.equal(recovery.submittedValue, 'unknown-template');
+    assert.ok(recovery.availableNames.length > 0);
+  });
 });

@@ -208,6 +208,14 @@ export const McpRuntimeConfigSchema = z.object({
       includePhases: [...INTENT_DEFAULT_PHASES],
     }),
 
+    intentDiscover: z.object({
+      /**
+       * Default intent phases when none are provided by the caller.
+       * @default ['experimental']
+       */
+      includePhases: z.array(z.enum(INTENT_PHASE_VALUES)).default([...INTENT_DEFAULT_PHASES]),
+    }).default({ includePhases: [...INTENT_DEFAULT_PHASES] }),
+
     intentOptions: z.object({
       /**
        * Default framework when no framework is provided by the caller.
@@ -315,6 +323,7 @@ export const McpRuntimeConfigSchema = z.object({
     intentCategoriesList: { includePhases: [...INTENT_DEFAULT_PHASES] },
     intentComponentGuide: { framework: INTENT_DEFAULT_FRAMEWORK, includePhases: [...INTENT_DEFAULT_PHASES] },
     intentComponentValidate: { framework: INTENT_DEFAULT_FRAMEWORK, includePhases: [...INTENT_DEFAULT_PHASES] },
+    intentDiscover: { includePhases: [...INTENT_DEFAULT_PHASES] },
     intentOptions: {
       framework: INTENT_DEFAULT_FRAMEWORK,
       includeDiagnostics: false,

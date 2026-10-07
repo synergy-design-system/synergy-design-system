@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/metadata",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-metadata-4.19.0-b860f38b-44a8-4f94-ad68-5d15801e0ff3",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-metadata-4.20.0-7d48aae6-faaf-4546-a02a-b565e828e40f",
   "creationInfo": {
-    "created": "2026-10-05T08:49:47Z",
+    "created": "2026-10-06T13:52:58Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/metadata",
-      "versionInfo": "4.19.0",
+      "versionInfo": "4.20.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -25,7 +25,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/metadata@4.19.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/metadata@4.20.0"
         }
       ],
       "description": "Metadata for the Synergy Design System, usable by MCP Servers or other AI tools",

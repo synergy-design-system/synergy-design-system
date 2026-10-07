@@ -32,6 +32,11 @@ Radios allow the user to select a single option from a group.
 - If no safe default exists, require explicit user selection before submit.
 - Do not mix radios and checkboxes for the same decision set.
 
+### Validation and States
+
+- Use readonly on every radio in a group when users should see the current selection without changing it; setting it only on the selected radio leaves other options available.
+- Use disabled on individual radios only when those choices are unavailable, and explain why they cannot be selected.
+
 ## Accessibility
 
 - syn-radio is not a standalone control; always use syn-radio inside syn-radio-group so assistive technologies can interpret options as one exclusive choice set.

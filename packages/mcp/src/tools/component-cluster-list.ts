@@ -15,9 +15,9 @@ export const componentClusterListTool = (server: McpServer) => {
     'component-cluster-list',
     {
       annotations: createToolAnnotations(),
-      description: 'Outputs all available component clusters in the Synergy Design System',
+      description: 'List Synergy component clusters with descriptions and member components. Use returned cluster IDs to filter component-list.',
       inputSchema: {},
-      title: 'Components by cluster',
+      title: 'List component clusters',
     },
     toolHandler('component-cluster-list', async () => {
       const aiRules = await getToolRule('component-cluster-list');

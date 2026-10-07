@@ -45,9 +45,13 @@ const extractRenderableNodeProps = (
   node: IntentStructureNode,
 ): Record<string, IntentPresetValue> | undefined => {
   const requiredRuleProps = (node.config?.propRules ?? [])
-    .filter((rule) => rule.kind === 'requiredEquals')
+    .filter((rule) => rule.kind === 'requiredEquals' || rule.kind === 'required')
     .reduce<Record<string, IntentPresetValue>>((acc, rule) => {
-      acc[rule.prop] = rule.value;
+      if (rule.kind === 'requiredEquals') {
+        acc[rule.prop] = rule.value;
+      } else if (rule.example !== undefined) {
+        acc[rule.prop] = rule.example;
+      }
       return acc;
     }, {});
 

@@ -87,7 +87,7 @@
         {
           "description": {
             "type": "text",
-            "value": "Use the disabled attribute to disable the switch."
+            "value": "Use disabled only when changing the setting is unavailable, and explain what prevents toggling it. Use readonly to show an existing on/off state without allowing changes."
           },
           "name": "disabled",
           "title": {
@@ -98,7 +98,7 @@
         {
           "description": {
             "type": "text",
-            "value": "Add the readonly attribute to draw a read-only switch."
+            "value": "Use readonly to display an existing on/off setting that users may inspect but cannot toggle here. Use disabled only when the setting is unavailable."
           },
           "name": "readonly",
           "title": {
@@ -189,6 +189,14 @@
           ],
           "id": "content",
           "name": "Content"
+        },
+        {
+          "content": [
+            "Use readonly to display an existing on/off setting that users may inspect but cannot toggle here.",
+            "Use disabled only when changing the setting is unavailable; explain the condition that prevents toggling it."
+          ],
+          "id": "states",
+          "name": "Validation and States"
         }
       ],
       "useCases": [

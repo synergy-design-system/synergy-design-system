@@ -55,6 +55,47 @@ describe('intent tools', () => {
     assert.ok(categories.some((category) => category.id === 'action'));
   });
 
+  it('discovers intent categories and category intents', async () => {
+    const categoryResponse = await session.client.callTool({
+      arguments: { includePhases: ['experimental'] },
+      name: 'intent-discover',
+    });
+    const categories = parseJsonContent<{
+      categories: Array<{ id: string }>;
+      level: string;
+    }>(toToolResponse(categoryResponse), 0);
+    assert.equal(categories.level, 'categories');
+    assert.ok(categories.categories.some((category) => category.id === 'action'));
+
+    const intentResponse = await session.client.callTool({
+      arguments: { category: 'action', includePhases: ['experimental'] },
+      name: 'intent-discover',
+    });
+    const intents = parseJsonContent<{
+      category: { id: string };
+      intents: Array<{ id: string; userGoal: string }>;
+      level: string;
+    }>(toToolResponse(intentResponse), 0);
+    assert.equal(intents.level, 'intents');
+    assert.equal(intents.category.id, 'action');
+    assert.ok(intents.intents.some((intent) => intent.id === 'action.submit' && intent.userGoal.length > 0));
+  });
+
+  it('returns authoritative categories for an unknown discovery category', async () => {
+    const response = await session.client.callTool({
+      arguments: { category: 'form', includePhases: ['experimental'] },
+      name: 'intent-discover',
+    });
+    const recovery = parseJsonContent<{
+      availableCategoryIds: string[];
+      error: string;
+      requestedCategory: string;
+    }>(toToolResponse(response), 0);
+    assert.equal(recovery.requestedCategory, 'form');
+    assert.match(recovery.error, /Unknown intent category "form"/);
+    assert.ok(recovery.availableCategoryIds.includes('action'));
+  });
+
   it('returns component guide for syn-button', async () => {
     const response = await session.client.callTool({
       arguments: {
@@ -294,8 +335,70 @@ describe('intent tools', () => {
     });
 
     const typed = toToolResponse(response);
-    assert.equal(typed.content.length, 1);
-    assert.match(typed.content[0]?.text ?? '', /not registered|no intent options found/i);
+    const recovery = parseJsonContent<{
+      availableCategoryIds: string[];
+      recovery: { arguments: Record<string, unknown>; tool: string };
+      submittedIntentId: string;
+      validationPerformed: boolean;
+    }>(typed, 0);
+    assert.equal(recovery.submittedIntentId, 'intent.unknown');
+    assert.equal(recovery.validationPerformed, false);
+    assert.equal(recovery.recovery.tool, 'intent-discover');
+    assert.deepEqual(recovery.recovery.arguments, {});
+    assert.ok(recovery.availableCategoryIds.includes('action'));
+  });
+
+  it('returns intents from a known category when validation receives an unknown intent', async () => {
+    const response = await session.client.callTool({
+      arguments: {
+        component: 'syn-button',
+        includePhases: ['experimental'],
+        intent: 'action.doesnotexist',
+        markup: '<syn-button>Action</syn-button>',
+      },
+      name: 'intent-component-validate',
+    });
+    const recovery = parseJsonContent<{
+      availableIntentIds: string[];
+      recovery: { arguments: { category: string }; tool: string };
+      submittedIntentId: string;
+      validationPerformed: boolean;
+    }>(toToolResponse(response), 0);
+    assert.equal(recovery.submittedIntentId, 'action.doesnotexist');
+    assert.equal(recovery.validationPerformed, false);
+    assert.deepEqual(recovery.recovery.arguments, { category: 'action' });
+    assert.ok(recovery.availableIntentIds.includes('action.submit'));
+    assert.ok(recovery.availableIntentIds.every((intent) => intent.startsWith('action.')));
+  });
+
+  it('returns bounded recovery for an unknown task intent', async () => {
+    const response = await session.client.callTool({
+      arguments: {
+        includePhases: ['experimental'],
+        taskId: 'action.doesnotexist',
+      },
+      name: 'intent-task-recommendations',
+    });
+    const recovery = parseJsonContent<{
+      availableIntentIds: string[];
+      validationPerformed: boolean;
+    }>(toToolResponse(response), 0);
+    assert.equal(recovery.validationPerformed, false);
+    assert.ok(recovery.availableIntentIds.includes('action.submit'));
+  });
+
+  it('prepends deprecation guidance when the compatibility tool is called', async () => {
+    const compatibilitySession = await createClientSession();
+    try {
+      const response = await compatibilitySession.client.callTool({
+        arguments: { includePhases: ['experimental'] },
+        name: 'intent-categories-list',
+      });
+      const typed = toToolResponse(response);
+      assert.match(typed.content[0]?.text ?? '', /deprecated.*intent-discover/is);
+    } finally {
+      await compatibilitySession.close();
+    }
   });
 
   it('flags empty submit button as invalid due to missing content', async () => {

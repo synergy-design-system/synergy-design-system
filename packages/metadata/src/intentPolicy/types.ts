@@ -202,6 +202,12 @@ export type IntentRequiredEqualsPropRule = IntentPropRuleBase & {
   value: IntentPresetValue;
 };
 
+export type IntentRequiredPropRule = IntentPropRuleBase & {
+  example?: IntentPresetValue;
+  kind: 'required';
+  prop: string;
+};
+
 /**
  * Validation rule preventing a property from being present (error severity).
  *
@@ -280,11 +286,13 @@ export type IntentWarnWhenEqualsPropRule = IntentPropRuleBase & {
  * of different rule types in validator logic and rule evaluation.
  *
  * - 'requiredEquals': Property must equal value (error)
+ * - 'required': Property must be present (error)
  * - 'forbidden': Property must not be present (error)
  * - 'recommendedEquals': Property should equal value (info)
  * - 'warnWhenEquals': Property equals value warns (warning)
  */
 export type IntentPropRule =
+  | IntentRequiredPropRule
   | IntentRequiredEqualsPropRule
   | IntentForbiddenPropRule
   | IntentRecommendedEqualsPropRule

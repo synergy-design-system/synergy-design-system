@@ -83,7 +83,7 @@
         {
           "description": {
             "type": "text",
-            "value": "Use the disabled attribute to disable a radio button."
+            "value": "Set disabled on an unavailable radio-button option and explain why it cannot be selected. Use readonly on every option when the current selection is for inspection only."
           },
           "name": "disabled",
           "title": {
@@ -94,7 +94,7 @@
         {
           "description": {
             "type": "text",
-            "value": "Add the read-only attribute to render a readonly radio button. Please note that you need to enable the readonly state for each individual radio button."
+            "value": "Set readonly on every syn-radio-button in the group to show the current selection without allowing changes. Setting it only on the selected option leaves other buttons available."
           },
           "name": "readonly",
           "title": {
@@ -206,6 +206,14 @@
           ],
           "id": "styling",
           "name": "Styling"
+        },
+        {
+          "content": [
+            "Use readonly on every radio button in a group when the current selection is for inspection only; leaving other buttons enabled still lets users change the choice.",
+            "Use disabled on individual buttons only when those options are unavailable, and explain why users cannot choose them."
+          ],
+          "id": "states",
+          "name": "Validation and States"
         }
       ],
       "useCases": [

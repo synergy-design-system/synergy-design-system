@@ -39,6 +39,11 @@ Radios buttons allow the user to select a single option from a group using a but
 - All radio buttons in the group must be styled similarly, e.g., each one is labelled with both text and icon.
 - Avoid styling options only with icons if they are not common symbols, to prevent ambiguous interpretations.
 
+### Validation and States
+
+- Use readonly on every radio button in a group when the current selection is for inspection only; leaving other buttons enabled still lets users change the choice.
+- Use disabled on individual buttons only when those options are unavailable, and explain why users cannot choose them.
+
 ## Accessibility
 
 - syn-radio-button is not a standalone control; use it only inside syn-radio-group so assistive technologies interpret it as part of one exclusive choice set.

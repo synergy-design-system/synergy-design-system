@@ -78,13 +78,13 @@
           "name": "default",
           "title": {
             "type": "text",
-            "value": "Input"
+            "value": "Use readonly for a prefilled value users should review or copy without editing. Unlike disabled, the input remains available for inspection."
           }
         },
         {
           "description": {
             "type": "text",
-            "value": "Use the label attribute to give the input an accessible label. For labels that contain HTML, use the label slot instead."
+            "value": "Use disabled only when the input is unavailable, and explain how to make it available. Disabled inputs leave the tab order and are not submitted; use readonly to show an existing value instead."
           },
           "name": "label",
           "title": {
@@ -255,7 +255,7 @@
     "rules": {
       "accessibility": [
         "Ensure that focus moves in sequential order between input fields and other form elements. When an input field is focused, it should be clearly indicated.",
-        "Avoid disabled input fields. If needed, ensure that they remain in the regular tab order but cannot be activated, allowing screen readers to announce their state and purpose. Use the native disabled attribute or appropriate ARIA attributes (e.g., aria-disabled=\"true\").",
+        "Avoid disabling inputs when users still need to inspect their values. Native disabled inputs leave the tab order and are not submitted with the form; aria-disabled alone does not prevent editing.",
         "Ensure input fields are usable on all screen sizes. On smaller screens, consider using larger touch targets for input fields.",
         "Placeholder text should offer a hint of what the user should write and must always go together with a label.",
         "Prefer keeping the input enabled by default by relying on default values or by validating on submit.",
@@ -300,6 +300,14 @@
           ],
           "id": "validation_and_formatting",
           "name": "Validation and Formatting"
+        },
+        {
+          "content": [
+            "Use readonly for a prefilled value users should be able to review or copy but not edit.",
+            "Use disabled only when the input is unavailable, and explain what users must do to make it available."
+          ],
+          "id": "states",
+          "name": "Validation and States"
         }
       ],
       "useCases": [

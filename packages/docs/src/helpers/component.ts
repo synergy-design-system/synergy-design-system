@@ -4,7 +4,6 @@ import type { Parameters, StoryObj } from '@storybook/web-components-vite';
 import { getStorybookHelpers } from '@wc-toolkit/storybook-helpers';
 import { html } from 'lit/static-html.js';
 import { sentenceCase } from 'change-case';
-import storyBookPreviewConfig from '../../.storybook/preview.js';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json' with { type: 'json' };
 
 type ArgTypesDefinition = 'attribute' | 'property' | 'slot' | 'cssPart' | 'cssProperty';
@@ -330,7 +329,6 @@ export const generateScreenshotStory = (
   return {
     parameters: {
       chromatic: {
-        ...storyBookPreviewConfig?.parameters?.chromatic,
         ...additionalChromaticOptions,
         disableSnapshot: false,
       } as Parameters,

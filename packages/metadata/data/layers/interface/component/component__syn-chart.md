@@ -40,8 +40,8 @@ The resolved result maps 1:1 to the ECharts `option` parameter passed to
 Consult the [ECharts option documentation](https://echarts.apache.org/en/option.html)
 and assign either the object directly or build it through the handle.
 
-> **Note:** Currently only **line charts** (`series[].type: 'line'`) are supported.
-> Support for additional chart types (bar, pie, etc.) will be added in future releases or can be requested.
+> **Note:** Only the chart types and presets documented by Synergy are registered by default.
+> Other ECharts chart types require their ECharts modules to be registered separately.
 
 Assigning a new config input completely replaces the previous chart
 configuration (`notMerge: true`).

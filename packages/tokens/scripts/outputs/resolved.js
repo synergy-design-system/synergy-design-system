@@ -113,6 +113,13 @@ export const createResolvedJS = (header, themesDir, buildPath) => {
       jsTokenName: cssVariableToTokenName(cssVariable),
       light: resolveVariableValue(cssVariable, lightVariables, 'light'),
     }))
+    // TODO: we have the css variable --syn-spacing-1-5x-large, which is currently falsely parsed to scss and js as SynSpacing15XLarge, but it should be SynSpacing1_5xLarge.
+    // This is now fixed, but as the falsely parsed variable is already released, we need to keep the old parsing for backwards compatibility and remove it in the next 4.0 release.
+    .concat(!buildPath.includes('charts') ? [{
+      dark: resolveVariableValue('--syn-spacing-1-5x-large', darkVariables, 'dark'),
+      jsTokenName: 'SynSpacing15xLarge',
+      light: resolveVariableValue('--syn-spacing-1-5x-large', lightVariables, 'light'),
+    }] : [])
     .sort((a, b) => a.jsTokenName.localeCompare(b.jsTokenName, 'en', { numeric: true }));
 
   const jsExports = resolvedEntries.map(({ jsTokenName, light, dark }) => `  ${jsTokenName}: { dark: ${stringifyValue(dark)}, light: ${stringifyValue(light)} },`);

@@ -9,8 +9,7 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
-import { Chromatic_Modes_Sick_2025 } from '../../.storybook/modes.js';
-import { waitForFinishedChartPlayFunction } from '../../src/playFunction/waitForFinishedCharts.js';
+import { chartChromaticConfig } from '../../src/chromatic-config/chromatic-config.js';
 
 const { overrideArgs } = storybookHelpers('syn-chart');
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-chart');
@@ -34,8 +33,7 @@ const meta: Meta = {
   component: 'syn-chart',
   parameters: {
     chromatic: {
-      delay: 300,
-      modes: Chromatic_Modes_Sick_2025,
+      ...chartChromaticConfig,
     },
     // This is needed as otherwise the `id` attribute is shown in the docs table
     controls: {exclude: ['id']},
@@ -52,7 +50,6 @@ const meta: Meta = {
       },
     },
   },
-  play: waitForFinishedChartPlayFunction,
   tags: ['Charting', 'Data Visualization'],
   title: 'Charts/syn-chart',
 };

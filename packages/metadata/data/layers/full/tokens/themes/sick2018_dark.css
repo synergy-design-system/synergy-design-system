@@ -234,6 +234,7 @@
   --syn-font-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; /** Main font */
   --syn-font-sans-fallback: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif, 'apple color emoji', 'segoe ui emoji', 'segoe ui symbol'; /** System font */
   --syn-font-serif: Georgia, 'Times New Roman', serif; /** Shoelace compatibility DO NOT USE */
+  --syn-font-size-0x-large: 22px;
   --syn-font-size-2x-large: 32px;
   --syn-font-size-2x-small: 11px;
   --syn-font-size-3x-large: 40px;

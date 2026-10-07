@@ -252,6 +252,7 @@ export declare const ResolvedTokens: {
   SynFontSans: ResolvedTokenModes;
   SynFontSansFallback: ResolvedTokenModes;
   SynFontSerif: ResolvedTokenModes;
+  SynFontSize0xLarge: ResolvedTokenModes;
   SynFontSize2xLarge: ResolvedTokenModes;
   SynFontSize2xSmall: ResolvedTokenModes;
   SynFontSize3xLarge: ResolvedTokenModes;
@@ -422,6 +423,7 @@ export declare const ResolvedTokens: {
   SynShadowStickyDown: ResolvedTokenModes;
   SynShadowXLarge: ResolvedTokenModes;
   SynShadowXSmall: ResolvedTokenModes;
+  SynSpacing1_5xLarge: ResolvedTokenModes;
   SynSpacing2xLarge: ResolvedTokenModes;
   SynSpacing2xSmall: ResolvedTokenModes;
   SynSpacing3xLarge: ResolvedTokenModes;

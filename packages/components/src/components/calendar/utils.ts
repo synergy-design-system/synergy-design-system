@@ -17,6 +17,7 @@
 export type WeekdayIndex = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 
 export type CalendarWeekday = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun';
+export type CalendarSelectionMode = 'single' | 'range' | 'multiple';
 
 const UTC_WEEKDAYS: readonly CalendarWeekday[] = [
   'sun',
@@ -123,6 +124,24 @@ export const parseIsoDate = (value: string | null | undefined) => {
   return toIsoDate(date) === value ? date : null;
 };
 
+export const parseCalendarValue = (value: string | null) => {
+  const dates = (value ?? '').trim().split(/\s+/).filter(Boolean);
+
+  if (dates.some(date => !parseIsoDate(date))) {
+    return [];
+  }
+
+  return dates.sort();
+};
+
+export const parseCalendarSelectionMode = (value: string | null): CalendarSelectionMode => (
+  value === 'range' || value === 'multiple' ? value : 'single'
+);
+
+export const areCalendarValuesEqual = (a: readonly string[], b: readonly string[]) => (
+  a.length === b.length && a.every((value, index) => value === b[index])
+);
+
 export const parseDisabledDates = (value: string | null) => {
   const dates = new Set<string>();
 
@@ -171,6 +190,41 @@ export const getDaysInMonth = (year: number, month: number) => createDate(
 export const addDays = (date: Date, amount: number) => new Date(
   date.getTime() + amount * MILLISECONDS_PER_DAY,
 );
+
+export const normalizeCalendarValue = (
+  values: readonly string[],
+  mode: CalendarSelectionMode,
+  previousMode: CalendarSelectionMode = mode,
+) => {
+  const selectionMode = mode === 'range' || mode === 'multiple' ? mode : 'single';
+  const validDates = values.filter(value => !!parseIsoDate(value)).sort();
+
+  if (selectionMode === 'single') {
+    return [...new Set(validDates)].slice(0, 1);
+  }
+
+  if (selectionMode === 'range') {
+    return validDates.length <= 2
+      ? validDates
+      : [validDates[0], validDates[validDates.length - 1]];
+  }
+
+  const uniqueDates = [...new Set(validDates)];
+
+  if (previousMode === 'range' && validDates.length === 2) {
+    const expandedDates: string[] = [];
+    const start = parseIsoDate(validDates[0])!;
+    const end = parseIsoDate(validDates[1])!;
+
+    for (let date = start; date.getTime() <= end.getTime(); date = addDays(date, 1)) {
+      expandedDates.push(toIsoDate(date));
+    }
+
+    return expandedDates;
+  }
+
+  return uniqueDates;
+};
 
 /**
  * Adds months to a date. Use a negative amount to subtract.

@@ -4637,7 +4637,7 @@
           "type": "text"
         },
         "description": {
-          "value": "A Calendar renders an inline calendar that lets users select a single date or a continuous date range. It always shows the full month in context — giving users the spatial orientation of weekdays, weeks, and adjacent months before they commit to a choice.",
+          "value": "An inline calendar for selecting a single date, a continuous range, or multiple individual dates. Set `mode` to `single`, `range`, or `multiple`; `value` is a whitespace-separated list of ISO dates.",
           "type": "text"
         }
       },
@@ -4728,6 +4728,36 @@
         },
         "description": {
           "value": "Enable range selection by setting the mode attribute to range. Users select a start date first; the end date is confirmed with a second click. The selected span is highlighted across the calendar grid.\n\nThe input field displays the range in a condensed format:\n\n- Same month: DD.MM. – DD.MM.YYYY → e.g. 08.12. – 16.12.2026\n- Different months: DD.MM.YYYY – DD.MM.YYYY → e.g. 28.11.2026 – 16.01.2027",
+          "type": "text"
+        }
+      },
+      "range-selection": {
+        "title": {
+          "value": "Range Selection",
+          "type": "text"
+        },
+        "description": {
+          "value": "Set `mode` to `range` and provide two whitespace-separated ISO dates. Selecting a start date begins a pending range; a second click completes it. The dates are rendered as an inclusive span.",
+          "type": "text"
+        }
+      },
+      "multiple-selection": {
+        "title": {
+          "value": "Multiple Selection",
+          "type": "text"
+        },
+        "description": {
+          "value": "Set `mode` to `multiple` to select or remove individual dates. The `value` attribute contains a whitespace-separated list of ISO dates.",
+          "type": "text"
+        }
+      },
+      "multiple-empty": {
+        "title": {
+          "value": "Empty Multiple Selection",
+          "type": "text"
+        },
+        "description": {
+          "value": "Multiple mode can start with an empty selection. Each date click adds that date to the selection.",
           "type": "text"
         }
       },

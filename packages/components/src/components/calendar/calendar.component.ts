@@ -11,8 +11,10 @@ import SynButton from '../button/button.js';
 import SynIconButton from '../icon-button/icon-button.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import {
+  type CalendarSelectionMode,
   type CalendarWeekday,
   addMonths,
+  areCalendarValuesEqual,
   createDate,
   getFirstSelectableDateInRange,
   getMonthLabel,
@@ -23,6 +25,9 @@ import {
   isMonthInRange,
   isSameMonth,
   isYearInRange,
+  normalizeCalendarValue,
+  parseCalendarSelectionMode,
+  parseCalendarValue,
   parseDisabledDates,
   parseDisabledWeekdays,
   parseIsoDate,
@@ -59,6 +64,12 @@ import styles from './calendar.styles.js';
  * @csspart calendar-item-today - The item representing today.
  * @csspart calendar-item-outside - A day item belonging to an adjacent month.
  * @csspart calendar-item-disabled - A disabled calendar item.
+ * @csspart calendar-item-range-begin - The beginning of a selected or previewed range.
+ * @csspart calendar-item-range-start - The start of a selected date range.
+ * @csspart calendar-item-range-end - The end of a selected date range.
+ * @csspart calendar-item-range-interior - A date inside the selected or previewed range.
+ * @csspart calendar-item-range-pending - The selected start while waiting for a range end.
+ * @csspart calendar-item-range-preview - A date in the pending range under the pointer.
  * @csspart month-navigation - The month navigation controls.
  * @csspart year-navigation - The year navigation controls.
  * @csspart previous-button - The previous-period navigation button.
@@ -70,10 +81,11 @@ import styles from './calendar.styles.js';
  * @cssproperty --syn-calendar-min-width - The minimum width of the calendar. Defaults to 388px.
  *
  * @event syn-blur - Emitted when focus leaves the calendar.
- * @event syn-change - Emitted when a user commits a different date value.
+ * @event syn-before-change - Emitted before user change events with the proposed value temporarily set on the host; preventDefault restores the previous value.
+ * @event syn-change - Emitted when a user commits a selection; in range mode this occurs after the end date is chosen.
  * @event syn-clear - Emitted when the user clears a non-empty date value.
  * @event syn-focus - Emitted when focus enters the calendar.
- * @event syn-input - Emitted when a user changes the date value.
+ * @event syn-input - Emitted when a user changes the selection.
  */
 export default class SynCalendar extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
@@ -122,21 +134,46 @@ export default class SynCalendar extends SynergyElement {
 
   @property() min = '';
 
-  /** The selected date as an ISO `YYYY-MM-DD` string, or an empty string when unset. */
-  @property() value = '';
+  /**
+   * Determines whether users select one date, a continuous range, or multiple individual dates.
+   * @type 'single' | 'range' | 'multiple'
+   */
+  @property({
+    converter: {
+      fromAttribute: parseCalendarSelectionMode,
+      toAttribute: (mode: CalendarSelectionMode) => mode,
+    },
+    reflect: true,
+  }) mode: CalendarSelectionMode = 'single';
 
   /**
-   * Gets or sets the selected value as a UTC date-only `Date`.
+  * Selected dates as ISO `YYYY-MM-DD` strings. Single mode accepts one date, range mode two endpoints
+  * (one date is pending), and multiple mode any number of distinct dates.
+   * @type string[]
    */
-  get valueAsDate() {
-    return parseIsoDate(this.value);
+  @property({
+    converter: {
+      fromAttribute: parseCalendarValue,
+      toAttribute: (dates: readonly string[]) => dates.join(' '),
+    },
+    type: Array,
+  }) value: string[] = [];
+
+  /** The size applied to the calendar's internal buttons. */
+  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
+
+  /**
+   * Gets or sets selected values as UTC date-only `Date` instances.
+   */
+  get valueAsDates(): Date[] {
+    return this.value.map(parseIsoDate).filter((date): date is Date => !!date);
   }
 
   /**
-   * Sets the selected value as a UTC date-only `Date`.
+   * Sets selected values as UTC date-only `Date` instances.
    */
-  set valueAsDate(date: Date | null) {
-    this.value = toIsoDate(date);
+  set valueAsDates(dates: readonly Date[] | null) {
+    this.value = dates?.map(toIsoDate).filter(Boolean) ?? [];
   }
 
   /**
@@ -144,6 +181,8 @@ export default class SynCalendar extends SynergyElement {
    * This is used to determine which month or year is displayed.
    */
   @state() private viewDate: Date = today();
+
+  @state() private hoveredDate: string | null = null;
 
   /**
    * The date that currently has focus within the calendar.
@@ -180,6 +219,8 @@ export default class SynCalendar extends SynergyElement {
    */
   #hasFocus = false;
 
+  #valueUpdatedByUser = false;
+
   /**
    * Indicates whether the calendar should restore focus to the previously focused year after a view change.
    */
@@ -196,20 +237,49 @@ export default class SynCalendar extends SynergyElement {
   #restoreDayFocus = false;
 
   protected willUpdate(changedProperties: PropertyValues<this>) {
-    if (changedProperties.has('value')) {
-      const valueDate = parseIsoDate(this.value);
+    const modeChanged = changedProperties.has('mode');
+    const valueChanged = changedProperties.has('value');
 
-      if (valueDate && this.#isDateSelectable(valueDate)) {
-        this.#setViewDate(valueDate);
-      }
+    if (this.mode !== 'range' || this.value.length !== 1) {
+      this.hoveredDate = null;
+    }
+
+    if (modeChanged || valueChanged) {
+      this.#syncValueAndView(changedProperties, modeChanged, valueChanged);
     }
 
     if (changedProperties.has('disabledDates')
       || changedProperties.has('disabledWeekdays')
       || changedProperties.has('max')
       || changedProperties.has('min')
+      || modeChanged
       || changedProperties.has('value')) {
       this.#normalizeFocusToRange();
+    }
+  }
+
+  #syncValueAndView(
+    changedProperties: PropertyValues<this>,
+    modeChanged: boolean,
+    valueChanged: boolean,
+  ) {
+    const shouldUpdateView = !this.#valueUpdatedByUser;
+    this.#valueUpdatedByUser = false;
+    const previousMode = changedProperties.get('mode');
+    const conversionSource = modeChanged && !valueChanged
+      && (previousMode === 'single' || previousMode === 'range' || previousMode === 'multiple')
+      ? previousMode
+      : this.mode;
+    const normalizedValue = normalizeCalendarValue(this.value, this.mode, conversionSource);
+
+    if (!areCalendarValuesEqual(normalizedValue, this.value)) {
+      this.value = normalizedValue;
+    }
+
+    const valueDate = shouldUpdateView ? this.valueAsDates[0] : null;
+
+    if (valueDate && this.#isDateSelectable(valueDate)) {
+      this.#setViewDate(valueDate);
     }
   }
 
@@ -427,22 +497,81 @@ export default class SynCalendar extends SynergyElement {
 
   /**
    * Sets the calendar's value based on user input.
-   * @param value The new value to set for the calendar.
+   * @param value The new dates to set for the calendar.
    * @param clear Whether to clear the current value before setting the new one.
+   * @param commit Whether to emit `syn-change` after updating the value.
    */
-  #setValueFromUser(value: string, clear = false) {
-    if (this.value === value) {
+  #setValueFromUser(value: string[], clear = false, commit = true, focusDate?: Date) {
+    if (areCalendarValuesEqual(this.value, value)) {
       return;
     }
 
-    this.value = value;
+    if (commit || clear) {
+      if (!this.#requestValueChange(value)) {
+        return;
+      }
+    } else {
+      this.#valueUpdatedByUser = true;
+      this.value = value;
+    }
+
+    if (focusDate) {
+      this.focusedDate = focusDate;
+      this.#restoreDayFocus = true;
+    }
 
     if (clear) {
       this.emit('syn-clear');
     }
 
     this.emit('syn-input');
-    this.emit('syn-change');
+
+    if (commit || clear) {
+      this.emit('syn-change');
+    }
+  }
+
+  #requestValueChange(value: string[]) {
+    const previousValue = [...this.value];
+    this.#valueUpdatedByUser = true;
+    this.value = value;
+
+    const beforeChange = this.emit('syn-before-change', { cancelable: true });
+
+    if (beforeChange.defaultPrevented) {
+      this.value = previousValue;
+      return false;
+    }
+
+    return true;
+  }
+
+  #selectDate(value: string) {
+    const focusDate = parseIsoDate(value);
+
+    if (!focusDate) {
+      return;
+    }
+
+    if (this.mode === 'range') {
+      if (this.value.length !== 1) {
+        this.#setValueFromUser([value], false, false, focusDate);
+        return;
+      }
+
+      this.#setValueFromUser([...this.value, value].sort(), false, true, focusDate);
+      return;
+    }
+
+    if (this.mode === 'multiple') {
+      const nextValue = this.value.includes(value)
+        ? this.value.filter(date => date !== value)
+        : [...this.value, value];
+      this.#setValueFromUser(nextValue.sort(), false, true, focusDate);
+      return;
+    }
+
+    this.#setValueFromUser([value], false, true, focusDate);
   }
 
   /**
@@ -543,6 +672,11 @@ export default class SynCalendar extends SynergyElement {
     }
 
     this.#setViewDate(nextDate);
+
+    if (this.mode === 'range' && this.value.length === 1) {
+      this.hoveredDate = toIsoDate(nextDate);
+    }
+
     this.#restoreDayFocus = true;
   }
 
@@ -563,7 +697,7 @@ export default class SynCalendar extends SynergyElement {
    * Shows the month selector view.
    */
   #showMonthSelector() {
-    const valueDate = this.valueAsDate;
+    const valueDate = this.valueAsDates[0];
     const viewedYear = this.viewDate.getUTCFullYear();
 
     this.monthSelectorYear = viewedYear;
@@ -585,7 +719,7 @@ export default class SynCalendar extends SynergyElement {
    * Shows the day view of the calendar.
    */
   #showDayView() {
-    const valueDate = this.valueAsDate;
+    const valueDate = this.valueAsDates[0];
 
     if (valueDate && this.#isDateSelectable(valueDate) && isSameMonth(valueDate, this.viewDate)) {
       this.focusedDate = valueDate;
@@ -603,7 +737,7 @@ export default class SynCalendar extends SynergyElement {
       ? this.monthSelectorYear
       : this.viewDate.getUTCFullYear();
     this.yearBlockStart = getYearBlockStart(this.focusedYear);
-    const valueDate = this.valueAsDate;
+    const valueDate = this.valueAsDates[0];
 
     if (valueDate) {
       const valueYear = valueDate.getUTCFullYear();
@@ -757,7 +891,7 @@ export default class SynCalendar extends SynergyElement {
         const date = parseIsoDate(button.dataset.value);
 
         if (date && this.#isDateSelectable(date)) {
-          this.#setValueFromUser(button.dataset.value);
+          this.#selectDate(button.dataset.value);
         }
         break;
       }
@@ -770,6 +904,34 @@ export default class SynCalendar extends SynergyElement {
       default:
         break;
     }
+  }
+
+  #handleGridPointerOver(event: PointerEvent) {
+    const button = this.#getCalendarItem(event);
+
+    if (this.mode !== 'range'
+      || this.value.length !== 1
+      || !button
+      || button.dataset.kind !== 'day'
+      || button.disabled) {
+      return;
+    }
+
+    const date = parseIsoDate(button.dataset.value);
+
+    if (!date || !this.#isDateSelectable(date)) {
+      return;
+    }
+
+    const hoveredDate = toIsoDate(date);
+
+    if (this.hoveredDate !== hoveredDate) {
+      this.hoveredDate = hoveredDate;
+    }
+  }
+
+  #handleGridPointerLeave() {
+    this.hoveredDate = null;
   }
 
   /**
@@ -849,15 +1011,16 @@ export default class SynCalendar extends SynergyElement {
     const bounds = this.#getBounds();
     const footer = {
       currentDisabled: !this.#hasSelectableDates(),
-      hasValue: !!this.value,
-      onClear: () => this.#setValueFromUser('', true),
+      hasValue: this.value.length > 0,
+      onClear: () => this.#setValueFromUser([], true),
       onCurrent: () => this.#showCurrentPeriod(),
+      size: this.size,
     };
 
     if (this.visibleView === 'year') {
       return renderYearView({
         ...footer,
-        activeYear: this.valueAsDate?.getUTCFullYear(),
+        activeYear: this.valueAsDates[0]?.getUTCFullYear(),
         blockStart: this.yearBlockStart,
         disabledDates: bounds.disabledDates,
         disabledWeekdays: bounds.disabledWeekdays,
@@ -873,6 +1036,7 @@ export default class SynCalendar extends SynergyElement {
           onPrevious: () => this.#pageYears(-12),
           previousDisabled: this.#isYearBlockNavigationDisabled(this.yearBlockStart, -12),
           previousLabel: 'Previous 12 years',
+          size: this.size,
         },
       });
     }
@@ -904,6 +1068,7 @@ export default class SynCalendar extends SynergyElement {
         ? this.#isYearNavigationDisabled(this.monthSelectorYear, -1)
         : this.#isYearNavigationDisabled(this.viewDate.getUTCFullYear(), -1),
       previousLabel: 'Previous year',
+      size: this.size,
     };
 
     if (this.visibleView === 'month') {
@@ -928,9 +1093,11 @@ export default class SynCalendar extends SynergyElement {
       disabledDates: bounds.disabledDates,
       disabledWeekdays: bounds.disabledWeekdays,
       focusedDate: this.focusedDate,
+      hoveredDate: parseIsoDate(this.hoveredDate),
       locale: this.localize.lang(),
       max: bounds.max,
       min: bounds.min,
+      mode: this.mode,
       monthNavigation: {
         label: getMonthLabel(this.viewDate),
         nextDisabled: this.#isMonthNavigationDisabled(
@@ -948,8 +1115,9 @@ export default class SynCalendar extends SynergyElement {
           -1,
         ),
         previousLabel: 'Previous month',
+        size: this.size,
       },
-      valueDate: this.valueAsDate,
+      selectedDates: this.valueAsDates,
       viewDate: this.viewDate,
       yearNavigation,
     });
@@ -962,6 +1130,7 @@ export default class SynCalendar extends SynergyElement {
       <div
         class=${classMap({
           calendar: true,
+          [`calendar--size-${this.size}`]: true,
           [`calendar--view-${this.visibleView}`]: true,
         })}
         @focusin=${this.#handleFocusIn}
@@ -981,6 +1150,8 @@ export default class SynCalendar extends SynergyElement {
           @click=${this.#handleGridClick}
           @keydown=${this.#handleGridKeydown}
           @focusin=${this.#handleGridFocus}
+          @pointerleave=${this.#handleGridPointerLeave}
+          @pointerover=${this.#handleGridPointerOver}
         >
           ${content}
         </div>

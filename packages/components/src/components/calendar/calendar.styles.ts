@@ -9,13 +9,19 @@ export default css`
     --container-padding-block: var(--syn-spacing-medium);
     --container-padding-inline: var(--syn-spacing-small);
 
+    /* Sizes */
+    --syn-calendar-min-width: 388px;
+    --calendar-item-font: var(--syn-body-small-regular);
+    --day-selector-calendar-item-width: var(--syn-spacing-x-large);
+    --day-selector-th-font: var(--syn-body-small-bold);
+
     background: var(--syn-panel-background-color);
     border: var(--syn-border-width-small) solid var(--syn-panel-border-color);
     border-radius: var(--syn-border-radius-small);
     display: flex;
     flex-direction: column;
     max-width: 100%;
-    min-width: min(var(--syn-calendar-min-width, 388px), 100vw);
+    min-width: min(var(--syn-calendar-min-width), 100vw);
     user-select: none;
   }
 
@@ -73,7 +79,7 @@ export default css`
     box-sizing: content-box;
     cursor: pointer;
     display: inline-block;
-    font: var(--syn-body-small-regular);
+    font: var(--calendar-item-font);
     height: var(--syn-spacing-x-large);
     margin: 0;
     overflow-wrap: anywhere;
@@ -91,6 +97,18 @@ export default css`
   .calendar-item--active {
     background-color: var(--syn-color-primary-600);
     color: var(--syn-color-neutral-0);
+  }
+
+  .calendar-item--range-interior {
+    background-color: var(--syn-color-neutral-200);
+  }
+
+  .calendar-item--range-pending {
+    border-style: dashed;
+  }
+
+  .calendar-item--range-preview {
+    background-color: green;
   }
 
   .calendar-item--outside {
@@ -131,13 +149,14 @@ export default css`
   }
 
   .day-selector th {
-    font: var(--syn-body-small-bold);
+    font: var(--day-selector-th-font);
     height: var(--syn-spacing-x-large);
     padding: var(--syn-spacing-x-small);
   }
 
   .day-selector .calendar-item {
-    width: var(--syn-spacing-x-large);
+    height: var(--day-selector-calendar-item-width);
+    width: var(--day-selector-calendar-item-width);
   }
 
   .calendar--view-month .header--year-selection,
@@ -159,5 +178,20 @@ export default css`
   .calendar--view-year .header--year-selection syn-button {
     /* We show multiple years here, so the width should adjust automatically */
     width: auto;
+  }
+
+  /* Sizes */
+  .calendar--size-small {
+    --syn-calendar-min-width: 295px;
+    --calendar-item-font: var(--syn-body-2x-small-regular);
+    --day-selector-calendar-item-width: 16px;
+    --day-selector-th-font: var(--syn-body-2x-small-regular); /* @todo: --syn-body-2x-small-bold missing! */
+  }
+
+  .calendar--size-large {
+    --syn-calendar-min-width: auto;
+    --calendar-item-font: var(--syn-body-2x-small-regular);
+    --day-selector-calendar-item-width: 16px;
+    --day-selector-th-font: var(--syn-body-2x-small-regular); /* @todo: --syn-body-2x-small-bold missing! */
   }
 `;

@@ -10,6 +10,12 @@ export interface CalendarItemOptions {
   disabled?: boolean;
   today?: boolean;
   outside?: boolean;
+  rangeBegin?: boolean;
+  rangeEnd?: boolean;
+  rangeInterior?: boolean;
+  rangePending?: boolean;
+  rangePreview?: boolean;
+  rangeStart?: boolean;
 }
 
 export const renderCalendarItem = (options: CalendarItemOptions) => {
@@ -17,6 +23,12 @@ export const renderCalendarItem = (options: CalendarItemOptions) => {
     active: options.active,
     disabled: !!options.disabled,
     outside: !!options.outside,
+    rangeBegin: !!options.rangeBegin,
+    rangeEnd: !!options.rangeEnd,
+    rangeInterior: !!options.rangeInterior,
+    rangePending: !!options.rangePending,
+    rangePreview: !!options.rangePreview,
+    rangeStart: !!options.rangeStart,
     today: !!options.today,
   };
 
@@ -25,7 +37,7 @@ export const renderCalendarItem = (options: CalendarItemOptions) => {
     `calendar-item-${options.kind}`,
     ...Object.entries(states)
       .filter(([, enabled]) => enabled)
-      .map(([state]) => `calendar-item-${state}`),
+      .map(([state]) => `calendar-item-${state.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`)}`),
   ]
     .join(' ');
 
@@ -36,6 +48,12 @@ export const renderCalendarItem = (options: CalendarItemOptions) => {
         'calendar-item--active': states.active,
         'calendar-item--disabled': states.disabled,
         'calendar-item--outside': states.outside,
+        'calendar-item--range-begin': states.rangeBegin,
+        'calendar-item--range-end': states.rangeEnd,
+        'calendar-item--range-interior': states.rangeInterior,
+        'calendar-item--range-pending': states.rangePending,
+        'calendar-item--range-preview': states.rangePreview,
+        'calendar-item--range-start': states.rangeStart,
         'calendar-item--today': states.today,
       })}
       data-kind=${options.kind}
@@ -44,7 +62,11 @@ export const renderCalendarItem = (options: CalendarItemOptions) => {
       part=${parts}
       tabindex=${options.tabbable && !states.disabled ? 0 : -1}
       type="button"
-    >${options.label}</button>
+    >
+      <slot .name=${`${options.kind}-${options.value}`}>
+        ${options.label}
+      </slot>
+    </button>
   `;
 };
 
@@ -59,6 +81,7 @@ export interface CalendarFooterOptions {
   currentDisabled?: boolean;
   onClear: () => void;
   onCurrent: () => void;
+  size: 'small' | 'medium' | 'large';
 }
 
 export interface CalendarNavigationOptions {
@@ -67,6 +90,7 @@ export interface CalendarNavigationOptions {
   nextLabel: string;
   onPrevious: () => void;
   onNext: () => void;
+  size: 'small' | 'medium' | 'large';
   onChoose?: () => void;
   previousDisabled?: boolean;
   nextDisabled?: boolean;
@@ -79,11 +103,11 @@ export const renderCalendarNavigation = (options: CalendarNavigationOptions) => 
     library="system"
     name="previous-page"
     part="previous-button"
-    size="medium"
+    size=${options.size}
     ?disabled=${!!options.previousDisabled}
   ></syn-icon-button>
   ${options.onChoose ? html`
-    <syn-button @click=${options.onChoose} part="navigation-label" size="medium" variant="text">
+    <syn-button @click=${options.onChoose} part="navigation-label" size=${options.size} variant="text">
       ${options.label}
     </syn-button>
   ` : html`<span part="navigation-label">${options.label}</span>`}
@@ -93,7 +117,7 @@ export const renderCalendarNavigation = (options: CalendarNavigationOptions) => 
     library="system"
     name="next-page"
     part="next-button"
-    size="medium"
+    size=${options.size}
     ?disabled=${!!options.nextDisabled}
   ></syn-icon-button>
 `;
@@ -104,6 +128,7 @@ export const renderCalendarFooter = (label: string, options: CalendarFooterOptio
       @click=${options.onCurrent}
       ?disabled=${!!options.currentDisabled}
       part="current-period-button"
+      size=${options.size}
       variant="text"
     >
       ${label}
@@ -112,6 +137,7 @@ export const renderCalendarFooter = (label: string, options: CalendarFooterOptio
       @click=${options.onClear}
       ?disabled=${!options.hasValue}
       part="clear-button"
+      size=${options.size}
       variant="text"
     >
       Clear

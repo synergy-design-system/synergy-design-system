@@ -1,5 +1,6 @@
 import { html } from 'lit';
 import {
+  type CalendarSelectionMode,
   type CalendarWeekday,
   getCalendarWeeks,
   getFirstDayOfWeek,
@@ -20,15 +21,17 @@ import {
 } from './shared.js';
 
 export interface DayViewOptions extends CalendarFooterOptions {
-  locale: string;
-  viewDate: Date;
-  focusedDate: Date;
-  valueDate: Date | null;
-  min: Date | null;
-  max: Date | null;
   disabledDates: readonly string[];
   disabledWeekdays: readonly CalendarWeekday[];
+  focusedDate: Date;
+  hoveredDate: Date | null;
+  locale: string;
+  max: Date | null;
+  min: Date | null;
+  mode: CalendarSelectionMode;
   monthNavigation: CalendarNavigationOptions;
+  selectedDates: readonly Date[];
+  viewDate: Date;
   yearNavigation: CalendarNavigationOptions;
 }
 
@@ -41,6 +44,16 @@ export const renderDayView = (options: DayViewOptions): CalendarViewTemplates =>
     firstDay,
   );
   const currentDay = today();
+  const rangeStart = options.mode === 'range' ? options.selectedDates[0] ?? null : null;
+  const rangeEnd = options.mode === 'range' && options.selectedDates.length === 2
+    ? options.selectedDates[1]
+    : null;
+  const previewStart = rangeStart && options.hoveredDate
+    ? Math.min(rangeStart.getTime(), options.hoveredDate.getTime())
+    : null;
+  const previewEnd = rangeStart && options.hoveredDate
+    ? Math.max(rangeStart.getTime(), options.hoveredDate.getTime())
+    : null;
 
   return {
     content: html`
@@ -54,7 +67,7 @@ export const renderDayView = (options: DayViewOptions): CalendarViewTemplates =>
               ${week.map(day => html`
                 <td class="day-selector__day">
                   ${renderCalendarItem({
-                    active: isSameDay(day, options.valueDate),
+                    active: options.selectedDates.some(selectedDate => isSameDay(day, selectedDate)),
                     disabled: isDateDisabled(
                       day,
                       options.min,
@@ -69,6 +82,29 @@ export const renderDayView = (options: DayViewOptions): CalendarViewTemplates =>
                       </time>
                     `,
                     outside: !isSameMonth(day, options.viewDate),
+                    rangeBegin: isSameDay(day, rangeStart),
+                    rangeEnd: isSameDay(day, rangeEnd)
+                      || (!!rangeStart && !rangeEnd && isSameDay(day, options.hoveredDate)),
+                    rangeInterior: (!!rangeStart
+                      && !!rangeEnd
+                      && day.getTime() > rangeStart.getTime()
+                      && day.getTime() < rangeEnd.getTime())
+                      || (!!rangeStart
+                        && !rangeEnd
+                        && previewStart !== null
+                        && previewEnd !== null
+                        && day.getTime() > previewStart
+                        && day.getTime() < previewEnd),
+                    rangePending: !!rangeStart && !rangeEnd && isSameDay(day, rangeStart),
+                    rangePreview: !!rangeStart
+                      && !rangeEnd
+                      && !!options.hoveredDate
+                      && previewStart !== null
+                      && previewEnd !== null
+                      && day.getTime() >= previewStart
+                      && day.getTime() <= previewEnd
+                      && !isSameDay(day, rangeStart),
+                    rangeStart: isSameDay(day, rangeStart),
                     tabbable: isSameDay(day, options.focusedDate),
                     today: isSameDay(day, currentDay),
                     value: toIsoDate(day),

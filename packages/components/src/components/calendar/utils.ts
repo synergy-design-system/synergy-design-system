@@ -44,25 +44,6 @@ const weekdayNameCache = new Map<string, readonly string[]>();
 const monthNameCache = new Map<string, readonly string[]>();
 
 /**
- * Returns the name of the month for the given date.
- * @param date The date for which to get the month name
- * @returns The full name of the month (e.g., "January")
- */
-export const getMonthLabel = (date: CalendarDate) => {
-  const cacheKey = `${date.year}-${date.month}`;
-
-  if (monthNameCache.has(cacheKey)) {
-    return monthNameCache.get(cacheKey)![0];
-  }
-
-  const formatter = createFormat(undefined, { month: 'long' });
-  const monthName = formatter.format(date);
-  monthNameCache.set(cacheKey, [monthName]);
-
-  return monthName;
-};
-
-/**
  * Serializes a date-only value into an ISO `YYYY-MM-DD` string.
  * @param date The date to serialize
  * @returns The ISO string or an empty string for invalid dates
@@ -541,6 +522,16 @@ export const getMonthNames = (
 
   return names;
 };
+
+/**
+ * Returns the name of the month for the given date.
+ * @param date The date for which to get the month name
+ * @param locale The locale to format with
+ * @returns The full name of the month (e.g., "January")
+ */
+export const getMonthLabel = (date: CalendarDate, locale: string) => (
+  getMonthNames(locale, 'long')[date.month - 1]
+);
 
 /**
  * Gets the first year of the decade a date belongs to, used by the year view.

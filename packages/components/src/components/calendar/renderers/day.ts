@@ -95,7 +95,7 @@ export const renderDayView = (options: DayViewOptions): CalendarViewTemplates =>
         </tbody>
       </table>
     `,
-    footer: renderCalendarFooter('Today', options),
+    footer: renderCalendarFooter(options),
     header: html`
       <div class="selection-wrapper">
         <div class="header--month-selection header-selection" part="month-navigation">

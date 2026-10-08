@@ -30,7 +30,7 @@ export const renderMonthView = (options: MonthViewOptions): CalendarViewTemplate
       }))}
     </div>
   `,
-  footer: renderCalendarFooter('This month', options),
+  footer: renderCalendarFooter(options),
   header: html`
     <div class="selection-wrapper">
       <div class="header--year-selection header-selection" part="year-navigation">

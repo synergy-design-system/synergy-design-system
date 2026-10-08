@@ -36,7 +36,9 @@ export interface CalendarConstraints {
 
 /** State, actions, and size for the current-period and Clear buttons in every view. */
 export interface CalendarFooterOptions {
+  clearLabel: string;
   currentDisabled?: boolean;
+  currentLabel: string;
   hasValue: boolean;
   onClear: () => void;
   onCurrent: () => void;

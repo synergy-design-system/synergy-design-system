@@ -23,6 +23,16 @@ const translation: Translation = {
   showPassword: 'Wachtwoord weergeven',
 
   // Synergy custom translations start
+  calendarClear: 'Wissen',
+  calendarNextMonth: 'Volgende maand',
+  calendarNextYear: 'Volgend jaar',
+  calendarNextYearBlock: 'Volgende 12 jaar',
+  calendarPreviousMonth: 'Vorige maand',
+  calendarPreviousYear: 'Vorig jaar',
+  calendarPreviousYearBlock: 'Vorige 12 jaar',
+  calendarThisMonth: 'Deze maand',
+  calendarThisYear: 'Dit jaar',
+  calendarToday: 'Vandaag',
   closeMenu: 'Menu sluiten',
   critical: 'Kritiek',
   danger: 'Gevaar',

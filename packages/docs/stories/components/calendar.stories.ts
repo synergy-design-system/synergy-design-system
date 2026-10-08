@@ -1,6 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
+import '../../../components/src/components/card/card.js';
 import '../../../components/src/components/calendar/calendar.js';
+import '../../../components/src/translations/fr.js';
+import '../../../components/src/translations/ja.js';
+import '../../../components/src/translations/zh-cn.js';
+import '../../../components/src/translations/es.js';
 import {
   generateScreenshotStory,
   generateStoryDescription,
@@ -62,6 +67,26 @@ export const Sizes: Story = {
       <syn-calendar size="small" mode="single" value="2026-12-24"></syn-calendar>
       <syn-calendar size="medium" mode="single" value="2026-12-24"></syn-calendar>
       <syn-calendar size="large" mode="single" value="2026-12-24"></syn-calendar>
+    </div>
+  `,
+};
+
+export const Localization: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('calendar', 'localization'),
+      },
+    },
+  },
+  render: () => html`
+    <div style="align-items: flex-start; display: flex; flex-wrap: wrap; flex-direction: row; gap: var(--syn-spacing-large);">
+      ${['fr', 'ja', 'zh', 'es'].map(locale => html`
+        <syn-card>
+          <span class="syn-heading--medium" slot="header">Locale: ${locale}</span>
+          <syn-calendar lang="${locale}"></syn-calendar>
+        </syn-card>
+      `)}
     </div>
   `,
 };

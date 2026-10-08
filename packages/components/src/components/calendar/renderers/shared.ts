@@ -84,7 +84,7 @@ export const renderCalendarNavigation = (options: CalendarNavigationOptions) => 
   ></syn-icon-button>
 `;
 
-export const renderCalendarFooter = (label: string, options: CalendarFooterOptions) => html`
+export const renderCalendarFooter = (options: CalendarFooterOptions) => html`
   <div class="selection-wrapper">
     <syn-button
       @click=${options.onCurrent}
@@ -93,7 +93,7 @@ export const renderCalendarFooter = (label: string, options: CalendarFooterOptio
       size=${options.size}
       variant="text"
     >
-      ${label}
+      ${options.currentLabel}
     </syn-button>
     <syn-button
       @click=${options.onClear}
@@ -102,7 +102,7 @@ export const renderCalendarFooter = (label: string, options: CalendarFooterOptio
       size=${options.size}
       variant="text"
     >
-      Clear
+      ${options.clearLabel}
     </syn-button>
   </div>
 `;

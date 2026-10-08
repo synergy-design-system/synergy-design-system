@@ -26,7 +26,7 @@ export const renderYearView = (options: YearViewOptions): CalendarViewTemplates 
       }))}
     </div>
   `,
-  footer: renderCalendarFooter('This year', options),
+  footer: renderCalendarFooter(options),
   header: html`
     <div class="selection-wrapper">
       <div class="header--year-selection header-selection" part="year-navigation">

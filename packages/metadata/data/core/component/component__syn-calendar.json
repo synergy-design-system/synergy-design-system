@@ -18,6 +18,10 @@
               "type": "SynBlurEvent"
             },
             {
+              "name": "syn-before-change",
+              "type": "SynBeforeChangeEvent"
+            },
+            {
               "name": "syn-change",
               "type": "SynChangeEvent"
             },
@@ -120,6 +124,14 @@
       },
       {
         "layer": "full",
+        "path": "layers/full/component/component__syn-calendar/components/internal-types.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-calendar/components/types.ts"
+      },
+      {
+        "layer": "full",
         "path": "layers/full/component/component__syn-calendar/components/utils.ts"
       },
       {
@@ -171,6 +183,8 @@
     "packages/components/src/components/calendar/calendar.styles.ts",
     "packages/components/src/components/calendar/calendar.ts",
     "packages/components/src/components/calendar/implementation-details.md",
+    "packages/components/src/components/calendar/internal-types.ts",
+    "packages/components/src/components/calendar/types.ts",
     "packages/components/src/components/calendar/utils.ts",
     "packages/react/src/components/calendar.ts",
     "packages/vue/src/components/SynVueCalendar.vue"

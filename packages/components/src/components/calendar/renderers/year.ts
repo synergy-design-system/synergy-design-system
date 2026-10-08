@@ -1,24 +1,11 @@
 import { html } from 'lit';
-import { type CalendarWeekday, isYearInRange } from '../utils.js';
+import type { CalendarViewTemplates, YearViewOptions } from '../internal-types.js';
+import { isYearInRange } from '../utils.js';
 import {
-  type CalendarFooterOptions,
-  type CalendarNavigationOptions,
-  type CalendarViewTemplates,
   renderCalendarFooter,
   renderCalendarItem,
   renderCalendarNavigation,
 } from './shared.js';
-
-export interface YearViewOptions extends CalendarFooterOptions {
-  blockStart: number;
-  focusedYear: number;
-  activeYear: number | undefined;
-  min: Date | null;
-  max: Date | null;
-  disabledDates: readonly string[];
-  disabledWeekdays: readonly CalendarWeekday[];
-  navigation: CalendarNavigationOptions;
-}
 
 export const renderYearView = (options: YearViewOptions): CalendarViewTemplates => ({
   content: html`

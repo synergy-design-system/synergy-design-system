@@ -57,6 +57,7 @@ import type {
   SynValidate,
   SynAfterHideEvent,
   SynAfterShowEvent,
+  SynBeforeChangeEvent,
   SynBlurEvent,
   SynBurgerMenuClosedEvent,
   SynBurgerMenuHiddenEvent,
@@ -111,6 +112,7 @@ type SynButtonGroupEvents = [];
 
 type SynCalendarEvents = [
   ['syn-blur', SynBlurEvent],
+  ['syn-before-change', SynBeforeChangeEvent],
   ['syn-change', SynChangeEvent],
   ['syn-clear', SynClearEvent],
   ['syn-focus', SynFocusEvent],
@@ -469,6 +471,12 @@ declare module 'vue' {
      * @csspart calendar-item-today - The item representing today.
      * @csspart calendar-item-outside - A day item belonging to an adjacent month.
      * @csspart calendar-item-disabled - A disabled calendar item.
+     * @csspart calendar-item-range-begin - The beginning of a selected or previewed range.
+     * @csspart calendar-item-range-start - The start of a selected date range.
+     * @csspart calendar-item-range-end - The end of a selected date range.
+     * @csspart calendar-item-range-interior - A date inside the selected or previewed range.
+     * @csspart calendar-item-range-pending - The selected start while waiting for a range end.
+     * @csspart calendar-item-range-preview - A date in the pending range under the pointer.
      * @csspart month-navigation - The month navigation controls.
      * @csspart year-navigation - The year navigation controls.
      * @csspart previous-button - The previous-period navigation button.
@@ -480,10 +488,11 @@ declare module 'vue' {
      * @cssproperty --syn-calendar-min-width - The minimum width of the calendar. Defaults to 388px.
      *
      * @event syn-blur - Emitted when focus leaves the calendar.
-     * @event syn-change - Emitted when a user commits a different date value.
+     * @event syn-before-change - Emitted before user change events with the proposed value temporarily set on the host; preventDefault restores the previous value.
+     * @event syn-change - Emitted when a user commits a selection; in range mode this occurs after the end date is chosen.
      * @event syn-clear - Emitted when the user clears a non-empty date value.
      * @event syn-focus - Emitted when focus enters the calendar.
-     * @event syn-input - Emitted when a user changes the date value.
+     * @event syn-input - Emitted when a user changes the selection.
      */ 'syn-calendar': SynVueElement<SynCalendar, SynCalendarEvents>;
     /**
      * @summary Cards can be used to group related subjects in a container.
@@ -1821,6 +1830,12 @@ declare module 'vue' {
      * @csspart calendar-item-today - The item representing today.
      * @csspart calendar-item-outside - A day item belonging to an adjacent month.
      * @csspart calendar-item-disabled - A disabled calendar item.
+     * @csspart calendar-item-range-begin - The beginning of a selected or previewed range.
+     * @csspart calendar-item-range-start - The start of a selected date range.
+     * @csspart calendar-item-range-end - The end of a selected date range.
+     * @csspart calendar-item-range-interior - A date inside the selected or previewed range.
+     * @csspart calendar-item-range-pending - The selected start while waiting for a range end.
+     * @csspart calendar-item-range-preview - A date in the pending range under the pointer.
      * @csspart month-navigation - The month navigation controls.
      * @csspart year-navigation - The year navigation controls.
      * @csspart previous-button - The previous-period navigation button.
@@ -1832,10 +1847,11 @@ declare module 'vue' {
      * @cssproperty --syn-calendar-min-width - The minimum width of the calendar. Defaults to 388px.
      *
      * @event syn-blur - Emitted when focus leaves the calendar.
-     * @event syn-change - Emitted when a user commits a different date value.
+     * @event syn-before-change - Emitted before user change events with the proposed value temporarily set on the host; preventDefault restores the previous value.
+     * @event syn-change - Emitted when a user commits a selection; in range mode this occurs after the end date is chosen.
      * @event syn-clear - Emitted when the user clears a non-empty date value.
      * @event syn-focus - Emitted when focus enters the calendar.
-     * @event syn-input - Emitted when a user changes the date value.
+     * @event syn-input - Emitted when a user changes the selection.
      */ 'syn-calendar': SynIntrinsicElement<SynCalendar, SynCalendarEvents>;
     /**
      * @summary Cards can be used to group related subjects in a container.

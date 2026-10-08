@@ -1,0 +1,117 @@
+import type { TemplateResult } from 'lit';
+import type { Record as CalendarDate } from 'temporal-polyfill/fns/PlainDate';
+import type { CalendarSelectionMode, CalendarSize, CalendarWeekday } from './types.js';
+
+/** Internal ISO date-only record; months are 1-12 and no time or timezone is stored. */
+export type { CalendarDate };
+
+/** A parsed date or an explicitly unset value, such as an absent selection or bound. */
+export type NullableCalendarDate = CalendarDate | null;
+
+/** Also accepts missing inputs, such as an array element that does not exist yet. */
+export type OptionalCalendarDate = NullableCalendarDate | undefined;
+
+/** Shared signature for date comparisons; either missing input produces false. */
+export type CalendarDateComparison = (
+  firstDate: OptionalCalendarDate,
+  secondDate: OptionalCalendarDate,
+) => boolean;
+
+/** Day-grid arrow-key movement: one day horizontally or one week vertically. */
+export type CalendarDayOffset = -7 | -1 | 1 | 7;
+
+/** The visible selection grid and the kind of item rendered within it. */
+export type CalendarView = 'day' | 'month' | 'year';
+
+/** ISO weekday numbering: Monday=1 through Sunday=7, including locale week starts. */
+export type WeekdayIndex = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
+/** Shared selectability rules: inclusive date bounds and explicitly disabled dates/weekdays. */
+export interface CalendarConstraints {
+  disabledDates: readonly string[];
+  disabledWeekdays: readonly CalendarWeekday[];
+  max: NullableCalendarDate;
+  min: NullableCalendarDate;
+}
+
+/** State, actions, and size for the current-period and Clear buttons in every view. */
+export interface CalendarFooterOptions {
+  currentDisabled?: boolean;
+  hasValue: boolean;
+  onClear: () => void;
+  onCurrent: () => void;
+  size: CalendarSize;
+}
+
+/** Label, focus eligibility, and visual/part states for a day, month, or year button. */
+export interface CalendarItemOptions {
+  active: boolean;
+  disabled?: boolean;
+  kind: CalendarView;
+  label: string | number | TemplateResult;
+  outside?: boolean;
+  rangeBegin?: boolean;
+  rangeEnd?: boolean;
+  rangeInterior?: boolean;
+  rangePending?: boolean;
+  rangePreview?: boolean;
+  rangeStart?: boolean;
+  tabbable: boolean;
+  today?: boolean;
+  value: string | number;
+}
+
+/** Labels, availability, actions, and size for period navigation and optional view switching. */
+export interface CalendarNavigationOptions {
+  label: string | number;
+  nextDisabled?: boolean;
+  nextLabel: string;
+  onChoose?: () => void;
+  onNext: () => void;
+  onPrevious: () => void;
+  previousDisabled?: boolean;
+  previousLabel: string;
+  size: CalendarSize;
+}
+
+/** Rendered sections returned by each view for the component's shared page structure. */
+export interface CalendarViewTemplates {
+  content: TemplateResult;
+  footer: TemplateResult;
+  header: TemplateResult;
+}
+
+/**
+ * Day-grid inputs, including selection, focused date, locale, and month/year navigation.
+ * hoveredDate is the preview endpoint from either pointer hover or keyboard navigation.
+ */
+export interface DayViewOptions extends CalendarConstraints, CalendarFooterOptions {
+  focusedDate: CalendarDate;
+  hoveredDate: NullableCalendarDate;
+  locale: string;
+  mode: CalendarSelectionMode;
+  monthNavigation: CalendarNavigationOptions;
+  selectedDates: readonly CalendarDate[];
+  viewDate: CalendarDate;
+  yearNavigation: CalendarNavigationOptions;
+}
+
+/**
+ * Month-grid inputs for a viewed year; activeMonth and focusedMonth use 1-12 internally.
+ * The renderer preserves zero-based month button/slot identifiers at its boundary.
+ */
+export interface MonthViewOptions extends CalendarConstraints, CalendarFooterOptions {
+  activeMonth: number | undefined;
+  focusedMonth: number;
+  locale: string;
+  year: number;
+  yearNavigation: CalendarNavigationOptions;
+}
+
+/** Year-grid inputs; blockStart anchors the displayed block of twelve years. */
+export interface YearViewOptions extends CalendarConstraints, CalendarFooterOptions {
+  activeYear: number | undefined;
+  blockStart: number;
+  focusedYear: number;
+  navigation: CalendarNavigationOptions;
+}

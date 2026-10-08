@@ -9,6 +9,15 @@ Use the checklists to indicate:
 
 ## Implementation
 
+### Date Representation
+
+- Internal dates use ISO `PlainDate.Record` values from `temporal-polyfill/fns/PlainDate`.
+- Internal months are 1-12 and weekdays are Monday=1 through Sunday=7.
+- Public `value`, `min`, `max`, and disabled dates remain ISO `YYYY-MM-DD` strings.
+- `valueAsDates` remains a UTC date-only `Date[]` boundary; internal calculations do not use native `Date`.
+- Month buttons and slots retain their zero-based identifiers (`month-0` through `month-11`).
+- Date arithmetic and formatting use the functional package API; locale week starts and selection constraints remain calendar-owned.
+
 ## Doings
 
 - [ ] For sake of easier usage and combination, we opt to create more components:

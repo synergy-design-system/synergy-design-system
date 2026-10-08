@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-06T13:45:59.888Z",
+  "builtAt": "2026-10-08T09:04:35.059Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset__sick2018-icons.json",
@@ -267,7 +267,7 @@
       "kind": "component",
       "layers": {
         "examples": 1,
-        "full": 9,
+        "full": 11,
         "interface": 2,
         "rules": 1
       },

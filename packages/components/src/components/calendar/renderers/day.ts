@@ -1,7 +1,7 @@
 import { html } from 'lit';
+import { compare } from 'temporal-polyfill/fns/PlainDate';
+import type { CalendarViewTemplates, DayViewOptions } from '../internal-types.js';
 import {
-  type CalendarSelectionMode,
-  type CalendarWeekday,
   getCalendarWeeks,
   getFirstDayOfWeek,
   getWeekdayNames,
@@ -12,35 +12,17 @@ import {
   today,
 } from '../utils.js';
 import {
-  type CalendarFooterOptions,
-  type CalendarNavigationOptions,
-  type CalendarViewTemplates,
   renderCalendarFooter,
   renderCalendarItem,
   renderCalendarNavigation,
 } from './shared.js';
 
-export interface DayViewOptions extends CalendarFooterOptions {
-  disabledDates: readonly string[];
-  disabledWeekdays: readonly CalendarWeekday[];
-  focusedDate: Date;
-  hoveredDate: Date | null;
-  locale: string;
-  max: Date | null;
-  min: Date | null;
-  mode: CalendarSelectionMode;
-  monthNavigation: CalendarNavigationOptions;
-  selectedDates: readonly Date[];
-  viewDate: Date;
-  yearNavigation: CalendarNavigationOptions;
-}
-
 export const renderDayView = (options: DayViewOptions): CalendarViewTemplates => {
   const firstDay = getFirstDayOfWeek(options.locale);
   const weekdays = getWeekdayNames(options.locale, firstDay);
   const weeks = getCalendarWeeks(
-    options.viewDate.getUTCFullYear(),
-    options.viewDate.getUTCMonth(),
+    options.viewDate.year,
+    options.viewDate.month,
     firstDay,
   );
   const currentDay = today();
@@ -48,12 +30,9 @@ export const renderDayView = (options: DayViewOptions): CalendarViewTemplates =>
   const rangeEnd = options.mode === 'range' && options.selectedDates.length === 2
     ? options.selectedDates[1]
     : null;
-  const previewStart = rangeStart && options.hoveredDate
-    ? Math.min(rangeStart.getTime(), options.hoveredDate.getTime())
-    : null;
-  const previewEnd = rangeStart && options.hoveredDate
-    ? Math.max(rangeStart.getTime(), options.hoveredDate.getTime())
-    : null;
+  const [previewStart, previewEnd] = rangeStart && options.hoveredDate
+    ? [rangeStart, options.hoveredDate].sort(compare)
+    : [null, null];
 
   return {
     content: html`
@@ -78,7 +57,7 @@ export const renderDayView = (options: DayViewOptions): CalendarViewTemplates =>
                     kind: 'day',
                     label: html`
                       <time datetime=${toIsoDate(day)}>
-                        ${day.getUTCDate().toString().padStart(2, '0')}
+                        ${day.day.toString().padStart(2, '0')}
                       </time>
                     `,
                     outside: !isSameMonth(day, options.viewDate),
@@ -87,22 +66,22 @@ export const renderDayView = (options: DayViewOptions): CalendarViewTemplates =>
                       || (!!rangeStart && !rangeEnd && isSameDay(day, options.hoveredDate)),
                     rangeInterior: (!!rangeStart
                       && !!rangeEnd
-                      && day.getTime() > rangeStart.getTime()
-                      && day.getTime() < rangeEnd.getTime())
+                      && compare(day, rangeStart) > 0
+                      && compare(day, rangeEnd) < 0)
                       || (!!rangeStart
                         && !rangeEnd
                         && previewStart !== null
                         && previewEnd !== null
-                        && day.getTime() > previewStart
-                        && day.getTime() < previewEnd),
+                        && compare(day, previewStart) > 0
+                        && compare(day, previewEnd) < 0),
                     rangePending: !!rangeStart && !rangeEnd && isSameDay(day, rangeStart),
                     rangePreview: !!rangeStart
                       && !rangeEnd
                       && !!options.hoveredDate
                       && previewStart !== null
                       && previewEnd !== null
-                      && day.getTime() >= previewStart
-                      && day.getTime() <= previewEnd
+                      && compare(day, previewStart) >= 0
+                      && compare(day, previewEnd) <= 0
                       && !isSameDay(day, rangeStart),
                     rangeStart: isSameDay(day, rangeStart),
                     tabbable: isSameDay(day, options.focusedDate),

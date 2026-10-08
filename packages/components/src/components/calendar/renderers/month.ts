@@ -1,34 +1,23 @@
 import { html } from 'lit';
-import { type CalendarWeekday, getMonthNames, isMonthInRange } from '../utils.js';
+import type { CalendarViewTemplates, MonthViewOptions } from '../internal-types.js';
 import {
-  type CalendarFooterOptions,
-  type CalendarNavigationOptions,
-  type CalendarViewTemplates,
+  getMonthNames,
+  isMonthInRange,
+} from '../utils.js';
+import {
   renderCalendarFooter,
   renderCalendarItem,
   renderCalendarNavigation,
 } from './shared.js';
 
-export interface MonthViewOptions extends CalendarFooterOptions {
-  locale: string;
-  activeMonth: number | undefined;
-  focusedMonth: number;
-  year: number;
-  min: Date | null;
-  max: Date | null;
-  disabledDates: readonly string[];
-  disabledWeekdays: readonly CalendarWeekday[];
-  yearNavigation: CalendarNavigationOptions;
-}
-
 export const renderMonthView = (options: MonthViewOptions): CalendarViewTemplates => ({
   content: html`
     <div class="period-selector" part="month-grid">
       ${getMonthNames(options.locale, 'short').map((month, index) => renderCalendarItem({
-        active: options.activeMonth === index,
+        active: options.activeMonth === index + 1,
         disabled: !isMonthInRange(
           options.year,
-          index,
+          index + 1,
           options.min,
           options.max,
           options.disabledDates,
@@ -36,7 +25,7 @@ export const renderMonthView = (options: MonthViewOptions): CalendarViewTemplate
         ),
         kind: 'month',
         label: month,
-        tabbable: index === options.focusedMonth,
+        tabbable: index + 1 === options.focusedMonth,
         value: index,
       }))}
     </div>

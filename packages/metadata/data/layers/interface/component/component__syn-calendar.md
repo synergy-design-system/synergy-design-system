@@ -40,23 +40,42 @@ default: `[]`
 Use disabled-weekdays to disable specific weekdays.
 The attribute accepts a space-separated list of three-letter weekday names (sun, mon, tue, wed, thu, fri, sat), in any order.
 
+### mode
+
+attribute: `mode`
+reflects: yes
+type: ``
+default: `'single'`
+
+'single' | 'range' | 'multiple'
+
+### size
+
+attribute: `size`
+reflects: yes
+type: ``
+default: `'medium'`
+
+'small' | 'medium' | 'large'
+
 ### value
 
 attribute: `value`
 reflects: no
-type: `string`
-default: `''`
+type: `string[]`
+default: `[]`
 
-The selected date as an ISO `YYYY-MM-DD` string, or an empty string when unset.
+Selected dates as ISO `YYYY-MM-DD` strings. Single mode accepts one date, range mode two endpoints
+(one date is pending), and multiple mode any number of distinct dates.
 
-### valueAsDate
+### valueAsDates
 
 attribute: -
 reflects: -
-type: `undefined`
+type: `Date[]`
 default: none
 
-Sets the selected value as a UTC date-only `Date`.
+Sets selected values as UTC date-only `Date` instances.
 
 ## Attribute-only Members
 
@@ -87,6 +106,12 @@ default: `''`
 - `calendar-item-disabled`: A disabled calendar item.
 - `calendar-item-month`: A month button.
 - `calendar-item-outside`: A day item belonging to an adjacent month.
+- `calendar-item-range-begin`: The beginning of a selected or previewed range.
+- `calendar-item-range-end`: The end of a selected date range.
+- `calendar-item-range-interior`: A date inside the selected or previewed range.
+- `calendar-item-range-pending`: The selected start while waiting for a range end.
+- `calendar-item-range-preview`: A date in the pending range under the pointer.
+- `calendar-item-range-start`: The start of a selected date range.
 - `calendar-item-today`: The item representing today.
 - `calendar-item-year`: A year button.
 - `clear-button`: The button for clearing the selected value.
@@ -105,6 +130,12 @@ default: `''`
 
 ## Available Events
 
+### syn-before-change
+
+type: `SynBeforeChangeEvent`
+
+Emitted before user change events with the proposed value temporarily set on the host; preventDefault restores the previous value.
+
 ### syn-blur
 
 type: `SynBlurEvent`
@@ -115,7 +146,7 @@ Emitted when focus leaves the calendar.
 
 type: `SynChangeEvent`
 
-Emitted when a user commits a different date value.
+Emitted when a user commits a selection; in range mode this occurs after the end date is chosen.
 
 ### syn-clear
 
@@ -133,7 +164,7 @@ Emitted when focus enters the calendar.
 
 type: `SynInputEvent`
 
-Emitted when a user changes the date value.
+Emitted when a user changes the selection.
 
 ## Dependencies
 

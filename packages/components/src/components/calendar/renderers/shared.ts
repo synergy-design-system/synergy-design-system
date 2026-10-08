@@ -1,22 +1,10 @@
-import { type TemplateResult, html } from 'lit';
+import { html } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
-
-export interface CalendarItemOptions {
-  kind: 'day' | 'month' | 'year';
-  value: string | number;
-  label: string | number | TemplateResult;
-  active: boolean;
-  tabbable: boolean;
-  disabled?: boolean;
-  today?: boolean;
-  outside?: boolean;
-  rangeBegin?: boolean;
-  rangeEnd?: boolean;
-  rangeInterior?: boolean;
-  rangePending?: boolean;
-  rangePreview?: boolean;
-  rangeStart?: boolean;
-}
+import type {
+  CalendarFooterOptions,
+  CalendarItemOptions,
+  CalendarNavigationOptions,
+} from '../internal-types.js';
 
 export const renderCalendarItem = (options: CalendarItemOptions) => {
   const states = {
@@ -69,32 +57,6 @@ export const renderCalendarItem = (options: CalendarItemOptions) => {
     </button>
   `;
 };
-
-export interface CalendarViewTemplates {
-  header: TemplateResult;
-  content: TemplateResult;
-  footer: TemplateResult;
-}
-
-export interface CalendarFooterOptions {
-  hasValue: boolean;
-  currentDisabled?: boolean;
-  onClear: () => void;
-  onCurrent: () => void;
-  size: 'small' | 'medium' | 'large';
-}
-
-export interface CalendarNavigationOptions {
-  label: string | number;
-  previousLabel: string;
-  nextLabel: string;
-  onPrevious: () => void;
-  onNext: () => void;
-  size: 'small' | 'medium' | 'large';
-  onChoose?: () => void;
-  previousDisabled?: boolean;
-  nextDisabled?: boolean;
-}
 
 export const renderCalendarNavigation = (options: CalendarNavigationOptions) => html`
   <syn-icon-button

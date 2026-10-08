@@ -14,6 +14,7 @@ import {
 } from '@angular/core';
 import type SynCalendar from '@synergy-design-system/components/components/calendar/calendar.component.js';
 import type { SynBlurEvent } from '@synergy-design-system/components';
+import type { SynBeforeChangeEvent } from '@synergy-design-system/components';
 import type { SynChangeEvent } from '@synergy-design-system/components';
 import type { SynClearEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
@@ -44,6 +45,12 @@ import '@synergy-design-system/components/components/calendar/calendar.js';
  * @csspart calendar-item-today - The item representing today.
  * @csspart calendar-item-outside - A day item belonging to an adjacent month.
  * @csspart calendar-item-disabled - A disabled calendar item.
+ * @csspart calendar-item-range-begin - The beginning of a selected or previewed range.
+ * @csspart calendar-item-range-start - The start of a selected date range.
+ * @csspart calendar-item-range-end - The end of a selected date range.
+ * @csspart calendar-item-range-interior - A date inside the selected or previewed range.
+ * @csspart calendar-item-range-pending - The selected start while waiting for a range end.
+ * @csspart calendar-item-range-preview - A date in the pending range under the pointer.
  * @csspart month-navigation - The month navigation controls.
  * @csspart year-navigation - The year navigation controls.
  * @csspart previous-button - The previous-period navigation button.
@@ -55,10 +62,11 @@ import '@synergy-design-system/components/components/calendar/calendar.js';
  * @cssproperty --syn-calendar-min-width - The minimum width of the calendar. Defaults to 388px.
  *
  * @event syn-blur - Emitted when focus leaves the calendar.
- * @event syn-change - Emitted when a user commits a different date value.
+ * @event syn-before-change - Emitted before user change events with the proposed value temporarily set on the host; preventDefault restores the previous value.
+ * @event syn-change - Emitted when a user commits a selection; in range mode this occurs after the end date is chosen.
  * @event syn-clear - Emitted when the user clears a non-empty date value.
  * @event syn-focus - Emitted when focus enters the calendar.
- * @event syn-input - Emitted when a user changes the date value.
+ * @event syn-input - Emitted when a user changes the selection.
  */
 @Component({
   selector: 'syn-calendar',
@@ -75,6 +83,12 @@ export class SynCalendarComponent {
     this.nativeElement.addEventListener('syn-blur', (e: SynBlurEvent) => {
       this.synBlurEvent.emit(e);
     });
+    this.nativeElement.addEventListener(
+      'syn-before-change',
+      (e: SynBeforeChangeEvent) => {
+        this.synBeforeChangeEvent.emit(e);
+      },
+    );
     this.nativeElement.addEventListener('syn-change', (e: SynChangeEvent) => {
       this.synChangeEvent.emit(e);
     });
@@ -134,8 +148,21 @@ The attribute accepts a space-separated list of three-letter weekday names (sun,
   }
 
   /**
-   * The selected date as an ISO `YYYY-MM-DD` string, or an empty string when unset.
+   * 'single' | 'range' | 'multiple'
    */
+  @Input()
+  set mode(v: SynCalendar['mode']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.mode = v));
+  }
+  get mode(): SynCalendar['mode'] {
+    return this.nativeElement.mode;
+  }
+
+  /**
+* Selected dates as ISO `YYYY-MM-DD` strings.
+* Single mode accepts one date, range mode two endpoints
+(one date is pending), and multiple mode any number of distinct dates.
+ */
   @Input()
   set value(v: SynCalendar['value']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
@@ -145,12 +172,28 @@ The attribute accepts a space-separated list of three-letter weekday names (sun,
   }
 
   /**
+   * 'small' | 'medium' | 'large'
+   */
+  @Input()
+  set size(v: SynCalendar['size']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
+  }
+  get size(): SynCalendar['size'] {
+    return this.nativeElement.size;
+  }
+
+  /**
    * Emitted when focus leaves the calendar.
    */
   @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();
 
   /**
-   * Emitted when a user commits a different date value.
+   * Emitted before user change events with the proposed value temporarily set on the host; preventDefault restores the previous value.
+   */
+  @Output() synBeforeChangeEvent = new EventEmitter<SynBeforeChangeEvent>();
+
+  /**
+   * Emitted when a user commits a selection; in range mode this occurs after the end date is chosen.
    */
   @Output() synChangeEvent = new EventEmitter<SynChangeEvent>();
 
@@ -165,12 +208,13 @@ The attribute accepts a space-separated list of three-letter weekday names (sun,
   @Output() synFocusEvent = new EventEmitter<SynFocusEvent>();
 
   /**
-   * Emitted when a user changes the date value.
+   * Emitted when a user changes the selection.
    */
   @Output() synInputEvent = new EventEmitter<SynInputEvent>();
 }
 
 export type { SynBlurEvent } from '@synergy-design-system/components';
+export type { SynBeforeChangeEvent } from '@synergy-design-system/components';
 export type { SynChangeEvent } from '@synergy-design-system/components';
 export type { SynClearEvent } from '@synergy-design-system/components';
 export type { SynFocusEvent } from '@synergy-design-system/components';

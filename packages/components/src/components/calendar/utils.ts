@@ -1,35 +1,40 @@
-/**
- * Calendar helpers for `<syn-date-picker>`.
- *
- * All values are *date-only*: a `Date` created via `Date.UTC` at midnight UTC.
- * Reading them must always use the `getUTC*` getters, never the local ones,
- * otherwise daylight saving transitions can shift a date by a day.
- *
- * Months are zero based, matching the native `Date` API (0 = January).
- *
- * The public API of the component should exchange ISO `YYYY-MM-DD` strings so the
- * internals here can be swapped for `Temporal` once it is part of the browser baseline.
- */
+import { getBasic } from 'temporal-polyfill/fns/Calendar';
+import { plainDateISO } from 'temporal-polyfill/fns/Now';
+import {
+  addDays,
+  compare,
+  create,
+  createFormat,
+  dayOfWeek,
+  endOfMonth,
+  endOfYear,
+  equals,
+  fromString,
+  toString,
+} from 'temporal-polyfill/fns/PlainDate';
 
-/**
- * Weekday index as used by `Date#getUTCDay()`, where 0 = Sunday and 6 = Saturday.
- */
-export type WeekdayIndex = 0 | 1 | 2 | 3 | 4 | 5 | 6;
+import type {
+  CalendarDate,
+  CalendarDateComparison,
+  CalendarDayOffset,
+  NullableCalendarDate,
+  OptionalCalendarDate,
+  WeekdayIndex,
+} from './internal-types.js';
+import type { CalendarSelectionMode, CalendarWeekday } from './types.js';
 
-export type CalendarWeekday = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun';
-export type CalendarSelectionMode = 'single' | 'range' | 'multiple';
+export const today: () => CalendarDate = plainDateISO;
 
-const UTC_WEEKDAYS: readonly CalendarWeekday[] = [
-  'sun',
+const ISO_WEEKDAYS: readonly CalendarWeekday[] = [
   'mon',
   'tue',
   'wed',
   'thu',
   'fri',
   'sat',
+  'sun',
 ];
 
-const MILLISECONDS_PER_DAY = 86400000;
 const ISO_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 
 // Creating Intl instances is expensive and the results only depend on the cache key,
@@ -39,73 +44,30 @@ const weekdayNameCache = new Map<string, readonly string[]>();
 const monthNameCache = new Map<string, readonly string[]>();
 
 /**
- * Creates a date-only value at midnight UTC.
- * Out of range parts overflow like in the native `Date` constructor,
- * e.g. a day of 0 resolves to the last day of the previous month.
- * @param year The full year
- * @param month The zero based month
- * @param day The day of the month
- * @returns The created date
- */
-export const createDate = (year: number, month: number, day: number) => new Date(
-  Date.UTC(year, month, day),
-);
-
-/**
- * Creates a date-only value for the current day, based on the users local time zone.
- * @returns The current day
- */
-export const today = () => {
-  const now = new Date();
-  return createDate(now.getFullYear(), now.getMonth(), now.getDate());
-};
-
-/**
  * Returns the name of the month for the given date.
  * @param date The date for which to get the month name
  * @returns The full name of the month (e.g., "January")
  */
-export const getMonthLabel = (date: Date) => {
-  const month = date.getUTCMonth();
-  const year = date.getUTCFullYear();
-  const cacheKey = `${year}-${month}`;
+export const getMonthLabel = (date: CalendarDate) => {
+  const cacheKey = `${date.year}-${date.month}`;
 
   if (monthNameCache.has(cacheKey)) {
     return monthNameCache.get(cacheKey)![0];
   }
 
-  const formatter = new Intl.DateTimeFormat(undefined, { month: 'long', timeZone: 'UTC' });
-  const monthName = formatter.format(createDate(year, month, 1));
+  const formatter = createFormat(undefined, { month: 'long' });
+  const monthName = formatter.format(date);
   monthNameCache.set(cacheKey, [monthName]);
 
   return monthName;
 };
 
 /**
- * Checks whether a date is usable for further calculations.
- * @param date The date to check
- * @returns True if the given value is a valid date
- */
-export const isValidDate = (date: Date | null | undefined): date is Date => (
-  date instanceof Date && !Number.isNaN(date.getTime())
-);
-
-/**
  * Serializes a date-only value into an ISO `YYYY-MM-DD` string.
  * @param date The date to serialize
  * @returns The ISO string or an empty string for invalid dates
  */
-export const toIsoDate = (date: Date | null | undefined) => {
-  if (!isValidDate(date)) {
-    return '';
-  }
-
-  const year = `${date.getUTCFullYear()}`.padStart(4, '0');
-  const month = `${date.getUTCMonth() + 1}`.padStart(2, '0');
-  const day = `${date.getUTCDate()}`.padStart(2, '0');
-
-  return `${year}-${month}-${day}`;
-};
+export const toIsoDate = (date: OptionalCalendarDate) => (date ? toString(date) : '');
 
 /**
  * Parses an ISO `YYYY-MM-DD` string into a date-only value.
@@ -118,10 +80,29 @@ export const parseIsoDate = (value: string | null | undefined) => {
     return null;
   }
 
-  const [year, month, day] = value.split('-').map(Number);
-  const date = createDate(year, month - 1, day);
+  try {
+    return fromString(value, getBasic);
+  } catch {
+    return null;
+  }
+};
 
-  return toIsoDate(date) === value ? date : null;
+export const toNativeDate = (date: CalendarDate) => {
+  const nativeDate = new Date(0);
+  nativeDate.setUTCFullYear(date.year, date.month - 1, date.day);
+  return nativeDate;
+};
+
+export const fromNativeDate = (date: Date): NullableCalendarDate => {
+  if (!(date instanceof Date) || Number.isNaN(date.getTime())) {
+    return null;
+  }
+
+  const year = date.getUTCFullYear();
+
+  return year >= 0 && year <= 9999
+    ? create(year, date.getUTCMonth() + 1, date.getUTCDate())
+    : null;
 };
 
 export const parseCalendarValue = (value: string | null) => {
@@ -157,7 +138,7 @@ export const parseDisabledDates = (value: string | null) => {
 };
 
 export const parseDisabledWeekdays = (value: string | null) => {
-  const validWeekdays = new Set<string>(UTC_WEEKDAYS);
+  const validWeekdays = new Set<string>(ISO_WEEKDAYS);
   const weekdays = new Set<CalendarWeekday>();
 
   (value ?? '').trim().toLowerCase().split(/\s+/).forEach(token => {
@@ -168,28 +149,6 @@ export const parseDisabledWeekdays = (value: string | null) => {
 
   return [...weekdays];
 };
-
-/**
- * Gets the amount of days in the given month.
- * @param year The full year
- * @param month The zero based month
- * @returns The amount of days
- */
-export const getDaysInMonth = (year: number, month: number) => createDate(
-  year,
-  month + 1,
-  0,
-).getUTCDate();
-
-/**
- * Adds days to a date. Use a negative amount to subtract.
- * @param date The base date
- * @param amount The amount of days to add
- * @returns The resulting date
- */
-export const addDays = (date: Date, amount: number) => new Date(
-  date.getTime() + amount * MILLISECONDS_PER_DAY,
-);
 
 export const normalizeCalendarValue = (
   values: readonly string[],
@@ -216,7 +175,7 @@ export const normalizeCalendarValue = (
     const start = parseIsoDate(validDates[0])!;
     const end = parseIsoDate(validDates[1])!;
 
-    for (let date = start; date.getTime() <= end.getTime(); date = addDays(date, 1)) {
+    for (let date = start; compare(date, end) <= 0; date = addDays(date, 1)) {
       expandedDates.push(toIsoDate(date));
     }
 
@@ -227,56 +186,24 @@ export const normalizeCalendarValue = (
 };
 
 /**
- * Adds months to a date. Use a negative amount to subtract.
- * The day is clamped to the last day of the target month,
- * so that e.g. January 31 plus one month results in February 28.
- * @param date The base date
- * @param amount The amount of months to add
- * @returns The resulting date
- */
-export const addMonths = (date: Date, amount: number) => {
-  const year = date.getUTCFullYear();
-  const month = date.getUTCMonth() + amount;
-  const targetYear = year + Math.floor(month / 12);
-  const targetMonth = ((month % 12) + 12) % 12;
-
-  return createDate(
-    targetYear,
-    targetMonth,
-    Math.min(date.getUTCDate(), getDaysInMonth(targetYear, targetMonth)),
-  );
-};
-
-/**
- * Adds years to a date. Use a negative amount to subtract.
- * The day is clamped, so that February 29 results in February 28 in non leap years.
- * @param date The base date
- * @param amount The amount of years to add
- * @returns The resulting date
- */
-export const addYears = (date: Date, amount: number) => addMonths(date, amount * 12);
-
-/**
  * Checks if two dates describe the same day.
- * @param a The first date
- * @param b The second date
+ * @param firstDate The first date
+ * @param secondDate The second date
  * @returns True if both dates are the same day
  */
-export const isSameDay = (a: Date | null | undefined, b: Date | null | undefined) => (
-  isValidDate(a) && isValidDate(b) && a.getTime() === b.getTime()
+export const isSameDay: CalendarDateComparison = (firstDate, secondDate) => (
+  !!firstDate && !!secondDate && equals(firstDate, secondDate)
 );
 
 /**
  * Checks if two dates are in the same month of the same year.
- * @param a The first date
- * @param b The second date
+ * @param firstDate The first date
+ * @param secondDate The second date
  * @returns True if both dates share month and year
  */
-export const isSameMonth = (a: Date | null | undefined, b: Date | null | undefined) => (
-  isValidDate(a)
-  && isValidDate(b)
-  && a.getUTCFullYear() === b.getUTCFullYear()
-  && a.getUTCMonth() === b.getUTCMonth()
+export const isSameMonth: CalendarDateComparison = (firstDate, secondDate) => (
+  !!firstDate && !!secondDate
+  && firstDate.year === secondDate.year && firstDate.month === secondDate.month
 );
 
 /**
@@ -286,12 +213,12 @@ export const isSameMonth = (a: Date | null | undefined, b: Date | null | undefin
  * @param max The upper boundary or null for no boundary
  * @returns The clamped date
  */
-export const clampDate = (date: Date, min?: Date | null, max?: Date | null) => {
-  if (isValidDate(min) && date.getTime() < min.getTime()) {
+export const clampDate = (date: CalendarDate, min?: NullableCalendarDate, max?: NullableCalendarDate) => {
+  if (min && compare(date, min) < 0) {
     return min;
   }
 
-  if (isValidDate(max) && date.getTime() > max.getTime()) {
+  if (max && compare(date, max) > 0) {
     return max;
   }
 
@@ -305,74 +232,68 @@ export const clampDate = (date: Date, min?: Date | null, max?: Date | null) => {
  * @param max The upper boundary or null for no boundary
  * @returns True if the date is within the boundaries
  */
-export const isDateInRange = (date: Date, min?: Date | null, max?: Date | null) => (
-  (!isValidDate(min) || !isValidDate(max) || min.getTime() <= max.getTime())
-  && (!isValidDate(min) || date.getTime() >= min.getTime())
-  && (!isValidDate(max) || date.getTime() <= max.getTime())
+export const isDateInRange = (date: CalendarDate, min?: NullableCalendarDate, max?: NullableCalendarDate) => (
+  (!min || !max || compare(min, max) <= 0)
+  && (!min || compare(date, min) >= 0)
+  && (!max || compare(date, max) <= 0)
 );
 
 /**
  * Checks whether a month contains at least one date inside the given boundaries.
  * @param year The full year
- * @param month The zero based month
+ * @param month The one based month
  * @param min The lower boundary or null for no boundary
  * @param max The upper boundary or null for no boundary
  * @returns True if at least one day in the month is in range
  */
 export const isDateDisabled = (
-  date: Date,
-  min?: Date | null,
-  max?: Date | null,
+  date: CalendarDate,
+  min?: NullableCalendarDate,
+  max?: NullableCalendarDate,
   disabledDates: readonly string[] = [],
   disabledWeekdays: readonly CalendarWeekday[] = [],
 ) => (
   !isDateInRange(date, min, max)
   || disabledDates.includes(toIsoDate(date))
-  || disabledWeekdays.includes(UTC_WEEKDAYS[date.getUTCDay()])
+  || disabledWeekdays.includes(ISO_WEEKDAYS[dayOfWeek(date) - 1])
 );
 
-export const hasSelectableDateInRange = (
-  start: Date,
-  end: Date,
-  min?: Date | null,
-  max?: Date | null,
+export const getFirstSelectableDateInRange = (
+  start: CalendarDate,
+  end: CalendarDate,
+  min?: NullableCalendarDate,
+  max?: NullableCalendarDate,
   disabledDates: readonly string[] = [],
   disabledWeekdays: readonly CalendarWeekday[] = [],
 ) => {
-  if (start.getTime() > end.getTime()) {
-    return false;
+  for (let date = start; compare(date, end) <= 0; date = addDays(date, 1)) {
+    if (!isDateDisabled(date, min, max, disabledDates, disabledWeekdays)) {
+      return date;
+    }
   }
 
-  const numberOfDays = Math.floor((end.getTime() - start.getTime()) / MILLISECONDS_PER_DAY);
-
-  return Array.from({ length: numberOfDays + 1 }, (_, offset) => addDays(start, offset))
-    .some(date => !isDateDisabled(date, min, max, disabledDates, disabledWeekdays));
+  return null;
 };
 
-export const getFirstSelectableDateInRange = (
-  start: Date,
-  end: Date,
-  min?: Date | null,
-  max?: Date | null,
+export const hasSelectableDateInRange = (
+  start: CalendarDate,
+  end: CalendarDate,
+  min?: NullableCalendarDate,
+  max?: NullableCalendarDate,
   disabledDates: readonly string[] = [],
   disabledWeekdays: readonly CalendarWeekday[] = [],
-) => {
-  const numberOfDays = Math.floor((end.getTime() - start.getTime()) / MILLISECONDS_PER_DAY);
-
-  return Array.from({ length: numberOfDays + 1 }, (_, offset) => addDays(start, offset))
-    .find(date => !isDateDisabled(date, min, max, disabledDates, disabledWeekdays)) ?? null;
-};
+) => !!getFirstSelectableDateInRange(start, end, min, max, disabledDates, disabledWeekdays);
 
 export const isMonthInRange = (
   year: number,
   month: number,
-  min?: Date | null,
-  max?: Date | null,
+  min?: NullableCalendarDate,
+  max?: NullableCalendarDate,
   disabledDates: readonly string[] = [],
   disabledWeekdays: readonly CalendarWeekday[] = [],
 ) => hasSelectableDateInRange(
-  createDate(year, month, 1),
-  createDate(year, month + 1, 0),
+  create(year, month, 1),
+  endOfMonth(create(year, month, 1)),
   min,
   max,
   disabledDates,
@@ -388,13 +309,13 @@ export const isMonthInRange = (
  */
 export const isYearInRange = (
   year: number,
-  min?: Date | null,
-  max?: Date | null,
+  min?: NullableCalendarDate,
+  max?: NullableCalendarDate,
   disabledDates: readonly string[] = [],
   disabledWeekdays: readonly CalendarWeekday[] = [],
 ) => hasSelectableDateInRange(
-  createDate(year, 0, 1),
-  createDate(year, 11, 31),
+  create(year, 1, 1),
+  endOfYear(create(year, 1, 1)),
   min,
   max,
   disabledDates,
@@ -409,14 +330,14 @@ export const isYearInRange = (
  * @returns The nearest in-range date, or null if no dates are selectable
  */
 export const getNearestSelectableDate = (
-  date: Date,
-  min?: Date | null,
-  max?: Date | null,
+  date: CalendarDate,
+  min?: NullableCalendarDate,
+  max?: NullableCalendarDate,
   disabledDates: readonly string[] = [],
   disabledWeekdays: readonly CalendarWeekday[] = [],
 ) => {
-  if ((isValidDate(min) && isValidDate(max) && min.getTime() > max.getTime())
-    || disabledWeekdays.length === UTC_WEEKDAYS.length) {
+  if ((min && max && compare(min, max) > 0)
+    || disabledWeekdays.length === ISO_WEEKDAYS.length) {
     return null;
   }
 
@@ -434,12 +355,12 @@ export const getNearestSelectableDate = (
 };
 
 const findSelectableDateInDirection = (
-  date: Date,
+  date: CalendarDate,
   direction: number,
   step: number,
   attempts: number,
-  min: Date | null,
-  max: Date | null,
+  min: NullableCalendarDate,
+  max: NullableCalendarDate,
   disabledDates: readonly string[],
   disabledWeekdays: readonly CalendarWeekday[],
 ) => {
@@ -449,7 +370,7 @@ const findSelectableDateInDirection = (
     candidate = addDays(candidate, direction * step);
     const boundedCandidate = clampDate(candidate, min, max);
 
-    if (boundedCandidate.getTime() === date.getTime()) {
+    if (equals(boundedCandidate, date)) {
       return null;
     }
 
@@ -457,7 +378,7 @@ const findSelectableDateInDirection = (
       return boundedCandidate;
     }
 
-    if (boundedCandidate.getTime() !== candidate.getTime()) {
+    if (!equals(boundedCandidate, candidate)) {
       return null;
     }
   }
@@ -466,15 +387,15 @@ const findSelectableDateInDirection = (
 };
 
 export const getNextSelectableDate = (
-  date: Date,
-  offset: -7 | -1 | 1 | 7,
-  min: Date | null,
-  max: Date | null,
+  date: CalendarDate,
+  offset: CalendarDayOffset,
+  min: NullableCalendarDate,
+  max: NullableCalendarDate,
   disabledDates: readonly string[],
   disabledWeekdays: readonly CalendarWeekday[],
 ) => {
-  if ((isValidDate(min) && isValidDate(max) && min.getTime() > max.getTime())
-    || disabledWeekdays.length === UTC_WEEKDAYS.length) {
+  if ((min && max && compare(min, max) > 0)
+    || disabledWeekdays.length === ISO_WEEKDAYS.length) {
     return null;
   }
 
@@ -530,7 +451,7 @@ export const getFirstDayOfWeek = (locale: string): WeekdayIndex => {
 
     // getWeekInfo() counts Monday as 1 and Sunday as 7
     if (weekInfo) {
-      firstDayOfWeek = (weekInfo.firstDay % 7) as WeekdayIndex;
+      firstDayOfWeek = weekInfo.firstDay as WeekdayIndex;
     }
   } catch {
     firstDayOfWeek = 1;
@@ -545,7 +466,7 @@ export const getFirstDayOfWeek = (locale: string): WeekdayIndex => {
  * Creates the days shown in the day view, including the leading and trailing days
  * of the adjacent months. Always returns six weeks so the calendar keeps a stable height.
  * @param year The full year
- * @param month The zero based month
+ * @param month The one based month
  * @param firstDayOfWeek The weekday the calendar starts with
  * @returns Six weeks of seven days each
  */
@@ -554,8 +475,8 @@ export const getCalendarWeeks = (
   month: number,
   firstDayOfWeek: WeekdayIndex = 1,
 ) => {
-  const firstOfMonth = createDate(year, month, 1);
-  const offset = (firstOfMonth.getUTCDay() - firstDayOfWeek + 7) % 7;
+  const firstOfMonth = create(year, month, 1);
+  const offset = (dayOfWeek(firstOfMonth) - firstDayOfWeek + 7) % 7;
   const start = addDays(firstOfMonth, -offset);
 
   return Array.from({ length: 6 }, (_, week) => Array.from(
@@ -583,11 +504,10 @@ export const getWeekdayNames = (
     return cached;
   }
 
-  const formatter = new Intl.DateTimeFormat(locale, { timeZone: 'UTC', weekday: format });
+  const formatter = createFormat(locale, { weekday: format });
 
-  // 2024-01-07 is a Sunday, which matches index 0 of getUTCDay()
   const names = Object.freeze(Array.from({ length: 7 }, (_, index) => formatter.format(
-    createDate(2024, 0, 7 + ((firstDayOfWeek + index) % 7)),
+    addDays(create(2024, 1, 1), (firstDayOfWeek - 1 + index) % 7),
   )));
 
   weekdayNameCache.set(cacheKey, names);
@@ -612,9 +532,9 @@ export const getMonthNames = (
     return cached;
   }
 
-  const formatter = new Intl.DateTimeFormat(locale, { month: format, timeZone: 'UTC' });
+  const formatter = createFormat(locale, { month: format });
   const names = Object.freeze(
-    Array.from({ length: 12 }, (_, month) => formatter.format(createDate(2024, month, 1))),
+    Array.from({ length: 12 }, (_, month) => formatter.format(create(2024, month + 1, 1))),
   );
 
   monthNameCache.set(cacheKey, names);

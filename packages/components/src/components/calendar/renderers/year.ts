@@ -18,6 +18,7 @@ export const renderYearView = (options: YearViewOptions): CalendarViewTemplates 
           options.max,
           options.disabledDates,
           options.disabledWeekdays,
+          options.isDateDisabled,
         ),
         kind: 'year',
         label: year,

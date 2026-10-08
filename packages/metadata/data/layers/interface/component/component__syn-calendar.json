@@ -226,6 +226,12 @@
     },
     {
       "access": "public",
+      "description": "(date: Date) => boolean",
+      "name": "isDateDisabled",
+      "type": ""
+    },
+    {
+      "access": "public",
       "default": "''",
       "description": "",
       "name": "max",

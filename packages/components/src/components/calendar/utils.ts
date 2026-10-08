@@ -21,7 +21,7 @@ import type {
   OptionalCalendarDate,
   WeekdayIndex,
 } from './internal-types.js';
-import type { CalendarSelectionMode, CalendarWeekday } from './types.js';
+import type { CalendarDateDisabledPredicate, CalendarSelectionMode, CalendarWeekday } from './types.js';
 
 export const today: () => CalendarDate = plainDateISO;
 
@@ -36,6 +36,7 @@ const ISO_WEEKDAYS: readonly CalendarWeekday[] = [
 ];
 
 const ISO_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
+const MAX_CUSTOM_SEARCH_DAYS = 366;
 
 // Creating Intl instances is expensive and the results only depend on the cache key,
 // so they are memoized for the lifetime of the module.
@@ -219,24 +220,19 @@ export const isDateInRange = (date: CalendarDate, min?: NullableCalendarDate, ma
   && (!max || compare(date, max) <= 0)
 );
 
-/**
- * Checks whether a month contains at least one date inside the given boundaries.
- * @param year The full year
- * @param month The one based month
- * @param min The lower boundary or null for no boundary
- * @param max The upper boundary or null for no boundary
- * @returns True if at least one day in the month is in range
- */
+/** A date is disabled when any declarative constraint or custom rule matches it. */
 export const isDateDisabled = (
   date: CalendarDate,
   min?: NullableCalendarDate,
   max?: NullableCalendarDate,
   disabledDates: readonly string[] = [],
   disabledWeekdays: readonly CalendarWeekday[] = [],
+  customIsDateDisabled?: CalendarDateDisabledPredicate,
 ) => (
   !isDateInRange(date, min, max)
   || disabledDates.includes(toIsoDate(date))
   || disabledWeekdays.includes(ISO_WEEKDAYS[dayOfWeek(date) - 1])
+  || !!customIsDateDisabled?.(toNativeDate(date))
 );
 
 export const getFirstSelectableDateInRange = (
@@ -246,9 +242,10 @@ export const getFirstSelectableDateInRange = (
   max?: NullableCalendarDate,
   disabledDates: readonly string[] = [],
   disabledWeekdays: readonly CalendarWeekday[] = [],
+  customIsDateDisabled?: CalendarDateDisabledPredicate,
 ) => {
   for (let date = start; compare(date, end) <= 0; date = addDays(date, 1)) {
-    if (!isDateDisabled(date, min, max, disabledDates, disabledWeekdays)) {
+    if (!isDateDisabled(date, min, max, disabledDates, disabledWeekdays, customIsDateDisabled)) {
       return date;
     }
   }
@@ -263,7 +260,16 @@ export const hasSelectableDateInRange = (
   max?: NullableCalendarDate,
   disabledDates: readonly string[] = [],
   disabledWeekdays: readonly CalendarWeekday[] = [],
-) => !!getFirstSelectableDateInRange(start, end, min, max, disabledDates, disabledWeekdays);
+  customIsDateDisabled?: CalendarDateDisabledPredicate,
+) => !!getFirstSelectableDateInRange(
+  start,
+  end,
+  min,
+  max,
+  disabledDates,
+  disabledWeekdays,
+  customIsDateDisabled,
+);
 
 export const isMonthInRange = (
   year: number,
@@ -272,6 +278,7 @@ export const isMonthInRange = (
   max?: NullableCalendarDate,
   disabledDates: readonly string[] = [],
   disabledWeekdays: readonly CalendarWeekday[] = [],
+  customIsDateDisabled?: CalendarDateDisabledPredicate,
 ) => hasSelectableDateInRange(
   create(year, month, 1),
   endOfMonth(create(year, month, 1)),
@@ -279,6 +286,7 @@ export const isMonthInRange = (
   max,
   disabledDates,
   disabledWeekdays,
+  customIsDateDisabled,
 );
 
 /**
@@ -294,6 +302,7 @@ export const isYearInRange = (
   max?: NullableCalendarDate,
   disabledDates: readonly string[] = [],
   disabledWeekdays: readonly CalendarWeekday[] = [],
+  customIsDateDisabled?: CalendarDateDisabledPredicate,
 ) => hasSelectableDateInRange(
   create(year, 1, 1),
   endOfYear(create(year, 1, 1)),
@@ -301,6 +310,7 @@ export const isYearInRange = (
   max,
   disabledDates,
   disabledWeekdays,
+  customIsDateDisabled,
 );
 
 /**
@@ -316,23 +326,28 @@ export const getNearestSelectableDate = (
   max?: NullableCalendarDate,
   disabledDates: readonly string[] = [],
   disabledWeekdays: readonly CalendarWeekday[] = [],
+  customIsDateDisabled?: CalendarDateDisabledPredicate,
 ) => {
-  if ((min && max && compare(min, max) > 0)
-    || disabledWeekdays.length === ISO_WEEKDAYS.length) {
+  const start = clampDate(date, min, max);
+
+  if (!isDateInRange(start, min, max) || disabledWeekdays.length === ISO_WEEKDAYS.length) {
     return null;
   }
 
-  const start = clampDate(date, min, max);
+  const maxDistance = customIsDateDisabled
+    ? MAX_CUSTOM_SEARCH_DAYS
+    : (disabledDates.length + 1) * 7;
 
-  const maxDistance = (disabledDates.length + 1) * 7;
-
-  return Array.from({ length: maxDistance * 2 + 1 }, (_, index) => {
+  for (let index = 0; index <= maxDistance * 2; index += 1) {
     const distance = Math.ceil(index / 2) * (index % 2 === 0 ? -1 : 1);
-    return addDays(start, distance);
-  }).find(candidate => (
-    isDateInRange(candidate, min, max)
-    && !isDateDisabled(candidate, min, max, disabledDates, disabledWeekdays)
-  )) ?? null;
+    const candidate = addDays(start, distance);
+
+    if (!isDateDisabled(candidate, min, max, disabledDates, disabledWeekdays, customIsDateDisabled)) {
+      return candidate;
+    }
+  }
+
+  return null;
 };
 
 const findSelectableDateInDirection = (
@@ -344,6 +359,7 @@ const findSelectableDateInDirection = (
   max: NullableCalendarDate,
   disabledDates: readonly string[],
   disabledWeekdays: readonly CalendarWeekday[],
+  customIsDateDisabled?: CalendarDateDisabledPredicate,
 ) => {
   let candidate = date;
 
@@ -355,7 +371,7 @@ const findSelectableDateInDirection = (
       return null;
     }
 
-    if (!isDateDisabled(boundedCandidate, min, max, disabledDates, disabledWeekdays)) {
+    if (!isDateDisabled(boundedCandidate, min, max, disabledDates, disabledWeekdays, customIsDateDisabled)) {
       return boundedCandidate;
     }
 
@@ -374,6 +390,7 @@ export const getNextSelectableDate = (
   max: NullableCalendarDate,
   disabledDates: readonly string[],
   disabledWeekdays: readonly CalendarWeekday[],
+  customIsDateDisabled?: CalendarDateDisabledPredicate,
 ) => {
   if ((min && max && compare(min, max) > 0)
     || disabledWeekdays.length === ISO_WEEKDAYS.length) {
@@ -381,8 +398,10 @@ export const getNextSelectableDate = (
   }
 
   const direction = Math.sign(offset);
-  const attempts = disabledDates.length + 8;
   const step = Math.abs(offset);
+  const attempts = customIsDateDisabled
+    ? Math.floor(MAX_CUSTOM_SEARCH_DAYS / step)
+    : disabledDates.length + 8;
   const dateAtStep = findSelectableDateInDirection(
     date,
     direction,
@@ -392,17 +411,19 @@ export const getNextSelectableDate = (
     max,
     disabledDates,
     disabledWeekdays,
+    customIsDateDisabled,
   );
 
   return dateAtStep ?? (step === 1 ? null : findSelectableDateInDirection(
     date,
     direction,
     1,
-    attempts,
+    customIsDateDisabled ? MAX_CUSTOM_SEARCH_DAYS : attempts,
     min,
     max,
     disabledDates,
     disabledWeekdays,
+    customIsDateDisabled,
   ));
 };
 

@@ -104,6 +104,11 @@ The attribute accepts a space-separated list of three-letter weekday names (sun,
    * 'small' | 'medium' | 'large'
    */
   size?: SynCalendar['size'];
+
+  /**
+   * (date: Date) => boolean
+   */
+  isDateDisabled?: SynCalendar['isDateDisabled'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

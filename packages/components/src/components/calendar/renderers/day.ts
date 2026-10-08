@@ -53,6 +53,7 @@ export const renderDayView = (options: DayViewOptions): CalendarViewTemplates =>
                       options.max,
                       options.disabledDates,
                       options.disabledWeekdays,
+                      options.isDateDisabled,
                     ),
                     kind: 'day',
                     label: html`

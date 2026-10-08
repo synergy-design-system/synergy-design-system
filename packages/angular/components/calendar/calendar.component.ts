@@ -183,6 +183,19 @@ The attribute accepts a space-separated list of three-letter weekday names (sun,
   }
 
   /**
+   * (date: Date) => boolean
+   */
+  @Input()
+  set isDateDisabled(v: SynCalendar['isDateDisabled']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.isDateDisabled = v),
+    );
+  }
+  get isDateDisabled(): SynCalendar['isDateDisabled'] {
+    return this.nativeElement.isDateDisabled;
+  }
+
+  /**
    * Emitted when focus leaves the calendar.
    */
   @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();

@@ -40,6 +40,15 @@ default: `[]`
 Use disabled-weekdays to disable specific weekdays.
 The attribute accepts a space-separated list of three-letter weekday names (sun, mon, tue, wed, thu, fri, sat), in any order.
 
+### isDateDisabled
+
+attribute: -
+reflects: -
+type: ``
+default: none
+
+(date: Date) => boolean
+
 ### mode
 
 attribute: `mode`

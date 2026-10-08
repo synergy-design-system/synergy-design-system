@@ -1,6 +1,11 @@
 import type { TemplateResult } from 'lit';
 import type { Record as CalendarDate } from 'temporal-polyfill/fns/PlainDate';
-import type { CalendarSelectionMode, CalendarSize, CalendarWeekday } from './types.js';
+import type {
+  CalendarDateDisabledPredicate,
+  CalendarSelectionMode,
+  CalendarSize,
+  CalendarWeekday,
+} from './types.js';
 
 /** Internal ISO date-only record; months are 1-12 and no time or timezone is stored. */
 export type { CalendarDate };
@@ -30,6 +35,7 @@ export type WeekdayIndex = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 export interface CalendarConstraints {
   disabledDates: readonly string[];
   disabledWeekdays: readonly CalendarWeekday[];
+  isDateDisabled?: CalendarDateDisabledPredicate;
   max: NullableCalendarDate;
   min: NullableCalendarDate;
 }

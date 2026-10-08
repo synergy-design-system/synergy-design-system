@@ -18,6 +18,14 @@ Use the checklists to indicate:
 - Month buttons and slots retain their zero-based identifiers (`month-0` through `month-11`).
 - Date arithmetic and formatting use the functional package API; locale week starts and selection constraints remain calendar-owned.
 
+### Custom Disabled Dates
+
+- `isDateDisabled` is a JavaScript-only synchronous predicate receiving a UTC date-only `Date`.
+- It is combined with declarative rules; any matching rule disables a date, including range endpoints.
+- Month/year availability checks inspect their finite periods. Nearest-date and keyboard searches with a custom predicate inspect at most 366 days per direction and stop without moving if nothing is found.
+- Header navigation does not interpret a failed bounded search as an empty calendar, so users can navigate to more distant dates.
+- Reassign the predicate after changing captured data to re-evaluate focus. `requestUpdate()` refreshes rendered availability without automatically normalizing focus.
+
 ## Doings
 
 - [ ] For sake of easier usage and combination, we opt to create more components:

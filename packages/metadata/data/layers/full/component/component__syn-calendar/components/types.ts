@@ -1,3 +1,6 @@
+/** Synchronous custom rule; receives a UTC date-only Date and returns true to disable it. */
+export type CalendarDateDisabledPredicate = (date: Date) => boolean;
+
 /** Determines whether values represent one date, range endpoints, or independent dates. */
 export type CalendarSelectionMode = 'single' | 'range' | 'multiple';
 

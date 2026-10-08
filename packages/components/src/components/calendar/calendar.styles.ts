@@ -10,7 +10,7 @@ export default css`
     --container-padding-inline: var(--syn-spacing-small);
 
     /* Sizes */
-    --syn-calendar-min-width: 388px;
+    --syn-calendar-min-width: 390px;
     --calendar-item-font: var(--syn-body-small-regular);
     --day-selector-calendar-item-width: var(--syn-spacing-x-large);
     --day-selector-th-font: var(--syn-body-small-bold);
@@ -174,22 +174,28 @@ export default css`
     width: auto;
   }
 
+  /* Month selector */
+  .calendar--view-month .header--year-selection syn-button {
+    /* We show multiple months here, so the width should adjust automatically */
+    width: 100%;
+  } 
+
   /* Year selector */
   .calendar--view-year .header--year-selection syn-button {
     /* We show multiple years here, so the width should adjust automatically */
-    width: auto;
+    width: 100%;
   }
 
   /* Sizes */
   .calendar--size-small {
-    --syn-calendar-min-width: 295px;
+    --syn-calendar-min-width: 298px;
     --calendar-item-font: var(--syn-body-2x-small-regular);
     --day-selector-calendar-item-width: 16px;
     --day-selector-th-font: var(--syn-body-2x-small-regular); /* @todo: --syn-body-2x-small-bold missing! */
   }
 
   .calendar--size-large {
-    --syn-calendar-min-width: auto;
+    --syn-calendar-min-width: 420px;
     --calendar-item-font: var(--syn-body-2x-small-regular);
     --day-selector-calendar-item-width: 16px;
     --day-selector-th-font: var(--syn-body-2x-small-regular); /* @todo: --syn-body-2x-small-bold missing! */

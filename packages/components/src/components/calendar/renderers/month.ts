@@ -22,6 +22,7 @@ export const renderMonthView = (options: MonthViewOptions): CalendarViewTemplate
           options.max,
           options.disabledDates,
           options.disabledWeekdays,
+          options.isDateDisabled,
         ),
         kind: 'month',
         label: month,

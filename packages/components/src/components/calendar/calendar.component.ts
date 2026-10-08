@@ -8,6 +8,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { property, state } from 'lit/decorators.js';
 import {
   addMonths,
+  compare,
   create as createDate,
   endOfMonth,
   equals,
@@ -24,6 +25,7 @@ import type {
   CalendarView,
 } from './internal-types.js';
 import type {
+  CalendarDateDisabledPredicate,
   CalendarSelectionMode,
   CalendarSize,
   CalendarWeekday,
@@ -155,6 +157,15 @@ export default class SynCalendar extends SynergyElement {
     type: Array,
   }) disabledWeekdays: CalendarWeekday[] = [];
 
+  /**
+   * Additional synchronous rule for disabling dates, combined with all declarative constraints.
+   * Receives a UTC date-only Date; use getUTCDay() and getUTCDate() to inspect it.
+   * Reassign the callback when its captured data changes to re-evaluate focus.
+   * Nearest-date and keyboard searches inspect at most 366 days per direction.
+   * @type (date: Date) => boolean
+   */
+  @property({ attribute: false }) isDateDisabled?: CalendarDateDisabledPredicate;
+
   @property() max = '';
 
   @property() min = '';
@@ -280,6 +291,7 @@ export default class SynCalendar extends SynergyElement {
 
     if (changedProperties.has('disabledDates')
       || changedProperties.has('disabledWeekdays')
+      || changedProperties.has('isDateDisabled')
       || changedProperties.has('max')
       || changedProperties.has('min')
       || modeChanged
@@ -317,6 +329,7 @@ export default class SynCalendar extends SynergyElement {
     return {
       disabledDates: this.disabledDates,
       disabledWeekdays: this.disabledWeekdays,
+      isDateDisabled: this.isDateDisabled,
       max: parseIsoDate(this.max),
       min: parseIsoDate(this.min),
     };
@@ -324,27 +337,27 @@ export default class SynCalendar extends SynergyElement {
 
   #isDateSelectable(date: CalendarDate) {
     const {
-      disabledDates, disabledWeekdays, max, min,
+      disabledDates, disabledWeekdays, isDateDisabled: customIsDateDisabled, max, min,
     } = this.#getBounds();
-    return !isDateDisabled(date, min, max, disabledDates, disabledWeekdays);
+    return !isDateDisabled(date, min, max, disabledDates, disabledWeekdays, customIsDateDisabled);
   }
 
   #isMonthSelectable(year: number, month: number) {
     const {
-      disabledDates, disabledWeekdays, max, min,
+      disabledDates, disabledWeekdays, isDateDisabled: customIsDateDisabled, max, min,
     } = this.#getBounds();
-    return isMonthInRange(year, month, min, max, disabledDates, disabledWeekdays);
+    return isMonthInRange(year, month, min, max, disabledDates, disabledWeekdays, customIsDateDisabled);
   }
 
   #isYearSelectable(year: number) {
     const {
-      disabledDates, disabledWeekdays, max, min,
+      disabledDates, disabledWeekdays, isDateDisabled: customIsDateDisabled, max, min,
     } = this.#getBounds();
-    return isYearInRange(year, min, max, disabledDates, disabledWeekdays);
+    return isYearInRange(year, min, max, disabledDates, disabledWeekdays, customIsDateDisabled);
   }
 
   #isMonthNavigationDisabled(year: number, month: number, offset: -1 | 1) {
-    if (!this.#hasSelectableDates()) {
+    if (!this.#hasNavigableDates()) {
       return true;
     }
 
@@ -357,7 +370,7 @@ export default class SynCalendar extends SynergyElement {
   }
 
   #isYearNavigationDisabled(year: number, offset: -1 | 1) {
-    if (!this.#hasSelectableDates()) {
+    if (!this.#hasNavigableDates()) {
       return true;
     }
 
@@ -371,7 +384,7 @@ export default class SynCalendar extends SynergyElement {
   }
 
   #isYearBlockNavigationDisabled(blockStart: number, offset: -12 | 12) {
-    if (!this.#hasSelectableDates()) {
+    if (!this.#hasNavigableDates()) {
       return true;
     }
 
@@ -384,23 +397,29 @@ export default class SynCalendar extends SynergyElement {
       : !!max && targetBlockStart > max.year;
   }
 
-  #hasSelectableDates() {
+  #hasNavigableDates() {
     const {
       disabledDates, disabledWeekdays, max, min,
     } = this.#getBounds();
+
+    if (this.isDateDisabled) {
+      return (!min || !max || compare(min, max) <= 0)
+        && new Set(disabledWeekdays).size < 7;
+    }
+
     return !!getNearestSelectableDate(today(), min, max, disabledDates, disabledWeekdays);
   }
 
   #getNearestSelectableDate(date: CalendarDate) {
     const {
-      disabledDates, disabledWeekdays, max, min,
+      disabledDates, disabledWeekdays, isDateDisabled: customIsDateDisabled, max, min,
     } = this.#getBounds();
-    return getNearestSelectableDate(date, min, max, disabledDates, disabledWeekdays);
+    return getNearestSelectableDate(date, min, max, disabledDates, disabledWeekdays, customIsDateDisabled);
   }
 
   #getFirstSelectableDateInMonth(year: number, month: number) {
     const {
-      disabledDates, disabledWeekdays, max, min,
+      disabledDates, disabledWeekdays, isDateDisabled: customIsDateDisabled, max, min,
     } = this.#getBounds();
 
     return getFirstSelectableDateInRange(
@@ -410,6 +429,7 @@ export default class SynCalendar extends SynergyElement {
       max,
       disabledDates,
       disabledWeekdays,
+      customIsDateDisabled,
     );
   }
 
@@ -674,7 +694,7 @@ export default class SynCalendar extends SynergyElement {
 
     event.preventDefault();
     const {
-      disabledDates, disabledWeekdays, max, min,
+      disabledDates, disabledWeekdays, isDateDisabled: customIsDateDisabled, max, min,
     } = this.#getBounds();
     const nextDate = getNextSelectableDate(
       day,
@@ -683,6 +703,7 @@ export default class SynCalendar extends SynergyElement {
       max,
       disabledDates,
       disabledWeekdays,
+      customIsDateDisabled,
     );
 
     if (!nextDate || !this.#isDateSelectable(nextDate)) {
@@ -1033,7 +1054,7 @@ export default class SynCalendar extends SynergyElement {
     const bounds = this.#getBounds();
     const footer = {
       clearLabel: this.localize.term('calendarClear'),
-      currentDisabled: !this.#hasSelectableDates(),
+      currentDisabled: !this.#getNearestSelectableDate(today()),
       hasValue: this.value.length > 0,
       onClear: () => this.#setValueFromUser([], true),
       onCurrent: () => this.#showCurrentPeriod(),
@@ -1049,6 +1070,7 @@ export default class SynCalendar extends SynergyElement {
         disabledDates: bounds.disabledDates,
         disabledWeekdays: bounds.disabledWeekdays,
         focusedYear: this.focusedYear,
+        isDateDisabled: bounds.isDateDisabled,
         max: bounds.max,
         min: bounds.min,
         navigation: {
@@ -1105,6 +1127,7 @@ export default class SynCalendar extends SynergyElement {
         disabledDates: bounds.disabledDates,
         disabledWeekdays: bounds.disabledWeekdays,
         focusedMonth: this.focusedMonth,
+        isDateDisabled: bounds.isDateDisabled,
         locale: this.localize.lang(),
         max: bounds.max,
         min: bounds.min,
@@ -1120,6 +1143,7 @@ export default class SynCalendar extends SynergyElement {
       disabledWeekdays: bounds.disabledWeekdays,
       focusedDate: this.focusedDate,
       hoveredDate: parseIsoDate(this.hoveredDate),
+      isDateDisabled: bounds.isDateDisabled,
       locale: this.localize.lang(),
       max: bounds.max,
       min: bounds.min,

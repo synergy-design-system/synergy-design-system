@@ -156,6 +156,25 @@ export const DisabledDates: Story = {
   ></syn-calendar>`,
 };
 
+export const CustomDisabledDates: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('calendar', 'custom-disabled-dates'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-calendar class="custom-disabled-dates" value="2026-11-12"></syn-calendar>
+
+    <script type="module">
+    const calendar = document.querySelector('.custom-disabled-dates');
+    // Disables all Fridays the 13th
+    calendar.isDateDisabled = date => date.getUTCDay() === 5 && date.getUTCDate() === 13;
+    </script>
+  `,
+};
+
 export const RangeSelection: Story = {
   parameters: {
     docs: {
@@ -184,26 +203,25 @@ export const MultipleSelection: Story = {
   ></syn-calendar>`,
 };
 
-export const MultipleEmpty: Story = {
+export const CustomDayContent: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('calendar', 'multiple-empty'),
+        story: generateStoryDescription('calendar', 'custom-day-content'),
       },
     },
   },
-  render: () => html`<syn-calendar mode="multiple" value=""></syn-calendar>`,
+  render: () => html`
+    <syn-calendar
+      value="2026-12-23"
+    >
+      <span slot="day-2026-12-24">🎁</span>
+  </syn-calendar>
+  `,
 };
 
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
-  MultipleEmpty,
-  MultipleSelection,
-  MinDate,
-  MaxDate,
-  DisabledWeekDays,
-  DisabledDates,
-  RangeSelection,
 }, 100);
 /* eslint-enable sort-keys */

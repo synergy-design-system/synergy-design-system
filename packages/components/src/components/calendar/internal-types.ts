@@ -59,11 +59,14 @@ export interface CalendarItemOptions {
   label: string | number | TemplateResult;
   outside?: boolean;
   rangeBegin?: boolean;
+  /** The requested endpoint is adjusted by a range length limit; snapping remains available. */
+  rangeClipped?: boolean;
   rangeEnd?: boolean;
   rangeInterior?: boolean;
   rangePending?: boolean;
   rangePreview?: boolean;
   rangeStart?: boolean;
+  rangeUnavailable?: boolean;
   tabbable: boolean;
   today?: boolean;
   value: string | number;
@@ -89,11 +92,18 @@ export interface CalendarViewTemplates {
   header: TemplateResult;
 }
 
+/** Optional inclusive day-count bounds for user-created ranges; only positive integers apply. */
+export interface CalendarRangeLengthOptions {
+  maxRange?: number;
+  minRange?: number;
+}
+
 /**
  * Day-grid inputs, including selection, focused date, locale, and month/year navigation.
  * hoveredDate is the preview endpoint from either pointer hover or keyboard navigation.
  */
-export interface DayViewOptions extends CalendarConstraints, CalendarFooterOptions {
+export interface DayViewOptions extends
+  CalendarConstraints, CalendarFooterOptions, CalendarRangeLengthOptions {
   focusedDate: CalendarDate;
   hoveredDate: NullableCalendarDate;
   locale: string;

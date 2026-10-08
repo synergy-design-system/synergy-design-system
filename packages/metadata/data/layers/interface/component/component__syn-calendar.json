@@ -18,19 +18,33 @@
     },
     {
       "default": "''",
-      "description": "",
+      "description": "The maximum selectable date as an ISO `YYYY-MM-DD` string.",
       "fieldName": "max",
       "name": "max",
       "reflects": false,
       "type": "string"
     },
     {
+      "description": "Maximum inclusive calendar-day count for user-created ranges; only positive integers apply.\nPreview and completion stop at this boundary when a farther endpoint is requested.\nIgnored outside range mode. Assigned values are preserved even when they exceed this limit.",
+      "fieldName": "maxRange",
+      "name": "max-range",
+      "reflects": false,
+      "type": "number"
+    },
+    {
       "default": "''",
-      "description": "",
+      "description": "The minimum selectable date as an ISO `YYYY-MM-DD` string.",
       "fieldName": "min",
       "name": "min",
       "reflects": false,
       "type": "string"
+    },
+    {
+      "description": "Minimum inclusive calendar-day count for user-created ranges; only positive integers apply.\nPreview and completion expand to this boundary once movement establishes a direction.\nIgnored outside range mode. Assigned values are preserved even when shorter than this limit.",
+      "fieldName": "minRange",
+      "name": "min-range",
+      "reflects": false,
+      "type": "number"
     },
     {
       "default": "'single'",
@@ -91,6 +105,10 @@
       "name": "calendar-item-range-begin"
     },
     {
+      "description": "A date whose requested endpoint is adjusted by a range length limit.",
+      "name": "calendar-item-range-clipped"
+    },
+    {
       "description": "The end of a selected date range.",
       "name": "calendar-item-range-end"
     },
@@ -109,6 +127,10 @@
     {
       "description": "The start of a selected date range.",
       "name": "calendar-item-range-start"
+    },
+    {
+      "description": "A focusable endpoint that violates the pending range's length limits.",
+      "name": "calendar-item-range-unavailable"
     },
     {
       "description": "The item representing today.",
@@ -233,16 +255,28 @@
     {
       "access": "public",
       "default": "''",
-      "description": "",
+      "description": "The maximum selectable date as an ISO `YYYY-MM-DD` string.",
       "name": "max",
       "type": "string"
     },
     {
       "access": "public",
+      "description": "Maximum inclusive calendar-day count for user-created ranges; only positive integers apply.\nPreview and completion stop at this boundary when a farther endpoint is requested.\nIgnored outside range mode. Assigned values are preserved even when they exceed this limit.",
+      "name": "maxRange",
+      "type": "number"
+    },
+    {
+      "access": "public",
       "default": "''",
-      "description": "",
+      "description": "The minimum selectable date as an ISO `YYYY-MM-DD` string.",
       "name": "min",
       "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "Minimum inclusive calendar-day count for user-created ranges; only positive integers apply.\nPreview and completion expand to this boundary once movement establishes a direction.\nIgnored outside range mode. Assigned values are preserved even when shorter than this limit.",
+      "name": "minRange",
+      "type": "number"
     },
     {
       "access": "public",

@@ -4751,6 +4751,16 @@
           "type": "text"
         }
       },
+      "range-length-constraints": {
+        "title": {
+          "value": "Range Length Constraints",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `min-range` and `max-range` to constrain user-created ranges by inclusive calendar-day count. This example starts with October 7 selected and permits 3 to 14 days: October 7-9 is 3 days and October 7-20 is 14 days. Hovering or using arrow keys to October 8 expands the preview to October 9; moving to October 6 expands it backward to October 5. Hovering the anchor does not guess a direction. Moving beyond October 20 keeps the preview capped there. Clicking commits the same adjusted endpoint if it is selectable. Endpoints whose adjusted boundary is disabled, or whose length remains invalid, stay focusable and previewable but cannot complete the range; they expose `aria-disabled` and the `calendar-item-range-unavailable` part. Only positive integers apply, and conflicting limits prevent completion. The limits are ignored in single and multiple modes, do not rewrite assigned values, and count disabled interior dates as part of the span.",
+          "type": "text"
+        }
+      },
       "multiple-selection": {
         "title": {
           "value": "Multiple Selection",

@@ -43,11 +43,13 @@ Component.define('syn-calendar');
  * @csspart calendar-item-outside - A day item belonging to an adjacent month.
  * @csspart calendar-item-disabled - A disabled calendar item.
  * @csspart calendar-item-range-begin - The beginning of a selected or previewed range.
+ * @csspart calendar-item-range-clipped - A date whose requested endpoint is adjusted by a range length limit.
  * @csspart calendar-item-range-start - The start of a selected date range.
  * @csspart calendar-item-range-end - The end of a selected date range.
  * @csspart calendar-item-range-interior - A date inside the selected or previewed range.
  * @csspart calendar-item-range-pending - The selected start while waiting for a range end.
  * @csspart calendar-item-range-preview - A date in the pending range under the pointer.
+ * @csspart calendar-item-range-unavailable - A focusable endpoint that violates the pending range's length limits.
  * @csspart month-navigation - The month navigation controls.
  * @csspart year-navigation - The year navigation controls.
  * @csspart previous-button - The previous-period navigation button.
@@ -56,7 +58,7 @@ Component.define('syn-calendar');
  * @csspart current-period-button - The button for navigating to the current day, month, or year.
  * @csspart clear-button - The button for clearing the selected value.
  *
- * @cssproperty --syn-calendar-min-width - The minimum width of the calendar. Defaults to 388px.
+ * @cssproperty --syn-calendar-min-width - The minimum width of the calendar. Defaults to 390px.
  *
  * @event syn-blur - Emitted when focus leaves the calendar.
  * @event syn-before-change - Emitted before user change events with the proposed value temporarily set on the host; preventDefault restores the previous value.

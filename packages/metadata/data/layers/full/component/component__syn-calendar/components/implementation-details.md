@@ -26,6 +26,15 @@ Use the checklists to indicate:
 - Header navigation does not interpret a failed bounded search as an empty calendar, so users can navigate to more distant dates.
 - Reassign the predicate after changing captured data to re-evaluate focus. `requestUpdate()` refreshes rendered availability without automatically normalizing focus.
 
+### Range Length
+
+- `min-range` and `max-range` constrain user completion only in range mode, counting both endpoints and all interior calendar days.
+- Omitted, non-positive, fractional, or non-finite limits are ignored. A positive minimum greater than the maximum prevents completion.
+- Preview and completion are capped at `max-range` in either direction. Clicking farther away commits the capped endpoint only if it passes date constraints; focus returns to that endpoint.
+- Preview and completion expand to `min-range` in the movement direction when a nearer endpoint is requested. Hovering the anchor does not guess a direction, and a same-day completion must still satisfy the minimum.
+- Endpoints whose adjusted boundary is disabled, or whose length remains invalid, stay focusable and previewable with `aria-disabled` and `calendar-item-range-unavailable`; native disabled state still depends only on date constraints.
+- Invalid completion retains the pending start and emits no value events. Programmatic and already-completed values remain unchanged when limits change.
+
 ## Doings
 
 - [ ] For sake of easier usage and combination, we opt to create more components:

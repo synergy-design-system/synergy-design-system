@@ -49,6 +49,46 @@ default: none
 
 (date: Date) => boolean
 
+### max
+
+attribute: `max`
+reflects: no
+type: `string`
+default: `''`
+
+The maximum selectable date as an ISO `YYYY-MM-DD` string.
+
+### maxRange
+
+attribute: `max-range`
+reflects: no
+type: `number`
+default: none
+
+Maximum inclusive calendar-day count for user-created ranges; only positive integers apply.
+Preview and completion stop at this boundary when a farther endpoint is requested.
+Ignored outside range mode. Assigned values are preserved even when they exceed this limit.
+
+### min
+
+attribute: `min`
+reflects: no
+type: `string`
+default: `''`
+
+The minimum selectable date as an ISO `YYYY-MM-DD` string.
+
+### minRange
+
+attribute: `min-range`
+reflects: no
+type: `number`
+default: none
+
+Minimum inclusive calendar-day count for user-created ranges; only positive integers apply.
+Preview and completion expand to this boundary once movement establishes a direction.
+Ignored outside range mode. Assigned values are preserved even when shorter than this limit.
+
 ### mode
 
 attribute: `mode`
@@ -86,26 +126,6 @@ default: none
 
 Sets selected values as UTC date-only `Date` instances.
 
-## Attribute-only Members
-
-These attributes are reflected but not exposed as component properties.
-
-### max
-
-reflects: no
-type: `string`
-default: `''`
-
--
-
-### min
-
-reflects: no
-type: `string`
-default: `''`
-
--
-
 ## Available CSS Parts
 
 - `base`: The component's base wrapper.
@@ -116,11 +136,13 @@ default: `''`
 - `calendar-item-month`: A month button.
 - `calendar-item-outside`: A day item belonging to an adjacent month.
 - `calendar-item-range-begin`: The beginning of a selected or previewed range.
+- `calendar-item-range-clipped`: A date whose requested endpoint is adjusted by a range length limit.
 - `calendar-item-range-end`: The end of a selected date range.
 - `calendar-item-range-interior`: A date inside the selected or previewed range.
 - `calendar-item-range-pending`: The selected start while waiting for a range end.
 - `calendar-item-range-preview`: A date in the pending range under the pointer.
 - `calendar-item-range-start`: The start of a selected date range.
+- `calendar-item-range-unavailable`: A focusable endpoint that violates the pending range's length limits.
 - `calendar-item-today`: The item representing today.
 - `calendar-item-year`: A year button.
 - `clear-button`: The button for clearing the selected value.

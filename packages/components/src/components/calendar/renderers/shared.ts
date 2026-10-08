@@ -12,11 +12,13 @@ export const renderCalendarItem = (options: CalendarItemOptions) => {
     disabled: !!options.disabled,
     outside: !!options.outside,
     rangeBegin: !!options.rangeBegin,
+    rangeClipped: !!options.rangeClipped,
     rangeEnd: !!options.rangeEnd,
     rangeInterior: !!options.rangeInterior,
     rangePending: !!options.rangePending,
     rangePreview: !!options.rangePreview,
     rangeStart: !!options.rangeStart,
+    rangeUnavailable: !!options.rangeUnavailable,
     today: !!options.today,
   };
 
@@ -31,17 +33,20 @@ export const renderCalendarItem = (options: CalendarItemOptions) => {
 
   return html`
     <button
+      aria-disabled=${states.disabled || states.rangeUnavailable ? 'true' : 'false'}
       class=${classMap({
         'calendar-item': true,
         'calendar-item--active': states.active,
         'calendar-item--disabled': states.disabled,
         'calendar-item--outside': states.outside,
         'calendar-item--range-begin': states.rangeBegin,
+        'calendar-item--range-clipped': states.rangeClipped,
         'calendar-item--range-end': states.rangeEnd,
         'calendar-item--range-interior': states.rangeInterior,
         'calendar-item--range-pending': states.rangePending,
         'calendar-item--range-preview': states.rangePreview,
         'calendar-item--range-start': states.rangeStart,
+        'calendar-item--range-unavailable': states.rangeUnavailable,
         'calendar-item--today': states.today,
       })}
       data-kind=${options.kind}

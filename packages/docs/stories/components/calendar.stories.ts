@@ -189,6 +189,22 @@ export const RangeSelection: Story = {
   ></syn-calendar>`,
 };
 
+export const RangeLengthConstraints: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('calendar', 'range-length-constraints'),
+      },
+    },
+  },
+  render: () => html`<syn-calendar
+    max-range="14"
+    min-range="3"
+    mode="range"
+    value="2026-10-07"
+  ></syn-calendar>`,
+};
+
 export const MultipleSelection: Story = {
   parameters: {
     docs: {

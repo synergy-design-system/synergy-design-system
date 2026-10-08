@@ -99,6 +99,10 @@ export default css`
     color: var(--syn-color-neutral-0);
   }
 
+  .calendar-item--range-clipped {
+    cursor: not-allowed;
+  }
+
   .calendar-item--range-interior {
     background-color: var(--syn-color-neutral-200);
   }
@@ -109,6 +113,11 @@ export default css`
 
   .calendar-item--range-preview {
     background-color: green;
+  }
+
+  .calendar-item--range-unavailable {
+    border-style: dashed;
+    cursor: not-allowed;
   }
 
   .calendar-item--outside {

@@ -2,10 +2,12 @@ import { html } from 'lit';
 import { compare } from 'temporal-polyfill/fns/PlainDate';
 import type { CalendarViewTemplates, DayViewOptions } from '../internal-types.js';
 import {
+  clampRangeEnd,
   getCalendarWeeks,
   getFirstDayOfWeek,
   getWeekdayNames,
   isDateDisabled,
+  isRangeLengthAllowed,
   isSameDay,
   isSameMonth,
   toIsoDate,
@@ -30,8 +32,11 @@ export const renderDayView = (options: DayViewOptions): CalendarViewTemplates =>
   const rangeEnd = options.mode === 'range' && options.selectedDates.length === 2
     ? options.selectedDates[1]
     : null;
-  const [previewStart, previewEnd] = rangeStart && options.hoveredDate
-    ? [rangeStart, options.hoveredDate].sort(compare)
+  const previewDate = rangeStart && !rangeEnd && options.hoveredDate
+    ? clampRangeEnd(rangeStart, options.hoveredDate, options.minRange, options.maxRange)
+    : null;
+  const [previewStart, previewEnd] = rangeStart && previewDate
+    ? [rangeStart, previewDate].sort(compare)
     : [null, null];
 
   return {
@@ -43,7 +48,22 @@ export const renderDayView = (options: DayViewOptions): CalendarViewTemplates =>
         <tbody>
           ${weeks.map(week => html`
             <tr>
-              ${week.map(day => html`
+              ${week.map(day => {
+                const candidateEnd = rangeStart && !rangeEnd
+                  ? clampRangeEnd(rangeStart, day, options.minRange, options.maxRange)
+                  : null;
+                const rangeUnavailable = !!rangeStart && !!candidateEnd
+                  && (!isRangeLengthAllowed(rangeStart, candidateEnd, options.minRange, options.maxRange)
+                    || isDateDisabled(
+                      candidateEnd,
+                      options.min,
+                      options.max,
+                      options.disabledDates,
+                      options.disabledWeekdays,
+                      options.isDateDisabled,
+                    ));
+
+                return html`
                 <td class="day-selector__day">
                   ${renderCalendarItem({
                     active: options.selectedDates.some(selectedDate => isSameDay(day, selectedDate)),
@@ -63,8 +83,9 @@ export const renderDayView = (options: DayViewOptions): CalendarViewTemplates =>
                     `,
                     outside: !isSameMonth(day, options.viewDate),
                     rangeBegin: isSameDay(day, rangeStart),
+                    rangeClipped: !!candidateEnd && !isSameDay(day, candidateEnd),
                     rangeEnd: isSameDay(day, rangeEnd)
-                      || (!!rangeStart && !rangeEnd && isSameDay(day, options.hoveredDate)),
+                      || isSameDay(day, previewDate),
                     rangeInterior: (!!rangeStart
                       && !!rangeEnd
                       && compare(day, rangeStart) > 0
@@ -78,19 +99,21 @@ export const renderDayView = (options: DayViewOptions): CalendarViewTemplates =>
                     rangePending: !!rangeStart && !rangeEnd && isSameDay(day, rangeStart),
                     rangePreview: !!rangeStart
                       && !rangeEnd
-                      && !!options.hoveredDate
+                      && !!previewDate
                       && previewStart !== null
                       && previewEnd !== null
                       && compare(day, previewStart) >= 0
                       && compare(day, previewEnd) <= 0
                       && !isSameDay(day, rangeStart),
                     rangeStart: isSameDay(day, rangeStart),
+                    rangeUnavailable,
                     tabbable: isSameDay(day, options.focusedDate),
                     today: isSameDay(day, currentDay),
                     value: toIsoDate(day),
                   })}
                 </td>
-              `)}
+                `;
+              })}
             </tr>
           `)}
         </tbody>

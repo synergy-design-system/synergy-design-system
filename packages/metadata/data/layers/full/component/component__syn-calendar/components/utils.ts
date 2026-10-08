@@ -6,6 +6,7 @@ import {
   create,
   createFormat,
   dayOfWeek,
+  diffDays,
   endOfMonth,
   endOfYear,
   equals,
@@ -104,6 +105,45 @@ export const parseCalendarSelectionMode = (value: string | null): CalendarSelect
 export const areCalendarValuesEqual = (a: readonly string[], b: readonly string[]) => (
   a.length === b.length && a.every((value, index) => value === b[index])
 );
+
+const normalizeRangeLimit = (limit?: number) => (
+  typeof limit === 'number' && Number.isInteger(limit) && limit > 0 ? limit : undefined
+);
+
+/** Adjusts inclusive range length without changing direction or guessing one at the anchor. */
+export const clampRangeEnd = (
+  start: CalendarDate,
+  end: CalendarDate,
+  minRange?: number,
+  maxRange?: number,
+) => {
+  const minimum = normalizeRangeLimit(minRange);
+  const maximum = normalizeRangeLimit(maxRange);
+  const direction = Math.sign(compare(end, start));
+  const length = Math.abs(diffDays(start, end)) + 1;
+  const constrainedLength = Math.min(maximum ?? Infinity, Math.max(minimum ?? 1, length));
+
+  if (direction === 0 || constrainedLength === length) {
+    return end;
+  }
+
+  return addDays(start, direction * (constrainedLength - 1));
+};
+
+/** Checks inclusive calendar-day length in either direction; invalid limits are treated as unset. */
+export const isRangeLengthAllowed = (
+  start: CalendarDate,
+  end: CalendarDate,
+  minRange?: number,
+  maxRange?: number,
+) => {
+  const minimum = normalizeRangeLimit(minRange);
+  const maximum = normalizeRangeLimit(maxRange);
+  const length = Math.abs(diffDays(start, end)) + 1;
+
+  return (minimum === undefined || length >= minimum)
+    && (maximum === undefined || length <= maximum);
+};
 
 export const parseDisabledDates = (value: string | null) => {
   const dates = new Set<string>();

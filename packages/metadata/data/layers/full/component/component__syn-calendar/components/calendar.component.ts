@@ -8,9 +8,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { property, state } from 'lit/decorators.js';
 import {
   addMonths,
-  compare,
   create as createDate,
-  endOfMonth,
   equals,
 } from 'temporal-polyfill/fns/PlainDate';
 import componentStyles from '../../styles/component.styles.js';
@@ -20,10 +18,12 @@ import SynIconButton from '../icon-button/icon-button.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import type {
   CalendarDate,
-  CalendarDayOffset,
   CalendarEventName,
   CalendarNavigationOptions,
+  CalendarNavigationState,
+  CalendarSelectionRequest,
   CalendarView,
+  PreparedCalendarConstraints,
 } from './internal-types.js';
 import type {
   CalendarDateDisabledPredicate,
@@ -33,16 +33,13 @@ import type {
 } from './types.js';
 import {
   areCalendarValuesEqual,
-  clampRangeEnd,
   fromNativeDate,
-  getFirstSelectableDateInRange,
   getMonthLabel,
   getNearestSelectableDate,
   getNextSelectableDate,
   getYearBlockStart,
   isDateDisabled,
   isMonthInRange,
-  isRangeLengthAllowed,
   isSameMonth,
   isYearInRange,
   normalizeCalendarValue,
@@ -51,6 +48,7 @@ import {
   parseDisabledDates,
   parseDisabledWeekdays,
   parseIsoDate,
+  prepareCalendarConstraints,
   toIsoDate,
   toNativeDate,
   today,
@@ -58,6 +56,19 @@ import {
 import { renderDayView } from './renderers/day.js';
 import { renderMonthView } from './renderers/month.js';
 import { renderYearView } from './renderers/year.js';
+import { proposeDateSelection } from './selection.js';
+import {
+  DAY_KEY_OFFSETS,
+  PERIOD_KEY_OFFSETS,
+  getDayViewState,
+  getMonthNavigationState,
+  getMonthSelectorState,
+  getSelectableMonth,
+  getSelectableYear,
+  getYearSelectorState,
+  hasNavigableDates,
+  normalizeCalendarFocus,
+} from './navigation.js';
 import styles from './calendar.styles.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
@@ -337,20 +348,8 @@ export default class SynCalendar extends SynergyElement {
    */
   #valueUpdatedByUser = false;
 
-  /**
-   * Indicates whether the calendar should restore focus to the previously focused year after a view change.
-   */
-  #restoreYearFocus = false;
-
-  /**
-   * Indicates whether the calendar should restore focus to the previously focused month after a view change.
-   */
-  #restoreMonthFocus = false;
-
-  /**
-   * Indicates whether the calendar should restore focus to the previously focused day after a view change.
-   */
-  #restoreDayFocus = false;
+  /** The active view whose DOM focus should be restored after the next Lit update. */
+  #pendingFocus: CalendarView | null = null;
 
   protected willUpdate(changedProperties: PropertyValues<this>) {
     const modeChanged = changedProperties.has('mode');
@@ -400,43 +399,40 @@ export default class SynCalendar extends SynergyElement {
     }
   }
 
-  #getBounds() {
-    return {
+  #getConstraints() {
+    return prepareCalendarConstraints({
       disabledDates: this.disabledDates,
       disabledWeekdays: this.disabledWeekdays,
       isDateDisabled: this.isDateDisabled,
       max: parseIsoDate(this.max),
       min: parseIsoDate(this.min),
-    };
+    });
   }
 
   #isDateSelectable(date: CalendarDate) {
-    const {
-      disabledDates, disabledWeekdays, isDateDisabled: customIsDateDisabled, max, min,
-    } = this.#getBounds();
-    return !isDateDisabled(date, min, max, disabledDates, disabledWeekdays, customIsDateDisabled);
+    return !isDateDisabled(date, this.#getConstraints());
   }
 
   #isMonthSelectable(year: number, month: number) {
-    const {
-      disabledDates, disabledWeekdays, isDateDisabled: customIsDateDisabled, max, min,
-    } = this.#getBounds();
-    return isMonthInRange(year, month, min, max, disabledDates, disabledWeekdays, customIsDateDisabled);
+    return isMonthInRange(year, month, this.#getConstraints());
   }
 
   #isYearSelectable(year: number) {
-    const {
-      disabledDates, disabledWeekdays, isDateDisabled: customIsDateDisabled, max, min,
-    } = this.#getBounds();
-    return isYearInRange(year, min, max, disabledDates, disabledWeekdays, customIsDateDisabled);
+    return isYearInRange(year, this.#getConstraints());
   }
 
-  #isMonthNavigationDisabled(year: number, month: number, offset: -1 | 1) {
-    if (this.disabled || !this.#hasNavigableDates()) {
+  #isMonthNavigationDisabled(
+    year: number,
+    month: number,
+    offset: -1 | 1,
+    constraints = this.#getConstraints(),
+    navigable = hasNavigableDates(constraints, today()),
+  ) {
+    if (this.disabled || !navigable) {
       return true;
     }
 
-    const { max, min } = this.#getBounds();
+    const { max, min } = constraints;
     const targetMonth = year * 12 + month + offset;
 
     return offset < 0
@@ -444,12 +440,17 @@ export default class SynCalendar extends SynergyElement {
       : !!max && targetMonth > max.year * 12 + max.month;
   }
 
-  #isYearNavigationDisabled(year: number, offset: -1 | 1) {
-    if (this.disabled || !this.#hasNavigableDates()) {
+  #isYearNavigationDisabled(
+    year: number,
+    offset: -1 | 1,
+    constraints = this.#getConstraints(),
+    navigable = hasNavigableDates(constraints, today()),
+  ) {
+    if (this.disabled || !navigable) {
       return true;
     }
 
-    const { max, min } = this.#getBounds();
+    const { max, min } = constraints;
 
     const targetYear = year + offset;
 
@@ -458,12 +459,17 @@ export default class SynCalendar extends SynergyElement {
       : !!max && targetYear > max.year;
   }
 
-  #isYearBlockNavigationDisabled(blockStart: number, offset: -12 | 12) {
-    if (this.disabled || !this.#hasNavigableDates()) {
+  #isYearBlockNavigationDisabled(
+    blockStart: number,
+    offset: -12 | 12,
+    constraints = this.#getConstraints(),
+    navigable = hasNavigableDates(constraints, today()),
+  ) {
+    if (this.disabled || !navigable) {
       return true;
     }
 
-    const { max, min } = this.#getBounds();
+    const { max, min } = constraints;
 
     const targetBlockStart = blockStart + offset;
 
@@ -472,55 +478,16 @@ export default class SynCalendar extends SynergyElement {
       : !!max && targetBlockStart > max.year;
   }
 
-  #hasNavigableDates() {
-    const {
-      disabledDates, disabledWeekdays, max, min,
-    } = this.#getBounds();
-
-    if (this.isDateDisabled) {
-      return (!min || !max || compare(min, max) <= 0)
-        && new Set(disabledWeekdays).size < 7;
-    }
-
-    return !!getNearestSelectableDate(today(), min, max, disabledDates, disabledWeekdays);
-  }
-
-  #getNearestSelectableDate(date: CalendarDate) {
-    const {
-      disabledDates, disabledWeekdays, isDateDisabled: customIsDateDisabled, max, min,
-    } = this.#getBounds();
-    return getNearestSelectableDate(date, min, max, disabledDates, disabledWeekdays, customIsDateDisabled);
-  }
-
-  #getFirstSelectableDateInMonth(year: number, month: number) {
-    const {
-      disabledDates, disabledWeekdays, isDateDisabled: customIsDateDisabled, max, min,
-    } = this.#getBounds();
-
-    return getFirstSelectableDateInRange(
-      createDate(year, month, 1),
-      endOfMonth(createDate(year, month, 1)),
-      min,
-      max,
-      disabledDates,
-      disabledWeekdays,
-      customIsDateDisabled,
-    );
+  #getNearestSelectableDate(date: CalendarDate, constraints: PreparedCalendarConstraints = this.#getConstraints()) {
+    return getNearestSelectableDate(date, constraints);
   }
 
   #getMonthForYear(year: number, preferredMonth: number) {
-    const months = Array.from({ length: 12 }, (_, month) => month + 1)
-      .filter(month => this.#isMonthSelectable(year, month));
-
-    return months.sort((a, b) => (
-      Math.abs(a - preferredMonth) - Math.abs(b - preferredMonth)
-    ))[0];
+    return getSelectableMonth(year, preferredMonth, this.#getConstraints());
   }
 
   #getSelectableYear(blockStart: number, preferredYear: number) {
-    return Array.from({ length: 12 }, (_, index) => blockStart + index)
-      .filter(year => this.#isYearSelectable(year))
-      .sort((a, b) => Math.abs(a - preferredYear) - Math.abs(b - preferredYear))[0];
+    return getSelectableYear(blockStart, preferredYear, this.#getConstraints());
   }
 
   #moveViewYear(offset: -1 | 1) {
@@ -544,53 +511,32 @@ export default class SynCalendar extends SynergyElement {
 
     if (typeof month === 'number') {
       this.focusedMonth = month;
-      this.#restoreMonthFocus = true;
+      this.#pendingFocus = 'month';
     }
   }
 
   #normalizeFocusToRange() {
-    this.#normalizeDayFocus();
-    this.#normalizeMonthFocus();
-    this.#normalizeYearFocus();
+    const result = normalizeCalendarFocus(this.#getNavigationState(), this.#getConstraints());
+    this.#applyNavigationState(result.state, result.focus);
   }
 
-  #normalizeDayFocus() {
-    const nearestDate = this.#getNearestSelectableDate(this.focusedDate);
-
-    if (nearestDate && !equals(nearestDate, this.focusedDate)) {
-      this.#setViewDate(nearestDate);
-    }
-
-    if (this.visibleView === 'day' && nearestDate) {
-      this.#restoreDayFocus = true;
-    }
+  #getNavigationState(): CalendarNavigationState {
+    return {
+      focusedDate: this.focusedDate,
+      focusedMonth: this.focusedMonth,
+      focusedYear: this.focusedYear,
+      monthSelectorYear: this.monthSelectorYear,
+      viewDate: this.viewDate,
+      visibleView: this.visibleView,
+      yearBlockStart: this.yearBlockStart,
+    };
   }
 
-  #normalizeMonthFocus() {
-    const nearestMonth = this.#getNearestSelectableDate(
-      createDate(this.monthSelectorYear, this.focusedMonth, 1),
-    );
+  #applyNavigationState(patch: Partial<CalendarNavigationState>, focus: CalendarView | null = null) {
+    Object.assign(this, patch);
 
-    if (nearestMonth) {
-      this.monthSelectorYear = nearestMonth.year;
-      this.focusedMonth = nearestMonth.month;
-    }
-
-    if (this.visibleView === 'month' && nearestMonth) {
-      this.#restoreMonthFocus = true;
-    }
-  }
-
-  #normalizeYearFocus() {
-    const nearestYear = this.#getNearestSelectableDate(createDate(this.focusedYear, 1, 1));
-
-    if (nearestYear) {
-      this.focusedYear = nearestYear.year;
-      this.yearBlockStart = getYearBlockStart(this.focusedYear);
-    }
-
-    if (this.visibleView === 'year' && nearestYear) {
-      this.#restoreYearFocus = true;
+    if (focus) {
+      this.#pendingFocus = focus;
     }
   }
 
@@ -612,25 +558,19 @@ export default class SynCalendar extends SynergyElement {
       return;
     }
 
-    const { year } = date;
-    const requestedMonth = date.month;
-    const month = this.#isMonthSelectable(year, requestedMonth)
-      ? requestedMonth
-      : this.#getMonthForYear(year, requestedMonth);
-    const visibleMonth = typeof month === 'number' ? month : requestedMonth;
-    const firstSelectableDate = this.#getFirstSelectableDateInMonth(year, visibleMonth);
-
-    this.viewDate = createDate(year, visibleMonth, 1);
-    this.focusedDate = firstSelectableDate ?? this.viewDate;
+    this.#applyNavigationState(getMonthNavigationState(date, this.#getConstraints()));
   }
 
   /**
    * Sets the calendar's value based on user input.
-   * @param value The new dates to set for the calendar.
-   * @param clear Whether to clear the current value before setting the new one.
-   * @param commit Whether to emit `syn-change` after updating the value.
+   * @param request The named pending, committed, or Clear update to apply.
    */
-  #setValueFromUser(value: string[], clear = false, commit = true, focusDate?: CalendarDate) {
+  #setValueFromUser(request: CalendarSelectionRequest) {
+    const { value } = request;
+    const clear = request.kind === 'clear';
+    const commit = request.kind !== 'pending';
+    const focusDate = request.kind === 'clear' ? null : request.focusDate;
+
     if (this.disabled || this.readonly || areCalendarValuesEqual(this.value, value)) {
       return;
     }
@@ -650,7 +590,7 @@ export default class SynCalendar extends SynergyElement {
       }
 
       this.focusedDate = focusDate;
-      this.#restoreDayFocus = true;
+      this.#pendingFocus = 'day';
     }
 
     if (clear) {
@@ -688,44 +628,22 @@ export default class SynCalendar extends SynergyElement {
   }
 
   #selectDate(value: string) {
-    const focusDate = parseIsoDate(value);
+    const date = parseIsoDate(value);
 
-    if (!focusDate) {
+    if (!date) {
       return;
     }
 
-    if (this.mode === 'range') {
-      if (this.value.length !== 1) {
-        this.#setValueFromUser([value], false, false, focusDate);
-        return;
-      }
+    const request = proposeDateSelection(date, {
+      constraints: this.#getConstraints(),
+      mode: this.mode,
+      rangeLimits: { maxRange: this.maxRange, minRange: this.minRange },
+      value: this.value,
+    });
 
-      const startDate = parseIsoDate(this.value[0]);
-
-      if (!startDate) {
-        return;
-      }
-
-      const endDate = clampRangeEnd(startDate, focusDate, this.minRange, this.maxRange);
-
-      if (!isRangeLengthAllowed(startDate, endDate, this.minRange, this.maxRange)
-        || !this.#isDateSelectable(endDate)) {
-        return;
-      }
-
-      this.#setValueFromUser([this.value[0], toIsoDate(endDate)].sort(), false, true, endDate);
-      return;
+    if (request) {
+      this.#setValueFromUser(request);
     }
-
-    if (this.mode === 'multiple') {
-      const nextValue = this.value.includes(value)
-        ? this.value.filter(date => date !== value)
-        : [...this.value, value];
-      this.#setValueFromUser(nextValue.sort(), false, true, focusDate);
-      return;
-    }
-
-    this.#setValueFromUser([value], false, true, focusDate);
   }
 
   /**
@@ -760,28 +678,15 @@ export default class SynCalendar extends SynergyElement {
    * If the calendar should restore focus to the previously focused day, it does so here.
    */
   protected updated() {
-    if (this.disabled) {
-      this.#restoreYearFocus = false;
-      this.#restoreMonthFocus = false;
-      this.#restoreDayFocus = false;
+    const view = this.#pendingFocus;
+    this.#pendingFocus = null;
+
+    if (this.disabled || !view || view !== this.visibleView) {
       return;
     }
 
-    if (this.#restoreYearFocus) {
-      this.#restoreYearFocus = false;
-      this.renderRoot.querySelector<HTMLButtonElement>(`[data-kind="year"][data-value="${this.focusedYear}"]`)?.focus();
-    }
-
-    if (this.#restoreMonthFocus) {
-      this.#restoreMonthFocus = false;
-      this.renderRoot.querySelector<HTMLButtonElement>(`[data-kind="month"][data-value="${this.focusedMonth - 1}"]`)?.focus();
-    }
-
-    if (this.#restoreDayFocus) {
-      this.#restoreDayFocus = false;
-      const date = toIsoDate(this.focusedDate);
-      this.renderRoot.querySelector<HTMLButtonElement>(`[data-kind="day"][data-value="${date}"]`)?.focus();
-    }
+    const targets = { day: toIsoDate(this.focusedDate), month: this.focusedMonth - 1, year: this.focusedYear };
+    this.renderRoot.querySelector<HTMLButtonElement>(`[data-kind="${view}"][data-value="${targets[view]}"]`)?.focus();
   }
 
   /**
@@ -791,30 +696,17 @@ export default class SynCalendar extends SynergyElement {
    * @returns void
    */
   #handleDayKeydown(event: KeyboardEvent, day: CalendarDate) {
-    const dayOffsets: Record<string, number> = {
-      ArrowDown: 7,
-      ArrowLeft: -1,
-      ArrowRight: 1,
-      ArrowUp: -7,
-    };
-    const dayOffset = dayOffsets[event.key];
+    const dayOffset = DAY_KEY_OFFSETS[event.key];
 
     if (typeof dayOffset !== 'number') {
       return;
     }
 
     event.preventDefault();
-    const {
-      disabledDates, disabledWeekdays, isDateDisabled: customIsDateDisabled, max, min,
-    } = this.#getBounds();
     const nextDate = getNextSelectableDate(
       day,
-      dayOffset as CalendarDayOffset,
-      min,
-      max,
-      disabledDates,
-      disabledWeekdays,
-      customIsDateDisabled,
+      dayOffset,
+      this.#getConstraints(),
     );
 
     if (!nextDate || !this.#isDateSelectable(nextDate)) {
@@ -831,7 +723,7 @@ export default class SynCalendar extends SynergyElement {
       this.hoveredDate = toIsoDate(nextDate);
     }
 
-    this.#restoreDayFocus = true;
+    this.#pendingFocus = 'day';
   }
 
   /**
@@ -855,22 +747,10 @@ export default class SynCalendar extends SynergyElement {
       return;
     }
 
-    const valueDate = parseIsoDate(this.value[0]);
-    const viewedYear = this.viewDate.year;
-
-    this.monthSelectorYear = viewedYear;
-    const preferredMonth = valueDate
-      && this.#isDateSelectable(valueDate)
-      && valueDate.year === viewedYear
-      ? valueDate.month
-      : this.viewDate.month;
-    const selectableMonth = this.#getMonthForYear(viewedYear, preferredMonth);
-
-    if (typeof selectableMonth === 'number') {
-      this.focusedMonth = selectableMonth;
-    }
-    this.visibleView = 'month';
-    this.#restoreMonthFocus = true;
+    this.#applyNavigationState(
+      getMonthSelectorState(this.#getNavigationState(), parseIsoDate(this.value[0]), this.#getConstraints()),
+      'month',
+    );
   }
 
   /**
@@ -881,14 +761,10 @@ export default class SynCalendar extends SynergyElement {
       return;
     }
 
-    const valueDate = parseIsoDate(this.value[0]);
-
-    if (valueDate && this.#isDateSelectable(valueDate) && isSameMonth(valueDate, this.viewDate)) {
-      this.focusedDate = valueDate;
-    }
-
-    this.visibleView = 'day';
-    this.#restoreDayFocus = true;
+    this.#applyNavigationState(
+      getDayViewState(this.#getNavigationState(), parseIsoDate(this.value[0]), this.#getConstraints()),
+      'day',
+    );
   }
 
   /**
@@ -899,30 +775,10 @@ export default class SynCalendar extends SynergyElement {
       return;
     }
 
-    this.focusedYear = this.visibleView === 'month'
-      ? this.monthSelectorYear
-      : this.viewDate.year;
-    this.yearBlockStart = getYearBlockStart(this.focusedYear);
-    const valueDate = parseIsoDate(this.value[0]);
-
-    if (valueDate) {
-      const valueYear = valueDate.year;
-
-      if (valueYear >= this.yearBlockStart
-        && valueYear < this.yearBlockStart + 12
-        && this.#isYearSelectable(valueYear)) {
-        this.focusedYear = valueYear;
-      }
-    }
-
-    const selectableYear = this.#getSelectableYear(this.yearBlockStart, this.focusedYear);
-
-    if (typeof selectableYear === 'number') {
-      this.focusedYear = selectableYear;
-    }
-
-    this.visibleView = 'year';
-    this.#restoreYearFocus = true;
+    this.#applyNavigationState(
+      getYearSelectorState(this.#getNavigationState(), parseIsoDate(this.value[0]), this.#getConstraints()),
+      'year',
+    );
   }
 
   /**
@@ -960,7 +816,7 @@ export default class SynCalendar extends SynergyElement {
 
     if (typeof nextYear === 'number') {
       this.focusedYear = nextYear;
-      this.#restoreYearFocus = true;
+      this.#pendingFocus = 'year';
     } else {
       this.focusedYear = offset > 0 ? nextBlock : nextBlock + 11;
     }
@@ -972,13 +828,7 @@ export default class SynCalendar extends SynergyElement {
    * @param year The currently focused year.
    */
   #handleYearKeydown(event: KeyboardEvent, year: number) {
-    const yearOffsets: Record<string, number> = {
-      ArrowDown: 3,
-      ArrowLeft: -1,
-      ArrowRight: 1,
-      ArrowUp: -3,
-    };
-    const offset = yearOffsets[event.key];
+    const offset = PERIOD_KEY_OFFSETS[event.key];
 
     if (typeof offset !== 'number') {
       return;
@@ -993,7 +843,7 @@ export default class SynCalendar extends SynergyElement {
 
     this.focusedYear = nextDate.year;
     this.yearBlockStart = getYearBlockStart(this.focusedYear);
-    this.#restoreYearFocus = true;
+    this.#pendingFocus = 'year';
   }
 
   /**
@@ -1002,13 +852,7 @@ export default class SynCalendar extends SynergyElement {
   * @param month The currently focused month (1-12).
    */
   #handleMonthKeydown(event: KeyboardEvent, month: number) {
-    const monthOffsets: Record<string, number> = {
-      ArrowDown: 3,
-      ArrowLeft: -1,
-      ArrowRight: 1,
-      ArrowUp: -3,
-    };
-    const offset = monthOffsets[event.key];
+    const offset = PERIOD_KEY_OFFSETS[event.key];
 
     if (typeof offset !== 'number') {
       return;
@@ -1025,7 +869,7 @@ export default class SynCalendar extends SynergyElement {
 
     this.monthSelectorYear = date.year;
     this.focusedMonth = date.month;
-    this.#restoreMonthFocus = true;
+    this.#pendingFocus = 'month';
   }
 
   /**
@@ -1169,21 +1013,21 @@ export default class SynCalendar extends SynergyElement {
     switch (this.visibleView) {
       case 'day':
         this.#setViewDate(current);
-        this.#restoreDayFocus = true;
+        this.#pendingFocus = 'day';
         break;
 
       case 'month':
         this.monthSelectorYear = current.year;
         this.focusedMonth = this.#getMonthForYear(current.year, current.month)
           ?? current.month;
-        this.#restoreMonthFocus = true;
+        this.#pendingFocus = 'month';
         break;
 
       case 'year':
       default:
         this.focusedYear = current.year;
         this.yearBlockStart = getYearBlockStart(this.focusedYear);
-        this.#restoreYearFocus = true;
+        this.#pendingFocus = 'year';
         break;
     }
 
@@ -1192,53 +1036,50 @@ export default class SynCalendar extends SynergyElement {
   }
 
   #renderView() {
-    const bounds = this.#getBounds();
+    const bounds = this.#getConstraints();
+    const current = today();
+    const navigable = hasNavigableDates(bounds, current);
+    const selectedDates = this.value.map(parseIsoDate).filter((date): date is CalendarDate => !!date);
+    const selectedDate = selectedDates[0] ?? null;
     const footer = {
       clearDisabled: this.readonly,
       clearLabel: this.localize.term('calendarClear'),
-      currentDisabled: !this.#getNearestSelectableDate(today()),
+      currentDisabled: !this.#getNearestSelectableDate(current, bounds),
       disabled: this.disabled,
       hasValue: this.value.length > 0,
-      onClear: () => this.#setValueFromUser([], true),
+      onClear: () => this.#setValueFromUser({ kind: 'clear', value: [] }),
       onCurrent: () => this.#showCurrentPeriod(),
       size: this.size,
     };
+    const common = { ...footer, constraints: bounds };
 
     if (this.visibleView === 'year') {
       return renderYearView({
-        ...footer,
-        activeYear: parseIsoDate(this.value[0])?.year,
+        ...common,
+        activeYear: selectedDate?.year,
         blockStart: this.yearBlockStart,
         currentLabel: this.localize.term('calendarThisYear'),
-        disabledDates: bounds.disabledDates,
-        disabledWeekdays: bounds.disabledWeekdays,
         focusedYear: this.focusedYear,
-        isDateDisabled: bounds.isDateDisabled,
-        max: bounds.max,
-        min: bounds.min,
         navigation: {
           disabled: this.disabled,
           label: `${this.yearBlockStart} - ${this.yearBlockStart + 11}`,
-          nextDisabled: this.#isYearBlockNavigationDisabled(this.yearBlockStart, 12),
+          nextDisabled: this.#isYearBlockNavigationDisabled(this.yearBlockStart, 12, bounds, navigable),
           nextLabel: this.localize.term('calendarNextYearBlock'),
           onChoose: () => this.#showDayView(),
           onNext: () => this.#pageYears(12),
           onPrevious: () => this.#pageYears(-12),
-          previousDisabled: this.#isYearBlockNavigationDisabled(this.yearBlockStart, -12),
+          previousDisabled: this.#isYearBlockNavigationDisabled(this.yearBlockStart, -12, bounds, navigable),
           previousLabel: this.localize.term('calendarPreviousYearBlock'),
           size: this.size,
         },
       });
     }
 
+    const navigationYear = this.visibleView === 'month' ? this.monthSelectorYear : this.viewDate.year;
     const yearNavigation: CalendarNavigationOptions = {
       disabled: this.disabled,
-      label: this.visibleView === 'month'
-        ? this.monthSelectorYear
-        : this.viewDate.year,
-      nextDisabled: this.visibleView === 'month'
-        ? this.#isYearNavigationDisabled(this.monthSelectorYear, 1)
-        : this.#isYearNavigationDisabled(this.viewDate.year, 1),
+      label: navigationYear,
+      nextDisabled: this.#isYearNavigationDisabled(navigationYear, 1, bounds, navigable),
       nextLabel: this.localize.term('calendarNextYear'),
       onChoose: () => this.#showYearSelector(),
       onNext: () => {
@@ -1255,44 +1096,32 @@ export default class SynCalendar extends SynergyElement {
           this.#moveViewYear(-1);
         }
       },
-      previousDisabled: this.visibleView === 'month'
-        ? this.#isYearNavigationDisabled(this.monthSelectorYear, -1)
-        : this.#isYearNavigationDisabled(this.viewDate.year, -1),
+      previousDisabled: this.#isYearNavigationDisabled(navigationYear, -1, bounds, navigable),
       previousLabel: this.localize.term('calendarPreviousYear'),
       size: this.size,
     };
 
     if (this.visibleView === 'month') {
       return renderMonthView({
-        ...footer,
+        ...common,
         activeMonth: this.monthSelectorYear === this.viewDate.year
           ? this.viewDate.month
           : undefined,
         currentLabel: this.localize.term('calendarThisMonth'),
-        disabledDates: bounds.disabledDates,
-        disabledWeekdays: bounds.disabledWeekdays,
         focusedMonth: this.focusedMonth,
-        isDateDisabled: bounds.isDateDisabled,
         locale: this.localize.lang(),
-        max: bounds.max,
-        min: bounds.min,
         year: this.monthSelectorYear,
         yearNavigation,
       });
     }
 
     return renderDayView({
-      ...footer,
+      ...common,
       currentLabel: this.localize.term('calendarToday'),
-      disabledDates: bounds.disabledDates,
-      disabledWeekdays: bounds.disabledWeekdays,
       focusedDate: this.focusedDate,
       hoveredDate: this.readonly ? null : parseIsoDate(this.hoveredDate),
-      isDateDisabled: bounds.isDateDisabled,
       locale: this.localize.lang(),
-      max: bounds.max,
       maxRange: this.maxRange,
-      min: bounds.min,
       minRange: this.minRange,
       mode: this.mode,
       monthNavigation: {
@@ -1302,6 +1131,8 @@ export default class SynCalendar extends SynergyElement {
           this.viewDate.year,
           this.viewDate.month,
           1,
+          bounds,
+          navigable,
         ),
         nextLabel: this.localize.term('calendarNextMonth'),
         onChoose: () => this.#showMonthSelector(),
@@ -1311,12 +1142,14 @@ export default class SynCalendar extends SynergyElement {
           this.viewDate.year,
           this.viewDate.month,
           -1,
+          bounds,
+          navigable,
         ),
         previousLabel: this.localize.term('calendarPreviousMonth'),
         size: this.size,
       },
       readonly: this.readonly,
-      selectedDates: this.value.map(parseIsoDate).filter((date): date is CalendarDate => !!date),
+      selectedDates,
       viewDate: this.viewDate,
       yearNavigation,
     });

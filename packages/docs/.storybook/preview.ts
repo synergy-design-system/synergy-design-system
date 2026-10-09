@@ -1,4 +1,4 @@
-import type { ClassDeclaration, ClassMember, Package } from 'custom-elements-manifest/schema.d.ts';
+import type { Package } from 'custom-elements-manifest/schema.d.ts';
 import type { Preview, StoryContext, WebComponentsRenderer } from '@storybook/web-components-vite';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import { MINIMAL_VIEWPORTS } from 'storybook/viewport';
@@ -44,12 +44,18 @@ const filteredManifest = (manifest: Package): Package => ({
   ...manifest,
   modules: manifest.modules.map((module) => ({
     ...module,
-    declarations: (module.declarations as ClassDeclaration[])?.map((declaration) => ({
-      ...declaration,
-      members: (declaration.members as ClassMember[]).filter(
-        (member: ClassMember) => member.description && member.privacy !== 'private',
-      ),
-    })),
+    declarations: module.declarations?.map((declaration) => {
+      if (declaration.kind !== 'class' || !declaration.members) {
+        return declaration;
+      }
+
+      return {
+        ...declaration,
+        members: declaration.members.filter(
+          member => member.description && member.privacy !== 'private',
+        ),
+      };
+    }),
   })),
 });
 const componentsManifestFiltered = filteredManifest(componentsManifest as Package);

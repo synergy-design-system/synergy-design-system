@@ -19,11 +19,7 @@ export const renderMonthView = (options: MonthViewOptions): CalendarViewTemplate
         disabled: options.disabled || !isMonthInRange(
           options.year,
           index + 1,
-          options.min,
-          options.max,
-          options.disabledDates,
-          options.disabledWeekdays,
-          options.isDateDisabled,
+          options.constraints,
         ),
         kind: 'month',
         label: month,

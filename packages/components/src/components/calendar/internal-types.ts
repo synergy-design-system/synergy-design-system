@@ -31,6 +31,23 @@ export type CalendarEventName = 'syn-before-change' | 'syn-blur' | 'syn-change' 
 /** The visible selection grid and the kind of item rendered within it. */
 export type CalendarView = 'day' | 'month' | 'year';
 
+/** Existing view/focus values used by pure navigation calculations; selection remains separate. */
+export interface CalendarNavigationState {
+  focusedDate: CalendarDate;
+  focusedMonth: number;
+  focusedYear: number;
+  monthSelectorYear: number;
+  viewDate: CalendarDate;
+  visibleView: CalendarView;
+  yearBlockStart: number;
+}
+
+/** A navigation patch and the single active view whose DOM focus should be restored. */
+export interface CalendarNavigationResult {
+  focus: CalendarView | null;
+  state: Partial<CalendarNavigationState>;
+}
+
 /** ISO weekday numbering: Monday=1 through Sunday=7, including locale week starts. */
 export type WeekdayIndex = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
@@ -41,6 +58,12 @@ export interface CalendarConstraints {
   isDateDisabled?: CalendarDateDisabledPredicate;
   max: NullableCalendarDate;
   min: NullableCalendarDate;
+}
+
+/** Parsed constraints with membership indexes; original arrays preserve search-horizon semantics. */
+export interface PreparedCalendarConstraints extends CalendarConstraints {
+  disabledDateSet: ReadonlySet<string>;
+  disabledWeekdaySet: ReadonlySet<CalendarWeekday>;
 }
 
 /** State, actions, and size for the current-period and Clear buttons in every view. */
@@ -104,12 +127,34 @@ export interface CalendarRangeLengthOptions {
   minRange?: number;
 }
 
+/** Shared adjusted endpoint result for preview, affordances, and range completion. */
+export interface CalendarRangeEndpoint {
+  allowed: boolean;
+  clipped: boolean;
+  date: CalendarDate;
+  length: number;
+}
+
+/** Named user update, distinguishing provisional selection, committed selection, and Clear. */
+export type CalendarSelectionRequest =
+  | { kind: 'pending' | 'commit'; value: string[]; focusDate: CalendarDate }
+  | { kind: 'clear'; value: [] };
+
+/** Inputs for pure user selection calculation; external assignments use separate normalization. */
+export interface CalendarSelectionContext {
+  constraints: PreparedCalendarConstraints;
+  mode: CalendarSelectionMode;
+  rangeLimits: CalendarRangeLengthOptions;
+  value: readonly string[];
+}
+
 /**
  * Day-grid inputs, including selection, focused date, locale, and month/year navigation.
  * hoveredDate is the preview endpoint from either pointer hover or keyboard navigation.
  */
 export interface DayViewOptions extends
-  CalendarConstraints, CalendarFooterOptions, CalendarRangeLengthOptions {
+  CalendarFooterOptions, CalendarRangeLengthOptions {
+  constraints: PreparedCalendarConstraints;
   focusedDate: CalendarDate;
   hoveredDate: NullableCalendarDate;
   locale: string;
@@ -126,8 +171,9 @@ export interface DayViewOptions extends
  * Month-grid inputs for a viewed year; activeMonth and focusedMonth use 1-12 internally.
  * The renderer preserves zero-based month button/slot identifiers at its boundary.
  */
-export interface MonthViewOptions extends CalendarConstraints, CalendarFooterOptions {
+export interface MonthViewOptions extends CalendarFooterOptions {
   activeMonth: number | undefined;
+  constraints: PreparedCalendarConstraints;
   focusedMonth: number;
   locale: string;
   year: number;
@@ -135,9 +181,25 @@ export interface MonthViewOptions extends CalendarConstraints, CalendarFooterOpt
 }
 
 /** Year-grid inputs; blockStart anchors the displayed block of twelve years. */
-export interface YearViewOptions extends CalendarConstraints, CalendarFooterOptions {
+export interface YearViewOptions extends CalendarFooterOptions {
   activeYear: number | undefined;
   blockStart: number;
+  constraints: PreparedCalendarConstraints;
   focusedYear: number;
   navigation: CalendarNavigationOptions;
 }
+
+/** Shared per-render date context, keeping all date/range calculations out of cell markup. */
+export interface CalendarDayRenderContext {
+  options: DayViewOptions;
+  previewDate: NullableCalendarDate;
+  previewEnd: NullableCalendarDate;
+  previewStart: NullableCalendarDate;
+  rangeEnd: NullableCalendarDate;
+  rangeStart: NullableCalendarDate;
+  showPending: boolean;
+  today: CalendarDate;
+}
+
+/** Derived day state; the renderer supplies only its kind and Lit label. */
+export type CalendarDayItemState = Omit<CalendarItemOptions, 'kind' | 'label'>;

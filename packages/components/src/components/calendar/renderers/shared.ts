@@ -23,12 +23,15 @@ export const renderCalendarItem = (options: CalendarItemOptions) => {
     today: !!options.today,
   };
 
+  const descriptors = Object.entries(states).map(([state, enabled]) => ({
+    enabled,
+    name: state.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`),
+  }));
+
   const parts = [
     'calendar-item',
     `calendar-item-${options.kind}`,
-    ...Object.entries(states)
-      .filter(([, enabled]) => enabled)
-      .map(([state]) => `calendar-item-${state.replace(/[A-Z]/g, letter => `-${letter.toLowerCase()}`)}`),
+    ...descriptors.filter(({ enabled }) => enabled).map(({ name }) => `calendar-item-${name}`),
   ]
     .join(' ');
 
@@ -37,18 +40,7 @@ export const renderCalendarItem = (options: CalendarItemOptions) => {
       aria-disabled=${states.disabled || states.rangeUnavailable ? 'true' : 'false'}
       class=${classMap({
         'calendar-item': true,
-        'calendar-item--active': states.active,
-        'calendar-item--disabled': states.disabled,
-        'calendar-item--outside': states.outside,
-        'calendar-item--range-begin': states.rangeBegin,
-        'calendar-item--range-clipped': states.rangeClipped,
-        'calendar-item--range-end': states.rangeEnd,
-        'calendar-item--range-interior': states.rangeInterior,
-        'calendar-item--range-pending': states.rangePending,
-        'calendar-item--range-preview': states.rangePreview,
-        'calendar-item--range-start': states.rangeStart,
-        'calendar-item--range-unavailable': states.rangeUnavailable,
-        'calendar-item--today': states.today,
+        ...Object.fromEntries(descriptors.map(({ enabled, name }) => [`calendar-item--${name}`, enabled])),
       })}
       data-kind=${options.kind}
       data-value=${options.value}

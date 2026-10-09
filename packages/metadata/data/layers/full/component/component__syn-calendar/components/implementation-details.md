@@ -44,6 +44,16 @@ Use the checklists to indicate:
 - Calendar custom events, including focus/blur, are suppressed in either state; permitted native DOM events are not suppressed.
 - Programmatic property/value updates remain supported, and removing a state does not automatically steal focus.
 
+### Internal Boundaries
+
+- `utils.ts` handles codecs, formatting, date rules, and bounded searches. Availability functions receive a prepared constraint object rather than positional bound lists.
+- Prepared constraints use per-action/render membership indexes, retaining the original arrays for search-window policy. Callback results are not persistently cached.
+- `selection.ts` derives range endpoints, user selection proposals, and day item states. Preview, cell affordances, and completion share the same endpoint policy.
+- `navigation.ts` calculates view/focus patches and nearest period candidates; only the component applies Lit state, dispatches events, and restores DOM focus.
+- User selection requests distinguish pending, committed, and Clear updates by name rather than positional boolean flags.
+- Renderers keep the existing markup, slots, classes, and parts, deriving class and part names from a shared item-state descriptor.
+- The component holds a single active-view focus intent and local render snapshots. Public declarations remain Temporal-free.
+
 ## Doings
 
 - [ ] For sake of easier usage and combination, we opt to create more components:

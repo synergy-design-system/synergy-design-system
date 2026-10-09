@@ -1,18 +1,12 @@
 import { html } from 'lit';
-import { compare } from 'temporal-polyfill/fns/PlainDate';
 import type { CalendarViewTemplates, DayViewOptions } from '../internal-types.js';
 import {
-  clampRangeEnd,
   getCalendarWeeks,
   getFirstDayOfWeek,
   getWeekdayNames,
-  isDateDisabled,
-  isRangeLengthAllowed,
-  isSameDay,
-  isSameMonth,
   toIsoDate,
-  today,
 } from '../utils.js';
+import { getDayItemState, getDayRenderContext } from '../selection.js';
 import {
   renderCalendarFooter,
   renderCalendarItem,
@@ -28,17 +22,7 @@ export const renderDayView = (options: DayViewOptions): CalendarViewTemplates =>
     options.viewDate.month,
     firstDay,
   );
-  const currentDay = today();
-  const rangeStart = options.mode === 'range' ? options.selectedDates[0] ?? null : null;
-  const rangeEnd = options.mode === 'range' && options.selectedDates.length === 2
-    ? options.selectedDates[1]
-    : null;
-  const previewDate = !options.readonly && rangeStart && !rangeEnd && options.hoveredDate
-    ? clampRangeEnd(rangeStart, options.hoveredDate, options.minRange, options.maxRange)
-    : null;
-  const [previewStart, previewEnd] = rangeStart && previewDate
-    ? [rangeStart, previewDate].sort(compare)
-    : [null, null];
+  const context = getDayRenderContext(options);
 
   return {
     content: html`
@@ -49,72 +33,19 @@ export const renderDayView = (options: DayViewOptions): CalendarViewTemplates =>
         <tbody>
           ${weeks.map(week => html`
             <tr>
-              ${week.map(day => {
-                const candidateEnd = !options.readonly && rangeStart && !rangeEnd
-                  ? clampRangeEnd(rangeStart, day, options.minRange, options.maxRange)
-                  : null;
-                const rangeUnavailable = !!rangeStart && !!candidateEnd
-                  && (!isRangeLengthAllowed(rangeStart, candidateEnd, options.minRange, options.maxRange)
-                    || isDateDisabled(
-                      candidateEnd,
-                      options.min,
-                      options.max,
-                      options.disabledDates,
-                      options.disabledWeekdays,
-                      options.isDateDisabled,
-                    ));
-
-                return html`
+              ${week.map(day => html`
                 <td class="day-selector__day" part="day-cell">
                   ${renderCalendarItem({
-                    active: options.selectedDates.some(selectedDate => isSameDay(day, selectedDate)),
-                    disabled: options.disabled || isDateDisabled(
-                      day,
-                      options.min,
-                      options.max,
-                      options.disabledDates,
-                      options.disabledWeekdays,
-                      options.isDateDisabled,
-                    ),
+                    ...getDayItemState(day, context),
                     kind: 'day',
                     label: html`
                       <time datetime=${toIsoDate(day)}>
                         ${day.day.toString().padStart(2, '0')}
                       </time>
                     `,
-                    outside: !isSameMonth(day, options.viewDate),
-                    rangeBegin: isSameDay(day, rangeStart),
-                    rangeClipped: !!candidateEnd && !isSameDay(day, candidateEnd),
-                    rangeEnd: isSameDay(day, rangeEnd)
-                      || isSameDay(day, previewDate),
-                    rangeInterior: (!!rangeStart
-                      && !!rangeEnd
-                      && compare(day, rangeStart) > 0
-                      && compare(day, rangeEnd) < 0)
-                      || (!!rangeStart
-                        && !rangeEnd
-                        && previewStart !== null
-                        && previewEnd !== null
-                        && compare(day, previewStart) > 0
-                        && compare(day, previewEnd) < 0),
-                    rangePending: !options.readonly && !!rangeStart && !rangeEnd && isSameDay(day, rangeStart),
-                    rangePreview: !!rangeStart
-                      && !rangeEnd
-                      && !!previewDate
-                      && previewStart !== null
-                      && previewEnd !== null
-                      && compare(day, previewStart) >= 0
-                      && compare(day, previewEnd) <= 0
-                      && !isSameDay(day, rangeStart),
-                    rangeStart: isSameDay(day, rangeStart),
-                    rangeUnavailable,
-                    tabbable: isSameDay(day, options.focusedDate),
-                    today: isSameDay(day, currentDay),
-                    value: toIsoDate(day),
                   })}
                 </td>
-                `;
-              })}
+              `)}
             </tr>
           `)}
         </tbody>

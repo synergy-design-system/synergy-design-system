@@ -15,11 +15,7 @@ export const renderYearView = (options: YearViewOptions): CalendarViewTemplates 
         active: options.activeYear === year,
         disabled: options.disabled || !isYearInRange(
           year,
-          options.min,
-          options.max,
-          options.disabledDates,
-          options.disabledWeekdays,
-          options.isDateDisabled,
+          options.constraints,
         ),
         kind: 'year',
         label: year,

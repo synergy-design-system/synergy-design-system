@@ -2,22 +2,20 @@ import {
   compare, create, endOfMonth, equals,
 } from 'temporal-polyfill/fns/PlainDate';
 import type {
-  CalendarDate,
-  CalendarDayOffset,
-  CalendarNavigationResult,
-  CalendarNavigationState,
-  NullableCalendarDate,
-  PreparedCalendarConstraints,
-} from './internal-types.js';
+  CalendarDate, CalendarDayOffset, CalendarNavigationResult, CalendarNavigationState, NullableCalendarDate, PreparedCalendarConstraints,
+} from '../internal-types.js';
 import {
-  getFirstSelectableDateInRange,
-  getNearestSelectableDate,
-  getYearBlockStart,
-  isDateDisabled,
-  isMonthInRange,
-  isSameMonth,
-  isYearInRange,
-} from './utils.js';
+  getFirstSelectableDateInRange, getNearestSelectableDate, isDateDisabled, isMonthInRange, isYearInRange,
+} from './constraints.js';
+import { isSameMonth } from './date.js';
+
+/**
+ * Gets the first year of the block containing a year; calendar year grids use twelve-year blocks.
+ * @param year The full year
+ * @param size The amount of years shown at once
+ * @returns The first year of the block
+ */
+export const getYearBlockStart = (year: number, size = 12) => Math.floor(year / size) * size;
 
 /** Day-grid movement keeps week-sized steps distinct from month/year grid movement. */
 export const DAY_KEY_OFFSETS: Readonly<Record<string, CalendarDayOffset | undefined>> = {

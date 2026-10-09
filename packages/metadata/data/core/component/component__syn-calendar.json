@@ -128,19 +128,7 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component__syn-calendar/components/navigation.ts"
-      },
-      {
-        "layer": "full",
-        "path": "layers/full/component/component__syn-calendar/components/selection.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component__syn-calendar/components/types.ts"
-      },
-      {
-        "layer": "full",
-        "path": "layers/full/component/component__syn-calendar/components/utils.ts"
       },
       {
         "layer": "full",
@@ -192,10 +180,7 @@
     "packages/components/src/components/calendar/calendar.ts",
     "packages/components/src/components/calendar/implementation-details.md",
     "packages/components/src/components/calendar/internal-types.ts",
-    "packages/components/src/components/calendar/navigation.ts",
-    "packages/components/src/components/calendar/selection.ts",
     "packages/components/src/components/calendar/types.ts",
-    "packages/components/src/components/calendar/utils.ts",
     "packages/react/src/components/calendar.ts",
     "packages/vue/src/components/SynVueCalendar.vue"
   ],

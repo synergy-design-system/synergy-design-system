@@ -54,23 +54,6 @@ export const Default: Story = {
   render: args => generateTemplate({ args }),
 };
 
-export const Sizes: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('calendar', 'size'),
-      },
-    },
-  },
-  render: () => html`
-    <div style="align-items: flex-start; display: flex; flex-direction: row; gap: var(--syn-spacing-large);">
-      <syn-calendar size="small" mode="single" value="2026-12-24"></syn-calendar>
-      <syn-calendar size="medium" mode="single" value="2026-12-24"></syn-calendar>
-      <syn-calendar size="large" mode="single" value="2026-12-24"></syn-calendar>
-    </div>
-  `,
-};
-
 export const Localization: Story = {
   parameters: {
     docs: {
@@ -99,11 +82,13 @@ export const Disabled: Story = {
       },
     },
   },
-  render: () => html`<syn-calendar
-    disabled
-    mode="range"
-    value="2026-10-07 2026-10-12"
-  ></syn-calendar>`,
+  render: () => html`
+    <syn-calendar
+      disabled
+      mode="range"
+      value="2026-10-07 2026-10-12"
+    ></syn-calendar>
+  `,
 };
 
 export const Readonly: Story = {
@@ -114,11 +99,30 @@ export const Readonly: Story = {
       },
     },
   },
-  render: () => html`<syn-calendar
-    mode="range"
-    readonly
-    value="2026-10-07"
-  ></syn-calendar>`,
+  render: () => html`
+    <syn-calendar
+      mode="range"
+      readonly
+      value="2026-10-07"
+    ></syn-calendar>
+  `,
+};
+
+export const Sizes: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('calendar', 'size'),
+      },
+    },
+  },
+  render: () => html`
+    <div style="align-items: flex-start; display: flex; flex-direction: row; gap: var(--syn-spacing-large);">
+      <syn-calendar size="small" mode="single" value="2026-12-24"></syn-calendar>
+      <syn-calendar size="medium" mode="single" value="2026-12-24"></syn-calendar>
+      <syn-calendar size="large" mode="single" value="2026-12-24"></syn-calendar>
+    </div>
+  `,
 };
 
 export const MinDate: Story = {
@@ -164,11 +168,12 @@ export const DisabledWeekDays: Story = {
     },
   },
   render: () => html`
-  <syn-calendar
-    disabled-weekdays="sat sun"
-    mode="single"
-    value="2026-10-06"
-  ></syn-calendar>`,
+    <syn-calendar
+      disabled-weekdays="sat sun"
+      mode="single"
+      value="2026-10-06"
+    ></syn-calendar>
+  `,
 };
 
 export const DisabledDates: Story = {
@@ -179,11 +184,13 @@ export const DisabledDates: Story = {
       },
     },
   },
-  render: () => html`<syn-calendar
-    disabled-dates="2026-12-25"
-    mode="single"
-    value="2026-12-24"
-  ></syn-calendar>`,
+  render: () => html`
+    <syn-calendar
+      disabled-dates="2026-12-25"
+      mode="single"
+      value="2026-12-24"
+    ></syn-calendar>
+  `,
 };
 
 export const CustomDisabledDates: Story = {
@@ -213,10 +220,12 @@ export const RangeSelection: Story = {
       },
     },
   },
-  render: () => html`<syn-calendar
-    mode="range"
-    value="2026-10-06 2026-10-12"
-  ></syn-calendar>`,
+  render: () => html`
+    <syn-calendar
+      mode="range"
+      value="2026-10-06 2026-10-12"
+    ></syn-calendar>
+  `,
 };
 
 export const RangeLengthConstraints: Story = {
@@ -227,12 +236,14 @@ export const RangeLengthConstraints: Story = {
       },
     },
   },
-  render: () => html`<syn-calendar
-    max-range="14"
-    min-range="3"
-    mode="range"
-    value="2026-10-07"
-  ></syn-calendar>`,
+  render: () => html`
+    <syn-calendar
+      max-range="14"
+      min-range="3"
+      mode="range"
+      value="2026-10-07"
+    ></syn-calendar>
+  `,
 };
 
 export const MultipleSelection: Story = {
@@ -243,10 +254,12 @@ export const MultipleSelection: Story = {
       },
     },
   },
-  render: () => html`<syn-calendar
-    mode="multiple"
-    value="2026-10-06 2026-10-12"
-  ></syn-calendar>`,
+  render: () => html`
+    <syn-calendar
+      mode="multiple"
+      value="2026-10-06 2026-10-12"
+    ></syn-calendar>
+  `,
 };
 
 export const CustomDayContent: Story = {
@@ -269,5 +282,18 @@ export const CustomDayContent: Story = {
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
-}, 100);
+  Localization,
+  Disabled,
+  Readonly,
+  Sizes,
+  MinDate,
+  MaxDate,
+  DisabledWeekDays,
+  DisabledDates,
+  CustomDisabledDates,
+  RangeSelection,
+  RangeLengthConstraints,
+  MultipleSelection,
+  CustomDayContent,
+}, 350);
 /* eslint-enable sort-keys */

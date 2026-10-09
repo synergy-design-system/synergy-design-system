@@ -32,16 +32,26 @@ import type {
   CalendarWeekday,
 } from './types.js';
 import {
+  DAY_KEY_OFFSETS,
+  PERIOD_KEY_OFFSETS,
   areCalendarValuesEqual,
   fromNativeDate,
+  getDayViewState,
   getMonthLabel,
+  getMonthNavigationState,
+  getMonthSelectorState,
   getNearestSelectableDate,
   getNextSelectableDate,
+  getSelectableMonth,
+  getSelectableYear,
   getYearBlockStart,
+  getYearSelectorState,
+  hasNavigableDates,
   isDateDisabled,
   isMonthInRange,
   isSameMonth,
   isYearInRange,
+  normalizeCalendarFocus,
   normalizeCalendarValue,
   parseCalendarSelectionMode,
   parseCalendarValue,
@@ -49,36 +59,17 @@ import {
   parseDisabledWeekdays,
   parseIsoDate,
   prepareCalendarConstraints,
+  proposeDateSelection,
+  stopNestedFocusEvent,
   toIsoDate,
   toNativeDate,
   today,
-} from './utils.js';
+} from './utility/index.js';
 import { renderDayView } from './renderers/day.js';
 import { renderMonthView } from './renderers/month.js';
 import { renderYearView } from './renderers/year.js';
-import { proposeDateSelection } from './selection.js';
-import {
-  DAY_KEY_OFFSETS,
-  PERIOD_KEY_OFFSETS,
-  getDayViewState,
-  getMonthNavigationState,
-  getMonthSelectorState,
-  getSelectableMonth,
-  getSelectableYear,
-  getYearSelectorState,
-  hasNavigableDates,
-  normalizeCalendarFocus,
-} from './navigation.js';
 import styles from './calendar.styles.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
-
-/**
- * Suppresses nested focus events within the calendar component.
- * @param event The focus event to stop from propagating.
- */
-const stopNestedFocusEvent = (event: Event) => {
-  event.stopPropagation();
-};
 
 /**
  * @summary Calendars allow users to select dates from a calendar interface.
@@ -1077,7 +1068,7 @@ export default class SynCalendar extends SynergyElement {
 
     const navigationYear = this.visibleView === 'month' ? this.monthSelectorYear : this.viewDate.year;
     const nextYearDisabled = this.#isYearNavigationDisabled(navigationYear, 1, bounds, navigable);
-    const previousYearDisabled = this.#isYearNavigationDisabled( navigationYear, -1, bounds, navigable );
+    const previousYearDisabled = this.#isYearNavigationDisabled(navigationYear, -1, bounds, navigable);
 
     const yearNavigation: CalendarNavigationOptions = {
       disabled: this.disabled,

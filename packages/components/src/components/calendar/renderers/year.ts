@@ -1,6 +1,6 @@
 import { html } from 'lit';
 import type { CalendarViewTemplates, YearViewOptions } from '../internal-types.js';
-import { isYearInRange } from '../utils.js';
+import { isYearInRange } from '../utility/index.js';
 import {
   renderCalendarFooter,
   renderCalendarItem,

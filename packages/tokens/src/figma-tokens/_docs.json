@@ -4641,6 +4641,16 @@
           "type": "text"
         }
       },
+      "localization": {
+        "title": {
+          "value": "Localization",
+          "type": "text"
+        },
+        "description": {
+          "value": "Set the `lang` attribute to display calendar labels in another language. This example shows French, Japanese, Chinese, and Spanish calendars.",
+          "type": "text"
+        }
+      },
       "min-date": {
         "title": {
           "value": "Minimum Date",
@@ -4708,6 +4718,16 @@
         },
         "description": {
           "value": "Assign a synchronous function to the JavaScript-only `isDateDisabled` property. Return `true` to disable a date. This example disables every Friday that falls on the 13th, with November 2026 shown initially. The callback receives a UTC date-only `Date`, so use `getUTCDay()` and `getUTCDate()`. The rule is combined with `min`, `max`, `disabled-dates`, and `disabled-weekdays`: any matching rule disables the date. Load external data before assigning the callback; reassign it when captured data changes to refresh focus and availability. Custom-rule nearest-date and keyboard searches are limited to 366 days per direction, while header navigation remains available beyond that window.",
+          "type": "text"
+        }
+      },
+      "custom-day-content": {
+        "title": {
+          "value": "Custom Day Content",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use a date-specific slot such as `day-2026-12-24` to add custom content to a calendar day. This example adds a gift icon to December 24, 2026.",
           "type": "text"
         }
       },

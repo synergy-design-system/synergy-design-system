@@ -3,7 +3,7 @@ import type { CalendarViewTemplates, MonthViewOptions } from '../internal-types.
 import {
   getMonthNames,
   isMonthInRange,
-} from '../utils.js';
+} from '../utility/index.js';
 import {
   renderCalendarFooter,
   renderCalendarItem,

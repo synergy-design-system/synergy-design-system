@@ -46,10 +46,13 @@ Use the checklists to indicate:
 
 ### Internal Boundaries
 
-- `utils.ts` handles codecs, formatting, date rules, and bounded searches. Availability functions receive a prepared constraint object rather than positional bound lists.
+- `utility/date.ts` handles date codecs, locale formatting, and calendar grids.
+- `utility/constraints.ts` handles date rules and bounded searches. Availability functions receive a prepared constraint object rather than positional bound lists.
 - Prepared constraints use per-action/render membership indexes, retaining the original arrays for search-window policy. Callback results are not persistently cached.
-- `selection.ts` derives range endpoints, user selection proposals, and day item states. Preview, cell affordances, and completion share the same endpoint policy.
-- `navigation.ts` calculates view/focus patches and nearest period candidates; only the component applies Lit state, dispatches events, and restores DOM focus.
+- `utility/selection.ts` handles value normalization and derives range endpoints, user selection proposals, and day item states. Preview, cell affordances, and completion share the same endpoint policy.
+- `utility/navigation.ts` calculates view/focus patches and nearest period candidates; only the component applies Lit state, dispatches events, and restores DOM focus.
+- `utility/events.ts` suppresses nested native focus events without a component dependency.
+- The component and renderers import helpers through `utility/index.ts`; utility modules use direct sibling imports to avoid barrel cycles.
 - User selection requests distinguish pending, committed, and Clear updates by name rather than positional boolean flags.
 - Renderers keep the existing markup, slots, classes, and parts, deriving class and part names from a shared item-state descriptor.
 - The component holds a single active-view focus intent and local render snapshots. Public declarations remain Temporal-free.

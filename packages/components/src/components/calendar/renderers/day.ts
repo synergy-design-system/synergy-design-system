@@ -2,11 +2,12 @@ import { html } from 'lit';
 import type { CalendarViewTemplates, DayViewOptions } from '../internal-types.js';
 import {
   getCalendarWeeks,
+  getDayItemState,
+  getDayRenderContext,
   getFirstDayOfWeek,
   getWeekdayNames,
   toIsoDate,
-} from '../utils.js';
-import { getDayItemState, getDayRenderContext } from '../selection.js';
+} from '../utility/index.js';
 import {
   renderCalendarFooter,
   renderCalendarItem,

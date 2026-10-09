@@ -1,4 +1,4 @@
-import { compare, diffDays } from 'temporal-polyfill/fns/PlainDate';
+import { addDays, compare, diffDays } from 'temporal-polyfill/fns/PlainDate';
 import type {
   CalendarDate,
   CalendarDayItemState,
@@ -10,17 +10,111 @@ import type {
   DayViewOptions,
   NullableCalendarDate,
   PreparedCalendarConstraints,
-} from './internal-types.js';
+} from '../internal-types.js';
+import type { CalendarSelectionMode } from '../types.js';
+import { isDateDisabled } from './constraints.js';
 import {
-  clampRangeEnd,
-  isDateDisabled,
-  isRangeLengthAllowed,
-  isSameDay,
-  isSameMonth,
-  parseIsoDate,
-  toIsoDate,
-  today,
-} from './utils.js';
+  isSameDay, isSameMonth, parseIsoDate, toIsoDate, today,
+} from './date.js';
+
+/** Parses and sorts whitespace-separated ISO dates; any malformed token empties the value. Duplicates are retained for same-day ranges. */
+export const parseCalendarValue = (value: string | null) => {
+  const dates = (value ?? '').trim().split(/\s+/).filter(Boolean);
+
+  if (dates.some(date => !parseIsoDate(date))) {
+    return [];
+  }
+
+  return dates.sort();
+};
+
+/** Accepts supported selection modes and falls back to single for missing or unknown input. */
+export const parseCalendarSelectionMode = (value: string | null): CalendarSelectionMode => (
+  value === 'range' || value === 'multiple' ? value : 'single'
+);
+
+/** Compares already-ordered ISO value arrays by length and corresponding entries. */
+export const areCalendarValuesEqual = (a: readonly string[], b: readonly string[]) => (
+  a.length === b.length && a.every((value, index) => value === b[index])
+);
+
+const normalizeRangeLimit = (limit?: number) => (
+  typeof limit === 'number' && Number.isInteger(limit) && limit > 0 ? limit : undefined
+);
+
+/** Adjusts inclusive range length without changing direction or guessing one at the anchor. */
+export const clampRangeEnd = (
+  start: CalendarDate,
+  end: CalendarDate,
+  minRange?: number,
+  maxRange?: number,
+) => {
+  const minimum = normalizeRangeLimit(minRange);
+  const maximum = normalizeRangeLimit(maxRange);
+  const direction = Math.sign(compare(end, start));
+  const length = Math.abs(diffDays(start, end)) + 1;
+  const constrainedLength = Math.min(maximum ?? Infinity, Math.max(minimum ?? 1, length));
+
+  if (direction === 0 || constrainedLength === length) {
+    return end;
+  }
+
+  return addDays(start, direction * (constrainedLength - 1));
+};
+
+/** Checks inclusive calendar-day length in either direction; invalid limits are treated as unset. */
+export const isRangeLengthAllowed = (
+  start: CalendarDate,
+  end: CalendarDate,
+  minRange?: number,
+  maxRange?: number,
+) => {
+  const minimum = normalizeRangeLimit(minRange);
+  const maximum = normalizeRangeLimit(maxRange);
+  const length = Math.abs(diffDays(start, end)) + 1;
+
+  return (minimum === undefined || length >= minimum)
+    && (maximum === undefined || length <= maximum);
+};
+
+/**
+ * Sorts valid dates and applies selection cardinality without enforcing selectability.
+ * Single keeps the earliest date; range keeps endpoints; multiple deduplicates or expands a previous range.
+ */
+export const normalizeCalendarValue = (
+  values: readonly string[],
+  mode: CalendarSelectionMode,
+  previousMode: CalendarSelectionMode = mode,
+) => {
+  const selectionMode = mode === 'range' || mode === 'multiple' ? mode : 'single';
+  const validDates = values.filter(value => !!parseIsoDate(value)).sort();
+
+  if (selectionMode === 'single') {
+    return [...new Set(validDates)].slice(0, 1);
+  }
+
+  if (selectionMode === 'range') {
+    return validDates.length <= 2
+      ? validDates
+      : [validDates[0], validDates[validDates.length - 1]];
+  }
+
+  const uniqueDates = [...new Set(validDates)];
+
+  if (previousMode === 'range' && validDates.length === 2) {
+    const expandedDates: string[] = [];
+    const start = parseIsoDate(validDates[0])!;
+    const end = parseIsoDate(validDates[1])!;
+
+    for (let date = start; compare(date, end) <= 0; date = addDays(date, 1)) {
+      expandedDates.push(toIsoDate(date));
+    }
+
+    return expandedDates;
+  }
+
+  return uniqueDates;
+};
 
 /** Derives an endpoint without mutating the calendar or falling back from a disabled boundary. */
 export const getRangeEndpointState = (

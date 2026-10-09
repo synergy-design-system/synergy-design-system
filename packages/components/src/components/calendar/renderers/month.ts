@@ -10,6 +10,7 @@ import {
   renderCalendarNavigation,
 } from './shared.js';
 
+/** Renders localized months using one-based state while preserving zero-based button/slot IDs. */
 export const renderMonthView = (options: MonthViewOptions): CalendarViewTemplates => ({
   content: html`
     <div class="period-selector" part="month-grid">

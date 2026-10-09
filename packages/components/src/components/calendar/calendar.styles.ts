@@ -10,7 +10,7 @@ export default css`
     --container-padding-inline: var(--syn-spacing-small);
 
     /* Sizes */
-    --syn-calendar-min-width: 390px;
+    --calendar-min-width: 390px;
     --calendar-item-font: var(--syn-body-small-regular);
     --day-selector-calendar-item-width: var(--syn-spacing-x-large);
     --day-selector-th-font: var(--syn-body-small-bold);
@@ -21,7 +21,7 @@ export default css`
     display: flex;
     flex-direction: column;
     max-width: 100%;
-    min-width: min(var(--syn-calendar-min-width), 100vw);
+    min-width: min(var(--syn-calendar-min-width, var(--calendar-min-width)), 100vw);
     user-select: none;
   }
 
@@ -197,14 +197,14 @@ export default css`
 
   /* Sizes */
   .calendar--size-small {
-    --syn-calendar-min-width: 298px;
+    --calendar-min-width: 298px;
     --calendar-item-font: var(--syn-body-2x-small-regular);
     --day-selector-calendar-item-width: 16px;
     --day-selector-th-font: var(--syn-body-2x-small-regular); /* @todo: --syn-body-2x-small-bold missing! */
   }
 
   .calendar--size-large {
-    --syn-calendar-min-width: 420px;
+    --calendar-min-width: 420px;
     --calendar-item-font: var(--syn-body-2x-small-regular);
     --day-selector-calendar-item-width: 16px;
     --day-selector-th-font: var(--syn-body-2x-small-regular); /* @todo: --syn-body-2x-small-bold missing! */

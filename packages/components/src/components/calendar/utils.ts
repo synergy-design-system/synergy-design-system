@@ -24,6 +24,7 @@ import type {
 } from './internal-types.js';
 import type { CalendarDateDisabledPredicate, CalendarSelectionMode, CalendarWeekday } from './types.js';
 
+/** Returns today's ISO date in the user's local timezone, without storing a time or timezone. */
 export const today: () => CalendarDate = plainDateISO;
 
 const ISO_WEEKDAYS: readonly CalendarWeekday[] = [
@@ -48,7 +49,7 @@ const monthNameCache = new Map<string, readonly string[]>();
 /**
  * Serializes a date-only value into an ISO `YYYY-MM-DD` string.
  * @param date The date to serialize
- * @returns The ISO string or an empty string for invalid dates
+ * @returns The ISO string, or an empty string when the date is absent
  */
 export const toIsoDate = (date: OptionalCalendarDate) => (date ? toString(date) : '');
 
@@ -70,12 +71,14 @@ export const parseIsoDate = (value: string | null | undefined) => {
   }
 };
 
+/** Converts a date-only record to UTC midnight, preserving years below 100 without Date.UTC remapping. */
 export const toNativeDate = (date: CalendarDate) => {
   const nativeDate = new Date(0);
   nativeDate.setUTCFullYear(date.year, date.month - 1, date.day);
   return nativeDate;
 };
 
+/** Reads native UTC date fields; invalid Dates or years outside the four-digit ISO domain return null. */
 export const fromNativeDate = (date: Date): NullableCalendarDate => {
   if (!(date instanceof Date) || Number.isNaN(date.getTime())) {
     return null;
@@ -88,6 +91,7 @@ export const fromNativeDate = (date: Date): NullableCalendarDate => {
     : null;
 };
 
+/** Parses and sorts whitespace-separated ISO dates; any malformed token empties the value. Duplicates are retained for same-day ranges. */
 export const parseCalendarValue = (value: string | null) => {
   const dates = (value ?? '').trim().split(/\s+/).filter(Boolean);
 
@@ -98,10 +102,12 @@ export const parseCalendarValue = (value: string | null) => {
   return dates.sort();
 };
 
+/** Accepts supported selection modes and falls back to single for missing or unknown input. */
 export const parseCalendarSelectionMode = (value: string | null): CalendarSelectionMode => (
   value === 'range' || value === 'multiple' ? value : 'single'
 );
 
+/** Compares already-ordered ISO value arrays by length and corresponding entries. */
 export const areCalendarValuesEqual = (a: readonly string[], b: readonly string[]) => (
   a.length === b.length && a.every((value, index) => value === b[index])
 );
@@ -145,6 +151,7 @@ export const isRangeLengthAllowed = (
     && (maximum === undefined || length <= maximum);
 };
 
+/** Parses a whitespace-separated disabled-date attribute, ignoring malformed dates and duplicates. */
 export const parseDisabledDates = (value: string | null) => {
   const dates = new Set<string>();
 
@@ -159,6 +166,7 @@ export const parseDisabledDates = (value: string | null) => {
   return [...dates];
 };
 
+/** Parses case-insensitive weekday names, discarding unsupported tokens and duplicate entries. */
 export const parseDisabledWeekdays = (value: string | null) => {
   const validWeekdays = new Set<string>(ISO_WEEKDAYS);
   const weekdays = new Set<CalendarWeekday>();
@@ -172,6 +180,10 @@ export const parseDisabledWeekdays = (value: string | null) => {
   return [...weekdays];
 };
 
+/**
+ * Sorts valid dates and applies selection cardinality without enforcing selectability.
+ * Single keeps the earliest date; range keeps endpoints; multiple deduplicates or expands a previous range.
+ */
 export const normalizeCalendarValue = (
   values: readonly string[],
   mode: CalendarSelectionMode,
@@ -275,6 +287,7 @@ export const isDateDisabled = (
   || !!customIsDateDisabled?.(toNativeDate(date))
 );
 
+/** Finds the first date satisfying all rules within an inclusive finite period, or returns null. */
 export const getFirstSelectableDateInRange = (
   start: CalendarDate,
   end: CalendarDate,
@@ -293,6 +306,7 @@ export const getFirstSelectableDateInRange = (
   return null;
 };
 
+/** Checks whether an inclusive finite period contains any date satisfying every selectability rule. */
 export const hasSelectableDateInRange = (
   start: CalendarDate,
   end: CalendarDate,
@@ -311,6 +325,7 @@ export const hasSelectableDateInRange = (
   customIsDateDisabled,
 );
 
+/** Checks availability anywhere in a calendar month (1-12), including disabled and custom rules. */
 export const isMonthInRange = (
   year: number,
   month: number,
@@ -330,11 +345,11 @@ export const isMonthInRange = (
 );
 
 /**
- * Checks whether a year contains at least one date inside the given boundaries.
+ * Checks whether a year contains at least one selectable date under all date constraints.
  * @param year The full year
  * @param min The lower boundary or null for no boundary
  * @param max The upper boundary or null for no boundary
- * @returns True if at least one day in the year is in range
+ * @returns True if at least one day in the year is selectable
  */
 export const isYearInRange = (
   year: number,
@@ -354,11 +369,12 @@ export const isYearInRange = (
 );
 
 /**
- * Clamps a date to the nearest boundary, or returns null when the range is empty.
+ * Searches from the boundary-clamped date, checking later dates before equally distant earlier dates.
+ * Custom rules limit lookahead to 366 days per direction; declarative-only searches derive it from disabled dates.
  * @param date The date to clamp
  * @param min The lower boundary or null for no boundary
  * @param max The upper boundary or null for no boundary
- * @returns The nearest in-range date, or null if no dates are selectable
+ * @returns The nearest selectable date found, or null when the search window has none
  */
 export const getNearestSelectableDate = (
   date: CalendarDate,
@@ -423,6 +439,11 @@ const findSelectableDateInDirection = (
   return null;
 };
 
+/**
+ * Finds the next selectable keyboard target in the requested direction, respecting date bounds.
+ * Week-sized movement tries matching weekdays first, then falls back to daily steps.
+ * Custom rules cap search distance at 366 days; returns null if no target is found.
+ */
 export const getNextSelectableDate = (
   date: CalendarDate,
   offset: CalendarDayOffset,
@@ -595,7 +616,7 @@ export const getMonthLabel = (date: CalendarDate, locale: string) => (
 );
 
 /**
- * Gets the first year of the decade a date belongs to, used by the year view.
+ * Gets the first year of the block containing a year; calendar year grids use twelve-year blocks.
  * @param year The full year
  * @param size The amount of years shown at once
  * @returns The first year of the block

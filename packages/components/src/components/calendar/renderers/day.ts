@@ -19,6 +19,7 @@ import {
   renderCalendarNavigation,
 } from './shared.js';
 
+/** Renders the six-week day grid, locale-aware headings, pending range preview, and controls. */
 export const renderDayView = (options: DayViewOptions): CalendarViewTemplates => {
   const firstDay = getFirstDayOfWeek(options.locale);
   const weekdays = getWeekdayNames(options.locale, firstDay);
@@ -42,8 +43,8 @@ export const renderDayView = (options: DayViewOptions): CalendarViewTemplates =>
   return {
     content: html`
       <table class="day-selector" part="day-grid">
-        <thead>
-          <tr>${weekdays.map(weekday => html`<th scope="col">${weekday}</th>`)}</tr>
+        <thead part="weekdays">
+          <tr>${weekdays.map(weekday => html`<th part="weekday" scope="col">${weekday}</th>`)}</tr>
         </thead>
         <tbody>
           ${weeks.map(week => html`
@@ -64,7 +65,7 @@ export const renderDayView = (options: DayViewOptions): CalendarViewTemplates =>
                     ));
 
                 return html`
-                <td class="day-selector__day">
+                <td class="day-selector__day" part="day-cell">
                   ${renderCalendarItem({
                     active: options.selectedDates.some(selectedDate => isSameDay(day, selectedDate)),
                     disabled: isDateDisabled(

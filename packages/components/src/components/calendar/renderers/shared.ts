@@ -6,6 +6,7 @@ import type {
   CalendarNavigationOptions,
 } from '../internal-types.js';
 
+/** Renders a slotted day/month/year button with roving focus and state-specific classes/parts. */
 export const renderCalendarItem = (options: CalendarItemOptions) => {
   const states = {
     active: options.active,
@@ -56,16 +57,18 @@ export const renderCalendarItem = (options: CalendarItemOptions) => {
       tabindex=${options.tabbable && !states.disabled ? 0 : -1}
       type="button"
     >
-      <slot .name=${`${options.kind}-${options.value}`}>
+      <slot .name=${`${options.kind}-${options.value}`} part="calendar-item-label">
         ${options.label}
       </slot>
     </button>
   `;
 };
 
+/** Renders period navigation, forwarding control bases and optionally offering a view switch. */
 export const renderCalendarNavigation = (options: CalendarNavigationOptions) => html`
   <syn-icon-button
     @click=${options.onPrevious}
+    exportparts="base:previous-button__base"
     label=${options.previousLabel}
     library="system"
     name="previous-page"
@@ -74,12 +77,19 @@ export const renderCalendarNavigation = (options: CalendarNavigationOptions) => 
     ?disabled=${!!options.previousDisabled}
   ></syn-icon-button>
   ${options.onChoose ? html`
-    <syn-button @click=${options.onChoose} part="navigation-label" size=${options.size} variant="text">
+    <syn-button
+      @click=${options.onChoose}
+      exportparts="base:navigation-label__base"
+      part="navigation-label"
+      size=${options.size}
+      variant="text"
+    >
       ${options.label}
     </syn-button>
   ` : html`<span part="navigation-label">${options.label}</span>`}
   <syn-icon-button
     @click=${options.onNext}
+    exportparts="base:next-button__base"
     label=${options.nextLabel}
     library="system"
     name="next-page"
@@ -89,11 +99,13 @@ export const renderCalendarNavigation = (options: CalendarNavigationOptions) => 
   ></syn-icon-button>
 `;
 
+/** Renders localized current-period and Clear actions with their availability and shared size. */
 export const renderCalendarFooter = (options: CalendarFooterOptions) => html`
   <div class="selection-wrapper">
     <syn-button
       @click=${options.onCurrent}
       ?disabled=${!!options.currentDisabled}
+      exportparts="base:current-period-button__base"
       part="current-period-button"
       size=${options.size}
       variant="text"
@@ -103,6 +115,7 @@ export const renderCalendarFooter = (options: CalendarFooterOptions) => html`
     <syn-button
       @click=${options.onClear}
       ?disabled=${!options.hasValue}
+      exportparts="base:clear-button__base"
       part="clear-button"
       size=${options.size}
       variant="text"

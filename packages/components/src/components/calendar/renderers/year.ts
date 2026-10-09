@@ -7,6 +7,7 @@ import {
   renderCalendarNavigation,
 } from './shared.js';
 
+/** Renders a twelve-year selection block, its selectable years, navigation, and footer actions. */
 export const renderYearView = (options: YearViewOptions): CalendarViewTemplates => ({
   content: html`
     <div class="period-selector" part="year-grid">

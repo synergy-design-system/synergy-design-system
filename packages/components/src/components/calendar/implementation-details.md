@@ -35,6 +35,15 @@ Use the checklists to indicate:
 - Endpoints whose adjusted boundary is disabled, or whose length remains invalid, stay focusable and previewable with `aria-disabled` and `calendar-item-range-unavailable`; native disabled state still depends only on date constraints.
 - Invalid completion retains the pending start and emits no value events. Programmatic and already-completed values remain unchanged when limits change.
 
+### Interaction States
+
+- `disabled` and `readonly` are reflected boolean properties and preserve the existing selection.
+- The base wrapper exposes `calendar--disabled` and `calendar--readonly`; both may be present, with disabled behavior taking precedence.
+- Disabled uses native disabled controls and an inert wrapper, guards interaction handlers, clears previews, and prevents navigation/focus restoration.
+- Readonly blocks user selection and Clear, suppresses day hover/cursor feedback and pending selection previews, and retains navigation, view switching, and keyboard focus indicators.
+- Calendar custom events, including focus/blur, are suppressed in either state; permitted native DOM events are not suppressed.
+- Programmatic property/value updates remain supported, and removing a state does not automatically steal focus.
+
 ## Doings
 
 - [ ] For sake of easier usage and combination, we opt to create more components:

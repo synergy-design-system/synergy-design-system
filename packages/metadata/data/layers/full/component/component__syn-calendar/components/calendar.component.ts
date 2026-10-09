@@ -21,6 +21,7 @@ import { LocalizeController } from '../../utilities/localize.js';
 import type {
   CalendarDate,
   CalendarDayOffset,
+  CalendarEventName,
   CalendarNavigationOptions,
   CalendarView,
 } from './internal-types.js';
@@ -77,14 +78,33 @@ const stopNestedFocusEvent = (event: Event) => {
  * @dependency syn-button
  * @dependency syn-icon-button
  *
+ * @slot day-YYYY-MM-DD - Dynamic slots replacing a day's label, e.g. day-2026-12-24. The fallback is the two-digit day number.
+ * @slot month-0 - Replaces January's label; the fallback is its localized short month name.
+ * @slot month-1 - Replaces February's label; the fallback is its localized short month name.
+ * @slot month-2 - Replaces March's label; the fallback is its localized short month name.
+ * @slot month-3 - Replaces April's label; the fallback is its localized short month name.
+ * @slot month-4 - Replaces May's label; the fallback is its localized short month name.
+ * @slot month-5 - Replaces June's label; the fallback is its localized short month name.
+ * @slot month-6 - Replaces July's label; the fallback is its localized short month name.
+ * @slot month-7 - Replaces August's label; the fallback is its localized short month name.
+ * @slot month-8 - Replaces September's label; the fallback is its localized short month name.
+ * @slot month-9 - Replaces October's label; the fallback is its localized short month name.
+ * @slot month-10 - Replaces November's label; the fallback is its localized short month name.
+ * @slot month-11 - Replaces December's label; the fallback is its localized short month name.
+ * @slot year-YYYY - Dynamic slots replacing a year's label, e.g. year-2026. The fallback is the year number.
+ *
  * @csspart base - The component's base wrapper.
  * @csspart header - The calendar header.
  * @csspart content - The calendar view content.
  * @csspart footer - The calendar footer actions.
  * @csspart day-grid - The day-of-month table.
+ * @csspart day-cell - A day table cell, independent of the button it contains.
+ * @csspart weekdays - The weekday table heading group.
+ * @csspart weekday - An individual localized weekday heading.
  * @csspart month-grid - The month selection grid.
  * @csspart year-grid - The year selection grid.
  * @csspart calendar-item - A day, month, or year button.
+ * @csspart calendar-item-label - The slot containing an item's custom content or fallback label.
  * @csspart calendar-item-day - A day button.
  * @csspart calendar-item-month - A month button.
  * @csspart calendar-item-year - A year button.
@@ -92,30 +112,35 @@ const stopNestedFocusEvent = (event: Event) => {
  * @csspart calendar-item-today - The item representing today.
  * @csspart calendar-item-outside - A day item belonging to an adjacent month.
  * @csspart calendar-item-disabled - A disabled calendar item.
- * @csspart calendar-item-range-begin - The beginning of a selected or previewed range.
+ * @csspart calendar-item-range-begin - The pending range anchor or completed range start; an alias of calendar-item-range-start.
  * @csspart calendar-item-range-clipped - A date whose requested endpoint is adjusted by a range length limit.
- * @csspart calendar-item-range-start - The start of a selected date range.
- * @csspart calendar-item-range-end - The end of a selected date range.
+ * @csspart calendar-item-range-start - The pending range anchor or completed range start; an alias of calendar-item-range-begin.
+ * @csspart calendar-item-range-end - The completed or adjusted preview endpoint, which may precede the anchor during reverse selection.
  * @csspart calendar-item-range-interior - A date inside the selected or previewed range.
  * @csspart calendar-item-range-pending - The selected start while waiting for a range end.
- * @csspart calendar-item-range-preview - A date in the pending range under the pointer.
- * @csspart calendar-item-range-unavailable - A focusable endpoint that violates the pending range's length limits.
+ * @csspart calendar-item-range-preview - A date in the pending range preview driven by pointer or keyboard movement.
+ * @csspart calendar-item-range-unavailable - A focusable endpoint whose adjusted boundary is disabled or whose range length is invalid.
  * @csspart month-navigation - The month navigation controls.
  * @csspart year-navigation - The year navigation controls.
- * @csspart previous-button - The previous-period navigation button.
+ * @csspart previous-button - The previous-period syn-icon-button host.
+ * @csspart previous-button__base - The previous-period control's forwarded base part.
  * @csspart navigation-label - The current month, year, or year range in the navigation header.
- * @csspart next-button - The next-period navigation button.
- * @csspart current-period-button - The button for navigating to the current day, month, or year.
- * @csspart clear-button - The button for clearing the selected value.
+ * @csspart navigation-label__base - The navigation label's forwarded button base when it offers a view switch.
+ * @csspart next-button - The next-period syn-icon-button host.
+ * @csspart next-button__base - The next-period control's forwarded base part.
+ * @csspart current-period-button - The syn-button host for navigating to the current day, month, or year.
+ * @csspart current-period-button__base - The current-period control's forwarded base part.
+ * @csspart clear-button - The syn-button host for clearing the selected value.
+ * @csspart clear-button__base - The Clear control's forwarded base part.
  *
- * @cssproperty --syn-calendar-min-width - The minimum width of the calendar. Defaults to 390px.
+ * @cssproperty --syn-calendar-min-width - Overrides the minimum width on the host or base part. Defaults to 298px (small), 390px (medium), or 420px (large), capped to the viewport width.
  *
- * @event syn-blur - Emitted when focus leaves the calendar.
- * @event syn-before-change - Emitted before user change events with the proposed value temporarily set on the host; preventDefault restores the previous value.
- * @event syn-change - Emitted when a user commits a selection; in range mode this occurs after the end date is chosen.
- * @event syn-clear - Emitted when the user clears a non-empty date value.
- * @event syn-focus - Emitted when focus enters the calendar.
- * @event syn-input - Emitted when a user changes the selection.
+ * @event syn-blur - Emitted when focus leaves the calendar, unless disabled or readonly.
+ * @event syn-before-change - Cancelable, detail-free event before a user commit or Clear. The host exposes the proposed value; synchronous preventDefault restores the previous value and suppresses value events. Not emitted for pending range starts, disabled, or readonly.
+ * @event syn-change - Emitted after an accepted user commit or Clear, unless disabled or readonly. In range mode, choosing only the start emits syn-input but not syn-change.
+ * @event syn-clear - Emitted when the user clears a non-empty date value, unless disabled or readonly.
+ * @event syn-focus - Emitted when focus enters the calendar, unless disabled or readonly.
+ * @event syn-input - Emitted when a user changes the selection, unless disabled or readonly.
  */
 @enableDefaultSettings('SynCalendar')
 export default class SynCalendar extends SynergyElement {
@@ -134,9 +159,13 @@ export default class SynCalendar extends SynergyElement {
    */
   @state() private visibleView: CalendarView = 'day';
 
+  /** Disables every interaction surface and suppresses calendar events without clearing the value. */
+  @property({ reflect: true, type: Boolean }) disabled = false;
+
   /**
    * An array of dates that should be disabled in the calendar.
    * Dates should be provided as ISO `YYYY-MM-DD` strings.
+  * The attribute accepts whitespace-separated dates, ignoring invalid tokens and duplicates.
    */
   @property({
     attribute: 'disabled-dates',
@@ -172,32 +201,40 @@ export default class SynCalendar extends SynergyElement {
 
   /**
    * The maximum selectable date as an ISO `YYYY-MM-DD` string.
+   * The boundary is inclusive; an empty or invalid value leaves it unset.
+   * Assigned selections are preserved. A maximum before the minimum allows no selectable dates.
    */
   @property() max = '';
 
   /**
    * Maximum inclusive calendar-day count for user-created ranges; only positive integers apply.
-  * Preview and completion stop at this boundary when a farther endpoint is requested.
+   * Preview and completion stop at this boundary when a farther endpoint is requested.
    * Ignored outside range mode. Assigned values are preserved even when they exceed this limit.
+   * Unset or invalid limits impose no restriction; a positive maximum below the minimum prevents completion.
    * @type number
    */
   @property({ attribute: 'max-range', type: Number }) maxRange?: number;
 
   /**
    * The minimum selectable date as an ISO `YYYY-MM-DD` string.
+   * The boundary is inclusive; an empty or invalid value leaves it unset.
+   * Assigned selections are preserved. A minimum after the maximum allows no selectable dates.
    */
   @property() min = '';
 
   /**
    * Minimum inclusive calendar-day count for user-created ranges; only positive integers apply.
-  * Preview and completion expand to this boundary once movement establishes a direction.
+   * Preview and completion expand to this boundary once movement establishes a direction.
    * Ignored outside range mode. Assigned values are preserved even when shorter than this limit.
+   * Unset or invalid limits impose no restriction; a positive minimum above the maximum prevents completion.
    * @type number
    */
   @property({ attribute: 'min-range', type: Number }) minRange?: number;
 
   /**
    * Determines whether users select one date, a continuous range, or multiple individual dates.
+   * Changing mode keeps the earliest date in single, endpoints in range, or expands a previous range in multiple.
+   * Mode conversion does not emit user value events.
    * @type 'single' | 'range' | 'multiple'
    */
   @property({
@@ -208,10 +245,16 @@ export default class SynCalendar extends SynergyElement {
     reflect: true,
   }) mode: CalendarSelectionMode = 'single';
 
+  /** Prevents selection, Clear, and selection previews while allowing navigation; suppresses calendar events. */
+  @property({ reflect: true, type: Boolean }) readonly = false;
+
   /**
-  * Selected dates as ISO `YYYY-MM-DD` strings. Single mode accepts one date, range mode two endpoints
-  * (one date is pending), and multiple mode any number of distinct dates.
-   * @type string[]
+    * Selected dates as ISO `YYYY-MM-DD` strings. Single mode accepts one date, range mode two endpoints
+    * (one date is pending), and multiple mode any number of distinct dates.
+    * The attribute accepts whitespace-separated dates; any invalid token empties the attribute-derived value.
+    * Values are sorted chronologically; multiple selections are unique. Assigned unselectable values are preserved.
+    * Programmatic assignments emit no user value events.
+    * @type string[]
    */
   @property({
     converter: {
@@ -222,7 +265,7 @@ export default class SynCalendar extends SynergyElement {
   }) value: string[] = [];
 
   /**
-   * The calendars's size.
+   * The calendar's size, applied to its layout and nested controls.
    * @type 'small' | 'medium' | 'large'
    */
   @property({ reflect: true }) size: CalendarSize = 'medium';
@@ -313,7 +356,7 @@ export default class SynCalendar extends SynergyElement {
     const modeChanged = changedProperties.has('mode');
     const valueChanged = changedProperties.has('value');
 
-    if (this.mode !== 'range' || this.value.length !== 1) {
+    if (this.disabled || this.readonly || this.mode !== 'range' || this.value.length !== 1) {
       this.hoveredDate = null;
     }
 
@@ -389,7 +432,7 @@ export default class SynCalendar extends SynergyElement {
   }
 
   #isMonthNavigationDisabled(year: number, month: number, offset: -1 | 1) {
-    if (!this.#hasNavigableDates()) {
+    if (this.disabled || !this.#hasNavigableDates()) {
       return true;
     }
 
@@ -402,7 +445,7 @@ export default class SynCalendar extends SynergyElement {
   }
 
   #isYearNavigationDisabled(year: number, offset: -1 | 1) {
-    if (!this.#hasNavigableDates()) {
+    if (this.disabled || !this.#hasNavigableDates()) {
       return true;
     }
 
@@ -416,7 +459,7 @@ export default class SynCalendar extends SynergyElement {
   }
 
   #isYearBlockNavigationDisabled(blockStart: number, offset: -12 | 12) {
-    if (!this.#hasNavigableDates()) {
+    if (this.disabled || !this.#hasNavigableDates()) {
       return true;
     }
 
@@ -565,6 +608,10 @@ export default class SynCalendar extends SynergyElement {
    * @param date A date within the month to set as the currently viewed month.
    */
   #setViewMonth(date: CalendarDate) {
+    if (this.disabled) {
+      return;
+    }
+
     const { year } = date;
     const requestedMonth = date.month;
     const month = this.#isMonthSelectable(year, requestedMonth)
@@ -584,7 +631,7 @@ export default class SynCalendar extends SynergyElement {
    * @param commit Whether to emit `syn-change` after updating the value.
    */
   #setValueFromUser(value: string[], clear = false, commit = true, focusDate?: CalendarDate) {
-    if (areCalendarValuesEqual(this.value, value)) {
+    if (this.disabled || this.readonly || areCalendarValuesEqual(this.value, value)) {
       return;
     }
 
@@ -607,14 +654,22 @@ export default class SynCalendar extends SynergyElement {
     }
 
     if (clear) {
-      this.emit('syn-clear');
+      this.#emitCalendarEvent('syn-clear');
     }
 
-    this.emit('syn-input');
+    this.#emitCalendarEvent('syn-input');
 
     if (commit || clear) {
-      this.emit('syn-change');
+      this.#emitCalendarEvent('syn-change');
     }
+  }
+
+  #emitCalendarEvent(name: CalendarEventName, options?: { cancelable: boolean }) {
+    if (this.disabled || this.readonly) {
+      return null;
+    }
+
+    return this.emit(name, options);
   }
 
   #requestValueChange(value: string[]) {
@@ -622,9 +677,9 @@ export default class SynCalendar extends SynergyElement {
     this.#valueUpdatedByUser = true;
     this.value = value;
 
-    const beforeChange = this.emit('syn-before-change', { cancelable: true });
+    const beforeChange = this.#emitCalendarEvent('syn-before-change', { cancelable: true });
 
-    if (beforeChange.defaultPrevented) {
+    if (!beforeChange || beforeChange.defaultPrevented || this.disabled || this.readonly) {
       this.value = previousValue;
       return false;
     }
@@ -680,7 +735,7 @@ export default class SynCalendar extends SynergyElement {
   #handleFocusIn() {
     if (!this.#hasFocus) {
       this.#hasFocus = true;
-      this.emit('syn-focus');
+      this.#emitCalendarEvent('syn-focus');
     }
   }
 
@@ -696,7 +751,7 @@ export default class SynCalendar extends SynergyElement {
 
     if (this.#hasFocus) {
       this.#hasFocus = false;
-      this.emit('syn-blur');
+      this.#emitCalendarEvent('syn-blur');
     }
   }
 
@@ -705,6 +760,13 @@ export default class SynCalendar extends SynergyElement {
    * If the calendar should restore focus to the previously focused day, it does so here.
    */
   protected updated() {
+    if (this.disabled) {
+      this.#restoreYearFocus = false;
+      this.#restoreMonthFocus = false;
+      this.#restoreDayFocus = false;
+      return;
+    }
+
     if (this.#restoreYearFocus) {
       this.#restoreYearFocus = false;
       this.renderRoot.querySelector<HTMLButtonElement>(`[data-kind="year"][data-value="${this.focusedYear}"]`)?.focus();
@@ -765,7 +827,7 @@ export default class SynCalendar extends SynergyElement {
 
     this.#setViewDate(nextDate);
 
-    if (this.mode === 'range' && this.value.length === 1) {
+    if (!this.readonly && this.mode === 'range' && this.value.length === 1) {
       this.hoveredDate = toIsoDate(nextDate);
     }
 
@@ -777,7 +839,7 @@ export default class SynCalendar extends SynergyElement {
   * @param month The month to open (1-12).
    */
   #openMonth(month: number) {
-    if (!this.#isMonthSelectable(this.monthSelectorYear, month)) {
+    if (this.disabled || !this.#isMonthSelectable(this.monthSelectorYear, month)) {
       return;
     }
 
@@ -789,6 +851,10 @@ export default class SynCalendar extends SynergyElement {
    * Shows the month selector view.
    */
   #showMonthSelector() {
+    if (this.disabled) {
+      return;
+    }
+
     const valueDate = parseIsoDate(this.value[0]);
     const viewedYear = this.viewDate.year;
 
@@ -811,6 +877,10 @@ export default class SynCalendar extends SynergyElement {
    * Shows the day view of the calendar.
    */
   #showDayView() {
+    if (this.disabled) {
+      return;
+    }
+
     const valueDate = parseIsoDate(this.value[0]);
 
     if (valueDate && this.#isDateSelectable(valueDate) && isSameMonth(valueDate, this.viewDate)) {
@@ -825,6 +895,10 @@ export default class SynCalendar extends SynergyElement {
    * Shows the year selector view.
    */
   #showYearSelector() {
+    if (this.disabled) {
+      return;
+    }
+
     this.focusedYear = this.visibleView === 'month'
       ? this.monthSelectorYear
       : this.viewDate.year;
@@ -856,7 +930,7 @@ export default class SynCalendar extends SynergyElement {
    * @param year The year to open.
    */
   #openYear(year: number) {
-    if (!this.#isYearSelectable(year)) {
+    if (this.disabled || !this.#isYearSelectable(year)) {
       return;
     }
 
@@ -972,6 +1046,10 @@ export default class SynCalendar extends SynergyElement {
    * @param event The mouse event triggered by the grid.
    */
   #handleGridClick(event: MouseEvent) {
+    if (this.disabled) {
+      return;
+    }
+
     const button = this.#getCalendarItem(event);
 
     if (!button || button.disabled || button.dataset.value === undefined) {
@@ -1001,7 +1079,9 @@ export default class SynCalendar extends SynergyElement {
   #handleGridPointerOver(event: PointerEvent) {
     const button = this.#getCalendarItem(event);
 
-    if (this.mode !== 'range'
+    if (this.disabled
+      || this.readonly
+      || this.mode !== 'range'
       || this.value.length !== 1
       || !button
       || button.dataset.kind !== 'day'
@@ -1031,6 +1111,10 @@ export default class SynCalendar extends SynergyElement {
    * @param event The keyboard event triggered by the grid.
    */
   #handleGridKeydown(event: KeyboardEvent) {
+    if (this.disabled) {
+      return;
+    }
+
     const button = this.#getCalendarItem(event);
 
     if (!button || button.disabled) {
@@ -1055,6 +1139,10 @@ export default class SynCalendar extends SynergyElement {
    * @param event The focus event triggered by the grid.
    */
   #handleGridFocus(event: FocusEvent) {
+    if (this.disabled) {
+      return;
+    }
+
     const button = this.#getCalendarItem(event);
 
     if (button?.dataset.kind === 'month') {
@@ -1068,6 +1156,10 @@ export default class SynCalendar extends SynergyElement {
    * Shows the current period (day, month, or year) based on the visible view.
    */
   #showCurrentPeriod() {
+    if (this.disabled) {
+      return;
+    }
+
     const current = this.#getNearestSelectableDate(today());
 
     if (!current) {
@@ -1102,8 +1194,10 @@ export default class SynCalendar extends SynergyElement {
   #renderView() {
     const bounds = this.#getBounds();
     const footer = {
+      clearDisabled: this.readonly,
       clearLabel: this.localize.term('calendarClear'),
       currentDisabled: !this.#getNearestSelectableDate(today()),
+      disabled: this.disabled,
       hasValue: this.value.length > 0,
       onClear: () => this.#setValueFromUser([], true),
       onCurrent: () => this.#showCurrentPeriod(),
@@ -1123,6 +1217,7 @@ export default class SynCalendar extends SynergyElement {
         max: bounds.max,
         min: bounds.min,
         navigation: {
+          disabled: this.disabled,
           label: `${this.yearBlockStart} - ${this.yearBlockStart + 11}`,
           nextDisabled: this.#isYearBlockNavigationDisabled(this.yearBlockStart, 12),
           nextLabel: this.localize.term('calendarNextYearBlock'),
@@ -1137,6 +1232,7 @@ export default class SynCalendar extends SynergyElement {
     }
 
     const yearNavigation: CalendarNavigationOptions = {
+      disabled: this.disabled,
       label: this.visibleView === 'month'
         ? this.monthSelectorYear
         : this.viewDate.year,
@@ -1191,7 +1287,7 @@ export default class SynCalendar extends SynergyElement {
       disabledDates: bounds.disabledDates,
       disabledWeekdays: bounds.disabledWeekdays,
       focusedDate: this.focusedDate,
-      hoveredDate: parseIsoDate(this.hoveredDate),
+      hoveredDate: this.readonly ? null : parseIsoDate(this.hoveredDate),
       isDateDisabled: bounds.isDateDisabled,
       locale: this.localize.lang(),
       max: bounds.max,
@@ -1200,6 +1296,7 @@ export default class SynCalendar extends SynergyElement {
       minRange: this.minRange,
       mode: this.mode,
       monthNavigation: {
+        disabled: this.disabled,
         label: getMonthLabel(this.viewDate, this.localize.lang()),
         nextDisabled: this.#isMonthNavigationDisabled(
           this.viewDate.year,
@@ -1218,6 +1315,7 @@ export default class SynCalendar extends SynergyElement {
         previousLabel: this.localize.term('calendarPreviousMonth'),
         size: this.size,
       },
+      readonly: this.readonly,
       selectedDates: this.value.map(parseIsoDate).filter((date): date is CalendarDate => !!date),
       viewDate: this.viewDate,
       yearNavigation,
@@ -1231,6 +1329,8 @@ export default class SynCalendar extends SynergyElement {
       <div
         class=${classMap({
           calendar: true,
+          'calendar--disabled': this.disabled,
+          'calendar--readonly': this.readonly,
           [`calendar--size-${this.size}`]: true,
           [`calendar--view-${this.visibleView}`]: true,
         })}
@@ -1238,6 +1338,7 @@ export default class SynCalendar extends SynergyElement {
         @focusout=${this.#handleFocusOut}
         @syn-blur=${stopNestedFocusEvent}
         @syn-focus=${stopNestedFocusEvent}
+        ?inert=${this.disabled}
         part="base"
       >
         <div class="header" part="header">

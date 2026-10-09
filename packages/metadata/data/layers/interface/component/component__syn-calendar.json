@@ -1,8 +1,16 @@
 {
   "attributes": [
     {
+      "default": "false",
+      "description": "Disables every interaction surface and suppresses calendar events without clearing the value.",
+      "fieldName": "disabled",
+      "name": "disabled",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
       "default": "[]",
-      "description": "An array of dates that should be disabled in the calendar.\nDates should be provided as ISO `YYYY-MM-DD` strings.",
+      "description": "An array of dates that should be disabled in the calendar.\nDates should be provided as ISO `YYYY-MM-DD` strings.\nThe attribute accepts whitespace-separated dates, ignoring invalid tokens and duplicates.",
       "fieldName": "disabledDates",
       "name": "disabled-dates",
       "reflects": false,
@@ -18,14 +26,14 @@
     },
     {
       "default": "''",
-      "description": "The maximum selectable date as an ISO `YYYY-MM-DD` string.",
+      "description": "The maximum selectable date as an ISO `YYYY-MM-DD` string.\nThe boundary is inclusive; an empty or invalid value leaves it unset.\nAssigned selections are preserved. A maximum before the minimum allows no selectable dates.",
       "fieldName": "max",
       "name": "max",
       "reflects": false,
       "type": "string"
     },
     {
-      "description": "Maximum inclusive calendar-day count for user-created ranges; only positive integers apply.\nPreview and completion stop at this boundary when a farther endpoint is requested.\nIgnored outside range mode. Assigned values are preserved even when they exceed this limit.",
+      "description": "Maximum inclusive calendar-day count for user-created ranges; only positive integers apply.\nPreview and completion stop at this boundary when a farther endpoint is requested.\nIgnored outside range mode. Assigned values are preserved even when they exceed this limit.\nUnset or invalid limits impose no restriction; a positive maximum below the minimum prevents completion.",
       "fieldName": "maxRange",
       "name": "max-range",
       "reflects": false,
@@ -33,14 +41,14 @@
     },
     {
       "default": "''",
-      "description": "The minimum selectable date as an ISO `YYYY-MM-DD` string.",
+      "description": "The minimum selectable date as an ISO `YYYY-MM-DD` string.\nThe boundary is inclusive; an empty or invalid value leaves it unset.\nAssigned selections are preserved. A minimum after the maximum allows no selectable dates.",
       "fieldName": "min",
       "name": "min",
       "reflects": false,
       "type": "string"
     },
     {
-      "description": "Minimum inclusive calendar-day count for user-created ranges; only positive integers apply.\nPreview and completion expand to this boundary once movement establishes a direction.\nIgnored outside range mode. Assigned values are preserved even when shorter than this limit.",
+      "description": "Minimum inclusive calendar-day count for user-created ranges; only positive integers apply.\nPreview and completion expand to this boundary once movement establishes a direction.\nIgnored outside range mode. Assigned values are preserved even when shorter than this limit.\nUnset or invalid limits impose no restriction; a positive minimum above the maximum prevents completion.",
       "fieldName": "minRange",
       "name": "min-range",
       "reflects": false,
@@ -55,6 +63,14 @@
       "type": ""
     },
     {
+      "default": "false",
+      "description": "Prevents selection, Clear, and selection previews while allowing navigation; suppresses calendar events.",
+      "fieldName": "readonly",
+      "name": "readonly",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
       "default": "'medium'",
       "description": "'small' | 'medium' | 'large'",
       "fieldName": "size",
@@ -64,7 +80,7 @@
     },
     {
       "default": "[]",
-      "description": "Selected dates as ISO `YYYY-MM-DD` strings. Single mode accepts one date, range mode two endpoints\n(one date is pending), and multiple mode any number of distinct dates.",
+      "description": "Selected dates as ISO `YYYY-MM-DD` strings. Single mode accepts one date, range mode two endpoints\n(one date is pending), and multiple mode any number of distinct dates.\nThe attribute accepts whitespace-separated dates; any invalid token empties the attribute-derived value.\nValues are sorted chronologically; multiple selections are unique. Assigned unselectable values are preserved.\nProgrammatic assignments emit no user value events.",
       "fieldName": "value",
       "name": "value",
       "reflects": false,
@@ -93,6 +109,10 @@
       "name": "calendar-item-disabled"
     },
     {
+      "description": "The slot containing an item's custom content or fallback label.",
+      "name": "calendar-item-label"
+    },
+    {
       "description": "A month button.",
       "name": "calendar-item-month"
     },
@@ -101,7 +121,7 @@
       "name": "calendar-item-outside"
     },
     {
-      "description": "The beginning of a selected or previewed range.",
+      "description": "The pending range anchor or completed range start; an alias of calendar-item-range-start.",
       "name": "calendar-item-range-begin"
     },
     {
@@ -109,7 +129,7 @@
       "name": "calendar-item-range-clipped"
     },
     {
-      "description": "The end of a selected date range.",
+      "description": "The completed or adjusted preview endpoint, which may precede the anchor during reverse selection.",
       "name": "calendar-item-range-end"
     },
     {
@@ -121,15 +141,15 @@
       "name": "calendar-item-range-pending"
     },
     {
-      "description": "A date in the pending range under the pointer.",
+      "description": "A date in the pending range preview driven by pointer or keyboard movement.",
       "name": "calendar-item-range-preview"
     },
     {
-      "description": "The start of a selected date range.",
+      "description": "The pending range anchor or completed range start; an alias of calendar-item-range-begin.",
       "name": "calendar-item-range-start"
     },
     {
-      "description": "A focusable endpoint that violates the pending range's length limits.",
+      "description": "A focusable endpoint whose adjusted boundary is disabled or whose range length is invalid.",
       "name": "calendar-item-range-unavailable"
     },
     {
@@ -141,16 +161,28 @@
       "name": "calendar-item-year"
     },
     {
-      "description": "The button for clearing the selected value.",
+      "description": "The syn-button host for clearing the selected value.",
       "name": "clear-button"
+    },
+    {
+      "description": "The Clear control's forwarded base part.",
+      "name": "clear-button__base"
     },
     {
       "description": "The calendar view content.",
       "name": "content"
     },
     {
-      "description": "The button for navigating to the current day, month, or year.",
+      "description": "The syn-button host for navigating to the current day, month, or year.",
       "name": "current-period-button"
+    },
+    {
+      "description": "The current-period control's forwarded base part.",
+      "name": "current-period-button__base"
+    },
+    {
+      "description": "A day table cell, independent of the button it contains.",
+      "name": "day-cell"
     },
     {
       "description": "The day-of-month table.",
@@ -177,12 +209,32 @@
       "name": "navigation-label"
     },
     {
-      "description": "The next-period navigation button.",
+      "description": "The navigation label's forwarded button base when it offers a view switch.",
+      "name": "navigation-label__base"
+    },
+    {
+      "description": "The next-period syn-icon-button host.",
       "name": "next-button"
     },
     {
-      "description": "The previous-period navigation button.",
+      "description": "The next-period control's forwarded base part.",
+      "name": "next-button__base"
+    },
+    {
+      "description": "The previous-period syn-icon-button host.",
       "name": "previous-button"
+    },
+    {
+      "description": "The previous-period control's forwarded base part.",
+      "name": "previous-button__base"
+    },
+    {
+      "description": "An individual localized weekday heading.",
+      "name": "weekday"
+    },
+    {
+      "description": "The weekday table heading group.",
+      "name": "weekdays"
     },
     {
       "description": "The year selection grid.",
@@ -200,32 +252,32 @@
   "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-calendar--docs",
   "events": [
     {
-      "description": "Emitted before user change events with the proposed value temporarily set on the host; preventDefault restores the previous value.",
+      "description": "Cancelable, detail-free event before a user commit or Clear. The host exposes the proposed value; synchronous preventDefault restores the previous value and suppresses value events. Not emitted for pending range starts, disabled, or readonly.",
       "name": "syn-before-change",
       "type": "SynBeforeChangeEvent"
     },
     {
-      "description": "Emitted when focus leaves the calendar.",
+      "description": "Emitted when focus leaves the calendar, unless disabled or readonly.",
       "name": "syn-blur",
       "type": "SynBlurEvent"
     },
     {
-      "description": "Emitted when a user commits a selection; in range mode this occurs after the end date is chosen.",
+      "description": "Emitted after an accepted user commit or Clear, unless disabled or readonly. In range mode, choosing only the start emits syn-input but not syn-change.",
       "name": "syn-change",
       "type": "SynChangeEvent"
     },
     {
-      "description": "Emitted when the user clears a non-empty date value.",
+      "description": "Emitted when the user clears a non-empty date value, unless disabled or readonly.",
       "name": "syn-clear",
       "type": "SynClearEvent"
     },
     {
-      "description": "Emitted when focus enters the calendar.",
+      "description": "Emitted when focus enters the calendar, unless disabled or readonly.",
       "name": "syn-focus",
       "type": "SynFocusEvent"
     },
     {
-      "description": "Emitted when a user changes the selection.",
+      "description": "Emitted when a user changes the selection, unless disabled or readonly.",
       "name": "syn-input",
       "type": "SynInputEvent"
     }
@@ -234,8 +286,15 @@
   "properties": [
     {
       "access": "public",
+      "default": "false",
+      "description": "Disables every interaction surface and suppresses calendar events without clearing the value.",
+      "name": "disabled",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
       "default": "[]",
-      "description": "An array of dates that should be disabled in the calendar.\nDates should be provided as ISO `YYYY-MM-DD` strings.",
+      "description": "An array of dates that should be disabled in the calendar.\nDates should be provided as ISO `YYYY-MM-DD` strings.\nThe attribute accepts whitespace-separated dates, ignoring invalid tokens and duplicates.",
       "name": "disabledDates",
       "type": "string[]"
     },
@@ -255,26 +314,26 @@
     {
       "access": "public",
       "default": "''",
-      "description": "The maximum selectable date as an ISO `YYYY-MM-DD` string.",
+      "description": "The maximum selectable date as an ISO `YYYY-MM-DD` string.\nThe boundary is inclusive; an empty or invalid value leaves it unset.\nAssigned selections are preserved. A maximum before the minimum allows no selectable dates.",
       "name": "max",
       "type": "string"
     },
     {
       "access": "public",
-      "description": "Maximum inclusive calendar-day count for user-created ranges; only positive integers apply.\nPreview and completion stop at this boundary when a farther endpoint is requested.\nIgnored outside range mode. Assigned values are preserved even when they exceed this limit.",
+      "description": "Maximum inclusive calendar-day count for user-created ranges; only positive integers apply.\nPreview and completion stop at this boundary when a farther endpoint is requested.\nIgnored outside range mode. Assigned values are preserved even when they exceed this limit.\nUnset or invalid limits impose no restriction; a positive maximum below the minimum prevents completion.",
       "name": "maxRange",
       "type": "number"
     },
     {
       "access": "public",
       "default": "''",
-      "description": "The minimum selectable date as an ISO `YYYY-MM-DD` string.",
+      "description": "The minimum selectable date as an ISO `YYYY-MM-DD` string.\nThe boundary is inclusive; an empty or invalid value leaves it unset.\nAssigned selections are preserved. A minimum after the maximum allows no selectable dates.",
       "name": "min",
       "type": "string"
     },
     {
       "access": "public",
-      "description": "Minimum inclusive calendar-day count for user-created ranges; only positive integers apply.\nPreview and completion expand to this boundary once movement establishes a direction.\nIgnored outside range mode. Assigned values are preserved even when shorter than this limit.",
+      "description": "Minimum inclusive calendar-day count for user-created ranges; only positive integers apply.\nPreview and completion expand to this boundary once movement establishes a direction.\nIgnored outside range mode. Assigned values are preserved even when shorter than this limit.\nUnset or invalid limits impose no restriction; a positive minimum above the maximum prevents completion.",
       "name": "minRange",
       "type": "number"
     },
@@ -287,6 +346,13 @@
     },
     {
       "access": "public",
+      "default": "false",
+      "description": "Prevents selection, Clear, and selection previews while allowing navigation; suppresses calendar events.",
+      "name": "readonly",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
       "default": "'medium'",
       "description": "'small' | 'medium' | 'large'",
       "name": "size",
@@ -295,7 +361,7 @@
     {
       "access": "public",
       "default": "[]",
-      "description": "Selected dates as ISO `YYYY-MM-DD` strings. Single mode accepts one date, range mode two endpoints\n(one date is pending), and multiple mode any number of distinct dates.",
+      "description": "Selected dates as ISO `YYYY-MM-DD` strings. Single mode accepts one date, range mode two endpoints\n(one date is pending), and multiple mode any number of distinct dates.\nThe attribute accepts whitespace-separated dates; any invalid token empties the attribute-derived value.\nValues are sorted chronologically; multiple selections are unique. Assigned unselectable values are preserved.\nProgrammatic assignments emit no user value events.",
       "name": "value",
       "type": "string[]"
     },
@@ -307,7 +373,64 @@
     }
   ],
   "since": "0.0.0",
-  "slots": [],
+  "slots": [
+    {
+      "description": "Dynamic slots replacing a day's label, e.g. day-2026-12-24. The fallback is the two-digit day number.",
+      "name": "day-YYYY-MM-DD"
+    },
+    {
+      "description": "Replaces January's label; the fallback is its localized short month name.",
+      "name": "month-0"
+    },
+    {
+      "description": "Replaces February's label; the fallback is its localized short month name.",
+      "name": "month-1"
+    },
+    {
+      "description": "Replaces March's label; the fallback is its localized short month name.",
+      "name": "month-2"
+    },
+    {
+      "description": "Replaces April's label; the fallback is its localized short month name.",
+      "name": "month-3"
+    },
+    {
+      "description": "Replaces May's label; the fallback is its localized short month name.",
+      "name": "month-4"
+    },
+    {
+      "description": "Replaces June's label; the fallback is its localized short month name.",
+      "name": "month-5"
+    },
+    {
+      "description": "Replaces July's label; the fallback is its localized short month name.",
+      "name": "month-6"
+    },
+    {
+      "description": "Replaces August's label; the fallback is its localized short month name.",
+      "name": "month-7"
+    },
+    {
+      "description": "Replaces September's label; the fallback is its localized short month name.",
+      "name": "month-8"
+    },
+    {
+      "description": "Replaces October's label; the fallback is its localized short month name.",
+      "name": "month-9"
+    },
+    {
+      "description": "Replaces November's label; the fallback is its localized short month name.",
+      "name": "month-10"
+    },
+    {
+      "description": "Replaces December's label; the fallback is its localized short month name.",
+      "name": "month-11"
+    },
+    {
+      "description": "Dynamic slots replacing a year's label, e.g. year-2026. The fallback is the year number.",
+      "name": "year-YYYY"
+    }
+  ],
   "sourceModulePath": "components/calendar/calendar.js",
   "status": "experimental",
   "summary": "Calendars allow users to select dates from a calendar interface.",

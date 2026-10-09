@@ -33,7 +33,7 @@ export const renderDayView = (options: DayViewOptions): CalendarViewTemplates =>
   const rangeEnd = options.mode === 'range' && options.selectedDates.length === 2
     ? options.selectedDates[1]
     : null;
-  const previewDate = rangeStart && !rangeEnd && options.hoveredDate
+  const previewDate = !options.readonly && rangeStart && !rangeEnd && options.hoveredDate
     ? clampRangeEnd(rangeStart, options.hoveredDate, options.minRange, options.maxRange)
     : null;
   const [previewStart, previewEnd] = rangeStart && previewDate
@@ -50,7 +50,7 @@ export const renderDayView = (options: DayViewOptions): CalendarViewTemplates =>
           ${weeks.map(week => html`
             <tr>
               ${week.map(day => {
-                const candidateEnd = rangeStart && !rangeEnd
+                const candidateEnd = !options.readonly && rangeStart && !rangeEnd
                   ? clampRangeEnd(rangeStart, day, options.minRange, options.maxRange)
                   : null;
                 const rangeUnavailable = !!rangeStart && !!candidateEnd
@@ -68,7 +68,7 @@ export const renderDayView = (options: DayViewOptions): CalendarViewTemplates =>
                 <td class="day-selector__day" part="day-cell">
                   ${renderCalendarItem({
                     active: options.selectedDates.some(selectedDate => isSameDay(day, selectedDate)),
-                    disabled: isDateDisabled(
+                    disabled: options.disabled || isDateDisabled(
                       day,
                       options.min,
                       options.max,
@@ -97,7 +97,7 @@ export const renderDayView = (options: DayViewOptions): CalendarViewTemplates =>
                         && previewEnd !== null
                         && compare(day, previewStart) > 0
                         && compare(day, previewEnd) < 0),
-                    rangePending: !!rangeStart && !rangeEnd && isSameDay(day, rangeStart),
+                    rangePending: !options.readonly && !!rangeStart && !rangeEnd && isSameDay(day, rangeStart),
                     rangePreview: !!rangeStart
                       && !rangeEnd
                       && !!previewDate

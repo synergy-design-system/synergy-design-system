@@ -88,7 +88,8 @@ export default css`
     width: 100%;
   }
 
-  .calendar-item:hover,
+  :where(.calendar:not(.calendar--readonly)) .calendar-item:hover,
+  :where(.calendar--readonly) .calendar-item:where(:not([data-kind="day"])):hover,
   .calendar-item:focus {
     border-color: var(--syn-focus-ring-color);
     outline: none;
@@ -127,6 +128,10 @@ export default css`
   .calendar-item--disabled {
     background-color: red;
     cursor: not-allowed;
+  }
+
+  .calendar--readonly .calendar-item[data-kind="day"]:not(:disabled) {
+    cursor: default;
   }
 
   .calendar-item--today::after {

@@ -13,7 +13,7 @@ export const renderYearView = (options: YearViewOptions): CalendarViewTemplates 
     <div class="period-selector" part="year-grid">
       ${Array.from({ length: 12 }, (_, index) => options.blockStart + index).map(year => renderCalendarItem({
         active: options.activeYear === year,
-        disabled: !isYearInRange(
+        disabled: options.disabled || !isYearInRange(
           year,
           options.min,
           options.max,

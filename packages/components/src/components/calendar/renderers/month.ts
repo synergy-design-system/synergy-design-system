@@ -16,7 +16,7 @@ export const renderMonthView = (options: MonthViewOptions): CalendarViewTemplate
     <div class="period-selector" part="month-grid">
       ${getMonthNames(options.locale, 'short').map((month, index) => renderCalendarItem({
         active: options.activeMonth === index + 1,
-        disabled: !isMonthInRange(
+        disabled: options.disabled || !isMonthInRange(
           options.year,
           index + 1,
           options.min,

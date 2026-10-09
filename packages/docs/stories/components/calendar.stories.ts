@@ -91,6 +91,36 @@ export const Localization: Story = {
   `,
 };
 
+export const Disabled: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('calendar', 'disabled'),
+      },
+    },
+  },
+  render: () => html`<syn-calendar
+    disabled
+    mode="range"
+    value="2026-10-07 2026-10-12"
+  ></syn-calendar>`,
+};
+
+export const Readonly: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('calendar', 'readonly'),
+      },
+    },
+  },
+  render: () => html`<syn-calendar
+    mode="range"
+    readonly
+    value="2026-10-07"
+  ></syn-calendar>`,
+};
+
 export const MinDate: Story = {
   parameters: {
     docs: {

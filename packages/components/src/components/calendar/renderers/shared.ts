@@ -74,11 +74,12 @@ export const renderCalendarNavigation = (options: CalendarNavigationOptions) => 
     name="previous-page"
     part="previous-button"
     size=${options.size}
-    ?disabled=${!!options.previousDisabled}
+    ?disabled=${options.disabled || !!options.previousDisabled}
   ></syn-icon-button>
   ${options.onChoose ? html`
     <syn-button
       @click=${options.onChoose}
+      ?disabled=${options.disabled}
       exportparts="base:navigation-label__base"
       part="navigation-label"
       size=${options.size}
@@ -95,7 +96,7 @@ export const renderCalendarNavigation = (options: CalendarNavigationOptions) => 
     name="next-page"
     part="next-button"
     size=${options.size}
-    ?disabled=${!!options.nextDisabled}
+    ?disabled=${options.disabled || !!options.nextDisabled}
   ></syn-icon-button>
 `;
 
@@ -104,7 +105,7 @@ export const renderCalendarFooter = (options: CalendarFooterOptions) => html`
   <div class="selection-wrapper">
     <syn-button
       @click=${options.onCurrent}
-      ?disabled=${!!options.currentDisabled}
+      ?disabled=${options.disabled || !!options.currentDisabled}
       exportparts="base:current-period-button__base"
       part="current-period-button"
       size=${options.size}
@@ -114,7 +115,7 @@ export const renderCalendarFooter = (options: CalendarFooterOptions) => html`
     </syn-button>
     <syn-button
       @click=${options.onClear}
-      ?disabled=${!options.hasValue}
+      ?disabled=${options.disabled || !!options.clearDisabled || !options.hasValue}
       exportparts="base:clear-button__base"
       part="clear-button"
       size=${options.size}

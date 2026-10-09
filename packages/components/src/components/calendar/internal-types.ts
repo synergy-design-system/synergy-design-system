@@ -25,6 +25,9 @@ export type CalendarDateComparison = (
 /** Day-grid arrow-key movement: one day horizontally or one week vertically. */
 export type CalendarDayOffset = -7 | -1 | 1 | 7;
 
+/** Calendar-emitted events suppressed while disabled or readonly; native DOM events are unaffected. */
+export type CalendarEventName = 'syn-before-change' | 'syn-blur' | 'syn-change' | 'syn-clear' | 'syn-focus' | 'syn-input';
+
 /** The visible selection grid and the kind of item rendered within it. */
 export type CalendarView = 'day' | 'month' | 'year';
 
@@ -42,9 +45,11 @@ export interface CalendarConstraints {
 
 /** State, actions, and size for the current-period and Clear buttons in every view. */
 export interface CalendarFooterOptions {
+  clearDisabled?: boolean;
   clearLabel: string;
   currentDisabled?: boolean;
   currentLabel: string;
+  disabled: boolean;
   hasValue: boolean;
   onClear: () => void;
   onCurrent: () => void;
@@ -74,6 +79,7 @@ export interface CalendarItemOptions {
 
 /** Labels, availability, actions, and size for period navigation and optional view switching. */
 export interface CalendarNavigationOptions {
+  disabled: boolean;
   label: string | number;
   nextDisabled?: boolean;
   nextLabel: string;
@@ -109,6 +115,8 @@ export interface DayViewOptions extends
   locale: string;
   mode: CalendarSelectionMode;
   monthNavigation: CalendarNavigationOptions;
+  /** Keeps selected dates visible while suppressing pending selection affordances. */
+  readonly: boolean;
   selectedDates: readonly CalendarDate[];
   viewDate: CalendarDate;
   yearNavigation: CalendarNavigationOptions;

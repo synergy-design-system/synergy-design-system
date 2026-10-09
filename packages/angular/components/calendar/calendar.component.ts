@@ -30,14 +30,33 @@ import '@synergy-design-system/components/components/calendar/calendar.js';
  * @dependency syn-button
  * @dependency syn-icon-button
  *
+ * @slot day-YYYY-MM-DD - Dynamic slots replacing a day's label, e.g. day-2026-12-24. The fallback is the two-digit day number.
+ * @slot month-0 - Replaces January's label; the fallback is its localized short month name.
+ * @slot month-1 - Replaces February's label; the fallback is its localized short month name.
+ * @slot month-2 - Replaces March's label; the fallback is its localized short month name.
+ * @slot month-3 - Replaces April's label; the fallback is its localized short month name.
+ * @slot month-4 - Replaces May's label; the fallback is its localized short month name.
+ * @slot month-5 - Replaces June's label; the fallback is its localized short month name.
+ * @slot month-6 - Replaces July's label; the fallback is its localized short month name.
+ * @slot month-7 - Replaces August's label; the fallback is its localized short month name.
+ * @slot month-8 - Replaces September's label; the fallback is its localized short month name.
+ * @slot month-9 - Replaces October's label; the fallback is its localized short month name.
+ * @slot month-10 - Replaces November's label; the fallback is its localized short month name.
+ * @slot month-11 - Replaces December's label; the fallback is its localized short month name.
+ * @slot year-YYYY - Dynamic slots replacing a year's label, e.g. year-2026. The fallback is the year number.
+ *
  * @csspart base - The component's base wrapper.
  * @csspart header - The calendar header.
  * @csspart content - The calendar view content.
  * @csspart footer - The calendar footer actions.
  * @csspart day-grid - The day-of-month table.
+ * @csspart day-cell - A day table cell, independent of the button it contains.
+ * @csspart weekdays - The weekday table heading group.
+ * @csspart weekday - An individual localized weekday heading.
  * @csspart month-grid - The month selection grid.
  * @csspart year-grid - The year selection grid.
  * @csspart calendar-item - A day, month, or year button.
+ * @csspart calendar-item-label - The slot containing an item's custom content or fallback label.
  * @csspart calendar-item-day - A day button.
  * @csspart calendar-item-month - A month button.
  * @csspart calendar-item-year - A year button.
@@ -45,30 +64,35 @@ import '@synergy-design-system/components/components/calendar/calendar.js';
  * @csspart calendar-item-today - The item representing today.
  * @csspart calendar-item-outside - A day item belonging to an adjacent month.
  * @csspart calendar-item-disabled - A disabled calendar item.
- * @csspart calendar-item-range-begin - The beginning of a selected or previewed range.
+ * @csspart calendar-item-range-begin - The pending range anchor or completed range start; an alias of calendar-item-range-start.
  * @csspart calendar-item-range-clipped - A date whose requested endpoint is adjusted by a range length limit.
- * @csspart calendar-item-range-start - The start of a selected date range.
- * @csspart calendar-item-range-end - The end of a selected date range.
+ * @csspart calendar-item-range-start - The pending range anchor or completed range start; an alias of calendar-item-range-begin.
+ * @csspart calendar-item-range-end - The completed or adjusted preview endpoint, which may precede the anchor during reverse selection.
  * @csspart calendar-item-range-interior - A date inside the selected or previewed range.
  * @csspart calendar-item-range-pending - The selected start while waiting for a range end.
- * @csspart calendar-item-range-preview - A date in the pending range under the pointer.
- * @csspart calendar-item-range-unavailable - A focusable endpoint that violates the pending range's length limits.
+ * @csspart calendar-item-range-preview - A date in the pending range preview driven by pointer or keyboard movement.
+ * @csspart calendar-item-range-unavailable - A focusable endpoint whose adjusted boundary is disabled or whose range length is invalid.
  * @csspart month-navigation - The month navigation controls.
  * @csspart year-navigation - The year navigation controls.
- * @csspart previous-button - The previous-period navigation button.
+ * @csspart previous-button - The previous-period syn-icon-button host.
+ * @csspart previous-button__base - The previous-period control's forwarded base part.
  * @csspart navigation-label - The current month, year, or year range in the navigation header.
- * @csspart next-button - The next-period navigation button.
- * @csspart current-period-button - The button for navigating to the current day, month, or year.
- * @csspart clear-button - The button for clearing the selected value.
+ * @csspart navigation-label__base - The navigation label's forwarded button base when it offers a view switch.
+ * @csspart next-button - The next-period syn-icon-button host.
+ * @csspart next-button__base - The next-period control's forwarded base part.
+ * @csspart current-period-button - The syn-button host for navigating to the current day, month, or year.
+ * @csspart current-period-button__base - The current-period control's forwarded base part.
+ * @csspart clear-button - The syn-button host for clearing the selected value.
+ * @csspart clear-button__base - The Clear control's forwarded base part.
  *
- * @cssproperty --syn-calendar-min-width - The minimum width of the calendar. Defaults to 390px.
+ * @cssproperty --syn-calendar-min-width - Overrides the minimum width on the host or base part. Defaults to 298px (small), 390px (medium), or 420px (large), capped to the viewport width.
  *
- * @event syn-blur - Emitted when focus leaves the calendar.
- * @event syn-before-change - Emitted before user change events with the proposed value temporarily set on the host; preventDefault restores the previous value.
- * @event syn-change - Emitted when a user commits a selection; in range mode this occurs after the end date is chosen.
- * @event syn-clear - Emitted when the user clears a non-empty date value.
- * @event syn-focus - Emitted when focus enters the calendar.
- * @event syn-input - Emitted when a user changes the selection.
+ * @event syn-blur - Emitted when focus leaves the calendar, unless disabled or readonly.
+ * @event syn-before-change - Cancelable, detail-free event before a user commit or Clear. The host exposes the proposed value; synchronous preventDefault restores the previous value and suppresses value events. Not emitted for pending range starts, disabled, or readonly.
+ * @event syn-change - Emitted after an accepted user commit or Clear, unless disabled or readonly. In range mode, choosing only the start emits syn-input but not syn-change.
+ * @event syn-clear - Emitted when the user clears a non-empty date value, unless disabled or readonly.
+ * @event syn-focus - Emitted when focus enters the calendar, unless disabled or readonly.
+ * @event syn-input - Emitted when a user changes the selection, unless disabled or readonly.
  */
 @Component({
   selector: 'syn-calendar',
@@ -106,8 +130,22 @@ export class SynCalendarComponent {
   }
 
   /**
+   * Disables every interaction surface and suppresses calendar events without clearing the value.
+   */
+  @Input()
+  set disabled(v: '' | SynCalendar['disabled']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.disabled = v === '' || v),
+    );
+  }
+  get disabled(): SynCalendar['disabled'] {
+    return this.nativeElement.disabled;
+  }
+
+  /**
 * An array of dates that should be disabled in the calendar.
 Dates should be provided as ISO `YYYY-MM-DD` strings.
+The attribute accepts whitespace-separated dates, ignoring invalid tokens and duplicates.
  */
   @Input()
   set disabledDates(v: SynCalendar['disabledDates']) {
@@ -134,8 +172,11 @@ The attribute accepts a space-separated list of three-letter weekday names (sun,
   }
 
   /**
-   * The maximum selectable date as an ISO `YYYY-MM-DD` string.
-   */
+* The maximum selectable date as an ISO `YYYY-MM-DD` string.
+The boundary is inclusive; an empty or invalid value leaves it unset.
+Assigned selections are preserved.
+* A maximum before the minimum allows no selectable dates.
+ */
   @Input()
   set max(v: SynCalendar['max']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.max = v));
@@ -149,6 +190,7 @@ The attribute accepts a space-separated list of three-letter weekday names (sun,
 Preview and completion stop at this boundary when a farther endpoint is requested.
 Ignored outside range mode.
 * Assigned values are preserved even when they exceed this limit.
+Unset or invalid limits impose no restriction; a positive maximum below the minimum prevents completion.
  */
   @Input()
   set maxRange(v: SynCalendar['maxRange']) {
@@ -159,8 +201,11 @@ Ignored outside range mode.
   }
 
   /**
-   * The minimum selectable date as an ISO `YYYY-MM-DD` string.
-   */
+* The minimum selectable date as an ISO `YYYY-MM-DD` string.
+The boundary is inclusive; an empty or invalid value leaves it unset.
+Assigned selections are preserved.
+* A minimum after the maximum allows no selectable dates.
+ */
   @Input()
   set min(v: SynCalendar['min']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.min = v));
@@ -174,6 +219,7 @@ Ignored outside range mode.
 Preview and completion expand to this boundary once movement establishes a direction.
 Ignored outside range mode.
 * Assigned values are preserved even when shorter than this limit.
+Unset or invalid limits impose no restriction; a positive minimum above the maximum prevents completion.
  */
   @Input()
   set minRange(v: SynCalendar['minRange']) {
@@ -195,9 +241,26 @@ Ignored outside range mode.
   }
 
   /**
+   * Prevents selection, Clear, and selection previews while allowing navigation; suppresses calendar events.
+   */
+  @Input()
+  set readonly(v: '' | SynCalendar['readonly']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.readonly = v === '' || v),
+    );
+  }
+  get readonly(): SynCalendar['readonly'] {
+    return this.nativeElement.readonly;
+  }
+
+  /**
 * Selected dates as ISO `YYYY-MM-DD` strings.
 * Single mode accepts one date, range mode two endpoints
 (one date is pending), and multiple mode any number of distinct dates.
+The attribute accepts whitespace-separated dates; any invalid token empties the attribute-derived value.
+Values are sorted chronologically; multiple selections are unique.
+* Assigned unselectable values are preserved.
+Programmatic assignments emit no user value events.
  */
   @Input()
   set value(v: SynCalendar['value']) {
@@ -232,32 +295,35 @@ Ignored outside range mode.
   }
 
   /**
-   * Emitted when focus leaves the calendar.
+   * Emitted when focus leaves the calendar, unless disabled or readonly.
    */
   @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();
 
   /**
-   * Emitted before user change events with the proposed value temporarily set on the host; preventDefault restores the previous value.
+   * Cancelable, detail-free event before a user commit or Clear.
+   * The host exposes the proposed value; synchronous preventDefault restores the previous value and suppresses value events.
+   * Not emitted for pending range starts, disabled, or readonly.
    */
   @Output() synBeforeChangeEvent = new EventEmitter<SynBeforeChangeEvent>();
 
   /**
-   * Emitted when a user commits a selection; in range mode this occurs after the end date is chosen.
+   * Emitted after an accepted user commit or Clear, unless disabled or readonly.
+   * In range mode, choosing only the start emits syn-input but not syn-change.
    */
   @Output() synChangeEvent = new EventEmitter<SynChangeEvent>();
 
   /**
-   * Emitted when the user clears a non-empty date value.
+   * Emitted when the user clears a non-empty date value, unless disabled or readonly.
    */
   @Output() synClearEvent = new EventEmitter<SynClearEvent>();
 
   /**
-   * Emitted when focus enters the calendar.
+   * Emitted when focus enters the calendar, unless disabled or readonly.
    */
   @Output() synFocusEvent = new EventEmitter<SynFocusEvent>();
 
   /**
-   * Emitted when a user changes the selection.
+   * Emitted when a user changes the selection, unless disabled or readonly.
    */
   @Output() synInputEvent = new EventEmitter<SynInputEvent>();
 }

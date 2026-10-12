@@ -16,6 +16,7 @@ import type {
   SynCheckbox,
   SynCheckboxGroup,
   SynCombobox,
+  SynDatePicker,
   SynDetails,
   SynDialog,
   SynDivider,
@@ -146,6 +147,8 @@ type SynComboboxEvents = [
   ['syn-invalid', SynInvalidEvent],
   ['syn-error', SynErrorEvent],
 ];
+
+type SynDatePickerEvents = [];
 
 type SynDetailsEvents = [
   ['syn-show', SynShowEvent],
@@ -659,6 +662,12 @@ declare module 'vue' {
      * @animation combobox.show - The animation to use when showing the combobox.
      * @animation combobox.hide - The animation to use when hiding the combobox.
      */ 'syn-combobox': SynVueElement<SynCombobox, SynComboboxEvents>;
+    /**
+     * @summary A date picker component for selecting dates.
+     * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-date-picker--docs
+     * @status experimental
+     * @since 0.0.0
+     */ 'syn-date-picker': SynVueElement<SynDatePicker, SynDatePickerEvents>;
     /**
      * @summary Details show a brief summary and expand to show additional content.
      * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-details--docs
@@ -2044,6 +2053,15 @@ declare module 'vue' {
      * @animation combobox.show - The animation to use when showing the combobox.
      * @animation combobox.hide - The animation to use when hiding the combobox.
      */ 'syn-combobox': SynIntrinsicElement<SynCombobox, SynComboboxEvents>;
+    /**
+     * @summary A date picker component for selecting dates.
+     * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-date-picker--docs
+     * @status experimental
+     * @since 0.0.0
+     */ 'syn-date-picker': SynIntrinsicElement<
+      SynDatePicker,
+      SynDatePickerEvents
+    >;
     /**
      * @summary Details show a brief summary and expand to show additional content.
      * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-details--docs

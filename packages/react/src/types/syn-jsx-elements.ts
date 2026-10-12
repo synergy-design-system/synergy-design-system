@@ -47,6 +47,7 @@ import type {
   SynCheckbox,
   SynCheckboxGroup,
   SynCombobox,
+  SynDatePicker,
   SynDetails,
   SynDialog,
   SynDivider,
@@ -492,6 +493,12 @@ export type SynCustomElement<
     ['syn-error', SynErrorEvent],
   ]
 >;
+/**
+ * @summary A date picker component for selecting dates.
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-date-picker--docs
+ * @status experimental
+ * @since 0.0.0
+ */ export type SynDatePickerJSXElement = SynCustomElement<SynDatePicker, []>;
 /**
  * @summary Details show a brief summary and expand to show additional content.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-details--docs
@@ -2042,6 +2049,12 @@ declare module 'react' {
        * @animation combobox.show - The animation to use when showing the combobox.
        * @animation combobox.hide - The animation to use when hiding the combobox.
        */ 'syn-combobox': SynComboboxJSXElement;
+      /**
+       * @summary A date picker component for selecting dates.
+       * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-date-picker--docs
+       * @status experimental
+       * @since 0.0.0
+       */ 'syn-date-picker': SynDatePickerJSXElement;
       /**
        * @summary Details show a brief summary and expand to show additional content.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-details--docs

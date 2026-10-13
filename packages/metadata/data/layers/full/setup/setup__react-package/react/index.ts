@@ -15,6 +15,7 @@ export { SynCard } from './components/card.js';
 export { SynCheckbox } from './components/checkbox.js';
 export { SynCheckboxGroup } from './components/checkbox-group.js';
 export { SynCombobox } from './components/combobox.js';
+export { SynDatePicker } from './components/date-picker.js';
 export { SynDetails } from './components/details.js';
 export { SynDialog } from './components/dialog.js';
 export { SynDivider } from './components/divider.js';

@@ -171,6 +171,22 @@ default: none
 
 Sets selected values as UTC date-only `Date` instances.
 
+## Available Methods
+
+### blur()
+
+parameters: -
+returns: `void`
+
+Removes focus from the calendar, including nested navigation and footer controls.
+
+### focus()
+
+parameters: `options: FocusOptions`
+returns: `void`
+
+Restores the last focused control, falling back to the active view's grid item, unless disabled.
+
 ## Available CSS Parts
 
 - `base`: The component's base wrapper.

@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-09T11:08:25.737Z",
+  "builtAt": "2026-10-13T08:59:18.493Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset__sick2018-icons.json",
@@ -390,6 +390,27 @@
         "component",
         "react",
         "syn-combobox",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component__syn-date-picker.json",
+      "id": "component:syn-date-picker",
+      "kind": "component",
+      "layers": {
+        "full": 7,
+        "interface": 2,
+        "rules": 1
+      },
+      "name": "syn-date-picker",
+      "search": [
+        "component:syn-date-picker",
+        "syn-date-picker",
+        "angular",
+        "component",
+        "date-picker",
+        "react",
+        "syn-date-picker",
         "vue"
       ]
     },

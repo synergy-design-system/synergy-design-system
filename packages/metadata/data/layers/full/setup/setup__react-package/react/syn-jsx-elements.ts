@@ -47,6 +47,7 @@ import type {
   SynCheckbox,
   SynCheckboxGroup,
   SynCombobox,
+  SynDatePicker,
   SynDetails,
   SynDialog,
   SynDivider,
@@ -490,6 +491,69 @@ export type SynCustomElement<
     ['syn-after-hide', SynAfterHideEvent],
     ['syn-invalid', SynInvalidEvent],
     ['syn-error', SynErrorEvent],
+  ]
+>;
+/**
+ * @summary A date picker component for selecting dates.
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-date-picker--docs
+ * @status experimental
+ * @since 0.0.0
+ *
+ * @dependency syn-calendar
+ * @dependency syn-icon
+ * @dependency syn-popup
+ *
+ * @slot label - The input's label. Alternatively, you can use the `label` attribute.
+ * @slot help-text - The input's help text. Alternatively, you can use the `help-text` attribute.
+ * @slot prefix - Used to prepend a presentational icon or similar element to the date field.
+ * @slot suffix - Used to append a presentational icon or similar element to the date field.
+ * @slot expand-icon - The icon used by the calendar toggle button.
+ * @slot day-YYYY-MM-DD - Forwarded to the calendar to replace a date's label.
+ * @slot month-0 - Forwarded to the calendar to replace January's label; month-1 through month-11 replace the other months.
+ * @slot year-YYYY - Forwarded to the calendar to replace a year's label.
+ *
+ * @event syn-before-change - Cancelable event before a user commit or Clear. The picker exposes the proposed value; preventing default restores the previous value. Pending range starts emit only syn-input.
+ * @event syn-clear - Emitted when the calendar clears a non-empty selection.
+ * @event syn-input - Emitted when the user edits a segment or selects a date.
+ * @event syn-change - Emitted when an edit changes the canonical ISO value or a calendar selection is committed.
+ * @event syn-focus - Emitted when focus enters the date picker.
+ * @event syn-blur - Emitted when focus leaves the date picker.
+ * @event syn-invalid - Emitted when constraint validation fails.
+ * @event syn-show - Emitted when the calendar opens.
+ * @event syn-after-show - Emitted after the calendar is visible and positioned.
+ * @event syn-hide - Emitted when the calendar closes.
+ * @event syn-after-hide - Emitted after the calendar is hidden.
+ *
+ * @csspart form-control - The form control that wraps the label, input, and help text.
+ * @csspart form-control-label - The label's wrapper.
+ * @csspart form-control-help-text - The help text's wrapper.
+ * @csspart form-control-input - The input and popup wrapper.
+ * @csspart base - The segmented field's wrapper.
+ * @csspart input - The group containing editable date segments.
+ * @csspart segment - An editable day, month, or year spinbutton.
+ * @csspart segment-literal - A locale-specific separator between fields.
+ * @csspart range-separator - The separator between start and end date groups.
+ * @csspart remove-date-button - A multiple-selection date's remove button.
+ * @csspart expand-button - The calendar toggle button.
+ * @csspart calendar - The calendar component.
+ * @csspart prefix - The container that wraps the prefix slot.
+ * @csspart suffix - The container that wraps the suffix slot.
+ * @csspart expand-icon - The container that wraps the expand icon.
+ * @csspart popup - The popup's exported container.
+ */ export type SynDatePickerJSXElement = SynCustomElement<
+  SynDatePicker,
+  [
+    ['syn-before-change', SynBeforeChangeEvent],
+    ['syn-clear', SynClearEvent],
+    ['syn-input', SynInputEvent],
+    ['syn-change', SynChangeEvent],
+    ['syn-focus', SynFocusEvent],
+    ['syn-blur', SynBlurEvent],
+    ['syn-invalid', SynInvalidEvent],
+    ['syn-show', SynShowEvent],
+    ['syn-after-show', SynAfterShowEvent],
+    ['syn-hide', SynHideEvent],
+    ['syn-after-hide', SynAfterHideEvent],
   ]
 >;
 /**
@@ -2042,6 +2106,54 @@ declare module 'react' {
        * @animation combobox.show - The animation to use when showing the combobox.
        * @animation combobox.hide - The animation to use when hiding the combobox.
        */ 'syn-combobox': SynComboboxJSXElement;
+      /**
+       * @summary A date picker component for selecting dates.
+       * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-date-picker--docs
+       * @status experimental
+       * @since 0.0.0
+       *
+       * @dependency syn-calendar
+       * @dependency syn-icon
+       * @dependency syn-popup
+       *
+       * @slot label - The input's label. Alternatively, you can use the `label` attribute.
+       * @slot help-text - The input's help text. Alternatively, you can use the `help-text` attribute.
+       * @slot prefix - Used to prepend a presentational icon or similar element to the date field.
+       * @slot suffix - Used to append a presentational icon or similar element to the date field.
+       * @slot expand-icon - The icon used by the calendar toggle button.
+       * @slot day-YYYY-MM-DD - Forwarded to the calendar to replace a date's label.
+       * @slot month-0 - Forwarded to the calendar to replace January's label; month-1 through month-11 replace the other months.
+       * @slot year-YYYY - Forwarded to the calendar to replace a year's label.
+       *
+       * @event syn-before-change - Cancelable event before a user commit or Clear. The picker exposes the proposed value; preventing default restores the previous value. Pending range starts emit only syn-input.
+       * @event syn-clear - Emitted when the calendar clears a non-empty selection.
+       * @event syn-input - Emitted when the user edits a segment or selects a date.
+       * @event syn-change - Emitted when an edit changes the canonical ISO value or a calendar selection is committed.
+       * @event syn-focus - Emitted when focus enters the date picker.
+       * @event syn-blur - Emitted when focus leaves the date picker.
+       * @event syn-invalid - Emitted when constraint validation fails.
+       * @event syn-show - Emitted when the calendar opens.
+       * @event syn-after-show - Emitted after the calendar is visible and positioned.
+       * @event syn-hide - Emitted when the calendar closes.
+       * @event syn-after-hide - Emitted after the calendar is hidden.
+       *
+       * @csspart form-control - The form control that wraps the label, input, and help text.
+       * @csspart form-control-label - The label's wrapper.
+       * @csspart form-control-help-text - The help text's wrapper.
+       * @csspart form-control-input - The input and popup wrapper.
+       * @csspart base - The segmented field's wrapper.
+       * @csspart input - The group containing editable date segments.
+       * @csspart segment - An editable day, month, or year spinbutton.
+       * @csspart segment-literal - A locale-specific separator between fields.
+       * @csspart range-separator - The separator between start and end date groups.
+       * @csspart remove-date-button - A multiple-selection date's remove button.
+       * @csspart expand-button - The calendar toggle button.
+       * @csspart calendar - The calendar component.
+       * @csspart prefix - The container that wraps the prefix slot.
+       * @csspart suffix - The container that wraps the suffix slot.
+       * @csspart expand-icon - The container that wraps the expand icon.
+       * @csspart popup - The popup's exported container.
+       */ 'syn-date-picker': SynDatePickerJSXElement;
       /**
        * @summary Details show a brief summary and expand to show additional content.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-details--docs

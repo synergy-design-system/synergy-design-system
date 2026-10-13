@@ -40,6 +40,7 @@ import SynPopup from '../popup/popup.component.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import styles from './date-picker.styles.js';
 import inputStyles from '../input/input.styles.js';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 import {
   type DateField,
   type DateSegments,
@@ -101,6 +102,7 @@ import {
  * @csspart expand-icon - The container that wraps the expand icon.
  * @csspart popup - The popup's exported container.
  */
+@enableDefaultSettings('SynDatePicker')
 export default class SynDatePicker extends SynergyElement {
   static styles: CSSResultGroup = [
     inputStyles,

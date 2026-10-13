@@ -1,0 +1,199 @@
+{
+  "custom": {
+    "frameworks": {
+      "angular": {
+        "componentName": "SynDatePickerComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-date-picker",
+        "sourcePath": "packages/angular/components/date-picker/date-picker.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynDatePicker",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-date-picker--docs",
+          "events": [
+            {
+              "name": "syn-before-change",
+              "type": "SynBeforeChangeEvent"
+            },
+            {
+              "name": "syn-clear",
+              "type": "SynClearEvent"
+            },
+            {
+              "name": "syn-input",
+              "type": "SynInputEvent"
+            },
+            {
+              "name": "syn-change",
+              "type": "SynChangeEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            },
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-invalid",
+              "type": "SynInvalidEvent"
+            },
+            {
+              "name": "syn-show",
+              "type": "SynShowEvent"
+            },
+            {
+              "name": "syn-after-show",
+              "type": "SynAfterShowEvent"
+            },
+            {
+              "name": "syn-hide",
+              "type": "SynHideEvent"
+            },
+            {
+              "name": "syn-after-hide",
+              "type": "SynAfterHideEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "0.0.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "experimental",
+          "subpathExport": "./types/latest",
+          "typeName": "SynDatePickerJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynDatePicker",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/date-picker.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueDatePicker",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueDatePicker.vue"
+      }
+    },
+    "rules": {
+      "accessibility": [
+        "TODO"
+      ],
+      "component": "syn-date-picker",
+      "related": {
+        "components": [
+          "syn-calendar"
+        ]
+      },
+      "usageGuidelines": [
+        {
+          "content": [
+            "TODO"
+          ],
+          "id": "Behavior",
+          "name": "Behavior"
+        },
+        {
+          "content": [
+            "TODO"
+          ],
+          "id": "content",
+          "name": "Content"
+        }
+      ],
+      "useCases": [
+        "TODO"
+      ]
+    },
+    "sourceModulePath": "components/date-picker/date-picker.js",
+    "summary": "A date picker component for selecting dates."
+  },
+  "id": "component:syn-date-picker",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-date-picker/angular/date-picker.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-date-picker/components/date-picker.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-date-picker/components/date-picker.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-date-picker/components/date-picker.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-date-picker/react/date-picker.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-date-picker/vue/SynVueDatePicker.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-date-picker/react/SynDatePickerJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component__syn-date-picker.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component__syn-date-picker.md"
+      }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component__syn-date-picker.md"
+      }
+    ]
+  },
+  "name": "syn-date-picker",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-calendar",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-popup",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "0.0.0",
+  "sources": [
+    "packages/angular/components/date-picker/date-picker.component.ts",
+    "packages/components/src/components/date-picker/date-picker.component.ts",
+    "packages/components/src/components/date-picker/date-picker.styles.ts",
+    "packages/components/src/components/date-picker/date-picker.ts",
+    "packages/react/src/components/date-picker.ts",
+    "packages/vue/src/components/SynVueDatePicker.vue"
+  ],
+  "status": "experimental",
+  "tags": [
+    "angular",
+    "component",
+    "date-picker",
+    "react",
+    "syn-date-picker",
+    "vue"
+  ]
+}

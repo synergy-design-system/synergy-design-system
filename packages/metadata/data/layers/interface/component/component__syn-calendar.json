@@ -282,7 +282,23 @@
       "type": "SynInputEvent"
     }
   ],
-  "methods": [],
+  "methods": [
+    {
+      "description": "Removes focus from the calendar, including nested navigation and footer controls.",
+      "name": "blur",
+      "parameters": []
+    },
+    {
+      "description": "Restores the last focused control, falling back to the active view's grid item, unless disabled.",
+      "name": "focus",
+      "parameters": [
+        {
+          "name": "options",
+          "type": "FocusOptions"
+        }
+      ]
+    }
+  ],
   "properties": [
     {
       "access": "public",

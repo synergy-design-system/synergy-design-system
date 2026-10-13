@@ -1,0 +1,543 @@
+{
+  "attributes": [
+    {
+      "default": "false",
+      "description": "Disables the input.",
+      "fieldName": "disabled",
+      "name": "disabled",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "[]",
+      "description": "ISO dates that cannot be selected, using the calendar's attribute converter.",
+      "fieldName": "disabledDates",
+      "name": "disabled-dates",
+      "reflects": false,
+      "type": "string[]"
+    },
+    {
+      "default": "[]",
+      "description": "Disabled ISO weekday names, using the calendar's attribute converter.",
+      "fieldName": "disabledWeekdays",
+      "name": "disabled-weekdays",
+      "reflects": false,
+      "type": "CalendarWeekday[]"
+    },
+    {
+      "default": "''",
+      "description": "By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you\nto place the form control outside of a form and associate it with the form that has this `id`. The form must be in\nthe same document or shadow root for this to work.",
+      "fieldName": "form",
+      "name": "form",
+      "reflects": true,
+      "type": "string"
+    },
+    {
+      "default": "''",
+      "description": "The input's help text. If you need to display HTML, use the `help-text` slot instead.",
+      "fieldName": "helpText",
+      "name": "help-text",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "''",
+      "description": "The input's label. If you need to display HTML, use the `label` slot instead.",
+      "fieldName": "label",
+      "name": "label",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "''",
+      "description": "The latest selectable date as an ISO YYYY-MM-DD string.",
+      "fieldName": "max",
+      "name": "max",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "description": "Maximum inclusive length for user-created ranges; ignored outside range mode.",
+      "fieldName": "maxRange",
+      "name": "max-range",
+      "reflects": false,
+      "type": "number | undefined"
+    },
+    {
+      "default": "''",
+      "description": "The earliest selectable date as an ISO YYYY-MM-DD string.",
+      "fieldName": "min",
+      "name": "min",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "description": "Minimum inclusive length for user-created ranges; ignored outside range mode.",
+      "fieldName": "minRange",
+      "name": "min-range",
+      "reflects": false,
+      "type": "number | undefined"
+    },
+    {
+      "default": "'single'",
+      "description": "The calendar selection mode; changing modes uses the calendar's normalization policy.",
+      "fieldName": "mode",
+      "name": "mode",
+      "reflects": true,
+      "type": "CalendarSelectionMode"
+    },
+    {
+      "default": "''",
+      "description": "The name of the input, submitted as a name/value pair with form data.",
+      "fieldName": "name",
+      "name": "name",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "false",
+      "description": "Indicates whether the calendar is open. Use this attribute or the `show()` and `hide()` methods.",
+      "fieldName": "open",
+      "name": "open",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Makes the input readonly.",
+      "fieldName": "readonly",
+      "name": "readonly",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Makes the input a required field.",
+      "fieldName": "required",
+      "name": "required",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "'medium'",
+      "description": "The input's size.",
+      "fieldName": "size",
+      "name": "size",
+      "reflects": true,
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "default": "''",
+      "description": "Whitespace-separated ISO dates: one date in single mode, two endpoints in range mode,\nor distinct sorted dates in multiple mode. One range endpoint represents a pending selection.\nPartial segment groups are retained for editing but excluded from this canonical value.",
+      "fieldName": "value",
+      "name": "value",
+      "reflects": false,
+      "type": "string"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The segmented field's wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The calendar component.",
+      "name": "calendar"
+    },
+    {
+      "description": "The calendar toggle button.",
+      "name": "expand-button"
+    },
+    {
+      "description": "The container that wraps the expand icon.",
+      "name": "expand-icon"
+    },
+    {
+      "description": "The form control that wraps the label, input, and help text.",
+      "name": "form-control"
+    },
+    {
+      "description": "The help text's wrapper.",
+      "name": "form-control-help-text"
+    },
+    {
+      "description": "The input and popup wrapper.",
+      "name": "form-control-input"
+    },
+    {
+      "description": "The label's wrapper.",
+      "name": "form-control-label"
+    },
+    {
+      "description": "The group containing editable date segments.",
+      "name": "input"
+    },
+    {
+      "description": "The popup's exported container.",
+      "name": "popup"
+    },
+    {
+      "description": "The container that wraps the prefix slot.",
+      "name": "prefix"
+    },
+    {
+      "description": "The separator between start and end date groups.",
+      "name": "range-separator"
+    },
+    {
+      "description": "A multiple-selection date's remove button.",
+      "name": "remove-date-button"
+    },
+    {
+      "description": "An editable day, month, or year spinbutton.",
+      "name": "segment"
+    },
+    {
+      "description": "A locale-specific separator between fields.",
+      "name": "segment-literal"
+    },
+    {
+      "description": "The container that wraps the suffix slot.",
+      "name": "suffix"
+    }
+  ],
+  "dependencies": [
+    "syn-calendar",
+    "syn-icon",
+    "syn-popup"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-date-picker--docs",
+  "events": [
+    {
+      "description": "Emitted after the calendar is hidden.",
+      "name": "syn-after-hide",
+      "type": "SynAfterHideEvent"
+    },
+    {
+      "description": "Emitted after the calendar is visible and positioned.",
+      "name": "syn-after-show",
+      "type": "SynAfterShowEvent"
+    },
+    {
+      "description": "Cancelable event before a user commit or Clear. The picker exposes the proposed value; preventing default restores the previous value. Pending range starts emit only syn-input.",
+      "name": "syn-before-change",
+      "type": "SynBeforeChangeEvent"
+    },
+    {
+      "description": "Emitted when focus leaves the date picker.",
+      "name": "syn-blur",
+      "type": "SynBlurEvent"
+    },
+    {
+      "description": "Emitted when an edit changes the canonical ISO value or a calendar selection is committed.",
+      "name": "syn-change",
+      "type": "SynChangeEvent"
+    },
+    {
+      "description": "Emitted when the calendar clears a non-empty selection.",
+      "name": "syn-clear",
+      "type": "SynClearEvent"
+    },
+    {
+      "description": "Emitted when focus enters the date picker.",
+      "name": "syn-focus",
+      "type": "SynFocusEvent"
+    },
+    {
+      "description": "Emitted when the calendar closes.",
+      "name": "syn-hide",
+      "type": "SynHideEvent"
+    },
+    {
+      "description": "Emitted when the user edits a segment or selects a date.",
+      "name": "syn-input",
+      "type": "SynInputEvent"
+    },
+    {
+      "description": "Emitted when constraint validation fails.",
+      "name": "syn-invalid",
+      "type": "SynInvalidEvent"
+    },
+    {
+      "description": "Emitted when the calendar opens.",
+      "name": "syn-show",
+      "type": "SynShowEvent"
+    }
+  ],
+  "methods": [
+    {
+      "description": "Removes focus from the date picker.",
+      "name": "blur",
+      "parameters": []
+    },
+    {
+      "description": "Checks validity without showing a browser validation message.",
+      "name": "checkValidity",
+      "parameters": []
+    },
+    {
+      "description": "Focuses the first empty date segment, or the last active segment for a complete date.",
+      "name": "focus",
+      "parameters": [
+        {
+          "name": "options",
+          "type": "FocusOptions"
+        }
+      ]
+    },
+    {
+      "description": "Gets the associated form, if any.",
+      "name": "getForm",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleInteractionStateChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleModeChange",
+      "parameters": [
+        {
+          "name": "previousMode",
+          "type": "CalendarSelectionMode"
+        }
+      ]
+    },
+    {
+      "description": "",
+      "name": "handleOpenChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleValueChange",
+      "parameters": []
+    },
+    {
+      "description": "Hides the calendar.",
+      "name": "hide",
+      "parameters": []
+    },
+    {
+      "description": "Shows the browser validation message when the date is invalid.",
+      "name": "reportValidity",
+      "parameters": []
+    },
+    {
+      "description": "Sets a custom validation message, or clears it with an empty string.",
+      "name": "setCustomValidity",
+      "parameters": [
+        {
+          "name": "message",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "description": "Shows the calendar unless the date picker is disabled or readonly.",
+      "name": "show",
+      "parameters": []
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The default value of the form control. Primarily used for resetting the form control.",
+      "name": "defaultValue",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Disables the input.",
+      "name": "disabled",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "[]",
+      "description": "ISO dates that cannot be selected, using the calendar's attribute converter.",
+      "name": "disabledDates",
+      "type": "string[]"
+    },
+    {
+      "access": "public",
+      "default": "[]",
+      "description": "Disabled ISO weekday names, using the calendar's attribute converter.",
+      "name": "disabledWeekdays",
+      "type": "CalendarWeekday[]"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you\nto place the form control outside of a form and associate it with the form that has this `id`. The form must be in\nthe same document or shadow root for this to work.",
+      "name": "form",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The input's help text. If you need to display HTML, use the `help-text` slot instead.",
+      "name": "helpText",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "An additional synchronous rule receiving a UTC date-only Date, shared with the calendar.",
+      "name": "isDateDisabled",
+      "type": "CalendarDateDisabledPredicate | undefined"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The input's label. If you need to display HTML, use the `label` slot instead.",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The latest selectable date as an ISO YYYY-MM-DD string.",
+      "name": "max",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "Maximum inclusive length for user-created ranges; ignored outside range mode.",
+      "name": "maxRange",
+      "type": "number | undefined"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The earliest selectable date as an ISO YYYY-MM-DD string.",
+      "name": "min",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "Minimum inclusive length for user-created ranges; ignored outside range mode.",
+      "name": "minRange",
+      "type": "number | undefined"
+    },
+    {
+      "access": "public",
+      "default": "'single'",
+      "description": "The calendar selection mode; changing modes uses the calendar's normalization policy.",
+      "name": "mode",
+      "type": "CalendarSelectionMode"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The name of the input, submitted as a name/value pair with form data.",
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Indicates whether the calendar is open. Use this attribute or the `show()` and `hide()` methods.",
+      "name": "open",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "popup",
+      "type": "SynPopup"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Makes the input readonly.",
+      "name": "readonly",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Makes the input a required field.",
+      "name": "required",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "'medium'",
+      "description": "The input's size.",
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "access": "readonly",
+      "description": "Gets the browser's constraint validation message.",
+      "name": "validationMessage"
+    },
+    {
+      "access": "readonly",
+      "description": "Gets the constraint validation state.",
+      "name": "validity"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "Whitespace-separated ISO dates: one date in single mode, two endpoints in range mode,\nor distinct sorted dates in multiple mode. One range endpoint represents a pending selection.\nPartial segment groups are retained for editing but excluded from this canonical value.",
+      "name": "value",
+      "type": "string"
+    },
+    {
+      "access": "readonly",
+      "description": "Gets the selected date as UTC midnight, or null for empty or invalid values.",
+      "name": "valueAsDate",
+      "type": "Date | null"
+    },
+    {
+      "access": "public",
+      "description": "Sets selected UTC date-only Date instances without emitting user value events.",
+      "name": "valueAsDates",
+      "type": "Date[]"
+    }
+  ],
+  "since": "0.0.0",
+  "slots": [
+    {
+      "description": "The input's label. Alternatively, you can use the `label` attribute.",
+      "name": "label"
+    },
+    {
+      "description": "The input's help text. Alternatively, you can use the `help-text` attribute.",
+      "name": "help-text"
+    },
+    {
+      "description": "Used to prepend a presentational icon or similar element to the date field.",
+      "name": "prefix"
+    },
+    {
+      "description": "Used to append a presentational icon or similar element to the date field.",
+      "name": "suffix"
+    },
+    {
+      "description": "The icon used by the calendar toggle button.",
+      "name": "expand-icon"
+    },
+    {
+      "description": "Forwarded to the calendar to replace a date's label.",
+      "name": "day-YYYY-MM-DD"
+    },
+    {
+      "description": "Forwarded to the calendar to replace January's label; month-1 through month-11 replace the other months.",
+      "name": "month-0"
+    },
+    {
+      "description": "Forwarded to the calendar to replace a year's label.",
+      "name": "year-YYYY"
+    }
+  ],
+  "sourceModulePath": "components/date-picker/date-picker.js",
+  "status": "experimental",
+  "summary": "A date picker component for selecting dates.",
+  "tagName": "syn-date-picker"
+}

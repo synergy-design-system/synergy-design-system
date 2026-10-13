@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.29.0
+
+### Minor Changes
+
+- [#1400](https://github.com/synergy-design-system/synergy-design-system/pull/1400) [`1e73b72`](https://github.com/synergy-design-system/synergy-design-system/commit/1e73b720d16196fa5cf4308c9d0f1b21b839df21) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-10-13
+
+  feat: ✨ Add new part `tag-limit` to `syn-combobox` and `syn-select` ([#1399](https://github.com/synergy-design-system/synergy-design-system/issues/1399))
+
+  This release adds the ability to style the tag limit item that is displayed when using either `syn-combobox` and `syn-select` in `multiple` mode and the amount of selections overflows the provided `maxOptionsVisible`. The `tag-limit` item now also exports the already available `tag` part, making it easier to style all displayed tags. It also provides access to the `syn-tag` components inner parts.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @synergy-design-system/tokens@3.29.0
+
 ## 3.28.0
 
 ### Minor Changes

@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/tokens",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-tokens-3.28.0-61f373d4-1710-4507-8422-e575d71fe015",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-tokens-3.29.0-359b12d9-72d9-4e9b-86ed-680beca21c62",
   "creationInfo": {
-    "created": "2026-10-07T08:30:59Z",
+    "created": "2026-10-13T09:19:07Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/tokens",
-      "versionInfo": "3.28.0",
+      "versionInfo": "3.29.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -25,7 +25,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.28.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.29.0"
         }
       ],
       "description": "Design tokens for Synergy, the SICK Design System",

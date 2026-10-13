@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.22.0
+
+### Minor Changes
+
+- Released on: 2026-10-13
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+### Patch Changes
+
+- Updated dependencies [[`1e73b72`](https://github.com/synergy-design-system/synergy-design-system/commit/1e73b720d16196fa5cf4308c9d0f1b21b839df21)]:
+  - @synergy-design-system/metadata@4.22.0
+
 ## 4.21.0
 
 ### Minor Changes

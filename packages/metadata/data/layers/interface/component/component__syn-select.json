@@ -210,6 +210,14 @@
       "name": "tag-limit"
     },
     {
+      "description": "The tag-limit's base part.",
+      "name": "tag-limit__base"
+    },
+    {
+      "description": "The tag-limit's content part.",
+      "name": "tag-limit__content"
+    },
+    {
       "description": "The container that houses option tags when `multiselect` is used.",
       "name": "tags"
     }

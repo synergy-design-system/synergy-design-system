@@ -282,6 +282,8 @@ Shows the listbox.
 - `tag__remove-button`: The tag's remove button.
 - `tag__remove-button__base`: The tag's remove button base part.
 - `tag-limit`: The tag that represents the limit indicator when the number of selected options exceeds the visible tags.
+- `tag-limit__base`: The tag-limit's base part.
+- `tag-limit__content`: The tag-limit's content part.
 - `tags`: The container that houses option tags when `multiselect` is used.
 
 ## Available Events

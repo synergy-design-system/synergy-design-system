@@ -569,6 +569,8 @@ declare module 'vue' {
      * @csspart tag__remove-button - The tag's remove button.
      * @csspart tag__remove-button__base - The tag's remove button base part.
      * @csspart tag-limit - The tag that represents the limit indicator when the number of selected options exceeds the visible tags.
+     * @csspart tag-limit__base - The tag-limit's base part.
+     * @csspart tag-limit__content - The tag-limit's content part.
      *
      * @animation combobox.show - The animation to use when showing the combobox.
      * @animation combobox.hide - The animation to use when hiding the combobox.
@@ -1357,6 +1359,8 @@ declare module 'vue' {
      * @csspart tag__remove-button - The tag's remove button.
      * @csspart tag__remove-button__base - The tag's remove button base part.
      * @csspart tag-limit - The tag that represents the limit indicator when the number of selected options exceeds the visible tags.
+     * @csspart tag-limit__base - The tag-limit's base part.
+     * @csspart tag-limit__content - The tag-limit's content part.
      * @csspart clear-button - The clear button.
      * @csspart expand-icon - The container that wraps the expand icon.
      * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
@@ -1878,6 +1882,8 @@ declare module 'vue' {
      * @csspart tag__remove-button - The tag's remove button.
      * @csspart tag__remove-button__base - The tag's remove button base part.
      * @csspart tag-limit - The tag that represents the limit indicator when the number of selected options exceeds the visible tags.
+     * @csspart tag-limit__base - The tag-limit's base part.
+     * @csspart tag-limit__content - The tag-limit's content part.
      *
      * @animation combobox.show - The animation to use when showing the combobox.
      * @animation combobox.hide - The animation to use when hiding the combobox.
@@ -2681,6 +2687,8 @@ declare module 'vue' {
      * @csspart tag__remove-button - The tag's remove button.
      * @csspart tag__remove-button__base - The tag's remove button base part.
      * @csspart tag-limit - The tag that represents the limit indicator when the number of selected options exceeds the visible tags.
+     * @csspart tag-limit__base - The tag-limit's base part.
+     * @csspart tag-limit__content - The tag-limit's content part.
      * @csspart clear-button - The clear button.
      * @csspart expand-icon - The container that wraps the expand icon.
      * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.

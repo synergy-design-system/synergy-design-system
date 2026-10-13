@@ -100,6 +100,7 @@ import { compareValues, isAllowedValue } from '../select/utility.js';
  * @csspart tag__content - The tag's content part.
  * @csspart tag__remove-button - The tag's remove button.
  * @csspart tag__remove-button__base - The tag's remove button base part.
+ * @csspart tag-limit - The tag that represents the limit indicator when the number of selected options exceeds the visible tags.
  *
  * @animation combobox.show - The animation to use when showing the combobox.
  * @animation combobox.hide - The animation to use when hiding the combobox.
@@ -534,7 +535,15 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         </div>`;
       } if (index === this.maxOptionsVisible) {
         // Hit tag limit
-        return html`<syn-tag size=${this.size}>+${this.selectedOptions.length - index}</syn-tag>`;
+        return html`
+          <syn-tag
+            exportparts="base:tag__base, content:tag__content"
+            part="tag tag-limit"
+            size=${this.size}
+          >
+            +${this.selectedOptions.length - index}
+          </syn-tag>
+        `;
       }
       return html``;
     });

@@ -77,6 +77,7 @@ Component.define('syn-combobox');
  * @csspart tag__content - The tag's content part.
  * @csspart tag__remove-button - The tag's remove button.
  * @csspart tag__remove-button__base - The tag's remove button base part.
+ * @csspart tag-limit - The tag that represents the limit indicator when the number of selected options exceeds the visible tags.
  *
  * @animation combobox.show - The animation to use when showing the combobox.
  * @animation combobox.hide - The animation to use when hiding the combobox.

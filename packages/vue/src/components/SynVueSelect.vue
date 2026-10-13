@@ -50,6 +50,7 @@
  * @csspart tag__content - The tag's content part.
  * @csspart tag__remove-button - The tag's remove button.
  * @csspart tag__remove-button__base - The tag's remove button base part.
+ * @csspart tag-limit - The tag that represents the limit indicator when the number of selected options exceeds the visible tags.
  * @csspart clear-button - The clear button.
  * @csspart expand-icon - The container that wraps the expand icon.
  * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.

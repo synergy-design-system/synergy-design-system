@@ -9,6 +9,8 @@ import {
 import {
   INTENT_DEFAULT_FRAMEWORK,
   INTENT_DEFAULT_PHASES,
+  buildComponentRecovery,
+  buildIntentRecovery,
   createToolAnnotations,
   getRuntimeConfig,
   getToolRule,
@@ -192,15 +194,15 @@ export const intentComponentValidateTool = (server: McpServer) => {
     'intent-component-validate',
     {
       annotations: createToolAnnotations(),
-      description: 'Answer the question: Do I use a component correctly for a specific intent?',
+      description: 'Validate component markup against one registered Synergy intent. Use an exact intent ID returned by intent-discover; do not guess or construct intent IDs. Checks intent policy, not complete accessibility or runtime behavior.',
       inputSchema: {
-        component: z.string().startsWith('syn-').describe('Component tag name, for example syn-button.'),
+        component: z.string().min(1).describe('Exact component tag returned by component-list, for example syn-button. Do not guess or construct this value.'),
         framework: frameworkSchema.optional().describe('Target framework profile. Defaults to vanilla.'),
         includePhases: z.array(intentPhaseSchema).optional().describe('Optional phase filter. Defaults to ["experimental"].'),
-        intent: z.string().min(1).describe('Intent ID, for example action.submit.'),
+        intent: z.string().min(1).describe('Exact registered intent ID returned by intent-discover. Do not guess or construct this value.'),
         markup: z.string().min(1).describe('Template or markup source. The tool auto-derives structure for validation from this content.'),
       },
-      title: 'Intent component validate',
+      title: 'Validate component markup against intent',
     },
     toolHandler('intent-component-validate', async ({
       component,
@@ -217,6 +219,7 @@ export const intentComponentValidateTool = (server: McpServer) => {
     }) => {
       const { tools } = getRuntimeConfig();
       const aiRules = await getToolRule('intent-component-validate');
+      const resolvedPhases = includePhases ?? tools.intentComponentValidate.includePhases ?? [...INTENT_DEFAULT_PHASES];
 
       const parsedNodes = parseMarkupToStructure(markup);
       const normalizedStructure = findFirstNodeByComponent(parsedNodes, component)
@@ -228,14 +231,24 @@ export const intentComponentValidateTool = (server: McpServer) => {
       const response = await validateComponent({
         component,
         framework: framework ?? tools.intentComponentValidate.framework ?? INTENT_DEFAULT_FRAMEWORK,
-        includePhases: includePhases ?? tools.intentComponentValidate.includePhases ?? [...INTENT_DEFAULT_PHASES],
+        includePhases: resolvedPhases,
         intent,
         structure: normalizedStructure,
       });
 
-      if (!response.data) {
-        const message = response.errors?.[0]?.message ?? `No validation result available for component ${component}.`;
-        return [aiRules, message];
+      const unknownComponentIssue = response.data?.issues.find((issue) => issue.code === 'COMPONENT_NOT_REGISTERED');
+      if (unknownComponentIssue) {
+        // Return the authoritative catalog so agents can recover without guessing component tags.
+        return [aiRules, await buildComponentRecovery(component, unknownComponentIssue.message)];
+      }
+
+      const unknownIntentIssue = response.data?.issues.find((issue) => issue.code === 'INTENT_NOT_REGISTERED');
+      if (!response.data || unknownIntentIssue) {
+        const message = unknownIntentIssue?.message
+          ?? response.errors?.[0]?.message
+          ?? `No validation result available for component ${component}.`;
+        // Return authoritative discovery options so agents can recover without guessing intent IDs.
+        return [aiRules, await buildIntentRecovery(intent, message, resolvedPhases)];
       }
 
       return [aiRules, response.data];

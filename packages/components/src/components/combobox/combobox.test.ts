@@ -64,8 +64,8 @@ describe('<syn-combobox>', () => {
     expect(el.helpText).to.equal('');
     expect(el.form).to.equal('');
     expect(el.required).to.be.false;
-    expect(el.getOption).to.be.a('function');
-    expect(el.filter).to.be.a('function');
+    expect(el.getOption).to.equal('default');
+    expect(el.filter).to.equal('contains');
     expect(el.restricted).to.be.false;
     expect(el.multiple).to.be.false;
   });
@@ -92,8 +92,8 @@ describe('<syn-combobox>', () => {
     expect(el.helpText).to.equal('');
     expect(el.form).to.equal('');
     expect(el.required).to.be.false;
-    expect(el.getOption).to.be.a('function');
-    expect(el.filter).to.be.a('function');
+    expect(el.getOption).to.equal('default');
+    expect(el.filter).to.equal('contains');
     expect(el.restricted).to.be.false;
     expect(el.multiple).to.be.false;
   });
@@ -1204,6 +1204,34 @@ describe('<syn-combobox>', () => {
     expect(el.displayInput.value).to.equal('');
   });
 
+  it('should not show the clear button again after clearing a multiple combobox and typing then deleting text', async () => {
+    const el = await fixture<SynCombobox>(html`
+      <syn-combobox value="option-1" clearable multiple>
+        <syn-option value="option-1">Option 1</syn-option>
+        <syn-option value="option-2">Option 2</syn-option>
+        <syn-option value="option-3">Option 3</syn-option>
+      </syn-combobox>
+    `);
+    const clearButton = () => el.shadowRoot!.querySelector('[part~="clear-button"]');
+
+    expect(clearButton()).not.to.be.null;
+
+    await clickOnElement(clearButton()!);
+    await el.updateComplete;
+
+    expect(clearButton()).to.be.null;
+
+    el.focus();
+    await sendKeys({ type: 'abc' });
+    await sendKeys({ press: 'Backspace' });
+    await sendKeys({ press: 'Backspace' });
+    await sendKeys({ press: 'Backspace' });
+    await el.updateComplete;
+
+    expect(el.value).to.deep.equal([]);
+    expect(clearButton()).to.be.null;
+  });
+
   it('should emit syn-show, syn-after-show, syn-hide, and syn-after-hide events when the listbox opens and closes', async () => {
     const el = await fixture<SynCombobox>(html`
       <syn-combobox>
@@ -1355,6 +1383,61 @@ describe('<syn-combobox>', () => {
     const options = el.querySelectorAll('syn-option');
 
     expect(filterHandler).to.have.been.calledThrice;
+    expect(options[0]).to.be.displayed;
+    expect(options[1]).not.to.be.displayed;
+    expect(options[2]).to.be.displayed;
+  });
+
+  it('should show all options when the filter attribute is set to "none"', async () => {
+    const el = await fixture<SynCombobox>(html`
+      <syn-combobox value="green" filter="none">
+        <syn-option value="option-1">Green</syn-option>
+        <syn-option value="option-2">Red</syn-option>
+        <syn-option value="option-3">Light green</syn-option>
+      </syn-combobox>
+    `);
+
+    await el.show();
+    await el.updateComplete;
+
+    const options = el.querySelectorAll('syn-option');
+
+    expect(el.filter).to.equal('none');
+    options.forEach(option => expect(option).to.be.displayed);
+  });
+
+  it('should show all options when the filter property is set to "none"', async () => {
+    const el = await fixture<SynCombobox>(html`
+      <syn-combobox value="green">
+        <syn-option value="option-1">Green</syn-option>
+        <syn-option value="option-2">Red</syn-option>
+        <syn-option value="option-3">Light green</syn-option>
+      </syn-combobox>
+    `);
+
+    el.filter = 'none';
+
+    await el.show();
+    await el.updateComplete;
+
+    const options = el.querySelectorAll('syn-option');
+    options.forEach(option => expect(option).to.be.displayed);
+  });
+
+  it('should fall back to the default filter for unknown filter names', async () => {
+    const el = await fixture<SynCombobox>(html`
+      <syn-combobox value="green" filter="unknown">
+        <syn-option value="option-1">Green</syn-option>
+        <syn-option value="option-2">Red</syn-option>
+        <syn-option value="option-3">Light green</syn-option>
+      </syn-combobox>
+    `);
+
+    await el.show();
+    await el.updateComplete;
+
+    const options = el.querySelectorAll('syn-option');
+
     expect(options[0]).to.be.displayed;
     expect(options[1]).not.to.be.displayed;
     expect(options[2]).to.be.displayed;
@@ -1515,6 +1598,74 @@ describe('<syn-combobox>', () => {
         expect(option.getTextLabel()).to.equal(`Template - Option ${index + 1}`);
       });
       expect(getOptionHandler).to.have.been.calledThrice;
+    });
+
+    it('should use the highlight renderer when the getOption attribute is set to "highlight"', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox value="Opt" .getOption=${'highlight'}>
+          <syn-option value="option-1">Option 1</syn-option>
+        </syn-combobox>
+      `);
+
+      await el.show();
+      await el.updateComplete;
+
+      expect(el.getOption).to.equal('highlight');
+      const option = el.querySelector('syn-option')!;
+      expect(option.querySelector('mark')!.textContent).to.equal('Opt');
+    });
+
+    it('should fall back to the default renderer for unknown getOption names', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox value="option-1" .getOption=${'unknown'}>
+          <syn-option value="option-1">Option 1</syn-option>
+        </syn-combobox>
+      `);
+
+      await el.show();
+      await el.updateComplete;
+
+      const option = el.querySelector('syn-option')!;
+      expect(option.getTextLabel()).to.equal('Option 1');
+      expect(option.querySelector('mark')).to.be.null;
+    });
+
+    it('should not corrupt the option markup when getOption is set via attribute and the query changes', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox getOption="highlight" value="g">
+          <syn-option value="Green">Green</syn-option>
+          <syn-option value="Grey">Grey</syn-option>
+        </syn-combobox>
+      `);
+
+      await aTimeout(0);
+      await el.show();
+      await el.updateComplete;
+
+      el.focus();
+      await sendKeys({ type: 're' });
+      await el.updateComplete;
+
+      const options = el.querySelectorAll<SynOption>('syn-option');
+      expect(options[0].getTextLabel()).to.equal('Green');
+      expect(options[1].getTextLabel()).to.equal('Grey');
+      expect(options[0].querySelector('mark')!.textContent).to.equal('Gre');
+    });
+
+    it('should keep the option intact when the query does not match the option label', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox getOption="highlight" filter="none" value="zz">
+          <syn-option value="Green">Green</syn-option>
+        </syn-combobox>
+      `);
+
+      await aTimeout(0);
+      await el.show();
+      await el.updateComplete;
+
+      const option = el.querySelector<SynOption>('syn-option')!;
+      expect(option.getTextLabel()).to.equal('Green');
+      expect(option.querySelector('mark')).to.be.null;
     });
 
     it('should use the original option if incorrect getOption renderer is used', async () => {
@@ -2558,6 +2709,124 @@ describe('<syn-combobox>', () => {
       expect(options[0].hidden).to.be.false;
       expect(options[1].hidden).to.be.true;
       expect(options[2].hidden).to.be.false;
+    });
+  });
+
+  describe('#1391', () => {
+    it('should display the placeholder attribute when the combobox is empty and placeholder is set', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox placeholder="Select an option" multiple>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-11">Option 11</syn-option>
+        </syn-combobox>
+      `);
+
+      await el.updateComplete;
+
+      expect(el.displayInput.placeholder).to.equal('Select an option');
+    });
+
+    it('should not display the placeholder attribute when the combobox has a value and placeholder is set', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox placeholder="Select an option" multiple value="option-1">
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-11">Option 11</syn-option>
+        </syn-combobox>
+      `);
+
+      await el.updateComplete;
+
+      expect(el.displayInput.placeholder).to.equal('');
+    });
+  });
+
+  describe('end-reached', () => {
+    const manyOptions = Array.from(
+      { length: 30 },
+      (_, i) => html`<syn-option value="option-${i}">Option ${i}</syn-option>`,
+    );
+
+    it('should emit syn-end-reached when the listbox is scrolled close to its end', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>${manyOptions}</syn-combobox>
+      `);
+
+      await el.show();
+      el.listbox.style.maxHeight = '100px';
+      await el.updateComplete;
+
+      const eventPromise = oneEvent(el, 'syn-end-reached');
+      el.listbox.scrollTop = el.listbox.scrollHeight;
+
+      await eventPromise;
+    });
+
+    it('should not emit syn-end-reached again until new options have been added', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>${manyOptions}</syn-combobox>
+      `);
+
+      await el.show();
+      el.listbox.style.maxHeight = '100px';
+      await el.updateComplete;
+
+      const loadMoreHandler = sinon.spy();
+      el.addEventListener('syn-end-reached', loadMoreHandler);
+
+      el.listbox.scrollTop = el.listbox.scrollHeight;
+      await waitUntil(() => loadMoreHandler.calledOnce);
+
+      // Scroll away and back without adding new options
+      el.listbox.scrollTop = 0;
+      await aTimeout(50);
+      el.listbox.scrollTop = el.listbox.scrollHeight;
+      await aTimeout(300);
+
+      expect(loadMoreHandler.callCount).to.equal(1);
+
+      // Adding a new option re-arms the sentinel
+      const newOption = document.createElement('syn-option');
+      newOption.value = 'option-new';
+      newOption.textContent = 'New option';
+      el.appendChild(newOption);
+      await el.updateComplete;
+
+      el.listbox.scrollTop = 0;
+      el.listbox.scrollTop = el.listbox.scrollHeight;
+      await waitUntil(() => loadMoreHandler.calledTwice);
+
+      expect(loadMoreHandler.callCount).to.equal(2);
+    });
+
+    it('should trigger again after the cooldown elapses even if the sentinel never left the viewport', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>${manyOptions}</syn-combobox>
+      `);
+
+      await el.show();
+      el.listbox.style.maxHeight = '100px';
+      await el.updateComplete;
+
+      const loadMoreHandler = sinon.spy();
+      el.addEventListener('syn-end-reached', () => {
+        loadMoreHandler();
+        // Simulate a fast data source that resolves immediately and barely grows the scrollable
+        // height, so the sentinel is still intersecting right after the controller re-arms it.
+        const option = document.createElement('syn-option');
+        option.value = `option-extra-${loadMoreHandler.callCount}`;
+        option.textContent = `Extra option ${loadMoreHandler.callCount}`;
+        el.appendChild(option);
+      });
+
+      el.listbox.scrollTop = el.listbox.scrollHeight;
+
+      // No manual scroll-away-and-back gesture here: the second trigger must arrive on its own
+      // once the cooldown elapses, since the sentinel's intersection state never actually changes.
+      await waitUntil(() => loadMoreHandler.callCount >= 2);
+
+      expect(loadMoreHandler.callCount).to.be.greaterThan(1);
     });
   });
 

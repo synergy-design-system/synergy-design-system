@@ -4,6 +4,7 @@ import {
   getDataForStyle,
 } from '@synergy-design-system/metadata';
 import {
+  buildStyleRecovery,
   createToolAnnotations,
   getToolRule,
   toolHandler,
@@ -18,11 +19,11 @@ export const stylesInfoTool = (server: McpServer) => {
     'styles-info',
     {
       annotations: createToolAnnotations(),
-      description: 'Get information about css utilities available in the Synergy Design System',
+      description: 'Get examples and usage documentation for one Synergy CSS utility. Use an exact style name returned by styles-list.',
       inputSchema: {
-        style: z.string().describe('The name of the style to get information about.'),
+        style: z.string().min(1).describe('Exact style name returned by styles-list. Do not guess or construct this value.'),
       },
-      title: 'Styles info',
+      title: 'Get style documentation',
     },
     toolHandler('styles-info', async ({
       style,
@@ -30,9 +31,8 @@ export const stylesInfoTool = (server: McpServer) => {
       const response = await getDataForStyle(style, { layer: 'examples' });
 
       if (!response.data) {
-        return [
-          `No style found: ${style}`,
-        ];
+        // Return the authoritative catalog so agents can recover without guessing style names.
+        return [await buildStyleRecovery(style, `No style found: ${style}`)];
       }
 
       const aiRules = await getToolRule('styles-info');

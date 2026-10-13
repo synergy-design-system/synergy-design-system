@@ -36,6 +36,14 @@ export default {
       id: 'content_and_guidance',
       name: 'Content and Guidance',
     },
+    {
+      content: [
+        'Use readonly when users need to review or copy existing text without changing it.',
+        'Use disabled only when the textarea is unavailable; explain why and how it becomes available.',
+      ],
+      id: 'states',
+      name: 'Validation and States',
+    },
   ],
   useCases: [
     'Collect detailed user feedback or comments.',

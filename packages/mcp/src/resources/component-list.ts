@@ -14,9 +14,9 @@ export const componentListResource = (server: McpServer) => {
     'component-list',
     RESOURCE_URI,
     {
-      description: 'A list of all available component names in the Synergy Design System.',
+      description: 'Static JSON index of Synergy component tag names. Read directly for discovery; use component-info for API, examples, and rules.',
       mimeType: 'application/json',
-      title: 'Component list',
+      title: 'Synergy component index',
     },
     resourceHandler('component-list', async (_uri) => {
       const components = await listComponents({

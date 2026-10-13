@@ -89,7 +89,7 @@
         {
           "description": {
             "type": "text",
-            "value": "Radios and radio buttons can be disabled by adding the disabled attribute to the respective options inside the radio group."
+            "value": "Set disabled on individual syn-radio or syn-radio-button options that are unavailable, and explain why they cannot be selected. The group itself has no disabled attribute."
           },
           "name": "disabled",
           "title": {
@@ -100,7 +100,7 @@
         {
           "description": {
             "type": "text",
-            "value": "Add the readonly attribute to a radio to draw it in a readonly state."
+            "value": "Set readonly on every syn-radio or syn-radio-button in the group when users should inspect the selected choice without changing it. Marking only the selected option readonly leaves other choices available."
           },
           "name": "readonly",
           "title": {
@@ -250,6 +250,14 @@
           ],
           "id": "layout",
           "name": "Layout"
+        },
+        {
+          "content": [
+            "To show a selection without allowing changes, set readonly on every syn-radio or syn-radio-button in the group; marking only the selected option readonly does not lock the others.",
+            "Set disabled on individual unavailable options and explain why they cannot be selected. The radio group itself has no readonly or disabled attribute."
+          ],
+          "id": "states",
+          "name": "Validation and States"
         }
       ],
       "useCases": [

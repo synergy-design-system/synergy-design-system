@@ -32,6 +32,7 @@ export * from './ProgressRing.js';
 export * from './RadioButton.js';
 export * from './RadioGroup.js';
 export * from './Range.js';
+export * from './SegmentChart.js';
 export * from './Select.js';
 export * from './Spinner.js';
 export * from './Switch.js';

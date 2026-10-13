@@ -3,6 +3,18 @@ import type { MetadataFile } from './metadata.js';
 
 type AvailablePackages = 'assets' | 'components' | 'tokens' | 'styles';
 
+export type MigrationRecoveryResult = {
+  availableFilenames: string[];
+  error: string;
+  operationPerformed: false;
+  package: AvailablePackages;
+  recovery: {
+    arguments: { synergyPackage: AvailablePackages };
+    tool: 'migration-list';
+  };
+  submittedFilename: string;
+};
+
 // For non-components packages, return only breaking changes docs.
 // For components, also include the migration path guides from the migration/ layer subfolder.
 const isMigrationFile = (path: string, pkg: AvailablePackages): boolean => {
@@ -49,3 +61,19 @@ export const getMigrationMetaData = async (requestedPackage: AvailablePackages =
   const entityId = setupEntityByPackage[requestedPackage] ?? setupEntityByPackage.components;
   return getMigrationMetaDataFromSetupEntity(entityId, requestedPackage);
 };
+
+export const buildMigrationRecovery = async (
+  requestedPackage: AvailablePackages,
+  submittedFilename: string,
+  error: string,
+): Promise<MigrationRecoveryResult> => ({
+  availableFilenames: (await getMigrationMetaData(requestedPackage)).map((file) => file.filename),
+  error,
+  operationPerformed: false,
+  package: requestedPackage,
+  recovery: {
+    arguments: { synergyPackage: requestedPackage },
+    tool: 'migration-list',
+  },
+  submittedFilename,
+});

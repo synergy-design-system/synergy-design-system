@@ -15,4 +15,13 @@ export default [
       'no-param-reassign': 'off',
     },
   },
+  {
+    files: ['dist/js/**/*.{js,ts}', 'dist/charts/js/**/*.{js,ts}'],
+    rules: {
+      // Allow underscores before a number in the middle of variable names, as two consecutive numbers are separated by an underscore (e.g. SynSpacing1_5xLarge)
+      camelcase: ['error', {
+        allow: ['^[A-Za-z][A-Za-z0-9]*(?:_[0-9]+[A-Za-z0-9]*)+$'],
+      }],
+    },
+  },
 ];

@@ -54,12 +54,34 @@ describe('tool contract', () => {
       'intent-categories-list',
       'intent-component-guide',
       'intent-component-validate',
+      'intent-discover',
       'intent-options',
       'intent-task-recommendations',
     ];
 
     expectedIntentTools.forEach((name) => {
       assert.ok(names.includes(name), `Expected intent tool "${name}" to be registered by default.`);
+    });
+  });
+
+  it('advertises discovery and compatibility routing in intent tool contracts', async () => {
+    const result = await session.client.listTools();
+    const legacy = result.tools.find((tool) => tool.name === 'intent-categories-list');
+    const discovery = result.tools.find((tool) => tool.name === 'intent-discover');
+    const validation = result.tools.find((tool) => tool.name === 'intent-component-validate');
+
+    assert.match(legacy?.title ?? '', /deprecated/i);
+    assert.match(legacy?.description ?? '', /do not use.*intent-discover/i);
+    assert.match(discovery?.description ?? '', /exact intent IDs/i);
+    assert.match(validation?.description ?? '', /do not guess or construct intent IDs/i);
+  });
+
+  it('gives every registered tool a concise title and description', async () => {
+    const result = await session.client.listTools();
+    result.tools.forEach((tool) => {
+      assert.ok(tool.title?.trim(), `Expected tool "${tool.name}" to have a title.`);
+      assert.ok(tool.description?.trim(), `Expected tool "${tool.name}" to have a description.`);
+      assert.doesNotMatch(tool.description ?? '', /^Answer the question:/);
     });
   });
 

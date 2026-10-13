@@ -281,6 +281,9 @@ Shows the listbox.
 - `tag__content`: The tag's content part.
 - `tag__remove-button`: The tag's remove button.
 - `tag__remove-button__base`: The tag's remove button base part.
+- `tag-limit`: The tag that represents the limit indicator when the number of selected options exceeds the visible tags.
+- `tag-limit__base`: The tag-limit's base part.
+- `tag-limit__content`: The tag-limit's content part.
 - `tags`: The container that houses option tags when `multiselect` is used.
 
 ## Available Events
@@ -314,6 +317,12 @@ Emitted when the control's value changes.
 type: `SynClearEvent`
 
 Emitted when the control's value is cleared.
+
+### syn-end-reached
+
+type: `SynEndReachedEvent`
+
+Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
 
 ### syn-focus
 

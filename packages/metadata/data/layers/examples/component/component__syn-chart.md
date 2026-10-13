@@ -2193,3 +2193,439 @@ Line charts can display both positive and negative values.
   });
 </script>
 ```
+
+---
+
+## Default
+
+The segment chart can be configured via the chart config with type: 'synSegment' or with the seriesSegment preset function.
+
+```html
+<syn-chart id="segment-preset"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#segment-preset");
+
+  charts.forEach((chart) => {
+    chart.config = {
+      series: [
+        {
+          type: "synSegment",
+          data: [5, 10, 50, 80, 100],
+        },
+      ],
+    };
+  });
+</script>
+```
+
+---
+
+## Name
+
+The name option sets the name of the segment chart, which is displayed in the gap of the chart when provided. The text styling can be overwritten via nameTextStyle. It can be used to e.g. change the appearance like color, overflow handling, positioning and other text-related properties.
+
+```html
+<syn-chart id="segment-name"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#segment-name");
+  charts.forEach((chart) => {
+    const halfChartSize = () =>
+      Math.min(chart.offsetWidth, chart.offsetHeight) / 2;
+    let nameWidth = halfChartSize();
+    chart.config = (handle) =>
+      handle.seriesSegment({
+        data: [5, 10, 50, 80, 100],
+        name: "This is a very long name",
+        nameTextStyle: {
+          overflow: "break",
+          width: nameWidth,
+        },
+      });
+
+    setTimeout(() => {
+      const instance = chart.getInstance();
+      // Adapt the name width when the chart is resized, so it breaks correctly
+      window.addEventListener("resize", () => {
+        nameWidth = halfChartSize();
+        instance.setOption({
+          series: [{ nameTextStyle: { width: nameWidth } }],
+        });
+      });
+    });
+  });
+</script>
+```
+
+---
+
+## Custom Colors
+
+By default, each segment item is assigned a color from the chart's categorical color palette. Use the colors option to provide explicit colors instead; colors are repeated cyclically when fewer colors than data points are provided.
+
+```html
+<syn-chart id="segment-colors"></syn-chart>
+<script type="module">
+  // To use Synergy chart colors, import the resolved chart tokens. The chart
+  // configuration currently requires hex values, which can be retrieved
+  // directly from the chart tokens object:
+  //
+  // import { ResolvedTokens as ChartTokens } from '@synergy-design-system/tokens/charts/resolved';
+
+  const charts = document.querySelectorAll("#segment-colors");
+  const getChartColor = (token) => {
+    return ChartTokens[token]["light"];
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          color: [
+            getChartColor("SynChartSequential01_100"),
+            getChartColor("SynChartSequential01_90"),
+            getChartColor("SynChartSequential01_80"),
+            getChartColor("SynChartSequential01_70"),
+            getChartColor("SynChartSequential01_60"),
+            getChartColor("SynChartSequential01_50"),
+            getChartColor("SynChartSequential01_40"),
+          ],
+        })
+        .seriesSegment({
+          data: [70, 80, 90, 75, 60, 50],
+        });
+  });
+</script>
+```
+
+---
+
+## Label Formatting
+
+Segment labels can be provided as strings or formatter functions. If no label is provided, the value is used by default; set label to undefined to omit a label.
+
+```html
+<syn-chart id="segment-label-formatting"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#segment-label-formatting");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesSegment({
+        data: [
+          {
+            value: 70,
+            label: "Custom string",
+          },
+          {
+            value: 70,
+            label: undefined,
+          },
+          {
+            value: 70,
+            label: formatter.unitFormatter("ms"),
+          },
+          {
+            value: 70,
+            label: formatter.numberShorthandFormatter(),
+          },
+          {
+            value: 70,
+            label: formatter.numberFormatter(undefined, {
+              minimumFractionDigits: 2,
+            }),
+          },
+          {
+            value: 70,
+          },
+        ],
+      });
+  });
+</script>
+```
+
+---
+
+## Gap
+
+Use the gap option to set the size of the open section in the segment ring. It is defined as a fraction of the full circle (0–1) and defaults to 0.3. Use gapOrientation to rotate the opening around the chart. By default, it is centered at the bottom.
+
+```html
+<syn-chart id="segment-gap"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#segment-gap");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesSegment({
+        data: [5, 10, 50, 80, 100],
+        gap: 0.5,
+        gapOrientation: 90,
+      });
+  });
+</script>
+```
+
+---
+
+## No Gap
+
+Set gap to 0 to render no gap between the segments. Additionally a custom icon can be added to the inner circle via icon option.
+
+```html
+<syn-chart id="segment-no-gap"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#segment-no-gap");
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesSegment({
+        data: [90, 100, 20, 10, 50, 90, 10, 0, 20, 10, 30, 70, 40, 10, 30, 20],
+        gap: 0,
+        icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMiAyMS41cS0xLjg3MyAwLTMuMTg3LTEuMzE0UTcuNSAxOC44NzQgNy41IDE3cTAtMS4xNDMuNTMtMi4xMTdhNC41NiA0LjU2IDAgMCAxIDEuNDctMS42MTRWNXEwLTEuMDQ4LjcyNi0xLjc3NEEyLjQgMi40IDAgMCAxIDEyIDIuNXExLjA0OCAwIDEuNzc0LjcyNlQxNC41IDV2OC4yN2E0LjU2IDQuNTYgMCAwIDEgMS40NyAxLjYxM3EuNTMuOTc0LjUzIDIuMTE3IDAgMS44NzMtMS4zMTMgMy4xODZRMTMuODczIDIxLjUgMTIgMjEuNW0tMS0xMC4zMDhoMnYtMS4yNWgtMXYtLjg4NGgxVjYuOTQyaC0xdi0uODg0aDFWNWEuOTcuOTcgMCAwIDAtLjI4Ny0uNzEzQS45Ny45NyAwIDAgMCAxMiA0YS45Ny45NyAwIDAgMC0uNzEzLjI4N0EuOTcuOTcgMCAwIDAgMTEgNXoiLz48L3N2Zz4=",
+      });
+  });
+</script>
+```
+
+---
+
+## Min Max
+
+Use the min and max options to define the value range for the segment chart. This is useful when values share a known scale, such as a range from 0 to 1.
+
+```html
+<syn-chart id="segment-min-max"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#segment-min-max");
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .seriesSegment({
+          top: 80,
+          min: -5,
+          max: 20,
+          data: [
+            {
+              value: -1,
+              name: "January",
+              label: formatter.unitFormatter("°C"),
+            },
+            {
+              value: 2,
+              name: "February",
+              label: formatter.unitFormatter("°C"),
+            },
+            { value: 5, name: "March", label: formatter.unitFormatter("°C") },
+            { value: 9, name: "April", label: formatter.unitFormatter("°C") },
+            { value: 14, name: "May", label: formatter.unitFormatter("°C") },
+            { value: 17, name: "June", label: formatter.unitFormatter("°C") },
+            { value: 19, name: "July", label: formatter.unitFormatter("°C") },
+            { value: 18, name: "August", label: formatter.unitFormatter("°C") },
+            {
+              value: 14,
+              name: "September",
+              label: formatter.unitFormatter("°C"),
+            },
+            {
+              value: 10,
+              name: "October",
+              label: formatter.unitFormatter("°C"),
+            },
+            {
+              value: 5,
+              name: "November",
+              label: formatter.unitFormatter("°C"),
+            },
+            {
+              value: -0.5,
+              name: "December",
+              label: formatter.unitFormatter("°C"),
+            },
+          ],
+          name: "Temperature",
+        })
+        .legendShow();
+  });
+</script>
+```
+
+---
+
+## Weights
+
+Use the weight option on data items to control the relative width of each segment independently of its value. Segments without an explicit weight use the default weight.
+
+```html
+<syn-chart id="segment-weights"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#segment-weights");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesSegment({
+        data: [
+          {
+            label: formatter.unitFormatter("%"),
+            value: 15,
+            weight: 0.2,
+          },
+          {
+            label: formatter.unitFormatter("%"),
+            value: 30,
+          },
+          {
+            label: formatter.unitFormatter("%"),
+            value: 50,
+            weight: 0.5,
+          },
+          {
+            label: formatter.unitFormatter("%"),
+            value: 80,
+            weight: 0.3,
+          },
+          {
+            label: formatter.unitFormatter("%"),
+            value: 70,
+            weight: 0.7,
+          },
+        ],
+      });
+  });
+</script>
+```
+
+---
+
+## Custom Styling
+
+Customize individual segments with itemStyle, backgroundStyle and labelTextStyle. Both backgroundStyle and itemStyle can be either set on chart or on data item level, labelTextStyle can only be set to the data item level. The chart level styling is inherited by all segments, while on the data item level it overrides the chart level styling for that specific segment.
+
+```html
+<syn-chart id="segment-styling"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#segment-styling");
+
+  const getColor = (token) => {
+    return ComponentTokens[token]["light"];
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesSegment({
+        data: [
+          {
+            value: 60,
+            itemStyle: {
+              color: getColor("SynNamurErrorColor"),
+            },
+            label: "one",
+            labelTextStyle: {
+              fill: getColor("SynNamurErrorColor"),
+            },
+          },
+          {
+            value: 30,
+            itemStyle: {
+              color: getColor("SynNamurWarningColor"),
+              borderWidth: 1,
+            },
+            label: "two",
+            labelTextStyle: {
+              fill: getColor("SynNamurWarningColor"),
+            },
+          },
+          {
+            value: 50,
+            backgroundStyle: {
+              color: getColor("SynColorNeutral200"),
+            },
+            itemStyle: {
+              borderColor: getColor("SynNamurErrorColor"),
+              borderWidth: 3,
+              color: getColor("SynNamurSuccessColor"),
+            },
+            label: "three",
+            labelTextStyle: {
+              fill: getColor("SynNamurSuccessColor"),
+              fontSize: 24,
+            },
+          },
+        ],
+        itemStyle: {
+          color: getColor("SynNamurNeutralColor"),
+          borderColor: getColor("SynColorNeutral950"),
+          borderWidth: 1,
+        },
+        backgroundStyle: {
+          color: getColor("SynColorNeutral100"),
+        },
+        labelTextStyle: {
+          fontSize: 12,
+        },
+      });
+  });
+</script>
+```
+
+---
+
+## Insets
+
+Use top, right, bottom, and left to reduce the segment layout area from each side before segment rendering is done. Insets can be set in pixels (number) or percentages (string).
+
+```html
+<syn-chart id="segment-insets"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#segment-insets");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesSegment({
+        top: 20,
+        right: 30,
+        bottom: "20%",
+        left: 60,
+        data: [10, 20, 30, 40],
+      });
+  });
+</script>
+```
+
+---
+
+## With Legend
+
+Use legendShow() to display a legend for segment data items. Set the name option on each item to provide its legend label.
+
+```html
+<syn-chart id="segment-legend"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#segment-legend");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .seriesSegment({
+          data: [
+            {
+              value: 15,
+              name: "One",
+            },
+            {
+              value: 30,
+              name: "Two",
+            },
+            {
+              value: 50,
+              name: "Three",
+            },
+            {
+              value: 80,
+              name: "Four",
+            },
+          ],
+          top: 20,
+        })
+        .legendShow();
+  });
+</script>
+```

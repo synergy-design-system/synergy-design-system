@@ -56,6 +56,14 @@ export default {
       id: 'styling',
       name: 'Styling',
     },
+    {
+      content: [
+        'Use readonly on every radio button in a group when the current selection is for inspection only; leaving other buttons enabled still lets users change the choice.',
+        'Use disabled on individual buttons only when those options are unavailable, and explain why users cannot choose them.',
+      ],
+      id: 'states',
+      name: 'Validation and States',
+    },
   ],
   useCases: [
     'Filter or switch between views with button-style appearance and icon support.',

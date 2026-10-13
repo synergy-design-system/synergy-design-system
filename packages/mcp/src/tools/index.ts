@@ -9,6 +9,7 @@ export * from './davinci-migration-list.js';
 export * from './migration-info.js';
 export * from './migration-list.js';
 export * from './intent-categories-list.js';
+export * from './intent-discover.js';
 export * from './intent-component-guide.js';
 export * from './intent-component-validate.js';
 export * from './intent-task-recommendations.js';

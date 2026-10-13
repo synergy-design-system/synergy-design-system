@@ -6,12 +6,26 @@
  * Usage:
  *   npx @synergy-design-system/metadata install-skills --path .github/skills
  *   npx @synergy-design-system/metadata install-skills --path=/absolute/path
+ *   npx @synergy-design-system/metadata install-skills --path .github/skills --skills component,intents
  */
 import { resolve } from 'node:path';
 import { generateSkillBundle, getSynergyLogo } from '../public/index.js';
+import type { SkillName } from '../public/index.js';
+
+const VALID_SKILLS: SkillName[] = ['component', 'templates', 'intents'];
 
 interface CliOptions {
   path?: string;
+  skills?: SkillName[];
+}
+
+function parseSkills(value: string): SkillName[] {
+  const skills = value.split(',').map((skill) => skill.trim()).filter(Boolean);
+  const invalidSkills = skills.filter((skill): skill is string => !VALID_SKILLS.includes(skill as SkillName));
+  if (skills.length === 0 || invalidSkills.length > 0) {
+    throw new Error(`Invalid --skills value. Choose one or more of: ${VALID_SKILLS.join(', ')}`);
+  }
+  return skills as SkillName[];
 }
 
 /**
@@ -24,6 +38,12 @@ function parseArgs(args: string[]): CliOptions {
     }
     if (arg.startsWith('--path=')) {
       return { ...opts, path: arg.substring('--path='.length) };
+    }
+    if (arg === '--skills' && index + 1 < args.length) {
+      return { ...opts, skills: parseSkills(args[index + 1]) };
+    }
+    if (arg.startsWith('--skills=')) {
+      return { ...opts, skills: parseSkills(arg.substring('--skills='.length)) };
     }
     return opts;
   }, {});
@@ -46,13 +66,32 @@ async function main() {
     const absolutePath = resolve(process.cwd(), opts.path);
     console.log(`Installing Synergy skills to: ${absolutePath}`);
 
-    await generateSkillBundle({ outputPath: absolutePath });
+    await generateSkillBundle({ outputPath: absolutePath, skills: opts.skills });
 
     console.log(getSynergyLogo());
     console.log('✓ Synergy skills installed successfully\n');
     console.log('Next steps:');
-    console.log('  1. In VS Code, reference the skill with: @synergy-component');
-    console.log('  2. Ask questions like: "How do I use syn-button?"');
+    const installedSkills = opts.skills ?? VALID_SKILLS;
+    installedSkills.forEach((skill, index) => {
+      let skillName: string;
+      switch (skill) {
+        case 'component':
+          skillName = 'synergy-component';
+          break;
+        case 'templates':
+          skillName = 'synergy-templates';
+          break;
+        case 'intents':
+          skillName = 'synergy-intent-policy';
+          break;
+        default:
+          throw new Error(`Unsupported skill: ${skill as string}`);
+      }
+      console.log(`  ${index + 1}. In VS Code, reference the skill with: /${skillName}`);
+    });
+    if (installedSkills.includes('component')) {
+      console.log(`  ${installedSkills.length + 1}. Ask questions like: "How do I use syn-button?"`);
+    }
     console.log(`\nSkill location: ${absolutePath}`);
   } catch (error) {
     if (error instanceof Error && error.message.startsWith('--path')) {

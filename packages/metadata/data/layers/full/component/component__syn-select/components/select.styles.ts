@@ -304,6 +304,15 @@ export default css`
     --spacing: var(--syn-spacing-x-small);
   }
 
+  /**
+   * Marks the end of the scrollable option list, see LoadMoreController.
+   * Must not take up any space, as it would otherwise grow the listbox.
+   */
+  .select__sentinel {
+    block-size: 0;
+    pointer-events: none;
+  }
+
   .select__listbox ::slotted(small) {
     color: var(--syn-color-neutral-500);
     display: block;

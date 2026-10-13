@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { parseCommandLineArgs } from '../../src/utilities/cli.js';
+import { parseCommandLineArgs } from '../../src/utilities/cli.ts';
 
 describe('parseCommandLineArgs', () => {
   describe('version/help/continue actions', () => {

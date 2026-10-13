@@ -32,7 +32,7 @@ The focus event gives the user feedback that the Radio has been focused by the k
 
 ## Disabled
 
-Use the disabled attribute to disable a radio.
+Set disabled on an unavailable radio option and explain why it cannot be selected. Use readonly on every radio in the group when users should inspect the selection without changing it.
 
 ```html
 <syn-radio value="1" disabled="">Option</syn-radio>
@@ -42,7 +42,7 @@ Use the disabled attribute to disable a radio.
 
 ## Readonly
 
-Add the readonly attribute to draw a read-only radio.
+Set readonly on every syn-radio in the group when users should inspect the selected choice without changing it. Setting it only on the selected radio leaves other choices available.
 
 ```html
 <syn-radio-group value="1">

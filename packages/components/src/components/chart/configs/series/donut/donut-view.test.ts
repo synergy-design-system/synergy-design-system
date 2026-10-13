@@ -6,7 +6,14 @@ import { SynergyDonutView } from './donut-view.js';
 import type { DonutDataItem, DonutDataValue, SynergyDonutSeriesOption } from './types.js';
 import { getRealStyleValue } from '../../../themes/utilities.js';
 import { colorSvgDataUrl } from '../../utilities.js';
-import type { ExtensionAPI, GlobalModel } from '../../types.js';
+import type { GlobalModel } from '../../types.js';
+import {
+  createApiStub,
+  getImages,
+  getSectors,
+  getTextValues,
+  CURRENT_COLOR_SVG_DATA_URL as svgDataUrl,
+} from '../../testHelper.js';
 
 type StyledDonutDataItem = DonutDataItem & {
   itemStyle?: {
@@ -50,11 +57,6 @@ const toDonutData = (values: number[]): DonutDataItem[] => values.map((value) =>
 
 const toStyledDonutData = (items: StyledDonutDataItem[]): DonutDataItem[] => items;
 
-const createApiStub = (width = 280, height = 280) => ({
-  getHeight: () => height,
-  getWidth: () => width,
-}) as ExtensionAPI;
-
 const renderDonut = (
   partialOption: Partial<SynergyDonutSeriesOption> = {},
   paletteColors?: string[],
@@ -74,48 +76,10 @@ const renderDonut = (
   return view;
 };
 
-type DonutGraphicElementMap = {
-  sector: graphic.Sector;
-  text: graphic.Text;
-  image: graphic.Image;
-};
-
-const isGraphicElementOfType = <TType extends keyof DonutGraphicElementMap>(
-  element: unknown,
-  type: TType,
-): element is DonutGraphicElementMap[TType] & { type: TType } => (
-  typeof element === 'object'
-  && element !== null
-  && 'type' in element
-  && (element as { type?: unknown }).type === type
-);
-
-const collectByType = <TType extends keyof DonutGraphicElementMap>(
-  view: SynergyDonutView,
-  type: TType,
-): DonutGraphicElementMap[TType][] => {
-  const collected: DonutGraphicElementMap[TType][] = [];
-
-  view.group.traverse((element: unknown) => {
-    if (isGraphicElementOfType(element, type)) {
-      collected.push(element);
-    }
-  });
-
-  return collected;
-};
-
-const getSectors = (view: SynergyDonutView) => collectByType(view, 'sector');
-
 const getTrackSector = (view: SynergyDonutView) => getSectors(view).find((sector) => sector.z === 1);
 const getSegmentSectors = (view: SynergyDonutView) => getSectors(view).filter((sector) => sector.z === 2);
-const getLabelTexts = (view: SynergyDonutView) => collectByType(view, 'text')
-  .map((element) => element.style.text)
-  .filter((text): text is string => text !== undefined);
-const getLabelIcons = (view: SynergyDonutView) => collectByType(view, 'image');
 
 const startAngle = DONUT_SERIES.START_ANGLE * DEGREE_TO_RADIAN;
-const svgDataUrl = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIvPjwvc3ZnPg==';
 
 describe('SynergyDonutView', () => {
   it('renders a static inner track ring and one segment per data point', () => {
@@ -320,7 +284,7 @@ describe('SynergyDonutView', () => {
       ],
     });
 
-    expect(getLabelTexts(view)).to.deep.equal(['First', 'Second', 'Third']);
+    expect(getTextValues(view)).to.deep.equal(['First', 'Second', 'Third']);
   });
 
   it('skips labels for segments with an `undefined` label property', () => {
@@ -328,7 +292,7 @@ describe('SynergyDonutView', () => {
       data: [{ label: 'Only First', value: 10 }, { label: undefined, value: 20 }, { label: undefined, value: 30 }],
     });
 
-    expect(getLabelTexts(view)).to.deep.equal(['Only First']);
+    expect(getTextValues(view)).to.deep.equal(['Only First']);
   });
 
   it('renders an icon before the label text when prefixIcon is provided in data', () => {
@@ -336,11 +300,11 @@ describe('SynergyDonutView', () => {
       data: [{ label: 'First', prefixIcon: svgDataUrl, value: 10 }, { value: 20 }, { value: 30 }],
     });
 
-    const icons = getLabelIcons(view);
+    const icons = getImages(view);
     const coloredIcon = colorSvgDataUrl(svgDataUrl, getRealStyleValue('SynTypographyColorText'));
     expect(icons).to.have.lengthOf(1);
     expect(icons[0].style.image).to.equal(coloredIcon);
-    expect(getLabelTexts(view)).to.include('First');
+    expect(getTextValues(view)).to.include('First');
   });
 
   it('does not render labels for zero-value data', () => {
@@ -348,7 +312,7 @@ describe('SynergyDonutView', () => {
       data: [{ label: 'First', value: 0 }, { label: 'Second', value: 0 }, { label: 'Third', value: 0 }],
     });
 
-    expect(getLabelTexts(view)).to.have.lengthOf(0);
+    expect(getTextValues(view)).to.have.lengthOf(0);
   });
 
   it('replaces previous content on repeated render calls', () => {

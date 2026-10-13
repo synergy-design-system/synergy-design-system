@@ -1,5 +1,6 @@
 import type {
   DonutSeriesPresetOptions, ECConfig, GaugeSeriesPresetOptions, LineSeriesOption,
+  SegmentSeriesPresetOptions,
 } from '@synergy-design-system/components/components/chart/types.js';
 import { formatter } from '@synergy-design-system/components/components/chart/index.js';
 
@@ -46,4 +47,13 @@ export const donutChartConfigObject: DonutSeriesPresetOptions = {
     { label: 'Svelte', value: 40 },
   ],
   radius: '70%',
+};
+
+export const segmentChartConfigObject: SegmentSeriesPresetOptions = {
+  data: [
+    { label: 'Segment A', value: 70, weight: 0.7 },
+    { label: 'Segment B', value: 55, weight: 0.5 },
+    { label: 'Segment C', value: 30, weight: 0.4},
+    { label: 'Segment D', value: 50, weight: 1},
+  ],
 };

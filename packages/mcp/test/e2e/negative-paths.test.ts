@@ -22,7 +22,7 @@ describe('negative paths', () => {
     await session.close();
   });
 
-  it('component-info returns not-found message for unknown component', async () => {
+  it('component-info returns the component catalog for an unknown component', async () => {
     const response = await session.client.callTool({
       arguments: {
         component: 'syn-does-not-exist',
@@ -31,12 +31,45 @@ describe('negative paths', () => {
     });
     const typedResponse = toToolResponse(response);
 
-    assert.ok(typedResponse.content.length > 0);
-    const combined = typedResponse.content.map((entry) => entry.text).join('\n');
-    assert.match(combined, /No metadata found|not found/i);
+    const recovery = JSON.parse(typedResponse.content.at(-1)?.text ?? '{}') as {
+      availableComponentNames: string[];
+      operationPerformed: boolean;
+      submittedComponent: string;
+    };
+    assert.equal(recovery.submittedComponent, 'syn-does-not-exist');
+    assert.equal(recovery.operationPerformed, false);
+    assert.ok(recovery.availableComponentNames.includes('syn-button'));
   });
 
-  it('styles-info returns not-found message for unknown style', async () => {
+  it('intent component tools recover from non-prefixed component values', async () => {
+    const guideResponse = toToolResponse(await session.client.callTool({
+      arguments: { component: 'button' },
+      name: 'intent-component-guide',
+    }));
+    const guideRecovery = JSON.parse(guideResponse.content.at(-1)?.text ?? '{}') as {
+      availableComponentNames: string[];
+      submittedComponent: string;
+    };
+    assert.equal(guideRecovery.submittedComponent, 'button');
+    assert.ok(guideRecovery.availableComponentNames.includes('syn-button'));
+
+    const validationResponse = toToolResponse(await session.client.callTool({
+      arguments: {
+        component: 'button',
+        intent: 'action.submit',
+        markup: '<button type="submit">Send</button>',
+      },
+      name: 'intent-component-validate',
+    }));
+    const validationRecovery = JSON.parse(validationResponse.content.at(-1)?.text ?? '{}') as {
+      operationPerformed: boolean;
+      submittedComponent: string;
+    };
+    assert.equal(validationRecovery.submittedComponent, 'button');
+    assert.equal(validationRecovery.operationPerformed, false);
+  });
+
+  it('styles-info returns recovery for unknown style', async () => {
     const response = await session.client.callTool({
       arguments: {
         style: 'syn-does-not-exist',
@@ -45,11 +78,15 @@ describe('negative paths', () => {
     });
     const typedResponse = toToolResponse(response);
 
-    assert.ok(typedResponse.content.length > 0);
-    assert.match(typedResponse.content[0].text, /No style found/i);
+    const recovery = JSON.parse(typedResponse.content[0]?.text ?? '{}') as {
+      availableNames: string[];
+      operationPerformed: boolean;
+    };
+    assert.equal(recovery.operationPerformed, false);
+    assert.ok(recovery.availableNames.length > 0);
   });
 
-  it('migration-info returns not-found message for unknown document', async () => {
+  it('migration-info returns recovery for unknown document', async () => {
     const response = await session.client.callTool({
       arguments: {
         filename: 'does-not-exist.md',
@@ -59,7 +96,11 @@ describe('negative paths', () => {
     });
     const typedResponse = toToolResponse(response);
 
-    assert.ok(typedResponse.content.length > 0);
-    assert.match(typedResponse.content[0].text, /No migration document named/i);
+    const recovery = JSON.parse(typedResponse.content[0]?.text ?? '{}') as {
+      availableFilenames: string[];
+      operationPerformed: boolean;
+    };
+    assert.equal(recovery.operationPerformed, false);
+    assert.ok(recovery.availableFilenames.length > 0);
   });
 });

@@ -11,5 +11,6 @@ export type SynSelectJSXElement = SynCustomElement<
     ['syn-hide', SynHideEvent],
     ['syn-after-hide', SynAfterHideEvent],
     ['syn-invalid', SynInvalidEvent],
+    ['syn-end-reached', SynEndReachedEvent],
   ]
 >;

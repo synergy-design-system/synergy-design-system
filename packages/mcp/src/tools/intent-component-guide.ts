@@ -7,6 +7,7 @@ import {
 import {
   INTENT_DEFAULT_FRAMEWORK,
   INTENT_DEFAULT_PHASES,
+  buildComponentRecovery,
   createToolAnnotations,
   getRuntimeConfig,
   getToolRule,
@@ -31,13 +32,13 @@ export const intentComponentGuideTool = (server: McpServer) => {
     'intent-component-guide',
     {
       annotations: createToolAnnotations(),
-      description: 'Answer the question: What can I do with this component in the intent system?',
+      description: 'Get supported intents, recommended usages, and common misuses for one Synergy component. Use an exact component tag returned by component-list.',
       inputSchema: {
-        component: z.string().startsWith('syn-').describe('Component tag name, for example syn-button.'),
+        component: z.string().min(1).describe('Exact component tag returned by component-list, for example syn-button. Do not guess or construct this value.'),
         framework: frameworkSchema.optional().describe('Target framework profile. Defaults to vanilla.'),
         includePhases: z.array(intentPhaseSchema).optional().describe('Optional phase filter. Defaults to ["experimental"].'),
       },
-      title: 'Intent component guide',
+      title: 'Get component intent guide',
     },
     toolHandler('intent-component-guide', async ({
       component,
@@ -60,7 +61,8 @@ export const intentComponentGuideTool = (server: McpServer) => {
 
       if (!response.data) {
         const message = response.errors?.[0]?.message ?? `No intent guide found for component ${component}.`;
-        return [aiRules, message];
+        // Return the authoritative catalog so agents can recover without guessing component tags.
+        return [aiRules, await buildComponentRecovery(component, message)];
       }
 
       return [aiRules, response.data];

@@ -16,12 +16,12 @@ export const setupTool = (server: McpServer) => {
     'setup',
     {
       annotations: createToolAnnotations(),
-      description: 'Get setup information for a Synergy package. Framework packages (react, vue, angular) automatically include base components setup.',
+      description: 'Get installation and initialization guidance for one Synergy package. Framework packages automatically include base component setup; optionally include known limitations.',
       inputSchema: {
         includeLimitations: z.boolean().optional().describe('Add a list of known limitations and issues to the output.'),
         package: z.enum(['components', 'react', 'vue', 'angular', 'tokens', 'styles', 'fonts', 'assets', 'migrations']).describe('Synergy package to retrieve setup instructions for.'),
       },
-      title: 'Setup info',
+      title: 'Get package setup',
     },
     toolHandler('setup', async ({
       includeLimitations,

@@ -17,3 +17,8 @@ export const donutChartConfigCallback: ChartConfigCallback = (handle) => {
   handle
     .seriesDonut(mockData('donutChartConfigObject'));
 };
+
+export const segmentChartConfigCallback: ChartConfigCallback = (handle) => {
+  handle
+    .seriesSegment(mockData('segmentChartConfigObject'));
+};

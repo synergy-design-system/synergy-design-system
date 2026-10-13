@@ -35,6 +35,14 @@ export default {
       id: 'content',
       name: 'Content',
     },
+    {
+      content: [
+        'Use readonly to display an existing on/off setting that users may inspect but cannot toggle here.',
+        'Use disabled only when changing the setting is unavailable; explain the condition that prevents toggling it.',
+      ],
+      id: 'states',
+      name: 'Validation and States',
+    },
   ],
   useCases: [
     'Allow users to switch between two states.',

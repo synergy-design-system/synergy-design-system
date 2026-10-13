@@ -1,5 +1,55 @@
 # @synergy-design-system/vue
 
+## 3.29.0
+
+### Minor Changes
+
+- [#1400](https://github.com/synergy-design-system/synergy-design-system/pull/1400) [`1e73b72`](https://github.com/synergy-design-system/synergy-design-system/commit/1e73b720d16196fa5cf4308c9d0f1b21b839df21) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-10-13
+
+  feat: ✨ Add new part `tag-limit` to `syn-combobox` and `syn-select` ([#1399](https://github.com/synergy-design-system/synergy-design-system/issues/1399))
+
+  This release adds the ability to style the tag limit item that is displayed when using either `syn-combobox` and `syn-select` in `multiple` mode and the amount of selections overflows the provided `maxOptionsVisible`. The `tag-limit` item now also exports the already available `tag` part, making it easier to style all displayed tags. It also provides access to the `syn-tag` components inner parts.
+
+### Patch Changes
+
+- Updated dependencies [[`1e73b72`](https://github.com/synergy-design-system/synergy-design-system/commit/1e73b720d16196fa5cf4308c9d0f1b21b839df21)]:
+  - @synergy-design-system/components@3.29.0
+  - @synergy-design-system/tokens@3.29.0
+
+## 3.28.0
+
+### Patch Changes
+
+- Updated dependencies [[`8e87307`](https://github.com/synergy-design-system/synergy-design-system/commit/8e87307ed8688155e2927639f4dd7a8964cb385c), [`8e87307`](https://github.com/synergy-design-system/synergy-design-system/commit/8e87307ed8688155e2927639f4dd7a8964cb385c)]:
+  - @synergy-design-system/components@3.28.0
+  - @synergy-design-system/tokens@3.28.0
+
+## 3.27.0
+
+### Minor Changes
+
+- [#1395](https://github.com/synergy-design-system/synergy-design-system/pull/1395) [`c200c20`](https://github.com/synergy-design-system/synergy-design-system/commit/c200c2004a7884f4b6f9c10d84c0f52666252b8f) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-10-05
+
+  feat: ✨ New features and fixes for `<syn-combobox>` and `<syn-select>` ([#1394](https://github.com/synergy-design-system/synergy-design-system/issues/1394))
+
+  This release adds various smaller adjustments and features to the `<syn-combobox>` and `<syn-select>` components:
+
+  **Features**:
+
+  - [#1239](https://github.com/synergy-design-system/synergy-design-system/issues/1239): Filtering can now use string values (e.g. `contains` or `none`). This is also included in the default settings.
+  - [#1371](https://github.com/synergy-design-system/synergy-design-system/issues/1371): Added a custom event that is emitted when the bottom of the scroll list is reached. This makes it possible to create endless scrolling with `<syn-combobox>` and `<syn-select>`.
+
+  **Fixes**:
+
+  - [#1391](https://github.com/synergy-design-system/synergy-design-system/issues/1391): Fixed an issue where `<syn-combobox>` would still show the `clear` icon in an empty combobox after resetting the value and with an empty search field.
+  - [#1391](https://github.com/synergy-design-system/synergy-design-system/issues/1391): Fixed an issue with `<syn-combobox>` showing the placeholder attribute when the user has already selected a value.
+
+### Patch Changes
+
+- Updated dependencies [[`c200c20`](https://github.com/synergy-design-system/synergy-design-system/commit/c200c2004a7884f4b6f9c10d84c0f52666252b8f)]:
+  - @synergy-design-system/components@3.27.0
+  - @synergy-design-system/tokens@3.27.0
+
 ## 3.26.1
 
 ### Patch Changes

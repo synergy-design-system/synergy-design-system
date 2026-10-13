@@ -14,9 +14,9 @@ export const templatesListResource = (server: McpServer) => {
     'templates-list',
     RESOURCE_URI,
     {
-      description: 'All available templates in the Synergy Design System, including theme metadata.',
+      description: 'Static JSON index of Synergy template names. Use template-info for example markup and documentation.',
       mimeType: 'application/json',
-      title: 'Available templates',
+      title: 'Synergy template index',
     },
     resourceHandler('templates-list', async (_uri) => {
       const response = await listTemplates();

@@ -35,7 +35,7 @@ type ScenarioResult = {
   chars: number;
   deltaPct?: number;
   id: string;
-  toolName: string;
+  endpoint: string;
   tokens: number;
 };
 
@@ -110,7 +110,14 @@ const executeScenario = async (
         .map((message) => (message.content.type === 'text' ? message.content.text : ''))
         .filter(Boolean)
         .join('\n\n');
+    } else if (scenario.kind === 'tools-list') {
+      textPayload = JSON.stringify(await session.client.listTools());
+    } else if (scenario.kind === 'resources-list') {
+      textPayload = JSON.stringify(await session.client.listResources());
     } else {
+      if (!scenario.toolName) {
+        throw new Error(`Missing toolName for scenario ${scenario.id}`);
+      }
       const response = await session.client.callTool({
         arguments: scenario.args,
         name: scenario.toolName,
@@ -128,9 +135,9 @@ const executeScenario = async (
 
     return {
       chars: textPayload.length,
+      endpoint: scenario.toolName ?? scenario.promptName ?? scenario.kind,
       id: scenario.id,
       tokens: tokenCount,
-      toolName: scenario.toolName,
     };
   } finally {
     await session.close();

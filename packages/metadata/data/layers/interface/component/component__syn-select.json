@@ -206,6 +206,18 @@
       "name": "tag__remove-button__base"
     },
     {
+      "description": "The tag that represents the limit indicator when the number of selected options exceeds the visible tags.",
+      "name": "tag-limit"
+    },
+    {
+      "description": "The tag-limit's base part.",
+      "name": "tag-limit__base"
+    },
+    {
+      "description": "The tag-limit's content part.",
+      "name": "tag-limit__content"
+    },
+    {
       "description": "The container that houses option tags when `multiselect` is used.",
       "name": "tags"
     }
@@ -241,6 +253,11 @@
       "description": "Emitted when the control's value is cleared.",
       "name": "syn-clear",
       "type": "SynClearEvent"
+    },
+    {
+      "description": "Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).",
+      "name": "syn-end-reached",
+      "type": "SynEndReachedEvent"
     },
     {
       "description": "Emitted when the control gains focus.",

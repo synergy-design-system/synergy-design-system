@@ -26,6 +26,7 @@ Fieldsets are used to group related elements in a form.
 ### Disabled Behavior
 
 - When disabling a fieldset, ensure users still understand why input is blocked and what action is needed to re-enable it.
+- The disabled attribute makes all contained form controls unavailable. There is no fieldset-level readonly attribute; set readonly on supported child controls when users still need to inspect their values.
 - Do not use disabled groups to hide required steps in a form flow; prefer progressive disclosure patterns with clear triggers.
 
 ### Layout

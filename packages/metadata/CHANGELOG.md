@@ -1,5 +1,71 @@
 # Changelog
 
+## 4.22.0
+
+### Minor Changes
+
+- [#1400](https://github.com/synergy-design-system/synergy-design-system/pull/1400) [`1e73b72`](https://github.com/synergy-design-system/synergy-design-system/commit/1e73b720d16196fa5cf4308c9d0f1b21b839df21) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-10-13
+
+  feat: ✨ Add new part `tag-limit` to `syn-combobox` and `syn-select` ([#1399](https://github.com/synergy-design-system/synergy-design-system/issues/1399))
+
+  This release adds the ability to style the tag limit item that is displayed when using either `syn-combobox` and `syn-select` in `multiple` mode and the amount of selections overflows the provided `maxOptionsVisible`. The `tag-limit` item now also exports the already available `tag` part, making it easier to style all displayed tags. It also provides access to the `syn-tag` components inner parts.
+
+## 4.21.0
+
+### Minor Changes
+
+- [#1366](https://github.com/synergy-design-system/synergy-design-system/pull/1366) [`8e87307`](https://github.com/synergy-design-system/synergy-design-system/commit/8e87307ed8688155e2927639f4dd7a8964cb385c) Thanks [@klaarseSICKAG](https://github.com/klaarseSICKAG)! - Released on: 2026-10-07
+
+  feat: ✨ Adds segment series support to <syn-chart> ([#1355](https://github.com/synergy-design-system/synergy-design-system/issues/1355))
+
+  This release introduces the new chart series type 'synSegment' and extends the chart configuration API with new presets seriesSegment
+
+## 4.20.0
+
+### Minor Changes
+
+- [#1393](https://github.com/synergy-design-system/synergy-design-system/pull/1393) [`9c64334`](https://github.com/synergy-design-system/synergy-design-system/commit/9c64334e2729f9db70a561d7b51c6e4f9065a2dd) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-10-06
+
+  feat: ✨ metadata optimization ([#1390](https://github.com/synergy-design-system/synergy-design-system/issues/1390))
+
+  This release adds new features and adjustments to the Synergy metadata package:
+
+  - Added the `--skills` option to `install-skills`, allowing developers to install `component`, `templates`, and `intents` skills individually or in comma-separated combinations. Without this option, all skills are installed.
+  - Added the `/synergy-intent-policy` local skill for discovering intents, generating implementation starting points, and reviewing code without MCP. Install it with `npx @synergy-design-system/metadata install-skills --path .github/skills --skills intents`; the existing skills are available as `/synergy-component` and `/synergy-templates`.
+  - Added `intent-discover` for hierarchical intent discovery. Call it without a category to list categories, then pass an exact category ID to retrieve registered intent IDs for validation, rendering options, and recommendations.
+  - Added public metadata APIs and types for shared intent-policy documents: `getIntentPolicyDocument`, `getIntentPolicyDocuments`, `IntentPolicyDocument`, and related variant/preview types.
+  - Extended skill generation. Generated skills report both the metadata package version and the Synergy version they represent.
+  - Added the presence-only `required` intent property rule through `IntentRequiredPropRule`, allowing policies to require a property without enforcing a placeholder value through `requiredEquals`.
+  - Added more rules for the distinction between `readonly` and `disabled` to all form fields.
+
+## 4.19.0
+
+### Minor Changes
+
+- [#1395](https://github.com/synergy-design-system/synergy-design-system/pull/1395) [`c200c20`](https://github.com/synergy-design-system/synergy-design-system/commit/c200c2004a7884f4b6f9c10d84c0f52666252b8f) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-10-05
+
+  feat: ✨ New features and fixes for `<syn-combobox>` and `<syn-select>` ([#1394](https://github.com/synergy-design-system/synergy-design-system/issues/1394))
+
+  This release adds various smaller adjustments and features to the `<syn-combobox>` and `<syn-select>` components:
+
+  **Features**:
+
+  - [#1239](https://github.com/synergy-design-system/synergy-design-system/issues/1239): Filtering can now use string values (e.g. `contains` or `none`). This is also included in the default settings.
+  - [#1371](https://github.com/synergy-design-system/synergy-design-system/issues/1371): Added a custom event that is emitted when the bottom of the scroll list is reached. This makes it possible to create endless scrolling with `<syn-combobox>` and `<syn-select>`.
+
+  **Fixes**:
+
+  - [#1391](https://github.com/synergy-design-system/synergy-design-system/issues/1391): Fixed an issue where `<syn-combobox>` would still show the `clear` icon in an empty combobox after resetting the value and with an empty search field.
+  - [#1391](https://github.com/synergy-design-system/synergy-design-system/issues/1391): Fixed an issue with `<syn-combobox>` showing the placeholder attribute when the user has already selected a value.
+
+## 4.18.0
+
+### Minor Changes
+
+- Released on: 2026-10-02
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
 ## 4.17.0
 
 ## 4.16.0

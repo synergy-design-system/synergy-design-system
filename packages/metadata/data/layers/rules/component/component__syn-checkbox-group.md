@@ -31,6 +31,11 @@ Checkbox groups are used to group multiple checkboxes together.
 - Use horizontal layout only when options are short, similar in length, and sufficient horizontal space is available.
 - For long option lists, keep labels concise and consider splitting options into multiple logical groups to reduce scanning effort.
 
+### Validation and States
+
+- Set readonly on each syn-checkbox whose checked state must not change; to freeze the entire group, apply it to every option, not just the checked ones.
+- Set disabled on individual unavailable checkboxes and explain why those choices cannot be selected. The group itself has no readonly or disabled attribute.
+
 ## Accessibility
 
 - Ensure that the group label is short and descriptive, as assistive technologies announce it when users enter the group.

@@ -32,6 +32,7 @@ import DemoProgressRing from "./DemoProgressRing.vue";
 import DemoRadioButton from "./DemoRadioButton.vue";
 import DemoRadioGroup from "./DemoRadioGroup.vue";
 import DemoRange from "./DemoRange.vue";
+import DemoSegmentChart from "./DemoSegmentChart.vue";
 import DemoSelect from "./DemoSelect.vue";
 import DemoSpinner from "./DemoSpinner.vue";
 import DemoSwitch from "./DemoSwitch.vue";
@@ -77,6 +78,7 @@ export {
   DemoRadioButton,
   DemoRadioGroup,
   DemoRange,
+  DemoSegmentChart,
   DemoSelect,
   DemoSpinner,
   DemoSwitch,

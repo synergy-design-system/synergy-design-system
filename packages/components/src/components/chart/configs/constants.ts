@@ -75,6 +75,29 @@ export const GAUGE_SERIES = {
   TYPE_NAME: 'synGauge',
 } as const;
 
+/** Synergy segment chart series constants */
+export const SEGMENT_SERIES = {
+  /** Straight segments used per radian to approximate an arc. More steps make it smoother but require more points to render. */
+  ARC_STEPS_PER_RADIAN: 20,
+  /** Default weight used for a segment when no explicit `weights` entry is provided for it. */
+  DEFAULT_WEIGHT: 1,
+  /** Angle, in degrees, at which the gap is centered when `gapOrientation` is 0. 90 places it at the bottom of the circle. */
+  GAP_CENTER_ANGLE: 90,
+  /** Distance, in pixels, from the center circle to the start of the segment ring. */
+  GAP_CENTER_CIRCLE_TO_SEGMENTS: 6,
+  /** Default fraction of the full circle reserved as the empty gap, when `gap` is not set. */
+  GAP_DEFAULT: 0.3,
+  /** Default maximum value used to normalize segment fill, when `max` is not set. */
+  MAX_DEFAULT: 100,
+  /** Default minimum value used to normalize segment fill, when `min` is not set. */
+  MIN_DEFAULT: 0,
+  /** Reference height matches the Figma design and keeps graphic elements proportional when the chart resizes. */
+  REFERENCE_HEIGHT: 340,
+  /** Constant pixel-width gap rendered between adjacent segments. */
+  SEGMENTS_GAP: 2,
+  TYPE_NAME: 'synSegment',
+} as const;
+
 /**
  * The full circle in radians (360°).
  */

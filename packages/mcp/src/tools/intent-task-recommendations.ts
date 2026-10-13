@@ -7,6 +7,7 @@ import {
 import {
   INTENT_DEFAULT_FRAMEWORK,
   INTENT_DEFAULT_PHASES,
+  buildIntentRecovery,
   createToolAnnotations,
   getRuntimeConfig,
   getToolRule,
@@ -26,7 +27,7 @@ export const intentTaskRecommendationsTool = (server: McpServer) => {
     'intent-task-recommendations',
     {
       annotations: createToolAnnotations(),
-      description: 'Answer the question: What does Synergy provide for a specific task intent?',
+      description: 'Recommend Synergy targets and snippets for one registered task intent. Use an exact intent ID returned by intent-discover; do not guess or construct intent IDs.',
       inputSchema: {
         avoidTargets: z.array(z.string()).optional().describe('Optional target IDs to avoid.'),
         content: z.string().optional().describe('Optional content used in render snippets.'),
@@ -43,9 +44,9 @@ export const intentTaskRecommendationsTool = (server: McpServer) => {
         taskId: z
           .string()
           .min(1)
-          .describe('Intent ID representing the task, for example action.submit. Can be obtained by calling intent-categories-list tool.'),
+          .describe('Exact registered intent ID returned by intent-discover. Do not guess or construct this value.'),
       },
-      title: 'Intent task recommendations',
+      title: 'Recommend components for task intent',
     },
     toolHandler('intent-task-recommendations', async ({
       avoidTargets,
@@ -66,6 +67,7 @@ export const intentTaskRecommendationsTool = (server: McpServer) => {
     }) => {
       const { tools } = getRuntimeConfig();
       const aiRules = await getToolRule('intent-task-recommendations');
+      const resolvedPhases = includePhases ?? tools.intentTaskRecommendations.includePhases ?? [...INTENT_DEFAULT_PHASES];
       const hasConstraints = Boolean(
         (preferredTargets && preferredTargets.length > 0)
         || (avoidTargets && avoidTargets.length > 0),
@@ -78,14 +80,15 @@ export const intentTaskRecommendationsTool = (server: McpServer) => {
         } : undefined,
         content,
         framework: framework ?? tools.intentTaskRecommendations.framework ?? INTENT_DEFAULT_FRAMEWORK,
-        includePhases: includePhases ?? tools.intentTaskRecommendations.includePhases ?? [...INTENT_DEFAULT_PHASES],
+        includePhases: resolvedPhases,
         maxAlternatives: maxAlternatives ?? tools.intentTaskRecommendations.maxAlternatives,
         taskId,
       });
 
       if (!response.data) {
         const message = response.errors?.[0]?.message ?? `No recommendations found for task ${taskId}.`;
-        return [aiRules, message];
+        // Return authoritative discovery options so agents can recover without guessing intent IDs.
+        return [aiRules, await buildIntentRecovery(taskId, message, resolvedPhases)];
       }
 
       return [aiRules, response.data];

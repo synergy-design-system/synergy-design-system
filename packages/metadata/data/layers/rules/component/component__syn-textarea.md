@@ -26,6 +26,11 @@ Textareas collect data from the user and allow multiple lines of text.
 - Use placeholder text as an addition to label as it should not include essential information required to complete the field correctly.
 - Use help text to provide hints or examples of expected inputs.
 
+### Validation and States
+
+- Use readonly when users need to review or copy existing text without changing it.
+- Use disabled only when the textarea is unavailable; explain why and how it becomes available.
+
 ## Accessibility
 
 - Ensure textarea fields are part of a logical tab order and provide a clearly visible focus state when focused.

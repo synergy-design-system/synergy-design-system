@@ -1,5 +1,77 @@
 # Changelog
 
+## 4.22.0
+
+### Minor Changes
+
+- Released on: 2026-10-13
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+### Patch Changes
+
+- Updated dependencies [[`1e73b72`](https://github.com/synergy-design-system/synergy-design-system/commit/1e73b720d16196fa5cf4308c9d0f1b21b839df21)]:
+  - @synergy-design-system/metadata@4.22.0
+
+## 4.21.0
+
+### Minor Changes
+
+- Released on: 2026-10-07
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+### Patch Changes
+
+- Updated dependencies [[`8e87307`](https://github.com/synergy-design-system/synergy-design-system/commit/8e87307ed8688155e2927639f4dd7a8964cb385c)]:
+  - @synergy-design-system/metadata@4.21.0
+
+## 4.20.0
+
+### Minor Changes
+
+- [#1393](https://github.com/synergy-design-system/synergy-design-system/pull/1393) [`9c64334`](https://github.com/synergy-design-system/synergy-design-system/commit/9c64334e2729f9db70a561d7b51c6e4f9065a2dd) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-10-06
+
+  feat: ✨ mcp optimization ([#1390](https://github.com/synergy-design-system/synergy-design-system/issues/1390))
+
+  This release adds new features and adjustments to the Synergy MCP Server:
+
+  - Added `intent-discover` for hierarchical intent discovery. Call it without a category to list categories, then pass an exact category ID to retrieve registered intent IDs for validation, rendering options, and recommendations.
+  - Added structured recovery for unknown components, intents, styles, templates, migration filenames, and DaVinci migration components. Relevant detail tools now preserve the submitted value, report that no operation was performed, and return authoritative values from their corresponding discovery tools or resources.
+  - Deprecated the `intent-categories-list` tool in favor of `intent-discover`. It remains available for compatibility until a future major release.
+  - Standardized titles and descriptions across MCP tools and resources to clarify when to use each endpoint, what it returns, and which discovery endpoint supplies exact identifiers.
+
+### Patch Changes
+
+- Updated dependencies [[`9c64334`](https://github.com/synergy-design-system/synergy-design-system/commit/9c64334e2729f9db70a561d7b51c6e4f9065a2dd)]:
+  - @synergy-design-system/metadata@4.20.0
+
+## 4.19.0
+
+### Minor Changes
+
+- Released on: 2026-10-05
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+### Patch Changes
+
+- Updated dependencies [[`c200c20`](https://github.com/synergy-design-system/synergy-design-system/commit/c200c2004a7884f4b6f9c10d84c0f52666252b8f)]:
+  - @synergy-design-system/metadata@4.19.0
+
+## 4.18.0
+
+### Minor Changes
+
+- Released on: 2026-10-02
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @synergy-design-system/metadata@4.18.0
+
 ## 4.17.0
 
 ### Minor Changes

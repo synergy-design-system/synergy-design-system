@@ -67,6 +67,7 @@ import type {
   SynClampEvent,
   SynClearEvent,
   SynCloseEvent,
+  SynEndReachedEvent,
   SynErrorEvent,
   SynFocusEvent,
   SynHideEvent,
@@ -146,6 +147,7 @@ type SynComboboxEvents = [
   ['syn-after-hide', SynAfterHideEvent],
   ['syn-invalid', SynInvalidEvent],
   ['syn-error', SynErrorEvent],
+  ['syn-end-reached', SynEndReachedEvent],
 ];
 
 type SynDatePickerEvents = [
@@ -297,6 +299,7 @@ type SynSelectEvents = [
   ['syn-hide', SynHideEvent],
   ['syn-after-hide', SynAfterHideEvent],
   ['syn-invalid', SynInvalidEvent],
+  ['syn-end-reached', SynEndReachedEvent],
 ];
 
 type SynSideNavEvents = [
@@ -623,16 +626,13 @@ declare module 'vue' {
      * @dependency syn-popup
      * @dependency syn-tag
      *
-     * @slot - The listbox options. Must be `<syn-option>` elements.
-     *    You can use `<syn-optgroup>`'s to group items visually.
+     * @slot - The listbox options. Must be `<syn-option>` elements. You can use `<syn-optgroup>`'s to group items visually.
      * @slot label - The combobox's label. Alternatively, you can use the `label` attribute.
      * @slot prefix - Used to prepend a presentational icon or similar element to the combobox.
      * @slot suffix - Used to append a presentational icon or similar element to the combobox.
      * @slot clear-icon - An icon to use in lieu of the default clear icon.
-     * @slot expand-icon - The icon to show when the control is expanded and collapsed.
-     *    Rotates on open and close.
-     * @slot help-text - Text that describes how to use the combobox.
-     *    Alternatively, you can use the `help-text` attribute.
+     * @slot expand-icon - The icon to show when the control is expanded and collapsed. Rotates on open and close.
+     * @slot help-text - Text that describes how to use the combobox. Alternatively, you can use the `help-text` attribute.
      *
      * @event syn-change - Emitted when the control's value changes.
      * @event syn-clear - Emitted when the control's value is cleared.
@@ -643,9 +643,9 @@ declare module 'vue' {
      * @event syn-after-show - Emitted after the combobox's menu opens and all animations are complete.
      * @event syn-hide - Emitted when the combobox's menu closes.
      * @event syn-after-hide - Emitted after the combobox's menu closes and all animations are complete.
-     * @event syn-invalid - Emitted when the form control has been checked for validity
-     *    and its constraints aren't satisfied.
+     * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
      * @event syn-error - Emitted when the combobox menu fails to open.
+     * @event syn-end-reached - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
      *
      * @csspart form-control - The form control that wraps the label, combobox, and help text.
      * @csspart form-control-label - The label's wrapper.
@@ -654,15 +654,12 @@ declare module 'vue' {
      * @csspart combobox - The container that wraps the prefix, combobox, clear icon, and expand button.
      * @csspart prefix - The container that wraps the prefix slot.
      * @csspart suffix - The container that wraps the suffix slot.
-     * @csspart display-input - The element that displays the selected option's label,
-     *     an `<input>` element.
-     * @csspart listbox - The listbox container where the options are slotted
-     *   and the filtered options list exists.
+     * @csspart display-input - The element that displays the selected option's label, an `<input>` element.
+     * @csspart listbox - The listbox container where the options are slotted and the filtered options list exists.
      * @csspart filtered-listbox - The container that wraps the filtered options.
      * @csspart clear-button - The clear button.
      * @csspart expand-icon - The container that wraps the expand icon.
-     * @csspart popup - The popup's exported `popup` part.
-     * Use this to target the tooltip's popup container.
+     * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
      * @csspart no-results - The container that wraps the "no results" message.
      * @csspart tags - The container that houses option tags when `multiple` is used.
      * @csspart tag - The individual tags that represent each selected option in `multiple`.
@@ -670,6 +667,9 @@ declare module 'vue' {
      * @csspart tag__content - The tag's content part.
      * @csspart tag__remove-button - The tag's remove button.
      * @csspart tag__remove-button__base - The tag's remove button base part.
+     * @csspart tag-limit - The tag that represents the limit indicator when the number of selected options exceeds the visible tags.
+     * @csspart tag-limit__base - The tag-limit's base part.
+     * @csspart tag-limit__content - The tag-limit's content part.
      *
      * @animation combobox.show - The animation to use when showing the combobox.
      * @animation combobox.hide - The animation to use when hiding the combobox.
@@ -1488,6 +1488,7 @@ declare module 'vue' {
      * @event syn-hide - Emitted when the select's menu closes.
      * @event syn-after-hide - Emitted after the select's menu closes and all animations are complete.
      * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+     * @event syn-end-reached - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
      *
      * @csspart form-control - The form control that wraps the label, input, and help text.
      * @csspart form-control-label - The label's wrapper.
@@ -1504,6 +1505,9 @@ declare module 'vue' {
      * @csspart tag__content - The tag's content part.
      * @csspart tag__remove-button - The tag's remove button.
      * @csspart tag__remove-button__base - The tag's remove button base part.
+     * @csspart tag-limit - The tag that represents the limit indicator when the number of selected options exceeds the visible tags.
+     * @csspart tag-limit__base - The tag-limit's base part.
+     * @csspart tag-limit__content - The tag-limit's content part.
      * @csspart clear-button - The clear button.
      * @csspart expand-icon - The container that wraps the expand icon.
      * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
@@ -2056,16 +2060,13 @@ declare module 'vue' {
      * @dependency syn-popup
      * @dependency syn-tag
      *
-     * @slot - The listbox options. Must be `<syn-option>` elements.
-     *    You can use `<syn-optgroup>`'s to group items visually.
+     * @slot - The listbox options. Must be `<syn-option>` elements. You can use `<syn-optgroup>`'s to group items visually.
      * @slot label - The combobox's label. Alternatively, you can use the `label` attribute.
      * @slot prefix - Used to prepend a presentational icon or similar element to the combobox.
      * @slot suffix - Used to append a presentational icon or similar element to the combobox.
      * @slot clear-icon - An icon to use in lieu of the default clear icon.
-     * @slot expand-icon - The icon to show when the control is expanded and collapsed.
-     *    Rotates on open and close.
-     * @slot help-text - Text that describes how to use the combobox.
-     *    Alternatively, you can use the `help-text` attribute.
+     * @slot expand-icon - The icon to show when the control is expanded and collapsed. Rotates on open and close.
+     * @slot help-text - Text that describes how to use the combobox. Alternatively, you can use the `help-text` attribute.
      *
      * @event syn-change - Emitted when the control's value changes.
      * @event syn-clear - Emitted when the control's value is cleared.
@@ -2076,9 +2077,9 @@ declare module 'vue' {
      * @event syn-after-show - Emitted after the combobox's menu opens and all animations are complete.
      * @event syn-hide - Emitted when the combobox's menu closes.
      * @event syn-after-hide - Emitted after the combobox's menu closes and all animations are complete.
-     * @event syn-invalid - Emitted when the form control has been checked for validity
-     *    and its constraints aren't satisfied.
+     * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
      * @event syn-error - Emitted when the combobox menu fails to open.
+     * @event syn-end-reached - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
      *
      * @csspart form-control - The form control that wraps the label, combobox, and help text.
      * @csspart form-control-label - The label's wrapper.
@@ -2087,15 +2088,12 @@ declare module 'vue' {
      * @csspart combobox - The container that wraps the prefix, combobox, clear icon, and expand button.
      * @csspart prefix - The container that wraps the prefix slot.
      * @csspart suffix - The container that wraps the suffix slot.
-     * @csspart display-input - The element that displays the selected option's label,
-     *     an `<input>` element.
-     * @csspart listbox - The listbox container where the options are slotted
-     *   and the filtered options list exists.
+     * @csspart display-input - The element that displays the selected option's label, an `<input>` element.
+     * @csspart listbox - The listbox container where the options are slotted and the filtered options list exists.
      * @csspart filtered-listbox - The container that wraps the filtered options.
      * @csspart clear-button - The clear button.
      * @csspart expand-icon - The container that wraps the expand icon.
-     * @csspart popup - The popup's exported `popup` part.
-     * Use this to target the tooltip's popup container.
+     * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.
      * @csspart no-results - The container that wraps the "no results" message.
      * @csspart tags - The container that houses option tags when `multiple` is used.
      * @csspart tag - The individual tags that represent each selected option in `multiple`.
@@ -2103,6 +2101,9 @@ declare module 'vue' {
      * @csspart tag__content - The tag's content part.
      * @csspart tag__remove-button - The tag's remove button.
      * @csspart tag__remove-button__base - The tag's remove button base part.
+     * @csspart tag-limit - The tag that represents the limit indicator when the number of selected options exceeds the visible tags.
+     * @csspart tag-limit__base - The tag-limit's base part.
+     * @csspart tag-limit__content - The tag-limit's content part.
      *
      * @animation combobox.show - The animation to use when showing the combobox.
      * @animation combobox.hide - The animation to use when hiding the combobox.
@@ -2939,6 +2940,7 @@ declare module 'vue' {
      * @event syn-hide - Emitted when the select's menu closes.
      * @event syn-after-hide - Emitted after the select's menu closes and all animations are complete.
      * @event syn-invalid - Emitted when the form control has been checked for validity and its constraints aren't satisfied.
+     * @event syn-end-reached - Emitted when the listbox has been scrolled close to its end, so more options can be appended (e.g. from a paged/async data source).
      *
      * @csspart form-control - The form control that wraps the label, input, and help text.
      * @csspart form-control-label - The label's wrapper.
@@ -2955,6 +2957,9 @@ declare module 'vue' {
      * @csspart tag__content - The tag's content part.
      * @csspart tag__remove-button - The tag's remove button.
      * @csspart tag__remove-button__base - The tag's remove button base part.
+     * @csspart tag-limit - The tag that represents the limit indicator when the number of selected options exceeds the visible tags.
+     * @csspart tag-limit__base - The tag-limit's base part.
+     * @csspart tag-limit__content - The tag-limit's content part.
      * @csspart clear-button - The clear button.
      * @csspart expand-icon - The container that wraps the expand icon.
      * @csspart popup - The popup's exported `popup` part. Use this to target the tooltip's popup container.

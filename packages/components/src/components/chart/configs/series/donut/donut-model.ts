@@ -1,6 +1,6 @@
 import {
   List, type Model, SeriesModel, helper,
-} from 'echarts/core';
+} from 'echarts/core.js';
 import LegendVisualProvider from 'echarts/lib/visual/LegendVisualProvider.js';
 import { DONUT_SERIES } from '../../constants.js';
 import type { DonutDataValue, DonutSeriesOption, ResolvedDonutDataItem } from './types.js';

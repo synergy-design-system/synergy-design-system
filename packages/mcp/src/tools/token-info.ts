@@ -20,15 +20,15 @@ export const tokenInfoTool = (server: McpServer) => {
     'token-info',
     {
       annotations: createToolAnnotations(),
-      description: 'Get raw design token file contents from the Synergy Design System',
+      description: 'Get raw Synergy design token files by format, scope, and optional CSS theme. Use tokens-list to discover supported values and defaults.',
       inputSchema: {
-        theme: z.enum(['sick2025-light', 'sick2025-dark', 'sick2018-light', 'sick2018-dark']).optional().describe('Theme variant for CSS tokens. Ignored for javascript and sass.'),
+        theme: z.enum(['sick2025-light', 'sick2025-dark', 'sick2018-light', 'sick2018-dark']).optional().describe('CSS theme variant. Ignored for JavaScript and Sass because those formats provide unified token output.'),
         tokenScope: z.enum(['components', 'charts']).optional().describe(
           'Filter tokens by scope: "components" for base component tokens, "charts" for chart palette tokens.',
         ),
         type: z.enum(['javascript', 'css', 'sass']).optional().describe('The type of token output to retrieve.'),
       },
-      title: 'Token info',
+      title: 'Get token files',
     },
     toolHandler('token-info', async ({
       theme,

@@ -34,6 +34,11 @@ Radio groups are used to group multiple [radios](/components/radio) or [radio bu
 - Use horizontal layout only when options are short, similar in length, and there is sufficient horizontal space.
 - The layout setting applies to `syn-radio` options. `syn-radio-button` items are rendered in their own button-group and are not affected by this layout switch.
 
+### Validation and States
+
+- To show a selection without allowing changes, set readonly on every syn-radio or syn-radio-button in the group; marking only the selected option readonly does not lock the others.
+- Set disabled on individual unavailable options and explain why they cannot be selected. The radio group itself has no readonly or disabled attribute.
+
 ## Accessibility
 
 - Ensure that the group label is short and concise as it may be read out when users enter the group.

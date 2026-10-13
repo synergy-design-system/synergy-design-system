@@ -44,6 +44,14 @@ export default {
       id: 'layout',
       name: 'Layout',
     },
+    {
+      content: [
+        'Set readonly on each syn-checkbox whose checked state must not change; to freeze the entire group, apply it to every option, not just the checked ones.',
+        'Set disabled on individual unavailable checkboxes and explain why those choices cannot be selected. The group itself has no readonly or disabled attribute.',
+      ],
+      id: 'states',
+      name: 'Validation and States',
+    },
   ],
   useCases: [
     'Collect multiple independent selections in forms, such as feature preferences or notification channels.',

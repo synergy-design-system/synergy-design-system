@@ -146,6 +146,7 @@ export const getCssSelectors = (theme, mode) => {
  * @example
  * mergeConsecutiveNumbersWithDelimiter([ 'syn', 'color', 'accent', '100' ])   // => [ 'syn', 'color', 'accent', '100' ]
  * mergeConsecutiveNumbersWithDelimiter([ 'syn', 'sequential', '04', '100' ])   // => [ 'syn', 'sequential', '04_100' ]
+ * mergeConsecutiveNumbersWithDelimiter([ 'syn', 'spacing', '1', '5x', 'large' ])   // => [ 'syn', 'spacing', '1_5x', 'large' ]
  *
  * @param {string[]} value  The array of segments to merge
  * @param {string} [delimiter='_']
@@ -157,7 +158,7 @@ export function joinConsecutiveNumbers(value, delimiter = '_') {
       return [segment];
     }
     const last = (result[result.length - 1]);
-    const isNumeric = /^\d+$/.test(segment);
+    const isNumeric = /^\d+x?$/.test(segment);
     const prevIsNumeric = /^\d+$/.test(last);
     if (isNumeric && prevIsNumeric) {
       return [...result.slice(0, -1), `${last}${delimiter}${segment}`];

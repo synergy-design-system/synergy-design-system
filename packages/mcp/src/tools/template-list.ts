@@ -1,9 +1,7 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
-  listTemplates,
-} from '@synergy-design-system/metadata';
-import {
   createToolAnnotations,
+  getAvailableTemplateNames,
   getToolRule,
   toolHandler,
 } from '../utilities/index.js';
@@ -18,15 +16,12 @@ export const templateList = (server: McpServer) => {
     'template-list',
     {
       annotations: createToolAnnotations(),
-      description: 'Outputs a list of available static templates built with the Synergy Design System',
+      description: 'List available static templates built with Synergy components. Use a returned template name with template-info.',
       inputSchema: {},
-      title: 'List Synergy Templates',
+      title: 'List templates',
     },
     toolHandler('template-list', async () => {
-      const response = await listTemplates();
-      const templateNames = response.data
-        .map(template => template.name)
-        .sort()
+      const templateNames = (await getAvailableTemplateNames())
         .map(name => `- ${name}`)
         .join('\n');
 

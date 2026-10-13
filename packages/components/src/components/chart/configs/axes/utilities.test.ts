@@ -8,13 +8,7 @@ import {
   updateAxisConfig,
 } from './utilities.js';
 import type { ECConfig } from '../../types.js';
-
-const svgDataUrl = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIvPjwvc3ZnPg==';
-
-function decodeBase64DataUrl(dataUrl: string): string {
-  const [, base64 = ''] = dataUrl.split(',');
-  return atob(base64);
-}
+import { decodeBase64DataUrl, CURRENT_COLOR_SVG_DATA_URL as svgDataUrl } from '../testHelper.js';
 
 describe('chart axis utilities', () => {
   describe('extractYAxisLabelTexts', () => {

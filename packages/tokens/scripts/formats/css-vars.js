@@ -106,7 +106,6 @@ export const cssVariableFormatter = {
       'typography-heading-x-large-font-weight',
       'typography-heading-x-large-letter-spacing',
       'typography-heading-x-large-line-height',
-      'font-size-0x-large',
       'font-size-1-5x-large',
       'font-size-1x-large',
       'font-size-2-5x-large',

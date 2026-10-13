@@ -3,6 +3,18 @@ import { getDataForSetup } from '@synergy-design-system/metadata';
 export const SUPPORTED_PACKAGES = ['basic-elements', 'dashboard-elements'] as const;
 export type DavinciMigrationPackage = (typeof SUPPORTED_PACKAGES)[number];
 
+export type DavinciRecoveryResult = {
+  availableComponentNames: string[];
+  error: string;
+  operationPerformed: false;
+  package: DavinciMigrationPackage;
+  recovery: {
+    arguments: { package: DavinciMigrationPackage };
+    tool: 'davinci-migration-list';
+  };
+  submittedComponent: string;
+};
+
 /**
  * Alias mapping for DaVinci migration packages.
  * Maps user-friendly names to official package names.
@@ -67,3 +79,23 @@ export const extractDavinciComponents = (content: string): string[] => {
 export const extractMigrationSection = (content: string, component: string): string | undefined => content
   .split(/\n(?=###\s)/)
   .find(section => section.startsWith(`### ${component}`));
+
+export const getAvailableDavinciComponents = async (
+  packageName: DavinciMigrationPackage,
+): Promise<string[]> => extractDavinciComponents(await getMigrationGuideContent(packageName));
+
+export const buildDavinciRecovery = async (
+  packageName: DavinciMigrationPackage,
+  submittedComponent: string,
+  error: string,
+): Promise<DavinciRecoveryResult> => ({
+  availableComponentNames: await getAvailableDavinciComponents(packageName),
+  error,
+  operationPerformed: false,
+  package: packageName,
+  recovery: {
+    arguments: { package: packageName },
+    tool: 'davinci-migration-list',
+  },
+  submittedComponent,
+});

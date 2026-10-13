@@ -45,6 +45,14 @@ export default {
       id: 'selection_behavior',
       name: 'Selection Behavior',
     },
+    {
+      content: [
+        'Use readonly on every radio in a group when users should see the current selection without changing it; setting it only on the selected radio leaves other options available.',
+        'Use disabled on individual radios only when those choices are unavailable, and explain why they cannot be selected.',
+      ],
+      id: 'states',
+      name: 'Validation and States',
+    },
   ],
   useCases: [
     'Choose one delivery method from a short list.',

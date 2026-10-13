@@ -236,7 +236,7 @@ Note this can only be set via `property`, not as an `attribute`!
 attribute: `numeric-strategy`
 reflects: no
 type: `'native' | 'modern' | Partial<NumericStrategy>`
-default: `modernNumericStrategy`
+default: `'modern'`
 
 Defines the strategy for handling numbers in the numeric input.
 This is used to determine how the input behaves when the user interacts with it.

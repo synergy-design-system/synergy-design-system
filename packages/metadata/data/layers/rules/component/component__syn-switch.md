@@ -25,6 +25,11 @@ Switches allow the user to toggle an option on or off.
 - Use adjectives to describe actions, as they are less ambiguous than verbs.
 - Limit use to binary choices, such as "on/off" or "yes/no".
 
+### Validation and States
+
+- Use readonly to display an existing on/off setting that users may inspect but cannot toggle here.
+- Use disabled only when changing the setting is unavailable; explain the condition that prevents toggling it.
+
 ## Accessibility
 
 - Consider alternatives to switches, as many users may find them confusing.

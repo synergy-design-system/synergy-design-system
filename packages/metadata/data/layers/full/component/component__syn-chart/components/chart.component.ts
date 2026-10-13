@@ -22,6 +22,7 @@ import type { ChartConfigType, ECConfig } from './types.js';
 import { applyAxisDefaultsPreprocessor } from './configs/axes/utilities.js';
 import { getCurrentThemeFromBodyClass, getRealStyleValue, setThemeFromBodyClass } from './themes/utilities.js';
 import { getSynergyTheme } from './themes/theme.js';
+import { segmentInstall } from './configs/series/segment/install.js';
 import { donutInstall } from './configs/series/donut/install.js';
 import { gaugeInstall } from './configs/series/gauge/install.js';
 import { legendIconVisual, legendVisibilityIconProcessor } from './configs/legend/utilities.js';
@@ -37,6 +38,7 @@ use([
   LegendComponent,
   GridComponent,
   DataZoomComponent,
+  segmentInstall,
   donutInstall,
   gaugeInstall,
 ]);
@@ -90,8 +92,8 @@ export default class SynChart extends SynergyElement {
    * Consult the [ECharts option documentation](https://echarts.apache.org/en/option.html)
    * and assign either the object directly or build it through the handle.
    *
-   * > **Note:** Currently only **line charts** (`series[].type: 'line'`) are supported.
-   * > Support for additional chart types (bar, pie, etc.) will be added in future releases or can be requested.
+    * > **Note:** Only the chart types and presets documented by Synergy are registered by default.
+    * > Other ECharts chart types require their ECharts modules to be registered separately.
    *
    * Assigning a new config input completely replaces the previous chart
    * configuration (`notMerge: true`).

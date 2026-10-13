@@ -22,20 +22,20 @@ discussions, or pull requests.
 ### Contact
 
 - Email: psirt@sick.de
-- Web: https://www.sick.com/de/en/service-and-support/the-sick-product-security-incident-response-team-sick-psirt/w/psirt/
+- Web: https://www.sick.com/de/en/product-security-incident-response-team-psirt/s/psirt
 
 ### Secure Communication
 
 If you would like to encrypt sensitive information, please use our OpenPGP key:
 
-https://www.sick.com/.well-known/csaf/openpgp/E5097FC040473BB30F3EA7E0D58622400E6D0E90.asc
+https://www.sick.com/.well-known/csaf/openpgp/CA8056766000EF4F316849AE46E964CFC91A4642.asc
 
 ### Vulnerability Disclosure Policy
 
 Details regarding the reporting and handling of security vulnerabilities can be
 found in SICK's official vulnerability disclosure policy:
 
-https://cdn.sick.com/media/content/hc8/h9b/9649321148446.pdf
+https://www.sick.com/de/en/vulnerability-disclosure-policy/s/psirt-policy
 
 ### Preferred Languages
 
@@ -50,7 +50,7 @@ We appreciate responsible vulnerability reporting. Researchers who help
 improve the security of SICK-maintained products and open-source projects may
 be recognized on our acknowledgements page:
 
-https://www.sick.com/de/en/sick-product-security-incident-response-team/sick-psirt-acknowledgments/w/psirt-acknowledgments/
+https://www.sick.com/de/en/hall-of-fame/s/psirt-hall-of-fame
 
 ## Additional Resources
 

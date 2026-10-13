@@ -6,11 +6,17 @@ import { SynergyGaugeView } from './gauge-view.js';
 import type { SynergyGaugeSeriesOption } from './types.js';
 import { getRealStyleValue } from '../../../themes/utilities.js';
 import { colorSvgDataUrl } from '../../utilities.js';
-import type { ExtensionAPI, GlobalModel } from '../../types.js';
+import type { GlobalModel } from '../../types.js';
+import {
+  createApiStub,
+  getImages,
+  getRects,
+  getSectors,
+  getTextValues,
+  CURRENT_COLOR_SVG_DATA_URL as svgDataUrl,
+} from '../../testHelper.js';
 
 const RADIAN = Math.PI / 180;
-const svgDataUrl = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIvPjwvc3ZnPg==';
-
 const createSeriesModelStub = (
   option: SynergyGaugeSeriesOption,
   paletteColor = '#123456',
@@ -25,11 +31,6 @@ const createSeriesModelStub = (
     option,
   } as unknown as SynergyGaugeSeriesModel;
 };
-
-const createApiStub = (width = 280, height = 280): ExtensionAPI => ({
-  getHeight: () => height,
-  getWidth: () => width,
-}) as unknown as ExtensionAPI;
 
 const renderGauge = (
   partialOption: Partial<SynergyGaugeSeriesOption> = {},
@@ -49,46 +50,6 @@ const renderGauge = (
 
   return view;
 };
-
-type GaugeGraphicElementMap = {
-  image: graphic.Image;
-  rect: graphic.Rect;
-  sector: graphic.Sector;
-  text: graphic.Text;
-};
-
-const isGraphicElementOfType = <TType extends keyof GaugeGraphicElementMap>(
-  element: unknown,
-  type: TType,
-): element is GaugeGraphicElementMap[TType] & { type: TType } => (
-  typeof element === 'object'
-  && element !== null
-  && 'type' in element
-  && (element as { type?: unknown }).type === type
-);
-
-const collectByType = <TType extends keyof GaugeGraphicElementMap>(
-  view: SynergyGaugeView,
-  type: TType,
-): GaugeGraphicElementMap[TType][] => {
-  const collected: GaugeGraphicElementMap[TType][] = [];
-
-  view.group.traverse((element: unknown) => {
-    if (isGraphicElementOfType(element, type)) {
-      collected.push(element);
-    }
-  });
-
-  return collected;
-};
-
-const getTextValues = (view: SynergyGaugeView): string[] => (
-  collectByType(view, 'text')
-    .map((element) => element.style.text)
-    .filter((text) => text !== undefined)
-);
-
-const getSectors = (view: SynergyGaugeView): graphic.Sector[] => collectByType(view, 'sector');
 
 const getProgressSector = (view: SynergyGaugeView): graphic.Sector | undefined => getSectors(view).find((sector) => sector.z === 3);
 
@@ -265,8 +226,8 @@ describe('SynergyGaugeView', () => {
     });
 
     const texts = getTextValues(view);
-    const trendBackgroundRects = collectByType(view, 'rect').filter((element) => element.z === 20);
-    const trendImages = collectByType(view, 'image').filter((element) => element.z === 21);
+    const trendBackgroundRects = getRects(view).filter((element) => element.z === 20);
+    const trendImages = getImages(view).filter((element) => element.z === 21);
 
     expect(trendBackgroundRects).to.have.lengthOf(1);
     expect(trendImages).to.have.lengthOf(1);
@@ -276,7 +237,7 @@ describe('SynergyGaugeView', () => {
   it('does not render trend indicator when trend.show is false', () => {
     const view = renderGauge({ trend: { show: false } });
 
-    const trendBackgroundRects = collectByType(view, 'rect').filter((element) => element.z === 20);
+    const trendBackgroundRects = getRects(view).filter((element) => element.z === 20);
     expect(trendBackgroundRects).to.have.lengthOf(0);
   });
 
@@ -289,7 +250,7 @@ describe('SynergyGaugeView', () => {
       },
     });
 
-    const trendImage = collectByType(view, 'image').find((element) => element.z === 21);
+    const trendImage = getImages(view).find((element) => element.z === 21);
     expect(trendImage).to.not.equal(undefined);
     const coloredIcon = colorSvgDataUrl(svgDataUrl, getRealStyleValue('SynTypographyColorText'));
     expect(trendImage!.style.image).to.equal(coloredIcon);
@@ -304,7 +265,7 @@ describe('SynergyGaugeView', () => {
       },
     });
 
-    const trendImage = collectByType(view, 'image').find((element) => element.z === 21);
+    const trendImage = getImages(view).find((element) => element.z === 21);
     expect(trendImage).to.not.equal(undefined);
     const coloredIcon = colorSvgDataUrl(svgDataUrl, getRealStyleValue('SynTypographyColorText'));
     expect(trendImage!.style.image).to.equal(coloredIcon);
@@ -315,7 +276,7 @@ describe('SynergyGaugeView', () => {
       icon: svgDataUrl,
     });
 
-    const centerIcon = collectByType(view, 'image').find((element) => element.z === 10);
+    const centerIcon = getImages(view).find((element) => element.z === 10);
     expect(centerIcon).to.not.equal(undefined);
     const coloredIcon = colorSvgDataUrl(svgDataUrl, getRealStyleValue('SynTypographyColorText'));
     expect(centerIcon!.style.image).to.equal(coloredIcon);

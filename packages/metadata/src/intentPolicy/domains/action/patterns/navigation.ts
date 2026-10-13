@@ -19,12 +19,12 @@ export const actionNavigationPattern: IntentUsagePattern = {
       propRules: [
         {
           code: 'REQUIRED_PROP_HREF',
-          kind: 'requiredEquals',
+          example: '#',
+          kind: 'required',
           message: 'href property must be set for navigation action intent.',
           prop: 'href',
           rationale: 'The href property provides the navigation target for semantic link behavior.',
           suggestedFix: 'Set href property to the target URL or route.',
-          value: '#',
         },
         {
           code: 'REQUIRED_PROP_TEXT_VARIANT',

@@ -16,18 +16,18 @@ export const intentCategoriesListResource = (server: McpServer) => {
     'intent-categories-list',
     RESOURCE_URI,
     {
-      description: 'Available intent categories in the Synergy Design System.',
+      description: 'Static JSON index of registered Synergy intent categories. Use intent-discover to browse exact intent IDs.',
       mimeType: 'application/json',
-      title: 'Available intent categories',
+      title: 'Synergy intent category index',
     },
     resourceHandler('intent-categories-list', async (_uri) => {
-      const categories = await listIntentCategories();
+      const { data } = await listIntentCategories();
 
       return {
         contents: [
           {
             mimeType: 'application/json',
-            text: JSON.stringify(categories, null, 2),
+            text: JSON.stringify(data, null, 2),
             uri: RESOURCE_URI,
           },
         ],

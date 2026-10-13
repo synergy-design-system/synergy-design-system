@@ -32,6 +32,11 @@ Ranges allow the user to select values within a given range using one or two thu
 - Use appropriate step sizes for fine control (e.g., increments of 5 or 10 for a price slider).
 - Enable two-handle sliders (min/max) if the scenario requires independent adjustments.
 
+### Validation and States
+
+- Use readonly when users need to inspect the current value or interval but must not move the thumb(s); show the value in text as well.
+- Use disabled only when adjusting the range is unavailable, and explain what must happen before it can be changed.
+
 ## Accessibility
 
 - Always provide a label for the range so that screenreaders correctly announce the component.

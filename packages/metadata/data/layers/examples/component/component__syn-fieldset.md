@@ -63,7 +63,7 @@ For container widths of 640px or above, the nested elements within each row swit
 
 ## Disabled
 
-Enable the disabled toggle to disable all nested elements simultaneously.
+Use disabled when the entire section is unavailable; it disables contained form controls. Explain how to make the section available. To keep existing values inspectable instead, set readonly on supported child controls.
 
 ```html
 <syn-fieldset disabled="" layout="two-columns" legend="Disabled fieldset">

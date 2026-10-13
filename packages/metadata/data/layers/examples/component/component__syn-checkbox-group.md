@@ -138,7 +138,7 @@ The focus event gives the user feedback that one of the Checkboxes has been focu
 
 ## Disabled
 
-Use the disabled attribute on the corresponding syn-checkbox elements to set the disabled state.
+Set disabled on individual syn-checkbox options that are unavailable, and explain why. The checkbox group itself has no disabled attribute.
 
 ```html
 <syn-checkbox-group label="This is a disabled">
@@ -158,7 +158,7 @@ Use the disabled attribute on the corresponding syn-checkbox elements to set the
 
 ## Readonly
 
-Checkboxes can be displayed in a read-only state by applying the readonly attribute to the selected checkbox inside the checkbox group.
+Set readonly on each syn-checkbox whose checked state users should inspect but not change. To freeze the entire group, apply it to every option, not just the checked ones.
 
 ```html
 <syn-checkbox-group label="This is a label">

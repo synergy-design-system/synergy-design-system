@@ -3,7 +3,18 @@ import type { ZRColor } from 'echarts/types/dist/shared.js';
 import { getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../themes/utilities.js';
 import type { ECConfig } from '../types.js';
 import { DEGREE_TO_RADIAN, FULL_CIRCLE_RADIAN } from './constants.js';
-import type { LayoutValue, ParsedLayoutValue, Point } from './types.js';
+import type {
+  CircularLayoutInput,
+  LayoutBounds,
+  LayoutCenterInput,
+  LayoutRadiusInput,
+  LayoutValue,
+  ParsedLayoutValue,
+  Point,
+  ResolvedCircularLayout,
+  ShiftedPoint,
+  TextStyle,
+} from './types.js';
 
 // ---------------------------------------------------------------------------
 // Low-level deep-merge primitives
@@ -325,6 +336,7 @@ export const createTextGraphic = ({
   x,
   y,
   fontSize,
+  color = style('SynTypographyColorText'),
   fontWeight = styleWithoutUnit('SynFontWeightNormal'),
   align = 'center',
   verticalAlign = 'middle',
@@ -334,15 +346,16 @@ export const createTextGraphic = ({
   x: number;
   y: number;
   fontSize: number;
+  color?: string;
   fontWeight?: number | string;
   align?: 'left' | 'center' | 'right';
   verticalAlign?: 'top' | 'middle' | 'bottom';
   z?: number;
-}): graphic.Text => new graphic.Text({
+}, styleOverwrite?: TextStyle): graphic.Text => new graphic.Text({
   silent: true,
   style: {
     align,
-    fill: style('SynTypographyColorText'),
+    fill: color,
     fontFamily: style('SynFontSans'),
     fontSize,
     fontWeight: fontWeight as number,
@@ -350,6 +363,7 @@ export const createTextGraphic = ({
     verticalAlign,
     x,
     y,
+    ...styleOverwrite,
   },
   z,
 });
@@ -455,6 +469,76 @@ export const toPixels = (value: LayoutValue | undefined, baseSize: number, fallb
   return parsed.kind === 'percent' ? (baseSize * parsed.value) / 100 : fallback;
 };
 
+/** Resolves chart-relative inset values into absolute pixel bounds. */
+export const resolveLayoutBounds = (
+  edges: CircularLayoutInput,
+  width: number,
+  height: number,
+): LayoutBounds => {
+  const top = Math.max(0, toPixels(edges.top, height));
+  const right = Math.max(0, toPixels(edges.right, width));
+  const bottom = Math.max(0, toPixels(edges.bottom, height));
+  const left = Math.max(0, toPixels(edges.left, width));
+
+  return {
+    bottom: Math.max(top, height - bottom),
+    left: Math.min(width, left),
+    right: Math.max(left, width - right),
+    top: Math.min(height, top),
+  };
+};
+
+/** Resolves a center point within the supplied layout bounds. */
+export const resolveLayoutCenter = (
+  center: LayoutCenterInput,
+  bounds: LayoutBounds,
+): Omit<ResolvedCircularLayout, 'bounds' | 'outerRadius'> => {
+  const layoutWidth = Math.max(0, bounds.right - bounds.left);
+  const layoutHeight = Math.max(0, bounds.bottom - bounds.top);
+
+  return {
+    centerX: bounds.left + toPixels(center?.[0], layoutWidth, layoutWidth / 2),
+    centerY: bounds.top + toPixels(center?.[1], layoutHeight, layoutHeight / 2),
+    layoutHeight,
+    layoutWidth,
+  };
+};
+
+/** Resolves an outer radius against the smaller dimension of a layout area. */
+export const resolveOuterRadius = (
+  radius: LayoutRadiusInput,
+  layoutWidth: number,
+  layoutHeight: number,
+): number => {
+  const size = Math.min(layoutWidth, layoutHeight);
+  const radiusBase = Math.max(0, size / 2);
+
+  if (radius === undefined) {
+    return radiusBase;
+  }
+
+  return Math.max(0, toPixels(radius, radiusBase, radiusBase / 2));
+};
+
+/** Returns whether a radius is an absolute pixel value. */
+export const isFixedRadius = (radius: LayoutRadiusInput): boolean => parseLayoutValue(radius).kind === 'pixel';
+
+/** Resolves bounds, center and radius for a circular chart layout. */
+export const resolveCircularLayout = (
+  input: CircularLayoutInput,
+  width: number,
+  height: number,
+): ResolvedCircularLayout => {
+  const bounds = resolveLayoutBounds(input, width, height);
+  const center = resolveLayoutCenter(input.center, bounds);
+
+  return {
+    ...center,
+    bounds,
+    outerRadius: resolveOuterRadius(input.radius, center.layoutWidth, center.layoutHeight),
+  };
+};
+
 /**
  * Resolves static or value-dependent text.
  *
@@ -471,4 +555,20 @@ export const resolveText = (
   }
 
   return text ? String(text) : undefined;
+};
+
+/**
+ * Computes the point on a circle of the given radius that lies on a line parallel to,
+ * and offset by a constant pixel distance from, the radial line at `angle`. Used to build
+ * segment edges with a constant pixel-width gap, regardless of radius.
+ */
+export const getShiftedPoint = (radius: number, angle: number, tangentialOffset: number): ShiftedPoint => {
+  const safeOffset = clamp(tangentialOffset, -(radius - 0.5), radius - 0.5);
+  const radialOffset = Math.sqrt(Math.max((radius * radius) - (safeOffset * safeOffset), 0));
+
+  return {
+    angle: angle + Math.asin(safeOffset / radius),
+    x: (radialOffset * Math.cos(angle)) - (safeOffset * Math.sin(angle)),
+    y: (radialOffset * Math.sin(angle)) + (safeOffset * Math.cos(angle)),
+  };
 };

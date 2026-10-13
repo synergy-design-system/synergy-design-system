@@ -35,6 +35,14 @@ export default {
       id: 'interaction_and_usage',
       name: 'Interaction and Usage',
     },
+    {
+      content: [
+        'Use readonly when users need to see whether an existing choice is checked without being able to change it.',
+        'Use disabled only when the choice is unavailable; explain why users cannot select it rather than leaving an unexplained inactive option.',
+      ],
+      id: 'states',
+      name: 'Validation and States',
+    },
   ],
   useCases: [
     'Used for selections that don\'t immediately trigger an action.',

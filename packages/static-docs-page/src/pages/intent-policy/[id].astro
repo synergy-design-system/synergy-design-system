@@ -2,10 +2,8 @@
 import { Code } from 'astro-expressive-code/components'
 import { type SynBadge } from '@synergy-design-system/components';
 import {
+	getIntentPolicyDocument,
 	listIntentCategories,
-	getIntentCategory,
-	getIntentOptions,
-	listIntents,
 	type FrameworkProfile,
 	type IntentTargetRef,
 } from '@synergy-design-system/metadata';
@@ -38,13 +36,6 @@ if (!categoryId) {
 	throw new Error('Missing intent policy category id for route.');
 }
 
-const category = await getIntentCategory(categoryId, {}, metadataStoreOptions);
-
-const intents = await listIntents({
-	category: categoryId,
-	includePhases: ['experimental'],
-}, metadataStoreOptions);
-
 const renderFrameworks = [
 	'vanilla',
 	'react-wrapper',
@@ -54,98 +45,15 @@ const renderFrameworks = [
 	'vue-web-components',
 ] as const satisfies readonly FrameworkProfile[];
 
+const intentDocument = await getIntentPolicyDocument(categoryId, {
+	frameworks: renderFrameworks,
+	includePhases: ['experimental'],
+}, metadataStoreOptions);
+
+const category = { data: intentDocument.category };
+const intents = { data: intentDocument.intents.map(({ intent }) => intent) };
 const variantsByIntentId = new Map(
-	await Promise.all(intents.data.map(async intent => {
-		const defaultTargetIds = new Set<string>();
-		const variantResults = await Promise.all(renderFrameworks.map(async framework => {
-			const options = await getIntentOptions({
-				framework,
-				includePhases: ['experimental'],
-				intentId: intent.id,
-				maxAlternatives: 20,
-			}, metadataStoreOptions);
-
-			if (options.data?.bestDefaultTargetId) {
-				defaultTargetIds.add(options.data.bestDefaultTargetId);
-			}
-
-			return [framework, options.data?.renderableTargets ?? []] as const;
-		}));
-
-		const variantMap = new Map<string, {
-			isDefault: boolean;
-			priority?: number;
-			reason: string;
-			target: IntentTargetRef;
-			targetRole?: 'standalone' | 'container' | 'item';
-			previews: Array<readonly [typeof renderFrameworks[number], string]>;
-		}>();
-
-		for (const [framework, targets] of variantResults) {
-			for (const target of targets) {
-				const targetRef: IntentTargetRef = {
-					id: target.targetId,
-					kind: target.targetId.startsWith('style:') ? 'style' : 'component',
-					name: target.targetName,
-				};
-
-				const existing = variantMap.get(target.targetId);
-				if (existing) {
-					existing.isDefault = existing.isDefault || defaultTargetIds.has(target.targetId);
-					existing.priority = Math.max(existing.priority ?? 0, target.priority ?? 0);
-					existing.targetRole = existing.targetRole ?? target.targetRole;
-					existing.previews.push([framework, target.previewCode] as const);
-					continue;
-				}
-
-				variantMap.set(target.targetId, {
-					isDefault: defaultTargetIds.has(target.targetId),
-					priority: target.priority,
-					previews: [[framework, target.previewCode] as const],
-					reason: target.reason,
-					target: targetRef,
-					targetRole: target.targetRole,
-				});
-			}
-		}
-
-		const getTargetRoleWeight = (targetRole?: 'standalone' | 'container' | 'item') => {
-			switch (targetRole ?? 'standalone') {
-				case 'standalone':
-					return 3;
-				case 'container':
-					return 2;
-				case 'item':
-					return 1;
-				default:
-					return 0;
-			}
-		};
-
-		const variants = Array.from(variantMap.values())
-			.sort((a, b) => {
-				if (a.isDefault !== b.isDefault) {
-					return a.isDefault ? -1 : 1;
-				}
-
-				const roleWeightDiff = getTargetRoleWeight(b.targetRole) - getTargetRoleWeight(a.targetRole);
-				if (roleWeightDiff !== 0) {
-					return roleWeightDiff;
-				}
-
-				const priorityDiff = (b.priority ?? 0) - (a.priority ?? 0);
-				if (priorityDiff !== 0) {
-					return priorityDiff;
-				}
-
-				const aLabel = a.target.id ?? a.target.name ?? a.target.selector ?? a.target.kind;
-				const bLabel = b.target.id ?? b.target.name ?? b.target.selector ?? b.target.kind;
-
-				return aLabel.localeCompare(bLabel);
-			});
-
-		return [intent.id, variants] as const;
-	})),
+	intentDocument.intents.map(({ intent, variants }) => [intent.id, variants]),
 );
 
 const nowIso = new Date().toISOString();
@@ -275,12 +183,12 @@ const getPhaseBadge = (phase: string): SynBadge['variant'] => {
 											<p>{variant.reason}</p>
 
 											<syn-tab-group>
-												{variant.previews.map(([framework, output]) => (
-													<syn-tab-panel name={framework}>
-														<Code code={output} lang="html" />
+													{variant.previews.map(preview => (
+															<syn-tab-panel name={preview.framework}>
+																<Code code={preview.code} lang="html" />
 													</syn-tab-panel>
-													<syn-tab panel={framework} slot="nav">
-														{framework}
+															<syn-tab panel={preview.framework} slot="nav">
+																{preview.framework}
 													</syn-tab>
 												))}
 											</syn-tab-group>

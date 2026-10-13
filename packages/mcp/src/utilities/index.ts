@@ -1,4 +1,6 @@
 export * from './config.js';
+export * from './component-discovery.js';
+export * from './content-discovery.js';
 export * from './davinci.js';
 export * from './logger.js';
 export * from './logging-context.js';
@@ -8,6 +10,7 @@ export * from './local-file-logger.js';
 export * from './migration.js';
 export * from './metadata.js';
 export * from './intent.js';
+export * from './intent-discovery.js';
 export * from './token-counter.js';
 export * from './rules.js';
 export * from './server.js';

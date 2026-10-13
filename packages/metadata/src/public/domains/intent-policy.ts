@@ -737,6 +737,21 @@ const evaluateNodePropRules = (
       continue;
     }
 
+    if (rule.kind === 'required') {
+      const hasProp = !!props && Object.prototype.hasOwnProperty.call(props, rule.prop);
+      if (!hasProp || !hasMeaningfulContentValue(props?.[rule.prop])) {
+        issues.push({
+          code: rule.code,
+          message: rule.message,
+          path: `${nodePath}.props.${rule.prop}`,
+          rationale: rule.rationale,
+          severity: 'error',
+          suggestedFix: rule.suggestedFix,
+        });
+      }
+      continue;
+    }
+
     if (rule.kind === 'recommendedEquals') {
       const propValue = props?.[rule.prop];
       if (propValue !== rule.value) {

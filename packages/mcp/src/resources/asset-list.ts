@@ -14,9 +14,9 @@ export const assetListResource = (server: McpServer) => {
     'asset-list',
     RESOURCE_URI,
     {
-      description: 'All available icon sets in the Synergy Design System, including theme metadata.',
+      description: 'Static JSON index of Synergy icon sets with IDs, names, versions, themes, and icon counts. Use asset-info to search icons.',
       mimeType: 'application/json',
-      title: 'Available icon sets',
+      title: 'Synergy icon set index',
     },
     resourceHandler('asset-list', async (_uri) => {
       const allAssets = await listAssets();

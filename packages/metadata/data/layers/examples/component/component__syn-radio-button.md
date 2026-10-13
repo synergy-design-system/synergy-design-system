@@ -43,7 +43,7 @@ The focus event gives the user feedback that the radio button has been focused b
 
 ## Disabled
 
-Use the disabled attribute to disable a radio button.
+Set disabled on an unavailable radio-button option and explain why it cannot be selected. Use readonly on every option when the current selection is for inspection only.
 
 ```html
 <syn-radio-group label="Select an option" name="b" value="1">
@@ -57,7 +57,7 @@ Use the disabled attribute to disable a radio button.
 
 ## Readonly
 
-Add the read-only attribute to render a readonly radio button. Please note that you need to enable the readonly state for each individual radio button.
+Set readonly on every syn-radio-button in the group to show the current selection without allowing changes. Setting it only on the selected option leaves other buttons available.
 
 ```html
 <div

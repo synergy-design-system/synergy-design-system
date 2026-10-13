@@ -82,3 +82,5 @@ export type {
   SegmentSeriesOption,
   SynergySegmentSeriesOption,
 } from './configs/series/segment/types.js';
+
+export type { BarSeriesOption } from './configs/series/bar/types.js';

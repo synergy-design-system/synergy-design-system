@@ -1246,6 +1246,296 @@
           "value": "Use `legendShow()` to display a legend for segment data items. Set the `name` option on each item to provide its legend label.",
           "type": "text"
         }
+      },
+      "bar-chart-grouped-default": {
+        "title": {
+          "value": "Grouped Bar Chart",
+          "type": "text"
+        },
+        "description": {
+          "value": "Grouped bar charts display multiple bars per category to compare values across different series or subgroups. Choosing between a vertical (column) or horizontal orientation depends on the dataset and visualization goals.",
+          "type": "text"
+        }
+      },
+      "bar-chart-grouped-preset": {
+        "title": {
+          "value": "Grouped Bar Chart",
+          "type": "text"
+        },
+        "description": {
+          "value": "The bar chart can be configured via the chart config with `type: bar` or with the `seriesBar` preset function.",
+          "type": "text"
+        }
+      },
+      "bar-chart-grouped-horizontal": {
+        "title": {
+          "value": "Grouped Horizontal Bar Chart",
+          "type": "text"
+        },
+        "description": {
+          "value": "Place categories on the y-axis and values on the x-axis, where bar length represents value magnitude. Grouped horizontal bar charts are best suited for:\n\n- **Long category labels:** Provides ample horizontal room for text, avoiding overlapping, truncation, or awkward label rotations.\n- **Large datasets:** Scales cleanly for 10 or more categories without compressing bar widths.\n- **Rankings:** Naturally presents ordered lists (ascending or descending) in a top-to-bottom reading flow.",
+          "type": "text"
+        }
+      },
+      "bar-chart-grouped-vertical": {
+        "title": {
+          "value": "Grouped Vertical Bar Chart",
+          "type": "text"
+        },
+        "description": {
+          "value": "Place categories on the x-axis and values on the y-axis, where bar height represents value magnitude. Grouped vertical bar charts are best suited for:\n\n- **Time-based trends:** Chronological sequences (e.g., days, months, years) flow naturally from left to right.\n- **Small category sets:** Clear and uncluttered when comparing multiple series across fewer than 10 categories.\n- **Highlighting differences:** The vertical height emphasizes growth and magnitude differences between series and categories.",
+          "type": "text"
+        }
+      },
+      "bar-chart-grouped-value-range": {
+        "title": {
+          "value": "Grouped Vertical Bar Chart with Min and Max Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `min` and `max` on the value axis to set explicit scale boundaries instead of relying on automatic calculation. A fixed range helps to:\n\n- **Standardize comparisons:** Keep scales identical across multiple series, charts or dashboards.\n- **Anchor benchmarks:** Align to fixed limits or targets (e.g., 0–100%).\n- **Provide headroom:** Prevent labels or tooltips from clipping against chart edges.\n- **Stabilize views:** Avoid jarring scale shifts during live updates or filtering.",
+          "type": "text"
+        }
+      },
+      "bar-chart-grouped-negative": {
+        "title": {
+          "value": "Grouped Bar Chart with Negative Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "Grouped bar charts can display negative values across multiple series to visualize deficits, losses or decreases. Bars extend away from the zero baseline, downwards in vertical charts and leftwards in horizontal charts.",
+          "type": "text"
+        }
+      },
+      "bar-chart-grouped-positive-and-negative": {
+        "title": {
+          "value": "Grouped Bar Chart with Positive and Negative Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "Grouped bar charts can combine positive and negative values across multiple series to visualize gains and losses, variances, or deviations from a baseline within each category. Bars extend in opposite directions from the zero baseline.",
+          "type": "text"
+        }
+      },
+      "bar-chart-grouped-tooltip": {
+        "title": {
+          "value": "Grouped Bar Chart with Tooltip",
+          "type": "text"
+        },
+        "description": {
+          "value": "Enable the tooltip to inspect series values on hover. The tooltip option `axisPointer.type='shadow'` highlights the corresponding category group, making it easy to compare all series values for that category.",
+          "type": "text"
+        }
+      },
+      "bar-chart-grouped-palette": {
+        "title": {
+          "value": "Bar Chart Palette",
+          "type": "text"
+        },
+        "description": {
+          "value": "Depending on your use case, you can choose between a categorical palette (up to 12 colors) and a sequential palette (up to 3 colors).",
+          "type": "text"
+        }
+      },
+      "bar-chart-grouped-custom-color": {
+        "title": {
+          "value": "Grouped Bar Chart Custom Colors",
+          "type": "text"
+        },
+        "description": {
+          "value": "By default, each series in a grouped bar chart is assigned a color from the chart's categorical palette. Use the `color` option to apply explicit colors for each series.",
+          "type": "text"
+        }
+      },
+      "bar-chart-grouped-legend": {
+        "title": {
+          "value": "Grouped Bar Chart with Legend",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `legendShow()` to render legend entries for each series. Series names are used as legend labels and can be toggled interactively. For this use the `name` option in the series configuration.",
+          "type": "text"
+        }
+      },
+      "bar-chart-single-default": {
+        "title": {
+          "value": "Single Bar Chart",
+          "type": "text"
+        },
+        "description": {
+          "value": "Single bar charts display one bar per category to compare discrete values or highlight a specific metric. Choosing between a vertical (column) or horizontal orientation depends on the dataset and visualization goals.",
+          "type": "text"
+        }
+      },
+      "bar-chart-single-preset": {
+        "title": {
+          "value": "Single Bar Chart",
+          "type": "text"
+        },
+        "description": {
+          "value": "The bar chart can be configured via the chart config with `type: bar` or with the `seriesBar` preset function.",
+          "type": "text"
+        }
+      },
+      "bar-chart-single-horizontal": {
+        "title": {
+          "value": "Single Horizontal Bar Chart",
+          "type": "text"
+        },
+        "description": {
+          "value": "Place categories on the y-axis and values on the x-axis, where bar length represents value magnitude. Horizontal bar charts are best suited for:\n\n- **Long category labels:** Provides ample horizontal room for text, avoiding overlapping, truncation, or awkward label rotations.\n- **Large datasets:** Scales cleanly for 10 or more categories without compressing bar widths.\n- **Rankings:** Naturally presents ordered lists (ascending or descending) in a top-to-bottom reading flow.",
+          "type": "text"
+        }
+      },
+      "bar-chart-single-vertical": {
+        "title": {
+          "value": "Single Vertical Bar Chart",
+          "type": "text"
+        },
+        "description": {
+          "value": "Place categories on the x-axis and values on the y-axis, where bar height represents value magnitude. Vertical bar charts are best suited for:\n\n- **Time-based trends:** Chronological sequences (e.g., days, months, years) flow naturally from left to right.\n- **Small category sets:** Clear and uncluttered when comparing fewer than 10 categories.\n- **Highlighting differences:** The vertical height emphasizes growth and magnitude differences between categories.",
+          "type": "text"
+        }
+      },
+      "bar-chart-single-value-range": {
+        "title": {
+          "value": "Single Vertical Bar Chart with Min and Max Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `min` and `max` on the value axis to set explicit scale boundaries instead of relying on automatic calculation. A fixed range helps to:\n\n- **Standardize comparisons:** Keep scales identical across charts or dashboards.\n- **Anchor benchmarks:** Align to fixed limits or targets (e.g., 0–100%).\n- **Provide headroom:** Prevent labels or tooltips from clipping against chart edges.\n- **Stabilize views:** Avoid jarring scale shifts during live updates or filtering.",
+          "type": "text"
+        }
+      },
+      "bar-chart-single-negative": {
+        "title": {
+          "value": "Single Bar Chart with Negative Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "Bar charts can display negative values to visualize deficits, losses, or decreases. Bars extend away from the zero baseline, downwards in vertical charts and leftwards in horizontal charts.",
+          "type": "text"
+        }
+      },
+      "bar-chart-single-positive-and-negative": {
+        "title": {
+          "value": "Single Bar Chart with Positive and Negative Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "Bar charts can combine positive and negative values in a single series to visualize gains and losses, variances, or deviations from a baseline. Bars extend in opposite directions from the zero baseline.",
+          "type": "text"
+        }
+      },
+      "bar-chart-single-tooltip": {
+        "title": {
+          "value": "Single Bar Chart with Tooltip",
+          "type": "text"
+        },
+        "description": {
+          "value": "Enable the tooltip to inspect a bar's value on hover. The tooltip option `axisPointer.type='shadow'` highlights the corresponding category.",
+          "type": "text"
+        }
+      },
+      "bar-chart-stacked-default": {
+        "title": {
+          "value": "Stacked Bar Chart",
+          "type": "text"
+        },
+        "description": {
+          "value": "Stacked bar charts display multiple series layered within a single bar per category. They are ideal for showing total values across categories while simultaneously breaking down proportional contributions. Choosing between a vertical or horizontal orientation depends on the dataset and visualization goals.",
+          "type": "text"
+        }
+      },
+      "bar-chart-stacked-preset": {
+        "title": {
+          "value": "Stacked Bar Chart",
+          "type": "text"
+        },
+        "description": {
+          "value": "The stacked bar chart can be configured via the chart config with `type: bar` and a shared `stack` identifier, or with the `seriesBar` preset function.",
+          "type": "text"
+        }
+      },
+      "bar-chart-stacked-horizontal": {
+        "title": {
+          "value": "Stacked Horizontal Bar Chart",
+          "type": "text"
+        },
+        "description": {
+          "value": "Place categories on the y-axis and values on the x-axis, where total bar length represents the sum of all segments. Stacked horizontal bar charts are best suited for:\n\n- **Long category labels:** Provides ample horizontal room for text, avoiding overlapping, truncation, or awkward label rotations.\n- **Large datasets:** Scales cleanly for 10 or more categories without compressing bar widths.\n- **Rankings:** Naturally presents ordered lists (ascending or descending) based on total values in a top-to-bottom reading flow.",
+          "type": "text"
+        }
+      },
+      "bar-chart-stacked-vertical": {
+        "title": {
+          "value": "Stacked Vertical Bar Chart",
+          "type": "text"
+        },
+        "description": {
+          "value": "Place categories on the x-axis and values on the y-axis, where total bar height represents the sum of all segments. Stacked vertical bar charts are best suited for:\n\n- **Time-based trends:** Chronological sequences (e.g., days, months, years) flow naturally from left to right.\n- **Small category sets:** Clear and uncluttered when comparing totals across fewer than 10 categories.\n- **Part-to-whole comparisons:** Visually emphasizes how sub-components contribute to the total growth or magnitude per category.",
+          "type": "text"
+        }
+      },
+      "bar-chart-stacked-value-range": {
+        "title": {
+          "value": "Stacked Vertical Bar Chart with Min and Max Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `min` and `max` on the value axis to set explicit scale boundaries instead of relying on automatic calculation. A fixed range helps to:\n\n- **Standardize comparisons:** Keep scales identical across multiple stacked charts or dashboards.\n- **Accommodate stacked totals:** Ensure sufficient headroom for combined totals across all series.\n- **Anchor benchmarks:** Align to fixed limits or capacity targets (e.g., 0–100%).\n- **Stabilize views:** Avoid jarring scale shifts during live updates or filtering.",
+          "type": "text"
+        }
+      },
+      "bar-chart-stacked-negative": {
+        "title": {
+          "value": "Stacked Bar Chart with Negative Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "Stacked bar charts can display negative values across multiple series to visualize accumulated deficits, losses, or decreases. Negative segments stack away from the zero baseline, downwards in vertical charts and leftwards in horizontal charts.",
+          "type": "text"
+        }
+      },
+      "bar-chart-stacked-positive-and-negative": {
+        "title": {
+          "value": "Stacked Bar Chart with Positive and Negative Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "Stacked bar charts can combine positive and negative values across multiple series. Positive values stack in one direction from the zero baseline, while negative values stack in the opposite direction, making net balances, gains, and losses easy to evaluate.",
+          "type": "text"
+        }
+      },
+      "bar-chart-stacked-custom-color": {
+        "title": {
+          "value": "Stacked Bar Chart Custom Colors",
+          "type": "text"
+        },
+        "description": {
+          "value": "By default, each series in a stacked bar chart is assigned a color from the chart's categorical palette. Use the `color` option in the chart configuration to apply explicit colors for each series.",
+          "type": "text"
+        }
+      },
+      "bar-chart-stacked-tooltip": {
+        "title": {
+          "value": "Stacked Bar Chart with Tooltip",
+          "type": "text"
+        },
+        "description": {
+          "value": "Enable the tooltip to inspect segment values on hover. The tooltip option `axisPointer.type='shadow'` highlights the entire category bar, making it easy to compare all stacked series values and their totals for that category.",
+          "type": "text"
+        }
+      },
+      "bar-chart-stacked-legend": {
+        "title": {
+          "value": "Stacked Bar Chart with Legend",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `legendShow()` to render legend entries for each series in the stack. Series names are used as legend labels and can be toggled interactively to show or hide individual segments.",
+          "type": "text"
+        }
       }
     },
     "checkbox": {

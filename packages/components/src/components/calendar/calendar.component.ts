@@ -342,6 +342,36 @@ export default class SynCalendar extends SynergyElement {
   /** The active view whose DOM focus should be restored after the next Lit update. */
   #pendingFocus: CalendarView | null = null;
 
+  #forwardTabEntry = false;
+
+  #lastFocusedControl: HTMLButtonElement | SynButton | SynIconButton | null = null;
+
+  #handleDocumentKeydown = (event: KeyboardEvent) => {
+    this.#forwardTabEntry = event.key === 'Tab'
+      && !event.shiftKey
+      && !event.defaultPrevented
+      && !event.composedPath().includes(this);
+  };
+
+  #clearTabEntry = () => {
+    this.#forwardTabEntry = false;
+  };
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.ownerDocument.addEventListener('keydown', this.#handleDocumentKeydown);
+    this.ownerDocument.addEventListener('pointerdown', this.#clearTabEntry, true);
+    this.ownerDocument.addEventListener('focusin', this.#clearTabEntry);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.ownerDocument.removeEventListener('keydown', this.#handleDocumentKeydown);
+    this.ownerDocument.removeEventListener('pointerdown', this.#clearTabEntry, true);
+    this.ownerDocument.removeEventListener('focusin', this.#clearTabEntry);
+    this.#forwardTabEntry = false;
+  }
+
   protected willUpdate(changedProperties: PropertyValues<this>) {
     const modeChanged = changedProperties.has('mode');
     const valueChanged = changedProperties.has('value');
@@ -508,7 +538,7 @@ export default class SynCalendar extends SynergyElement {
 
   #normalizeFocusToRange() {
     const result = normalizeCalendarFocus(this.#getNavigationState(), this.#getConstraints());
-    this.#applyNavigationState(result.state, result.focus);
+    this.#applyNavigationState(result.state, this.matches(':focus-within') ? result.focus : null);
   }
 
   #getNavigationState(): CalendarNavigationState {
@@ -641,9 +671,31 @@ export default class SynCalendar extends SynergyElement {
    * Handles focus in events for the calendar component.
    * Emits a 'syn-focus' event if the calendar gains focus.
    */
-  #handleFocusIn() {
-    if (!this.#hasFocus) {
+  #handleFocusIn(event: FocusEvent) {
+    const entering = !this.#hasFocus;
+
+    if (entering) {
       this.#hasFocus = true;
+      const restoreFocus = this.#forwardTabEntry;
+      this.#forwardTabEntry = false;
+
+      if (restoreFocus) {
+        this.focus({ preventScroll: true });
+        this.#emitCalendarEvent('syn-focus');
+        return;
+      }
+    }
+
+    const control = event.composedPath().find((target): target is HTMLButtonElement | SynButton | SynIconButton => (
+      (target instanceof HTMLButtonElement || target instanceof SynButton || target instanceof SynIconButton)
+      && this.renderRoot.contains(target)
+    ));
+
+    if (control) {
+      this.#lastFocusedControl = control;
+    }
+
+    if (entering) {
       this.#emitCalendarEvent('syn-focus');
     }
   }
@@ -661,6 +713,40 @@ export default class SynCalendar extends SynergyElement {
     if (this.#hasFocus) {
       this.#hasFocus = false;
       this.#emitCalendarEvent('syn-blur');
+    }
+  }
+
+  /** Restores the last focused control, falling back to the active view's grid item, unless disabled. */
+  focus(options?: FocusOptions) {
+    if (this.disabled) {
+      return;
+    }
+
+    const previous = this.#lastFocusedControl;
+
+    if (previous && this.renderRoot.contains(previous) && !previous.disabled) {
+      previous.focus(options);
+      return;
+    }
+
+    this.#lastFocusedControl = null;
+    this
+      .renderRoot
+      .querySelector<HTMLButtonElement>(`[data-kind="${this.visibleView}"][tabindex="0"]:not(:disabled)`)
+      ?.focus(options);
+  }
+
+  /** Removes focus from the calendar, including nested navigation and footer controls. */
+  blur() {
+    this.#pendingFocus = null;
+    let activeElement = this.shadowRoot?.activeElement;
+
+    while (activeElement?.shadowRoot?.activeElement) {
+      activeElement = activeElement.shadowRoot.activeElement;
+    }
+
+    if (activeElement instanceof HTMLElement) {
+      activeElement.blur();
     }
   }
 
@@ -980,7 +1066,13 @@ export default class SynCalendar extends SynergyElement {
 
     const button = this.#getCalendarItem(event);
 
-    if (button?.dataset.kind === 'month') {
+    if (button?.dataset.kind === 'day') {
+      const date = parseIsoDate(button.dataset.value);
+
+      if (date) {
+        this.focusedDate = date;
+      }
+    } else if (button?.dataset.kind === 'month') {
       this.focusedMonth = Number(button.dataset.value) + 1;
     } else if (button?.dataset.kind === 'year') {
       this.focusedYear = Number(button.dataset.value);

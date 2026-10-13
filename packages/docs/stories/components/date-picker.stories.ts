@@ -49,6 +49,52 @@ export const Default: Story = {
   render: args => generateTemplate({ args }),
 };
 
+export const Demo: Story = {
+  render: () => html`
+    <form name="something">
+      <syn-date-picker
+        name="something"
+        value="2024-06-06"
+        required
+      >
+        <span slot="label">Wurstbrot</span>
+        <span slot="prefix">Prefix</span>
+        <span slot="suffix">Sufix</span>
+        <span slot="help-text">This is some help text.</span>
+      </syn-date-picker>
+
+      <syn-date-picker
+        name="something-else"
+        mode="multiple"
+        label="Multiple"
+        help-text="Please select multiple dates"
+      >
+      </syn-date-picker>
+
+      <syn-date-picker
+        name="something-even-elser"
+        mode="range"
+        label="Range"
+        help-text="Please select a date range"
+      >
+      </syn-date-picker>
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      document.querySelector('form').addEventListener('submit', event => {
+        event.preventDefault();
+        console.log('Form submitted');
+
+        const fd = new FormData(event.target);
+        for (const [key, value] of fd.entries()) {
+          console.log(key, value);
+        }
+      });
+    </script>
+  `,
+};
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,

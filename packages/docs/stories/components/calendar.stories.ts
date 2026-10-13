@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import '../../../components/src/components/card/card.js';
 import '../../../components/src/components/calendar/calendar.js';
+import type SynCalendar from '../../../components/src/components/calendar/calendar.js';
 import '../../../components/src/translations/fr.js';
 import '../../../components/src/translations/ja.js';
 import '../../../components/src/translations/zh-cn.js';
@@ -123,6 +124,26 @@ export const Sizes: Story = {
       <syn-calendar size="large" mode="single" value="2026-12-24"></syn-calendar>
     </div>
   `,
+};
+
+export const Focus: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('calendar', 'focus'),
+      },
+    },
+  },
+  play: ({ canvasElement }) => {
+    const calendar = canvasElement.querySelector<SynCalendar>('syn-calendar');
+    if (calendar) {
+      calendar.focus();
+    }
+  },
+  render: () => html`<syn-calendar value="2026-12-24"></syn-calendar>`,
 };
 
 export const MinDate: Story = {

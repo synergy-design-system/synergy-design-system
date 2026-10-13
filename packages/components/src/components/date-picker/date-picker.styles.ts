@@ -2,81 +2,117 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    display: inline-flex;
+    display: block;
   }
 
-  .badge {
-    /* Defines the used back- and foreground color for variants. Defaults to primary */
-    --variant-color-text: var(--syn-badge-informative-color-text);
-    --variant-color-background: var(--syn-badge-informative-color-background);
-
+  .segments {
     align-items: center;
-    background-color: var(--variant-color-background);
-    border-radius: var(--syn-border-radius-pill);
-    color: var(--variant-color-text);
-    cursor: inherit;
+    cursor: text;
+    display: flex;
+    flex-wrap: wrap;
+    font-variant-numeric: tabular-nums;
+    gap: var(--syn-spacing-3x-small);
+    min-width: 0;
+  }
+
+  .input--multiple-dates {
+    height: auto;
+    min-height: var(--input-height);
+  }
+
+  .date-entry {
+    align-items: center;
     display: inline-flex;
-    font: var(--syn-body-small-bold);
-    height: var(--syn-spacing-large);
-    justify-content: center;
-    letter-spacing: var(--syn-letter-spacing-normal);
-    line-height: var(--syn-spacing-large);
-    min-width: var(--syn-spacing-large);
-    padding: 0 var(--syn-spacing-x-small);
-    /* stylelint-disable-next-line property-no-vendor-prefix */
-    -webkit-user-select: none;
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .remove-date {
+    align-items: center;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    font: inherit;
+    padding: var(--syn-spacing-3x-small);
+  }
+
+  .remove-date:disabled {
+    cursor: not-allowed;
+  }
+
+  .remove-date:focus-visible {
+    outline: var(--syn-focus-ring);
+    outline-offset: var(--syn-focus-ring-offset);
+  }
+
+  .segment {
+    border-radius: var(--syn-border-radius-small);
+    box-sizing: content-box;
+    flex: 0 0 auto;
+    padding: var(--syn-spacing-3x-small);
+    text-align: center;
     user-select: none;
-    white-space: nowrap;
+    width: 2ch;
   }
 
-  /* Variant modifiers */
-  .badge--success {
-    --variant-color-background: var(--syn-badge-success-color-background);
-    --variant-color-text: var(--syn-badge-success-color-text);
+  .segment--year {
+    width: 4ch;
   }
 
-  .badge--neutral {
-    --variant-color-background: var(--syn-badge-neutral-color-background);
-    --variant-color-text: var(--syn-badge-neutral-color-text);
+  .segment--empty {
+    color: var(--syn-input-placeholder-color);
   }
 
-  .badge--warning {
-    --variant-color-background: var(--syn-badge-warning-color-background);
-    --variant-color-text: var(--syn-badge-warning-color-text);
+  .segment:focus-visible {
+    background-color: var(--syn-color-primary-100);
+    color: var(--syn-color-primary-950);
+    outline: var(--syn-focus-ring);
+    outline-offset: var(--syn-focus-ring-offset);
   }
 
-  .badge--critical {
-    --variant-color-background: var(--syn-badge-critical-color-background);
-    --variant-color-text: var(--syn-badge-critical-color-text);
+  .segment-literal {
+    user-select: none;
+    white-space: pre;
   }
 
-  /* @todo: Major: Remove .badge--danger */
-  .badge--danger,
-  .badge--error {
-    --variant-color-background: var(--syn-badge-error-color-background);
-    --variant-color-text: var(--syn-badge-error-color-text);
-  }
-
-  /**
-   * Special treatment: If the badge is empty, show it as a dot only
-   */
-  :host(:empty) .badge {
-    height: var(--syn-spacing-x-small);
-    min-width: initial;
-    padding: 0;
-    width: var(--syn-spacing-x-small);
-  }
-
-  .visually-hidden {
-    border: 0;
-    /* stylelint-disable-next-line property-no-deprecated */
-    clip: rect(0, 0, 0, 0);
+  .value-input {
+    clip-path: inset(50%);
     height: 1px;
-    margin: -1px;
     overflow: hidden;
-    padding: 0;
     position: absolute;
-    white-space: nowrap;
     width: 1px;
+  }
+
+  .date-picker__expand-button {
+    align-items: center;
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    flex: 0 0 auto;
+    font: inherit;
+    padding-inline: var(--syn-spacing-small);
+  }
+
+  .date-picker__expand-button:disabled {
+    cursor: not-allowed;
+  }
+
+  .date-picker__expand-button:focus-visible {
+    outline: var(--syn-focus-ring);
+    outline-offset: var(--syn-focus-ring-offset);
+  }
+
+  /* Expand icon */
+  .date-picker__expand-icon {
+    align-items: center;
+    color: var(--syn-color-neutral-950);
+    display: flex;
+    flex: 0 0 auto;
+    font-size: var(--syn-select-expand-icon-font-size);
+    margin-inline: var(--input-suffix-margin-inline);
   }
 `;

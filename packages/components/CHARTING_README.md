@@ -419,6 +419,32 @@ chart.config = handle =>
 // ]
 ```
 
+### Bar series presets
+
+| Preset function | Options             | Description                                                        |
+| --------------- | ------------------- | ------------------------------------------------------------------ |
+| `seriesBar`     | `BarSeriesOption[]` | Sets `series` entries as bar series and merges each passed option. |
+
+Example:
+
+```ts
+chart.config = handle =>
+  handle
+    .baseConfig({
+      xAxis: { type: "category", data: ["Mon", "Tue", "Wed"] },
+      yAxis: { type: "value" },
+    })
+    .seriesBar([
+      { name: "Revenue", data: [120, 200, 150] },
+      { name: "Cost", data: [80, 140, 130] },
+    ]);
+```
+
+Array merge strategy:
+
+- `seriesBar([...])` uses `arrayStrategy: 'append'` for the `series` array.
+- Each passed option is added as a bar series, existing `baseConfig.series` entries are preserved.
+
 ### Gauge series presets
 
 | Preset function | Options                    | Description                                                                                                                                               |

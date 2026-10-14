@@ -245,6 +245,18 @@
       "name": "tag__remove-button__base"
     },
     {
+      "description": "The tag that represents the limit indicator when the number of selected options exceeds the visible tags.",
+      "name": "tag-limit"
+    },
+    {
+      "description": "The tag-limit's base part.",
+      "name": "tag-limit__base"
+    },
+    {
+      "description": "The tag-limit's content part.",
+      "name": "tag-limit__content"
+    },
+    {
       "description": "The container that houses option tags when `multiple` is used.",
       "name": "tags"
     }

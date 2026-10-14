@@ -14,7 +14,7 @@
     "@figma-export/output-components-as-svg": "^6.4.1",
     "@figma-export/transform-svg-with-svgo": "^6.4.1",
     "@figma-export/types": "^6.4.1",
-    "@figma/rest-api-spec": "^0.41.0",
+    "@figma/rest-api-spec": "^0.44.0",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@types/node": "^24.13.5",
     "cheerio": "^1.2.0",

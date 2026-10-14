@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.26.1
+ * @synergy-design-system/tokens version 3.29.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -218,6 +218,12 @@
   --syn-color-warning-800: #fcec8c;
   --syn-color-warning-900: #fdf7c4;
   --syn-color-warning-950: #fefce8;
+  --syn-date-picker-border-radius: var(--syn-border-radius-none);
+  --syn-date-picker-color: var(--syn-color-primary-600);
+  --syn-date-picker-color-range: var(--syn-color-primary-50);
+  --syn-date-picker-gradient-end: rgba(0, 0, 0, 0);
+  --syn-date-picker-gradient-start: var(--syn-panel-background-color);
+  --syn-date-picker-shadow-end: rgba(7, 46, 74, 0);
   --syn-details-open-rotation: 360deg;
   --syn-dimension-base: 4px; /** to be deprecated */
   --syn-duration-extra-fast: 50ms;

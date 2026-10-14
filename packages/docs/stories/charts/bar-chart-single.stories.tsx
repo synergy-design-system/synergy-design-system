@@ -13,6 +13,7 @@ import {
   generateScreenshotStory,
   generateStoryDescription,
 } from '../../src/helpers/component.js';
+import { ChartSeriesDocumentation } from '../../src/helpers/chart-series-documentation.js';
 import { chartChromaticConfig } from '../../src/chromatic-config/chromatic-config.js';
 import type SynChart from '../../../components/src/components/chart/chart.js';
 
@@ -31,6 +32,7 @@ const meta: Meta = {
           <Title />
           <Subtitle />
           <Description />
+          <ChartSeriesDocumentation section="Bar series presets" />
           <Stories title="" />
         </>
       ),

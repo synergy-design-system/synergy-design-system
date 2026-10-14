@@ -128,6 +128,7 @@ export default class SynDatePicker extends SynergyElement {
   private readonly localize = new LocalizeController(this);
 
   private readonly formControlController = new FormControlController(this, {
+    assumeInteractionOn: ['syn-blur', 'syn-input'],
     setValue: (_control, value) => {
       this.value = typeof value === 'string' ? value : '';
       this.#syncSegments();
@@ -201,6 +202,9 @@ export default class SynDatePicker extends SynergyElement {
 
   /** Makes the input readonly. */
   @property({ reflect: true, type: Boolean }) readonly = false;
+
+  /** Adds a clear button when the select is not empty. */
+  @property({ type: Boolean }) clearable = false;
 
   /**
    * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
@@ -478,13 +482,14 @@ export default class SynDatePicker extends SynergyElement {
     return true;
   }
 
-  #focusField(field: DateField, options?: FocusOptions) {
+  #focusField(field: DateField, options?: FocusOptions, group = this.#activeGroup) {
     if (this.disabled) {
       return;
     }
+    this.#activeGroup = group;
     this.#activeField = field;
     this.requestUpdate();
-    this.renderRoot.querySelector<HTMLElement>(`[data-group="${this.#activeGroup}"][data-segment="${field}"]`)?.focus(options);
+    this.renderRoot.querySelector<HTMLElement>(`[data-group="${group}"][data-segment="${field}"]`)?.focus(options);
   }
 
   #moveField(field: DateField, offset: number) {
@@ -709,11 +714,35 @@ export default class SynDatePicker extends SynergyElement {
     }
   }
 
-  async #handleAnchorPointerDown(event: PointerEvent) {
-    const interactive = event.composedPath().some(node => node instanceof Element
+  #handleAnchorPointerDown(event: PointerEvent) {
+    if (this.disabled) {
+      return;
+    }
+
+    const path = event.composedPath();
+    const isButton = path.some(node => node instanceof Element
       && node.matches('button, a, [role="button"]'));
-    if (!interactive) {
-      await this.show();
+
+    if (isButton) {
+      return;
+    }
+
+    event.preventDefault();
+
+    const segmentEl = path.find((node): node is HTMLElement => node instanceof HTMLElement
+      && node.hasAttribute('data-segment'));
+
+    if (segmentEl) {
+      const { group, segment } = segmentEl.dataset;
+      if (group !== undefined && segment !== undefined) {
+        this.#focusField(segment as DateField, { preventScroll: true }, Number(group));
+      }
+    } else {
+      this.focus({ preventScroll: true });
+    }
+
+    if (!this.readonly && !this.open) {
+      this.open = true;
     }
   }
 
@@ -799,6 +828,18 @@ export default class SynDatePicker extends SynergyElement {
     }
   };
 
+  #handleClearClick() {
+    this.value = '';
+    this.emit('syn-clear');
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  #handleClearMouseDown(event: MouseEvent) {
+    // Don't lose focus or propagate events when clicking the clear button
+    event.stopPropagation();
+    event.preventDefault();
+  }
+
   #addOpenListeners() {
     this.ownerDocument.addEventListener('pointerdown', this.#handleDocumentPointerDown);
     this.ownerDocument.addEventListener('focusin', this.#handleDocumentPointerDown);
@@ -858,6 +899,7 @@ export default class SynDatePicker extends SynergyElement {
 
     const hasLabel = Boolean(this.label || hasLabelSlot);
     const hasHelpText = Boolean(this.helpText || hasHelpTextSlot);
+    const hasClearIcon = this.clearable && (!this.disabled && !this.readonly) && !!this.value;
 
     return html`
       <div
@@ -961,6 +1003,24 @@ export default class SynDatePicker extends SynergyElement {
                 <slot name="suffix"></slot>
               </span>
 
+              ${hasClearIcon
+                ? html`
+                    <button
+                      aria-label=${this.localize.term('clearEntry')}
+                      class="select__clear"
+                      @click=${this.#handleClearClick}
+                      @mousedown=${this.#handleClearMouseDown}
+                      part="clear-button"
+                      tabindex="-1"
+                      type="button"
+                    >
+                      <slot name="clear-icon">
+                        <syn-icon name="x-circle-fill" library="system"></syn-icon>
+                      </slot>
+                    </button>
+                  `
+                : ''}
+
               <button
                 class="date-picker__expand-button"
                 part="expand-button"
@@ -969,11 +1029,12 @@ export default class SynDatePicker extends SynergyElement {
                 aria-haspopup="dialog"
                 aria-expanded=${this.open}
                 aria-controls="calendar"
-                ?disabled=${this.disabled || this.readonly}
                 @click=${this.#handleToggle}
+                tabindex="-1"
+                ?disabled=${this.disabled || this.readonly}
               >
                 <slot class="date-picker__expand-icon" name="expand-icon" part="expand-icon">
-                  <syn-icon library="system" name="chevron-down"></syn-icon>
+                  <syn-icon library="system" name="calendar-month"></syn-icon>
                 </slot>
               </button>
             </div>

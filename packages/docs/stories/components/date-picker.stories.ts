@@ -53,6 +53,7 @@ export const Demo: Story = {
   render: () => html`
     <form name="something">
       <syn-date-picker
+        clearable
         name="something"
         value="2024-06-06"
         required
@@ -64,6 +65,7 @@ export const Demo: Story = {
       </syn-date-picker>
 
       <syn-date-picker
+        clearable
         name="something-else"
         mode="multiple"
         label="Multiple"
@@ -72,6 +74,7 @@ export const Demo: Story = {
       </syn-date-picker>
 
       <syn-date-picker
+        clearable
         name="something-even-elser"
         mode="range"
         label="Range"

@@ -47,6 +47,7 @@ export default css`
     outline-offset: var(--syn-focus-ring-offset);
   }
 
+  /* Date Segments for manual input */
   .segment {
     border-radius: var(--syn-border-radius-small);
     box-sizing: content-box;
@@ -54,11 +55,6 @@ export default css`
     padding: var(--syn-spacing-3x-small);
     text-align: center;
     user-select: none;
-    width: 2ch;
-  }
-
-  .segment--year {
-    width: 4ch;
   }
 
   .segment--empty {
@@ -66,10 +62,9 @@ export default css`
   }
 
   .segment:focus-visible {
-    background-color: var(--syn-color-primary-100);
-    color: var(--syn-color-primary-950);
-    outline: var(--syn-focus-ring);
-    outline-offset: var(--syn-focus-ring-offset);
+    background: var(--syn-color-primary-100);
+    color: var(--syn-color-input-text);
+    outline: none;
   }
 
   .segment-literal {
@@ -78,6 +73,7 @@ export default css`
   }
 
   .value-input {
+    /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
     clip-path: inset(50%);
     height: 1px;
     overflow: hidden;
@@ -101,7 +97,7 @@ export default css`
     cursor: not-allowed;
   }
 
-  .date-picker__expand-button:focus-visible {
+  .date-picker__expand-button:focus {
     outline: var(--syn-focus-ring);
     outline-offset: var(--syn-focus-ring-offset);
   }

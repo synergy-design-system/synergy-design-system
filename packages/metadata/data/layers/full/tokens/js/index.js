@@ -2336,6 +2336,16 @@ export const SynBody2xSmallRegular = 'var(--syn-body-2x-small-regular)';
 /**
  * @type {string}
  */
+export const SynBody2xSmallSemibold = 'var(--syn-body-2x-small-semibold)';
+
+/**
+ * @type {string}
+ */
+export const SynBody2xSmallBold = 'var(--syn-body-2x-small-bold)';
+
+/**
+ * @type {string}
+ */
 export const SynHeadingLarge = 'var(--syn-heading-large)';
 
 /**

@@ -53,7 +53,9 @@ export declare const ResolvedTokens: {
   SynBadgeSuccessColorText: ResolvedTokenModes;
   SynBadgeWarningColorBackground: ResolvedTokenModes;
   SynBadgeWarningColorText: ResolvedTokenModes;
+  SynBody2xSmallBold: ResolvedTokenModes;
   SynBody2xSmallRegular: ResolvedTokenModes;
+  SynBody2xSmallSemibold: ResolvedTokenModes;
   SynBodyLargeBold: ResolvedTokenModes;
   SynBodyLargeRegular: ResolvedTokenModes;
   SynBodyLargeSemibold: ResolvedTokenModes;

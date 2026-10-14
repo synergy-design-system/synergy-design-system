@@ -691,6 +691,7 @@ export default class SynDatePicker extends SynergyElement {
   #handleSegmentEditing(event: KeyboardEvent, field: DateField) {
     if (/^\d$/.test(event.key)) {
       event.preventDefault();
+      event.stopPropagation();
       const key = this.#bufferKey(field);
       const result = typeDigit(field, this.#buffers.get(key) ?? '', event.key, this.#segments);
       this.#buffers.set(key, result.buffer);

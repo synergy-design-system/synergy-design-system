@@ -66,11 +66,6 @@ export const cssVariableFormatter = {
     const BRAND2025_IGNORE_PATTERNS = [
       'progress-track-readonly-color',
 
-      // Font Style tokens are needed later
-      // 'body-2x-small-regular',
-      'body-2x-small-semibold',
-      'body-2x-small-bold',
-
       // Internal color tests
       'background-color-1',
       'background-color-2',

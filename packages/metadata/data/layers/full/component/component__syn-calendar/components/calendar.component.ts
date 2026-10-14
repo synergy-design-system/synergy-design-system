@@ -1070,16 +1070,24 @@ export default class SynCalendar extends SynergyElement {
 
     const button = this.#getCalendarItem(event);
 
-    if (button?.dataset.kind === 'day') {
-      const date = parseIsoDate(button.dataset.value);
+    switch (button?.dataset.kind) {
+      case 'month':
+        this.focusedMonth = Number(button.dataset.value) + 1;
+        break;
+      case 'year':
+        this.focusedYear = Number(button.dataset.value);
+        break;
+      case 'day': {
+        const date = parseIsoDate(button.dataset.value);
 
-      if (date) {
-        this.focusedDate = date;
+        // Setting a new date object triggers a rerender, so we have to check
+        // if the new date is different from the currently focused date before updating it.
+        if (date && !equals(date, this.focusedDate)) {
+          this.focusedDate = date;
+        }
+        break;
       }
-    } else if (button?.dataset.kind === 'month') {
-      this.focusedMonth = Number(button.dataset.value) + 1;
-    } else if (button?.dataset.kind === 'year') {
-      this.focusedYear = Number(button.dataset.value);
+      default: break;
     }
   }
 
@@ -1111,11 +1119,11 @@ export default class SynCalendar extends SynergyElement {
         break;
 
       case 'year':
-      default:
         this.focusedYear = current.year;
         this.yearBlockStart = getYearBlockStart(this.focusedYear);
         this.#pendingFocus = 'year';
         break;
+      default: break;
     }
 
     // Makes sure that focus is restored to the correct element after updating the view.

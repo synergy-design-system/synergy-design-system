@@ -2334,6 +2334,16 @@ export const SynBodyLargeBold: string;
 export const SynBody2xSmallRegular: string;
 
 /**
+ * Maps to the css variable `--syn-body-2x-small-semibold`
+ */
+export const SynBody2xSmallSemibold: string;
+
+/**
+ * Maps to the css variable `--syn-body-2x-small-bold`
+ */
+export const SynBody2xSmallBold: string;
+
+/**
  * Maps to the css variable `--syn-heading-large`
  */
 export const SynHeadingLarge: string;

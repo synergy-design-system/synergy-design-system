@@ -17,7 +17,7 @@ export default css`
 
     background: var(--syn-panel-background-color);
     border: var(--syn-border-width-small) solid var(--syn-panel-border-color);
-    border-radius: var(--syn-border-radius-small);
+    border-radius: var(--syn-panel-border-radius);
     display: flex;
     flex-direction: column;
     max-width: 100%;
@@ -75,7 +75,7 @@ export default css`
     appearance: none;
     background: none;
     border: var(--syn-border-width-small) solid transparent;
-    border-radius: var(--syn-border-radius-small);
+    border-radius: var(--syn-date-picker-border-radius);
     box-sizing: content-box;
     cursor: pointer;
     display: inline-block;
@@ -96,7 +96,7 @@ export default css`
   }
 
   .calendar-item--active {
-    background-color: var(--syn-color-primary-600);
+    background-color: var(--syn-date-picker-color);
     color: var(--syn-color-neutral-0);
   }
 
@@ -105,7 +105,7 @@ export default css`
   }
 
   .calendar-item--range-interior {
-    background-color: var(--syn-color-neutral-200);
+    background-color: var(--syn-date-picker-color-range);
   }
 
   .calendar-item--range-pending {
@@ -113,7 +113,52 @@ export default css`
   }
 
   .calendar-item--range-preview {
-    background-color: green;
+    background-color: var(--syn-date-picker-color-range);
+  }
+
+  .calendar-item--range-preview-start {
+    background-image: linear-gradient(
+      to right,
+      var(--syn-date-picker-gradient-start),
+      var(--syn-date-picker-gradient-end)
+    );
+  }
+
+  .calendar-item--range-preview-end,
+  .calendar-item--range-interior-end {
+    background-image: linear-gradient(
+      to left,
+      var(--syn-date-picker-gradient-start),
+      var(--syn-date-picker-gradient-end)
+    );
+  }
+
+  .calendar--rtl .calendar-item--range-preview-start,
+  .calendar--rtl .calendar-item--range-interior-start {
+    background-image: linear-gradient(
+      to left,
+      var(--syn-date-picker-gradient-start),
+      var(--syn-date-picker-gradient-end)
+    );
+  }
+
+  .calendar--rtl .calendar-item--range-preview-end,
+  .calendar--rtl .calendar-item--range-interior-end {
+    background-image: linear-gradient(
+      to right,
+      var(--syn-date-picker-gradient-start),
+      var(--syn-date-picker-gradient-end)
+    );
+  }
+
+  .calendar-item--range-preview-start.calendar-item--range-preview-end,
+  .calendar-item--range-interior-start.calendar-item--range-interior-end {
+    background-image:
+      linear-gradient(to right, var(--syn-date-picker-gradient-start), var(--syn-date-picker-gradient-end)),
+      linear-gradient(to left, var(--syn-date-picker-gradient-start), var(--syn-date-picker-gradient-end));
+    background-position: left, right;
+    background-repeat: no-repeat;
+    background-size: 50% 100%;
   }
 
   .calendar-item--range-unavailable {
@@ -163,8 +208,9 @@ export default css`
   }
 
   .day-selector th {
+    box-sizing: content-box;
     font: var(--day-selector-th-font);
-    height: var(--syn-spacing-x-large);
+    height: var(--day-selector-calendar-item-width);
     padding: var(--syn-spacing-x-small);
   }
 

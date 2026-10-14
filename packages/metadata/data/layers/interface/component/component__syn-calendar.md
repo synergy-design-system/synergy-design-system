@@ -201,8 +201,12 @@ Restores the last focused control, falling back to the active view's grid item, 
 - `calendar-item-range-clipped`: A date whose requested endpoint is adjusted by a range length limit.
 - `calendar-item-range-end`: The completed or adjusted preview endpoint, which may precede the anchor during reverse selection.
 - `calendar-item-range-interior`: A date inside the selected or previewed range.
+- `calendar-item-range-interior-end`: The last interior date of a completed range, excluding its selected endpoints.
+- `calendar-item-range-interior-start`: The first interior date of a completed range, excluding its selected endpoints.
 - `calendar-item-range-pending`: The selected start while waiting for a range end.
 - `calendar-item-range-preview`: A date in the pending range preview driven by pointer or keyboard movement.
+- `calendar-item-range-preview-end`: The last preview date, excluding the selected anchor but including the prospective endpoint.
+- `calendar-item-range-preview-start`: The first preview date, excluding the selected anchor but including the prospective endpoint.
 - `calendar-item-range-start`: The pending range anchor or completed range start; an alias of calendar-item-range-begin.
 - `calendar-item-range-unavailable`: A focusable endpoint whose adjusted boundary is disabled or whose range length is invalid.
 - `calendar-item-today`: The item representing today.

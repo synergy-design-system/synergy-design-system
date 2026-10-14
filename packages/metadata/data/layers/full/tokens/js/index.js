@@ -1061,6 +1061,36 @@ export const SynColorWarning950 = 'var(--syn-color-warning-950)';
 /**
  * @type {string}
  */
+export const SynDatePickerBorderRadius = 'var(--syn-date-picker-border-radius)';
+
+/**
+ * @type {string}
+ */
+export const SynDatePickerColor = 'var(--syn-date-picker-color)';
+
+/**
+ * @type {string}
+ */
+export const SynDatePickerColorRange = 'var(--syn-date-picker-color-range)';
+
+/**
+ * @type {string}
+ */
+export const SynDatePickerGradientEnd = 'var(--syn-date-picker-gradient-end)';
+
+/**
+ * @type {string}
+ */
+export const SynDatePickerGradientStart = 'var(--syn-date-picker-gradient-start)';
+
+/**
+ * @type {string}
+ */
+export const SynDatePickerShadowEnd = 'var(--syn-date-picker-shadow-end)';
+
+/**
+ * @type {string}
+ */
 export const SynDetailsOpenRotation = 'var(--syn-details-open-rotation)';
 
 /**

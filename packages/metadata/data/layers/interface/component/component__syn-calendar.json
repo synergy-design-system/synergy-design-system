@@ -137,12 +137,28 @@
       "name": "calendar-item-range-interior"
     },
     {
+      "description": "The last interior date of a completed range, excluding its selected endpoints.",
+      "name": "calendar-item-range-interior-end"
+    },
+    {
+      "description": "The first interior date of a completed range, excluding its selected endpoints.",
+      "name": "calendar-item-range-interior-start"
+    },
+    {
       "description": "The selected start while waiting for a range end.",
       "name": "calendar-item-range-pending"
     },
     {
       "description": "A date in the pending range preview driven by pointer or keyboard movement.",
       "name": "calendar-item-range-preview"
+    },
+    {
+      "description": "The last preview date, excluding the selected anchor but including the prospective endpoint.",
+      "name": "calendar-item-range-preview-end"
+    },
+    {
+      "description": "The first preview date, excluding the selected anchor but including the prospective endpoint.",
+      "name": "calendar-item-range-preview-start"
     },
     {
       "description": "The pending range anchor or completed range start; an alias of calendar-item-range-begin.",

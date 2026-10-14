@@ -2,6 +2,14 @@
   "attributes": [
     {
       "default": "false",
+      "description": "Adds a clear button when the select is not empty.",
+      "fieldName": "clearable",
+      "name": "clearable",
+      "reflects": false,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
       "description": "Disables the input.",
       "fieldName": "disabled",
       "name": "disabled",
@@ -143,6 +151,178 @@
     {
       "description": "The calendar component.",
       "name": "calendar"
+    },
+    {
+      "description": "The calendar's base wrapper.",
+      "name": "calendar__base"
+    },
+    {
+      "description": "A day, month, or year button.",
+      "name": "calendar__calendar-item"
+    },
+    {
+      "description": "An active calendar item.",
+      "name": "calendar__calendar-item-active"
+    },
+    {
+      "description": "A day button.",
+      "name": "calendar__calendar-item-day"
+    },
+    {
+      "description": "A disabled calendar item.",
+      "name": "calendar__calendar-item-disabled"
+    },
+    {
+      "description": "An item's custom content slot or fallback label.",
+      "name": "calendar__calendar-item-label"
+    },
+    {
+      "description": "A month button.",
+      "name": "calendar__calendar-item-month"
+    },
+    {
+      "description": "A day item belonging to an adjacent month.",
+      "name": "calendar__calendar-item-outside"
+    },
+    {
+      "description": "The pending anchor or completed range start; an alias of range-start.",
+      "name": "calendar__calendar-item-range-begin"
+    },
+    {
+      "description": "A date whose requested endpoint is adjusted by a range length limit.",
+      "name": "calendar__calendar-item-range-clipped"
+    },
+    {
+      "description": "The completed or adjusted preview endpoint, including reverse selections.",
+      "name": "calendar__calendar-item-range-end"
+    },
+    {
+      "description": "A date inside the selected or previewed range.",
+      "name": "calendar__calendar-item-range-interior"
+    },
+    {
+      "description": "The last interior date of a completed range, excluding its endpoints.",
+      "name": "calendar__calendar-item-range-interior-end"
+    },
+    {
+      "description": "The first interior date of a completed range, excluding its endpoints.",
+      "name": "calendar__calendar-item-range-interior-start"
+    },
+    {
+      "description": "The selected start while waiting for a range end.",
+      "name": "calendar__calendar-item-range-pending"
+    },
+    {
+      "description": "A date in the pending pointer or keyboard range preview.",
+      "name": "calendar__calendar-item-range-preview"
+    },
+    {
+      "description": "The last preview date, excluding the anchor but including the prospective endpoint.",
+      "name": "calendar__calendar-item-range-preview-end"
+    },
+    {
+      "description": "The first preview date, excluding the anchor but including the prospective endpoint.",
+      "name": "calendar__calendar-item-range-preview-start"
+    },
+    {
+      "description": "The pending anchor or completed range start; an alias of range-begin.",
+      "name": "calendar__calendar-item-range-start"
+    },
+    {
+      "description": "An endpoint whose adjusted boundary is disabled or range length invalid.",
+      "name": "calendar__calendar-item-range-unavailable"
+    },
+    {
+      "description": "The item representing today.",
+      "name": "calendar__calendar-item-today"
+    },
+    {
+      "description": "A year button.",
+      "name": "calendar__calendar-item-year"
+    },
+    {
+      "description": "The control for clearing the selected value.",
+      "name": "calendar__clear-button"
+    },
+    {
+      "description": "The Clear control's forwarded base part.",
+      "name": "calendar__clear-button__base"
+    },
+    {
+      "description": "The calendar view content.",
+      "name": "calendar__content"
+    },
+    {
+      "description": "The control for navigating to the current day, month, or year.",
+      "name": "calendar__current-period-button"
+    },
+    {
+      "description": "The current-period control's forwarded base part.",
+      "name": "calendar__current-period-button__base"
+    },
+    {
+      "description": "A day table cell, independent of its button.",
+      "name": "calendar__day-cell"
+    },
+    {
+      "description": "The day-of-month table.",
+      "name": "calendar__day-grid"
+    },
+    {
+      "description": "The calendar footer actions.",
+      "name": "calendar__footer"
+    },
+    {
+      "description": "The calendar header.",
+      "name": "calendar__header"
+    },
+    {
+      "description": "The month selection grid.",
+      "name": "calendar__month-grid"
+    },
+    {
+      "description": "The month navigation controls.",
+      "name": "calendar__month-navigation"
+    },
+    {
+      "description": "The current month, year, or year range in the navigation header.",
+      "name": "calendar__navigation-label"
+    },
+    {
+      "description": "The navigation label's forwarded button base when it offers a view switch.",
+      "name": "calendar__navigation-label__base"
+    },
+    {
+      "description": "The next-period icon button host.",
+      "name": "calendar__next-button"
+    },
+    {
+      "description": "The next-period control's forwarded base part.",
+      "name": "calendar__next-button__base"
+    },
+    {
+      "description": "The previous-period icon button host.",
+      "name": "calendar__previous-button"
+    },
+    {
+      "description": "The previous-period control's forwarded base part.",
+      "name": "calendar__previous-button__base"
+    },
+    {
+      "description": "An individual localized weekday heading.",
+      "name": "calendar__weekday"
+    },
+    {
+      "description": "The weekday table heading group.",
+      "name": "calendar__weekdays"
+    },
+    {
+      "description": "The year selection grid.",
+      "name": "calendar__year-grid"
+    },
+    {
+      "description": "The year navigation controls.",
+      "name": "calendar__year-navigation"
     },
     {
       "description": "The calendar toggle button.",
@@ -342,6 +522,13 @@
     }
   ],
   "properties": [
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Adds a clear button when the select is not empty.",
+      "name": "clearable",
+      "type": "boolean"
+    },
     {
       "access": "public",
       "default": "''",

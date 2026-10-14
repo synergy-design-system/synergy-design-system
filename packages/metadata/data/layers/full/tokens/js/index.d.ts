@@ -1059,6 +1059,36 @@ export const SynColorWarning900: string;
 export const SynColorWarning950: string;
 
 /**
+ * Maps to the css variable `--syn-date-picker-border-radius`
+ */
+export const SynDatePickerBorderRadius: string;
+
+/**
+ * Maps to the css variable `--syn-date-picker-color`
+ */
+export const SynDatePickerColor: string;
+
+/**
+ * Maps to the css variable `--syn-date-picker-color-range`
+ */
+export const SynDatePickerColorRange: string;
+
+/**
+ * Maps to the css variable `--syn-date-picker-gradient-end`
+ */
+export const SynDatePickerGradientEnd: string;
+
+/**
+ * Maps to the css variable `--syn-date-picker-gradient-start`
+ */
+export const SynDatePickerGradientStart: string;
+
+/**
+ * Maps to the css variable `--syn-date-picker-shadow-end`
+ */
+export const SynDatePickerShadowEnd: string;
+
+/**
  * Maps to the css variable `--syn-details-open-rotation`
  */
 export const SynDetailsOpenRotation: string;

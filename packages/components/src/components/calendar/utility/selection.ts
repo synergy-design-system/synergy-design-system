@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import { addDays, compare, diffDays } from 'temporal-polyfill/fns/PlainDate';
 import type {
   CalendarDate,
@@ -207,10 +208,13 @@ export const getDayRenderContext = (options: DayViewOptions): CalendarDayRenderC
 
 const getRangeItemState = (date: CalendarDate, context: CalendarDayRenderContext) => {
   const anchor = isSameDay(date, context.rangeStart);
+  const interior = isWithinInterval(date, context.rangeStart, context.rangeEnd);
   const state = {
     rangeBegin: anchor,
     rangeEnd: isSameDay(date, context.rangeEnd),
-    rangeInterior: isWithinInterval(date, context.rangeStart, context.rangeEnd),
+    rangeInterior: interior,
+    rangeInteriorEnd: interior && !!context.rangeEnd && isSameDay(date, addDays(context.rangeEnd, -1)),
+    rangeInteriorStart: interior && !!context.rangeStart && isSameDay(date, addDays(context.rangeStart, 1)),
     rangeStart: anchor,
   };
 
@@ -224,14 +228,22 @@ const getRangeItemState = (date: CalendarDate, context: CalendarDayRenderContext
     context.options,
     context.options.constraints,
   );
+  const preview = isWithinInterval(date, context.previewStart, context.previewEnd, true) && !anchor;
+  const previewInterior = isWithinInterval(date, context.previewStart, context.previewEnd);
+  const firstPreview = context.previewStart && (isSameDay(context.previewStart, context.rangeStart)
+    ? addDays(context.previewStart, 1) : context.previewStart);
+  const lastPreview = context.previewEnd && (isSameDay(context.previewEnd, context.rangeStart)
+    ? addDays(context.previewEnd, -1) : context.previewEnd);
 
   return {
     ...state,
     rangeClipped: endpoint.clipped,
     rangeEnd: isSameDay(date, context.previewDate),
-    rangeInterior: state.rangeInterior || isWithinInterval(date, context.previewStart, context.previewEnd),
+    rangeInterior: state.rangeInterior || previewInterior,
     rangePending: anchor,
-    rangePreview: isWithinInterval(date, context.previewStart, context.previewEnd, true) && !anchor,
+    rangePreview: preview,
+    rangePreviewEnd: preview && isSameDay(date, lastPreview),
+    rangePreviewStart: preview && isSameDay(date, firstPreview),
     rangeUnavailable: !endpoint.allowed,
   };
 };

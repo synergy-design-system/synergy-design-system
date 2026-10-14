@@ -235,6 +235,12 @@ export declare const ResolvedTokens: {
   SynColorWarning800: ResolvedTokenModes;
   SynColorWarning900: ResolvedTokenModes;
   SynColorWarning950: ResolvedTokenModes;
+  SynDatePickerBorderRadius: ResolvedTokenModes;
+  SynDatePickerColor: ResolvedTokenModes;
+  SynDatePickerColorRange: ResolvedTokenModes;
+  SynDatePickerGradientEnd: ResolvedTokenModes;
+  SynDatePickerGradientStart: ResolvedTokenModes;
+  SynDatePickerShadowEnd: ResolvedTokenModes;
   SynDetailsOpenRotation: ResolvedTokenModes;
   SynDimensionBase: ResolvedTokenModes;
   SynDurationExtraFast: ResolvedTokenModes;

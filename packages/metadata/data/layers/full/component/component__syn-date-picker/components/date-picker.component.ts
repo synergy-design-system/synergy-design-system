@@ -97,6 +97,49 @@ import {
  * @csspart remove-date-button - A multiple-selection date's remove button.
  * @csspart expand-button - The calendar toggle button.
  * @csspart calendar - The calendar component.
+ * @csspart calendar__base - The calendar's base wrapper.
+ * @csspart calendar__header - The calendar header.
+ * @csspart calendar__content - The calendar view content.
+ * @csspart calendar__footer - The calendar footer actions.
+ * @csspart calendar__day-grid - The day-of-month table.
+ * @csspart calendar__day-cell - A day table cell, independent of its button.
+ * @csspart calendar__weekdays - The weekday table heading group.
+ * @csspart calendar__weekday - An individual localized weekday heading.
+ * @csspart calendar__month-grid - The month selection grid.
+ * @csspart calendar__year-grid - The year selection grid.
+ * @csspart calendar__calendar-item - A day, month, or year button.
+ * @csspart calendar__calendar-item-label - An item's custom content slot or fallback label.
+ * @csspart calendar__calendar-item-day - A day button.
+ * @csspart calendar__calendar-item-month - A month button.
+ * @csspart calendar__calendar-item-year - A year button.
+ * @csspart calendar__calendar-item-active - An active calendar item.
+ * @csspart calendar__calendar-item-today - The item representing today.
+ * @csspart calendar__calendar-item-outside - A day item belonging to an adjacent month.
+ * @csspart calendar__calendar-item-disabled - A disabled calendar item.
+ * @csspart calendar__calendar-item-range-begin - The pending anchor or completed range start; an alias of range-start.
+ * @csspart calendar__calendar-item-range-clipped - A date whose requested endpoint is adjusted by a range length limit.
+ * @csspart calendar__calendar-item-range-start - The pending anchor or completed range start; an alias of range-begin.
+ * @csspart calendar__calendar-item-range-end - The completed or adjusted preview endpoint, including reverse selections.
+ * @csspart calendar__calendar-item-range-interior - A date inside the selected or previewed range.
+ * @csspart calendar__calendar-item-range-interior-start - The first interior date of a completed range, excluding its endpoints.
+ * @csspart calendar__calendar-item-range-interior-end - The last interior date of a completed range, excluding its endpoints.
+ * @csspart calendar__calendar-item-range-pending - The selected start while waiting for a range end.
+ * @csspart calendar__calendar-item-range-preview - A date in the pending pointer or keyboard range preview.
+ * @csspart calendar__calendar-item-range-preview-start - The first preview date, excluding the anchor but including the prospective endpoint.
+ * @csspart calendar__calendar-item-range-preview-end - The last preview date, excluding the anchor but including the prospective endpoint.
+ * @csspart calendar__calendar-item-range-unavailable - An endpoint whose adjusted boundary is disabled or range length invalid.
+ * @csspart calendar__month-navigation - The month navigation controls.
+ * @csspart calendar__year-navigation - The year navigation controls.
+ * @csspart calendar__previous-button - The previous-period icon button host.
+ * @csspart calendar__previous-button__base - The previous-period control's forwarded base part.
+ * @csspart calendar__navigation-label - The current month, year, or year range in the navigation header.
+ * @csspart calendar__navigation-label__base - The navigation label's forwarded button base when it offers a view switch.
+ * @csspart calendar__next-button - The next-period icon button host.
+ * @csspart calendar__next-button__base - The next-period control's forwarded base part.
+ * @csspart calendar__current-period-button - The control for navigating to the current day, month, or year.
+ * @csspart calendar__current-period-button__base - The current-period control's forwarded base part.
+ * @csspart calendar__clear-button - The control for clearing the selected value.
+ * @csspart calendar__clear-button__base - The Clear control's forwarded base part.
  * @csspart prefix - The container that wraps the prefix slot.
  * @csspart suffix - The container that wraps the suffix slot.
  * @csspart expand-icon - The container that wraps the expand icon.
@@ -128,6 +171,7 @@ export default class SynDatePicker extends SynergyElement {
   private readonly localize = new LocalizeController(this);
 
   private readonly formControlController = new FormControlController(this, {
+    assumeInteractionOn: ['syn-blur', 'syn-input'],
     setValue: (_control, value) => {
       this.value = typeof value === 'string' ? value : '';
       this.#syncSegments();
@@ -201,6 +245,9 @@ export default class SynDatePicker extends SynergyElement {
 
   /** Makes the input readonly. */
   @property({ reflect: true, type: Boolean }) readonly = false;
+
+  /** Adds a clear button when the select is not empty. */
+  @property({ type: Boolean }) clearable = false;
 
   /**
    * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
@@ -478,13 +525,14 @@ export default class SynDatePicker extends SynergyElement {
     return true;
   }
 
-  #focusField(field: DateField, options?: FocusOptions) {
+  #focusField(field: DateField, options?: FocusOptions, group = this.#activeGroup) {
     if (this.disabled) {
       return;
     }
+    this.#activeGroup = group;
     this.#activeField = field;
     this.requestUpdate();
-    this.renderRoot.querySelector<HTMLElement>(`[data-group="${this.#activeGroup}"][data-segment="${field}"]`)?.focus(options);
+    this.renderRoot.querySelector<HTMLElement>(`[data-group="${group}"][data-segment="${field}"]`)?.focus(options);
   }
 
   #moveField(field: DateField, offset: number) {
@@ -709,11 +757,35 @@ export default class SynDatePicker extends SynergyElement {
     }
   }
 
-  async #handleAnchorPointerDown(event: PointerEvent) {
-    const interactive = event.composedPath().some(node => node instanceof Element
+  #handleAnchorPointerDown(event: PointerEvent) {
+    if (this.disabled) {
+      return;
+    }
+
+    const path = event.composedPath();
+    const isButton = path.some(node => node instanceof Element
       && node.matches('button, a, [role="button"]'));
-    if (!interactive) {
-      await this.show();
+
+    if (isButton) {
+      return;
+    }
+
+    event.preventDefault();
+
+    const segmentEl = path.find((node): node is HTMLElement => node instanceof HTMLElement
+      && node.hasAttribute('data-segment'));
+
+    if (segmentEl) {
+      const { group, segment } = segmentEl.dataset;
+      if (group !== undefined && segment !== undefined) {
+        this.#focusField(segment as DateField, { preventScroll: true }, Number(group));
+      }
+    } else {
+      this.focus({ preventScroll: true });
+    }
+
+    if (!this.readonly && !this.open) {
+      this.open = true;
     }
   }
 
@@ -799,6 +871,18 @@ export default class SynDatePicker extends SynergyElement {
     }
   };
 
+  #handleClearClick() {
+    this.value = '';
+    this.emit('syn-clear');
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  #handleClearMouseDown(event: MouseEvent) {
+    // Don't lose focus or propagate events when clicking the clear button
+    event.stopPropagation();
+    event.preventDefault();
+  }
+
   #addOpenListeners() {
     this.ownerDocument.addEventListener('pointerdown', this.#handleDocumentPointerDown);
     this.ownerDocument.addEventListener('focusin', this.#handleDocumentPointerDown);
@@ -858,6 +942,7 @@ export default class SynDatePicker extends SynergyElement {
 
     const hasLabel = Boolean(this.label || hasLabelSlot);
     const hasHelpText = Boolean(this.helpText || hasHelpTextSlot);
+    const hasClearIcon = this.clearable && (!this.disabled && !this.readonly) && !!this.value;
 
     return html`
       <div
@@ -961,6 +1046,24 @@ export default class SynDatePicker extends SynergyElement {
                 <slot name="suffix"></slot>
               </span>
 
+              ${hasClearIcon
+                ? html`
+                    <button
+                      aria-label=${this.localize.term('clearEntry')}
+                      class="select__clear"
+                      @click=${this.#handleClearClick}
+                      @mousedown=${this.#handleClearMouseDown}
+                      part="clear-button"
+                      tabindex="-1"
+                      type="button"
+                    >
+                      <slot name="clear-icon">
+                        <syn-icon name="x-circle-fill" library="system"></syn-icon>
+                      </slot>
+                    </button>
+                  `
+                : ''}
+
               <button
                 class="date-picker__expand-button"
                 part="expand-button"
@@ -969,17 +1072,23 @@ export default class SynDatePicker extends SynergyElement {
                 aria-haspopup="dialog"
                 aria-expanded=${this.open}
                 aria-controls="calendar"
-                ?disabled=${this.disabled || this.readonly}
                 @click=${this.#handleToggle}
+                tabindex="-1"
+                ?disabled=${this.disabled || this.readonly}
               >
                 <slot class="date-picker__expand-icon" name="expand-icon" part="expand-icon">
-                  <syn-icon library="system" name="chevron-down"></syn-icon>
+                  <syn-icon library="system" name="calendar-month"></syn-icon>
                 </slot>
               </button>
             </div>
             <!-- /.input -->
 
-            <div id="calendar" role="dialog" aria-label=${this.label || 'Date'}>
+            <div
+              aria-label=${this.label || nothing}
+              class="calendar-wrapper"
+              id="calendar"
+              role="dialog"
+            >
               <syn-calendar
                 part="calendar"
                 exportparts=${[
@@ -989,6 +1098,8 @@ export default class SynDatePicker extends SynergyElement {
                   'calendar-item-outside', 'calendar-item-disabled', 'calendar-item-range-begin',
                   'calendar-item-range-clipped', 'calendar-item-range-start', 'calendar-item-range-end',
                   'calendar-item-range-interior', 'calendar-item-range-pending', 'calendar-item-range-preview',
+                  'calendar-item-range-interior-start', 'calendar-item-range-interior-end',
+                  'calendar-item-range-preview-start', 'calendar-item-range-preview-end',
                   'calendar-item-range-unavailable', 'month-navigation', 'year-navigation', 'previous-button',
                   'previous-button__base', 'navigation-label', 'navigation-label__base', 'next-button',
                   'next-button__base', 'current-period-button', 'current-period-button__base', 'clear-button',
@@ -1012,7 +1123,13 @@ export default class SynDatePicker extends SynergyElement {
                 @syn-clear=${this.#handleCalendarClear}
                 @syn-focus=${stopNestedFocusEvent}
                 @syn-blur=${stopNestedFocusEvent}
-              >${this.#calendarSlots.map(name => html`<slot name=${name} slot=${name}></slot>`)}</syn-calendar>
+              >
+                ${this
+                  .#calendarSlots
+                  .map(name => html`
+                    <slot name=${name} slot=${name}></slot>
+                  `)}
+              </syn-calendar>
             </div>
           </syn-popup>
         </div>

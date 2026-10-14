@@ -97,6 +97,49 @@ import {
  * @csspart remove-date-button - A multiple-selection date's remove button.
  * @csspart expand-button - The calendar toggle button.
  * @csspart calendar - The calendar component.
+ * @csspart calendar__base - The calendar's base wrapper.
+ * @csspart calendar__header - The calendar header.
+ * @csspart calendar__content - The calendar view content.
+ * @csspart calendar__footer - The calendar footer actions.
+ * @csspart calendar__day-grid - The day-of-month table.
+ * @csspart calendar__day-cell - A day table cell, independent of its button.
+ * @csspart calendar__weekdays - The weekday table heading group.
+ * @csspart calendar__weekday - An individual localized weekday heading.
+ * @csspart calendar__month-grid - The month selection grid.
+ * @csspart calendar__year-grid - The year selection grid.
+ * @csspart calendar__calendar-item - A day, month, or year button.
+ * @csspart calendar__calendar-item-label - An item's custom content slot or fallback label.
+ * @csspart calendar__calendar-item-day - A day button.
+ * @csspart calendar__calendar-item-month - A month button.
+ * @csspart calendar__calendar-item-year - A year button.
+ * @csspart calendar__calendar-item-active - An active calendar item.
+ * @csspart calendar__calendar-item-today - The item representing today.
+ * @csspart calendar__calendar-item-outside - A day item belonging to an adjacent month.
+ * @csspart calendar__calendar-item-disabled - A disabled calendar item.
+ * @csspart calendar__calendar-item-range-begin - The pending anchor or completed range start; an alias of range-start.
+ * @csspart calendar__calendar-item-range-clipped - A date whose requested endpoint is adjusted by a range length limit.
+ * @csspart calendar__calendar-item-range-start - The pending anchor or completed range start; an alias of range-begin.
+ * @csspart calendar__calendar-item-range-end - The completed or adjusted preview endpoint, including reverse selections.
+ * @csspart calendar__calendar-item-range-interior - A date inside the selected or previewed range.
+ * @csspart calendar__calendar-item-range-interior-start - The first interior date of a completed range, excluding its endpoints.
+ * @csspart calendar__calendar-item-range-interior-end - The last interior date of a completed range, excluding its endpoints.
+ * @csspart calendar__calendar-item-range-pending - The selected start while waiting for a range end.
+ * @csspart calendar__calendar-item-range-preview - A date in the pending pointer or keyboard range preview.
+ * @csspart calendar__calendar-item-range-preview-start - The first preview date, excluding the anchor but including the prospective endpoint.
+ * @csspart calendar__calendar-item-range-preview-end - The last preview date, excluding the anchor but including the prospective endpoint.
+ * @csspart calendar__calendar-item-range-unavailable - An endpoint whose adjusted boundary is disabled or range length invalid.
+ * @csspart calendar__month-navigation - The month navigation controls.
+ * @csspart calendar__year-navigation - The year navigation controls.
+ * @csspart calendar__previous-button - The previous-period icon button host.
+ * @csspart calendar__previous-button__base - The previous-period control's forwarded base part.
+ * @csspart calendar__navigation-label - The current month, year, or year range in the navigation header.
+ * @csspart calendar__navigation-label__base - The navigation label's forwarded button base when it offers a view switch.
+ * @csspart calendar__next-button - The next-period icon button host.
+ * @csspart calendar__next-button__base - The next-period control's forwarded base part.
+ * @csspart calendar__current-period-button - The control for navigating to the current day, month, or year.
+ * @csspart calendar__current-period-button__base - The current-period control's forwarded base part.
+ * @csspart calendar__clear-button - The control for clearing the selected value.
+ * @csspart calendar__clear-button__base - The Clear control's forwarded base part.
  * @csspart prefix - The container that wraps the prefix slot.
  * @csspart suffix - The container that wraps the suffix slot.
  * @csspart expand-icon - The container that wraps the expand icon.
@@ -648,6 +691,7 @@ export default class SynDatePicker extends SynergyElement {
   #handleSegmentEditing(event: KeyboardEvent, field: DateField) {
     if (/^\d$/.test(event.key)) {
       event.preventDefault();
+      event.stopPropagation();
       const key = this.#bufferKey(field);
       const result = typeDigit(field, this.#buffers.get(key) ?? '', event.key, this.#segments);
       this.#buffers.set(key, result.buffer);
@@ -1040,7 +1084,12 @@ export default class SynDatePicker extends SynergyElement {
             </div>
             <!-- /.input -->
 
-            <div id="calendar" role="dialog" aria-label=${this.label || 'Date'}>
+            <div
+              aria-label=${this.label || nothing}
+              class="calendar-wrapper"
+              id="calendar"
+              role="dialog"
+            >
               <syn-calendar
                 part="calendar"
                 exportparts=${[
@@ -1050,6 +1099,8 @@ export default class SynDatePicker extends SynergyElement {
                   'calendar-item-outside', 'calendar-item-disabled', 'calendar-item-range-begin',
                   'calendar-item-range-clipped', 'calendar-item-range-start', 'calendar-item-range-end',
                   'calendar-item-range-interior', 'calendar-item-range-pending', 'calendar-item-range-preview',
+                  'calendar-item-range-interior-start', 'calendar-item-range-interior-end',
+                  'calendar-item-range-preview-start', 'calendar-item-range-preview-end',
                   'calendar-item-range-unavailable', 'month-navigation', 'year-navigation', 'previous-button',
                   'previous-button__base', 'navigation-label', 'navigation-label__base', 'next-button',
                   'next-button__base', 'current-period-button', 'current-period-button__base', 'clear-button',
@@ -1073,7 +1124,13 @@ export default class SynDatePicker extends SynergyElement {
                 @syn-clear=${this.#handleCalendarClear}
                 @syn-focus=${stopNestedFocusEvent}
                 @syn-blur=${stopNestedFocusEvent}
-              >${this.#calendarSlots.map(name => html`<slot name=${name} slot=${name}></slot>`)}</syn-calendar>
+              >
+                ${this
+                  .#calendarSlots
+                  .map(name => html`
+                    <slot name=${name} slot=${name}></slot>
+                  `)}
+              </syn-calendar>
             </div>
           </syn-popup>
         </div>

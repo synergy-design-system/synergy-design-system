@@ -69,8 +69,12 @@ import '@synergy-design-system/components/components/calendar/calendar.js';
  * @csspart calendar-item-range-start - The pending range anchor or completed range start; an alias of calendar-item-range-begin.
  * @csspart calendar-item-range-end - The completed or adjusted preview endpoint, which may precede the anchor during reverse selection.
  * @csspart calendar-item-range-interior - A date inside the selected or previewed range.
+ * @csspart calendar-item-range-interior-start - The first interior date of a completed range, excluding its selected endpoints.
+ * @csspart calendar-item-range-interior-end - The last interior date of a completed range, excluding its selected endpoints.
  * @csspart calendar-item-range-pending - The selected start while waiting for a range end.
  * @csspart calendar-item-range-preview - A date in the pending range preview driven by pointer or keyboard movement.
+ * @csspart calendar-item-range-preview-start - The first preview date, excluding the selected anchor but including the prospective endpoint.
+ * @csspart calendar-item-range-preview-end - The last preview date, excluding the selected anchor but including the prospective endpoint.
  * @csspart calendar-item-range-unavailable - A focusable endpoint whose adjusted boundary is disabled or whose range length is invalid.
  * @csspart month-navigation - The month navigation controls.
  * @csspart year-navigation - The year navigation controls.

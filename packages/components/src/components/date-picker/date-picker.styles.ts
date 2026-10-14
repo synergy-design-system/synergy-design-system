@@ -61,8 +61,8 @@ export default css`
     color: var(--syn-input-placeholder-color);
   }
 
-  .segment:focus-visible {
-    background: var(--syn-color-primary-100);
+  .segment:focus {
+    background: var(--syn-date-picker-color-range);
     color: var(--syn-color-input-text);
     outline: none;
   }
@@ -110,5 +110,14 @@ export default css`
     flex: 0 0 auto;
     font-size: var(--syn-select-expand-icon-font-size);
     margin-inline: var(--input-suffix-margin-inline);
+  }
+
+  /* Popup calendar wrapper */
+  .calendar-wrapper {
+    background: var(--syn-panel-background-color);
+    border: solid var(--syn-panel-border-width) var(--syn-panel-border-color);
+    border-radius: var(--syn-input-border-radius-medium);
+    box-shadow: var(--syn-shadow-medium);
+    display: block;
   }
 `;

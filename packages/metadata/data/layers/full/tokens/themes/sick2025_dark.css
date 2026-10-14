@@ -218,6 +218,12 @@
   --syn-color-warning-800: #ffe67c;
   --syn-color-warning-900: #fff5c6;
   --syn-color-warning-950: #fffbeb;
+  --syn-date-picker-border-radius: var(--syn-border-radius-small);
+  --syn-date-picker-color: var(--syn-color-primary-400);
+  --syn-date-picker-color-range: var(--syn-color-primary-50);
+  --syn-date-picker-gradient-end: rgba(0, 5, 26, 0);
+  --syn-date-picker-gradient-start: var(--syn-panel-background-color);
+  --syn-date-picker-shadow-end: rgba(14, 39, 93, 0);
   --syn-details-open-rotation: 0deg;
   --syn-dimension-base: 4px; /** to be deprecated */
   --syn-duration-extra-fast: 50ms;

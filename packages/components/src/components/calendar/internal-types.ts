@@ -91,8 +91,12 @@ export interface CalendarItemOptions {
   rangeClipped?: boolean;
   rangeEnd?: boolean;
   rangeInterior?: boolean;
+  rangeInteriorEnd?: boolean;
+  rangeInteriorStart?: boolean;
   rangePending?: boolean;
   rangePreview?: boolean;
+  rangePreviewEnd?: boolean;
+  rangePreviewStart?: boolean;
   rangeStart?: boolean;
   rangeUnavailable?: boolean;
   tabbable: boolean;

@@ -31,6 +31,15 @@ A date picker component for selecting dates.
 
 ## Available Properties
 
+### clearable
+
+attribute: `clearable`
+reflects: no
+type: `boolean`
+default: `false`
+
+Adds a clear button when the select is not empty.
+
 ### defaultValue
 
 attribute: -
@@ -277,6 +286,49 @@ Shows the calendar unless the date picker is disabled or readonly.
 
 - `base`: The segmented field's wrapper.
 - `calendar`: The calendar component.
+- `calendar__base`: The calendar's base wrapper.
+- `calendar__calendar-item`: A day, month, or year button.
+- `calendar__calendar-item-active`: An active calendar item.
+- `calendar__calendar-item-day`: A day button.
+- `calendar__calendar-item-disabled`: A disabled calendar item.
+- `calendar__calendar-item-label`: An item's custom content slot or fallback label.
+- `calendar__calendar-item-month`: A month button.
+- `calendar__calendar-item-outside`: A day item belonging to an adjacent month.
+- `calendar__calendar-item-range-begin`: The pending anchor or completed range start; an alias of range-start.
+- `calendar__calendar-item-range-clipped`: A date whose requested endpoint is adjusted by a range length limit.
+- `calendar__calendar-item-range-end`: The completed or adjusted preview endpoint, including reverse selections.
+- `calendar__calendar-item-range-interior`: A date inside the selected or previewed range.
+- `calendar__calendar-item-range-interior-end`: The last interior date of a completed range, excluding its endpoints.
+- `calendar__calendar-item-range-interior-start`: The first interior date of a completed range, excluding its endpoints.
+- `calendar__calendar-item-range-pending`: The selected start while waiting for a range end.
+- `calendar__calendar-item-range-preview`: A date in the pending pointer or keyboard range preview.
+- `calendar__calendar-item-range-preview-end`: The last preview date, excluding the anchor but including the prospective endpoint.
+- `calendar__calendar-item-range-preview-start`: The first preview date, excluding the anchor but including the prospective endpoint.
+- `calendar__calendar-item-range-start`: The pending anchor or completed range start; an alias of range-begin.
+- `calendar__calendar-item-range-unavailable`: An endpoint whose adjusted boundary is disabled or range length invalid.
+- `calendar__calendar-item-today`: The item representing today.
+- `calendar__calendar-item-year`: A year button.
+- `calendar__clear-button`: The control for clearing the selected value.
+- `calendar__clear-button__base`: The Clear control's forwarded base part.
+- `calendar__content`: The calendar view content.
+- `calendar__current-period-button`: The control for navigating to the current day, month, or year.
+- `calendar__current-period-button__base`: The current-period control's forwarded base part.
+- `calendar__day-cell`: A day table cell, independent of its button.
+- `calendar__day-grid`: The day-of-month table.
+- `calendar__footer`: The calendar footer actions.
+- `calendar__header`: The calendar header.
+- `calendar__month-grid`: The month selection grid.
+- `calendar__month-navigation`: The month navigation controls.
+- `calendar__navigation-label`: The current month, year, or year range in the navigation header.
+- `calendar__navigation-label__base`: The navigation label's forwarded button base when it offers a view switch.
+- `calendar__next-button`: The next-period icon button host.
+- `calendar__next-button__base`: The next-period control's forwarded base part.
+- `calendar__previous-button`: The previous-period icon button host.
+- `calendar__previous-button__base`: The previous-period control's forwarded base part.
+- `calendar__weekday`: An individual localized weekday heading.
+- `calendar__weekdays`: The weekday table heading group.
+- `calendar__year-grid`: The year selection grid.
+- `calendar__year-navigation`: The year navigation controls.
 - `expand-button`: The calendar toggle button.
 - `expand-icon`: The container that wraps the expand icon.
 - `form-control`: The form control that wraps the label, input, and help text.

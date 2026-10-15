@@ -70,24 +70,54 @@ export const Default: Story = {
         chart.config = {
           xAxis: {
             type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
           },
-          yAxis: { name: 'Values' },
+          yAxis: { 
+            name: 'Values',
+            splitLine: { show: true },
+          },
           series: [
             {
               data: [120, 180, 150, 80, 70, 110, 130],
-              stack: 'total',
               type: 'bar',
+              stack: 'total',
+              itemStyle: {
+                borderColor: 'transparent',
+                borderWidth: 1,
+              },
+              label: {
+                color: 'inherit',
+                position: 'left',
+                show: true,
+              }
             },
             {
               data: [80, 130, 100, 70, 90, 160, 140],
-              stack: 'total',
               type: 'bar',
+              stack: 'total',
+              itemStyle: {
+                borderColor: 'transparent',
+                borderWidth: 1,
+              },
+              label: {
+                color: 'inherit',
+                position: 'left',
+                show: true,
+              }
             },
             {
               data: [90, 120, 140, 100, 110, 70, 60],
-              stack: 'total',
               type: 'bar',
+              stack: 'total',
+              itemStyle: {
+                borderColor: 'transparent',
+                borderWidth: 1,
+              },
+              label: {
+                color: 'inherit',
+                position: 'left',
+                show: true,
+              }
             },
           ]
         }
@@ -100,7 +130,7 @@ export const Vertical: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'bar-chart-stacked-vertical'),
+        story: generateStoryDescription('chart', 'bar-chart-vertical'),
       },
     },
   },
@@ -124,18 +154,15 @@ export const Vertical: Story = {
         chart.config = handle => handle
           .baseConfig(baseConfig)
           .axesShowYSplitLines()
-          .seriesBar([
+          .seriesBarStacked([
             {
               data: [120, 180, 150, 80, 70, 110, 130],
-              stack: 'total',
             },
             {
               data: [80, 130, 100, 70, 90, 160, 140],
-              stack: 'total',
             },
             {
               data: [90, 120, 140, 100, 110, 70, 60],
-              stack: 'total',
             },
           ])
       });
@@ -147,7 +174,7 @@ export const Horizontal: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'bar-chart-stacked-horizontal'),
+        story: generateStoryDescription('chart', 'bar-chart-horizontal'),
       },
     },
   },
@@ -169,22 +196,20 @@ export const Horizontal: Story = {
 
       charts.forEach(chart => {
         chart.config = handle => handle
-          .baseConfig(baseConfig)
-          .axesShowXSplitLines()
-          .seriesBar([
-            {
-              data: [120, 180, 150, 80, 70, 110, 130],
-              stack: 'total',
-            },
-            {
-              data: [80, 130, 100, 70, 90, 160, 140],
-              stack: 'total',
-            },
-            {
-              data: [90, 120, 140, 100, 110, 70, 60],
-              stack: 'total',
-            },
-          ])
+        .baseConfig(baseConfig)
+        .axesShowXSplitLines()
+        .seriesBarStacked([
+          {
+            data: [120, 180, 150, 80, 70, 110, 130],
+          },
+          {
+            data: [80, 130, 100, 70, 90, 160, 140],
+            
+          },
+          {
+            data: [90, 120, 140, 100, 110, 70, 60],
+          },
+          ], { orientation: 'horizontal' })
       });
     </script>
   `,
@@ -219,18 +244,15 @@ export const FixedValueRange: Story = {
         chart.config = handle => handle
           .baseConfig(baseConfig)
           .axesShowYSplitLines()
-          .seriesBar([
+          .seriesBarStacked([
             {
               data: [120, 180, 150, 80, 70, 110, 130],
-              stack: 'total',
             },
             {
               data: [80, 130, 100, 70, 90, 160, 140],
-              stack: 'total',
             },
             {
               data: [90, 120, 140, 100, 110, 70, 60],
-              stack: 'total',
             },
           ])
       });
@@ -266,20 +288,17 @@ export const NegativeValues: Story = {
         chart.config = handle => handle
           .baseConfig(baseConfig)
           .axesShowXSplitLines()
-          .seriesBar([
-          {
-            data: [-120, -180, -150, -80, -70, -110, -130],
-            stack: 'total',
-          },
-          {
-            data: [-80, -130, -100, -70, -90, -160, -140],
-            stack: 'total',
-          },
-          {
-            data: [-90, -120, -140, -100, -110, -70, -80],
-            stack: 'total',
-          },
-          ])
+          .seriesBarStacked([
+            {
+              data: [-120, -180, -150, -80, -70, -110, -130],
+            },
+            {
+              data: [-80, -130, -100, -70, -90, -160, -140],
+            },
+            {
+              data: [-90, -120, -140, -100, -110, -70, -80],
+            },
+          ], { orientation: 'horizontal' })
       });
     </script>
   `,
@@ -313,18 +332,15 @@ export const PositiveAndNegative: Story = {
         chart.config = handle => handle
           .baseConfig(baseConfig)
           .axesShowYSplitLines()
-          .seriesBar([
+          .seriesBarStacked([
             {
               data: [ -100, -120, 150, 80, 70, -110, 130],
-              stack: 'total'
             },
             {
               data: [60, 40, -20, 60, -30, -80, -50],
-              stack: 'total'
             },
             {
               data: [120, -70, 50, -90, 80, 60, 140],
-              stack: 'total'
             },
           ])
         });
@@ -336,7 +352,7 @@ export const CustomColors: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'bar-chart-stacked-custom-color'),
+        story: generateStoryDescription('chart', 'bar-chart-custom-color'),
       },
     },
   },
@@ -363,33 +379,28 @@ export const CustomColors: Story = {
         yAxis: {
           name: 'Values',
         },
+        color: [
+          getChartColor('SynChartSequential02_80'),
+          getChartColor('SynChartSequential02_70'),
+          getChartColor('SynChartSequential02_50'),
+        ],
       };
 
       charts.forEach(chart => {
         chart.config = handle => handle
-          .baseConfig({
-            ...baseConfig,
-            color: [
-              getChartColor('SynChartSequential02_80'),
-              getChartColor('SynChartSequential02_70'),
-              getChartColor('SynChartSequential02_50'),
-            ],
-          })
+          .baseConfig(baseConfig)
           .axesShowYSplitLines()
-          .seriesBar([
-          {
-            data: [120, 180, 150],
-            stack: 'total'
-          },
-          {
-            data: [80, 130, 100],
-            stack: 'total'
-          },
-          {
-            data: [90, 120, 140],
-            stack: 'total'
-          },
-        ])
+          .seriesBarStacked([
+            {
+              data: [120, 180, 150],
+            },
+            {
+              data: [80, 130, 100],
+            },
+            {
+              data: [90, 120, 140],
+            },
+          ])
       });
     </script>
   `,
@@ -399,13 +410,13 @@ export const CategoricalVsSequential: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'bar-chart-grouped-palette'),
+        story: generateStoryDescription('chart', 'bar-chart-palette'),
       },
     },
   },
   render: () => html`
-    <syn-chart id="bar-series-grouped-categorical"></syn-chart>
-    <syn-chart id="bar-series-grouped-sequential"></syn-chart>
+    <syn-chart id="bar-series-stacked-categorical"></syn-chart>
+    <syn-chart id="bar-series-stacked-sequential"></syn-chart>
     <script type="module">
       // To use Synergy chart colors, import the resolved chart tokens. The chart
       // configuration currently requires hex values, which can be retrieved
@@ -417,8 +428,8 @@ export const CategoricalVsSequential: Story = {
         return ChartTokens[token]['light'];
       };
 
-      const categoricalCharts = document.querySelectorAll('#bar-series-grouped-categorical');
-      const sequentialCharts = document.querySelectorAll(' #bar-series-grouped-sequential');
+      const categoricalCharts = document.querySelectorAll('#bar-series-stacked-categorical');
+      const sequentialCharts = document.querySelectorAll(' #bar-series-stacked-sequential');
       const baseConfig = {
         xAxis: {
           data: ['A', 'B', 'C',],
@@ -434,24 +445,20 @@ export const CategoricalVsSequential: Story = {
         categorical.config = handle => handle
           .baseConfig(baseConfig)
           .axesShowYSplitLines()
-          .seriesBar([
-          {
-            data: [120, 180, 150],
-            stack: 'total'
-          },
-          {
-            data: [80, 130, 100],
-            stack: 'total'
-          },
-          {
-            data: [90, 120, 140],
-            stack: 'total'
-          },
-          {
-            data: [110, 140, 170],
-            stack: 'total'
-          },
-        ])
+          .seriesBarStacked([
+            {
+              data: [120, 180, 150],
+            },
+            {
+              data: [80, 130, 100],
+            },
+            {
+              data: [90, 120, 140],
+            },
+            {
+              data: [110, 140, 170],
+            },
+          ])
       });
      
       sequentialCharts.forEach(sequential => {
@@ -465,20 +472,17 @@ export const CategoricalVsSequential: Story = {
             ],
           })
           .axesShowYSplitLines()
-          .seriesBar([
-          {
-            data: [120, 180, 150],
-            stack: 'total'
-          },
-          {
-            data: [80, 130, 100],
-            stack: 'total'
-          },
-          {
-            data: [90, 120, 140],
-            stack: 'total'
-          },
-        ])
+          .seriesBarStacked([
+            {
+              data: [120, 180, 150],
+            },
+            {
+              data: [80, 130, 100],
+            },
+            {
+              data: [90, 120, 140],
+            },
+          ])
       });
     </script>
   `,
@@ -491,7 +495,7 @@ export const Tooltip: Story = {
     },
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'bar-chart-stacked-tooltip'),
+        story: generateStoryDescription('chart', 'bar-chart-tooltip'),
       },
     },
   },
@@ -536,21 +540,18 @@ export const Tooltip: Story = {
         chart.config = handle => handle
           .baseConfig(baseConfig)
           .axesShowYSplitLines()
-          .seriesBar([
+          .seriesBarStacked([
             {
               data: [120, 180, 150, 80, 70, 110, 130],
               name: 'Series A',
-              stack: 'total',
             },
             {
               data: [80, 130, 100, 70, 90, 160, 140],
               name: 'SeriesB',
-              stack: 'total',
             },
             {
               data: [90, 120, 140, 100, 110, 70, 60],
               name: 'Series C',
-              stack: 'total',
             },
           ])
           .tooltipShow({ axisPointer: { type: 'shadow' } })
@@ -563,7 +564,7 @@ export const Legend: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'bar-chart-stacked-legend'),
+        story: generateStoryDescription('chart', 'bar-chart-legend'),
       },
     },
   },
@@ -587,24 +588,96 @@ export const Legend: Story = {
         chart.config = handle => handle
           .baseConfig(baseConfig)
           .axesShowYSplitLines()
-          .seriesBar([
+          .seriesBarStacked([
             {
               data: [120, 180, 150, 80, 70, 110, 130],
               name: 'Series A',
-              stack: 'total',
             },
             {
               data: [80, 130, 100, 70, 90, 160, 140],
               name: 'Series B',
-              stack: 'total',
             },
             {
               data: [90, 120, 140, 100, 110, 70, 60],
               name: 'Series C',
-              stack: 'total',
             },
           ])
           .legendShow()
+      });
+    </script>
+  `,
+};
+
+export const SelectedMode: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'bar-chart-selected-mode'),
+      },
+    },
+  },
+  play: async ({ canvasElement }) => {
+    // Only run this code when running in Chromatic, as it is used to show the tooltip for the snapshot.
+    if (isChromatic()) {
+      const chart = canvasElement.querySelector<SynChart>('#bar-series-stacked-selected-mode');
+      if (!chart) return;
+      const instance = chart.getInstance()!;
+
+      const finishedPromise = new Promise<void>(resolve => {
+        instance.on('finished', () => {
+          instance.dispatchAction({
+            dataIndex: [1, 3],
+            seriesName: 'Multiple',
+            type: 'select',
+          });
+          resolve();
+        });
+      });
+
+      await finishedPromise;
+    }
+  },
+  render: () => html`
+    <syn-chart id="bar-series-stacked-selected-mode"></syn-chart>
+    <script type="module">
+       const charts = document.querySelectorAll('#bar-series-stacked-selected-mode');
+
+      const baseConfig = {
+        xAxis: {
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          name: 'Days',
+          type: 'category',
+        },
+        yAxis: { 
+          name: 'Values',
+        },
+      };
+
+      charts.forEach(chart => {
+        chart.config = handle => handle
+          .baseConfig(baseConfig)
+          .axesShowYSplitLines()
+          .seriesBarStacked([
+            {
+              selectedMode: true,
+              data: [120, 180, 150, 80, 70, 110, 130],
+              name: 'Single / True'
+            },
+            {
+              selectedMode: 'series',
+              data: [80, 130, 100, 70, 90, 160, 140],
+              name: 'Series'
+            },
+            {
+              selectedMode: 'multiple',
+              data: [90, 120, 140, 100, 110, 70, 60],
+              name: 'Multiple'
+            },
+          ])
+          .legendShow();
       });
     </script>
   `,

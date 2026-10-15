@@ -1376,7 +1376,7 @@ The data zoom slider (the dataZoom option with type: 'inside') allows users to d
 
 ## Default
 
-The bar chart can be configured via the chart config with type: bar or with the seriesBar preset function.
+A grouped bar chart is created when multiple bar series share the same category axis. The value axis defines the scale for the bar values. The bar chart can be configured via the chart config with type: bar or with the seriesBar preset function.
 
 ```html
 <syn-chart id="bar-series-grouped-default"></syn-chart>
@@ -1390,7 +1390,10 @@ The bar chart can be configured via the chart config with type: bar or with the 
         name: "Days",
         type: "category",
       },
-      yAxis: { name: "Values" },
+      yAxis: {
+        name: "Values",
+        splitLine: { show: true },
+      },
       series: [
         {
           data: [120, 180, 150, 80, 70, 110, 130],
@@ -1414,7 +1417,7 @@ The bar chart can be configured via the chart config with type: bar or with the 
 
 ## Vertical
 
-Place categories on the x-axis and values on the y-axis, where bar height represents value magnitude. Grouped vertical bar charts are best suited for:- Time-based trends: Chronological sequences (e.g., days, months, years) flow naturally from left to right.- Small category sets: Clear and uncluttered when comparing multiple series across fewer than 10 categories.- Highlighting differences: The vertical height emphasizes growth and magnitude differences between series and categories.
+Place categories on the x-axis and values on the y-axis, where bar height represents value magnitude. Vertical bar charts work well for chronological trends and smaller category sets, and make differences in magnitude easy to compare.
 
 ```html
 <syn-chart id="bar-series-grouped-vertical"></syn-chart>
@@ -1428,8 +1431,6 @@ Place categories on the x-axis and values on the y-axis, where bar height repres
       type: "category",
     },
     yAxis: {
-      min: 60,
-      max: 200,
       name: "Values",
     },
   };
@@ -1458,7 +1459,7 @@ Place categories on the x-axis and values on the y-axis, where bar height repres
 
 ## Horizontal
 
-Place categories on the y-axis and values on the x-axis, where bar length represents value magnitude. Grouped horizontal bar charts are best suited for:- Long category labels: Provides ample horizontal room for text, avoiding overlapping, truncation, or awkward label rotations.- Large datasets: Scales cleanly for 10 or more categories without compressing bar widths.- Rankings: Naturally presents ordered lists (ascending or descending) in a top-to-bottom reading flow.
+Place categories on the y-axis and values on the x-axis, where bar length represents value magnitude. Horizontal bar charts are best suited for:- Long category labels: Provides ample horizontal room for text, avoiding overlapping, truncation, or awkward label rotations.- Large datasets: Scales cleanly for 10 or more categories without compressing bar widths.- Rankings: Naturally presents ordered lists (ascending or descending) in a top-to-bottom reading flow.
 
 ```html
 <syn-chart id="bar-series-grouped-horizontal"></syn-chart>
@@ -1481,15 +1482,12 @@ Place categories on the y-axis and values on the x-axis, where bar length repres
         .axesShowXSplitLines()
         .seriesBar([
           {
-            barWidth: 8,
             data: [120, 180, 150, 80, 70, 110, 130],
           },
           {
-            barWidth: 8,
             data: [80, 130, 100, 70, 90, 160, 140],
           },
           {
-            barWidth: 8,
             data: [90, 120, 140, 100, 110, 70, 60],
           },
         ]);
@@ -1501,7 +1499,7 @@ Place categories on the y-axis and values on the x-axis, where bar length repres
 
 ## Fixed Value Range
 
-Use min and max on the value axis to set explicit scale boundaries instead of relying on automatic calculation. A fixed range helps to:- Standardize comparisons: Keep scales identical across multiple series, charts or dashboards.- Anchor benchmarks: Align to fixed limits or targets (e.g., 0–100%).- Provide headroom: Prevent labels or tooltips from clipping against chart edges.- Stabilize views: Avoid jarring scale shifts during live updates or filtering.
+Use min and max on the value axis to set explicit scale boundaries. Fixed ranges help standardize comparisons across charts, anchor benchmarks such as 0–100%, provide headroom for labels and tooltips, and prevent scale shifts when data changes.
 
 ```html
 <syn-chart id="bar-series-grouped-value-range"></syn-chart>
@@ -1529,15 +1527,12 @@ Use min and max on the value axis to set explicit scale boundaries instead of re
         .axesShowXSplitLines()
         .seriesBar([
           {
-            barWidth: 8,
             data: [120, 180, 150, 80, 70, 110, 130],
           },
           {
-            barWidth: 8,
             data: [80, 130, 100, 70, 90, 160, 140],
           },
           {
-            barWidth: 8,
             data: [90, 120, 140, 100, 110, 70, 60],
           },
         ]);
@@ -1549,7 +1544,7 @@ Use min and max on the value axis to set explicit scale boundaries instead of re
 
 ## Negative Values
 
-Grouped bar charts can display negative values across multiple series to visualize deficits, losses or decreases. Bars extend away from the zero baseline, downwards in vertical charts and leftwards in horizontal charts.
+Bar charts can show negative values such as deficits, losses, or decreases. Bars extend away from the zero baseline.
 
 ```html
 <syn-chart id="bar-series-grouped-negative"></syn-chart>
@@ -1563,8 +1558,6 @@ Grouped bar charts can display negative values across multiple series to visuali
       type: "category",
     },
     yAxis: {
-      max: -60,
-      min: -200,
       name: "Values",
     },
   };
@@ -1593,7 +1586,7 @@ Grouped bar charts can display negative values across multiple series to visuali
 
 ## Positive And Negative
 
-Grouped bar charts can combine positive and negative values across multiple series to visualize gains and losses, variances, or deviations from a baseline within each category. Bars extend in opposite directions from the zero baseline.
+Bar charts can combine positive and negative values to show gains and losses or deviations from a baseline. Bars extend in opposite directions from zero.
 
 ```html
 <syn-chart id="bar-series-grouped-positive-and-negative"></syn-chart>
@@ -1635,9 +1628,54 @@ Grouped bar charts can combine positive and negative values across multiple seri
 
 ---
 
+## Custom Bar Width
+
+Set barWidth to control bar thickness. A number specifies a fixed width in pixels, while a percentage string sets the width relative to the available category space and adapts to the chart size.
+
+```html
+<syn-chart id="bar-series-grouped-bar-width"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#bar-series-grouped-bar-width");
+
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      name: "Days",
+      type: "category",
+    },
+    yAxis: {
+      name: "Values",
+    },
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .axesShowYSplitLines()
+        .seriesBar([
+          {
+            barWidth: 20,
+            data: [120, 180, 150, 80, 70, 110, 130],
+          },
+          {
+            barWidth: "30%",
+            data: [80, 130, 100, 70, 90, 160, 140],
+          },
+          {
+            barWidth: "10%",
+            data: [90, 120, 140, 100, 110, 70, 60],
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
 ## Custom Colors
 
-By default, each series in a grouped bar chart is assigned a color from the chart's categorical palette. Use the color option to apply explicit colors for each series.
+Bar series use the chart's categorical palette by default. Use the color option to apply explicit colors to individual series.
 
 ```html
 <syn-chart id="bar-series-grouped-colors"></syn-chart>
@@ -1662,19 +1700,17 @@ By default, each series in a grouped bar chart is assigned a color from the char
     yAxis: {
       name: "Values",
     },
+    color: [
+      getChartColor("SynChartSequential02_80"),
+      getChartColor("SynChartSequential02_70"),
+      getChartColor("SynChartSequential02_50"),
+    ],
   };
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
       handle
-        .baseConfig({
-          ...baseConfig,
-          color: [
-            getChartColor("SynChartSequential02_80"),
-            getChartColor("SynChartSequential02_70"),
-            getChartColor("SynChartSequential02_50"),
-          ],
-        })
+        .baseConfig(baseConfig)
         .axesShowYSplitLines()
         .seriesBar([
           {
@@ -1695,7 +1731,7 @@ By default, each series in a grouped bar chart is assigned a color from the char
 
 ## Categorical Vs Sequential
 
-Depending on your use case, you can choose between a categorical palette (up to 12 colors) and a sequential palette (up to 3 colors).
+Depending on your use case, choose a categorical palette (up to 12 colors) or a sequential palette (recommended for up to 3 colors).
 
 ```html
 <syn-chart id="bar-series-grouped-categorical"></syn-chart>
@@ -1735,51 +1771,39 @@ Depending on your use case, you can choose between a categorical palette (up to 
         .axesShowYSplitLines()
         .seriesBar([
           {
-            barWidth: 8,
             data: [120, 180, 150],
           },
           {
-            barWidth: 8,
             data: [80, 130, 100],
           },
           {
-            barWidth: 8,
             data: [90, 120, 140],
           },
           {
-            barWidth: 8,
             data: [110, 140, 170],
           },
           {
-            barWidth: 8,
             data: [70, 100, 130],
           },
           {
-            barWidth: 8,
             data: [130, 160, 190],
           },
           {
-            barWidth: 8,
             data: [100, 130, 160],
           },
           {
-            barWidth: 8,
             data: [60, 90, 120],
           },
           {
-            barWidth: 8,
             data: [140, 170, 200],
           },
           {
-            barWidth: 8,
             data: [85, 115, 145],
           },
           {
-            barWidth: 8,
             data: [125, 155, 185],
           },
           {
-            barWidth: 8,
             data: [95, 125, 155],
           },
         ]);
@@ -1799,15 +1823,12 @@ Depending on your use case, you can choose between a categorical palette (up to 
         .axesShowYSplitLines()
         .seriesBar([
           {
-            barWidth: 8,
             data: [120, 180, 150],
           },
           {
-            barWidth: 8,
             data: [80, 130, 100],
           },
           {
-            barWidth: 8,
             data: [90, 120, 140],
           },
         ]);
@@ -1819,7 +1840,7 @@ Depending on your use case, you can choose between a categorical palette (up to 
 
 ## Tooltip
 
-Enable the tooltip to inspect series values on hover. The tooltip option axisPointer.type='shadow' highlights the corresponding category group, making it easy to compare all series values for that category.
+Enable a tooltip to inspect bar values on hover. For bar series it is recommended to set tooltip.axisPointer.type to 'shadow' to highlight the corresponding category and compare its values across series.
 
 ```html
 <syn-chart id="bar-series-grouped-tooltip"></syn-chart>
@@ -1865,7 +1886,7 @@ Enable the tooltip to inspect series values on hover. The tooltip option axisPoi
 
 ## Legend
 
-Use legendShow() to render legend entries for each series. Series names are used as legend labels and can be toggled interactively. For this use the name option in the series configuration.
+Use legendShow() to display a legend for named series. Series names become the legend labels, and users can toggle series visibility interactively.
 
 ```html
 <syn-chart id="bar-series-grouped-legend"></syn-chart>
@@ -1909,6 +1930,55 @@ Use legendShow() to render legend entries for each series. Series names are used
 
 ---
 
+## Selected Mode
+
+Selection is disabled by default. Set selectedMode to true or 'single' to select one data item at a time, 'multiple' to select multiple data items, or 'series' to select an entire series.
+
+```html
+<syn-chart id="bar-series-grouped-selected-mode"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#bar-series-grouped-selected-mode");
+
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      name: "Days",
+      type: "category",
+    },
+    yAxis: {
+      name: "Values",
+    },
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .axesShowYSplitLines()
+        .seriesBar([
+          {
+            selectedMode: true,
+            data: [120, 180, 150, 80, 70, 110, 130],
+            name: "Single / True",
+          },
+          {
+            selectedMode: "series",
+            data: [80, 130, 100, 70, 90, 160, 140],
+            name: "Series",
+          },
+          {
+            selectedMode: "multiple",
+            data: [90, 120, 140, 100, 110, 70, 60],
+            name: "Multiple",
+          },
+        ])
+        .legendShow();
+  });
+</script>
+```
+
+---
+
 ## Default
 
 The bar chart can be configured via the chart config with type: bar or with the seriesBar preset function.
@@ -1925,7 +1995,10 @@ The bar chart can be configured via the chart config with type: bar or with the 
         name: "Days",
         type: "category",
       },
-      yAxis: { name: "Values" },
+      yAxis: {
+        name: "Values",
+        splitLine: { show: true },
+      },
       series: [
         {
           data: [120, 180, 150, 80, 70, 110, 130],
@@ -1941,7 +2014,7 @@ The bar chart can be configured via the chart config with type: bar or with the 
 
 ## Vertical
 
-Place categories on the x-axis and values on the y-axis, where bar height represents value magnitude. Vertical bar charts are best suited for:- Time-based trends: Chronological sequences (e.g., days, months, years) flow naturally from left to right.- Small category sets: Clear and uncluttered when comparing fewer than 10 categories.- Highlighting differences: The vertical height emphasizes growth and magnitude differences between categories.
+Place categories on the x-axis and values on the y-axis, where bar height represents value magnitude. Vertical bar charts work well for chronological trends and smaller category sets, and make differences in magnitude easy to compare.
 
 ```html
 <syn-chart id="bar-series-single-vertical"></syn-chart>
@@ -1986,18 +2059,13 @@ Place categories on the y-axis and values on the x-axis, where bar length repres
 
   const baseConfig = {
     yAxis: {
-      data: [
-        "Brazil",
-        "Pakistan",
-        "Indonesia",
-        "United States",
-        "China",
-        "India",
-      ],
-      name: "Country",
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      name: "Days",
       type: "category",
     },
-    xAxis: { type: "value", name: "Population (in Millions)" },
+    xAxis: {
+      name: "Values",
+    },
   };
 
   charts.forEach((chart) => {
@@ -2007,7 +2075,7 @@ Place categories on the y-axis and values on the x-axis, where bar length repres
         .axesShowXSplitLines()
         .seriesBar([
           {
-            data: [215, 241, 278, 335, 1412, 1428],
+            data: [120, 180, 150, 80, 70, 110, 130],
           },
         ]);
   });
@@ -2018,7 +2086,7 @@ Place categories on the y-axis and values on the x-axis, where bar length repres
 
 ## Fixed Value Range
 
-Use min and max on the value axis to set explicit scale boundaries instead of relying on automatic calculation. A fixed range helps to:- Standardize comparisons: Keep scales identical across charts or dashboards.- Anchor benchmarks: Align to fixed limits or targets (e.g., 0–100%).- Provide headroom: Prevent labels or tooltips from clipping against chart edges.- Stabilize views: Avoid jarring scale shifts during live updates or filtering.
+Use min and max on the value axis to set explicit scale boundaries. Fixed ranges help standardize comparisons across charts, anchor benchmarks such as 0–100%, provide headroom for labels and tooltips, and prevent scale shifts when data changes.
 
 ```html
 <syn-chart id="bar-series-single-value-range"></syn-chart>
@@ -2056,7 +2124,7 @@ Use min and max on the value axis to set explicit scale boundaries instead of re
 
 ## Negative Values
 
-Bar charts can display negative values to visualize deficits, losses, or decreases. Bars extend away from the zero baseline, downwards in vertical charts and leftwards in horizontal charts.
+Bar charts can show negative values such as deficits, losses, or decreases. Bars extend away from the zero baseline.
 
 ```html
 <syn-chart id="bar-series-single-negative"></syn-chart>
@@ -2092,13 +2160,13 @@ Bar charts can display negative values to visualize deficits, losses, or decreas
 
 ## Positive And Negative
 
-Bar charts can combine positive and negative values in a single series to visualize gains and losses, variances, or deviations from a baseline. Bars extend in opposite directions from the zero baseline.
+Bar charts can combine positive and negative values to show gains and losses or deviations from a baseline. Bars extend in opposite directions from zero.
 
 ```html
-<syn-chart id="bar-series-single-horizontal-positive-and-negative"></syn-chart>
+<syn-chart id="bar-series-single-positive-and-negative"></syn-chart>
 <script type="module">
   const charts = document.querySelectorAll(
-    "#bar-series-single-horizontal-positive-and-negative",
+    "#bar-series-single-positive-and-negative",
   );
 
   const baseConfig = {
@@ -2128,9 +2196,97 @@ Bar charts can combine positive and negative values in a single series to visual
 
 ---
 
+## Custom Bar Width
+
+Set barWidth to control bar thickness. A number specifies a fixed width in pixels, while a percentage string sets the width relative to the available category space and adapts to the chart size.
+
+```html
+<syn-chart id="bar-series-single-fixed-width"></syn-chart>
+<syn-chart id="bar-series-single-relative-width"></syn-chart>
+<script type="module">
+  const fixedWidthCharts = document.querySelectorAll(
+    "#bar-series-single-fixed-width",
+  );
+  const relativeWidthCharts = document.querySelectorAll(
+    "#bar-series-single-relative-width",
+  );
+  const baseConfig = {
+    xAxis: {
+      data: ["A", "B", "C"],
+      name: "Category",
+      type: "category",
+    },
+    yAxis: {
+      name: "Values",
+    },
+  };
+
+  fixedWidthCharts.forEach((fixed) => {
+    fixed.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .axesShowYSplitLines()
+        .seriesBar([
+          {
+            barWidth: 20,
+            data: [120, 180, 150],
+          },
+        ]);
+  });
+
+  relativeWidthCharts.forEach((relative) => {
+    relative.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .axesShowYSplitLines()
+        .seriesBar([
+          {
+            barWidth: "30%",
+            data: [120, 180, 150],
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
+## Custom Colors
+
+Bar series use the chart's categorical palette by default. Use the color option to apply explicit colors to individual series.
+
+```html
+<syn-chart id="bar-series-single-custom-color"></syn-chart>
+<script type="module">
+  const getChartColor = (token) => ChartTokens[token]["light"];
+  const charts = document.querySelectorAll("#bar-series-single-custom-color");
+  const baseConfig = {
+    xAxis: {
+      data: ["A", "B", "C"],
+      name: "Category",
+      type: "category",
+    },
+    yAxis: {
+      name: "Values",
+    },
+    color: [getChartColor("SynChartSequential02_70")],
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .axesShowYSplitLines()
+        .seriesBar([{ data: [120, 180, 150] }]);
+  });
+</script>
+```
+
+---
+
 ## Tooltip
 
-Enable the tooltip to inspect a bar's value on hover. The tooltip option axisPointer.type='shadow' highlights the corresponding category.
+Enable a tooltip to inspect bar values on hover. For bar series it is recommended to set tooltip.axisPointer.type to 'shadow' to highlight the corresponding category and compare its values across series.
 
 ```html
 <syn-chart id="bar-series-single-tooltip"></syn-chart>
@@ -2165,9 +2321,45 @@ Enable the tooltip to inspect a bar's value on hover. The tooltip option axisPoi
 
 ---
 
+## Selected Mode
+
+Selection is disabled by default. Set selectedMode to true or 'single' to select one data item at a time, 'multiple' to select multiple data items, or 'series' to select an entire series.
+
+```html
+<syn-chart id="bar-series-single-selected-mode"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#bar-series-single-selected-mode");
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      name: "Days",
+      type: "category",
+    },
+    yAxis: {
+      name: "Values",
+    },
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .axesShowYSplitLines()
+        .seriesBar([
+          {
+            data: [120, 180, 150, 80, 70, 110, 130],
+            selectedMode: "multiple",
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
 ## Default
 
-The stacked bar chart can be configured via the chart config with type: bar and a shared stack identifier, or with the seriesBar preset function.
+Configure a stacked bar chart with type: 'bar' and a shared stack identifier or use the seriesBarStacked preset function. Showing labels is recommended and their color should inherit the series color. Place labels to the left for vertical bars and above for horizontal bars. A 1 px border is recommended to better distinguish adjacent bar segments. The seriesBarStacked preset applies these label and border settings by default.
 
 ```html
 <syn-chart id="bar-stacked-default"></syn-chart>
@@ -2180,22 +2372,52 @@ The stacked bar chart can be configured via the chart config with type: bar and 
         type: "category",
         data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
       },
-      yAxis: { name: "Values" },
+      yAxis: {
+        name: "Values",
+        splitLine: { show: true },
+      },
       series: [
         {
           data: [120, 180, 150, 80, 70, 110, 130],
-          stack: "total",
           type: "bar",
+          stack: "total",
+          itemStyle: {
+            borderColor: "transparent",
+            borderWidth: 1,
+          },
+          label: {
+            color: "inherit",
+            position: "left",
+            show: true,
+          },
         },
         {
           data: [80, 130, 100, 70, 90, 160, 140],
-          stack: "total",
           type: "bar",
+          stack: "total",
+          itemStyle: {
+            borderColor: "transparent",
+            borderWidth: 1,
+          },
+          label: {
+            color: "inherit",
+            position: "left",
+            show: true,
+          },
         },
         {
           data: [90, 120, 140, 100, 110, 70, 60],
-          stack: "total",
           type: "bar",
+          stack: "total",
+          itemStyle: {
+            borderColor: "transparent",
+            borderWidth: 1,
+          },
+          label: {
+            color: "inherit",
+            position: "left",
+            show: true,
+          },
         },
       ],
     };
@@ -2207,7 +2429,7 @@ The stacked bar chart can be configured via the chart config with type: bar and 
 
 ## Vertical
 
-Place categories on the x-axis and values on the y-axis, where total bar height represents the sum of all segments. Stacked vertical bar charts are best suited for:- Time-based trends: Chronological sequences (e.g., days, months, years) flow naturally from left to right.- Small category sets: Clear and uncluttered when comparing totals across fewer than 10 categories.- Part-to-whole comparisons: Visually emphasizes how sub-components contribute to the total growth or magnitude per category.
+Place categories on the x-axis and values on the y-axis, where bar height represents value magnitude. Vertical bar charts work well for chronological trends and smaller category sets, and make differences in magnitude easy to compare.
 
 ```html
 <syn-chart id="bar-stacked-vertical"></syn-chart>
@@ -2230,18 +2452,15 @@ Place categories on the x-axis and values on the y-axis, where total bar height 
       handle
         .baseConfig(baseConfig)
         .axesShowYSplitLines()
-        .seriesBar([
+        .seriesBarStacked([
           {
             data: [120, 180, 150, 80, 70, 110, 130],
-            stack: "total",
           },
           {
             data: [80, 130, 100, 70, 90, 160, 140],
-            stack: "total",
           },
           {
             data: [90, 120, 140, 100, 110, 70, 60],
-            stack: "total",
           },
         ]);
   });
@@ -2252,7 +2471,7 @@ Place categories on the x-axis and values on the y-axis, where total bar height 
 
 ## Horizontal
 
-Place categories on the y-axis and values on the x-axis, where total bar length represents the sum of all segments. Stacked horizontal bar charts are best suited for:- Long category labels: Provides ample horizontal room for text, avoiding overlapping, truncation, or awkward label rotations.- Large datasets: Scales cleanly for 10 or more categories without compressing bar widths.- Rankings: Naturally presents ordered lists (ascending or descending) based on total values in a top-to-bottom reading flow.
+Place categories on the y-axis and values on the x-axis, where bar length represents value magnitude. Horizontal bar charts are best suited for:- Long category labels: Provides ample horizontal room for text, avoiding overlapping, truncation, or awkward label rotations.- Large datasets: Scales cleanly for 10 or more categories without compressing bar widths.- Rankings: Naturally presents ordered lists (ascending or descending) in a top-to-bottom reading flow.
 
 ```html
 <syn-chart id="bar-stacked-horizontal"></syn-chart>
@@ -2275,20 +2494,20 @@ Place categories on the y-axis and values on the x-axis, where total bar length 
       handle
         .baseConfig(baseConfig)
         .axesShowXSplitLines()
-        .seriesBar([
-          {
-            data: [120, 180, 150, 80, 70, 110, 130],
-            stack: "total",
-          },
-          {
-            data: [80, 130, 100, 70, 90, 160, 140],
-            stack: "total",
-          },
-          {
-            data: [90, 120, 140, 100, 110, 70, 60],
-            stack: "total",
-          },
-        ]);
+        .seriesBarStacked(
+          [
+            {
+              data: [120, 180, 150, 80, 70, 110, 130],
+            },
+            {
+              data: [80, 130, 100, 70, 90, 160, 140],
+            },
+            {
+              data: [90, 120, 140, 100, 110, 70, 60],
+            },
+          ],
+          { orientation: "horizontal" },
+        );
   });
 </script>
 ```
@@ -2297,7 +2516,7 @@ Place categories on the y-axis and values on the x-axis, where total bar length 
 
 ## Fixed Value Range
 
-Use min and max on the value axis to set explicit scale boundaries instead of relying on automatic calculation. A fixed range helps to:- Standardize comparisons: Keep scales identical across multiple stacked charts or dashboards.- Accommodate stacked totals: Ensure sufficient headroom for combined totals across all series.- Anchor benchmarks: Align to fixed limits or capacity targets (e.g., 0–100%).- Stabilize views: Avoid jarring scale shifts during live updates or filtering.
+Use min and max on the value axis to set explicit scale boundaries. Fixed ranges help standardize comparisons across charts, anchor benchmarks such as 0–100%, provide headroom for labels and tooltips, and prevent scale shifts when data changes. For stacked bar charts, account for the combined totals of the stacked series in each category so the full stacks fit within the scale.
 
 ```html
 <syn-chart id="bar-stacked-value-range"></syn-chart>
@@ -2321,18 +2540,15 @@ Use min and max on the value axis to set explicit scale boundaries instead of re
       handle
         .baseConfig(baseConfig)
         .axesShowYSplitLines()
-        .seriesBar([
+        .seriesBarStacked([
           {
             data: [120, 180, 150, 80, 70, 110, 130],
-            stack: "total",
           },
           {
             data: [80, 130, 100, 70, 90, 160, 140],
-            stack: "total",
           },
           {
             data: [90, 120, 140, 100, 110, 70, 60],
-            stack: "total",
           },
         ]);
   });
@@ -2343,7 +2559,7 @@ Use min and max on the value axis to set explicit scale boundaries instead of re
 
 ## Negative Values
 
-Stacked bar charts can display negative values across multiple series to visualize accumulated deficits, losses, or decreases. Negative segments stack away from the zero baseline, downwards in vertical charts and leftwards in horizontal charts.
+Bar charts can show negative values such as deficits, losses, or decreases. Bars extend away from the zero baseline. In stacked bar charts, negative values stack together below the zero baseline, separately from positive values.
 
 ```html
 <syn-chart id="bar-stacked-negative"></syn-chart>
@@ -2366,20 +2582,20 @@ Stacked bar charts can display negative values across multiple series to visuali
       handle
         .baseConfig(baseConfig)
         .axesShowXSplitLines()
-        .seriesBar([
-          {
-            data: [-120, -180, -150, -80, -70, -110, -130],
-            stack: "total",
-          },
-          {
-            data: [-80, -130, -100, -70, -90, -160, -140],
-            stack: "total",
-          },
-          {
-            data: [-90, -120, -140, -100, -110, -70, -80],
-            stack: "total",
-          },
-        ]);
+        .seriesBarStacked(
+          [
+            {
+              data: [-120, -180, -150, -80, -70, -110, -130],
+            },
+            {
+              data: [-80, -130, -100, -70, -90, -160, -140],
+            },
+            {
+              data: [-90, -120, -140, -100, -110, -70, -80],
+            },
+          ],
+          { orientation: "horizontal" },
+        );
   });
 </script>
 ```
@@ -2388,7 +2604,7 @@ Stacked bar charts can display negative values across multiple series to visuali
 
 ## Positive And Negative
 
-Stacked bar charts can combine positive and negative values across multiple series. Positive values stack in one direction from the zero baseline, while negative values stack in the opposite direction, making net balances, gains, and losses easy to evaluate.
+Bar charts can combine positive and negative values to show gains and losses or deviations from a baseline. Bars extend in opposite directions from zero. In stacked bar charts, positive and negative values accumulate separately on their respective sides of the zero baseline.
 
 ```html
 <syn-chart id="bar-stacked-positive-and-negative"></syn-chart>
@@ -2413,18 +2629,15 @@ Stacked bar charts can combine positive and negative values across multiple seri
       handle
         .baseConfig(baseConfig)
         .axesShowYSplitLines()
-        .seriesBar([
+        .seriesBarStacked([
           {
             data: [-100, -120, 150, 80, 70, -110, 130],
-            stack: "total",
           },
           {
             data: [60, 40, -20, 60, -30, -80, -50],
-            stack: "total",
           },
           {
             data: [120, -70, 50, -90, 80, 60, 140],
-            stack: "total",
           },
         ]);
   });
@@ -2435,7 +2648,7 @@ Stacked bar charts can combine positive and negative values across multiple seri
 
 ## Custom Colors
 
-By default, each series in a stacked bar chart is assigned a color from the chart's categorical palette. Use the color option in the chart configuration to apply explicit colors for each series.
+Bar series use the chart's categorical palette by default. Use the color option to apply explicit colors to individual series.
 
 ```html
 <syn-chart id="bar-stacked-custom-colors"></syn-chart>
@@ -2460,32 +2673,27 @@ By default, each series in a stacked bar chart is assigned a color from the char
     yAxis: {
       name: "Values",
     },
+    color: [
+      getChartColor("SynChartSequential02_80"),
+      getChartColor("SynChartSequential02_70"),
+      getChartColor("SynChartSequential02_50"),
+    ],
   };
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
       handle
-        .baseConfig({
-          ...baseConfig,
-          color: [
-            getChartColor("SynChartSequential02_80"),
-            getChartColor("SynChartSequential02_70"),
-            getChartColor("SynChartSequential02_50"),
-          ],
-        })
+        .baseConfig(baseConfig)
         .axesShowYSplitLines()
-        .seriesBar([
+        .seriesBarStacked([
           {
             data: [120, 180, 150],
-            stack: "total",
           },
           {
             data: [80, 130, 100],
-            stack: "total",
           },
           {
             data: [90, 120, 140],
-            stack: "total",
           },
         ]);
   });
@@ -2496,11 +2704,11 @@ By default, each series in a stacked bar chart is assigned a color from the char
 
 ## Categorical Vs Sequential
 
-Depending on your use case, you can choose between a categorical palette (up to 12 colors) and a sequential palette (up to 3 colors).
+Depending on your use case, choose a categorical palette (up to 12 colors) or a sequential palette (recommended for up to 3 colors).
 
 ```html
-<syn-chart id="bar-series-grouped-categorical"></syn-chart>
-<syn-chart id="bar-series-grouped-sequential"></syn-chart>
+<syn-chart id="bar-series-stacked-categorical"></syn-chart>
+<syn-chart id="bar-series-stacked-sequential"></syn-chart>
 <script type="module">
   // To use Synergy chart colors, import the resolved chart tokens. The chart
   // configuration currently requires hex values, which can be retrieved
@@ -2513,10 +2721,10 @@ Depending on your use case, you can choose between a categorical palette (up to 
   };
 
   const categoricalCharts = document.querySelectorAll(
-    "#bar-series-grouped-categorical",
+    "#bar-series-stacked-categorical",
   );
   const sequentialCharts = document.querySelectorAll(
-    " #bar-series-grouped-sequential",
+    " #bar-series-stacked-sequential",
   );
   const baseConfig = {
     xAxis: {
@@ -2534,22 +2742,18 @@ Depending on your use case, you can choose between a categorical palette (up to 
       handle
         .baseConfig(baseConfig)
         .axesShowYSplitLines()
-        .seriesBar([
+        .seriesBarStacked([
           {
             data: [120, 180, 150],
-            stack: "total",
           },
           {
             data: [80, 130, 100],
-            stack: "total",
           },
           {
             data: [90, 120, 140],
-            stack: "total",
           },
           {
             data: [110, 140, 170],
-            stack: "total",
           },
         ]);
   });
@@ -2566,18 +2770,15 @@ Depending on your use case, you can choose between a categorical palette (up to 
           ],
         })
         .axesShowYSplitLines()
-        .seriesBar([
+        .seriesBarStacked([
           {
             data: [120, 180, 150],
-            stack: "total",
           },
           {
             data: [80, 130, 100],
-            stack: "total",
           },
           {
             data: [90, 120, 140],
-            stack: "total",
           },
         ]);
   });
@@ -2588,7 +2789,7 @@ Depending on your use case, you can choose between a categorical palette (up to 
 
 ## Tooltip
 
-Enable the tooltip to inspect segment values on hover. The tooltip option axisPointer.type='shadow' highlights the entire category bar, making it easy to compare all stacked series values and their totals for that category.
+Enable a tooltip to inspect bar values on hover. For bar series it is recommended to set tooltip.axisPointer.type to 'shadow' to highlight the corresponding category and compare its values across series.
 
 ```html
 <syn-chart id="bar-series-stacked-tooltip"></syn-chart>
@@ -2611,21 +2812,18 @@ Enable the tooltip to inspect segment values on hover. The tooltip option axisPo
       handle
         .baseConfig(baseConfig)
         .axesShowYSplitLines()
-        .seriesBar([
+        .seriesBarStacked([
           {
             data: [120, 180, 150, 80, 70, 110, 130],
             name: "Series A",
-            stack: "total",
           },
           {
             data: [80, 130, 100, 70, 90, 160, 140],
             name: "SeriesB",
-            stack: "total",
           },
           {
             data: [90, 120, 140, 100, 110, 70, 60],
             name: "Series C",
-            stack: "total",
           },
         ])
         .tooltipShow({ axisPointer: { type: "shadow" } });
@@ -2637,7 +2835,7 @@ Enable the tooltip to inspect segment values on hover. The tooltip option axisPo
 
 ## Legend
 
-Use legendShow() to render legend entries for each series in the stack. Series names are used as legend labels and can be toggled interactively to show or hide individual segments.
+Use legendShow() to display a legend for named series. Series names become the legend labels, and users can toggle series visibility interactively.
 
 ```html
 <syn-chart id="bar-series-stacked-legend"></syn-chart>
@@ -2660,21 +2858,67 @@ Use legendShow() to render legend entries for each series in the stack. Series n
       handle
         .baseConfig(baseConfig)
         .axesShowYSplitLines()
-        .seriesBar([
+        .seriesBarStacked([
           {
             data: [120, 180, 150, 80, 70, 110, 130],
             name: "Series A",
-            stack: "total",
           },
           {
             data: [80, 130, 100, 70, 90, 160, 140],
             name: "Series B",
-            stack: "total",
           },
           {
             data: [90, 120, 140, 100, 110, 70, 60],
             name: "Series C",
-            stack: "total",
+          },
+        ])
+        .legendShow();
+  });
+</script>
+```
+
+---
+
+## Selected Mode
+
+Selection is disabled by default. Set selectedMode to true or 'single' to select one data item at a time, 'multiple' to select multiple data items, or 'series' to select an entire series.
+
+```html
+<syn-chart id="bar-series-stacked-selected-mode"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#bar-series-stacked-selected-mode");
+
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      name: "Days",
+      type: "category",
+    },
+    yAxis: {
+      name: "Values",
+    },
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .axesShowYSplitLines()
+        .seriesBarStacked([
+          {
+            selectedMode: true,
+            data: [120, 180, 150, 80, 70, 110, 130],
+            name: "Single / True",
+          },
+          {
+            selectedMode: "series",
+            data: [80, 130, 100, 70, 90, 160, 140],
+            name: "Series",
+          },
+          {
+            selectedMode: "multiple",
+            data: [90, 120, 140, 100, 110, 70, 60],
+            name: "Multiple",
           },
         ])
         .legendShow();

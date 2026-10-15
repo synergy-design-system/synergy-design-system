@@ -17,10 +17,6 @@ const getCategoricalColors = (mode: Themes) => PALETTE_TOKENS.categorical.map((t
 export const getSynergyTheme = (mode: Themes = 'light') => ({
   // Remove the starting animation for chart series
   animationDuration: 0,
-  bar: {
-    // TODO: do we really want a fix absolute value (16px)? If doing that, the responsiveness does not work or needs to be overwritten by the users.
-    barWidth: styleWithoutUnit('SynSpacingMedium', mode),
-  },
   categoryAxis: getDefaultAxisStyles(mode),
   // Default color palette for charts, is categorical by default but can be overridden by setting the palette property on the chart component or by directly setting config.color
   color: getCategoricalColors(mode),

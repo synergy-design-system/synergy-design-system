@@ -421,29 +421,83 @@ chart.config = handle =>
 
 ### Bar series presets
 
-| Preset function | Options             | Description                                                        |
-| --------------- | ------------------- | ------------------------------------------------------------------ |
-| `seriesBar`     | `BarSeriesOption[]` | Sets `series` entries as bar series and merges each passed option. |
+| Preset function    | Options                                                      | Description                                                                                                  |
+| ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `seriesBar`        | `BarSeriesOption[]`                                          | Sets `series` entries as bar series and merges each passed option.                                           |
+| `seriesBarStacked` | `options: BarSeriesOption[]`, `settings?: BarStackedOptions` | Appends stacked bar series with a shared stack name and recommended stylings like border and label defaults. |
 
-Example:
+#### Single or grouped bars
+
+Examples:
 
 ```ts
+// Single bar - vertical
 chart.config = handle =>
   handle
     .baseConfig({
       xAxis: { type: "category", data: ["Mon", "Tue", "Wed"] },
       yAxis: { type: "value" },
     })
-    .seriesBar([
-      { name: "Revenue", data: [120, 200, 150] },
-      { name: "Cost", data: [80, 140, 130] },
-    ]);
+    .seriesBar([{ data: [80, 140, 130] }]);
+
+// Grouped bar - horizontal
+chart.config = handle =>
+  handle
+    .baseConfig({
+      xAxis: { type: "value" },
+      yAxis: { type: "category", data: ["Mon", "Tue", "Wed"] },
+    })
+    .seriesBar([{ data: [120, 200, 150] }, { data: [80, 140, 130] }]);
 ```
 
 Array merge strategy:
 
 - `seriesBar([...])` uses `arrayStrategy: 'append'` for the `series` array.
 - Each passed option is added as a bar series, existing `baseConfig.series` entries are preserved.
+
+#### Stacked bars
+
+`seriesBarStacked(options, settings?)` accepts an array of bar series options and optional `BarStackedOptions` settings:
+
+| Setting       | Type                         | Description                                                                                                                          | Default      |
+| ------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------ |
+| `stackName`   | `string`                     | Shared stack name for the passed series. An omitted or empty name generates one random name shared by all series in that invocation. | `''`         |
+| `orientation` | `'vertical' \| 'horizontal'` | Determines label defaults only, does not configure the chart axes.                                                                   | `'vertical'` |
+
+Each series receives the following defaults, which could also be overwritten:
+
+- `type: 'bar'` and the shared `stack` name.
+- `itemStyle: { borderColor: 'transparent', borderWidth: 1 }`.
+- `label: { color: 'inherit', show: true }`, with `position: 'left'` for vertical bars or `position: 'top'` for horizontal bars.
+
+Like `seriesBar`, this preset appends entries to the existing `series` array rather than merging them by index. Use the same explicit `stackName` across multiple calls to add series to the same stack.
+
+Example:
+
+```ts
+import type { BarStackedOptions } from "@synergy-design-system/components/components/chart/types.js";
+
+const settings: BarStackedOptions = {
+  stackName: "revenue",
+  orientation: "horizontal",
+};
+
+chart.config = handle =>
+  handle
+    .baseConfig({
+      xAxis: { type: "value" },
+      yAxis: { type: "category", data: ["Mon", "Tue", "Wed"] },
+    })
+    .seriesBarStacked(
+      [
+        { name: "Product A", data: [120, 200, 150] },
+        { name: "Product B", data: [80, 140, 130] },
+      ],
+      settings,
+    );
+```
+
+For vertical bars, use a category x-axis and a value y-axis, and omit `orientation` or set it to `'vertical'`.
 
 ### Gauge series presets
 
@@ -694,7 +748,7 @@ shorthand(0.002); // '2m'
 
 ## Bundle Size
 
-`syn-chart` uses [ECharts tree-shaking](https://echarts.apache.org/en/tutorial.html#Use%20ECharts%20with%20bundler%20and%20NPM) internally. Only the modules that are actually needed (currently `LineChart`, `GaugeChart`, `CanvasRenderer`, `GridComponent`, `LegendComponent`, `TitleComponent`, `TooltipComponent`, `DataZoomComponent`) are imported and registered via ECharts' `use([...])`.)
+`syn-chart` uses [ECharts tree-shaking](https://echarts.apache.org/en/tutorial.html#Use%20ECharts%20with%20bundler%20and%20NPM) internally. Only the modules that are actually needed (including `BarChart`, `LineChart`, `GaugeChart`, `CanvasRenderer`, `GridComponent`, `LegendComponent`, `TitleComponent`, `TooltipComponent`, `DataZoomComponent`) are imported and registered via ECharts' `use([...])`.
 
 > ⚠️ You do **not** need to register anything yourself.
 
@@ -704,12 +758,13 @@ shorthand(0.002); // '2m'
 
 The following chart types are natively supported with Synergy styling:
 
-| Type          | How to use                                     |
-| ------------- | ---------------------------------------------- |
-| Line chart    | `series[].type: 'line'` (standard ECharts)     |
-| Gauge chart   | `series[].type: 'synGauge'` (custom Synergy)   |
-| Donut chart   | `series[].type: 'synDonut'` (custom Synergy)   |
-| Segment chart | `series[].type: 'synSegment'` (custom Synergy) |
+| Type          | How to use                                                                              |
+| ------------- | --------------------------------------------------------------------------------------- |
+| Line chart    | `series[].type: 'line'` (standard ECharts)                                              |
+| Bar chart     | `series[].type: 'bar'`, `seriesBar(...)`, or `seriesBarStacked(...)` (standard ECharts) |
+| Gauge chart   | `series[].type: 'synGauge'` (custom Synergy)                                            |
+| Donut chart   | `series[].type: 'synDonut'` (custom Synergy)                                            |
+| Segment chart | `series[].type: 'synSegment'` (custom Synergy)                                          |
 
 If you want to use ECharts features beyond what is listed above, you can register the required plugins yourself.
 But keep in mind that they are not Synergy-approved and do not have Synergy styling. The registration needs to be done **before** the component is initialized.
@@ -718,9 +773,9 @@ To register echarts functionalities do following or have a closer look at the [e
 
 ```js
 import { use } from "echarts/core.js";
-import { BarChart } from "echarts/charts.js";
+import { ScatterChart } from "echarts/charts.js";
 
-use([BarChart]);
+use([ScatterChart]);
 ```
 
 ---

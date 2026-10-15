@@ -369,6 +369,16 @@ chart.config = handle =>
   });
 ```
 
+For bar charts, set `tooltip.axisPointer.type` to `'shadow'` when the category-wide shadow highlight is required.
+
+```ts
+chart.config = handle =>
+  handle
+    .baseConfig(baseConfig)
+    .seriesBar([{ name: "Energy", data: [120, 200, 150] }])
+    .tooltipShow({ axisPointer: { type: "shadow" } });
+```
+
 ### Line series presets
 
 | Preset function | Options              | Description                                                         |

@@ -1256,7 +1256,7 @@
           "value": "Place categories on the y-axis and values on the x-axis, where bar length represents value magnitude. Horizontal bar charts are best suited for:\n\n- **Long category labels:** Provides ample horizontal room for text, avoiding overlapping, truncation, or awkward label rotations.\n- **Large datasets:** Scales cleanly for 10 or more categories without compressing bar widths.\n- **Rankings:** Naturally presents ordered lists (ascending or descending) in a top-to-bottom reading flow.",
           "type": "text"
         }
-      },    
+      },
       "bar-chart-vertical": {
         "title": {
           "value": "Vertical Bar Chart",

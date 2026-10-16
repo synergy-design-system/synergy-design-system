@@ -1246,6 +1246,156 @@
           "value": "Use `legendShow()` to display a legend for segment data items. Set the `name` option on each item to provide its legend label.",
           "type": "text"
         }
+      },
+      "area-series-default": {
+        "title": {
+          "value": "Area Chart",
+          "type": "text"
+        },
+        "description": {
+          "value": "Area charts visualize trends while also highlighting the filled area beneath the line, making changes in magnitude easier to perceive. They are well‑suited for showing overall development, cumulative values, or comparing volumes over time.",
+          "type": "text"
+        }
+      },
+      "area-series-preset": {
+        "title": {
+          "value": "Area Chart Preset",
+          "type": "text"
+        },
+        "description": {
+          "value": "An area chart can be configured via the chart config with `type: 'line'` and `areaStyle: {}` or with the `seriesArea` preset function. When using a config object, set `areaStyle.opacity` to `0.2` for the recommended styling. The `seriesArea` preset applies this opacity by default. Pass a custom `areaStyle` to override the preset default.",
+          "type": "text"
+        }
+      },
+      "area-series-curved": {
+        "title": {
+          "value": "Curved Area Series",
+          "type": "text"
+        },
+        "description": {
+          "value": "The area series supports curved lines. Use the `smooth` property to enable smooth curves.",
+          "type": "text"
+        }
+      },
+      "area-series-hidden-lines": {
+        "title": {
+          "value": "Hidden Lines Area Series",
+          "type": "text"
+        },
+        "description": {
+          "value": "The lines of area series can be hidden. When hidden, only the filled area remains for a more minimal, volume-focused visualization.",
+          "type": "text"
+        }
+      },
+      "area-series-line-styles": {
+        "title": {
+          "value": "Area Series Line Styles",
+          "type": "text"
+        },
+        "description": {
+          "value": "The line styles can be adjusted such as solid, dashed, and dotted as well as custom line widths. Use distinct styles to differentiate series when needed.",
+          "type": "text"
+        }
+      },
+      "area-series-symbols": {
+        "title": {
+          "value": "Area Series Symbols",
+          "type": "text"
+        },
+        "description": {
+          "value": "The data points can be marked via symbols. Set `symbol` and `symbolSize` on each series to customize them.",
+          "type": "text"
+        }
+      },
+      "area-series-palette": {
+        "title": {
+          "value": "Area Chart Palette",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the `palette` attribute to apply another Synergy chart color palette to the area series.",
+          "type": "text"
+        }
+      },
+      "area-series-custom-colors": {
+        "title": {
+          "value": "Area Chart Custom Colors",
+          "type": "text"
+        },
+        "description": {
+          "value": "By default, each area series is assigned a color from the chart's categorical color palette. Use the colors option to provide explicit colors instead. Colors are repeated cyclically when fewer colors than data points are provided.",
+          "type": "text"
+        }
+      },
+      "area-series-positive-and-negative-values": {
+        "title": {
+          "value": "Area Chart with Positive and Negative Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "Area charts can display both positive and negative values, filling each data point relative to the configured area origin.",
+          "type": "text"
+        }
+      },
+      "area-series-origin": {
+        "title": {
+          "value": "Area Chart Origin",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the `areaStyle.origin` option to choose the baseline from which an area is filled. Valid values:\n\n- `auto` fills the area between the axis line and the data (**default**).\n- `start` fills between the minimum axis value and the data.\n- `end` fills between the maximum axis value and the data.\n- A number fills between that specified value and the data.",
+          "type": "text"
+        }
+      },
+      "area-series-stack": {
+        "title": {
+          "value": "Area Chart Stack",
+          "type": "text"
+        },
+        "description": {
+          "value": "The `stack` value names a stack group. Area series with the same `stack` value on the same category axis are stacked on top of one another. Use `stackStrategy` to control how values are accumulated:\n\n- `samesign` stacks a value only when it has the same sign as the current stack total (**default**)\n- `all` stacks values regardless of whether they are positive or negative\n- `positive` stacks only positive values\n- `negative` stacks only negative values",
+          "type": "text"
+        }
+      },
+      "area-series-focus-hover": {
+        "title": {
+          "value": "Area Chart Focus on Hover",
+          "type": "text"
+        },
+        "description": {
+          "value": "Set `emphasis.focus` to `series` to highlight the hovered area series and de-emphasize the others.",
+          "type": "text"
+        }
+      },
+      "area-series-tooltip": {
+        "title": {
+          "value": "Area Chart Tooltip",
+          "type": "text"
+        },
+        "description": {
+          "value": "Enable contextual data point details with the `tooltipShow()` preset. The tooltip displays labels and values as users interact with the chart.",
+          "type": "text"
+        }
+      },
+      "area-series-with-legend": {
+        "title": {
+          "value": "Area Chart with Legend",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `legendShow()` to display a legend for named series. Series names become the legend labels, and users can toggle series visibility interactively.",
+          "type": "text"
+        }
+      },
+      "area-series-zoom": {
+        "title": {
+          "value": "Area Chart Zooming",
+          "type": "text"
+        },
+        "description": {
+          "value": "Configure `dataZoom` to let users focus on a subset of an area chart's data. The slider provides handles for selecting the visible range.",
+          "type": "text"
+        }
       }
     },
     "checkbox": {

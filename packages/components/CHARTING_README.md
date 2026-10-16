@@ -373,8 +373,10 @@ chart.config = handle =>
 
 | Preset function | Options              | Description                                                         |
 | --------------- | -------------------- | ------------------------------------------------------------------- |
-| `seriesLine`    | `LineSeriesOption[]` | Sets `series` entries as line series and merges each passed option. |
+| `seriesLine`    | `LineSeriesOption[]` | Appends line series and merges each passed option. |
+| `seriesArea`    | `LineSeriesOption[]` | Appends area series with a default `areaStyle.opacity` of `0.2`. Passed `areaStyle` options override the defaults. |
 
+#### Line charts
 Example:
 
 ```ts
@@ -418,6 +420,28 @@ chart.config = handle =>
 //   { type: 'line', name: 'Forecast', data: [130, 150, 170] }
 // ]
 ```
+
+#### Area charts
+Example:
+
+```ts
+chart.config = handle =>
+  handle
+    .baseConfig({
+      xAxis: { type: "category", data: ["Mon", "Tue", "Wed"] },
+      yAxis: { type: "value" },
+    })
+    .seriesArea([
+      { name: "Revenue", data: [120, 200, 150] },
+      { name: "Forecast", data: [130, 180, 170] },
+    ]);
+```
+
+Array merge strategy:
+
+- `seriesArea([...])` uses `arrayStrategy: 'append'` for the `series` array.
+- Passed entries are appended after existing `baseConfig.series` entries.
+- Existing series entries are not merged by index with the new ones.
 
 ### Gauge series presets
 

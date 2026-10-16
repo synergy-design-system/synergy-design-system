@@ -10,8 +10,13 @@ import {
   createServer as createHttpsServer,
 } from 'node:https';
 import { readFileSync } from 'node:fs';
-import { NodeStreamableHTTPServerTransport } from '@modelcontextprotocol/node';
-import type { McpServer } from '@modelcontextprotocol/server';
+import { toNodeHandler } from '@modelcontextprotocol/node';
+import {
+  type McpServer,
+  WebStandardStreamableHTTPServerTransport,
+  createMcpHandler,
+  isLegacyRequest,
+} from '@modelcontextprotocol/server';
 import { getMetadataInfo, getSynergyLogo } from '@synergy-design-system/metadata';
 import { runWithLoggingContext } from '../utilities/logging-context.js';
 import type { McpRuntimeConfig } from '../utilities/config.js';
@@ -22,8 +27,8 @@ type NodeServer = HttpServer | HttpsServer;
 /**
  * Creates an HTTP or HTTPS transport for the MCP server.
  * Serves the MCP protocol on a fixed /mcp endpoint.
- * Each client session gets its own transport + server instance,
- * tracked by the mcp-session-id header.
+ * Legacy clients use isolated sessions tracked by the mcp-session-id header.
+ * Modern clients use a fresh server instance for each request.
  *
  * @param serverFactory A factory function that creates a new MCP server instance per session
  * @param config The runtime configuration with interface, port, and optional TLS settings
@@ -77,7 +82,60 @@ export async function createHttpTransport(
   }
 
   // Session store: maps mcp-session-id -> transport for that client
-  const sessions = new Map<string, NodeStreamableHTTPServerTransport>();
+  const sessions = new Map<string, WebStandardStreamableHTTPServerTransport>();
+
+  const reportError = (error: Error) => {
+    process.stderr.write(`[synergy-mcp] HTTP handler error: ${error.message}\n`);
+  };
+
+  const modern = createMcpHandler(serverFactory, { legacy: 'reject', onerror: reportError });
+
+  const handleMcpRequest = toNodeHandler({
+    fetch: async (request, options) => {
+      if (!await isLegacyRequest(request, options?.parsedBody)) {
+        return runWithLoggingContext(
+          { sessionId: `request-${randomUUID()}`, transport: 'http' },
+          async () => modern.fetch(request, options),
+        );
+      }
+
+      const sessionId = request.headers.get('mcp-session-id');
+      if (sessionId) {
+        const existing = sessions.get(sessionId);
+        if (!existing) {
+          return Response.json({
+            error: { code: -32000, message: 'Unknown session ID' },
+            id: null,
+            jsonrpc: '2.0',
+          }, { status: 400 });
+        }
+        return runWithLoggingContext(
+          { sessionId, transport: 'http' },
+          async () => existing.handleRequest(request, options),
+        );
+      }
+
+      const newServer = serverFactory();
+      const transport = new WebStandardStreamableHTTPServerTransport({
+        onsessioninitialized: sid => {
+          sessions.set(sid, transport);
+        },
+        sessionIdGenerator: () => randomUUID(),
+      });
+      transport.onclose = () => {
+        if (transport.sessionId) {
+          sessions.delete(transport.sessionId);
+        }
+      };
+      await newServer.connect(transport);
+      return runWithLoggingContext(
+        { sessionId: transport.sessionId ?? 'pending-http', transport: 'http' },
+        async () => transport.handleRequest(request, options),
+      );
+    },
+  }, {
+    onerror: reportError,
+  });
 
   // Create request handler that routes to the transport
   nodeServer.on('request', async (req, res) => {
@@ -99,54 +157,7 @@ export async function createHttpTransport(
     }
 
     try {
-      const sessionId = req.headers['mcp-session-id'] as string | undefined;
-
-      if (sessionId) {
-        // Route to existing session
-        const existing = sessions.get(sessionId);
-        if (!existing) {
-          res.statusCode = 400;
-          res.setHeader('Content-Type', 'application/json');
-          res.end(JSON.stringify({
-            error: { code: -32000, message: 'Unknown session ID' },
-            id: null,
-            jsonrpc: '2.0',
-          }));
-          return;
-        }
-        await runWithLoggingContext(
-          {
-            sessionId,
-            transport: 'http',
-          },
-          async () => existing.handleRequest(req, res),
-        );
-        return;
-      }
-
-      // New client — create a dedicated server + transport pair
-      const newServer = serverFactory();
-      const transport = new NodeStreamableHTTPServerTransport({
-        onsessioninitialized: sid => {
-          sessions.set(sid, transport);
-        },
-        sessionIdGenerator: () => randomUUID(),
-      });
-
-      transport.onclose = () => {
-        if (transport.sessionId) {
-          sessions.delete(transport.sessionId);
-        }
-      };
-
-      await newServer.connect(transport);
-      await runWithLoggingContext(
-        {
-          sessionId: transport.sessionId ?? 'pending-http',
-          transport: 'http',
-        },
-        async () => transport.handleRequest(req, res),
-      );
+      await handleMcpRequest(req, res);
     } catch (error) {
       // Only write error response if headers haven't been sent yet
       if (!res.headersSent) {
@@ -186,17 +197,21 @@ export async function createHttpTransport(
       nodeServer.listen(port, host);
     }),
 
-    stop: async () => new Promise((resolve, reject) => {
-      nodeServer.close((error) => {
-        if (error) {
-          reject(error);
-        } else {
-          if (!config.silent) {
-            process.stdout.write('[synergy-mcp] ✓ Server stopped\n');
+    stop: async () => {
+      await modern.close();
+      await Promise.all([...sessions.values()].map(transport => transport.close()));
+      return new Promise((resolve, reject) => {
+        nodeServer.close(error => {
+          if (error) {
+            reject(error);
+          } else {
+            if (!config.silent) {
+              process.stdout.write('[synergy-mcp] ✓ Server stopped\n');
+            }
+            resolve();
           }
-          resolve();
-        }
+        });
       });
-    }),
+    },
   };
 }

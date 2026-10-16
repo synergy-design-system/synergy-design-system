@@ -85,6 +85,60 @@ after(async () => {
 });
 
 describe('operation logging (local file provider)', () => {
+  for (const transport of ['stdio', 'http'] as const) {
+    it(`logs modern ${transport} calls with file configuration and compression`, async () => {
+      const logDir = await mkdtemp(join(tmpdir(), 'synergy-mcp-modern-logs-'));
+      temporaryPaths.push(logDir);
+      const configPath = await writeTempConfig({
+        compression: 'toon',
+        includeAiRules: false,
+        logging: { localFile: { path: logDir } },
+      });
+      temporaryPaths.push(configPath);
+      const server = transport === 'http'
+        ? await startHttpServer({ configPath, port: 9124 })
+        : undefined;
+      let payload = '';
+      try {
+        const session = server
+          ? await createHttpMcpClient(new URL(`http://127.0.0.1:${server.port}/mcp`), { modern: true })
+          : await createClientSession({ configPath, modern: true });
+        try {
+          assert.equal(session.client.getNegotiatedProtocolVersion(), '2026-07-28');
+          const result = toToolResponse(await session.client.callTool({ arguments: {}, name: 'asset-list' }));
+          payload = toTextPayload(result.content);
+          assert.equal(result.content.length, 1);
+          assert.throws(() => JSON.parse(payload));
+          await session.client.getPrompt({
+            arguments: { component: 'syn-button' },
+            name: 'explain-component-rules',
+          });
+          await session.client.readResource({ uri: 'synergy://assets/list' });
+        } finally {
+          await session.close();
+        }
+      } finally {
+        await server?.stop();
+      }
+      const entries = await readLoggedEvents(logDir);
+      const event = entries.find(entry => entry.kind === 'tool' && entry.name === 'asset-list');
+      assert.ok(event);
+      assert.equal(event.transport, transport);
+      assert.equal(event.success, true);
+      assert.deepEqual(event.parameters, {});
+      assert.equal(event.tokenCount, await countTextTokens(payload));
+      if (transport === 'http') assert.match(event.sessionId, /^request-/);
+      else assert.equal(event.sessionId, 'stdio');
+      const prompt = entries.find(entry => entry.kind === 'prompt');
+      assert.ok(prompt);
+      assert.deepEqual(prompt.parameters, { component: 'syn-button' });
+      const resource = entries.find(entry => entry.kind === 'resource');
+      assert.ok(resource);
+      assert.deepEqual(resource.parameters, { uri: 'synergy://assets/list' });
+      assert.ok(entries.every(entry => entry.transport === transport));
+    });
+  }
+
   it('writes stdio tool calls to date/session JSON files', async () => {
     const logDir = await mkdtemp(join(tmpdir(), 'synergy-mcp-logs-'));
     temporaryPaths.push(logDir);

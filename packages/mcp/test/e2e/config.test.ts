@@ -66,6 +66,31 @@ describe('config: default behavior (no --config)', () => {
   });
 });
 
+describe('config: modern stdio with toon compression', () => {
+  let session: ClientSession;
+  let configPath: string;
+
+  before(async () => {
+    configPath = await writeTempConfig({ compression: 'toon', includeAiRules: false });
+    session = await createClientSession({ configPath, modern: true });
+  });
+
+  after(async () => {
+    await session?.close();
+    await unlink(configPath);
+  });
+
+  it('applies file configuration without changing the modern protocol', async () => {
+    assert.equal(session.client.getNegotiatedProtocolVersion(), '2026-07-28');
+    const response = toToolResponse(await session.client.callTool({ arguments: {}, name: 'asset-list' }));
+    expectNoRulesPreface(response);
+    expectNoPlaceholderEntries(response);
+    assert.equal(response.content.length, 1);
+    assert.ok(response.content[0].text.trim().length > 0);
+    assert.throws(() => JSON.parse(response.content[0].text));
+  });
+});
+
 describe('config: includeAiRules = false', () => {
   let session: ClientSession;
   let configPath: string;

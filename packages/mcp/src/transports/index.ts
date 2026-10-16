@@ -15,8 +15,8 @@ export interface TransportInstance {
  * Creates and returns a transport instance based on the runtime configuration.
  *
  * For stdio mode, a single server instance is used.
- * For HTTP mode, the factory is called once per client session so each client
- * gets an isolated server with its own tool registrations.
+ * For HTTP mode, the factory is called once per legacy client session or
+ * once per modern request, each with isolated tool registrations.
  *
  * @param serverFactory A factory function that creates a new MCP server instance
  * @param config The runtime configuration
@@ -34,7 +34,7 @@ export async function createTransport(
     return createHttpTransport(serverFactory, config);
   }
 
-  // Default to stdio — create the single server instance here
+  // Default to stdio — the serving entry pins one instance per connection
   const { createStdioTransport } = await import('./stdio.js');
-  return createStdioTransport(serverFactory());
+  return createStdioTransport(serverFactory);
 }

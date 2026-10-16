@@ -82,6 +82,43 @@ describe('http transport', () => {
     });
   });
 
+  it('serves modern HTTP without sessions and preserves metadata headers', async () => {
+    const responses: Response[] = [];
+    const session = await createHttpMcpClient(new URL('http://127.0.0.1:9120/mcp'), {
+      fetch: async (input, init) => {
+        const response = await fetch(input, init);
+        responses.push(response);
+        return response;
+      },
+      modern: true,
+    });
+    try {
+      const { client } = session;
+      assert.equal(client.getProtocolEra(), 'modern');
+      assert.equal(client.getNegotiatedProtocolVersion(), '2026-07-28');
+      const { tools } = await client.listTools();
+      assert.ok(tools.some(tool => tool.name === 'component-list'));
+      const result = await client.callTool({ arguments: {}, name: 'component-list' });
+      assert.ok(result.content.length > 0);
+      const resource = await client.readResource({ uri: 'synergy://assets/list' });
+      assert.ok(resource.contents.length > 0);
+      const prompt = await client.getPrompt({
+        arguments: { component: 'syn-button' },
+        name: 'explain-component-rules',
+      });
+      assert.ok(prompt.messages.length > 0);
+      assert.ok(responses.length >= 5);
+      responses.forEach(response => {
+        assert.equal(response.status, 200);
+        assert.equal(response.headers.get('mcp-session-id'), null);
+        assert.ok(response.headers.get('x-synergy-metadata-version'));
+        assert.ok(response.headers.get('x-synergy-metadata-build-date'));
+      });
+    } finally {
+      await session.close();
+    }
+  });
+
   it('supports legacy HTTP initialization and session reuse with metadata headers', async () => {
     const endpoint = 'http://127.0.0.1:9120/mcp';
     const protocolVersion = '2025-06-18';

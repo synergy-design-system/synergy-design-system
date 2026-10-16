@@ -127,6 +127,10 @@ You can run the server in two modes:
 - **stdio** (default): Communicate via stdin/stdout with the parent process. This is the recommended mode for editor and CLI integrations.
 - **http**: Run as an HTTP/HTTPS server listening on a specified port. This enables standalone deployments.
 
+Both interfaces support protocol revision `2026-07-28` alongside legacy revisions such as `2025-11-25`. Clients must enable modern negotiation to use the new revision; TypeScript SDK v2 clients can set `versionNegotiation: { mode: 'auto' }`. Clients using the legacy `initialize` handshake continue to work unchanged.
+
+HTTP serves both revisions at `/mcp`. Legacy clients retain their sessions; modern requests are handled independently without an `mcp-session-id` header. No server configuration changes are required.
+
 ### Configuration File
 
 Example:
@@ -285,7 +289,7 @@ Each entry includes:
 - `name`
 - `parameters`
 - `durationMs`
-- `sessionId` (`stdio` when no session id exists)
+- `sessionId` (`stdio` for stdio, the session ID for legacy HTTP, or a generated `request-<UUID>` for each modern HTTP request)
 - `transport` (`stdio` or `http`)
 - `success` and optional `errorMessage`
 - `tokenCount` (optional, populated when tiktoken is available)

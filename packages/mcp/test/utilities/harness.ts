@@ -17,6 +17,7 @@ export type ClientSessionOptions = {
   configPath?: string;
   cwd?: string;
   entryPoint?: string;
+  modern?: boolean;
 };
 
 /**
@@ -30,6 +31,7 @@ export const createClientSession = async (options: ClientSessionOptions = {}): P
     configPath,
     cwd,
     entryPoint,
+    modern = false,
   } = options;
 
   const serverCwd = cwd ?? packageRoot;
@@ -48,6 +50,8 @@ export const createClientSession = async (options: ClientSessionOptions = {}): P
   const client = new Client({
     name: 'synergy-mcp-e2e',
     version: '1.0.0',
+  }, {
+    versionNegotiation: { mode: modern ? { pin: '2026-07-28' } : 'legacy' },
   });
 
   await client.connect(transport);
@@ -165,18 +169,21 @@ export const startHttpServer = async (options: HttpServerOptions = {}): Promise<
  */
 export const createHttpMcpClient = async (
   url: URL,
-  options: { rejectUnauthorized?: boolean } = {},
+  options: { fetch?: typeof fetch; modern?: boolean; rejectUnauthorized?: boolean } = {},
 ): Promise<HttpClientSession> => {
-  const { rejectUnauthorized = true } = options;
+  const { fetch: fetchOverride, modern = false, rejectUnauthorized = true } = options;
 
   if (!rejectUnauthorized) {
     throw new Error('createHttpMcpClient does not support rejectUnauthorized=false without a custom fetch dispatcher. Use raw node:https requests for self-signed TLS tests.');
   }
 
   const transport = new StreamableHTTPClientTransport(url, {
+    fetch: fetchOverride,
   });
 
-  const client = new Client({ name: 'synergy-mcp-http-e2e', version: '1.0.0' });
+  const client = new Client({ name: 'synergy-mcp-http-e2e', version: '1.0.0' }, {
+    versionNegotiation: { mode: modern ? { pin: '2026-07-28' } : 'legacy' },
+  });
   await client.connect(transport);
 
   return {

@@ -1,5 +1,6 @@
 import {
   type ConfigModifier,
+  getRandomString,
   mergeConfigs,
   mergeDeep,
 } from '../../utilities.js';
@@ -36,7 +37,7 @@ export const seriesBarStacked = (
   options: BarSeriesOption[],
   { stackName = '', orientation = 'vertical' }: BarStackedOptions = {},
 ): ConfigModifier => (config) => {
-  const randomStackName = `stack-${Math.random().toString(36).substr(2, 9)}`;
+  const stack = stackName || getRandomString(8, 'stack-');
   const defaultBarOption: BarSeriesOption = {
     itemStyle: {
       borderColor: 'transparent',
@@ -47,7 +48,7 @@ export const seriesBarStacked = (
       position: orientation === 'vertical' ? 'left' : 'top',
       show: true,
     },
-    stack: stackName || randomStackName,
+    stack,
     type: 'bar',
   };
   return mergeConfigs(config, {

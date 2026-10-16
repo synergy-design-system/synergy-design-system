@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import type { McpServer } from '@modelcontextprotocol/server';
 import {
   type IntentPhase,
   type IntentPresetValue,
@@ -195,13 +195,13 @@ export const intentComponentValidateTool = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'Validate component markup against one registered Synergy intent. Use an exact intent ID returned by intent-discover; do not guess or construct intent IDs. Checks intent policy, not complete accessibility or runtime behavior.',
-      inputSchema: {
+      inputSchema: z.object({
         component: z.string().min(1).describe('Exact component tag returned by component-list, for example syn-button. Do not guess or construct this value.'),
         framework: frameworkSchema.optional().describe('Target framework profile. Defaults to vanilla.'),
         includePhases: z.array(intentPhaseSchema).optional().describe('Optional phase filter. Defaults to ["experimental"].'),
         intent: z.string().min(1).describe('Exact registered intent ID returned by intent-discover. Do not guess or construct this value.'),
         markup: z.string().min(1).describe('Template or markup source. The tool auto-derives structure for validation from this content.'),
-      },
+      }),
       title: 'Validate component markup against intent',
     },
     toolHandler('intent-component-validate', async ({

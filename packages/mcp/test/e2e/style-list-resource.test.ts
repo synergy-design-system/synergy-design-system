@@ -5,7 +5,7 @@ import {
   describe,
   it,
 } from 'node:test';
-import type { ReadResourceResult } from '@modelcontextprotocol/sdk/types.js';
+import type { ReadResourceResult } from '@modelcontextprotocol/client';
 import {
   type ClientSession,
   createClientSession,

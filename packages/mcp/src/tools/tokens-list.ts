@@ -1,4 +1,5 @@
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { z } from 'zod';
+import type { McpServer } from '@modelcontextprotocol/server';
 import {
   getDataForTokens,
 } from '@synergy-design-system/metadata';
@@ -19,7 +20,7 @@ export const tokenListTool = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'List available Synergy token formats, CSS themes, scopes, and defaults. Use supported values with token-info.',
-      inputSchema: {},
+      inputSchema: z.object({}),
       title: 'List token metadata',
     },
     toolHandler('tokens-list', async () => {

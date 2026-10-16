@@ -1,4 +1,5 @@
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { z } from 'zod';
+import type { McpServer } from '@modelcontextprotocol/server';
 import { listAssets } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
@@ -16,7 +17,7 @@ export const assetListTool = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'List available Synergy icon set IDs and metadata, grouped by theme. Use returned icon set IDs with asset-info.',
-      inputSchema: {},
+      inputSchema: z.object({}),
       title: 'List icon sets',
     },
     toolHandler('asset-list', async () => {

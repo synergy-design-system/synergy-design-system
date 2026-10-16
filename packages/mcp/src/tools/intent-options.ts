@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import type { McpServer } from '@modelcontextprotocol/server';
 import {
   type IntentPhase,
   getIntentOptions,
@@ -28,7 +28,7 @@ export const intentOptionsTool = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'Get renderable Synergy targets and preview markup for one registered intent. Use an exact intent ID returned by intent-discover; do not guess or construct intent IDs.',
-      inputSchema: {
+      inputSchema: z.object({
         content: z.string().optional().describe('Optional content used in preview snippets.'),
         framework: frameworkSchema.optional().describe('Target framework profile. Defaults to vanilla.'),
         includeDiagnostics: z.boolean().optional().describe('Include targets that could not be rendered and their failure reasons. Diagnostic candidates are not usable output options.'),
@@ -44,7 +44,7 @@ export const intentOptionsTool = (server: McpServer) => {
           .max(20)
           .optional()
           .describe('Maximum number of alternatives.'),
-      },
+      }),
       title: 'Get intent rendering options',
     },
     toolHandler('intent-options', async ({

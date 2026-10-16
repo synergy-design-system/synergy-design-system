@@ -1,4 +1,5 @@
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { z } from 'zod';
+import type { McpServer } from '@modelcontextprotocol/server';
 import {
   createToolAnnotations,
   getAvailableTemplateNames,
@@ -17,7 +18,7 @@ export const templateList = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'List available static templates built with Synergy components. Use a returned template name with template-info.',
-      inputSchema: {},
+      inputSchema: z.object({}),
       title: 'List templates',
     },
     toolHandler('template-list', async () => {

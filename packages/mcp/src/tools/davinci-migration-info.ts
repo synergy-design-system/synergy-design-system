@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import type { McpServer } from '@modelcontextprotocol/server';
 import {
   buildDavinciRecovery,
   createToolAnnotations,
@@ -16,10 +16,10 @@ export const davinciMigrationInfoTool = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'Get migration guidance from one DaVinci component to Synergy. Use an exact component name returned by davinci-migration-list.',
-      inputSchema: {
+      inputSchema: z.object({
         component: z.string().min(1).describe('Exact DaVinci component name returned by davinci-migration-list. Do not guess or construct this value.'),
         package: z.string().optional().describe('Migration package to inspect. Can be "basic-elements", "components", "dashboard-elements", or "charts".'),
-      },
+      }),
       title: 'Get DaVinci migration guide',
     },
     toolHandler('davinci-migration-info', async ({

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import type { McpServer } from '@modelcontextprotocol/server';
 import {
   type IntentPhase,
   listIntentCategories,
@@ -27,9 +27,9 @@ export const intentCategoriesListTool = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'Deprecated compatibility tool. Do not use for new requests. Use intent-discover instead. Lists registered intent categories only.',
-      inputSchema: {
+      inputSchema: z.object({
         includePhases: z.array(intentPhaseSchema).optional().describe('Optional phase filter. Defaults to ["experimental"].'),
-      },
+      }),
       title: 'Deprecated: Intent categories list',
     },
     toolHandler('intent-categories-list', async ({

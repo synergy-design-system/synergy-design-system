@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import type { McpServer } from '@modelcontextprotocol/server';
 import {
   getDataForTokens,
 } from '@synergy-design-system/metadata';
@@ -21,13 +21,13 @@ export const tokenInfoTool = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'Get raw Synergy design token files by format, scope, and optional CSS theme. Use tokens-list to discover supported values and defaults.',
-      inputSchema: {
+      inputSchema: z.object({
         theme: z.enum(['sick2025-light', 'sick2025-dark', 'sick2018-light', 'sick2018-dark']).optional().describe('CSS theme variant. Ignored for JavaScript and Sass because those formats provide unified token output.'),
         tokenScope: z.enum(['components', 'charts']).optional().describe(
           'Filter tokens by scope: "components" for base component tokens, "charts" for chart palette tokens.',
         ),
         type: z.enum(['javascript', 'css', 'sass']).optional().describe('The type of token output to retrieve.'),
-      },
+      }),
       title: 'Get token files',
     },
     toolHandler('token-info', async ({

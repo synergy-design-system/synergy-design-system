@@ -91,4 +91,25 @@ describe('tool contract', () => {
 
     assert.ok(uris.includes(INTENT_RESOURCE_URI), `Expected intent resource "${INTENT_RESOURCE_URI}" to be registered by default.`);
   });
+
+  it('preserves field descriptions and constraints in tool schemas', async () => {
+    const { tools } = await session.client.listTools();
+    const tool = tools.find(entry => entry.name === 'component-info');
+    assert.ok(tool);
+    assert.equal(tool.inputSchema.type, 'object');
+    assert.deepEqual(tool.inputSchema.required, ['component']);
+
+    const component = tool.inputSchema.properties?.component as Record<string, unknown>;
+    assert.equal(component.type, 'string');
+    assert.equal(component.minLength, 1);
+    assert.equal(component.description, 'Exact component tag returned by component-list, for example syn-button. Do not guess or construct this value.');
+  });
+
+  it('advertises no-input tools with empty object schemas', async () => {
+    const { tools } = await session.client.listTools();
+    const tool = tools.find(entry => entry.name === 'asset-list');
+    assert.ok(tool);
+    assert.equal(tool.inputSchema.type, 'object');
+    assert.deepEqual(tool.inputSchema.properties, {});
+  });
 });

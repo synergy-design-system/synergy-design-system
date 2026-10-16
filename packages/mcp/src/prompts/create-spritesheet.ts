@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import type { McpServer } from '@modelcontextprotocol/server';
 import {
   promptHandler,
 } from '../utilities/index.js';
@@ -8,7 +8,7 @@ export const createSpriteSheetPrompt = (server: McpServer) => {
   server.registerPrompt(
     'create-spritesheet',
     {
-      argsSchema: {
+      argsSchema: z.object({
         name: z
           .string()
           .optional()
@@ -17,7 +17,7 @@ export const createSpriteSheetPrompt = (server: McpServer) => {
           .string()
           .optional()
           .describe('A directory or file that should be searched for occurrences of icons. If omitted, searches in the whole project.'),
-      },
+      }),
       description: 'Creates a SVG sprite sheet for a provided set of icons. Only works with the Synergy 2025 icon set.',
       title: 'Create Sprite Sheet',
     },

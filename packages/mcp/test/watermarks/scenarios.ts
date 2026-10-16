@@ -25,13 +25,7 @@ export type WatermarkBudget = {
 /**
  * Defines a single scenario for watermark testing, including the arguments to be passed to the tool and the budget constraints for token counts.
  */
-export type WatermarkScenario = {
-  /**
-   * The arguments to be passed to the tool when executing this scenario.
-   * This is a generic record that can contain any key-value pairs relevant to the specific tool being tested.
-   */
-  args: Record<string, unknown>;
-
+interface WatermarkScenarioBase {
   /**
    * The budget constraints for this scenario, defining the acceptable limits for token counts and regressions compared to a baseline.
    */
@@ -44,17 +38,24 @@ export type WatermarkScenario = {
   id: string;
 
   /**
-   * Determines which MCP API should be used for this scenario.
-   */
-  kind: 'tool' | 'prompt' | 'tools-list' | 'resources-list';
-
-  /**
    * The name of the tool to be tested in this scenario.
    * This should correspond to a valid tool name that the MCP server recognizes and can execute with the provided arguments.
    */
   toolName?: string;
   promptName?: string;
-};
+}
+
+interface PromptWatermarkScenario extends WatermarkScenarioBase {
+  args: Record<string, string>;
+  kind: 'prompt';
+}
+
+interface ToolWatermarkScenario extends WatermarkScenarioBase {
+  args: Record<string, unknown>;
+  kind: 'tool' | 'tools-list' | 'resources-list';
+}
+
+export type WatermarkScenario = PromptWatermarkScenario | ToolWatermarkScenario;
 
 export const WATERMARK_SCENARIOS: WatermarkScenario[] = [
   {

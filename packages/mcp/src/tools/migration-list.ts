@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import type { McpServer } from '@modelcontextprotocol/server';
 import {
   createToolAnnotations,
   getMigrationMetaData,
@@ -111,14 +111,14 @@ export const migrationListTool = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'List available migration documents for one Synergy package in a compact format. Use a returned filename with migration-info to retrieve only the required guide.',
-      inputSchema: {
+      inputSchema: z.object({
         synergyPackage: z.enum([
           'assets',
           'components',
           'styles',
           'tokens',
         ]).optional().describe('The package to list migration documents for.'),
-      },
+      }),
       title: 'List migration guides',
     },
     toolHandler('migration-list', async ({ synergyPackage }) => {

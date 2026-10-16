@@ -68,6 +68,82 @@ describe('http transport', () => {
       const res = await fetch('http://127.0.0.1:9120/');
       assert.equal(res.status, 404);
     });
+
+    it('preserves the error response for unknown sessions', async () => {
+      const res = await fetch('http://127.0.0.1:9120/mcp', {
+        headers: { 'mcp-session-id': 'unknown-session' },
+      });
+      assert.equal(res.status, 400);
+      assert.deepEqual(await res.json(), {
+        error: { code: -32000, message: 'Unknown session ID' },
+        id: null,
+        jsonrpc: '2.0',
+      });
+    });
+  });
+
+  it('supports legacy HTTP initialization and session reuse with metadata headers', async () => {
+    const endpoint = 'http://127.0.0.1:9120/mcp';
+    const protocolVersion = '2025-06-18';
+    const headers = {
+      Accept: 'application/json, text/event-stream',
+      'Content-Type': 'application/json',
+    };
+    const initialized = await fetch(endpoint, {
+      body: JSON.stringify({
+        id: 1,
+        jsonrpc: '2.0',
+        method: 'initialize',
+        params: {
+          capabilities: {},
+          clientInfo: { name: 'legacy-client', version: '1.0.0' },
+          protocolVersion,
+        },
+      }),
+      headers,
+      method: 'POST',
+    });
+    assert.equal(initialized.status, 200);
+    const sessionId = initialized.headers.get('mcp-session-id');
+    assert.ok(sessionId);
+    const sessionHeaders = {
+      ...headers,
+      'mcp-protocol-version': protocolVersion,
+      'mcp-session-id': sessionId,
+    };
+
+    try {
+      assert.ok(initialized.headers.get('x-synergy-metadata-version'));
+      assert.ok(initialized.headers.get('x-synergy-metadata-build-date'));
+      const initializeData = (await initialized.text()).split('\n').find(line => line.startsWith('data:'));
+      assert.ok(initializeData);
+      assert.equal(JSON.parse(initializeData.slice('data:'.length)).result.protocolVersion, protocolVersion);
+
+      const notification = await fetch(endpoint, {
+        body: JSON.stringify({ jsonrpc: '2.0', method: 'notifications/initialized' }),
+        headers: sessionHeaders,
+        method: 'POST',
+      });
+      assert.equal(notification.status, 202);
+      await notification.text();
+
+      const listed = await fetch(endpoint, {
+        body: JSON.stringify({ id: 2, jsonrpc: '2.0', method: 'tools/list' }),
+        headers: sessionHeaders,
+        method: 'POST',
+      });
+      assert.equal(listed.status, 200);
+      assert.equal(listed.headers.get('x-synergy-metadata-version'), initialized.headers.get('x-synergy-metadata-version'));
+      const listData = (await listed.text()).split('\n').find(line => line.startsWith('data:'));
+      assert.ok(listData);
+      const result = JSON.parse(listData.slice('data:'.length)) as {
+        result: { tools: { name: string }[] };
+      };
+      assert.ok(result.result.tools.some(tool => tool.name === 'component-list'));
+    } finally {
+      const terminated = await fetch(endpoint, { headers: sessionHeaders, method: 'DELETE' });
+      await terminated.text();
+    }
   });
 
   describe('session isolation', () => {

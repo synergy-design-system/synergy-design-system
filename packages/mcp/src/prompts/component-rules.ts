@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import type { McpServer } from '@modelcontextprotocol/server';
 import {
   getRulesForComponent,
 } from '@synergy-design-system/metadata';
@@ -11,12 +11,12 @@ export const explainComponentRules = (server: McpServer) => {
   server.registerPrompt(
     'explain-component-rules',
     {
-      argsSchema: {
+      argsSchema: z.object({
         component: z
           .string()
           .startsWith('syn-')
           .describe('The name of the component to get rules for.'),
-      },
+      }),
       description: 'Explains the usage rules, design guidelines, and accessibility considerations for a Synergy component.',
       title: 'Explain component rules',
     },

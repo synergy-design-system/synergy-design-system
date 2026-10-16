@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import type { McpServer } from '@modelcontextprotocol/server';
 import {
   getDataForStyle,
 } from '@synergy-design-system/metadata';
@@ -20,9 +20,9 @@ export const stylesInfoTool = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'Get examples and usage documentation for one Synergy CSS utility. Use an exact style name returned by styles-list.',
-      inputSchema: {
+      inputSchema: z.object({
         style: z.string().min(1).describe('Exact style name returned by styles-list. Do not guess or construct this value.'),
-      },
+      }),
       title: 'Get style documentation',
     },
     toolHandler('styles-info', async ({

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import type { McpServer } from '@modelcontextprotocol/server';
 import { getDataForSetup } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
@@ -17,10 +17,10 @@ export const setupTool = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'Get installation and initialization guidance for one Synergy package. Framework packages automatically include base component setup; optionally include known limitations.',
-      inputSchema: {
+      inputSchema: z.object({
         includeLimitations: z.boolean().optional().describe('Add a list of known limitations and issues to the output.'),
         package: z.enum(['components', 'react', 'vue', 'angular', 'tokens', 'styles', 'fonts', 'assets', 'migrations']).describe('Synergy package to retrieve setup instructions for.'),
-      },
+      }),
       title: 'Get package setup',
     },
     toolHandler('setup', async ({

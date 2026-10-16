@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import type { McpServer } from '@modelcontextprotocol/server';
 import {
   type IntentPhase,
   findComponentsForTask,
@@ -28,7 +28,7 @@ export const intentTaskRecommendationsTool = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'Recommend Synergy targets and snippets for one registered task intent. Use an exact intent ID returned by intent-discover; do not guess or construct intent IDs.',
-      inputSchema: {
+      inputSchema: z.object({
         avoidTargets: z.array(z.string()).optional().describe('Optional target IDs to avoid.'),
         content: z.string().optional().describe('Optional content used in render snippets.'),
         framework: frameworkSchema.optional().describe('Target framework profile. Defaults to vanilla.'),
@@ -45,7 +45,7 @@ export const intentTaskRecommendationsTool = (server: McpServer) => {
           .string()
           .min(1)
           .describe('Exact registered intent ID returned by intent-discover. Do not guess or construct this value.'),
-      },
+      }),
       title: 'Recommend components for task intent',
     },
     toolHandler('intent-task-recommendations', async ({

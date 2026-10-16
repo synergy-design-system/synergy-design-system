@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import type { McpServer } from '@modelcontextprotocol/server';
 import {
   getDataForTemplate,
 } from '@synergy-design-system/metadata';
@@ -20,9 +20,9 @@ export const templateInfoTool = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'Get example markup and documentation for one static Synergy template. Use an exact template name returned by template-list.',
-      inputSchema: {
+      inputSchema: z.object({
         template: z.string().min(1).describe('Exact template name returned by template-list. Do not guess or construct this value.'),
-      },
+      }),
       title: 'Get template details',
     },
     toolHandler('template-info', async ({

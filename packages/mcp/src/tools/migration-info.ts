@@ -1,4 +1,4 @@
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import type { McpServer } from '@modelcontextprotocol/server';
 import { z } from 'zod';
 import {
   buildMigrationRecovery,
@@ -27,7 +27,7 @@ export const migrationInfoTool = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'Get detailed migration documentation for one Synergy package and optional filename. Use migration-list first and provide a returned filename for focused component guidance.',
-      inputSchema: {
+      inputSchema: z.object({
         filename: z.string().optional().describe('Optional filename of the migration document to return. Especially recommended for the components package to avoid fetching all guides at once.'),
         synergyPackage: z.enum([
           'assets',
@@ -35,7 +35,7 @@ export const migrationInfoTool = (server: McpServer) => {
           'styles',
           'tokens',
         ]).optional().describe('The package to get migration information about.'),
-      },
+      }),
       title: 'Get migration documentation',
     },
     toolHandler('migration-info', async ({

@@ -10,8 +10,7 @@
  * Usage: node smoke-test.mjs [url]
  *        MCP_URL=http://127.0.0.1:9119/mcp node smoke-test.mjs
  */
-import { Client } from '@modelcontextprotocol/sdk/client/index.js';
-import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
+import { Client, StreamableHTTPClientTransport } from '@modelcontextprotocol/client';
 
 const url = new URL(process.argv[2] ?? process.env.MCP_URL ?? 'http://127.0.0.1:9119/mcp');
 const maxAttempts = Number(process.env.MCP_SMOKE_ATTEMPTS ?? 30);

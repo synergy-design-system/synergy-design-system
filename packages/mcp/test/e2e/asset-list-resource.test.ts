@@ -8,7 +8,7 @@ import {
   describe,
   it,
 } from 'node:test';
-import type { ReadResourceResult } from '@modelcontextprotocol/sdk/types.js';
+import type { ReadResourceResult } from '@modelcontextprotocol/client';
 import { encodeToToon } from '../../src/utilities/compression.ts';
 import {
   type ClientSessionOptions,

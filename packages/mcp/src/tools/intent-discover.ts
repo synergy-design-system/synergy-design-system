@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import type { McpServer } from '@modelcontextprotocol/server';
 import type { IntentPhase } from '@synergy-design-system/metadata';
 import {
   INTENT_DEFAULT_PHASES,
@@ -25,10 +25,10 @@ export const intentDiscoverTool = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'Discover registered Synergy intent categories and exact intent IDs. Omit category to list categories; provide an exact category ID to list its intents. Use returned IDs verbatim.',
-      inputSchema: {
+      inputSchema: z.object({
         category: z.string().min(1).optional().describe('Optional exact category ID returned by this tool. Omit it to list categories.'),
         includePhases: z.array(intentPhaseSchema).optional().describe('Optional phase filter. Defaults to ["experimental"].'),
-      },
+      }),
       title: 'Discover intent categories and IDs',
     },
     toolHandler('intent-discover', async ({

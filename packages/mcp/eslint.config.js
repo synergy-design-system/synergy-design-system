@@ -7,6 +7,16 @@ export default [
   }),
   {
     files: [
+      'docker/smoke-test.mjs',
+    ],
+    rules: {
+      'import/no-extraneous-dependencies': ['error', {
+        devDependencies: true,
+      }],
+    },
+  },
+  {
+    files: [
       'test/**/*.ts',
     ],
     rules: {

@@ -1,4 +1,5 @@
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { z } from 'zod';
+import type { McpServer } from '@modelcontextprotocol/server';
 import {
   createToolAnnotations,
   getAvailableStyleNames,
@@ -17,7 +18,7 @@ export const stylesList = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'List available Synergy CSS utility and style names. Use a returned name with styles-info for examples and usage.',
-      inputSchema: {},
+      inputSchema: z.object({}),
       title: 'List CSS utilities',
     },
     toolHandler('styles-list', async () => {

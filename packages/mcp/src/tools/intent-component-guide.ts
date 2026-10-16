@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import type { McpServer } from '@modelcontextprotocol/server';
 import {
   type IntentPhase,
   getComponentGuide,
@@ -33,11 +33,11 @@ export const intentComponentGuideTool = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'Get supported intents, recommended usages, and common misuses for one Synergy component. Use an exact component tag returned by component-list.',
-      inputSchema: {
+      inputSchema: z.object({
         component: z.string().min(1).describe('Exact component tag returned by component-list, for example syn-button. Do not guess or construct this value.'),
         framework: frameworkSchema.optional().describe('Target framework profile. Defaults to vanilla.'),
         includePhases: z.array(intentPhaseSchema).optional().describe('Optional phase filter. Defaults to ["experimental"].'),
-      },
+      }),
       title: 'Get component intent guide',
     },
     toolHandler('intent-component-guide', async ({

@@ -1,4 +1,5 @@
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { z } from 'zod';
+import type { McpServer } from '@modelcontextprotocol/server';
 import { listComponentClusters } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
@@ -16,7 +17,7 @@ export const componentClusterListTool = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'List Synergy component clusters with descriptions and member components. Use returned cluster IDs to filter component-list.',
-      inputSchema: {},
+      inputSchema: z.object({}),
       title: 'List component clusters',
     },
     toolHandler('component-cluster-list', async () => {

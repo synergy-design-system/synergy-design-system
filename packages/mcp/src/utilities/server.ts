@@ -1,4 +1,4 @@
-import type { ToolAnnotations } from '@modelcontextprotocol/sdk/types.js';
+import type { ToolAnnotations } from '@modelcontextprotocol/server';
 
 /**
  * Creates a set of tool annotations with default values, allowing for overrides.

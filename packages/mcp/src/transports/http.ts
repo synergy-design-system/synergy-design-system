@@ -10,8 +10,8 @@ import {
   createServer as createHttpsServer,
 } from 'node:https';
 import { readFileSync } from 'node:fs';
-import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { NodeStreamableHTTPServerTransport } from '@modelcontextprotocol/node';
+import type { McpServer } from '@modelcontextprotocol/server';
 import { getMetadataInfo, getSynergyLogo } from '@synergy-design-system/metadata';
 import { runWithLoggingContext } from '../utilities/logging-context.js';
 import type { McpRuntimeConfig } from '../utilities/config.js';
@@ -77,7 +77,7 @@ export async function createHttpTransport(
   }
 
   // Session store: maps mcp-session-id -> transport for that client
-  const sessions = new Map<string, StreamableHTTPServerTransport>();
+  const sessions = new Map<string, NodeStreamableHTTPServerTransport>();
 
   // Create request handler that routes to the transport
   nodeServer.on('request', async (req, res) => {
@@ -126,7 +126,7 @@ export async function createHttpTransport(
 
       // New client — create a dedicated server + transport pair
       const newServer = serverFactory();
-      const transport = new StreamableHTTPServerTransport({
+      const transport = new NodeStreamableHTTPServerTransport({
         onsessioninitialized: sid => {
           sessions.set(sid, transport);
         },

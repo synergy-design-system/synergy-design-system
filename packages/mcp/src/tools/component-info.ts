@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import type { McpServer } from '@modelcontextprotocol/server';
 import {
   getDataForComponent,
 } from '@synergy-design-system/metadata';
@@ -21,13 +21,13 @@ export const componentInfoTool = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'Get API, examples, rules, or full documentation for one Synergy component and optional framework. Use an exact component tag returned by component-list.',
-      inputSchema: {
+      inputSchema: z.object({
         component: z.string().min(1).describe('Exact component tag returned by component-list, for example syn-button. Do not guess or construct this value.'),
         framework: z.enum(['react', 'vue', 'angular', 'vanilla']).optional().describe('The framework of the component, e.g., "react", "vue", etc.'),
         layer: z.enum(['full', 'examples', 'interface', 'rules'])
           .optional()
           .describe('Information layer: full source, markdown examples, API interface, or usage rules. Examples and interface are currently available only for vanilla components.'),
-      },
+      }),
       title: 'Get component details',
     },
     toolHandler('component-info', async ({

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import type { McpServer } from '@modelcontextprotocol/server';
 import {
   createToolAnnotations,
   getAvailableDavinciComponents,
@@ -14,9 +14,9 @@ export const davinciMigrationListTool = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'List DaVinci components with migration guidance for a selected package. Use a returned component name with davinci-migration-info.',
-      inputSchema: {
+      inputSchema: z.object({
         package: z.string().optional().describe('Migration package to inspect. Can be "basic-elements", "components", "dashboard-elements", or "charts".'),
-      },
+      }),
       title: 'List DaVinci migrations',
     },
     toolHandler('davinci-migration-list', async ({

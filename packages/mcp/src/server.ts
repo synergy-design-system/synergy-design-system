@@ -1,4 +1,4 @@
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { McpServer } from '@modelcontextprotocol/server';
 import * as resources from './resources/index.js';
 import * as prompts from './prompts/index.js';
 import * as tools from './tools/index.js';

@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import type { McpServer } from '@modelcontextprotocol/server';
 import {
   searchIcons,
 } from '@synergy-design-system/metadata';
@@ -44,7 +44,7 @@ export const assetInfoTool = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'Find Synergy icons by icon set and optional name or tag filters. Returns matching icons grouped by category; use asset-list to discover icon set IDs.',
-      inputSchema: {
+      inputSchema: z.object({
         filter: z
           .string()
           .optional()
@@ -72,7 +72,7 @@ export const assetInfoTool = (server: McpServer) => {
           .number()
           .optional()
           .describe('The maximum number of icons to return. Defaults to unlimited. When using multiple filters (comma-separated), this limit applies per filter term.'),
-      },
+      }),
       title: 'Search icons',
     },
     toolHandler('asset-info', async ({

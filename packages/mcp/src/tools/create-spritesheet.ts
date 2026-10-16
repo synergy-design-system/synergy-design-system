@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import type { McpServer } from '@modelcontextprotocol/server';
 import {
   type Icon2025Keys,
   createSpriteSheet,
@@ -20,11 +20,11 @@ export const createSpriteSheetTool = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'Create an SVG sprite sheet from selected Synergy 2025 icons. Use asset-info with the current icon set to discover valid icon names.',
-      inputSchema: {
+      inputSchema: z.object({
         icons: z
           .array(z.string() as z.ZodType<Icon2025Keys>)
           .describe('An array of icon keys to include in the sprite sheet. Must be valid icon keys from the Synergy 2025 icon set.'),
-      },
+      }),
       title: 'Generate icon spritesheet',
     },
     toolHandler('create-spritesheet', async ({

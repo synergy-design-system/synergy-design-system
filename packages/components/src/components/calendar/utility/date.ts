@@ -10,6 +10,25 @@ import type {
 /** Returns today's ISO date in the user's local timezone, without storing a time or timezone. */
 export const today: () => CalendarDate = plainDateISO;
 
+/** First date representable by the public four-digit ISO format. */
+export const MIN_CALENDAR_DATE = create(0, 1, 1);
+
+/** Last date representable by the public four-digit ISO format. */
+export const MAX_CALENDAR_DATE = create(9999, 12, 31);
+
+/** Resolves valid regional locale tags and falls back to English for malformed tags. */
+export const resolveCalendarLocale = (locale: string) => {
+  try {
+    return Intl.getCanonicalLocales(locale.replace(/_/g, '-'))[0] ?? 'en';
+  } catch (error) {
+    // A malformed locale must not break rendering, but unrelated programming errors should remain visible.
+    if (error instanceof RangeError) {
+      return 'en';
+    }
+    throw error;
+  }
+};
+
 const ISO_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 
 // Creating Intl instances is expensive and the results only depend on the cache key,
@@ -165,7 +184,7 @@ export const getWeekdayNames = (
     return cached;
   }
 
-  const formatter = createFormat(locale, { weekday: format });
+  const formatter = createFormat(resolveCalendarLocale(locale), { weekday: format });
 
   const names = Object.freeze(Array.from({ length: 7 }, (_, index) => formatter.format(
     addDays(create(2024, 1, 1), (firstDayOfWeek - 1 + index) % 7),
@@ -193,7 +212,7 @@ export const getMonthNames = (
     return cached;
   }
 
-  const formatter = createFormat(locale, { month: format });
+  const formatter = createFormat(resolveCalendarLocale(locale), { month: format });
   const names = Object.freeze(
     Array.from({ length: 12 }, (_, month) => formatter.format(create(2024, month + 1, 1))),
   );

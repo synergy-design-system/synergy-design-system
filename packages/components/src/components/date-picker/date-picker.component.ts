@@ -7,22 +7,23 @@ import {
 } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { repeat } from 'lit/directives/repeat.js';
 import { property, query } from 'lit/decorators.js';
 import { defaultValue } from '../../internal/default-value.js';
 import { FormControlController } from '../../internal/form.js';
 import { watch } from '../../internal/watch.js';
-import { waitForEvent } from '../../internal/event.js';
 import { HasSlotController } from '../../internal/slot.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
-import SynergyElement from '../../internal/synergy-element.js';
+import SynergyElement, { type SynergyFormControl } from '../../internal/synergy-element.js';
 import SynCalendar from '../calendar/calendar.component.js';
 import type { CalendarDateDisabledPredicate, CalendarSelectionMode, CalendarWeekday } from '../calendar/types.js';
 import {
+  CalendarLocalizeController,
   fromNativeDate,
   getMonthNames,
-  getRangeEndpointState,
   isDateDisabled,
+  isRangeLengthAllowed,
   normalizeCalendarValue,
   parseCalendarSelectionMode,
   parseCalendarValue,
@@ -37,15 +38,16 @@ import {
 } from '../calendar/utility/index.js';
 import SynIcon from '../icon/icon.component.js';
 import SynPopup from '../popup/popup.component.js';
-import { LocalizeController } from '../../utilities/localize.js';
 import styles from './date-picker.styles.js';
 import inputStyles from '../input/input.styles.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 import {
   type DateField,
+  type DateInputGroup,
   type DateSegments,
   clampDay,
   emptySegments,
+  getDateFieldName,
   getSegmentLayout,
   isoToSegments,
   parsePastedSelection,
@@ -69,6 +71,7 @@ import {
  * @slot prefix - Used to prepend a presentational icon or similar element to the date field.
  * @slot suffix - Used to append a presentational icon or similar element to the date field.
  * @slot expand-icon - The icon used by the calendar toggle button.
+ * @slot clear-icon - The icon used by the clearable field's Clear button.
  * @slot day-YYYY-MM-DD - Forwarded to the calendar to replace a date's label.
  * @slot month-0 - Forwarded to the calendar to replace January's label; month-1 through month-11 replace the other months.
  * @slot year-YYYY - Forwarded to the calendar to replace a year's label.
@@ -96,6 +99,7 @@ import {
  * @csspart range-separator - The separator between start and end date groups.
  * @csspart remove-date-button - A multiple-selection date's remove button.
  * @csspart expand-button - The calendar toggle button.
+ * @csspart clear-button - The field's Clear button when clearable and a selection or draft is present.
  * @csspart calendar - The calendar component.
  * @csspart calendar__base - The calendar's base wrapper.
  * @csspart calendar__header - The calendar header.
@@ -146,7 +150,7 @@ import {
  * @csspart popup - The popup's exported container.
  */
 @enableDefaultSettings('SynDatePicker')
-export default class SynDatePicker extends SynergyElement {
+export default class SynDatePicker extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [
     inputStyles,
     componentStyles,
@@ -168,18 +172,58 @@ export default class SynDatePicker extends SynergyElement {
     'suffix',
   );
 
-  private readonly localize = new LocalizeController(this);
+  private readonly localize = new CalendarLocalizeController(this);
 
   private readonly formControlController = new FormControlController(this, {
-    assumeInteractionOn: ['syn-blur', 'syn-input'],
+    assumeInteractionOn: ['syn-blur'],
     setValue: (_control, value) => {
       this.value = typeof value === 'string' ? value : '';
       this.#syncSegments();
+      this.#showErrors = false;
       this.requestUpdate();
     },
   });
 
-  #groups: DateSegments[] = [emptySegments()];
+  #groups: DateInputGroup[] = [{
+    ...emptySegments(), committed: '', edited: [], id: 0,
+  }];
+
+  #nextGroupId = 1;
+
+  #nextBatchId = 1;
+
+  // A pasted list is atomic even when unrelated date groups commit while it is pending.
+  #batches = new Map<number, { ids: number[]; originals: DateInputGroup[] }>();
+
+  // Calendar previews may contain a pending anchor that must not become submitted form data.
+  #calendarValue: string[] = [];
+
+  #ignoreCalendarEvents = false;
+
+  #committedValue = '';
+
+  // Expose a proposal only during synchronous before-change dispatch, not as committed state.
+  #stagedValue?: string;
+
+  #valueRevision = 0;
+
+  #externalValuePending = false;
+
+  #proposalRejected = false;
+
+  #showErrors = false;
+
+  #popupOpen = false;
+
+  #popupRevision = 0;
+
+  #popupSettled = true;
+
+  #popupWaiters = new Set<() => void>();
+
+  #layoutLocale = '';
+
+  #pendingSegmentFocus?: { explicit?: boolean; field: DateField; id: number; options?: FocusOptions };
 
   #activeGroup = 0;
 
@@ -188,14 +232,12 @@ export default class SynDatePicker extends SynergyElement {
   }
 
   set #segments(segments: DateSegments) {
-    this.#groups[this.#activeGroup] = segments;
+    Object.assign(this.#groups[this.#activeGroup], segments);
   }
 
   #activeField: DateField = 'month';
 
   #buffers = new Map<string, string>();
-
-  #pendingSegmentValue?: string;
 
   #hasFocus = false;
 
@@ -212,10 +254,33 @@ export default class SynDatePicker extends SynergyElement {
 
   /**
    * Whitespace-separated ISO dates: one date in single mode, two endpoints in range mode,
-   * or distinct sorted dates in multiple mode. One range endpoint represents a pending selection.
-   * Partial segment groups are retained for editing but excluded from this canonical value.
+  * or distinct sorted dates in multiple mode. Range endpoints publish together.
+  * Unfinished/invalid drafts retain the last committed value and invalidate normal submission.
    */
-  @property() value = '';
+  @property({ noAccessor: true })
+  get value(): string {
+    return this.#stagedValue ?? this.#committedValue;
+  }
+
+  set value(value: string) {
+    const normalized = normalizeCalendarValue(parseCalendarValue(value), this.mode).join(' ');
+    // Controlled consumers can echo value without erasing the user's unfinished draft.
+    if (normalized === this.value) {
+      return;
+    }
+    // Writing the committed baseline during dispatch rejects only the staged proposal.
+    if (this.#stagedValue !== undefined && normalized === this.#committedValue) {
+      this.#proposalRejected = true;
+      return;
+    }
+    const previous = this.#committedValue;
+    // A genuinely new application value supersedes any in-flight user operation.
+    this.#stagedValue = undefined;
+    this.#committedValue = normalized;
+    this.#valueRevision += 1;
+    this.#externalValuePending = true;
+    this.requestUpdate('value', previous);
+  }
 
   /** The calendar selection mode; changing modes uses the calendar's normalization policy. */
   @property({
@@ -232,7 +297,23 @@ export default class SynDatePicker extends SynergyElement {
   /**
   * Indicates whether the calendar is open. Use this attribute or the `show()` and `hide()` methods.
    */
-  @property({ reflect: true, type: Boolean }) open = false;
+  @property({ noAccessor: true, reflect: true, type: Boolean })
+  get open(): boolean {
+    return this.#popupOpen;
+  }
+
+  set open(open: boolean) {
+    if (open === this.#popupOpen) {
+      return;
+    }
+    const previous = this.#popupOpen;
+    // Superseded callers must settle even though their requested after-event will never fire.
+    this.#settlePopup();
+    this.#popupRevision += 1;
+    this.#popupOpen = open;
+    this.#popupSettled = false;
+    this.requestUpdate('open', previous);
+  }
 
   /** The input's label. If you need to display HTML, use the `label` slot instead. */
   @property() label = '';
@@ -246,7 +327,7 @@ export default class SynDatePicker extends SynergyElement {
   /** Makes the input readonly. */
   @property({ reflect: true, type: Boolean }) readonly = false;
 
-  /** Adds a clear button when the select is not empty. */
+  /** Adds a Clear button when the field has a committed selection or a started draft. */
   @property({ type: Boolean }) clearable = false;
 
   /**
@@ -335,6 +416,26 @@ export default class SynDatePicker extends SynergyElement {
     super.disconnectedCallback();
     this.#slotObserver?.disconnect();
     this.#removeOpenListeners();
+    this.#settlePopup();
+    this.#popupRevision += 1;
+  }
+
+  protected willUpdate(changed: PropertyValues<this>) {
+    const locale = this.localize.lang();
+    const active = this.shadowRoot?.activeElement as HTMLElement | null;
+    // Remember the logical field: a locale change can move its DOM position without changing its meaning.
+    if (this.#layoutLocale && locale !== this.#layoutLocale && active?.dataset.segment) {
+      this.#pendingSegmentFocus = { field: active.dataset.segment as DateField, id: Number(active.dataset.groupId) };
+    }
+    this.#layoutLocale = locale;
+    // Both paths rebuild drafts from authoritative state; ordinary draft rerenders must not do this.
+    if (changed.has('mode')) {
+      this.#committedValue = normalizeCalendarValue(parseCalendarValue(this.#committedValue), this.mode).join(' ');
+      this.#syncSegments();
+    } else if (this.#externalValuePending) {
+      this.#syncSegments();
+    }
+    this.#externalValuePending = false;
   }
 
   firstUpdated() {
@@ -348,41 +449,37 @@ export default class SynDatePicker extends SynergyElement {
   updated(changed: PropertyValues) {
     super.updated(changed);
     this.#updateValidity();
-  }
-
-  @watch('value')
-  handleValueChange() {
-    const normalized = normalizeCalendarValue(parseCalendarValue(this.value), this.mode).join(' ');
-    if (this.value !== normalized) {
-      this.value = normalized;
+    const pending = this.#pendingSegmentFocus;
+    this.#pendingSegmentFocus = undefined;
+    // Explicit actions may target a newly rendered group; locale-only updates must not steal outside focus.
+    if (pending && (pending.explicit || this.#hasFocus) && !this.disabled) {
+      this.renderRoot.querySelector<HTMLElement>(`[data-group-id="${pending.id}"][data-segment="${pending.field}"]`)
+        ?.focus(pending.options ?? { preventScroll: true });
     }
-    if (this.value !== this.#pendingSegmentValue) {
-      this.#syncSegments();
-    }
-    this.#pendingSegmentValue = undefined;
   }
 
   @watch('mode')
-  handleModeChange(previousMode: CalendarSelectionMode) {
-    this.value = normalizeCalendarValue(parseCalendarValue(this.value), this.mode, previousMode).join(' ');
-    this.#pendingSegmentValue = undefined;
-    this.#syncSegments();
+  handleModeChange() {
+    this.#valueRevision += 1;
   }
 
   @watch(['disabled', 'readonly'])
   handleInteractionStateChange() {
+    // An application state override cancels editing, unlike ordinary blur, which preserves invalid drafts.
     if (this.disabled || this.readonly) {
       this.open = false;
-      this.#buffers.clear();
+      this.#syncSegments();
     }
   }
 
   @watch('open')
   async handleOpenChange() {
-    if (!this.hasUpdated) {
+    if (!this.hasUpdated || !this.isConnected) {
+      this.#settlePopup();
       return;
     }
     const opening = this.open && !this.disabled && !this.readonly;
+    const revision = this.#popupRevision;
     this.emit(opening ? 'syn-show' : 'syn-hide');
     if (opening) {
       this.#addOpenListeners();
@@ -391,35 +488,52 @@ export default class SynDatePicker extends SynergyElement {
     }
     await this.updateComplete;
     await this.popup.updateComplete;
-    if (opening !== this.open) {
+    // A newer transition owns lifecycle events and focus; do not finish this stale transition.
+    if (revision !== this.#popupRevision || opening !== this.open || !this.isConnected) {
       return;
     }
     if (opening) {
       this.popup.reposition();
     }
     this.emit(opening ? 'syn-after-show' : 'syn-after-hide');
+    this.#settlePopup();
+  }
+
+  #settlePopup() {
+    // Promise settlement means the request is finished or superseded, not necessarily that it became visible.
+    this.#popupSettled = true;
+    this.#popupWaiters.forEach(resolve => resolve());
+    this.#popupWaiters.clear();
+  }
+
+  #waitForPopup() {
+    return this.#popupSettled ? Promise.resolve() : new Promise<void>(resolve => {
+      this.#popupWaiters.add(resolve);
+    });
   }
 
   /** Shows the calendar unless the date picker is disabled or readonly. */
   async show() {
-    if (this.open || this.disabled || this.readonly) {
+    if (!this.isConnected || this.disabled || this.readonly) {
       return undefined;
     }
     await this.updateComplete;
-    const shown = waitForEvent(this, 'syn-after-show');
+    // The initial render may yield to disabling, readonly, or removal before opening can start.
+    if (!this.isConnected || this.disabled || this.readonly) {
+      return undefined;
+    }
     this.open = true;
-    return shown;
+    return this.#waitForPopup();
   }
 
   /** Hides the calendar. */
   async hide() {
-    if (!this.open) {
+    if (!this.isConnected) {
+      this.#settlePopup();
       return undefined;
     }
-    await this.updateComplete;
-    const hidden = waitForEvent(this, 'syn-after-hide');
     this.open = false;
-    return hidden;
+    return this.#waitForPopup();
   }
 
   /** Focuses the first empty date segment, or the last active segment for a complete date. */
@@ -434,7 +548,13 @@ export default class SynDatePicker extends SynergyElement {
 
   /** Removes focus from the date picker. */
   blur() {
-    (this.shadowRoot?.activeElement as HTMLElement | null)?.blur();
+    let active = this.shadowRoot?.activeElement;
+    while (active?.shadowRoot?.activeElement) {
+      active = active.shadowRoot.activeElement;
+    }
+    if (active instanceof HTMLElement) {
+      active.blur();
+    }
   }
 
   /** Checks validity without showing a browser validation message. */
@@ -445,7 +565,24 @@ export default class SynDatePicker extends SynergyElement {
 
   /** Shows the browser validation message when the date is invalid. */
   reportValidity() {
+    this.#showErrors = true;
     this.#updateValidity();
+    if (!this.validity.valid) {
+      // Native validation uses a clipped proxy input, but correction belongs on a visible date segment.
+      const invalid = this.#groups.findIndex(group => this.#isDraft(group)
+        || (group.committed && isDateDisabled(parseIsoDate(group.committed)!, this.#getConstraints())));
+      this.#activeGroup = Math.max(invalid, 0);
+      const group = this.#groups[this.#activeGroup];
+      const field = this.#fields().find(candidate => {
+        const bounds = segmentBounds(candidate, group);
+        const value = group[candidate];
+        const buffer = this.#buffers.get(`${group.id}:${candidate}`);
+        return value === null || value < bounds.min || value > bounds.max
+          || (candidate === 'year' && buffer !== undefined && buffer.length !== 4);
+      }) ?? this.#fields()[0];
+      this.#focusField(field, { preventScroll: true });
+      this.requestUpdate();
+    }
     return this.valueInput.reportValidity();
   }
 
@@ -465,23 +602,153 @@ export default class SynDatePicker extends SynergyElement {
   }
 
   #selectionValues() {
-    return normalizeCalendarValue(parseCalendarValue(this.value), this.mode);
+    return normalizeCalendarValue(parseCalendarValue(this.#committedValue), this.mode);
+  }
+
+  #newGroup(value = '', fields = isoToSegments(value)): DateInputGroup {
+    const id = this.#nextGroupId;
+    this.#nextGroupId += 1;
+    return {
+      ...fields, committed: value, edited: [], id,
+    };
   }
 
   #syncSegments() {
     const values = this.#selectionValues();
-    this.#groups = values.map(isoToSegments);
+    this.#groups = values.map(value => this.#newGroup(value));
     if (this.mode === 'range') {
-      this.#groups = [isoToSegments(values[0] ?? ''), isoToSegments(values[1] ?? '')];
+      this.#groups = [this.#newGroup(values[0] ?? ''), this.#newGroup(values[1] ?? '')];
     } else if (this.mode === 'multiple' || this.#groups.length === 0) {
-      this.#groups.push(emptySegments());
+      this.#groups.push(this.#newGroup());
     }
     this.#activeGroup = Math.min(this.#activeGroup, this.#groups.length - 1);
     this.#buffers.clear();
+    this.#batches.clear();
+    this.#updateCalendarValue();
+  }
+
+  #groupDate(group: DateInputGroup) {
+    const yearBuffer = this.#buffers.get(`${group.id}:year`);
+    // ISO serialization could pad "2" into year 0002; an unfinished typed year must remain a draft instead.
+    return yearBuffer !== undefined && yearBuffer.length !== 4 ? '' : segmentsToIso(group);
+  }
+
+  #isDraft(group: DateInputGroup) {
+    return group.edited.length > 0 || group.batch !== undefined
+      || this.#fields().some(field => this.#buffers.has(`${group.id}:${field}`));
+  }
+
+  #hasDrafts() {
+    return this.#groups.some(group => this.#isDraft(group));
+  }
+
+  #clearGroupBuffers(group: DateInputGroup) {
+    this.#fields().forEach(field => this.#buffers.delete(`${group.id}:${field}`));
+  }
+
+  #ensureAddGroup() {
+    const last = this.#groups[this.#groups.length - 1];
+    if (this.mode === 'multiple' && (last.committed || this.#isDraft(last))) {
+      // Keep a separate untouched entry available; it does not invalidate an otherwise complete selection.
+      this.#groups.push(this.#newGroup());
+    }
+  }
+
+  #updateCalendarValue(values?: string[]) {
+    let next = values ?? this.#selectionValues();
+    // Let the calendar preview/complete a draft range while the picker retains its last committed pair.
+    if (!values && this.mode === 'range' && this.#hasDrafts()) {
+      next = this.#groups.map(group => this.#groupDate(group)).filter(Boolean);
+    }
+    // Stable array identity avoids resetting calendar state on every segment-only render.
+    if (next.length !== this.#calendarValue.length || next.some((date, index) => date !== this.#calendarValue[index])) {
+      this.#calendarValue = [...next];
+    }
+  }
+
+  #refreshDraft() {
+    this.#ensureAddGroup();
+    this.#updateCalendarValue();
+    this.#updateValidity();
+    this.requestUpdate();
+  }
+
+  #restoreBatch(batchId: number) {
+    const batch = this.#batches.get(batchId);
+    if (!batch) {
+      return;
+    }
+    const index = this.#groups.findIndex(group => batch.ids.includes(group.id));
+    this.#groups.forEach(group => {
+      if (batch.ids.includes(group.id)) {
+        this.#clearGroupBuffers(group);
+      }
+    });
+    // Restore this batch only; a full-list snapshot would erase unrelated changes made since the paste.
+    this.#groups = this.#groups.filter(group => !batch.ids.includes(group.id));
+    this.#groups.splice(Math.max(index, 0), 0, ...batch.originals);
+    this.#batches.delete(batchId);
+    this.#activeGroup = Math.min(this.#activeGroup, this.#groups.length - 1);
+  }
+
+  #restoreCommittedGroups(groups: DateInputGroup[]) {
+    groups.forEach(group => {
+      if (group.batch !== undefined) {
+        this.#restoreBatch(group.batch);
+      } else {
+        Object.assign(group, isoToSegments(group.committed), { edited: [] });
+        this.#clearGroupBuffers(group);
+      }
+    });
+    this.#refreshDraft();
+    if (this.#hasFocus) {
+      this.#focusField(this.#activeField, { preventScroll: true });
+    }
+  }
+
+  #finishSegment(field = this.#activeField, group = this.#groups[this.#activeGroup]) {
+    const key = `${group.id}:${field}`;
+    const buffer = this.#buffers.get(key);
+    if (buffer === undefined) {
+      return false;
+    }
+    if ((field === 'year' && buffer.length !== 4) || group[field] === null) {
+      this.#refreshDraft();
+      return false;
+    }
+    // Repair an existing day after a completed month/year edit, never an explicitly entered invalid day.
+    if (field !== 'day' && !group.edited.includes('day') && group.month !== null && group.month >= 1 && group.month <= 12
+      && group.year !== null && group.year >= 0 && group.year <= 9999) {
+      Object.assign(group, clampDay(group));
+    }
+    this.#buffers.delete(key);
+    this.#commitSegments(group);
+    return true;
+  }
+
+  #reconcileGroups() {
+    // Called on whole-picker blur so sorting/deduplication cannot move the field being typed into.
+    if (this.mode === 'range') {
+      if (!this.#hasDrafts()) {
+        this.#groups.sort((first, second) => first.committed.localeCompare(second.committed));
+      }
+    } else if (this.mode === 'multiple') {
+      const drafts = this.#groups.filter(group => this.#isDraft(group));
+      const unique = new Map<string, DateInputGroup>();
+      this.#groups.filter(group => !this.#isDraft(group) && group.committed).forEach(group => {
+        if (!unique.has(group.committed)) {
+          unique.set(group.committed, group);
+        }
+      });
+      this.#groups = [...unique.values()].sort((first, second) => first.committed.localeCompare(second.committed));
+      this.#groups.push(...drafts, this.#newGroup());
+    }
+    this.#activeGroup = Math.min(this.#activeGroup, this.#groups.length - 1);
+    this.requestUpdate();
   }
 
   #bufferKey(field: DateField, group = this.#activeGroup) {
-    return `${group}:${field}`;
+    return `${this.#groups[group]?.id}:${field}`;
   }
 
   #getConstraints() {
@@ -508,19 +775,29 @@ export default class SynDatePicker extends SynergyElement {
     }
   }
 
-  #requestUserValue(value: string, commit: boolean) {
-    const previous = this.value;
-    this.#pendingSegmentValue = value;
-    this.value = value;
-    if (commit && value !== previous) {
+  #requestUserValue(value: string, commit: boolean, apply = true) {
+    const previous = this.#committedValue;
+    const revision = this.#valueRevision;
+    const {mode} = this;
+    this.#proposalRejected = false;
+    this.#stagedValue = value;
+    if (commit) {
       const event = this.emit('syn-before-change', { cancelable: true });
-      if (event.defaultPrevented || this.disabled || this.readonly) {
-        this.value = previous;
-        this.#pendingSegmentValue = undefined;
-        this.#syncSegments();
-        this.requestUpdate();
+      // Application replacements win; rolling back our old snapshot would overwrite the listener's intent.
+      if (revision !== this.#valueRevision || mode !== this.mode) {
+        this.#stagedValue = undefined;
         return false;
       }
+      if (event.defaultPrevented || this.#proposalRejected || this.disabled || this.readonly) {
+        this.#stagedValue = undefined;
+        return false;
+      }
+    }
+    this.#stagedValue = undefined;
+    // Nested calendar proposals are checked here, then applied when its accepted input event arrives.
+    if (apply) {
+      this.#committedValue = value;
+      this.requestUpdate('value', previous);
     }
     return true;
   }
@@ -532,7 +809,16 @@ export default class SynDatePicker extends SynergyElement {
     this.#activeGroup = group;
     this.#activeField = field;
     this.requestUpdate();
-    this.renderRoot.querySelector<HTMLElement>(`[data-group="${group}"][data-segment="${field}"]`)?.focus(options);
+    const {id} = this.#groups[group];
+    const target = this.renderRoot.querySelector<HTMLElement>(`[data-group-id="${id}"][data-segment="${field}"]`);
+    if (target) {
+      target.focus(options);
+    } else {
+      // Clear/paste/rollback can create a group before Lit has rendered its focusable segments.
+      this.#pendingSegmentFocus = {
+        explicit: true, field, id, options,
+      };
+    }
   }
 
   #moveField(field: DateField, offset: number) {
@@ -545,35 +831,39 @@ export default class SynDatePicker extends SynergyElement {
     }
   }
 
-  #commitSegments() {
-    const values = this.#groups.map(segmentsToIso);
-    if (this.mode === 'range' && values[0] && values[1]) {
-      const endpoint = getRangeEndpointState(
-        parseIsoDate(values[0])!,
-        parseIsoDate(values[1])!,
-        { maxRange: this.maxRange, minRange: this.minRange },
-        this.#getConstraints(),
-      );
-      if (endpoint.allowed) {
-        values[1] = toIsoDate(endpoint.date);
-        this.#groups[1] = isoToSegments(values[1]);
-      } else {
-        values[1] = '';
-      }
-    }
-    const value = normalizeCalendarValue(values.filter(Boolean), this.mode).join(' ');
-    const previous = this.value;
-    const rangeComplete = this.mode !== 'range' || parseCalendarValue(value).length === 2 || !value;
-    if (!this.#requestUserValue(value, rangeComplete)) {
+  #commitSegments(active = this.#groups[this.#activeGroup]) {
+    const batch = active.batch === undefined ? undefined : this.#batches.get(active.batch);
+    // Ranges and pasted lists commit together; ordinary multiple-date edits commit only their own group.
+    const groups = this.mode === 'range' ? this.#groups : this.#groups.filter(group => batch?.ids.includes(group.id) || group === active);
+    if (groups.some(group => !this.#groupDate(group))) {
+      this.#refreshDraft();
+      this.emit('syn-input');
       return;
     }
-    if (this.mode === 'multiple' && segmentsToIso(this.#groups[this.#groups.length - 1])) {
-      this.#groups.push(emptySegments());
+    // Keep committed dates behind unrelated drafts; filtering their visible fields would silently remove them.
+    const values = this.#groups.map(group => (groups.includes(group) ? this.#groupDate(group) : group.committed)).filter(Boolean);
+    const value = normalizeCalendarValue(values, this.mode).join(' ');
+    const previous = this.#committedValue;
+    const revision = this.#valueRevision;
+    const {mode} = this;
+    if (!this.#requestUserValue(value, value !== previous)) {
+      // Only a veto of our still-current operation may restore fields; an application replacement owns them now.
+      if (revision === this.#valueRevision && mode === this.mode) {
+        this.#restoreCommittedGroups(groups);
+      }
+      return;
     }
-    this.requestUpdate();
-    this.#updateValidity();
+    groups.forEach(group => {
+      const batchId = group.batch;
+      Object.assign(group, { batch: undefined, committed: this.#groupDate(group), edited: [] });
+      this.#clearGroupBuffers(group);
+      if (batchId !== undefined) {
+        this.#batches.delete(batchId);
+      }
+    });
+    this.#refreshDraft();
     this.emit('syn-input');
-    if (value !== previous && rangeComplete) {
+    if (value !== previous) {
       this.emit('syn-change');
     }
   }
@@ -582,10 +872,24 @@ export default class SynDatePicker extends SynergyElement {
     if (this.mode !== 'multiple' || this.disabled || this.readonly) {
       return;
     }
-    this.#groups.splice(group, 1);
+    const target = this.#groups[group];
+    const previous = this.#committedValue;
+    const remaining = this.#groups.filter(candidate => candidate !== target).map(candidate => candidate.committed).filter(Boolean);
+    const value = normalizeCalendarValue(remaining, this.mode).join(' ');
+    if (!this.#requestUserValue(value, value !== previous)) {
+      return;
+    }
+    if (target.batch !== undefined) {
+      this.#restoreBatch(target.batch);
+    }
+    this.#groups = this.#groups.filter(candidate => candidate.id !== target.id);
+    this.#clearGroupBuffers(target);
     this.#activeGroup = Math.min(this.#activeGroup, this.#groups.length - 1);
-    this.#buffers.clear();
-    this.#commitSegments();
+    this.#refreshDraft();
+    this.emit('syn-input');
+    if (value !== previous) {
+      this.emit('syn-change');
+    }
     this.#focusField(this.#activeField);
   }
 
@@ -594,9 +898,13 @@ export default class SynDatePicker extends SynergyElement {
       return;
     }
     this.valueInput.value = this.value;
+    this.valueInput.disabled = this.disabled || this.readonly;
+    this.valueInput.required = this.required;
     const message = this.disabled || this.readonly ? '' : this.#getValidationMessage();
     this.valueInput.setCustomValidity(message);
     this.formControlController.updateValidity();
+    // Invalidity is truthful during editing, but error styling waits for blur or explicit validation.
+    this.toggleAttribute('data-user-invalid', this.#showErrors && !this.validity.valid && !this.disabled && !this.readonly);
   }
 
   #getValidationMessage() {
@@ -604,15 +912,16 @@ export default class SynDatePicker extends SynergyElement {
       return this.#customValidity;
     }
     const values = this.#selectionValues();
-    const partial = this.#groups.some(group => Object.values(group).some(value => value !== null) && !segmentsToIso(group));
-    if (partial || (this.value.trim() && values.length === 0)) {
+    // A retained old value cannot make an unfinished visible draft eligible for normal submission.
+    if (this.#hasDrafts()) {
       return 'Enter a complete, valid date.';
     }
     if (this.mode === 'range' && values.length === 1) {
       return 'Enter both range endpoints.';
     }
-    if (this.mode === 'range' && this.#groups.every(group => !!segmentsToIso(group)) && values.length !== 2) {
-      return 'Choose an available range.';
+    if (this.mode === 'range' && values.length === 2
+      && !isRangeLengthAllowed(parseIsoDate(values[0])!, parseIsoDate(values[1])!, this.minRange, this.maxRange)) {
+      return 'Choose a range within the allowed length.';
     }
     const constraints = this.#getConstraints();
     return values.some(value => isDateDisabled(parseIsoDate(value)!, constraints)) ? 'Choose an available date.' : '';
@@ -627,7 +936,10 @@ export default class SynDatePicker extends SynergyElement {
 
   #handleSegmentBlur(event: FocusEvent) {
     const { group, segment } = (event.currentTarget as HTMLElement).dataset;
-    this.#buffers.delete(this.#bufferKey(segment as DateField, Number(group)));
+    const target = this.#groups[Number(group)];
+    if (target) {
+      this.#finishSegment(segment as DateField, target);
+    }
     this.requestUpdate();
   }
 
@@ -636,22 +948,41 @@ export default class SynDatePicker extends SynergyElement {
       return;
     }
     await this.show();
+    // show() also resolves when interrupted; its resolution alone does not authorize focus in the popup.
+    if (!this.isConnected || !this.open || this.disabled || this.readonly) {
+      return;
+    }
     await this.calendar.updateComplete;
-    this.calendar.focus({ preventScroll: true });
+    if (this.open && !this.disabled && !this.readonly) {
+      this.calendar.focus({ preventScroll: true });
+    }
   }
 
   async #handleSegmentKeyDown(event: KeyboardEvent) {
     const field = (event.currentTarget as HTMLElement).dataset.segment as DateField;
-    if (this.disabled) {
+    if (this.disabled || event.isComposing) {
+      return;
+    }
+    // The open-popup Escape is dismissal only; a subsequent closed-popup Escape cancels unfinished editing.
+    if (event.key === 'Escape' && !this.open && this.#hasDrafts()) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.#syncSegments();
+      this.#updateValidity();
+      this.requestUpdate();
+      this.#focusField(this.#activeField);
+      this.emit('syn-input');
       return;
     }
     if (event.altKey && event.key === 'ArrowDown') {
       event.preventDefault();
+      event.stopPropagation();
       await this.#focusCalendar();
       return;
     }
     if (event.altKey && event.key === 'ArrowUp') {
       event.preventDefault();
+      event.stopPropagation();
       await this.hide();
       return;
     }
@@ -668,21 +999,36 @@ export default class SynDatePicker extends SynergyElement {
 
   #handleSegmentNavigation(event: KeyboardEvent, field: DateField) {
     if (event.key === 'Tab') {
-      this.#buffers.delete(this.#bufferKey(field));
+      this.#finishSegment(field);
       this.requestUpdate();
       return true;
     }
     if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
       event.preventDefault();
+      event.stopPropagation();
+      this.#finishSegment(field);
       const direction = event.key === 'ArrowRight' ? 1 : -1;
       this.#moveField(field, this.localize.dir() === 'rtl' ? -direction : direction);
       return true;
     }
     if (event.key === 'Enter') {
-      event.preventDefault();
-      this.#buffers.clear();
-      this.open = false;
-      this.requestUpdate();
+      if (event.isComposing || event.shiftKey) {
+        return true;
+      }
+      this.#finishSegment(field);
+      // Closing the popup consumes Enter; only an already-closed field may request form submission.
+      if (this.open) {
+        event.preventDefault();
+        event.stopPropagation();
+        this.open = false;
+      } else {
+        // Give application keydown handlers a chance to cancel before invoking Synergy's submission path.
+        queueMicrotask(() => {
+          if (!event.defaultPrevented && !event.isComposing) {
+            this.formControlController.submit();
+          }
+        });
+      }
       return true;
     }
     return false;
@@ -691,40 +1037,64 @@ export default class SynDatePicker extends SynergyElement {
   #handleSegmentEditing(event: KeyboardEvent, field: DateField) {
     if (/^\d$/.test(event.key)) {
       event.preventDefault();
+      // Storybook and other enclosing shortcut handlers must not reinterpret digits consumed by this spinbutton.
       event.stopPropagation();
       const key = this.#bufferKey(field);
+      const revision = this.#valueRevision;
       const result = typeDigit(field, this.#buffers.get(key) ?? '', event.key, this.#segments);
       this.#buffers.set(key, result.buffer);
-      this.#segments = clampDay({ ...this.#segments, [field]: result.value });
-      this.#commitSegments();
+      this.#segments = { ...this.#segments, [field]: result.value };
+      const group = this.#groups[this.#activeGroup];
+      if (!group.edited.includes(field)) {
+        group.edited.push(field);
+      }
       if (result.advance) {
-        this.#buffers.delete(key);
-        this.#moveField(field, 1);
+        if (!this.#finishSegment(field)) {
+          this.emit('syn-input');
+        }
+        if (revision === this.#valueRevision && this.#groups.includes(group)) {
+          this.#moveField(field, 1);
+        }
+      } else {
+        this.#refreshDraft();
+        this.emit('syn-input');
       }
       return;
     }
     if (['ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) {
       event.preventDefault();
+      event.stopPropagation();
       this.#stepSegment(field, event.key);
       return;
     }
     if (event.key === 'Backspace' || event.key === 'Delete') {
       event.preventDefault();
+      event.stopPropagation();
       this.#buffers.delete(this.#bufferKey(field));
       this.#segments = { ...this.#segments, [field]: null };
-      this.#commitSegments();
+      const group = this.#groups[this.#activeGroup];
+      if (!group.edited.includes(field)) {
+        group.edited.push(field);
+      }
+      // Clearing an unused add-date group returns it to its neutral state, rather than leaving an invalid draft.
+      if (!group.committed && group.batch === undefined && this.#fields().every(candidate => group[candidate] === null)) {
+        group.edited = [];
+      }
+      this.#refreshDraft();
+      this.emit('syn-input');
       return;
     }
     const separators = getSegmentLayout(this.localize.lang()).filter(token => !token.field);
     if (['/', '-', '.', ' '].includes(event.key) || separators.some(token => token.text.includes(event.key))) {
       event.preventDefault();
-      this.#buffers.delete(this.#bufferKey(field));
+      event.stopPropagation();
+      this.#finishSegment(field);
       this.#moveField(field, 1);
     }
   }
 
   #stepSegment(field: DateField, key: string) {
-    this.#buffers.clear();
+    this.#finishSegment(field);
     const { max, min } = segmentBounds(field, this.#segments);
     const current = this.#segments[field];
     let value = current ?? today()[field];
@@ -733,9 +1103,11 @@ export default class SynDatePicker extends SynergyElement {
     } else if (current !== null) {
       value += key === 'ArrowUp' ? 1 : -1;
     }
-    const length = max - min + 1;
-    value = ((((value - min) % length) + length) % length) + min;
-    this.#segments = clampDay({ ...this.#segments, [field]: value });
+    value = Math.min(max, Math.max(min, value));
+    const fields = { ...this.#segments, [field]: value };
+    this.#segments = this.#groups[this.#activeGroup].edited.includes('day') ? fields : clampDay(fields);
+    this.#groups[this.#activeGroup].edited.push(field);
+    this.#buffers.delete(this.#bufferKey(field));
     this.#commitSegments();
   }
 
@@ -744,18 +1116,32 @@ export default class SynDatePicker extends SynergyElement {
       return;
     }
     event.preventDefault();
-    const groups = parsePastedSelection(event.clipboardData?.getData('text') ?? '', this.localize.lang(), this.mode);
-    if (groups) {
-      if (groups.length === 1) {
-        [this.#segments] = groups;
-      } else if (this.mode === 'range') {
-        this.#groups = groups;
-      } else {
-        this.#groups.splice(this.#activeGroup, 1, ...groups);
-      }
-      this.#buffers.clear();
-      this.#commitSegments();
+    const fields = parsePastedSelection(event.clipboardData?.getData('text') ?? '', this.localize.lang(), this.mode);
+    // Unknown/ambiguous text leaves both the current draft and committed selection untouched.
+    if (!fields) {
+      return;
     }
+    const active = this.#groups[this.#activeGroup];
+    // Replacing a member of an atomic paste first restores that whole pending operation.
+    if (active.batch !== undefined) {
+      this.#restoreBatch(active.batch);
+    }
+    const start = this.mode === 'range' && fields.length === 2 ? 0 : this.#activeGroup;
+    const originals = this.#groups.slice(start, start + (this.mode === 'range' && fields.length === 2 ? 2 : 1));
+    const batchId = this.#nextBatchId;
+    this.#nextBatchId += 1;
+    // Preserve original committed dates behind invalid pasted fields until the entire batch can commit.
+    const groups = fields.map((date, index) => {
+      const group = this.#newGroup(originals[index]?.committed ?? '', date);
+      group.batch = batchId;
+      group.edited = [...this.#fields()];
+      return group;
+    });
+    this.#batches.set(batchId, { ids: groups.map(group => group.id), originals });
+    originals.forEach(group => this.#clearGroupBuffers(group));
+    this.#groups.splice(start, originals.length, ...groups);
+    this.#activeGroup = start;
+    this.#commitSegments(groups[0]);
   }
 
   #handleAnchorPointerDown(event: PointerEvent) {
@@ -800,38 +1186,74 @@ export default class SynDatePicker extends SynergyElement {
 
   #handleCalendarInput(event: Event) {
     event.stopPropagation();
-    this.value = normalizeCalendarValue(this.calendar.value, this.mode).join(' ');
-    this.#pendingSegmentValue = undefined;
-    this.#syncSegments();
-    this.#updateValidity();
+    if (this.#ignoreCalendarEvents || this.disabled || this.readonly) {
+      return;
+    }
+    const values = normalizeCalendarValue(this.calendar.value, this.mode);
+    // A first calendar range click is a picker draft, not a one-endpoint form value.
+    if (this.mode === 'range' && values.length === 1) {
+      this.#groups = [this.#newGroup('', isoToSegments(values[0])), this.#newGroup()];
+      this.#groups[0].edited = [...this.#fields()];
+      this.#batches.clear();
+      this.#buffers.clear();
+      this.#activeGroup = Math.min(this.#activeGroup, 1);
+      this.#refreshDraft();
+      this.emit('syn-input');
+      return;
+    }
+    const previous = this.#selectionValues();
+    if (this.mode === 'multiple') {
+      // Apply the calendar's date delta, not a complete group rebuild that would discard unrelated typed drafts.
+      const removed = previous.filter(value => !values.includes(value));
+      this.#groups.filter(group => removed.includes(group.committed)).forEach(group => {
+        if (group.batch !== undefined) {
+          this.#restoreBatch(group.batch);
+        }
+      });
+      this.#groups = this.#groups.filter(group => !removed.includes(group.committed));
+      values.filter(value => !previous.includes(value)).forEach(value => {
+        this.#groups.splice(Math.max(this.#groups.length - 1, 0), 0, this.#newGroup(value));
+      });
+      this.#committedValue = values.join(' ');
+    } else {
+      this.#committedValue = values.join(' ');
+      this.#syncSegments();
+    }
+    this.#activeGroup = Math.min(this.#activeGroup, this.#groups.length - 1);
+    this.requestUpdate('value', previous.join(' '));
+    this.#refreshDraft();
     this.emit('syn-input');
   }
 
   #handleCalendarBeforeChange(event: Event) {
     event.stopPropagation();
     const candidate = normalizeCalendarValue(this.calendar.value, this.mode).join(' ');
-    const previous = this.value;
-    if (!this.#requestUserValue(candidate, true)) {
+    if (!this.#requestUserValue(candidate, true, false)) {
       event.preventDefault();
-    } else {
-      this.value = previous;
-      this.#pendingSegmentValue = undefined;
     }
   }
 
   #handleCalendarClear(event: Event) {
     event.stopPropagation();
-    this.emit('syn-clear');
+    // The calendar emits clear/input/change synchronously; our unified Clear already sends the picker events.
+    this.#ignoreCalendarEvents = true;
+    this.#clearSelection(true);
+    queueMicrotask(() => { this.#ignoreCalendarEvents = false; });
   }
 
   async #handleCalendarChange(event: Event) {
     event.stopPropagation();
+    if (this.#ignoreCalendarEvents || this.disabled || this.readonly) {
+      return;
+    }
     this.emit('syn-change');
     const values = this.#selectionValues();
     const complete = this.mode === 'single' ? values.length === 1 : this.mode === 'range' && values.length === 2;
     if (complete) {
       await this.hide();
-      this.#focusField(this.#activeField);
+      if (!this.open && this.isConnected && !this.disabled) {
+        this.#focusField(this.#activeField);
+      }
     }
   }
 
@@ -848,9 +1270,14 @@ export default class SynDatePicker extends SynergyElement {
   }
 
   #handleFocusOut() {
+    // Wait for native focus transfer so moving into the nested calendar is not mistaken for leaving the picker.
     queueMicrotask(() => {
-      if (!this.matches(':focus-within')) {
+      if (this.#hasFocus && !this.matches(':focus-within')) {
+        this.#finishSegment();
+        this.#showErrors = true;
+        this.#reconcileGroups();
         this.#hasFocus = false;
+        this.#updateValidity();
         this.requestUpdate();
         this.emit('syn-blur');
       }
@@ -864,7 +1291,7 @@ export default class SynDatePicker extends SynergyElement {
   };
 
   #handleDocumentKeyDown = (event: KeyboardEvent) => {
-    if (event.key === 'Escape' && !event.defaultPrevented && event.composedPath().includes(this)) {
+    if (event.key === 'Escape' && !event.isComposing && !event.defaultPrevented && event.composedPath().includes(this)) {
       event.preventDefault();
       event.stopPropagation();
       this.open = false;
@@ -873,8 +1300,27 @@ export default class SynDatePicker extends SynergyElement {
   };
 
   #handleClearClick() {
-    this.value = '';
+    this.#clearSelection();
+  }
+
+  #clearSelection(checked = false) {
+    if (this.disabled || this.readonly || (!this.#committedValue && !this.#hasDrafts())) {
+      return;
+    }
+    const previous = this.#committedValue;
+    if (!this.#requestUserValue('', !checked)) {
+      return;
+    }
+    this.#syncSegments();
+    this.#updateValidity();
+    this.requestUpdate();
     this.emit('syn-clear');
+    this.emit('syn-input');
+    // Draft-only Clear changes the editing surface, but there was no committed value change to announce.
+    if (previous) {
+      this.emit('syn-change');
+    }
+    this.focus({ preventScroll: true });
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -902,29 +1348,35 @@ export default class SynDatePicker extends SynergyElement {
     const buffer = this.#buffers.get(this.#bufferKey(field, group));
     const placeholder = field === 'year' ? 'yyyy' : `${field[0]}${field[0]}`;
     const { max, min } = segmentBounds(field, segments);
-    const label = new Intl.DisplayNames(this.localize.lang(), { type: 'dateTimeField' }).of(field);
+    const label = getDateFieldName(this.localize.lang(), field);
     const groupLabel = this.mode === 'range' ? ['Start date', 'End date'][group] : `Date ${group + 1}`;
     let valueText = value === null ? placeholder : String(value);
     if (field === 'month' && value !== null) {
       valueText = getMonthNames(this.localize.lang())[value - 1];
     }
     const display = value === null ? placeholder : String(value).padStart(field === 'year' ? 4 : 2, '0');
+    const segmentId = `segment-label-${segments.id}-${field}`;
+    const hasLabel = !!this.label || this.hasSlotController.test('label');
     return html`
+      <span class="sr-only" id=${segmentId}>${this.mode === 'single' ? label : `${groupLabel} ${label}`}</span>
       <span
         class=${classMap({ segment: true, 'segment--empty': value === null, 'segment--year': field === 'year' })}
         data-segment=${field}
         data-group=${group}
+        data-group-id=${segments.id}
         part="segment"
         role="spinbutton"
         tabindex=${!this.disabled && group === this.#activeGroup && field === this.#activeField ? 0 : -1}
-        aria-label=${this.mode === 'single' ? label ?? field : `${groupLabel} ${label ?? field}`}
+        aria-labelledby=${hasLabel ? `label ${segmentId}` : segmentId}
         aria-valuemin=${min}
         aria-valuemax=${max}
-        aria-valuenow=${ifDefined(value ?? undefined)}
+        aria-valuenow=${ifDefined(value !== null && value >= min && value <= max ? value : undefined)}
         aria-valuetext=${buffer ?? valueText}
         aria-disabled=${this.disabled}
         aria-readonly=${this.readonly}
         aria-required=${this.required}
+        aria-invalid=${this.#showErrors && !this.validity.valid}
+        aria-errormessage=${this.#showErrors && !this.validity.valid ? 'validation-message' : nothing}
         aria-describedby="help-text"
         inputmode="numeric"
         @keydown=${this.#handleSegmentKeyDown}
@@ -943,7 +1395,7 @@ export default class SynDatePicker extends SynergyElement {
 
     const hasLabel = Boolean(this.label || hasLabelSlot);
     const hasHelpText = Boolean(this.helpText || hasHelpTextSlot);
-    const hasClearIcon = this.clearable && (!this.disabled && !this.readonly) && !!this.value;
+    const hasClearIcon = this.clearable && (!this.disabled && !this.readonly) && (!!this.value || this.#hasDrafts());
 
     return html`
       <div
@@ -961,10 +1413,10 @@ export default class SynDatePicker extends SynergyElement {
         @focusin=${this.#handleFocusIn}
         @focusout=${this.#handleFocusOut}
       >
+        <span class="sr-only" id="validation-message" role="alert">${this.#showErrors ? this.validationMessage : ''}</span>
         <label
           aria-hidden=${hasLabel ? 'false' : 'true'}
           class="form-control__label"
-          for="input"
           id="label"
           part="form-control-label"
           @click=${() => this.focus()}
@@ -1010,11 +1462,11 @@ export default class SynDatePicker extends SynergyElement {
                 part="input"
                 role="group"
               >
-                ${this.#groups.map((segments, group) => html`
+                ${repeat(this.#groups, segments => segments.id, (segments, group) => html`
                   ${this.mode === 'range' && group === 1
                     ? html`<span class="segment-literal" part="range-separator" aria-hidden="true"> - </span>` : nothing}
                   <span class="date-entry">
-                    ${getSegmentLayout(this.localize.lang()).map(token => (token.field
+                    ${repeat(getSegmentLayout(this.localize.lang()), (token, index) => token.field ?? `literal-${index}`, token => (token.field
                       ? this.#renderSegment(token.field, group)
                       : html`<span class="segment-literal" part="segment-literal" aria-hidden="true">${token.text}</span>`))}
                     ${this.mode === 'multiple' && segmentsToIso(segments) ? html`
@@ -1039,7 +1491,7 @@ export default class SynDatePicker extends SynergyElement {
                 ?disabled=${this.disabled || this.readonly}
                 ?readonly=${this.readonly}
                 ?required=${this.required}
-                @focus=${() => this.focus()}
+                @focus=${() => this.#focusField(this.#activeField)}
                 @invalid=${this.#handleInvalid}
               />
 
@@ -1085,13 +1537,16 @@ export default class SynDatePicker extends SynergyElement {
             <!-- /.input -->
 
             <div
-              aria-label=${this.label || nothing}
+              aria-label=${hasLabel ? nothing : 'Date'}
+              aria-labelledby=${hasLabel ? 'label' : nothing}
               class="calendar-wrapper"
               id="calendar"
               role="dialog"
             >
               <syn-calendar
                 part="calendar"
+                lang=${this.localize.lang()}
+                dir=${this.localize.dir()}
                 exportparts=${[
                   'base', 'header', 'content', 'footer', 'day-grid', 'day-cell', 'weekdays', 'weekday',
                   'month-grid', 'year-grid', 'calendar-item', 'calendar-item-label', 'calendar-item-day',
@@ -1107,7 +1562,7 @@ export default class SynDatePicker extends SynergyElement {
                   'clear-button__base',
                 ].map(part => `${part}:calendar__${part}`).join(',')}
                 .mode=${this.mode}
-                .value=${this.#selectionValues()}
+                .value=${this.#calendarValue}
                 .minRange=${this.minRange}
                 .maxRange=${this.maxRange}
                 .disabledDates=${this.disabledDates}

@@ -38,6 +38,7 @@ Component.define('syn-date-picker');
  * @slot prefix - Used to prepend a presentational icon or similar element to the date field.
  * @slot suffix - Used to append a presentational icon or similar element to the date field.
  * @slot expand-icon - The icon used by the calendar toggle button.
+ * @slot clear-icon - The icon used by the clearable field's Clear button.
  * @slot day-YYYY-MM-DD - Forwarded to the calendar to replace a date's label.
  * @slot month-0 - Forwarded to the calendar to replace January's label; month-1 through month-11 replace the other months.
  * @slot year-YYYY - Forwarded to the calendar to replace a year's label.
@@ -65,6 +66,7 @@ Component.define('syn-date-picker');
  * @csspart range-separator - The separator between start and end date groups.
  * @csspart remove-date-button - A multiple-selection date's remove button.
  * @csspart expand-button - The calendar toggle button.
+ * @csspart clear-button - The field's Clear button when clearable and a selection or draft is present.
  * @csspart calendar - The calendar component.
  * @csspart calendar__base - The calendar's base wrapper.
  * @csspart calendar__header - The calendar header.

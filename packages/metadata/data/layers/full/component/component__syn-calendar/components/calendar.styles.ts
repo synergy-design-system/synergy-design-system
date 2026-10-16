@@ -3,6 +3,7 @@ import { css } from 'lit';
 export default css`
   :host {
     display: inline-flex;
+    max-width: 100%;
   }
 
   .calendar {
@@ -11,6 +12,7 @@ export default css`
 
     /* Sizes */
     --calendar-min-width: 390px;
+    --calendar-day-size: var(--syn-spacing-x-large);
     --calendar-item-font: var(--syn-body-small-regular);
     --day-selector-th-font: var(--syn-body-small-bold);
 
@@ -20,8 +22,9 @@ export default css`
     display: flex;
     flex-direction: column;
     max-width: 100%;
-    min-width: min(var(--calendar-min-width), 100vw);
+    min-width: 0;
     user-select: none;
+    width: min(var(--syn-calendar-min-width, var(--calendar-min-width)), 100vw);
   }
 
   .header {
@@ -122,7 +125,8 @@ export default css`
     background-color: var(--syn-date-picker-color-range);
   }
 
-  .calendar-item--range-preview-start {
+  .calendar-item--range-preview-start,
+  .calendar-item--range-interior-start {
     background-image: linear-gradient(
       to right,
       var(--syn-date-picker-gradient-start),
@@ -173,12 +177,16 @@ export default css`
   }
 
   .calendar-item--outside {
-    box-shadow: inset 0 0 0 var(--syn-border-width-small) hotpink;
+    color: var(--syn-typography-color-text-quiet);
   }
 
   .calendar-item--disabled {
-    background-color: red;
     cursor: not-allowed;
+    opacity: var(--syn-input-disabled-opacity);
+  }
+
+  .calendar-item--outside.calendar-item--active {
+    color: var(--syn-color-neutral-0);
   }
 
   .calendar--readonly .calendar-item[data-kind="day"]:not(:disabled) {
@@ -204,7 +212,9 @@ export default css`
   .day-selector {
     border: none;
     border-collapse: collapse;
+    table-layout: fixed;
     text-align: center;
+    width: 100%;
   }
 
   .day-selector th,
@@ -216,12 +226,15 @@ export default css`
     box-sizing: content-box;
     font: var(--day-selector-th-font);
     height: var(--syn-spacing-x-large);
+    overflow: hidden;
     padding: var(--syn-spacing-x-small);
+    text-overflow: ellipsis;
   }
 
   .day-selector .calendar-item {
-    height: var(--syn-spacing-x-large);
-    width: var(--syn-spacing-x-large);
+    box-sizing: border-box;
+    height: calc(var(--calendar-day-size) + var(--syn-spacing-x-small) * 2 + var(--syn-border-width-small) * 2);
+    width: 100%;
   }
 
   .calendar--view-month .header--year-selection,
@@ -241,11 +254,14 @@ export default css`
 
   /* Sizes */
   .calendar--size-small {
+    --calendar-day-size: var(--syn-spacing-medium);
+    --calendar-min-width: 298px;
     --calendar-item-font: var(--syn-body-small-regular);
-    --day-selector-th-font: var(--syn-body-2x-small-bold);
+    --day-selector-th-font: var(--syn-body-x-small-bold);
   }
 
   .calendar--size-large {
+    --calendar-min-width: 420px;
     --calendar-item-font: var(--syn-body-medium-regular);
     --day-selector-th-font: var(--syn-body-small-bold);
   }

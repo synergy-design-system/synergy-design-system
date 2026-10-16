@@ -15,7 +15,6 @@ import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynButton from '../button/button.js';
 import SynIconButton from '../icon-button/icon-button.js';
-import { LocalizeController } from '../../utilities/localize.js';
 import type {
   CalendarDate,
   CalendarEventName,
@@ -32,6 +31,7 @@ import type {
   CalendarWeekday,
 } from './types.js';
 import {
+  CalendarLocalizeController,
   DAY_KEY_OFFSETS,
   PERIOD_KEY_OFFSETS,
   areCalendarValuesEqual,
@@ -157,7 +157,7 @@ export default class SynCalendar extends SynergyElement {
     'syn-icon-button': SynIconButton,
   };
 
-  private readonly localize = new LocalizeController(this);
+  private readonly localize = new CalendarLocalizeController(this);
 
   /**
    * The currently visible view in the calendar ('month', 'year', or 'day').
@@ -239,7 +239,7 @@ export default class SynCalendar extends SynergyElement {
 
   /**
    * Determines whether users select one date, a continuous range, or multiple individual dates.
-   * Changing mode keeps the earliest date in single, endpoints in range, or expands a previous range in multiple.
+  * Changing mode keeps the earliest date in single, endpoints in range, or distinct endpoints in multiple.
    * Mode conversion does not emit user value events.
    * @type 'single' | 'range' | 'multiple'
    */
@@ -460,6 +460,10 @@ export default class SynCalendar extends SynergyElement {
     const { max, min } = constraints;
     const targetMonth = year * 12 + month + offset;
 
+    if (targetMonth < 1 || targetMonth > 9999 * 12 + 12) {
+      return true;
+    }
+
     return offset < 0
       ? !!min && targetMonth < min.year * 12 + min.month
       : !!max && targetMonth > max.year * 12 + max.month;
@@ -479,6 +483,10 @@ export default class SynCalendar extends SynergyElement {
 
     const targetYear = year + offset;
 
+    if (targetYear < 0 || targetYear > 9999) {
+      return true;
+    }
+
     return offset < 0
       ? !!min && targetYear < min.year
       : !!max && targetYear > max.year;
@@ -497,6 +505,10 @@ export default class SynCalendar extends SynergyElement {
     const { max, min } = constraints;
 
     const targetBlockStart = blockStart + offset;
+
+    if (targetBlockStart < 0 || targetBlockStart > 9999) {
+      return true;
+    }
 
     return offset < 0
       ? !!min && targetBlockStart + 11 < min.year
@@ -542,7 +554,10 @@ export default class SynCalendar extends SynergyElement {
 
   #normalizeFocusToRange() {
     const result = normalizeCalendarFocus(this.#getNavigationState(), this.#getConstraints());
-    this.#applyNavigationState(result.state, this.matches(':focus-within') ? result.focus : null);
+    const active = this.shadowRoot?.activeElement;
+    // Normalize tab-stop state without stealing focus from a usable header/footer control or outside the widget.
+    const restore = active instanceof HTMLButtonElement && active.matches('[data-kind]');
+    this.#applyNavigationState(result.state, restore ? result.focus : null);
   }
 
   #getNavigationState(): CalendarNavigationState {
@@ -639,10 +654,17 @@ export default class SynCalendar extends SynergyElement {
 
   #requestValueChange(value: string[]) {
     const previousValue = [...this.value];
+    const previousMode = this.mode;
     this.#valueUpdatedByUser = true;
     this.value = value;
 
     const beforeChange = this.#emitCalendarEvent('syn-before-change', { cancelable: true });
+
+    // A listener's replacement owns the new state; cancellation must not overwrite it with our old selection.
+    if (this.mode !== previousMode || !areCalendarValuesEqual(normalizeCalendarValue(this.value, this.mode), value)) {
+      this.#valueUpdatedByUser = false;
+      return false;
+    }
 
     if (!beforeChange || beforeChange.defaultPrevented || this.disabled || this.readonly) {
       this.value = previousValue;
@@ -777,7 +799,9 @@ export default class SynCalendar extends SynergyElement {
    * @returns void
    */
   #handleDayKeydown(event: KeyboardEvent, day: CalendarDate) {
-    const dayOffset = DAY_KEY_OFFSETS[event.key];
+    const direction = this.localize.dir() === 'rtl' && ['ArrowLeft', 'ArrowRight'].includes(event.key) ? -1 : 1;
+    const rawOffset = DAY_KEY_OFFSETS[event.key];
+    const dayOffset = typeof rawOffset === 'number' ? rawOffset * direction : undefined;
 
     if (typeof dayOffset !== 'number') {
       return;
@@ -786,7 +810,7 @@ export default class SynCalendar extends SynergyElement {
     event.preventDefault();
     const nextDate = getNextSelectableDate(
       day,
-      dayOffset,
+      dayOffset as -7 | -1 | 1 | 7,
       this.#getConstraints(),
     );
 
@@ -909,7 +933,9 @@ export default class SynCalendar extends SynergyElement {
    * @param year The currently focused year.
    */
   #handleYearKeydown(event: KeyboardEvent, year: number) {
-    const offset = PERIOD_KEY_OFFSETS[event.key];
+    const direction = this.localize.dir() === 'rtl' && ['ArrowLeft', 'ArrowRight'].includes(event.key) ? -1 : 1;
+    const rawOffset = PERIOD_KEY_OFFSETS[event.key];
+    const offset = typeof rawOffset === 'number' ? rawOffset * direction : undefined;
 
     if (typeof offset !== 'number') {
       return;
@@ -933,7 +959,9 @@ export default class SynCalendar extends SynergyElement {
   * @param month The currently focused month (1-12).
    */
   #handleMonthKeydown(event: KeyboardEvent, month: number) {
-    const offset = PERIOD_KEY_OFFSETS[event.key];
+    const direction = this.localize.dir() === 'rtl' && ['ArrowLeft', 'ArrowRight'].includes(event.key) ? -1 : 1;
+    const rawOffset = PERIOD_KEY_OFFSETS[event.key];
+    const offset = typeof rawOffset === 'number' ? rawOffset * direction : undefined;
 
     if (typeof offset !== 'number') {
       return;

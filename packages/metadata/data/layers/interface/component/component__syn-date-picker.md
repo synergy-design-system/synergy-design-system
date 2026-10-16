@@ -25,6 +25,7 @@ A date picker component for selecting dates.
 - `prefix`: Used to prepend a presentational icon or similar element to the date field.
 - `suffix`: Used to append a presentational icon or similar element to the date field.
 - `expand-icon`: The icon used by the calendar toggle button.
+- `clear-icon`: The icon used by the clearable field's Clear button.
 - `day-YYYY-MM-DD`: Forwarded to the calendar to replace a date's label.
 - `month-0`: Forwarded to the calendar to replace January's label; month-1 through month-11 replace the other months.
 - `year-YYYY`: Forwarded to the calendar to replace a year's label.
@@ -38,7 +39,7 @@ reflects: no
 type: `boolean`
 default: `false`
 
-Adds a clear button when the select is not empty.
+Adds a Clear button when the field has a committed selection or a started draft.
 
 ### defaultValue
 
@@ -173,7 +174,7 @@ The name of the input, submitted as a name/value pair with form data.
 attribute: `open`
 reflects: yes
 type: `boolean`
-default: `false`
+default: none
 
 Indicates whether the calendar is open. Use this attribute or the `show()` and `hide()` methods.
 
@@ -209,11 +210,11 @@ The input's size.
 attribute: `value`
 reflects: no
 type: `string`
-default: `''`
+default: none
 
 Whitespace-separated ISO dates: one date in single mode, two endpoints in range mode,
-or distinct sorted dates in multiple mode. One range endpoint represents a pending selection.
-Partial segment groups are retained for editing but excluded from this canonical value.
+or distinct sorted dates in multiple mode. Range endpoints publish together.
+Unfinished/invalid drafts retain the last committed value and invalidate normal submission.
 
 ### valueAsDates
 
@@ -329,6 +330,7 @@ Shows the calendar unless the date picker is disabled or readonly.
 - `calendar__weekdays`: The weekday table heading group.
 - `calendar__year-grid`: The year selection grid.
 - `calendar__year-navigation`: The year navigation controls.
+- `clear-button`: The field's Clear button when clearable and a selection or draft is present.
 - `expand-button`: The calendar toggle button.
 - `expand-icon`: The container that wraps the expand icon.
 - `form-control`: The form control that wraps the label, input, and help text.

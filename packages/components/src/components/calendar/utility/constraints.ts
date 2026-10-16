@@ -4,8 +4,10 @@ import {
 import type {
   CalendarConstraints, CalendarDate, CalendarDayOffset, NullableCalendarDate, PreparedCalendarConstraints,
 } from '../internal-types.js';
-import type { CalendarWeekday } from '../types.js';
-import { parseIsoDate, toIsoDate, toNativeDate } from './date.js';
+import type { CalendarDateDisabledPredicate, CalendarWeekday } from '../types.js';
+import {
+  MAX_CALENDAR_DATE, MIN_CALENDAR_DATE, parseIsoDate, toIsoDate, toNativeDate,
+} from './date.js';
 
 const ISO_WEEKDAYS: readonly CalendarWeekday[] = [
   'mon',
@@ -18,6 +20,28 @@ const ISO_WEEKDAYS: readonly CalendarWeekday[] = [
 ];
 
 const MAX_CUSTOM_SEARCH_DAYS = 366;
+
+const reportedPredicates = new WeakSet<CalendarDateDisabledPredicate>();
+
+// Each action/render prepares a fresh object, keeping availability reuse local to that constraint snapshot.
+const periodAvailability = new WeakMap<PreparedCalendarConstraints, Map<string, boolean>>();
+
+const isDisabledByPredicate = (date: CalendarDate, predicate?: CalendarDateDisabledPredicate) => {
+  if (!predicate) {
+    return false;
+  }
+
+  try {
+    return !!predicate(toNativeDate(date));
+  } catch (error) {
+    // Fail closed for this date, but rate-limit diagnostics without caching the failed eligibility result.
+    if (!reportedPredicates.has(predicate)) {
+      reportedPredicates.add(predicate);
+      console.warn('Synergy calendar: isDateDisabled threw; the affected date is unavailable.', error);
+    }
+    return true;
+  }
+};
 
 /** Parses a whitespace-separated disabled-date attribute, ignoring malformed dates and duplicates. */
 export const parseDisabledDates = (value: string | null) => {
@@ -56,15 +80,22 @@ export const parseDisabledWeekdays = (value: string | null) => {
  * @returns The clamped date
  */
 export const clampDate = (date: CalendarDate, min?: NullableCalendarDate, max?: NullableCalendarDate) => {
-  if (min && compare(date, min) < 0) {
+  let bounded = date;
+  if (compare(date, MIN_CALENDAR_DATE) < 0) {
+    bounded = MIN_CALENDAR_DATE;
+  }
+  if (compare(date, MAX_CALENDAR_DATE) > 0) {
+    bounded = MAX_CALENDAR_DATE;
+  }
+  if (min && compare(bounded, min) < 0) {
     return min;
   }
 
-  if (max && compare(date, max) > 0) {
+  if (max && compare(bounded, max) > 0) {
     return max;
   }
 
-  return date;
+  return bounded;
 };
 
 /**
@@ -75,7 +106,8 @@ export const clampDate = (date: CalendarDate, min?: NullableCalendarDate, max?: 
  * @returns True if the date is within the boundaries
  */
 export const isDateInRange = (date: CalendarDate, min?: NullableCalendarDate, max?: NullableCalendarDate) => (
-  (!min || !max || compare(min, max) <= 0)
+  date.year >= 0 && date.year <= 9999
+  && (!min || !max || compare(min, max) <= 0)
   && (!min || compare(date, min) >= 0)
   && (!max || compare(date, max) <= 0)
 );
@@ -85,7 +117,7 @@ export const isDateDisabled = (date: CalendarDate, constraints: PreparedCalendar
   !isDateInRange(date, constraints.min, constraints.max)
   || constraints.disabledDateSet.has(toIsoDate(date))
   || constraints.disabledWeekdaySet.has(ISO_WEEKDAYS[dayOfWeek(date) - 1])
-  || !!constraints.isDateDisabled?.(toNativeDate(date))
+  || isDisabledByPredicate(date, constraints.isDateDisabled)
 );
 
 /** Prepares a fresh constraint snapshot without caching mutable caller data or callback results. */
@@ -101,7 +133,16 @@ export const getFirstSelectableDateInRange = (
   end: CalendarDate,
   constraints: PreparedCalendarConstraints,
 ) => {
-  for (let date = start; compare(date, end) <= 0; date = addDays(date, 1)) {
+  if (constraints.disabledWeekdaySet.size === ISO_WEEKDAYS.length) {
+    return null;
+  }
+  const first = clampDate(start, constraints.min, constraints.max);
+  const last = clampDate(end, constraints.min, constraints.max);
+  // Clamping an entirely excluded period can land on a boundary outside that period; it is still unavailable.
+  if (compare(first, end) > 0 || compare(last, start) < 0 || !isDateInRange(first, constraints.min, constraints.max)) {
+    return null;
+  }
+  for (let date = first; compare(date, last) <= 0; date = addDays(date, 1)) {
     if (!isDateDisabled(date, constraints)) {
       return date;
     }
@@ -115,14 +156,28 @@ export const hasSelectableDateInRange = (
   start: CalendarDate,
   end: CalendarDate,
   constraints: PreparedCalendarConstraints,
-) => !!getFirstSelectableDateInRange(start, end, constraints);
+) => {
+  let cache = periodAvailability.get(constraints);
+  if (!cache) {
+    cache = new Map<string, boolean>();
+    periodAvailability.set(constraints, cache);
+  }
+  const key = `${toIsoDate(start)}|${toIsoDate(end)}`;
+  const cached = cache.get(key);
+  if (cached !== undefined) {
+    return cached;
+  }
+  const available = !!getFirstSelectableDateInRange(start, end, constraints);
+  cache.set(key, available);
+  return available;
+};
 
 /** Checks availability anywhere in a calendar month (1-12), including disabled and custom rules. */
 export const isMonthInRange = (
   year: number,
   month: number,
   constraints: PreparedCalendarConstraints,
-) => hasSelectableDateInRange(
+) => year >= 0 && year <= 9999 && hasSelectableDateInRange(
   create(year, month, 1),
   endOfMonth(create(year, month, 1)),
   constraints,
@@ -137,7 +192,7 @@ export const isMonthInRange = (
 export const isYearInRange = (
   year: number,
   constraints: PreparedCalendarConstraints,
-) => hasSelectableDateInRange(
+) => year >= 0 && year <= 9999 && hasSelectableDateInRange(
   create(year, 1, 1),
   endOfYear(create(year, 1, 1)),
   constraints,
@@ -155,11 +210,11 @@ export const getNearestSelectableDate = (
   constraints: PreparedCalendarConstraints,
 ) => {
   const {
-    disabledDates, disabledWeekdays, isDateDisabled: customIsDateDisabled, max, min,
+    disabledDates, isDateDisabled: customIsDateDisabled, max, min,
   } = constraints;
   const start = clampDate(date, min, max);
 
-  if (!isDateInRange(start, min, max) || disabledWeekdays.length === ISO_WEEKDAYS.length) {
+  if (!isDateInRange(start, min, max) || constraints.disabledWeekdaySet.size === ISO_WEEKDAYS.length) {
     return null;
   }
 
@@ -219,10 +274,10 @@ export const getNextSelectableDate = (
   constraints: PreparedCalendarConstraints,
 ) => {
   const {
-    disabledDates, disabledWeekdays, isDateDisabled: customIsDateDisabled, max, min,
+    disabledDates, isDateDisabled: customIsDateDisabled, max, min,
   } = constraints;
   if ((min && max && compare(min, max) > 0)
-    || disabledWeekdays.length === ISO_WEEKDAYS.length) {
+    || constraints.disabledWeekdaySet.size === ISO_WEEKDAYS.length) {
     return null;
   }
 

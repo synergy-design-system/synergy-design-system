@@ -80,12 +80,12 @@ export const isRangeLengthAllowed = (
 
 /**
  * Sorts valid dates and applies selection cardinality without enforcing selectability.
- * Single keeps the earliest date; range keeps endpoints; multiple deduplicates or expands a previous range.
+ * Single keeps the earliest date; range keeps endpoints; multiple deduplicates without expanding ranges.
  */
 export const normalizeCalendarValue = (
   values: readonly string[],
   mode: CalendarSelectionMode,
-  previousMode: CalendarSelectionMode = mode,
+  _previousMode: CalendarSelectionMode = mode,
 ) => {
   const selectionMode = mode === 'range' || mode === 'multiple' ? mode : 'single';
   const validDates = values.filter(value => !!parseIsoDate(value)).sort();
@@ -100,21 +100,7 @@ export const normalizeCalendarValue = (
       : [validDates[0], validDates[validDates.length - 1]];
   }
 
-  const uniqueDates = [...new Set(validDates)];
-
-  if (previousMode === 'range' && validDates.length === 2) {
-    const expandedDates: string[] = [];
-    const start = parseIsoDate(validDates[0])!;
-    const end = parseIsoDate(validDates[1])!;
-
-    for (let date = start; compare(date, end) <= 0; date = addDays(date, 1)) {
-      expandedDates.push(toIsoDate(date));
-    }
-
-    return expandedDates;
-  }
-
-  return uniqueDates;
+  return [...new Set(validDates)];
 };
 
 /** Derives an endpoint without mutating the calendar or falling back from a disabled boundary. */

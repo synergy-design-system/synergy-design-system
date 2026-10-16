@@ -42,6 +42,8 @@ export const renderCalendarItem = (options: CalendarItemOptions) => {
   return html`
     <button
       aria-disabled=${states.disabled || states.rangeUnavailable ? 'true' : 'false'}
+      aria-pressed=${states.active ? 'true' : 'false'}
+      aria-current=${states.today ? 'date' : 'false'}
       class=${classMap({
         'calendar-item': true,
         ...Object.fromEntries(descriptors.map(({ enabled, name }) => [`calendar-item--${name}`, enabled])),

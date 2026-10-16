@@ -13,6 +13,8 @@ export {
   prepareCalendarConstraints,
 } from './constraints.js';
 export {
+  MAX_CALENDAR_DATE,
+  MIN_CALENDAR_DATE,
   fromNativeDate,
   getCalendarWeeks,
   getFirstDayOfWeek,
@@ -22,11 +24,13 @@ export {
   isSameDay,
   isSameMonth,
   parseIsoDate,
+  resolveCalendarLocale,
   today,
   toIsoDate,
   toNativeDate,
 } from './date.js';
 export { stopNestedFocusEvent } from './events.js';
+export { CalendarLocalizeController } from './localize.js';
 export {
   DAY_KEY_OFFSETS,
   getDayViewState,

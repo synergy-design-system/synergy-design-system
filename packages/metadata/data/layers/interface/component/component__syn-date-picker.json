@@ -2,7 +2,7 @@
   "attributes": [
     {
       "default": "false",
-      "description": "Adds a clear button when the select is not empty.",
+      "description": "Adds a Clear button when the field has a committed selection or a started draft.",
       "fieldName": "clearable",
       "name": "clearable",
       "reflects": false,
@@ -103,7 +103,6 @@
       "type": "string"
     },
     {
-      "default": "false",
       "description": "Indicates whether the calendar is open. Use this attribute or the `show()` and `hide()` methods.",
       "fieldName": "open",
       "name": "open",
@@ -135,8 +134,7 @@
       "type": "'small' | 'medium' | 'large'"
     },
     {
-      "default": "''",
-      "description": "Whitespace-separated ISO dates: one date in single mode, two endpoints in range mode,\nor distinct sorted dates in multiple mode. One range endpoint represents a pending selection.\nPartial segment groups are retained for editing but excluded from this canonical value.",
+      "description": "Whitespace-separated ISO dates: one date in single mode, two endpoints in range mode,\nor distinct sorted dates in multiple mode. Range endpoints publish together.\nUnfinished/invalid drafts retain the last committed value and invalidate normal submission.",
       "fieldName": "value",
       "name": "value",
       "reflects": false,
@@ -325,6 +323,10 @@
       "name": "calendar__year-navigation"
     },
     {
+      "description": "The field's Clear button when clearable and a selection or draft is present.",
+      "name": "clear-button"
+    },
+    {
       "description": "The calendar toggle button.",
       "name": "expand-button"
     },
@@ -478,21 +480,11 @@
     {
       "description": "",
       "name": "handleModeChange",
-      "parameters": [
-        {
-          "name": "previousMode",
-          "type": "CalendarSelectionMode"
-        }
-      ]
-    },
-    {
-      "description": "",
-      "name": "handleOpenChange",
       "parameters": []
     },
     {
       "description": "",
-      "name": "handleValueChange",
+      "name": "handleOpenChange",
       "parameters": []
     },
     {
@@ -525,7 +517,7 @@
     {
       "access": "public",
       "default": "false",
-      "description": "Adds a clear button when the select is not empty.",
+      "description": "Adds a Clear button when the field has a committed selection or a started draft.",
       "name": "clearable",
       "type": "boolean"
     },
@@ -626,7 +618,6 @@
     },
     {
       "access": "public",
-      "default": "false",
       "description": "Indicates whether the calendar is open. Use this attribute or the `show()` and `hide()` methods.",
       "name": "open",
       "type": "boolean"
@@ -670,8 +661,7 @@
     },
     {
       "access": "public",
-      "default": "''",
-      "description": "Whitespace-separated ISO dates: one date in single mode, two endpoints in range mode,\nor distinct sorted dates in multiple mode. One range endpoint represents a pending selection.\nPartial segment groups are retained for editing but excluded from this canonical value.",
+      "description": "Whitespace-separated ISO dates: one date in single mode, two endpoints in range mode,\nor distinct sorted dates in multiple mode. Range endpoints publish together.\nUnfinished/invalid drafts retain the last committed value and invalidate normal submission.",
       "name": "value",
       "type": "string"
     },
@@ -709,6 +699,10 @@
     {
       "description": "The icon used by the calendar toggle button.",
       "name": "expand-icon"
+    },
+    {
+      "description": "The icon used by the clearable field's Clear button.",
+      "name": "clear-icon"
     },
     {
       "description": "Forwarded to the calendar to replace a date's label.",

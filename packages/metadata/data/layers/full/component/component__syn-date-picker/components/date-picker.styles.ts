@@ -55,6 +55,11 @@ export default css`
     padding: var(--syn-spacing-3x-small);
     text-align: center;
     user-select: none;
+    width: 2em;
+  }
+
+  .segment--year {
+    width: 4em;
   }
 
   .segment--empty {
@@ -63,8 +68,23 @@ export default css`
 
   .segment:focus {
     background: var(--syn-date-picker-color-range);
-    color: var(--syn-color-input-text);
+    color: var(--syn-input-color-focus);
     outline: none;
+  }
+
+  .segment:focus-visible {
+    outline: var(--syn-focus-ring);
+    outline-offset: var(--syn-focus-ring-offset);
+  }
+
+  .select__clear {
+    background: none;
+    border: none;
+    color: var(--syn-input-icon-icon-clearable-color);
+    cursor: pointer;
+    display: flex;
+    font: inherit;
+    padding: var(--syn-spacing-2x-small);
   }
 
   .segment-literal {
@@ -72,6 +92,7 @@ export default css`
     white-space: pre;
   }
 
+  .sr-only,
   .value-input {
     /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
     clip-path: inset(50%);
@@ -115,7 +136,6 @@ export default css`
   /* Popup calendar wrapper */
   .calendar-wrapper {
     background: var(--syn-panel-background-color);
-    border: solid var(--syn-panel-border-width) var(--syn-panel-border-color);
     border-radius: var(--syn-input-border-radius-medium);
     box-shadow: var(--syn-shadow-medium);
     display: block;

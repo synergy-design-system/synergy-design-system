@@ -10,6 +10,7 @@ Tags can be removable, icon‑based, or purely textual.
 
 - [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-tag-group--docs)
 - [Figma Examples](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=45275-186668)
+- [Figma Component](https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=45275-115606)
 
 ## Class Information
 

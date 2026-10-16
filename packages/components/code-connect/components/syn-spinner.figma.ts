@@ -1,12 +1,13 @@
-import figma, { html } from '@figma/code-connect/html';
-import type SynSpinner from '../../src/components/spinner/spinner.js';
-import type { ValidProperties } from '../core/types';
+// url=https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=17016-71772
+// source=https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/components/src/components/spinner/spinner.component.ts
+// component=SynSpinner
+import figma from 'figma';
 
-// Synergy Web Component Connection
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=17016-71772', {
-  example: () => html`
+export default {
+  example: figma.code`
     <syn-spinner></syn-spinner>
   `,
+  id: 'syn-spinner',
   imports: [
     'import { SynSpinner } from "@synergy-design-system/components";',
   ],
@@ -16,6 +17,4 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       url: 'https://synergy-design-system.github.io/?path=/docs/components-syn-spinner--docs',
     },
   ],
-  props: {
-  } satisfies ValidProperties<SynSpinner>,
-});
+};

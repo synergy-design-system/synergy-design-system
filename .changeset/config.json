@@ -3,7 +3,6 @@
   "changelog": [
     "../packages/_private/release-utils/src/changelog.js",
     {
-      "disableThanks": true,
       "repo": "synergy-design-system/synergy-design-system"
     }],
   "commit": false,

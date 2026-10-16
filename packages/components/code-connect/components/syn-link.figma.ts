@@ -1,30 +1,35 @@
-import figma, { html } from '@figma/code-connect/html';
+// url=https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=24700-39151
+// source=https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/styles/src/link/index.css
+// component=SynLink
+import figma from 'figma';
 
-// Color helper
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=24705-3468291&m=dev', {
-  example: ({
-    quiet,
-  }) => html`${quiet}`,
-  props: {
-    quiet: figma.boolean('quiet', {
-      true: 'syn-link--quiet',
+import { renderAttribute } from '../core/template-helpers.js';
+
+const instance = figma.selectedInstance;
+const props = {
+  className: [
+    'syn-link',
+    instance.getBoolean('disabled') ? 'syn-link--disabled' : undefined,
+    instance.getEnum('size', {
+      large: 'syn-link--large',
+      medium: 'syn-link--medium',
+      small: 'syn-link--small',
     }),
-  },
-});
+  ].filter(Boolean).join(' '),
+  defaultSlot: instance.getBoolean('content') ? instance.getString('\u21B3 content') : undefined,
+};
+const { className, defaultSlot } = props;
 
-// Synergy Web Component Connection
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=24700-39151', {
-  example: ({
-    className,
-    defaultSlot,
-  }) => html`
+export default {
+  example: figma.code`
     <a
-      class=${className}
+      ${renderAttribute('class', className)}
       href="https://synergy-design-system.github.io/?path=/docs/styles-syn-link--docs"
     >
       ${defaultSlot}
     </a>
   `,
+  id: 'syn-link',
   imports: [
     'import "@synergy-design-system/styles/dist/index.css";',
   ],
@@ -34,26 +39,4 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       url: 'https://synergy-design-system.github.io/?path=/docs/styles-syn-link--docs',
     },
   ],
-  props: {
-    className: figma.className([
-      'syn-link',
-      figma.boolean('disabled', {
-        true: 'syn-link--disabled',
-      }),
-      figma.enum('size', {
-        large: 'syn-link--large',
-        medium: 'syn-link--medium',
-        small: 'syn-link--small',
-      }),
-    ]),
-    // @todo: Not possible currently to map nested props in Figma Connect
-    // figma.nestedProps('_helper/color/syn-link', {
-    //   quiet: figma.boolean('quiet', {
-    //     true: 'syn-link--quiet',
-    //   }),
-    // }),
-    defaultSlot: figma.boolean('content', {
-      true: figma.string('↳ content'),
-    }),
-  },
-});
+};

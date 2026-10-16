@@ -7,22 +7,22 @@
     "syn-mcp": "./dist/bin/start.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.30.0",
+    "@modelcontextprotocol/sdk": "^1.32.1",
     "@synergy-design-system/assets": "workspace:*",
     "@synergy-design-system/metadata": "workspace:*",
-    "zod": "^4.6.5"
+    "zod": "^4.6.7"
   },
   "description": "MCP Server for the Synergy Design System",
   "devDependencies": {
     "@synergy-design-system/eslint-config-syn": "workspace:^",
-    "@toon-format/toon": "^2.1.0",
+    "@toon-format/toon": "^4.4.0",
     "@types/node": "^24.13.5",
     "eslint": "^9.39.5",
     "tiktoken": "^1.0.22",
     "typescript": "^6.0.3"
   },
   "optionalDependencies": {
-    "@toon-format/toon": "^2.3.1",
+    "@toon-format/toon": "^4.4.0",
     "tiktoken": "^1.0.22"
   },
   "exports": {

@@ -1,8 +1,9 @@
 {
-  "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
+  "$schema": "https://unpkg.com/@changesets/config@4.0.1/schema.json",
   "changelog": [
     "../packages/_private/release-utils/src/changelog.js",
     {
+      "disableThanks": true,
       "repo": "synergy-design-system/synergy-design-system"
     }],
   "commit": false,
@@ -23,8 +24,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "privatePackages": false,
-  "___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH": {
-    "onlyUpdatePeerDependentsWhenOutOfRange": true
-  }
+  "privatePackages": false
 }

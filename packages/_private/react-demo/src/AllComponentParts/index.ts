@@ -1,6 +1,7 @@
 export * from './Accordion.js';
 export * from './Alert.js';
 export * from './Badge.js';
+export * from './BarChart.js';
 export * from './Breadcrumb.js';
 export * from './Button.js';
 export * from './ButtonGroup.js';

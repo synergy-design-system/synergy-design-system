@@ -1,4 +1,5 @@
 import { expect } from '@open-wc/testing';
+import sinon from 'sinon';
 import {
   clamp,
   colorSvgDataUrl,
@@ -6,6 +7,7 @@ import {
   compose,
   convertDegreeToRadian,
   getAsArray,
+  getRandomString,
   isFixedRadius,
   mergeConfigs,
   mergeDeep,
@@ -592,6 +594,22 @@ describe('getAsArray', () => {
 
   it('handles empty arrays', () => {
     expect(getAsArray([])).to.deep.equal([]);
+  });
+});
+
+describe('getRandomString', () => {
+  afterEach(() => sinon.restore());
+
+  it('uses the default maximum length of 8 random characters', () => {
+    sinon.stub(Math, 'random').returns(0.123456789);
+
+    expect(getRandomString()).to.equal('4fzzzxjy');
+  });
+
+  it('limits the random suffix to the requested length and prepends the prefix', () => {
+    sinon.stub(Math, 'random').returns(0.123456789);
+
+    expect(getRandomString(4, 'chart-')).to.equal('chart-4fzz');
   });
 });
 

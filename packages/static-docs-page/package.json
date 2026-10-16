@@ -14,7 +14,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^6.0.5",
+    "@astrojs/react": "^7.0.1",
     "@synergy-design-system/components": "workspace:^",
     "@synergy-design-system/fonts": "workspace:^",
     "@synergy-design-system/react": "workspace:^",

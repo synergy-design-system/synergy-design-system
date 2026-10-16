@@ -8,6 +8,81 @@ This guide holds the required information for migrating from one major version o
 
 ---
 
+## Version 5.0 (Upcoming, no release date yet!)
+
+<h3 id="mcp-sdk-v2">Programmatic integrations now use MCP TypeScript SDK v2</h3>
+
+**Associated Ticket(s)**:
+
+- [#1389](https://github.com/synergy-design-system/synergy-design-system/issues/1389)
+
+**Reason**:
+
+The server now uses the split v2 SDK packages instead of `@modelcontextprotocol/sdk`. Although MCP tool names, arguments, and content remain unchanged, the exported TypeScript API is not backward-compatible with SDK v1. `createServer()` returns a v2 `McpServer`, and the exported tool registration functions accept a v2 `McpServer`.
+
+**Migration Steps**:
+
+- If you only launch `syn-mcp` through an editor, CLI, or container, no configuration migration is required. Existing startup commands, configuration files, package entrypoints, and legacy MCP connections remain supported.
+- If you import `createServer()` or tool registration functions into your own application, migrate the server objects and SDK types used with these APIs to `@modelcontextprotocol/server`. Do not pass SDK v1 server objects to these functions or type the returned server as an SDK v1 `McpServer`.
+- Replace the removed `.tool()`, `.prompt()`, and `.resource()` methods with `.registerTool()`, `.registerPrompt()`, and `.registerResource()`, using explicit configuration objects. Wrap tool `inputSchema` and prompt `argsSchema` definitions with `z.object(...)`.
+- For custom transport wiring, import `StdioServerTransport` from `@modelcontextprotocol/server/stdio`. The Node HTTP transport is now `NodeStreamableHTTPServerTransport` from `@modelcontextprotocol/node`.
+- If migrating your own SDK client code, use `@modelcontextprotocol/client`, with `StdioClientTransport` imported from `@modelcontextprotocol/client/stdio`. Existing remote clients do not need an SDK upgrade merely to connect using the legacy protocol.
+- Declare the new packages that your application directly imports, and remove `@modelcontextprotocol/sdk` only after its remaining usages have been migrated. Do not rely on compatibility casts between v1 and v2 server objects.
+
+**Example (before)**:
+
+```typescript
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { createServer } from "@synergy-design-system/mcp";
+import { z } from "zod";
+
+const server: McpServer = createServer();
+server.tool("greet", { name: z.string() }, async ({ name }) => ({
+  content: [{ type: "text", text: `Hello, ${name}!` }],
+}));
+```
+
+**Example (after)**:
+
+```typescript
+import { McpServer } from "@modelcontextprotocol/server";
+import { createServer } from "@synergy-design-system/mcp";
+import { z } from "zod";
+
+const server: McpServer = createServer();
+server.registerTool(
+  "greet",
+  {
+    inputSchema: z.object({ name: z.string() }),
+  },
+  async ({ name }) => ({
+    content: [{ type: "text", text: `Hello, ${name}!` }],
+  }),
+);
+```
+
+---
+
+<h3 id="modern-protocol-v5">Modern HTTP requests no longer have MCP sessions</h3>
+
+**Associated Ticket(s)**:
+
+- [#1389](https://github.com/synergy-design-system/synergy-design-system/issues/1389)
+
+**Reason**:
+
+The bundled stdio and HTTP/HTTPS serving paths now support protocol revision `2026-07-28` alongside legacy revisions such as `2025-11-25`. Modern HTTP is stateless and does not issue an `mcp-session-id` header. This changes log correlation when a client opts into the modern protocol, but does not remove legacy session support.
+
+**Migration Steps**:
+
+- Keep existing editor and client configurations unless you want to enable the modern protocol. Clients using the legacy `initialize` handshake continue to work unchanged; installing SDK v2 alone does not switch a connection to the new protocol.
+- For TypeScript SDK v2 clients, enable modern negotiation with `versionNegotiation: { mode: 'auto' }` in the `Client` options. This allows negotiation of the modern protocol with fallback for legacy servers.
+- Update log-processing assumptions for modern HTTP: the existing `sessionId` field contains a generated `request-<UUID>` for each request, not a reusable MCP session ID. Do not group these IDs into a user, chat, or multi-request session. Anonymous modern HTTP requests cannot reliably be correlated by user without an additional stable identifier.
+- Legacy HTTP logs retain MCP session IDs, and stdio logs retain the `stdio` identifier. Configuration for logging and compression remains unchanged.
+- HTTP/HTTPS continues to use `/mcp`. The `x-synergy-metadata-version` and `x-synergy-metadata-build-date` response headers remain available for both protocol paths when metadata information is loaded successfully.
+
+---
+
 ## Version 4.0
 
 <h3 id="metadata-source-intent">Intent-Tools and Resources no longer experimental</h3>

@@ -396,8 +396,7 @@ export const CustomColors: Story = {
               data: [420, 532, 501, 534, 890, 930, 920],
               name: 'Series C',
             },
-          ])
-          .legendShow();
+          ]);
       });
     </script>
   `,
@@ -425,7 +424,6 @@ export const PositiveAndNegativeValues: Story = {
             },
             yAxis: { type: 'value', name: 'Values' },
           })
-          .axesShowSplitLines()
           .seriesArea([
             {
               data: [-820, 932, -901, 934, -1290, 1330, 1320],
@@ -524,7 +522,6 @@ export const Stack: Story = {
             },
             yAxis: { min: -1000, max: 1000, type: 'value', name: 'Values' },
           })
-          .axesShowSplitLines()
           .seriesArea(seriesData.map((data, index) => ({
             data,
             name: 'Series ' + (index + 1),

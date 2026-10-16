@@ -1396,6 +1396,116 @@
           "value": "Configure `dataZoom` to let users focus on a subset of an area chart's data. The slider provides handles for selecting the visible range.",
           "type": "text"
         }
+      },
+      "area-range-series-default": {
+        "title": {
+          "value": "Area Range Chart",
+          "type": "text"
+        },
+        "description": {
+          "value": "An area range chart displays the area between two values over time. It is ideal for showing variability, uncertainty or value ranges, such as temperature highs and lows, forecast bands or best- and worst-case scenarios.",
+          "type": "text"
+        }
+      },
+      "area-range-series-preset": {
+        "title": {
+          "value": "Area Range Chart Preset",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the `seriesAreaRange` preset function to create area range charts. This preset accepts each data point as a pair of lower and upper values and automatically generates the boundary lines, filled area and tooltip configuration. Its optional second argument accepts line series options that are merged into both boundary series and can override their defaults.\n\nAlternatively, an area range can be configured using two stacked line series. Both series must use the same stack and name value. The first series contains the lower bound values and has its tooltip disabled. The second series contains the difference between the upper and lower values (upper - lower) and defines an areaStyle to render the shaded range. To display the actual range in the tooltip, format the second series' tooltip value using the original lower and upper values rather than the calculated difference values.",
+          "type": "text"
+        }
+      },
+      "area-range-series-curved": {
+        "title": {
+          "value": "Curved Area Range",
+          "type": "text"
+        },
+        "description": {
+          "value": "Set `smooth: true` to curve the upper and lower boundaries of the range.",
+          "type": "text"
+        }
+      },
+      "area-range-series-hidden-lines": {
+        "title": {
+          "value": "Area Range with Hidden Lines",
+          "type": "text"
+        },
+        "description": {
+          "value": "Set `lineStyle.width` to `0` and configure `symbol` to show data point markers. When lines are hidden, only the filled range and its markers remain for a more minimal, range-focused visualization.",
+          "type": "text"
+        }
+      },
+      "area-range-series-line-styles": {
+        "title": {
+          "value": "Area Range Line Styles and Widths",
+          "type": "text"
+        },
+        "description": {
+          "value": "Customize range boundary lines with solid, dashed or dotted styles, and adjust their width. Use distinct styles to differentiate multiple area range series",
+          "type": "text"
+        }
+      },
+      "area-range-series-symbols": {
+        "title": {
+          "value": "Area Range Symbols",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `symbol` and `symbolSize` to choose the marker shape and size for area range data points. Set `symbol` to `none` to hide the markers.",
+          "type": "text"
+        }
+      },
+      "area-range-series-palette": {
+        "title": {
+          "value": "Area Range Chart Palette",
+          "type": "text"
+        },
+        "description": {
+          "value": "Set the chart's `palette` attribute to apply a Synergy chart color palette to area range series.",
+          "type": "text"
+        }
+      },
+      "area-range-series-custom-colors": {
+        "title": {
+          "value": "Area Range Custom Colors",
+          "type": "text"
+        },
+        "description": {
+          "value": "By default, each series is assigned a color from the chart's categorical color palette. Use the colors option to provide explicit colors instead. Colors are repeated cyclically when fewer colors than data points are provided.",
+          "type": "text"
+        }
+      },
+      "area-range-series-positive-and-negative-values": {
+        "title": {
+          "value": "Area Range with Positive and Negative Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "Area ranges can cross zero and include both positive and negative values. The chart displays the full lower-to-upper interval for each category.",
+          "type": "text"
+        }
+      },
+      "area-range-series-tooltip": {
+        "title": {
+          "value": "Area Range Tooltip",
+          "type": "text"
+        },
+        "description": {
+          "value": "Enable contextual values for area range data points with the `tooltipShow()` preset. Give each series a name to identify it in the tooltip.",
+          "type": "text"
+        }
+      },
+      "area-range-series-with-legend": {
+        "title": {
+          "value": "Area Range Chart with Legend",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `legendShow()` to display a legend for named area range series. Users can select legend entries to toggle the corresponding ranges.",
+          "type": "text"
+        }
       }
     },
     "checkbox": {

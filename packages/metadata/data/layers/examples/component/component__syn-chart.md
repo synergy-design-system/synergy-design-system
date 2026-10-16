@@ -1376,6 +1376,1387 @@ The data zoom slider (the dataZoom option with type: 'inside') allows users to d
 
 ## Default
 
+An area chart can be configured via the chart config with type: 'line' and areaStyle: {} or with the seriesArea preset function. When using a config object, set areaStyle.opacity to 0.2 for the recommended styling. The seriesArea preset applies this opacity by default. Pass a custom areaStyle to override the preset default.
+
+```html
+<syn-chart id="area-series-default"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#area-series-default");
+
+  charts.forEach((chart) => {
+    chart.config = {
+      xAxis: {
+        data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        type: "category",
+        name: "Days",
+      },
+      yAxis: { type: "value", name: "Values" },
+      series: [
+        {
+          data: [820, 932, 901, 934, 1290, 1330, 1320],
+          type: "line",
+          areaStyle: {
+            opacity: 0.2,
+          },
+        },
+        {
+          data: [620, 732, 701, 734, 1090, 1130, 1120],
+          type: "line",
+          areaStyle: {
+            opacity: 0.2,
+          },
+        },
+        {
+          data: [420, 532, 501, 534, 890, 930, 920],
+          type: "line",
+          areaStyle: {
+            opacity: 0.2,
+          },
+        },
+      ],
+    };
+  });
+</script>
+```
+
+---
+
+## Curved Line
+
+The area series supports curved lines. Use the smooth property to enable smooth curves.
+
+```html
+<syn-chart id="area-series-curved"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#area-series-curved");
+
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      type: "category",
+      name: "Days",
+    },
+    yAxis: { type: "value", name: "Values" },
+  };
+
+  const lineData = [
+    [820, 932, 901, 934, 1290, 1330, 1320],
+    [620, 732, 701, 734, 1090, 1130, 1120],
+    [420, 532, 501, 534, 890, 930, 920],
+  ];
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.baseConfig(baseConfig).seriesArea(
+        lineData.map((data) => ({
+          data,
+          smooth: true,
+        })),
+      );
+  });
+</script>
+```
+
+---
+
+## Hidden Line
+
+The lines of area series can be hidden. When hidden, only the filled area remains for a more minimal, volume-focused visualization.
+
+```html
+<syn-chart id="area-series-hidden"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#area-series-hidden");
+
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      type: "category",
+      name: "Days",
+    },
+    yAxis: { type: "value", name: "Values" },
+  };
+
+  const lineData = [
+    [820, 932, 901, 934, 1290, 1330, 1320],
+    [620, 732, 701, 734, 1090, 1130, 1120],
+  ];
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.baseConfig(baseConfig).seriesArea(
+        lineData.map((data) => ({
+          data,
+          lineStyle: {
+            width: 0,
+          },
+          symbol: "circle",
+        })),
+      );
+  });
+</script>
+```
+
+---
+
+## Line Styles And Widths
+
+The line styles can be adjusted such as solid, dashed, and dotted as well as custom line widths. Use distinct styles to differentiate series when needed.
+
+```html
+<syn-chart id="area-series-line-styles"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#area-series-line-styles");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesArea([
+          {
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            lineStyle: { type: "solid", width: 2 },
+            name: "Solid, 2 px",
+          },
+          {
+            data: [620, 732, 701, 734, 1090, 1130, 1120],
+            lineStyle: { type: "dashed", width: 4 },
+            name: "Dashed, 4 px",
+          },
+          {
+            data: [420, 532, 501, 534, 890, 930, 920],
+            lineStyle: { type: "dotted", width: 6 },
+            name: "Dotted, 6 px",
+          },
+        ])
+        .legendShow();
+  });
+</script>
+```
+
+---
+
+## Symbol Styles And Sizes
+
+The data points can be marked via symbols. Set symbol and symbolSize on each series to customize them.
+
+```html
+<syn-chart id="area-series-symbols"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#area-series-symbols");
+
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      type: "category",
+      name: "Days",
+    },
+    yAxis: { type: "value", name: "Values" },
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesArea([
+          {
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            name: "Empty circle",
+            symbol: "emptyCircle",
+            symbolSize: 8,
+          },
+          {
+            data: [720, 832, 801, 834, 1190, 1230, 1220],
+            name: "Circle",
+            symbol: "circle",
+            symbolSize: 10,
+          },
+          {
+            data: [620, 732, 701, 734, 1090, 1130, 1120],
+            name: "Diamond",
+            symbol: "diamond",
+            symbolSize: 14,
+          },
+          {
+            data: [520, 632, 601, 634, 990, 1030, 1020],
+            name: "Triangle",
+            symbol: "triangle",
+            symbolSize: 12,
+          },
+          {
+            data: [420, 532, 501, 534, 890, 930, 920],
+            name: "Rect",
+            symbol: "rect",
+            symbolSize: 12,
+          },
+          {
+            data: [320, 432, 401, 434, 790, 830, 820],
+            name: "Pin",
+            symbol: "pin",
+            symbolSize: 16,
+          },
+          {
+            data: [220, 332, 301, 334, 690, 730, 720],
+            name: "Arrow",
+            symbol: "arrow",
+            symbolSize: 14,
+          },
+          {
+            data: [120, 232, 201, 234, 590, 630, 620],
+            name: "Round rect",
+            symbol: "roundRect",
+            symbolSize: 12,
+          },
+          {
+            data: [20, 132, 101, 134, 490, 530, 520],
+            name: "None",
+            symbol: "none",
+          },
+        ])
+        .legendShow({}, { top: 140 });
+  });
+</script>
+```
+
+---
+
+## Color Palettes
+
+Use the palette attribute to apply another Synergy chart color palette to the area series.
+
+```html
+<syn-chart id="area-series-palettes" palette="sequential-01"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#area-series-palettes");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesArea([
+          {
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+          },
+          {
+            data: [620, 732, 701, 734, 1090, 1130, 1120],
+          },
+          {
+            data: [420, 532, 501, 534, 890, 930, 920],
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
+## Custom Colors
+
+By default, each area series is assigned a color from the chart's categorical color palette. Use the colors option to provide explicit colors instead. Colors are repeated cyclically when fewer colors than data points are provided.
+
+```html
+<syn-chart id="area-series-custom-colors"></syn-chart>
+<script type="module">
+  // To use Synergy chart colors, import the resolved chart tokens. The chart
+  // configuration currently requires hex values, which can be retrieved
+  // directly from the chart tokens object:
+  //
+  // import { ResolvedTokens as ChartTokens } from '@synergy-design-system/tokens/charts/resolved';
+
+  const getChartColor = (token) => {
+    return ChartTokens[token]["light"];
+  };
+
+  const charts = document.querySelectorAll("#area-series-custom-colors");
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      type: "category",
+      name: "Days",
+    },
+    yAxis: { type: "value", name: "Values" },
+    color: [
+      getChartColor("SynChartSequential02_80"),
+      getChartColor("SynChartSequential02_70"),
+      getChartColor("SynChartSequential02_50"),
+    ],
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.baseConfig(baseConfig).seriesArea([
+        {
+          data: [820, 932, 901, 934, 1290, 1330, 1320],
+          name: "Series A",
+        },
+        {
+          data: [620, 732, 701, 734, 1090, 1130, 1120],
+          name: "Series B",
+        },
+        {
+          data: [420, 532, 501, 534, 890, 930, 920],
+          name: "Series C",
+        },
+      ]);
+  });
+</script>
+```
+
+---
+
+## Positive And Negative Values
+
+Area charts can display both positive and negative values, filling each data point relative to the configured area origin.
+
+```html
+<syn-chart id="area-series-positive-and-negative-values"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll(
+    "#area-series-positive-and-negative-values",
+  );
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesArea([
+          {
+            data: [-820, 932, -901, 934, -1290, 1330, 1320],
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
+## Origin
+
+Use the areaStyle.origin option to choose the baseline from which an area is filled. Valid values:- auto fills the area between the axis line and the data (default).- start fills between the minimum axis value and the data.- end fills between the maximum axis value and the data.- A number fills between that specified value and the data.
+
+```html
+<div
+  style="
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: var(--syn-spacing-medium);
+  "
+>
+  <div>
+    <span style="display: block; margin-bottom: var(--syn-spacing-medium)"
+      >Origin: auto</span
+    >
+    <syn-chart class="area-series-origin" data-origin='"auto"'></syn-chart>
+  </div>
+
+  <div>
+    <span style="display: block; margin-bottom: var(--syn-spacing-medium)"
+      >Origin: start</span
+    >
+    <syn-chart class="area-series-origin" data-origin='"start"'></syn-chart>
+  </div>
+
+  <div>
+    <span style="display: block; margin-bottom: var(--syn-spacing-medium)"
+      >Origin: end</span
+    >
+    <syn-chart class="area-series-origin" data-origin='"end"'></syn-chart>
+  </div>
+
+  <div>
+    <span style="display: block; margin-bottom: var(--syn-spacing-medium)"
+      >Origin: 500</span
+    >
+    <syn-chart class="area-series-origin" data-origin="500"></syn-chart>
+  </div>
+</div>
+<script type="module">
+  const charts = document.querySelectorAll(".area-series-origin");
+
+  charts.forEach((chart) => {
+    const origin = JSON.parse(chart.dataset.origin);
+
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesArea([
+          {
+            areaStyle: { origin },
+            data: [-620, -320, 200, 734, 1090, 530, -120],
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
+## Stack
+
+The stack value names a stack group. Area series with the same stack value on the same category axis are stacked on top of one another. Use stackStrategy to control how values are accumulated:- samesign stacks a value only when it has the same sign as the current stack total (default)- all stacks values regardless of whether they are positive or negative- positive stacks only positive values- negative stacks only negative values
+
+```html
+<div
+  style="
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: var(--syn-spacing-medium);
+  "
+>
+  <div style="min-width: 0">
+    <span style="display: block; margin-bottom: var(--syn-spacing-medium)">
+      Stack strategy: samesign
+    </span>
+    <syn-chart
+      class="area-series-stack"
+      data-stack-strategy="samesign"
+    ></syn-chart>
+  </div>
+
+  <div style="min-width: 0">
+    <span style="display: block; margin-bottom: var(--syn-spacing-medium)">
+      Stack strategy: all
+    </span>
+    <syn-chart class="area-series-stack" data-stack-strategy="all"></syn-chart>
+  </div>
+
+  <div style="min-width: 0">
+    <span style="display: block; margin-bottom: var(--syn-spacing-medium)">
+      Stack strategy: positive
+    </span>
+    <syn-chart
+      class="area-series-stack"
+      data-stack-strategy="positive"
+    ></syn-chart>
+  </div>
+
+  <div style="min-width: 0">
+    <span style="display: block; margin-bottom: var(--syn-spacing-medium)">
+      Stack strategy: negative
+    </span>
+    <syn-chart
+      class="area-series-stack"
+      data-stack-strategy="negative"
+    ></syn-chart>
+  </div>
+</div>
+<script type="module">
+  const charts = document.querySelectorAll(".area-series-stack");
+  const seriesData = [
+    [400, -400, 400, -400],
+    [200, -200, -200, 200],
+  ];
+
+  charts.forEach((chart) => {
+    const stackStrategy = chart.dataset.stackStrategy;
+
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: [
+              "Both positive",
+              "Both negative",
+              "1. positive, 2. negative",
+              "1. negative, 2. positive",
+            ],
+            type: "category",
+            name: "Days",
+            axisLabel: {
+              interval: 0,
+              width: 70,
+              overflow: "break",
+            },
+          },
+          yAxis: { min: -1000, max: 1000, type: "value", name: "Values" },
+        })
+        .seriesArea(
+          seriesData.map((data, index) => ({
+            data,
+            name: "Series " + (index + 1),
+            stack: "total",
+            stackStrategy,
+          })),
+        )
+        .legendShow();
+  });
+</script>
+```
+
+---
+
+## Focus On Hover
+
+Set emphasis.focus to series to highlight the hovered area series and de-emphasize the others.
+
+```html
+<syn-chart id="area-series-focus"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#area-series-focus");
+  const seriesData = [
+    [820, 932, 901, 934, 1290, 1330, 1320],
+    [620, 732, 701, 734, 1090, 1130, 1120],
+    [420, 532, 501, 534, 890, 930, 920],
+  ];
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesArea(
+          seriesData.map((data, index) => ({
+            data,
+            emphasis: {
+              focus: "series",
+            },
+          })),
+        );
+  });
+</script>
+```
+
+---
+
+## Tooltip
+
+Enable contextual data point details with the tooltipShow() preset. The tooltip displays labels and values as users interact with the chart.
+
+```html
+<syn-chart id="area-series-tooltip"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#area-series-tooltip");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesArea([
+          {
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            name: "Series A",
+          },
+          {
+            data: [620, 732, 701, 734, 1090, 1130, 1120],
+            name: "Series B",
+          },
+        ])
+        .tooltipShow();
+  });
+</script>
+```
+
+---
+
+## With Legend
+
+Use legendShow() to display a legend for named series. Series names become the legend labels, and users can toggle series visibility interactively.
+
+```html
+<syn-chart id="area-series-legend"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#area-series-legend");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          legend: { selectedMode: "multiple" },
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesArea([
+          {
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            name: "Series A",
+          },
+          {
+            data: [620, 732, 701, 734, 1090, 1130, 1120],
+            name: "Series B",
+          },
+          {
+            data: [420, 532, 501, 534, 890, 930, 920],
+            name: "Series C",
+          },
+        ])
+        .legendShow();
+  });
+</script>
+```
+
+---
+
+## Zoom
+
+Configure dataZoom to let users focus on a subset of an area chart's data. The slider provides handles for selecting the visible range.
+
+```html
+<syn-chart id="area-series-zoom"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#area-series-zoom");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          dataZoom: [{ type: "slider", start: 30, end: 70 }],
+          grid: { bottom: 120 },
+          xAxis: {
+            data: Array.from({ length: 30 }, (_, index) => {
+              const date = new Date(2026, 0, 1 + index);
+              return date.toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+              });
+            }),
+            type: "category",
+            name: "Date",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesArea([
+          {
+            data: [
+              820, 932, 901, 934, 1290, 1330, 1320, 620, 732, 701, 734, 1090,
+              1130, 1120, 420, 532, 501, 534, 890, 930, 920, 320, 432, 401, 434,
+              790, 830, 820, 220, 332,
+            ],
+            name: "Series A",
+          },
+          {
+            data: [
+              450, 680, 550, 890, 720, 850, 610, 1100, 950, 820, 1050, 650, 780,
+              560, 920, 1200, 680, 750, 1040, 590, 875, 1150, 740, 920, 680,
+              1080, 620, 950, 1220, 750,
+            ],
+            name: "Series B",
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
+## Default
+
+Use the seriesAreaRange preset function to create area range charts. This preset accepts each data point as a pair of lower and upper values and automatically generates the boundary lines, filled area and tooltip configuration. Its optional second argument accepts line series options that are merged into both boundary series and can override their defaults.Alternatively, an area range can be configured using two stacked line series. Both series must use the same stack and name value. The first series contains the lower bound values and has its tooltip disabled. The second series contains the difference between the upper and lower values (upper - lower) and defines an areaStyle to render the shaded range. To display the actual range in the tooltip, format the second series' tooltip value using the original lower and upper values rather than the calculated difference values.
+
+```html
+<syn-chart id="area-range-series-default"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#area-range-series-default");
+
+  const lower = [620, 732, 701, 734, 1090, 1130, 1120];
+  const upper = [820, 1032, 901, 1134, 1390, 1430, 1320];
+  charts.forEach((chart) => {
+    chart.config = {
+      xAxis: {
+        data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        type: "category",
+        name: "Days",
+      },
+      yAxis: { type: "value", name: "Values" },
+      tooltip: {},
+      series: [
+        {
+          data: lower,
+          stack: "arearange",
+          name: "Series A",
+          type: "line",
+          tooltip: {
+            show: false,
+          },
+        },
+        {
+          data: upper.map((value, index) => value - lower[index]),
+          stack: "arearange",
+          type: "line",
+          name: "Series A",
+          areaStyle: { opacity: 0.2 },
+          tooltip: {
+            valueFormatter: (_, dataIndex) =>
+              lower[dataIndex] + " - " + upper[dataIndex],
+          },
+        },
+      ],
+    };
+  });
+</script>
+```
+
+---
+
+## Curved Line
+
+Set smooth: true to curve the upper and lower boundaries of the range.
+
+```html
+<syn-chart id="area-range-series-curved"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#area-range-series-curved");
+
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      type: "category",
+      name: "Days",
+    },
+    yAxis: { type: "value", name: "Values" },
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.baseConfig(baseConfig).seriesAreaRange(
+        [
+          [620, 820],
+          [732, 932],
+          [701, 901],
+          [734, 934],
+          [1090, 1290],
+          [1130, 1330],
+          [1120, 1320],
+        ],
+        { smooth: true },
+      );
+  });
+</script>
+```
+
+---
+
+## Hidden Line
+
+Set lineStyle.width to 0 and configure symbol to show data point markers. When lines are hidden, only the filled range and its markers remain for a more minimal, range-focused visualization.
+
+```html
+<syn-chart id="area-range-series-hidden"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#area-range-series-hidden");
+
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      type: "category",
+      name: "Days",
+    },
+    yAxis: { type: "value", name: "Values" },
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.baseConfig(baseConfig).seriesAreaRange(
+        [
+          [620, 820],
+          [732, 932],
+          [701, 901],
+          [734, 934],
+          [1090, 1290],
+          [1130, 1330],
+          [1120, 1320],
+        ],
+        {
+          lineStyle: {
+            width: 0,
+          },
+          symbol: "circle",
+        },
+      );
+  });
+</script>
+```
+
+---
+
+## Line Styles And Widths
+
+Customize range boundary lines with solid, dashed or dotted styles, and adjust their width. Use distinct styles to differentiate multiple area range series
+
+```html
+<syn-chart id="area-range-series-line-styles"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#area-range-series-line-styles");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesAreaRange(
+          [
+            [620, 820],
+            [732, 932],
+            [701, 901],
+            [734, 934],
+            [1090, 1290],
+            [1130, 1330],
+            [1120, 1320],
+          ],
+          {
+            lineStyle: { type: "solid", width: 2 },
+            name: "Solid, 2 px",
+          },
+        )
+        .seriesAreaRange(
+          [
+            [370, 520],
+            [482, 682],
+            [451, 631],
+            [484, 714],
+            [840, 1040],
+            [880, 1080],
+            [870, 1070],
+          ],
+          {
+            lineStyle: { type: "dashed", width: 4 },
+            name: "Dashed, 4 px",
+          },
+        )
+        .seriesAreaRange(
+          [
+            [120, 270],
+            [232, 382],
+            [201, 351],
+            [234, 384],
+            [590, 740],
+            [630, 780],
+            [620, 770],
+          ],
+          {
+            lineStyle: { type: "dotted", width: 6 },
+            name: "Dotted, 6 px",
+          },
+        )
+        .legendShow();
+  });
+</script>
+```
+
+---
+
+## Symbol Styles And Sizes
+
+Use symbol and symbolSize to choose the marker shape and size for area range data points. Set symbol to none to hide the markers.
+
+```html
+<syn-chart id="area-range-series-symbols"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#area-range-series-symbols");
+
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      type: "category",
+      name: "Days",
+    },
+    yAxis: { type: "value", name: "Values" },
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesAreaRange(
+          [
+            [7170, 7470],
+            [7282, 7582],
+            [7251, 7551],
+            [7284, 7584],
+            [7640, 7940],
+            [7680, 7980],
+            [7670, 7970],
+          ],
+          {
+            name: "Empty circle",
+            symbol: "emptyCircle",
+            symbolSize: 8,
+          },
+        )
+        .seriesAreaRange(
+          [
+            [6270, 6570],
+            [6382, 6682],
+            [6351, 6651],
+            [6384, 6684],
+            [6740, 7040],
+            [6780, 7080],
+            [6770, 7070],
+          ],
+          {
+            name: "Circle",
+            symbol: "circle",
+            symbolSize: 10,
+          },
+        )
+        .seriesAreaRange(
+          [
+            [5370, 5670],
+            [5482, 5782],
+            [5451, 5751],
+            [5484, 5784],
+            [5840, 6140],
+            [5880, 6180],
+            [5870, 6170],
+          ],
+          {
+            name: "Diamond",
+            symbol: "diamond",
+            symbolSize: 14,
+          },
+        )
+        .seriesAreaRange(
+          [
+            [4470, 4770],
+            [4582, 4882],
+            [4551, 4851],
+            [4584, 4884],
+            [4940, 5240],
+            [4980, 5280],
+            [4970, 5270],
+          ],
+          {
+            name: "Triangle",
+            symbol: "triangle",
+            symbolSize: 12,
+          },
+        )
+        .seriesAreaRange(
+          [
+            [3570, 3870],
+            [3682, 3982],
+            [3651, 3951],
+            [3684, 3984],
+            [4040, 4340],
+            [4080, 4380],
+            [4070, 4370],
+          ],
+          {
+            name: "Rect",
+            symbol: "rect",
+            symbolSize: 12,
+          },
+        )
+        .seriesAreaRange(
+          [
+            [2670, 2970],
+            [2782, 3082],
+            [2751, 3051],
+            [2784, 3084],
+            [3140, 3440],
+            [3180, 3480],
+            [3170, 3470],
+          ],
+          {
+            name: "Pin",
+            symbol: "pin",
+            symbolSize: 16,
+          },
+        )
+        .seriesAreaRange(
+          [
+            [1770, 2070],
+            [1882, 2182],
+            [1851, 2151],
+            [1884, 2184],
+            [2240, 2540],
+            [2280, 2580],
+            [2270, 2570],
+          ],
+          {
+            name: "Arrow",
+            symbol: "arrow",
+            symbolSize: 14,
+          },
+        )
+        .seriesAreaRange(
+          [
+            [870, 1170],
+            [982, 1282],
+            [951, 1251],
+            [984, 1284],
+            [1340, 1640],
+            [1380, 1680],
+            [1370, 1670],
+          ],
+          {
+            name: "Round rect",
+            symbol: "roundRect",
+            symbolSize: 12,
+          },
+        )
+        .seriesAreaRange(
+          [
+            [30, 270],
+            [82, 382],
+            [51, 351],
+            [84, 384],
+            [440, 740],
+            [480, 780],
+            [470, 770],
+          ],
+          {
+            name: "None",
+            symbol: "none",
+          },
+        )
+        .legendShow({}, { top: 140 });
+  });
+</script>
+```
+
+---
+
+## Color Palettes
+
+Set the chart's palette attribute to apply a Synergy chart color palette to area range series.
+
+```html
+<syn-chart id="area-range-series-palettes" palette="sequential-01"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#area-range-series-palettes");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesAreaRange([
+          [620, 820],
+          [732, 932],
+          [701, 901],
+          [734, 934],
+          [1090, 1290],
+          [1130, 1330],
+          [1120, 1320],
+        ])
+        .seriesAreaRange([
+          [370, 520],
+          [482, 682],
+          [451, 631],
+          [484, 714],
+          [840, 1040],
+          [880, 1080],
+          [870, 1070],
+        ])
+        .seriesAreaRange([
+          [120, 270],
+          [232, 382],
+          [201, 351],
+          [234, 384],
+          [590, 740],
+          [630, 780],
+          [620, 770],
+        ]);
+  });
+</script>
+```
+
+---
+
+## Custom Colors
+
+By default, each series is assigned a color from the chart's categorical color palette. Use the colors option to provide explicit colors instead. Colors are repeated cyclically when fewer colors than data points are provided.
+
+```html
+<syn-chart id="area-range-series-custom-colors"></syn-chart>
+<script type="module">
+  // To use Synergy chart colors, import the resolved chart tokens. The chart
+  // configuration currently requires hex values, which can be retrieved
+  // directly from the chart tokens object:
+  //
+  // import { ResolvedTokens as ChartTokens } from '@synergy-design-system/tokens/charts/resolved';
+
+  const getChartColor = (token) => {
+    return ChartTokens[token]["light"];
+  };
+
+  const charts = document.querySelectorAll("#area-range-series-custom-colors");
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      type: "category",
+      name: "Days",
+    },
+    yAxis: { type: "value", name: "Values" },
+    color: [
+      getChartColor("SynChartSequential02_80"),
+      getChartColor("SynChartSequential02_70"),
+      getChartColor("SynChartSequential02_50"),
+    ],
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesAreaRange([
+          [620, 820],
+          [732, 932],
+          [701, 901],
+          [734, 934],
+          [1090, 1290],
+          [1130, 1330],
+          [1120, 1320],
+        ])
+        .seriesAreaRange([
+          [370, 520],
+          [482, 682],
+          [451, 631],
+          [484, 714],
+          [840, 1040],
+          [880, 1080],
+          [870, 1070],
+        ])
+        .seriesAreaRange([
+          [120, 270],
+          [232, 382],
+          [201, 351],
+          [234, 384],
+          [590, 740],
+          [630, 780],
+          [620, 770],
+        ]);
+  });
+</script>
+```
+
+---
+
+## Positive And Negative Values
+
+Area ranges can cross zero and include both positive and negative values. The chart displays the full lower-to-upper interval for each category.
+
+```html
+<syn-chart id="area-range-series-positive-and-negative-values"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll(
+    "#area-range-series-positive-and-negative-values",
+  );
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesAreaRange([
+          [-280, -120],
+          [-220, -40],
+          [-80, 140],
+          [50, 260],
+          [120, 290],
+          [-170, 180],
+          [-260, 240],
+        ]);
+  });
+</script>
+```
+
+---
+
+## Tooltip
+
+Enable contextual values for area range data points with the tooltipShow() preset. Give each series a name to identify it in the tooltip.
+
+```html
+<syn-chart id="area-range-series-tooltip"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#area-range-series-tooltip");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesAreaRange(
+          [
+            [620, 820],
+            [732, 932],
+            [701, 901],
+            [734, 934],
+            [1090, 1290],
+            [1130, 1330],
+            [1120, 1320],
+          ],
+          {
+            name: "Series A",
+          },
+        )
+        .seriesAreaRange(
+          [
+            [370, 520],
+            [482, 682],
+            [451, 631],
+            [484, 714],
+            [840, 1040],
+            [880, 1080],
+            [870, 1070],
+          ],
+          {
+            name: "Series B",
+          },
+        )
+        .seriesAreaRange(
+          [
+            [120, 270],
+            [232, 382],
+            [201, 351],
+            [234, 384],
+            [590, 740],
+            [630, 780],
+            [620, 770],
+          ],
+          {
+            name: "Series C",
+          },
+        )
+        .tooltipShow();
+  });
+</script>
+```
+
+---
+
+## With Legend
+
+Use legendShow() to display a legend for named area range series. Users can select legend entries to toggle the corresponding ranges.
+
+```html
+<syn-chart id="area-range-series-legend"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#area-range-series-legend");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          legend: { selectedMode: "multiple" },
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesAreaRange(
+          [
+            [620, 820],
+            [732, 932],
+            [701, 901],
+            [734, 934],
+            [1090, 1290],
+            [1130, 1330],
+            [1120, 1320],
+          ],
+          {
+            name: "Series A",
+          },
+        )
+        .seriesAreaRange(
+          [
+            [370, 520],
+            [482, 682],
+            [451, 631],
+            [484, 714],
+            [840, 1040],
+            [880, 1080],
+            [870, 1070],
+          ],
+          {
+            name: "Series B",
+          },
+        )
+        .seriesAreaRange(
+          [
+            [120, 270],
+            [232, 382],
+            [201, 351],
+            [234, 384],
+            [590, 740],
+            [630, 780],
+            [620, 770],
+          ],
+          {
+            name: "Series C",
+          },
+        )
+        .legendShow();
+  });
+</script>
+```
+
+---
+
+## Default
+
 The donut chart can either be configured via config with type: 'synDonut' or with the seriesDonut preset function.
 
 ```html

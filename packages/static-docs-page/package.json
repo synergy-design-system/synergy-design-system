@@ -20,7 +20,7 @@
     "@synergy-design-system/react": "workspace:^",
     "@synergy-design-system/styles": "workspace:^",
     "@synergy-design-system/tokens": "workspace:^",
-    "astro": "^7.3.2",
+    "astro": "^7.3.8",
     "astro-expressive-code": "^0.44.2",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"

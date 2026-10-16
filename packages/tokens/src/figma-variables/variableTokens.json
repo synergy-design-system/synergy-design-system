@@ -285,8 +285,8 @@
         "VariableID:36102:6346",
         "VariableID:36102:6347",
         "VariableID:36102:6348",
-        "VariableID:36102:6349",
         "VariableID:36102:6355",
+        "VariableID:36102:6349",
         "VariableID:36102:6350",
         "VariableID:24741:120375",
         "VariableID:24741:120376",
@@ -458,8 +458,8 @@
         "VariableID:42207:355596",
         "VariableID:42036:164762",
         "VariableID:36102:6212",
-        "VariableID:40239:237186",
         "VariableID:36102:6239",
+        "VariableID:40239:237186",
         "VariableID:36102:6240",
         "VariableID:36102:6241",
         "VariableID:36102:6243",
@@ -1251,7 +1251,8 @@
       "remote": false,
       "resolvedType": "FLOAT",
       "scopes": [
-        "OPACITY"
+        "OPACITY",
+        "COLOR_OPACITY"
       ],
       "valuesByMode": {
         "28:3": 50,
@@ -14896,28 +14897,52 @@
       "scopes": [],
       "valuesByMode": {
         "28:3": {
-          "a": 0.5,
-          "b": 0.22745098173618317,
-          "g": 0.21568627655506134,
-          "r": 0.1921568661928177
+          "color": {
+            "a": 1,
+            "b": 0.22745098173618317,
+            "g": 0.21568627655506134,
+            "r": 0.1921568661928177
+          },
+          "opacity": {
+            "id": "VariableID:17105:134540",
+            "type": "VARIABLE_ALIAS"
+          }
         },
         "36102:0": {
-          "a": 0.5,
-          "b": 0.22745098173618317,
-          "g": 0.21568627655506134,
-          "r": 0.1921568661928177
+          "color": {
+            "a": 1,
+            "b": 0.22745098173618317,
+            "g": 0.21568627655506134,
+            "r": 0.1921568661928177
+          },
+          "opacity": {
+            "id": "VariableID:17105:134540",
+            "type": "VARIABLE_ALIAS"
+          }
         },
         "36102:1": {
-          "a": 0.5,
-          "b": 0.05098039284348488,
-          "g": 0.05098039284348488,
-          "r": 0.05098039284348488
+          "color": {
+            "a": 1,
+            "b": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "r": 0.05098039284348488
+          },
+          "opacity": {
+            "id": "VariableID:17105:134540",
+            "type": "VARIABLE_ALIAS"
+          }
         },
         "36102:2": {
-          "a": 0.5,
-          "b": 0.05098039284348488,
-          "g": 0.05098039284348488,
-          "r": 0.05098039284348488
+          "color": {
+            "a": 1,
+            "b": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "r": 0.05098039284348488
+          },
+          "opacity": {
+            "id": "VariableID:17105:134540",
+            "type": "VARIABLE_ALIAS"
+          }
         }
       },
       "variableCollectionId": "VariableCollectionId:28:527"
@@ -26687,7 +26712,9 @@
       "remote": false,
       "resolvedType": "FLOAT",
       "scopes": [
-        "ALL_SCOPES"
+        "WIDTH_HEIGHT",
+        "GAP",
+        "FONT_VARIATIONS"
       ],
       "valuesByMode": {
         "28:3": 6,

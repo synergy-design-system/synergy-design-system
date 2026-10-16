@@ -1070,8 +1070,8 @@ importers:
         version: 6.0.3
     optionalDependencies:
       '@toon-format/toon':
-        specifier: ^2.3.1
-        version: 2.3.1
+        specifier: ^4.4.0
+        version: 4.4.0
       tiktoken:
         specifier: ^1.0.22
         version: 1.0.22
@@ -4248,8 +4248,8 @@ packages:
   '@tokens-studio/types@0.5.2':
     resolution: {integrity: sha512-rzMcZP0bj2E5jaa7Fj0LGgYHysoCrbrxILVbT0ohsCUH5uCHY/u6J7Qw/TE0n6gR9Js/c9ZO9T8mOoz0HdLMbA==}
 
-  '@toon-format/toon@2.3.1':
-    resolution: {integrity: sha512-sWqEMeAJGMda9qRrfPKrX3C4c33CO9SJuvJzzrcBEn5sbDB+k6pSLkDsfN0rVnLQwR97MV3sDgVbcxQNsq8xVw==}
+  '@toon-format/toon@4.4.0':
+    resolution: {integrity: sha512-A6UcsVoWbNdhdLNhJbe6JpRlocmf/DZGG57fur3bd8oQtsjBaKWo2hHbOU2zTuy+byUmLIOyP1xJeitopCZzpQ==}
 
   '@ts-morph/common@0.28.1':
     resolution: {integrity: sha512-W74iWf7ILp1ZKNYXY5qbddNaml7e9Sedv5lvU1V8lftlitkc9Pq1A+jlH23ltDgWYeZFFEqGCD1Ies9hqu3O+g==}
@@ -12959,7 +12959,7 @@ snapshots:
 
   '@tokens-studio/types@0.5.2': {}
 
-  '@toon-format/toon@2.3.1':
+  '@toon-format/toon@4.4.0':
     optional: true
 
   '@ts-morph/common@0.28.1':

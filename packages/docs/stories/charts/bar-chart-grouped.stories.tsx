@@ -203,7 +203,7 @@ export const FixedValueRange: Story = {
           type: 'category',
         },
         xAxis: {
-          min: 60,
+          min: 40,
           max: 200,
           name: 'Values',
           type: 'value',

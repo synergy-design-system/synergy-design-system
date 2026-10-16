@@ -1513,7 +1513,7 @@ Use min and max on the value axis to set explicit scale boundaries. Fixed ranges
       type: "category",
     },
     xAxis: {
-      min: 60,
+      min: 40,
       max: 200,
       name: "Values",
       type: "value",

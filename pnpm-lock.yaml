@@ -1032,8 +1032,8 @@ importers:
         specifier: ^3.0.3
         version: 3.0.3(postcss@8.5.30)
       postcss-import:
-        specifier: ^16.2.0
-        version: 16.2.0(postcss@8.5.30)
+        specifier: ^17.0.1
+        version: 17.0.1(postcss@8.5.30)
       postcss-url:
         specifier: ^10.1.4
         version: 10.1.4(postcss@8.5.30)

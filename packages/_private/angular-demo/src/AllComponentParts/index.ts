@@ -1,5 +1,7 @@
 export * from './Accordion.js';
 export * from './Alert.js';
+export * from './AreaChart.js';
+export * from './AreaRangeChart.js';
 export * from './Badge.js';
 export * from './Breadcrumb.js';
 export * from './Button.js';

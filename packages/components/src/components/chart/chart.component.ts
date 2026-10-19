@@ -20,7 +20,12 @@ import { type ChartPalette, PALETTE_TOKENS } from './chart.palettes.js';
 import { resolveConfigInput } from './configs/config.js';
 import type { ChartConfigType, ECConfig } from './types.js';
 import { applyAxisDefaultsPreprocessor } from './configs/axes/utilities.js';
-import { getCurrentThemeFromBodyClass, getRealStyleValue, setThemeFromBodyClass } from './themes/utilities.js';
+import {
+  SYNERGY_THEMES,
+  getRealStyleValue,
+  getThemeModeFromBodyClass,
+  setThemeFromBodyClass,
+} from './themes/utilities.js';
 import { getSynergyTheme } from './themes/theme.js';
 import { segmentInstall } from './configs/series/segment/install.js';
 import { donutInstall } from './configs/series/donut/install.js';
@@ -169,6 +174,10 @@ export default class SynChart extends SynergyElement {
     }
   }
 
+  private applyChartTheme(): void {
+    this.chartInstance.setTheme(getThemeModeFromBodyClass() === 'dark' ? 'dark' : 'default');
+  }
+
   /**
    * Selects the rendering backend based on the configured series types.
    *
@@ -208,16 +217,13 @@ export default class SynChart extends SynergyElement {
     super.connectedCallback();
     registerTheme('default', getSynergyTheme('light'));
     registerTheme('dark', getSynergyTheme('dark'));
-    const synergyThemes = ['syn-theme-', 'syn-sick2025-'];
-    const darkThemes = ['syn-theme-dark', 'syn-sick2025-dark'];
-
     // Add mutation observer to detect changes of light dark mode and get the current mode to apply the correct theme
     // TODO: this is currently only a first prototype for theme switch. We need to add a more robust solution, which might also check if any other parent element has a synergy theme class.
     // Therefore the global theme story might not be the best solution, but maybe a chart instance theme store?
     this.themeObserver = new MutationObserver((entries) => {
       const themeChanged = entries.some((entry) => {
-        const oldTheme = entry.oldValue?.split(' ').find((cls) => synergyThemes.some((theme) => cls.includes(theme)));
-        const newTheme = (entry.target as HTMLElement).classList.value.split(' ').find((cls) => synergyThemes.some((theme) => cls.includes(theme)));
+        const oldTheme = entry.oldValue?.split(' ').find((cls) => SYNERGY_THEMES.some((theme) => cls.includes(theme)));
+        const newTheme = (entry.target as HTMLElement).classList.value.split(' ').find((cls) => SYNERGY_THEMES.some((theme) => cls.includes(theme)));
         return oldTheme !== newTheme;
       });
       if (themeChanged) {
@@ -228,8 +234,7 @@ export default class SynChart extends SynergyElement {
           // We need to reapply the config as otherwise the theme change will not be applied.
           // See caveat section of https://echarts.apache.org/en/api.html#echartsInstance.setTheme
           this.chartInstance.setOption(this.resolvedConfig, { notMerge: true });
-          const currentTheme = getCurrentThemeFromBodyClass();
-          this.chartInstance.setTheme(darkThemes.includes(currentTheme) ? 'dark' : 'default');
+          this.applyChartTheme();
 
           this.applyPalette();
         }
@@ -258,6 +263,8 @@ export default class SynChart extends SynergyElement {
       }
       // Apply palette after config so colors blend in without replacing the full config
       this.applyPalette();
+      // Set initial theme
+      this.applyChartTheme();
     }
   }
 

@@ -1373,7 +1373,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Set `barWidth` to control bar thickness. A number specifies a fixed width in pixels, while a percentage string sets the width relative to the available category space and adapts to the chart size.",
+          "value": "Set `barWidth` to control bar thickness. A number specifies a fixed width in pixels, while a percentage string sets the width relative to the available category space and adapts to the chart size. By default, bars are responsive but capped at 24 px by the theme's `barMaxWidth` setting. To use bars wider than 24 px, also increase `barMaxWidth` on the series.",
           "type": "text"
         }
       },

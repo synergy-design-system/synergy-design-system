@@ -341,7 +341,8 @@ export const CustomBarWidth: Story = {
           .baseConfig(baseConfig)
           .seriesBar([
             {
-              barWidth: 20,
+              barWidth: 40,
+              barMaxWidth: 40,
               data: [120, 180, 150, 80, 70, 110, 130],
             },
             {

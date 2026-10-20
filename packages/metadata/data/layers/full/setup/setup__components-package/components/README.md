@@ -228,7 +228,7 @@ For more detailed information about the `syn-chart` component see the [Charting 
 
 The `<syn-chart>` component allows you to display charts powered by [Apache ECharts](https://echarts.apache.org). Because not every project needs charting functionality, `echarts` is an **optional peer dependency** that must be installed separately.
 
-> **Note:** `syn-chart` is currently **experimental**. Only **line charts** (`series[].type: 'line'`) are supported. Support for additional chart types will be added in future releases.
+> **Note:** `syn-chart` is currently **experimental**. The supported series types are `line`, `bar`, `synGauge`, `synDonut`, and `synSegment`. Support for additional chart types will be added in future releases.
 
 #### Step 1: Install the `echarts` dependency
 

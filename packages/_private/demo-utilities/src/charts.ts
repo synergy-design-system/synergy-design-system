@@ -22,3 +22,10 @@ export const segmentChartConfigCallback: ChartConfigCallback = (handle) => {
   handle
     .seriesSegment(mockData('segmentChartConfigObject'));
 };
+
+export const barChartConfigCallback: ChartConfigCallback = (handle) => {
+  handle
+    .baseConfig(mockData('generalChartConfig'))
+    .seriesBar(mockData('barChartConfigObject'))
+    .axesShowYSplitLines();
+};

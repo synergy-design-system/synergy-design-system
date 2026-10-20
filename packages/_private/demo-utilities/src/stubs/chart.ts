@@ -1,4 +1,5 @@
 import type {
+  BarSeriesOption,
   DonutSeriesPresetOptions, ECConfig, GaugeSeriesPresetOptions, LineSeriesOption,
   SegmentSeriesPresetOptions,
 } from '@synergy-design-system/components/components/chart/types.js';
@@ -53,7 +54,13 @@ export const segmentChartConfigObject: SegmentSeriesPresetOptions = {
   data: [
     { label: 'Segment A', value: 70, weight: 0.7 },
     { label: 'Segment B', value: 55, weight: 0.5 },
-    { label: 'Segment C', value: 30, weight: 0.4},
-    { label: 'Segment D', value: 50, weight: 1},
+    { label: 'Segment C', value: 30, weight: 0.4 },
+    { label: 'Segment D', value: 50, weight: 1 },
   ],
 };
+
+export const barChartConfigObject: BarSeriesOption[] = [
+  { data: [13, 20, 50, 42, 35, 48, 55], name: 'Series 1' },
+  { data: [40, 35, 60, 52, 45, 58, 63], name: 'Series 2' },
+  { data: [22, 50, 46, 38, 44, 53, 49], name: 'Series 3' },
+];

@@ -1392,7 +1392,6 @@ A grouped bar chart is created when multiple bar series share the same category 
       },
       yAxis: {
         name: "Values",
-        splitLine: { show: true },
       },
       series: [
         {
@@ -1437,20 +1436,17 @@ Place categories on the x-axis and values on the y-axis, where bar height repres
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowYSplitLines()
-        .seriesBar([
-          {
-            data: [120, 180, 150, 80, 70, 110, 130],
-          },
-          {
-            data: [80, 130, 100, 70, 90, 160, 140],
-          },
-          {
-            data: [90, 120, 140, 100, 110, 70, 60],
-          },
-        ]);
+      handle.baseConfig(baseConfig).seriesBar([
+        {
+          data: [120, 180, 150, 80, 70, 110, 130],
+        },
+        {
+          data: [80, 130, 100, 70, 90, 160, 140],
+        },
+        {
+          data: [90, 120, 140, 100, 110, 70, 60],
+        },
+      ]);
   });
 </script>
 ```
@@ -1477,20 +1473,17 @@ Place categories on the y-axis and values on the x-axis, where bar length repres
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowXSplitLines()
-        .seriesBar([
-          {
-            data: [120, 180, 150, 80, 70, 110, 130],
-          },
-          {
-            data: [80, 130, 100, 70, 90, 160, 140],
-          },
-          {
-            data: [90, 120, 140, 100, 110, 70, 60],
-          },
-        ]);
+      handle.baseConfig(baseConfig).seriesBar([
+        {
+          data: [120, 180, 150, 80, 70, 110, 130],
+        },
+        {
+          data: [80, 130, 100, 70, 90, 160, 140],
+        },
+        {
+          data: [90, 120, 140, 100, 110, 70, 60],
+        },
+      ]);
   });
 </script>
 ```
@@ -1522,20 +1515,17 @@ Use min and max on the value axis to set explicit scale boundaries. Fixed ranges
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowXSplitLines()
-        .seriesBar([
-          {
-            data: [120, 180, 150, 80, 70, 110, 130],
-          },
-          {
-            data: [80, 130, 100, 70, 90, 160, 140],
-          },
-          {
-            data: [90, 120, 140, 100, 110, 70, 60],
-          },
-        ]);
+      handle.baseConfig(baseConfig).seriesBar([
+        {
+          data: [120, 180, 150, 80, 70, 110, 130],
+        },
+        {
+          data: [80, 130, 100, 70, 90, 160, 140],
+        },
+        {
+          data: [90, 120, 140, 100, 110, 70, 60],
+        },
+      ]);
   });
 </script>
 ```
@@ -1564,20 +1554,17 @@ Bar charts can show negative values such as deficits, losses, or decreases. Bars
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowYSplitLines()
-        .seriesBar([
-          {
-            data: [-120, -180, -150, -80, -70, -110, -130],
-          },
-          {
-            data: [-80, -130, -100, -70, -90, -160, -140],
-          },
-          {
-            data: [-90, -120, -140, -100, -110, -70, -80],
-          },
-        ]);
+      handle.baseConfig(baseConfig).seriesBar([
+        {
+          data: [-120, -180, -150, -80, -70, -110, -130],
+        },
+        {
+          data: [-80, -130, -100, -70, -90, -160, -140],
+        },
+        {
+          data: [-90, -120, -140, -100, -110, -70, -80],
+        },
+      ]);
   });
 </script>
 ```
@@ -1608,20 +1595,17 @@ Bar charts can combine positive and negative values to show gains and losses or 
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowYSplitLines()
-        .seriesBar([
-          {
-            data: [100, -120, 150, -80, 70, -110, 130],
-          },
-          {
-            data: [60, -40, -20, -60, 30, -80, -50],
-          },
-          {
-            data: [120, -70, 50, -90, 80, -40, 140],
-          },
-        ]);
+      handle.baseConfig(baseConfig).seriesBar([
+        {
+          data: [100, -120, 150, -80, 70, -110, 130],
+        },
+        {
+          data: [60, -40, -20, -60, 30, -80, -50],
+        },
+        {
+          data: [120, -70, 50, -90, 80, -40, 140],
+        },
+      ]);
   });
 </script>
 ```
@@ -1630,7 +1614,7 @@ Bar charts can combine positive and negative values to show gains and losses or 
 
 ## Custom Bar Width
 
-Set barWidth to control bar thickness. A number specifies a fixed width in pixels, while a percentage string sets the width relative to the available category space and adapts to the chart size.
+Set barWidth to control bar thickness. A number specifies a fixed width in pixels, while a percentage string sets the width relative to the available category space and adapts to the chart size. By default, bars are responsive but capped at 24 px by the theme's barMaxWidth setting. To use bars wider than 24 px, also increase barMaxWidth on the series.
 
 ```html
 <syn-chart id="bar-series-grouped-bar-width"></syn-chart>
@@ -1650,23 +1634,21 @@ Set barWidth to control bar thickness. A number specifies a fixed width in pixel
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowYSplitLines()
-        .seriesBar([
-          {
-            barWidth: 20,
-            data: [120, 180, 150, 80, 70, 110, 130],
-          },
-          {
-            barWidth: "30%",
-            data: [80, 130, 100, 70, 90, 160, 140],
-          },
-          {
-            barWidth: "10%",
-            data: [90, 120, 140, 100, 110, 70, 60],
-          },
-        ]);
+      handle.baseConfig(baseConfig).seriesBar([
+        {
+          barWidth: 40,
+          barMaxWidth: 40,
+          data: [120, 180, 150, 80, 70, 110, 130],
+        },
+        {
+          barWidth: "30%",
+          data: [80, 130, 100, 70, 90, 160, 140],
+        },
+        {
+          barWidth: "10%",
+          data: [90, 120, 140, 100, 110, 70, 60],
+        },
+      ]);
   });
 </script>
 ```
@@ -1709,20 +1691,17 @@ Bar series use the chart's categorical palette by default. Use the color option 
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowYSplitLines()
-        .seriesBar([
-          {
-            data: [120, 180, 150],
-          },
-          {
-            data: [80, 130, 100],
-          },
-          {
-            data: [90, 120, 140],
-          },
-        ]);
+      handle.baseConfig(baseConfig).seriesBar([
+        {
+          data: [120, 180, 150],
+        },
+        {
+          data: [80, 130, 100],
+        },
+        {
+          data: [90, 120, 140],
+        },
+      ]);
   });
 </script>
 ```
@@ -1766,47 +1745,44 @@ Depending on your use case, choose a categorical palette (up to 12 colors) or a 
 
   categoricalCharts.forEach((categorical) => {
     categorical.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowYSplitLines()
-        .seriesBar([
-          {
-            data: [120, 180, 150],
-          },
-          {
-            data: [80, 130, 100],
-          },
-          {
-            data: [90, 120, 140],
-          },
-          {
-            data: [110, 140, 170],
-          },
-          {
-            data: [70, 100, 130],
-          },
-          {
-            data: [130, 160, 190],
-          },
-          {
-            data: [100, 130, 160],
-          },
-          {
-            data: [60, 90, 120],
-          },
-          {
-            data: [140, 170, 200],
-          },
-          {
-            data: [85, 115, 145],
-          },
-          {
-            data: [125, 155, 185],
-          },
-          {
-            data: [95, 125, 155],
-          },
-        ]);
+      handle.baseConfig(baseConfig).seriesBar([
+        {
+          data: [120, 180, 150],
+        },
+        {
+          data: [80, 130, 100],
+        },
+        {
+          data: [90, 120, 140],
+        },
+        {
+          data: [110, 140, 170],
+        },
+        {
+          data: [70, 100, 130],
+        },
+        {
+          data: [130, 160, 190],
+        },
+        {
+          data: [100, 130, 160],
+        },
+        {
+          data: [60, 90, 120],
+        },
+        {
+          data: [140, 170, 200],
+        },
+        {
+          data: [85, 115, 145],
+        },
+        {
+          data: [125, 155, 185],
+        },
+        {
+          data: [95, 125, 155],
+        },
+      ]);
   });
 
   sequentialCharts.forEach((sequential) => {
@@ -1820,7 +1796,6 @@ Depending on your use case, choose a categorical palette (up to 12 colors) or a 
             getChartColor("SynChartSequential01_50"),
           ],
         })
-        .axesShowYSplitLines()
         .seriesBar([
           {
             data: [120, 180, 150],
@@ -1862,7 +1837,6 @@ Enable a tooltip to inspect bar values on hover. For bar series it is recommende
     chart.config = (handle) =>
       handle
         .baseConfig(baseConfig)
-        .axesShowYSplitLines()
         .seriesBar([
           {
             data: [120, 180, 150, 80, 70, 110, 130],
@@ -1908,7 +1882,6 @@ Use legendShow() to display a legend for named series. Series names become the l
     chart.config = (handle) =>
       handle
         .baseConfig(baseConfig)
-        .axesShowYSplitLines()
         .seriesBar([
           {
             data: [120, 180, 150, 80, 70, 110, 130],
@@ -1936,8 +1909,15 @@ Selection is disabled by default. Set selectedMode to true or 'single' to select
 
 ```html
 <syn-chart id="bar-series-grouped-selected-mode"></syn-chart>
+<div class="selected-container syn-body--small">
+  <div>Select a bar to see the selections here:</div>
+  <div id="bar-series-grouped-selected-info" class="syn-body--x-small"></div>
+</div>
 <script type="module">
   const charts = document.querySelectorAll("#bar-series-grouped-selected-mode");
+  const selectedInfos = document.querySelectorAll(
+    "#bar-series-grouped-selected-info",
+  );
 
   const baseConfig = {
     xAxis: {
@@ -1950,31 +1930,69 @@ Selection is disabled by default. Set selectedMode to true or 'single' to select
     },
   };
 
+  const data = [
+    {
+      selectedMode: true,
+      data: [120, 180, 150, 80, 70, 110, 130],
+      name: "Single / True",
+    },
+    {
+      selectedMode: "series",
+      data: [80, 130, 100, 70, 90, 160, 140],
+      name: "Series",
+    },
+    {
+      selectedMode: "multiple",
+      data: [90, 120, 140, 100, 110, 70, 60],
+      name: "Multiple",
+    },
+  ];
+
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowYSplitLines()
-        .seriesBar([
-          {
-            selectedMode: true,
-            data: [120, 180, 150, 80, 70, 110, 130],
-            name: "Single / True",
-          },
-          {
-            selectedMode: "series",
-            data: [80, 130, 100, 70, 90, 160, 140],
-            name: "Series",
-          },
-          {
-            selectedMode: "multiple",
-            data: [90, 120, 140, 100, 110, 70, 60],
-            name: "Multiple",
-          },
-        ])
-        .legendShow();
+      handle.baseConfig(baseConfig).seriesBar(data).legendShow();
+
+    const instance = chart.getInstance();
+    instance.on("selectchanged", ({ selected }) => {
+      selectedInfos.forEach((selectedInfo) => {
+        selectedInfo.innerHTML = "";
+        if (selectedInfo) {
+          const selections = selected.map((item) => ({
+            dataIndex: item.dataIndex,
+            seriesIndex: item.seriesIndex,
+          }));
+          selections.forEach((item) => {
+            const seriesName = document.createElement("div");
+            const seriesValue = document.createElement("div");
+            const selectedValues = item.dataIndex.map(
+              (index) =>
+                baseConfig.xAxis.data[index] +
+                " (" +
+                data[item.seriesIndex].data[index] +
+                ")",
+            );
+            seriesName.textContent = data[item.seriesIndex].name + ": ";
+            seriesValue.textContent = selectedValues.join(", ");
+            selectedInfo.appendChild(seriesName);
+            selectedInfo.appendChild(seriesValue);
+          });
+        }
+      });
+    });
   });
 </script>
+<style>
+  .selected-container {
+    border: 1px solid var(--syn-panel-border-color);
+    background-color: var(--syn-panel-background-color);
+    height: 80px;
+  }
+  #bar-series-grouped-selected-info {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: var(--syn-spacing-2x-small) var(--syn-spacing-small);
+  }
+</style>
 ```
 
 ---
@@ -1997,7 +2015,6 @@ The bar chart can be configured via the chart config with type: bar or with the 
       },
       yAxis: {
         name: "Values",
-        splitLine: { show: true },
       },
       series: [
         {
@@ -2034,14 +2051,11 @@ Place categories on the x-axis and values on the y-axis, where bar height repres
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowYSplitLines()
-        .seriesBar([
-          {
-            data: [120, 180, 150, 80, 70, 110, 130],
-          },
-        ]);
+      handle.baseConfig(baseConfig).seriesBar([
+        {
+          data: [120, 180, 150, 80, 70, 110, 130],
+        },
+      ]);
   });
 </script>
 ```
@@ -2070,14 +2084,11 @@ Place categories on the y-axis and values on the x-axis, where bar length repres
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowXSplitLines()
-        .seriesBar([
-          {
-            data: [120, 180, 150, 80, 70, 110, 130],
-          },
-        ]);
+      handle.baseConfig(baseConfig).seriesBar([
+        {
+          data: [120, 180, 150, 80, 70, 110, 130],
+        },
+      ]);
   });
 </script>
 ```
@@ -2108,14 +2119,11 @@ Use min and max on the value axis to set explicit scale boundaries. Fixed ranges
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowYSplitLines()
-        .seriesBar([
-          {
-            data: [120, 180, 150, 80, 70, 110, 130],
-          },
-        ]);
+      handle.baseConfig(baseConfig).seriesBar([
+        {
+          data: [120, 180, 150, 80, 70, 110, 130],
+        },
+      ]);
   });
 </script>
 ```
@@ -2144,14 +2152,11 @@ Bar charts can show negative values such as deficits, losses, or decreases. Bars
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowXSplitLines()
-        .seriesBar([
-          {
-            data: [-120, -175, -150, -80, -70, -110, -130],
-          },
-        ]);
+      handle.baseConfig(baseConfig).seriesBar([
+        {
+          data: [-120, -175, -150, -80, -70, -110, -130],
+        },
+      ]);
   });
 </script>
 ```
@@ -2182,14 +2187,11 @@ Bar charts can combine positive and negative values to show gains and losses or 
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowYSplitLines()
-        .seriesBar([
-          {
-            data: [100, -120, 150, -80, 70, -110, 130],
-          },
-        ]);
+      handle.baseConfig(baseConfig).seriesBar([
+        {
+          data: [100, -120, 150, -80, 70, -110, 130],
+        },
+      ]);
   });
 </script>
 ```
@@ -2198,7 +2200,7 @@ Bar charts can combine positive and negative values to show gains and losses or 
 
 ## Custom Bar Width
 
-Set barWidth to control bar thickness. A number specifies a fixed width in pixels, while a percentage string sets the width relative to the available category space and adapts to the chart size.
+Set barWidth to control bar thickness. A number specifies a fixed width in pixels, while a percentage string sets the width relative to the available category space and adapts to the chart size. By default, bars are responsive but capped at 24 px by the theme's barMaxWidth setting. To use bars wider than 24 px, also increase barMaxWidth on the series.
 
 ```html
 <syn-chart id="bar-series-single-fixed-width"></syn-chart>
@@ -2223,28 +2225,23 @@ Set barWidth to control bar thickness. A number specifies a fixed width in pixel
 
   fixedWidthCharts.forEach((fixed) => {
     fixed.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowYSplitLines()
-        .seriesBar([
-          {
-            barWidth: 20,
-            data: [120, 180, 150],
-          },
-        ]);
+      handle.baseConfig(baseConfig).seriesBar([
+        {
+          barWidth: 40,
+          barMaxWidth: 40,
+          data: [120, 180, 150],
+        },
+      ]);
   });
 
   relativeWidthCharts.forEach((relative) => {
     relative.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowYSplitLines()
-        .seriesBar([
-          {
-            barWidth: "30%",
-            data: [120, 180, 150],
-          },
-        ]);
+      handle.baseConfig(baseConfig).seriesBar([
+        {
+          barWidth: "30%",
+          data: [120, 180, 150],
+        },
+      ]);
   });
 </script>
 ```
@@ -2274,10 +2271,7 @@ Bar series use the chart's categorical palette by default. Use the color option 
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowYSplitLines()
-        .seriesBar([{ data: [120, 180, 150] }]);
+      handle.baseConfig(baseConfig).seriesBar([{ data: [120, 180, 150] }]);
   });
 </script>
 ```
@@ -2308,7 +2302,6 @@ Enable a tooltip to inspect bar values on hover. For bar series it is recommende
     chart.config = (handle) =>
       handle
         .baseConfig(baseConfig)
-        .axesShowYSplitLines()
         .seriesBar([
           {
             data: [120, 180, 150, 80, 70, 110, 130],
@@ -2327,8 +2320,13 @@ Selection is disabled by default. Set selectedMode to true or 'single' to select
 
 ```html
 <syn-chart id="bar-series-single-selected-mode"></syn-chart>
+<div class="syn-body--medium">
+  Selected day: <span id="bar-series-selected-day">-</span>
+</div>
 <script type="module">
   const charts = document.querySelectorAll("#bar-series-single-selected-mode");
+  const status = document.querySelectorAll("#bar-series-selected-day");
+  const values = [120, 180, 150, 80, 70, 110, 130];
   const baseConfig = {
     xAxis: {
       data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
@@ -2342,15 +2340,26 @@ Selection is disabled by default. Set selectedMode to true or 'single' to select
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowYSplitLines()
-        .seriesBar([
-          {
-            data: [120, 180, 150, 80, 70, 110, 130],
-            selectedMode: "multiple",
-          },
-        ]);
+      handle.baseConfig(baseConfig).seriesBar([
+        {
+          data: values,
+          selectedMode: "single",
+        },
+      ]);
+
+    const instance = chart.getInstance();
+    instance.on("selectchanged", ({ selected }) => {
+      const selectedIndex = selected.flatMap((item) => item.dataIndex)[0];
+      status.forEach((el) => {
+        el.textContent =
+          selectedIndex !== undefined
+            ? baseConfig.xAxis.data[selectedIndex] +
+              " (" +
+              values[selectedIndex] +
+              ")"
+            : "-";
+      });
+    });
   });
 </script>
 ```
@@ -2374,7 +2383,6 @@ Configure a stacked bar chart with type: 'bar' and a shared stack identifier or 
       },
       yAxis: {
         name: "Values",
-        splitLine: { show: true },
       },
       series: [
         {
@@ -2449,20 +2457,17 @@ Place categories on the x-axis and values on the y-axis, where bar height repres
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowYSplitLines()
-        .seriesBarStacked([
-          {
-            data: [120, 180, 150, 80, 70, 110, 130],
-          },
-          {
-            data: [80, 130, 100, 70, 90, 160, 140],
-          },
-          {
-            data: [90, 120, 140, 100, 110, 70, 60],
-          },
-        ]);
+      handle.baseConfig(baseConfig).seriesBarStacked([
+        {
+          data: [120, 180, 150, 80, 70, 110, 130],
+        },
+        {
+          data: [80, 130, 100, 70, 90, 160, 140],
+        },
+        {
+          data: [90, 120, 140, 100, 110, 70, 60],
+        },
+      ]);
   });
 </script>
 ```
@@ -2491,23 +2496,20 @@ Place categories on the y-axis and values on the x-axis, where bar length repres
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowXSplitLines()
-        .seriesBarStacked(
-          [
-            {
-              data: [120, 180, 150, 80, 70, 110, 130],
-            },
-            {
-              data: [80, 130, 100, 70, 90, 160, 140],
-            },
-            {
-              data: [90, 120, 140, 100, 110, 70, 60],
-            },
-          ],
-          { orientation: "horizontal" },
-        );
+      handle.baseConfig(baseConfig).seriesBarStacked(
+        [
+          {
+            data: [120, 180, 150, 80, 70, 110, 130],
+          },
+          {
+            data: [80, 130, 100, 70, 90, 160, 140],
+          },
+          {
+            data: [90, 120, 140, 100, 110, 70, 60],
+          },
+        ],
+        { orientation: "horizontal" },
+      );
   });
 </script>
 ```
@@ -2537,20 +2539,17 @@ Use min and max on the value axis to set explicit scale boundaries. Fixed ranges
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowYSplitLines()
-        .seriesBarStacked([
-          {
-            data: [120, 180, 150, 80, 70, 110, 130],
-          },
-          {
-            data: [80, 130, 100, 70, 90, 160, 140],
-          },
-          {
-            data: [90, 120, 140, 100, 110, 70, 60],
-          },
-        ]);
+      handle.baseConfig(baseConfig).seriesBarStacked([
+        {
+          data: [120, 180, 150, 80, 70, 110, 130],
+        },
+        {
+          data: [80, 130, 100, 70, 90, 160, 140],
+        },
+        {
+          data: [90, 120, 140, 100, 110, 70, 60],
+        },
+      ]);
   });
 </script>
 ```
@@ -2579,23 +2578,20 @@ Bar charts can show negative values such as deficits, losses, or decreases. Bars
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowXSplitLines()
-        .seriesBarStacked(
-          [
-            {
-              data: [-120, -180, -150, -80, -70, -110, -130],
-            },
-            {
-              data: [-80, -130, -100, -70, -90, -160, -140],
-            },
-            {
-              data: [-90, -120, -140, -100, -110, -70, -80],
-            },
-          ],
-          { orientation: "horizontal" },
-        );
+      handle.baseConfig(baseConfig).seriesBarStacked(
+        [
+          {
+            data: [-120, -180, -150, -80, -70, -110, -130],
+          },
+          {
+            data: [-80, -130, -100, -70, -90, -160, -140],
+          },
+          {
+            data: [-90, -120, -140, -100, -110, -70, -80],
+          },
+        ],
+        { orientation: "horizontal" },
+      );
   });
 </script>
 ```
@@ -2626,20 +2622,85 @@ Bar charts can combine positive and negative values to show gains and losses or 
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowYSplitLines()
-        .seriesBarStacked([
-          {
-            data: [-100, -120, 150, 80, 70, -110, 130],
-          },
-          {
-            data: [60, 40, -20, 60, -30, -80, -50],
-          },
-          {
-            data: [120, -70, 50, -90, 80, 60, 140],
-          },
-        ]);
+      handle.baseConfig(baseConfig).seriesBarStacked([
+        {
+          data: [-100, -120, 150, 80, 70, -110, 130],
+        },
+        {
+          data: [60, 40, -20, 60, -30, -80, -50],
+        },
+        {
+          data: [120, -70, 50, -90, 80, 60, 140],
+        },
+      ]);
+  });
+</script>
+```
+
+---
+
+## Custom Bar Width
+
+Set barWidth to control bar thickness. A number specifies a fixed width in pixels, while a percentage string sets the width relative to the available category space and adapts to the chart size. By default, bars are responsive but capped at 24 px by the theme's barMaxWidth setting. To use bars wider than 24 px, also increase barMaxWidth on the series.
+
+```html
+<syn-chart id="bar-stacked-fixed-width"></syn-chart>
+<syn-chart id="bar-stacked-relative-width"></syn-chart>
+<script type="module">
+  const fixedWidthCharts = document.querySelectorAll(
+    "#bar-stacked-fixed-width",
+  );
+  const relativeWidthCharts = document.querySelectorAll(
+    "#bar-stacked-relative-width",
+  );
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      name: "Days",
+      type: "category",
+    },
+    yAxis: {
+      name: "Values",
+    },
+  };
+
+  fixedWidthCharts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.baseConfig(baseConfig).seriesBarStacked([
+        {
+          barWidth: 30,
+          barMaxWidth: 30,
+          data: [120, 180, 150, 80, 70, 110, 130],
+        },
+        {
+          barWidth: 30,
+          barMaxWidth: 30,
+          data: [80, 130, 100, 70, 90, 160, 140],
+        },
+        {
+          barWidth: 30,
+          barMaxWidth: 30,
+          data: [90, 120, 140, 100, 110, 70, 60],
+        },
+      ]);
+  });
+
+  relativeWidthCharts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.baseConfig(baseConfig).seriesBarStacked([
+        {
+          barWidth: "30%",
+          data: [120, 180, 150, 80, 70, 110, 130],
+        },
+        {
+          barWidth: "30%",
+          data: [80, 130, 100, 70, 90, 160, 140],
+        },
+        {
+          barWidth: "30%",
+          data: [90, 120, 140, 100, 110, 70, 60],
+        },
+      ]);
   });
 </script>
 ```
@@ -2682,20 +2743,17 @@ Bar series use the chart's categorical palette by default. Use the color option 
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowYSplitLines()
-        .seriesBarStacked([
-          {
-            data: [120, 180, 150],
-          },
-          {
-            data: [80, 130, 100],
-          },
-          {
-            data: [90, 120, 140],
-          },
-        ]);
+      handle.baseConfig(baseConfig).seriesBarStacked([
+        {
+          data: [120, 180, 150],
+        },
+        {
+          data: [80, 130, 100],
+        },
+        {
+          data: [90, 120, 140],
+        },
+      ]);
   });
 </script>
 ```
@@ -2739,23 +2797,20 @@ Depending on your use case, choose a categorical palette (up to 12 colors) or a 
 
   categoricalCharts.forEach((categorical) => {
     categorical.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowYSplitLines()
-        .seriesBarStacked([
-          {
-            data: [120, 180, 150],
-          },
-          {
-            data: [80, 130, 100],
-          },
-          {
-            data: [90, 120, 140],
-          },
-          {
-            data: [110, 140, 170],
-          },
-        ]);
+      handle.baseConfig(baseConfig).seriesBarStacked([
+        {
+          data: [120, 180, 150],
+        },
+        {
+          data: [80, 130, 100],
+        },
+        {
+          data: [90, 120, 140],
+        },
+        {
+          data: [110, 140, 170],
+        },
+      ]);
   });
 
   sequentialCharts.forEach((sequential) => {
@@ -2769,7 +2824,6 @@ Depending on your use case, choose a categorical palette (up to 12 colors) or a 
             getChartColor("SynChartSequential01_50"),
           ],
         })
-        .axesShowYSplitLines()
         .seriesBarStacked([
           {
             data: [120, 180, 150],
@@ -2811,7 +2865,6 @@ Enable a tooltip to inspect bar values on hover. For bar series it is recommende
     chart.config = (handle) =>
       handle
         .baseConfig(baseConfig)
-        .axesShowYSplitLines()
         .seriesBarStacked([
           {
             data: [120, 180, 150, 80, 70, 110, 130],
@@ -2857,7 +2910,6 @@ Use legendShow() to display a legend for named series. Series names become the l
     chart.config = (handle) =>
       handle
         .baseConfig(baseConfig)
-        .axesShowYSplitLines()
         .seriesBarStacked([
           {
             data: [120, 180, 150, 80, 70, 110, 130],
@@ -2885,8 +2937,15 @@ Selection is disabled by default. Set selectedMode to true or 'single' to select
 
 ```html
 <syn-chart id="bar-series-stacked-selected-mode"></syn-chart>
+<div class="selected-container syn-body--small">
+  <div>Select a bar to see the selections here:</div>
+  <div id="bar-series-stacked-selected-info" class="syn-body--x-small"></div>
+</div>
 <script type="module">
   const charts = document.querySelectorAll("#bar-series-stacked-selected-mode");
+  const selectedInfos = document.querySelectorAll(
+    "#bar-series-stacked-selected-info",
+  );
 
   const baseConfig = {
     xAxis: {
@@ -2899,31 +2958,67 @@ Selection is disabled by default. Set selectedMode to true or 'single' to select
     },
   };
 
+  const data = [
+    {
+      selectedMode: true,
+      data: [120, 180, 150, 80, 70, 110, 130],
+      name: "Single / True",
+    },
+    {
+      selectedMode: "series",
+      data: [80, 130, 100, 70, 90, 160, 140],
+      name: "Series",
+    },
+    {
+      selectedMode: "multiple",
+      data: [90, 120, 140, 100, 110, 70, 60],
+      name: "Multiple",
+    },
+  ];
+
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle
-        .baseConfig(baseConfig)
-        .axesShowYSplitLines()
-        .seriesBarStacked([
-          {
-            selectedMode: true,
-            data: [120, 180, 150, 80, 70, 110, 130],
-            name: "Single / True",
-          },
-          {
-            selectedMode: "series",
-            data: [80, 130, 100, 70, 90, 160, 140],
-            name: "Series",
-          },
-          {
-            selectedMode: "multiple",
-            data: [90, 120, 140, 100, 110, 70, 60],
-            name: "Multiple",
-          },
-        ])
-        .legendShow();
+      handle.baseConfig(baseConfig).seriesBarStacked(data).legendShow();
+
+    const instance = chart.getInstance();
+    instance.on("selectchanged", ({ selected }) => {
+      selectedInfos.forEach((selectedInfo) => {
+        selectedInfo.innerHTML = "";
+        const selections = selected.map((item) => ({
+          dataIndex: item.dataIndex,
+          seriesIndex: item.seriesIndex,
+        }));
+        selections.forEach((item) => {
+          const seriesName = document.createElement("div");
+          const seriesValue = document.createElement("div");
+          const selectedValues = item.dataIndex.map(
+            (index) =>
+              baseConfig.xAxis.data[index] +
+              " (" +
+              data[item.seriesIndex].data[index] +
+              ")",
+          );
+          seriesName.textContent = data[item.seriesIndex].name + ": ";
+          seriesValue.textContent = selectedValues.join(", ");
+          selectedInfo.appendChild(seriesName);
+          selectedInfo.appendChild(seriesValue);
+        });
+      });
+    });
   });
 </script>
+<style>
+  .selected-container {
+    border: 1px solid var(--syn-panel-border-color);
+    background-color: var(--syn-panel-background-color);
+    height: 80px;
+  }
+  #bar-series-stacked-selected-info {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: var(--syn-spacing-2x-small) var(--syn-spacing-small);
+  }
+</style>
 ```
 
 ---

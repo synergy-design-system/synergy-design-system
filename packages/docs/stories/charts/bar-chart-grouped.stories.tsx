@@ -75,7 +75,6 @@ export const Default: Story = {
           },
           yAxis: { 
             name: 'Values',
-            splitLine: { show: true },
           },
           series: [
             {
@@ -124,7 +123,6 @@ export const Vertical: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .axesShowYSplitLines()
           .seriesBar([
             {
               data: [120, 180, 150, 80, 70, 110, 130],
@@ -166,7 +164,6 @@ export const Horizontal: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .axesShowXSplitLines()
           .seriesBar([
             {
               data: [120, 180, 150, 80, 70, 110, 130],
@@ -213,7 +210,6 @@ export const FixedValueRange: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .axesShowXSplitLines()
           .seriesBar([
             {
               data: [120, 180, 150, 80, 70, 110, 130],
@@ -257,7 +253,6 @@ export const NegativeValues: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .axesShowYSplitLines()
           .seriesBar([
             {
               data: [-120, -180, -150, -80, -70, -110, -130],
@@ -301,7 +296,6 @@ export const PositiveAndNegative: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .axesShowYSplitLines()
           .seriesBar([
             {
               data: [100, -120, 150, -80, 70, -110, 130],
@@ -345,7 +339,6 @@ export const CustomBarWidth: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .axesShowYSplitLines()
           .seriesBar([
             {
               barWidth: 20,
@@ -406,7 +399,6 @@ export const CustomColors: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .axesShowYSplitLines()
           .seriesBar([
             {
               data: [120, 180, 150],
@@ -461,7 +453,6 @@ export const CategoricalVsSequential: Story = {
       categoricalCharts.forEach(categorical => {
         categorical.config = handle => handle
           .baseConfig(baseConfig)
-          .axesShowYSplitLines()
           .seriesBar([
             {
               data: [120, 180, 150],
@@ -512,7 +503,6 @@ export const CategoricalVsSequential: Story = {
               getChartColor('SynChartSequential01_50'),
             ],
           })
-          .axesShowYSplitLines()
           .seriesBar([
             {
               data: [120, 180, 150],
@@ -580,7 +570,6 @@ export const Tooltip: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .axesShowYSplitLines()
           .seriesBar([
             {
               data: [120, 180, 150, 80, 70, 110, 130],
@@ -628,7 +617,6 @@ export const Legend: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .axesShowYSplitLines()
           .seriesBar([
             {
               data: [120, 180, 150, 80, 70, 110, 130],
@@ -683,8 +671,14 @@ export const SelectedMode: Story = {
   },
   render: () => html`
     <syn-chart id="bar-series-grouped-selected-mode"></syn-chart>
+    <div class="selected-container syn-body--small">
+      <div>Select a bar to see the selections here:</div>
+      <div id="bar-series-grouped-selected-info" class="syn-body--x-small">
+      </div>
+    </div>
     <script type="module">
       const charts = document.querySelectorAll('#bar-series-grouped-selected-mode');
+      const selectedInfos = document.querySelectorAll('#bar-series-grouped-selected-info');
 
       const baseConfig = {
         xAxis: {
@@ -697,30 +691,64 @@ export const SelectedMode: Story = {
         },
       };
 
+      const data = [
+        {
+          selectedMode: true,
+          data: [120, 180, 150, 80, 70, 110, 130],
+          name: 'Single / True'
+        },
+        {
+          selectedMode: 'series',
+          data: [80, 130, 100, 70, 90, 160, 140],
+          name: 'Series'
+        },
+        {
+          selectedMode: 'multiple',
+          data: [90, 120, 140, 100, 110, 70, 60],
+          name: 'Multiple'
+        },
+      ];
+
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .axesShowYSplitLines()
-          .seriesBar([
-            {
-              selectedMode: true,
-              data: [120, 180, 150, 80, 70, 110, 130],
-              name: 'Single / True'
-            },
-            {
-              selectedMode: 'series',
-              data: [80, 130, 100, 70, 90, 160, 140],
-              name: 'Series'
-            },
-            {
-              selectedMode: 'multiple',
-              data: [90, 120, 140, 100, 110, 70, 60],
-              name: 'Multiple'
-            },
-          ])
+          .seriesBar(data)
           .legendShow();
+        
+        const instance = chart.getInstance();
+        instance.on('selectchanged', ({ selected }) => {
+          selectedInfos.forEach(selectedInfo => {
+            selectedInfo.innerHTML = '';
+            if (selectedInfo) {
+              const selections = selected.map(item =>  ({ dataIndex: item.dataIndex, seriesIndex: item.seriesIndex}));
+              selections.forEach(item => {
+                const seriesName = document.createElement('div');
+                const seriesValue = document.createElement('div');
+                const selectedValues = item.dataIndex.map(index =>
+                  baseConfig.xAxis.data[index] + ' (' + data[item.seriesIndex].data[index] + ')'
+                );
+                seriesName.textContent = data[item.seriesIndex].name + ': ';
+                seriesValue.textContent = selectedValues.join(', ');
+                selectedInfo.appendChild(seriesName);
+                selectedInfo.appendChild(seriesValue);
+              });          
+            }
+          });
+        })
       });
     </script>
+    <style>
+      .selected-container {
+        border: 1px solid var(--syn-panel-border-color);
+        background-color: var(--syn-panel-background-color);
+        height: 80px;
+      }
+      #bar-series-grouped-selected-info {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-gap: var(--syn-spacing-2x-small) var(--syn-spacing-small);
+      }
+    </style>
   `,
 };
 

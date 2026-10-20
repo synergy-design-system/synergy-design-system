@@ -583,7 +583,7 @@
           "type": "text"
         },
         "description": {
-          "value": "The chart's axes define the visual structure of the data and can be customized to match different visualization needs. \n\n Configuration options include split lines, label visibility and formatting, axis positioning, data range constraints, and support for multiple axes.\n\nFor a full reference of all available options see the ECharts documentation for [xAxis](https://echarts.apache.org/en/option.html#xAxis) and [yAxis](https://echarts.apache.org/en/option.html#yAxis).",
+          "value": "The chart's axes define the visual structure of the data and can be customized to match different visualization needs. \n\n Configuration options include split lines, label visibility and formatting, axis positioning, data range constraints, and support for multiple axes.\n\nFor a full reference of all available options see the ECharts documentation for [xAxis](https://echarts.apache.org/en/option.html#xAxis) and [yAxis](https://echarts.apache.org/en/option.html#yAxis).\n\n**Split lines**\nSplit lines help users relate data points to their corresponding axis values and make values easier to compare across the chart.<ul><li>Use split lines on value axes when comparing or estimating values is important.</li><li>Keep split lines subtle so they provide visual guidance without competing with the data.</li><li>Avoid unnecessary split lines on category axes when categories are already clearly separated and labeled.</li><li>Consider hiding split lines for simple charts where they do not add meaningful orientation.</li></ul>",
           "type": "text"
         }
       },

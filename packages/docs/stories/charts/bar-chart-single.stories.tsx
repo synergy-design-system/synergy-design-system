@@ -75,7 +75,6 @@ export const Default: Story = {
           },
           yAxis: {
             name: 'Values',
-            splitLine: { show: true },
           },
           series: [
             {
@@ -116,7 +115,6 @@ export const Vertical: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .axesShowYSplitLines()
           .seriesBar([
             {
               data: [120, 180, 150, 80, 70, 110, 130],
@@ -154,7 +152,6 @@ export const Horizontal: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .axesShowXSplitLines()
           .seriesBar([
             {
               data: [120, 180, 150, 80, 70, 110, 130],
@@ -194,7 +191,6 @@ export const FixedValueRange: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .axesShowYSplitLines()
           .seriesBar([
             {
               data: [120, 180, 150, 80, 70, 110, 130],
@@ -232,7 +228,6 @@ export const NegativeValues: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .axesShowXSplitLines()
           .seriesBar([
             {
               data: [-120, -175, -150, -80, -70, -110, -130],
@@ -270,7 +265,6 @@ export const PositiveAndNegative: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .axesShowYSplitLines()
           .seriesBar([
             {
               data: [ 100, -120, 150, -80, 70, -110, 130],
@@ -309,7 +303,6 @@ export const CustomBarWidth: Story = {
       fixedWidthCharts.forEach((fixed) => {
         fixed.config = handle => handle
           .baseConfig(baseConfig)
-          .axesShowYSplitLines()
           .seriesBar([
             { 
               barWidth: 20,
@@ -322,7 +315,6 @@ export const CustomBarWidth: Story = {
       relativeWidthCharts.forEach((relative) => {
         relative.config = handle => handle
           .baseConfig(baseConfig)
-          .axesShowYSplitLines()
           .seriesBar([
             {
               barWidth: '30%',
@@ -362,7 +354,6 @@ export const CustomColors: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .axesShowYSplitLines()
           .seriesBar([{ data: [120, 180, 150] }]);
       });
     </script>
@@ -420,7 +411,6 @@ export const Tooltip: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .axesShowYSplitLines()
           .seriesBar([
             {
               data: [120, 180, 150, 80, 70, 110, 130],
@@ -465,8 +455,13 @@ export const SelectedMode: Story = {
   },
   render: () => html`
     <syn-chart id="bar-series-single-selected-mode"></syn-chart>
+    <div class="syn-body--medium">
+      Selected day: <span id="bar-series-selected-day" >-</span>
+    </div>
     <script type="module">
       const charts = document.querySelectorAll('#bar-series-single-selected-mode');
+      const status = document.querySelectorAll('#bar-series-selected-day');
+      const values = [120, 180, 150, 80, 70, 110, 130];
       const baseConfig = {
         xAxis: {
           data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -481,13 +476,22 @@ export const SelectedMode: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .axesShowYSplitLines()
           .seriesBar([
             {
-              data: [120, 180, 150, 80, 70, 110, 130],
-              selectedMode: 'multiple',
+              data: values,
+              selectedMode: 'single',
             },
           ]);
+
+        const instance = chart.getInstance();
+        instance.on('selectchanged', ({ selected }) => {
+          const selectedIndex = selected.flatMap(item => item.dataIndex)[0];
+          status.forEach(el => {
+            el.textContent = selectedIndex !== undefined
+              ? baseConfig.xAxis.data[selectedIndex] + ' (' + values[selectedIndex] + ')'
+              : '-';
+          });
+        });
       });
     </script>
   `,

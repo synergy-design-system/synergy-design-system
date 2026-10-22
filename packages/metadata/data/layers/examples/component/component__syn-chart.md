@@ -1261,6 +1261,695 @@ By default, the legend is interactive. Users can click on a legend item to toggl
 
 ---
 
+## Min Max And Average
+
+Use predefined types like average, min or max as start or endpoints in markArea.data.type.
+
+```html
+<syn-chart id="mark-area-min-max"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#mark-area-min-max");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesLine([
+          {
+            data: [150, 230, 270, 218, 135, 147, 260],
+            markArea: {
+              data: [[{ type: "average" }, { type: "max" }]],
+            },
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
+## Value Range
+
+Add yAxis values to the two points in markArea.data to highlight a horizontal value range across the chart. The area spans the full category axis between the specified values.
+
+```html
+<syn-chart id="mark-area-value-range"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#mark-area-value-range");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesLine([
+          {
+            data: [150, 230, 224, 218, 135, 147, 260],
+            markArea: {
+              data: [[{ yAxis: 120 }, { yAxis: 200 }]],
+            },
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
+## Category Range
+
+Add xAxis category values to the two points in markArea.data to highlight a range of categories. You can define multiple areas to call out separate periods and give each area a name for context.
+
+```html
+<syn-chart id="mark-area-category-ranges"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#mark-area-category-ranges");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesLine([
+          {
+            data: [150, 230, 224, 218, 135, 147, 260],
+            markArea: {
+              data: [
+                [
+                  {
+                    xAxis: "Mon",
+                    name: "Low activity",
+                    label: { position: "insideTop" },
+                  },
+                  { xAxis: "Tue" },
+                ],
+                [
+                  {
+                    xAxis: "Fri",
+                    name: "High activity",
+                    label: { position: "insideTop" },
+                  },
+                  { xAxis: "Sun" },
+                ],
+              ],
+            },
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
+## Label Position
+
+The label position can be configured using label.position. While multiple positions are supported, 'insideLeft' is recommended for horizontal mark areas and 'insideTop' for vertical mark areas. The default position is 'insideLeft'.
+
+```html
+<syn-chart id="mark-area-label-position"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#mark-area-label-position");
+  const getColor = (token) => ComponentTokens[token]["light"];
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesLine([
+          {
+            data: [150, 230, 224, 218, 135, 147, 260],
+            markArea: {
+              data: [
+                [
+                  {
+                    yAxis: 110,
+                    name: "Horizontal Position",
+                  },
+                  { yAxis: 160 },
+                ],
+                [
+                  {
+                    xAxis: "Wed",
+                    name: "Vertical Position",
+                    label: {
+                      position: "insideTop",
+                    },
+                  },
+                  { xAxis: "Fri" },
+                ],
+              ],
+            },
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
+## Intent Colors
+
+Use Synergy's NAMUR status colors when a highlighted range needs to communicate intent: green for a target that has been met, red for an exceeded limit or critical range, and yellow/orange for a warning. Set the area color in itemStyle and use opacity to keep the data visible beneath it.
+
+```html
+<syn-chart id="mark-area-intent-colors"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#mark-area-intent-colors");
+  const getColor = (token) => ComponentTokens[token]["light"];
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesLine([
+          {
+            data: [150, 230, 224, 218, 135, 147, 260],
+            markArea: {
+              data: [
+                [
+                  {
+                    yAxis: 230,
+                    name: "Too high",
+                    itemStyle: {
+                      color: getColor("SynNamurErrorColor"),
+                      opacity: 0.3,
+                    },
+                  },
+                  { yAxis: 280 },
+                ],
+                [
+                  {
+                    yAxis: 80,
+                    name: "Too low",
+                    itemStyle: {
+                      color: getColor("SynNamurErrorColor"),
+                      opacity: 0.3,
+                    },
+                  },
+                  { yAxis: 120 },
+                ],
+              ],
+            },
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
+## Min And Max
+
+Use type: 'min' and type: 'max' in markLine.data to highlight the minimum and maximum values of a series.
+
+```html
+<syn-chart id="mark-line-min-max"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#mark-line-min-max");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesLine([
+          {
+            data: [150, 230, 270, 218, 135, 147, 260],
+            markLine: {
+              data: [
+                { type: "min", name: "Minimum" },
+                { type: "max", name: "Maximum" },
+              ],
+            },
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
+## Average
+
+Use type: 'average' in markLine.data to show the average value of a series as a reference line.
+
+```html
+<syn-chart id="mark-line-average"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#mark-line-average");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+          grid: { left: 80 },
+        })
+        .seriesLine([
+          {
+            data: [150, 230, 224, 218, 135, 147, 260],
+            markLine: {
+              data: [{ type: "average", name: "Average" }],
+            },
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
+## Fixed Thresholds
+
+Add a yAxis value to markLine.data to draw a horizontal threshold line. Use an xAxis value for a vertical line at a specific category.
+
+```html
+<syn-chart id="mark-line-thresholds"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#mark-line-thresholds");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesLine([
+          {
+            data: [150, 230, 224, 218, 135, 147, 260],
+            markLine: {
+              data: [
+                { yAxis: 240 },
+                {
+                  xAxis: "Sat",
+                  label: {
+                    position: "start",
+                  },
+                },
+              ],
+            },
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
+## Coordinate Line
+
+Define a mark line with a pair of coord points to connect custom coordinates. Configure symbol to control the symbols at either end of the line.
+
+```html
+<syn-chart id="mark-line-coordinates"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#mark-line-coordinates");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesLine([
+          {
+            data: [150, 230, 224, 218, 135, 147, 260],
+            markLine: {
+              data: [
+                [
+                  { coord: ["Mon", 100], name: "Trend" },
+                  { coord: ["Sun", 280] },
+                ],
+              ],
+              symbol: ["none", "arrow"],
+            },
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
+## Intent Colors
+
+Use Synergy's NAMUR status colors when a reference line needs to communicate intent: green for a target that has been met, red for an exceeded limit or critical threshold and yellow/orange for a warning.
+
+```html
+<syn-chart id="mark-line-intent-colors"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#mark-line-intent-colors");
+  const getColor = (token) => ComponentTokens[token]["light"];
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesLine([
+          {
+            data: [150, 230, 224, 218, 135, 147, 260],
+            markLine: {
+              data: [
+                {
+                  yAxis: 100,
+                  name: "Target met",
+                  lineStyle: { color: getColor("SynNamurSuccessColor") },
+                },
+                {
+                  yAxis: 180,
+                  name: "Warning",
+                  lineStyle: { color: getColor("SynNamurWarningColor") },
+                },
+                {
+                  yAxis: 260,
+                  name: "Critical limit",
+                  lineStyle: { color: getColor("SynNamurErrorColor") },
+                },
+              ],
+            },
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
+## Label Position
+
+The label position can be configured using label.position. While several positions are supported, start and end are generally recommended. To ensure long labels remain fully visible, adjust the chart grid (for example grid.left, grid.top, etc.) to provide sufficient space around the chart area. Use label.formatter to customize the displayed text, such as combining the mark line name with the value.
+
+```html
+<syn-chart id="mark-line-label-position"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#mark-line-label-position");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+          grid: {
+            left: 200,
+            right: 200,
+            top: 50,
+          },
+        })
+        .seriesLine([
+          {
+            data: [150, 230, 224, 218, 135, 147, 260],
+            markLine: {
+              data: [
+                {
+                  yAxis: 80,
+                  name: "Horizontal start",
+                  label: {
+                    formatter: "{b}: {c}",
+                    position: "start",
+                  },
+                },
+                {
+                  yAxis: 220,
+                  name: "Horizontal end",
+                  label: {
+                    formatter: "{b}: {c}",
+                    position: "end",
+                  },
+                },
+                {
+                  xAxis: "Tue",
+                  name: "Vertical start",
+                  label: {
+                    formatter: "{b}: {c}",
+                    position: "start",
+                  },
+                },
+                {
+                  xAxis: "Sat",
+                  name: "Vertical end",
+                  label: {
+                    formatter: "{b}: {c}",
+                    position: "end",
+                  },
+                },
+              ],
+            },
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
+## Min Max And Average
+
+Use predefined types like average, min or max as points in markPoint.data.type.
+
+```html
+<syn-chart id="mark-point-min-max-and-average"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#mark-point-min-max-and-average");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesLine([
+          {
+            data: [150, 230, 270, 218, 135, 147, 260],
+            markPoint: {
+              data: [{ type: "min" }, { type: "max" }, { type: "average" }],
+            },
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
+## Coordinates
+
+Set coord: [category, value] on each marker to highlight specific data coordinates. Use name for descriptive context and value for the value exposed to label formatters. Coordinates may also use numeric values on value axes.
+
+```html
+<syn-chart id="mark-point-coordinates"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#mark-point-coordinates");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesLine([
+          {
+            data: [150, 230, 224, 218, 135, 147, 260],
+            markPoint: {
+              data: [
+                { coord: ["Tue", 230], value: 230 },
+                { coord: ["Fri", 135], value: 135 },
+              ],
+            },
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
+## Custom Styling
+
+Customize individual mark points with symbol, symbolSize, label.position and itemStyle.color. Pair color with distinct shapes and meaningful labels so status remains clear without relying on color alone.
+
+```html
+<syn-chart id="mark-point-custom-styling"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#mark-point-custom-styling");
+  const getColor = (token) => ComponentTokens[token]["light"];
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesLine([
+          {
+            data: [150, 230, 224, 218, 135, 147, 260],
+            markPoint: {
+              data: [
+                {
+                  coord: ["Tue", 230],
+                  name: "Target met",
+                  symbol: "circle",
+                  symbolSize: 18,
+                  label: { position: "top" },
+                  itemStyle: { color: getColor("SynNamurSuccessColor") },
+                },
+                {
+                  coord: ["Thu", 218],
+                  name: "Warning",
+                  symbol: "triangle",
+                  symbolSize: 20,
+                  label: { position: "top" },
+                  itemStyle: { color: getColor("SynNamurWarningColor") },
+                },
+                {
+                  coord: ["Sat", 147],
+                  name: "Critical",
+                  symbol: "diamond",
+                  symbolSize: 24,
+                  label: { position: "right" },
+                  itemStyle: { color: getColor("SynNamurErrorColor") },
+                },
+              ],
+              label: { formatter: "{b}" },
+            },
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
+## Long Labels
+
+By default, mark points use pin-shaped markers with the value shown inside. When a descriptive label is too long to fit in the pin, use a compact symbol such as circle and position the label outside of it.
+
+```html
+<syn-chart id="mark-point-labels"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#mark-point-labels");
+  const getChartColor = (token) => ChartTokens[token]["light"];
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            type: "category",
+            name: "Days",
+          },
+          yAxis: { type: "value", name: "Values" },
+        })
+        .seriesLine([
+          {
+            data: [150, 230, 224, 218, 135, 147, 260],
+            markPoint: {
+              data: [
+                {
+                  coord: ["Tue", 230],
+                  name: "Inspection",
+                  label: { position: "top" },
+                },
+                {
+                  coord: ["Fri", 135],
+                  name: "Maintenance",
+                  label: { position: "bottom" },
+                },
+              ],
+              label: { formatter: "{b}", position: "top" },
+              symbol: "circle",
+              symbolSize: 16,
+              itemStyle: { color: getChartColor("SynChartCategorical01") },
+            },
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
 ## Integrated Zooming
 
 When having large data sets or dense series where users need to inspect local trends without leaving the chart context, the dataZoom option with type: 'inside' can be used. It enables direct interaction inside the plotting area: - mouse drag to pan- mouse wheel to zoom There are possibilities to customize the zooming behavior, for example, to restrict zooming to a specific axis, to set minimum and maximum zoom levels or to add an additional key for zooming. For more information have a look at the ECharts documentation

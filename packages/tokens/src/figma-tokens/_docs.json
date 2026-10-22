@@ -1636,6 +1636,66 @@
           "value": "Use Synergy's NAMUR status colors when a highlighted range needs to communicate intent: green for a target that has been met, red for an exceeded limit or critical range, and yellow/orange for a warning. Set the area color in `itemStyle` and use opacity to keep the data visible beneath it.",
           "type": "text"
         }
+      },
+      "mark-point-default": {
+        "title": {
+          "value": "Mark Points",
+          "type": "text"
+        },
+        "description": {
+          "value": "A mark point highlights an individual location in a series, such as an extreme value, an inspection or a significant event. Configure `markPoint` on the associated series and define its markers in `markPoint.data`. By default, markers use a compact neutral pin with a value label inside it.\n\nFor the full configuration possibilities, see the [ECharts documentation](https://echarts.apache.org/en/option.html#series-line.markPoint).",
+          "type": "text"
+        }
+      },
+      "mark-point-min-max-average": {
+        "title": {
+          "value": "Minimum and Maximum",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use predefined types like `average`, `min` or `max` as points in `markPoint.data.type`.",
+          "type": "text"
+        }
+      },
+      "mark-point-coordinates": {
+        "title": {
+          "value": "Custom Coordinates",
+          "type": "text"
+        },
+        "description": {
+          "value": "Set `coord: [category, value]` on each marker to highlight specific data coordinates. Use `name` for descriptive context and `value` for the value exposed to label formatters. Coordinates may also use numeric values on value axes.",
+          "type": "text"
+        }
+      },
+      "mark-point-symbols": {
+        "title": {
+          "value": "Symbols and Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Configure `symbol` and `symbolSize` on `markPoint` for all markers or on individual data entries to override them. Built-in shapes include `circle`, `diamond`, and `triangle`. Keep markers compact so they do not obscure the data, and pair shapes with descriptive labels.",
+          "type": "text"
+        }
+      },
+      "mark-point-custom-styling": {
+        "title": {
+          "value": "Custom Styling",
+          "type": "text"
+        },
+        "description": {
+          "value": "Customize individual mark points with `symbol`, `symbolSize`, `label.position` and `itemStyle.color`. Pair color with distinct shapes and meaningful labels so status remains clear without relying on color alone.",
+          "type": "text"
+        }
+      },
+      "mark-point-long-labels": {
+        "title": {
+          "value": "Mark Point Long Labels",
+          "type": "text"
+        },
+        "description": {
+          "value": "By default, mark points use pin-shaped markers with the value shown inside. When a descriptive label is too long to fit in the pin, use a compact symbol such as `circle` and position the label outside of it.",
+          "type": "text"
+        }
       }
     },
     "checkbox": {

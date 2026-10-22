@@ -72,7 +72,6 @@ export const MinMaxAndAverage: Story = {
           .seriesLine([
             { 
               data: [150, 230, 270, 218, 135, 147, 260],
-              name: 'Series A',
               markArea: {
                 data: [
                   [{ type: 'average' }, { type: 'max' }], 
@@ -109,7 +108,6 @@ export const ValueRange: Story = {
           })
           .seriesLine([{
             data: [150, 230, 224, 218, 135, 147, 260],
-            name: 'Series A',
             markArea: {
               data: [[
                 { yAxis: 120 },
@@ -146,7 +144,6 @@ export const CategoryRange: Story = {
           })
           .seriesLine([{
             data: [150, 230, 224, 218, 135, 147, 260],
-            name: 'Series A',
             markArea: {
               data: [
                 [
@@ -190,7 +187,6 @@ export const LabelPosition: Story = {
           })
           .seriesLine([{
             data: [150, 230, 224, 218, 135, 147, 260],
-            name: 'Series A',
             markArea: {
               data: [
                 [
@@ -242,7 +238,6 @@ export const IntentColors: Story = {
           })
           .seriesLine([{
             data: [150, 230, 224, 218, 135, 147, 260],
-            name: 'Series A',
             markArea: {
               data: [
                 [

@@ -72,7 +72,6 @@ export const MinAndMax: Story = {
           .seriesLine([
             { 
               data: [150, 230, 270, 218, 135, 147, 260],
-              name: 'Series A',
               markLine: {
                 data: [
                   { type: 'min', name: 'Minimum'},
@@ -112,7 +111,6 @@ export const Average: Story = {
           .seriesLine([
             {
               data: [150, 230, 224, 218, 135, 147, 260],
-              name: 'Series A',
               markLine: {
                 data: [{ type: 'average', name: 'Average' }],
               }
@@ -147,7 +145,6 @@ export const FixedThresholds: Story = {
           })
           .seriesLine([{
             data: [150, 230, 224, 218, 135, 147, 260],
-            name: 'Series A',
             markLine: {
               data: [
                 { yAxis: 240 },
@@ -190,7 +187,6 @@ export const CoordinateLine: Story = {
           .seriesLine([
             { 
               data: [150, 230, 224, 218, 135, 147, 260],
-              name: 'Series A',
               markLine: {
                 data: [
                   [
@@ -232,7 +228,6 @@ export const IntentColors: Story = {
           })
           .seriesLine([{
             data: [150, 230, 224, 218, 135, 147, 260],
-            name: 'Series A',
             markLine: {
               data: [
                 {
@@ -287,7 +282,6 @@ export const LabelPosition: Story = {
           })
           .seriesLine([{
             data: [150, 230, 224, 218, 135, 147, 260],
-            name: 'Series A',
             markLine: {
               data: [
                 {

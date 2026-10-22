@@ -11,7 +11,7 @@ import {
 } from 'echarts/charts.js';
 import {
   DataZoomComponent,
-  GridComponent, LegendComponent, MarkAreaComponent, MarkLineComponent, TitleComponent, TooltipComponent,
+  GridComponent, LegendComponent, MarkAreaComponent, MarkLineComponent, MarkPointComponent, TitleComponent, TooltipComponent,
 } from 'echarts/components.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -43,6 +43,7 @@ use([
   LegendComponent,
   MarkAreaComponent,
   MarkLineComponent,
+  MarkPointComponent,
   GridComponent,
   DataZoomComponent,
   segmentInstall,

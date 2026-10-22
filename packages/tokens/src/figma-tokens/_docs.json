@@ -1246,6 +1246,456 @@
           "value": "Use `legendShow()` to display a legend for segment data items. Set the `name` option on each item to provide its legend label.",
           "type": "text"
         }
+      },
+      "area-series-default": {
+        "title": {
+          "value": "Area Chart",
+          "type": "text"
+        },
+        "description": {
+          "value": "Area charts visualize trends while also highlighting the filled area beneath the line, making changes in magnitude easier to perceive. They are well‑suited for showing overall development, cumulative values, or comparing volumes over time.",
+          "type": "text"
+        }
+      },
+      "area-series-preset": {
+        "title": {
+          "value": "Area Chart Preset",
+          "type": "text"
+        },
+        "description": {
+          "value": "An area chart can be configured via the chart config with `type: 'line'` and `areaStyle: {}` or with the `seriesArea` preset function. When using a config object, set `areaStyle.opacity` to `0.2` for the recommended styling. The `seriesArea` preset applies this opacity by default. Pass a custom `areaStyle` to override the preset default.",
+          "type": "text"
+        }
+      },
+      "area-series-curved": {
+        "title": {
+          "value": "Curved Area Series",
+          "type": "text"
+        },
+        "description": {
+          "value": "The area series supports curved lines. Use the `smooth` property to enable smooth curves.",
+          "type": "text"
+        }
+      },
+      "area-series-hidden-lines": {
+        "title": {
+          "value": "Hidden Lines Area Series",
+          "type": "text"
+        },
+        "description": {
+          "value": "The lines of area series can be hidden. When hidden, only the filled area remains for a more minimal, volume-focused visualization.",
+          "type": "text"
+        }
+      },
+      "area-series-line-styles": {
+        "title": {
+          "value": "Area Series Line Styles",
+          "type": "text"
+        },
+        "description": {
+          "value": "The line styles can be adjusted such as solid, dashed, and dotted as well as custom line widths. Use distinct styles to differentiate series when needed.",
+          "type": "text"
+        }
+      },
+      "area-series-symbols": {
+        "title": {
+          "value": "Area Series Symbols",
+          "type": "text"
+        },
+        "description": {
+          "value": "The data points can be marked via symbols. Set `symbol` and `symbolSize` on each series to customize them.",
+          "type": "text"
+        }
+      },
+      "area-series-palette": {
+        "title": {
+          "value": "Area Chart Palette",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the `palette` attribute to apply another Synergy chart color palette to the area series.",
+          "type": "text"
+        }
+      },
+      "area-series-custom-colors": {
+        "title": {
+          "value": "Area Chart Custom Colors",
+          "type": "text"
+        },
+        "description": {
+          "value": "By default, each area series is assigned a color from the chart's categorical color palette. Use the colors option to provide explicit colors instead. Colors are repeated cyclically when fewer colors than data points are provided.",
+          "type": "text"
+        }
+      },
+      "area-series-positive-and-negative-values": {
+        "title": {
+          "value": "Area Chart with Positive and Negative Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "Area charts can display both positive and negative values, filling each data point relative to the configured area origin.",
+          "type": "text"
+        }
+      },
+      "area-series-origin": {
+        "title": {
+          "value": "Area Chart Origin",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the `areaStyle.origin` option to choose the baseline from which an area is filled. Valid values:\n\n- `auto` fills the area between the axis line and the data (**default**).\n- `start` fills between the minimum axis value and the data.\n- `end` fills between the maximum axis value and the data.\n- A number fills between that specified value and the data.",
+          "type": "text"
+        }
+      },
+      "area-series-stack": {
+        "title": {
+          "value": "Area Chart Stack",
+          "type": "text"
+        },
+        "description": {
+          "value": "The `stack` value names a stack group. Area series with the same `stack` value on the same category axis are stacked on top of one another. Use `stackStrategy` to control how values are accumulated:\n\n- `samesign` stacks a value only when it has the same sign as the current stack total (**default**)\n- `all` stacks values regardless of whether they are positive or negative\n- `positive` stacks only positive values\n- `negative` stacks only negative values",
+          "type": "text"
+        }
+      },
+      "area-series-focus-hover": {
+        "title": {
+          "value": "Area Chart Focus on Hover",
+          "type": "text"
+        },
+        "description": {
+          "value": "Set `emphasis.focus` to `series` to highlight the hovered area series and de-emphasize the others.",
+          "type": "text"
+        }
+      },
+      "area-series-tooltip": {
+        "title": {
+          "value": "Area Chart Tooltip",
+          "type": "text"
+        },
+        "description": {
+          "value": "Enable contextual data point details with the `tooltipShow()` preset. The tooltip displays labels and values as users interact with the chart.",
+          "type": "text"
+        }
+      },
+      "area-series-with-legend": {
+        "title": {
+          "value": "Area Chart with Legend",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `legendShow()` to display a legend for named series. Series names become the legend labels, and users can toggle series visibility interactively.",
+          "type": "text"
+        }
+      },
+      "area-series-zoom": {
+        "title": {
+          "value": "Area Chart Zooming",
+          "type": "text"
+        },
+        "description": {
+          "value": "Configure `dataZoom` to let users focus on a subset of an area chart's data. The slider provides handles for selecting the visible range.",
+          "type": "text"
+        }
+      },
+      "area-range-series-default": {
+        "title": {
+          "value": "Area Range Chart",
+          "type": "text"
+        },
+        "description": {
+          "value": "An area range chart displays the area between two values over time. It is ideal for showing variability, uncertainty or value ranges, such as temperature highs and lows, forecast bands or best- and worst-case scenarios.",
+          "type": "text"
+        }
+      },
+      "area-range-series-preset": {
+        "title": {
+          "value": "Area Range Chart Preset",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the `seriesAreaRange` preset function to create area range charts. This preset accepts each data point as a pair of lower and upper values and automatically generates the boundary lines, filled area and tooltip configuration. Its optional second argument accepts line series options that are merged into both boundary series and can override their defaults.\n\nAlternatively, an area range can be configured using two stacked line series. Both series must use the same stack and name value. The first series contains the lower bound values and has its tooltip disabled. The second series contains the difference between the upper and lower values (upper - lower) and defines an areaStyle to render the shaded range. To display the actual range in the tooltip, format the second series' tooltip value using the original lower and upper values rather than the calculated difference values.",
+          "type": "text"
+        }
+      },
+      "area-range-series-curved": {
+        "title": {
+          "value": "Curved Area Range",
+          "type": "text"
+        },
+        "description": {
+          "value": "Set `smooth: true` to curve the upper and lower boundaries of the range.",
+          "type": "text"
+        }
+      },
+      "area-range-series-hidden-lines": {
+        "title": {
+          "value": "Area Range with Hidden Lines",
+          "type": "text"
+        },
+        "description": {
+          "value": "Set `lineStyle.width` to `0` and configure `symbol` to show data point markers. When lines are hidden, only the filled range and its markers remain for a more minimal, range-focused visualization.",
+          "type": "text"
+        }
+      },
+      "area-range-series-line-styles": {
+        "title": {
+          "value": "Area Range Line Styles and Widths",
+          "type": "text"
+        },
+        "description": {
+          "value": "Customize range boundary lines with solid, dashed or dotted styles, and adjust their width. Use distinct styles to differentiate multiple area range series",
+          "type": "text"
+        }
+      },
+      "area-range-series-symbols": {
+        "title": {
+          "value": "Area Range Symbols",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `symbol` and `symbolSize` to choose the marker shape and size for area range data points. Set `symbol` to `none` to hide the markers.",
+          "type": "text"
+        }
+      },
+      "area-range-series-palette": {
+        "title": {
+          "value": "Area Range Chart Palette",
+          "type": "text"
+        },
+        "description": {
+          "value": "Set the chart's `palette` attribute to apply a Synergy chart color palette to area range series.",
+          "type": "text"
+        }
+      },
+      "area-range-series-custom-colors": {
+        "title": {
+          "value": "Area Range Custom Colors",
+          "type": "text"
+        },
+        "description": {
+          "value": "By default, each series is assigned a color from the chart's categorical color palette. Use the colors option to provide explicit colors instead. Colors are repeated cyclically when fewer colors than data points are provided.",
+          "type": "text"
+        }
+      },
+      "area-range-series-positive-and-negative-values": {
+        "title": {
+          "value": "Area Range with Positive and Negative Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "Area ranges can cross zero and include both positive and negative values. The chart displays the full lower-to-upper interval for each category.",
+          "type": "text"
+        }
+      },
+      "area-range-series-tooltip": {
+        "title": {
+          "value": "Area Range Tooltip",
+          "type": "text"
+        },
+        "description": {
+          "value": "Enable contextual values for area range data points with the `tooltipShow()` preset. Give each series a name to identify it in the tooltip.",
+          "type": "text"
+        }
+      },
+      "area-range-series-with-legend": {
+        "title": {
+          "value": "Area Range Chart with Legend",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `legendShow()` to display a legend for named area range series. Users can select legend entries to toggle the corresponding ranges.",
+          "type": "text"
+        }
+      },
+      "mark-line-default": {
+        "title": {
+          "value": "Mark Lines",
+          "type": "text"
+        },
+        "description": {
+          "value": "A mark line highlights a specific value in a chart, such as a target, maximum, minimum or average. Configure `markLine` on a specific series, the reference line is associated with that series and its data. It draws a horizontal or vertical line and can display a label with the value, providing immediate context without requiring users to read exact axis values. By default, the line uses a neutral color so it adds context without competing with the data series.\n\nFor the full configuration possibilities have a look at [ECharts documentation](https://echarts.apache.org/en/option.html#series-line.markLine)",
+          "type": "text"
+        }
+      },
+      "mark-line-min-max": {
+        "title": {
+          "value": "Minimum and Maximum",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `type: 'min'` and `type: 'max'` in `markLine.data` to highlight the minimum and maximum values of a series.",
+          "type": "text"
+        }
+      },
+      "mark-line-average": {
+        "title": {
+          "value": "Average",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `type: 'average'` in `markLine.data` to show the average value of a series as a reference line.",
+          "type": "text"
+        }
+      },
+      "mark-line-thresholds": {
+        "title": {
+          "value": "Fixed Thresholds",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add a `yAxis` value to `markLine.data` to draw a horizontal threshold line. Use an `xAxis` value for a vertical line at a specific category.",
+          "type": "text"
+        }
+      },
+      "mark-line-coordinates": {
+        "title": {
+          "value": "Coordinate Lines",
+          "type": "text"
+        },
+        "description": {
+          "value": "Define a mark line with a pair of `coord` points to connect custom coordinates. Configure `symbol` to control the symbols at either end of the line.",
+          "type": "text"
+        }
+      },
+      "mark-line-intent-colors": {
+        "title": {
+          "value": "Mark Line Intent Colors",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use Synergy's NAMUR status colors when a reference line needs to communicate intent: green for a target that has been met, red for an exceeded limit or critical threshold and yellow/orange for a warning.",
+          "type": "text"
+        }
+      },
+      "mark-line-label-position": {
+        "title": {
+          "value": "Mark Line Label Position",
+          "type": "text"
+        },
+        "description": {
+          "value": "The label position can be configured using `label.position`. While several positions are supported, `start` and `end` are generally recommended. To ensure long labels remain fully visible, adjust the chart grid (for example `grid.left`, `grid.top`, etc.) to provide sufficient space around the chart area. \nUse `label.formatter` to customize the displayed text, such as combining the mark line name with the value.",
+          "type": "text"
+        }
+      },
+      "mark-area-default": {
+        "title": {
+          "value": "Mark Areas",
+          "type": "text"
+        },
+        "description": {
+          "value": "A mark area highlights a range along an axis, such as a target interval, threshold, or time window. It is rendered behind the data to provide context without adding another series. Use a low-contrast fill or pattern so the data remains easy to read, and add a descriptive label to each range so its meaning does not rely on color or pattern alone. Configure `markArea` on a series and define each range with a pair of points.\n\nFor the full configuration possibilities, see the [ECharts documentation](https://echarts.apache.org/en/option.html#series-line.markArea).",
+          "type": "text"
+        }
+      },
+      "mark-area-min-max": {
+        "title": {
+          "value": "Minimum, Maximum, and Average",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use predefined types like `average`, `min` or `max` as start or endpoints in `markArea.data.type`.",
+          "type": "text"
+        }
+      },
+      "mark-area-value-range": {
+        "title": {
+          "value": "Value Range",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add `yAxis` values to the two points in `markArea.data` to highlight a horizontal value range across the chart. The area spans the full category axis between the specified values.",
+          "type": "text"
+        }
+      },
+      "mark-area-category-ranges": {
+        "title": {
+          "value": "Category Ranges",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add `xAxis` category values to the two points in `markArea.data` to highlight a range of categories. You can define multiple areas to call out separate periods and give each area a name for context.",
+          "type": "text"
+        }
+      },
+      "mark-area-label-position": {
+        "title": {
+          "value": "Mark Area Label Position",
+          "type": "text"
+        },
+        "description": {
+          "value": "The label position can be configured using `label.position`. While multiple positions are supported, 'insideLeft' is recommended for horizontal mark areas and 'insideTop' for vertical mark areas. The default position is 'insideLeft'.",
+          "type": "text"
+        }
+      },
+      "mark-area-intent-colors": {
+        "title": {
+          "value": "Mark Area Intent Colors",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use Synergy's NAMUR status colors when a highlighted range needs to communicate intent: green for a target that has been met, red for an exceeded limit or critical range, and yellow/orange for a warning. Set the area color in `itemStyle` and use opacity to keep the data visible beneath it.",
+          "type": "text"
+        }
+      },
+      "mark-point-default": {
+        "title": {
+          "value": "Mark Points",
+          "type": "text"
+        },
+        "description": {
+          "value": "A mark point highlights an individual location in a series, such as an extreme value, an inspection or a significant event. Configure `markPoint` on the associated series and define its markers in `markPoint.data`. By default, markers use a compact neutral pin with a value label inside it.\n\nFor the full configuration possibilities, see the [ECharts documentation](https://echarts.apache.org/en/option.html#series-line.markPoint).",
+          "type": "text"
+        }
+      },
+      "mark-point-min-max-average": {
+        "title": {
+          "value": "Minimum and Maximum",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use predefined types like `average`, `min` or `max` as points in `markPoint.data.type`.",
+          "type": "text"
+        }
+      },
+      "mark-point-coordinates": {
+        "title": {
+          "value": "Custom Coordinates",
+          "type": "text"
+        },
+        "description": {
+          "value": "Set `coord: [category, value]` on each marker to highlight specific data coordinates. Use `name` for descriptive context and `value` for the value exposed to label formatters. Coordinates may also use numeric values on value axes.",
+          "type": "text"
+        }
+      },
+      "mark-point-symbols": {
+        "title": {
+          "value": "Symbols and Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Configure `symbol` and `symbolSize` on `markPoint` for all markers or on individual data entries to override them. Built-in shapes include `circle`, `diamond`, and `triangle`. Keep markers compact so they do not obscure the data, and pair shapes with descriptive labels.",
+          "type": "text"
+        }
+      },
+      "mark-point-custom-styling": {
+        "title": {
+          "value": "Custom Styling",
+          "type": "text"
+        },
+        "description": {
+          "value": "Customize individual mark points with `symbol`, `symbolSize`, `label.position` and `itemStyle.color`. Pair color with distinct shapes and meaningful labels so status remains clear without relying on color alone.",
+          "type": "text"
+        }
+      },
+      "mark-point-long-labels": {
+        "title": {
+          "value": "Mark Point Long Labels",
+          "type": "text"
+        },
+        "description": {
+          "value": "By default, mark points use pin-shaped markers with the value shown inside. When a descriptive label is too long to fit in the pin, use a compact symbol such as `circle` and position the label outside of it.",
+          "type": "text"
+        }
       }
     },
     "checkbox": {

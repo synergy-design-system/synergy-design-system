@@ -86,6 +86,11 @@ export const SynChartGridLinesColorEmphasize = 'var(--syn-chart-grid-lines-color
 /**
  * @type {string}
  */
+export const SynChartOpacity20 = 'var(--syn-chart-opacity-20)';
+
+/**
+ * @type {string}
+ */
 export const SynChartPlotLineColor = 'var(--syn-chart-plot-line-color)';
 
 /**

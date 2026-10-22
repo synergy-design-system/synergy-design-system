@@ -215,6 +215,7 @@ describe('<syn-chart>', () => {
         const el = await createChart(html`<syn-chart palette="categorical"></syn-chart>`);
         await el.updateComplete;
 
+        expect(el.getInstance()!.getOption().textStyle?.color).to.equal(getRealStyleValue('SynTypographyColorText', 'dark'));
         const expectedColors = PALETTE_TOKENS.categorical.map(token => getRealStyleValue(token, 'dark'));
         expect(el.getInstance()!.getOption().color).to.deep.equal(expectedColors);
       });

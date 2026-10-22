@@ -9,6 +9,15 @@ export const lineChartSeriesData: LineSeriesOption[] = [
   { data: [80, 120, 100, 134, 90, 110, 200], name: 'Unique', type: 'line' },
 ];
 
+export const areaChartSeriesData: LineSeriesOption[] = [
+  { data: [150, 230, 224, 218, 135, 147, 260], name: 'Visits', type: 'line' },
+  { data: [80, 120, 100, 134, 90, 110, 200], name: 'Unique', type: 'line' },
+];
+
+export const areaRangeChartSeriesData: Array<[number, number]> = [
+  [80, 150], [120, 230], [100, 224], [134, 218], [90, 135], [110, 147], [200, 260],
+];
+
 export const generalChartConfig: ECConfig = {
   xAxis: { data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], type: 'category' },
   yAxis: { type: 'value' },

@@ -23,6 +23,7 @@
   --syn-chart-disabled-color: var(--syn-color-neutral-400);
   --syn-chart-grid-lines-color: var(--syn-color-neutral-100);
   --syn-chart-grid-lines-color-emphasize: var(--syn-color-neutral-200);
+  --syn-chart-opacity-20: 0.2;
   --syn-chart-plot-line-color: var(--syn-color-neutral-1000);
   --syn-chart-range-selection-color: var(--syn-color-neutral-500);
   --syn-chart-sequential-01-10: var(--syn-color-primary-100);

@@ -1,4 +1,6 @@
 import { type ThemeMode, getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../../themes/utilities.js';
+import { MARK_AREA } from '../constants.js';
+import { colorSvgImageUri } from '../utilities.js';
 
 /**
  * Returns the default mark line style based on Synergy design tokens.
@@ -15,7 +17,7 @@ export const getDefaultMarkLineStyle = (mode: ThemeMode = 'auto') => ({
     borderRadius: styleWithoutUnit('SynTooltipBorderRadius', mode),
     borderWidth: style('SynBorderWidthSmall', mode),
     color: style('SynTypographyColorText', mode),
-    distance: 8,
+    distance: styleWithoutUnit('SynSpacingXSmall', mode),
     fontSize: styleWithoutUnit('SynFontSizeSmall', mode),
     fontWeight: style('SynFontWeightNormal', mode),
     padding: styleWithoutUnit('SynTooltipPadding', mode),
@@ -35,4 +37,29 @@ export const getDefaultMarkLineStyle = (mode: ThemeMode = 'auto') => ({
   },
   silent: true,
   symbol: 'none',
+});
+
+/**
+ * Returns the default mark area style based on Synergy design tokens.
+ *
+ * @param {ThemeMode} mode Theme mode
+ */
+export const getDefaultMarkAreaStyle = (mode: ThemeMode = 'auto') => ({
+  emphasis: {
+    disabled: false,
+  },
+  itemStyle: {
+    color: {
+      image: colorSvgImageUri(MARK_AREA.BACKGROUND_PATTERN, style('SynChartGridLinesColor', mode), false),
+      repeat: 'repeat',
+    },
+  },
+  label: {
+    color: style('SynTypographyColorText', mode),
+    distance: styleWithoutUnit('SynSpacingXSmall', mode),
+    fontSize: styleWithoutUnit('SynFontSizeXSmall', mode),
+    fontWeight: style('SynFontWeightSemibold', mode),
+    position: 'insideLeft',
+  },
+  silent: true,
 });

@@ -107,3 +107,10 @@ export const FULL_CIRCLE_RADIAN = 2 * Math.PI;
  * Conversion factor from degrees to radians.
  */
 export const DEGREE_TO_RADIAN = Math.PI / 180;
+
+/**
+ * Constants related to mark areas in charts.
+ */
+export const MARK_AREA = {
+  BACKGROUND_PATTERN: 'data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%228%22%20height%3D%228%22%3E%3Cline%20x1%3D%220%22%20y1%3D%228%22%20x2%3D%228%22%20y2%3D%220%22%20stroke%3D%22%23E7E7E7%22%20stroke-width%3D%221%22/%3E%3C/svg%3E',
+} as const;

@@ -1513,7 +1513,7 @@
           "type": "text"
         },
         "description": {
-          "value": "A mark line highlights a specific value in a chart, such as a target, maximum, minimum or average. Configure `markLine` on a specific series, the reference line is associated with that series and its data. It draws a horizontal or vertical line and can display a label with the value, providing immediate context without requiring users to read exact axis values. By default, the line uses a neutral color so it adds context without competing with the data series.",
+          "value": "A mark line highlights a specific value in a chart, such as a target, maximum, minimum or average. Configure `markLine` on a specific series, the reference line is associated with that series and its data. It draws a horizontal or vertical line and can display a label with the value, providing immediate context without requiring users to read exact axis values. By default, the line uses a neutral color so it adds context without competing with the data series.\n\nFor the full configuration possibilities have a look at [ECharts documentation](https://echarts.apache.org/en/option.html#series-line.markLine)",
           "type": "text"
         }
       },
@@ -1574,6 +1574,66 @@
         },
         "description": {
           "value": "The label position can be configured using `label.position`. While several positions are supported, `start` and `end` are generally recommended. To ensure long labels remain fully visible, adjust the chart grid (for example `grid.left`, `grid.top`, etc.) to provide sufficient space around the chart area. \nUse `label.formatter` to customize the displayed text, such as combining the mark line name with the value.",
+          "type": "text"
+        }
+      },
+      "mark-area-default": {
+        "title": {
+          "value": "Mark Areas",
+          "type": "text"
+        },
+        "description": {
+          "value": "A mark area highlights a range along an axis, such as a target interval, threshold, or time window. It is rendered behind the data to provide context without adding another series. Use a low-contrast fill or pattern so the data remains easy to read, and add a descriptive label to each range so its meaning does not rely on color or pattern alone. Configure `markArea` on a series and define each range with a pair of points.\n\nFor the full configuration possibilities, see the [ECharts documentation](https://echarts.apache.org/en/option.html#series-line.markArea).",
+          "type": "text"
+        }
+      },
+      "mark-area-min-max": {
+        "title": {
+          "value": "Minimum, Maximum, and Average",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use predefined types like `average`, `min` or `max` as start or endpoints in `markArea.data.type`.",
+          "type": "text"
+        }
+      },
+      "mark-area-value-range": {
+        "title": {
+          "value": "Value Range",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add `yAxis` values to the two points in `markArea.data` to highlight a horizontal value range across the chart. The area spans the full category axis between the specified values.",
+          "type": "text"
+        }
+      },
+      "mark-area-category-ranges": {
+        "title": {
+          "value": "Category Ranges",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add `xAxis` category values to the two points in `markArea.data` to highlight a range of categories. You can define multiple areas to call out separate periods and give each area a name for context.",
+          "type": "text"
+        }
+      },
+      "mark-area-label-position": {
+        "title": {
+          "value": "Mark Area Label Position",
+          "type": "text"
+        },
+        "description": {
+          "value": "The label position can be configured using `label.position`. While multiple positions are supported, 'insideLeft' is recommended for horizontal mark areas and 'insideTop' for vertical mark areas. The default position is 'insideLeft'.",
+          "type": "text"
+        }
+      },
+      "mark-area-intent-colors": {
+        "title": {
+          "value": "Mark Area Intent Colors",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use Synergy's NAMUR status colors when a highlighted range needs to communicate intent: green for a target that has been met, red for an exceeded limit or critical range, and yellow/orange for a warning. Set the area color in `itemStyle` and use opacity to keep the data visible beneath it.",
           "type": "text"
         }
       }

@@ -1506,6 +1506,76 @@
           "value": "Use `legendShow()` to display a legend for named area range series. Users can select legend entries to toggle the corresponding ranges.",
           "type": "text"
         }
+      },
+      "mark-line-default": {
+        "title": {
+          "value": "Mark Lines",
+          "type": "text"
+        },
+        "description": {
+          "value": "A mark line highlights a specific value in a chart, such as a target, maximum, minimum or average. Configure `markLine` on a specific series, the reference line is associated with that series and its data. It draws a horizontal or vertical line and can display a label with the value, providing immediate context without requiring users to read exact axis values. By default, the line uses a neutral color so it adds context without competing with the data series.",
+          "type": "text"
+        }
+      },
+      "mark-line-min-max": {
+        "title": {
+          "value": "Minimum and Maximum",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `type: 'min'` and `type: 'max'` in `markLine.data` to highlight the minimum and maximum values of a series.",
+          "type": "text"
+        }
+      },
+      "mark-line-average": {
+        "title": {
+          "value": "Average",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `type: 'average'` in `markLine.data` to show the average value of a series as a reference line.",
+          "type": "text"
+        }
+      },
+      "mark-line-thresholds": {
+        "title": {
+          "value": "Fixed Thresholds",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add a `yAxis` value to `markLine.data` to draw a horizontal threshold line. Use an `xAxis` value for a vertical line at a specific category.",
+          "type": "text"
+        }
+      },
+      "mark-line-coordinates": {
+        "title": {
+          "value": "Coordinate Lines",
+          "type": "text"
+        },
+        "description": {
+          "value": "Define a mark line with a pair of `coord` points to connect custom coordinates. Configure `symbol` to control the symbols at either end of the line.",
+          "type": "text"
+        }
+      },
+      "mark-line-intent-colors": {
+        "title": {
+          "value": "Mark Line Intent Colors",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use Synergy's NAMUR status colors when a reference line needs to communicate intent: green for a target that has been met, red for an exceeded limit or critical threshold and yellow/orange for a warning.",
+          "type": "text"
+        }
+      },
+      "mark-line-label-position": {
+        "title": {
+          "value": "Mark Line Label Position",
+          "type": "text"
+        },
+        "description": {
+          "value": "The label position can be configured using `label.position`. While several positions are supported, `start` and `end` are generally recommended. To ensure long labels remain fully visible, adjust the chart grid (for example `grid.left`, `grid.top`, etc.) to provide sufficient space around the chart area. \nUse `label.formatter` to customize the displayed text, such as combining the mark line name with the value.",
+          "type": "text"
+        }
       }
     },
     "checkbox": {

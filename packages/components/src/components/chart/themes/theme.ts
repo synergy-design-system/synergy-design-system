@@ -5,6 +5,7 @@ import { getDefaultAxisStyles } from '../configs/axes/utilities.js';
 import { getDataZoomStyles } from '../configs/data-zoom/utilities.js';
 import { getDefaultLegendStyles } from '../configs/legend/utilities.js';
 import { getDefaultTooltipStyle } from '../configs/tooltip/utilities.js';
+import { getDefaultMarkLineStyle } from '../configs/mark/utilities.js';
 
 const getCategoricalColors = (mode: Themes) => PALETTE_TOKENS.categorical.map((token) => style(token, mode)).filter(Boolean);
 
@@ -37,6 +38,7 @@ export const getSynergyTheme = (mode: Themes = 'light') => ({
     symbolSize: styleWithoutUnit('SynSpacingXSmall', mode),
   },
   logAxis: getDefaultAxisStyles(mode),
+  markLine: getDefaultMarkLineStyle(mode),
   // Global font style
   textStyle: {
     color: style('SynTypographyColorText', mode),

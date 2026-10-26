@@ -20,7 +20,7 @@
     "ajv-formats": "^3.0.1",
     "custom-elements-manifest": "^2.1.0",
     "eslint": "^9.39.5",
-    "execa": "^10.1.1",
+    "execa": "^10.2.1",
     "playwright": "^1.64.1",
     "prettier": "^3.9.7",
     "serve-handler": "^6.1.7",

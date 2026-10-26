@@ -47,7 +47,7 @@
     "@types/node": "^24.13.5",
     "eslint": "^9.39.5",
     "ora": "^9.4.1",
-    "postcss": "^8.5.28",
+    "postcss": "^8.5.31",
     "postcss-cli": "^12.0.0",
     "postcss-header": "^3.0.3",
     "postcss-import": "^17.0.1",

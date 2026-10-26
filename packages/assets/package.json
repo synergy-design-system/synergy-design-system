@@ -8,7 +8,7 @@
   },
   "description": "Assets for the Synergy Design System",
   "devDependencies": {
-    "@dotenvx/dotenvx": "^2.36.0",
+    "@dotenvx/dotenvx": "^2.38.2",
     "@figma-export/cli": "^6.4.1",
     "@figma-export/core": "^6.4.1",
     "@figma-export/output-components-as-svg": "^6.4.1",

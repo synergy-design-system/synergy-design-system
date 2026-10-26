@@ -1,22 +1,25 @@
-import figma, { html } from '@figma/code-connect/html';
+// url=https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=18458-27241
+// source=https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/components/src/components/breadcrumb/breadcrumb.component.ts
+// component=SynBreadcrumb
+import figma from 'figma';
 import type SynBreadcrumb from '../../src/components/breadcrumb/breadcrumb.js';
-import type { ValidProperties } from '../core/types';
+import type { ValidProperties } from '../core/types.js';
+import { renderChildren } from '../core/template-helpers.js';
 
-/**
- * @todos
- * - currently no possibility to toggle only the current level
- */
+const instance = figma.selectedInstance;
+const props = {
+  defaultSlot: instance.getBoolean('level-1') ? renderChildren(instance, 'syn-breadcrumb-item') : undefined,
+} satisfies ValidProperties<SynBreadcrumb>;
+const { defaultSlot } = props;
 
-// Synergy Web Component Connection
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=18458-27241', {
-  example: ({
-    defaultSlot,
-  }) => html`
+export default {
+  example: figma.code`
     <syn-breadcrumb
     >
       ${defaultSlot}
     </syn-breadcrumb>
   `,
+  id: 'syn-breadcrumb',
   imports: [
     'import { SynBreadcrumb } from "@synergy-design-system/components";',
   ],
@@ -26,9 +29,4 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       url: 'https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb--docs',
     },
   ],
-  props: {
-    defaultSlot: figma.boolean('level-1', {
-      true: figma.children('syn-breadcrumb-item'),
-    }),
-  } satisfies ValidProperties<SynBreadcrumb>,
-});
+};

@@ -16,7 +16,37 @@ This folder holds all figma code connect files and some utilities used to connec
 > ! As the icons export takes a long time to complete, we have opted to make the export available for parts.
 > For faster iteration, you may just use `pnpm figma-export:components` when working on connected components.
 
-## Current problems
+## Component templates
+
+The files in `components/` use the Code Connect v2 template API. Each Figma connection
+has its own template, including helper layers. Metadata comments specify the Figma
+URL, absolute GitHub implementation URL on the `main` branch, and component name.
+
+Validate component templates locally without publishing:
+
+```sh
+pnpm exec figma connect parse -c ./code-connect/figma.config.components.json --exit-on-unreadable-files
+```
+
+Publish components with `pnpm figma-export:components`.
+
+## Icon batches
+
+All generated icons share `icons/icons.figma.batch.ts`. The three generated lists
+(`sick2018.figma.batch.json`, `sick2025-filled.figma.batch.json`, and
+`sick2025-outline.figma.batch.json`) contain the icon names, Figma URLs, and source
+links. This keeps the generated mappings in four files regardless of icon count.
+The manual logo variants remain in the single `icons/logos.figma.ts` template.
+
+Regenerate the lists with `pnpm fetch-assets` in the assets package. Do not edit
+the generated JSON manually. The existing `figma-export:icons-2018`,
+`figma-export:icons-2025-filled`, and `figma-export:icons-2025-outline` commands
+publish the corresponding batches.
+
+## Legacy parser limitations
+
+The following list records limitations of the previous parser-based component mappings.
+It is retained for reference when reviewing the migrated templates.
 
 - [ ] As our figma library has no `<syn-icon>` component, we are not able to directly render instances of `<syn-icon>` and must rely on icon instances. This can be seen in `button.figma.ts` where we are unable to conditionally show prefix or suffix slots.
 - [ ] Dynamic Child instances with the same name cannot be distinguished when toggled with various boolean values. Examples for this are `accordion.figma.ts`.

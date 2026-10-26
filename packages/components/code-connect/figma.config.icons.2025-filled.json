@@ -1,7 +1,7 @@
 {
   "codeConnect": {
-    "include": ["./code-connect/icons/**/*-filled.figma.ts"],
-    "parser": "html",
+    "include": ["./code-connect/icons/sick2025-filled.figma.batch.json"],
+    "language": "html",
     "label": "Synergy (Web Components)"
   }
 }

@@ -343,6 +343,46 @@ const resolveFloatValue = (name, value) => {
 };
 
 /**
+ * Resolves the final color value for a given variable, taking into account variable aliases and composed color+opacity values.
+ * @param {VariablesAndCollections} variablesData
+ * @param {unknown} value
+ * @param {string} modeId
+ * @returns {unknown}
+ */
+// eslint-disable-next-line complexity
+const resolveColorValue = (variablesData, value, modeId) => {
+  if (!value || typeof value !== 'object') return value;
+
+  if ('type' in value && value.type === 'VARIABLE_ALIAS' && 'id' in value) {
+    return resolveColorValue(
+      variablesData,
+      resolveAliasToConcreteValue(variablesData, /** @type {string} */ (value.id), modeId),
+      modeId,
+    );
+  }
+
+  if (!('color' in value) || !('opacity' in value)) return value;
+
+  const color = resolveColorValue(variablesData, value.color, modeId);
+  const { opacity } = value;
+  const alpha = opacity && typeof opacity === 'object' && 'id' in opacity
+    && 'type' in opacity && opacity.type === 'VARIABLE_ALIAS'
+    ? Number(resolveAliasToConcreteValue(
+      variablesData,
+      /** @type {string} */ (opacity.id),
+      modeId,
+    )) / 100
+    : opacity;
+
+  if (!color || typeof color !== 'object' || typeof alpha !== 'number'
+    || !Number.isFinite(alpha)) {
+    return value;
+  }
+
+  return { ...color, a: alpha };
+};
+
+/**
  * Resolves the final Style-Dictionary `{ value, type }` for a given variable
  * in a specific mode. Handles aliases, color values, FLOAT values, font
  * families, and text content.
@@ -392,6 +432,7 @@ const resolveValue = (variablesData, variable, modeId) => {
     finalValue = floatResult.value;
     type = floatResult.type;
   } else if (resolvedType === 'COLOR') {
+    modeValue = resolveColorValue(variablesData, modeValue, modeId);
     const hasRgbChannels = typeof modeValue === 'object'
       && modeValue !== null
       && 'r' in modeValue

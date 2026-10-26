@@ -5,19 +5,19 @@
   },
   "description": "Design tokens for Synergy, the SICK Design System",
   "devDependencies": {
-    "@dotenvx/dotenvx": "^2.26.1",
+    "@dotenvx/dotenvx": "^2.38.2",
     "@figma-export/cli": "^6.4.1",
     "@figma-export/types": "^6.4.1",
-    "@figma/rest-api-spec": "^0.41.0",
+    "@figma/rest-api-spec": "^0.44.0",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@synergy-design-system/stylelint-config-syn": "workspace:*",
-    "@tamtamchik/json-deep-sort": "^1.5.0",
+    "@tamtamchik/json-deep-sort": "^1.5.1",
     "@tokens-studio/sd-transforms": "^2.0.3",
     "@types/node": "^24.13.5",
     "change-case": "^5.4.4",
     "eslint": "^9.39.5",
     "eslint-import-resolver-typescript": "^4.4.5",
-    "style-dictionary": "^5.5.3",
+    "style-dictionary": "^5.7.1",
     "stylelint": "^17.15.0",
     "typescript": "^6.0.3"
   },
@@ -94,5 +94,5 @@
   },
   "type": "module",
   "types": "./dist/js/index.d.ts",
-  "version": "3.29.0"
+  "version": "3.29.1"
 }

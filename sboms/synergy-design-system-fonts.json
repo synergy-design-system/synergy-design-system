@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/fonts",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-fonts-1.1.2-87c79b05-0a2e-4cc3-a7e1-770618f0f72e",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-fonts-1.1.3-eb33757e-fe5a-4136-82c2-13c5a5ee1a2d",
   "creationInfo": {
-    "created": "2026-10-13T09:19:07Z",
+    "created": "2026-10-26T07:20:53Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/fonts",
-      "versionInfo": "1.1.2",
+      "versionInfo": "1.1.3",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -25,7 +25,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/fonts@1.1.2"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/fonts@1.1.3"
         }
       ],
       "description": "Fonts for Synergy, the SICK Design System",

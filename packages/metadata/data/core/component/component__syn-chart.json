@@ -791,7 +791,7 @@
         {
           "description": {
             "type": "text",
-            "value": "Configure the a histogram with a series of `type: 'bar'` and set `barCategoryGap` to `1` to keep the bars close together."
+            "value": "Configure a histogram with a series of `type: 'bar'` and set `barCategoryGap` to `1` to keep adjacent bins close together or use the `seriesHistogram` preset for the recommended configuration."
           },
           "name": "histogram-preset",
           "title": {

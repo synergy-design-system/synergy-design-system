@@ -109,18 +109,12 @@ export const Vertical: Story = {
         yAxis: { 
           name: 'Frequency',
         },
-        series: [
-            {
-              data: [2, 8, 17, 14, 6, 3],
-              type: 'bar',
-              barCategoryGap: 1,
-            },
-          ]
       };
 
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
+          .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3] }])
       });
     </script>
   `,
@@ -148,18 +142,12 @@ export const Horizontal: Story = {
         xAxis: { 
           name: 'Frequency',
         },
-        series: [
-          {
-            data: [2, 8, 17, 14, 6, 3],
-            type: 'bar',
-            barCategoryGap: 1,
-          },
-        ]
       };
 
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
+          .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3] }])
       });
     </script>
   `,
@@ -189,18 +177,12 @@ export const FixedValueRange: Story = {
           max: 25,
           name: 'Frequency',
         },
-        series: [
-          {
-            data: [2, 8, 17, 14, 6, 3],
-            type: 'bar',
-            barCategoryGap: 1,
-          },
-        ]
       };
 
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
+          .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3] }])
       });
     </script>
   `,
@@ -228,18 +210,12 @@ export const NegativeValues: Story = {
         xAxis: {
           name: 'Frequency',
         },
-        series: [
-          {
-            data: [-2, -8, -17, -14, -6, -3],
-            type: 'bar',
-            barCategoryGap: 1,
-          },
-        ]
       };
 
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
+          .seriesHistogram([{ data: [-2, -8, -17, -14, -6, -3] }])
       });
     </script>
   `,
@@ -267,18 +243,12 @@ export const PositiveAndNegative: Story = {
         yAxis: {
           name: 'Frequency',
         },
-        series: [
-          {
-            data: [-6, -2, 8, 14, 6, 3],
-            type: 'bar',
-            barCategoryGap: 1,
-          },
-        ]
       };
 
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
+          .seriesHistogram([{ data: [-6, -2, 8, 14, 6, 3] }])
       });
     </script>
   `,
@@ -307,36 +277,19 @@ export const CustomBarWidth: Story = {
         yAxis: {
           name: 'Frequency',
         },
-        series: [
-          {
-            data: [2, 8, 17, 14, 6, 3],
-            type: 'bar',
-            barCategoryGap: 1,
-          },
-        ]
       };
 
       fixedWidthCharts.forEach((fixed) => {
         fixed.config = handle => handle
-          .baseConfig({
-            ... baseConfig,
-            series: baseConfig.series.map(series => ({ 
-              ...series,
-              barWidth: 16
-            })),
-          })
+          .baseConfig(baseConfig)
+          .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3], barWidth: 16 }])
       });
 
 
       relativeWidthCharts.forEach((relative) => {
         relative.config = handle => handle
-          .baseConfig({
-            ... baseConfig,
-            series: baseConfig.series.map(series => ({ 
-              ...series,
-              barWidth: '30%'
-            })),
-          })
+          .baseConfig(baseConfig)
+          .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3], barWidth: '30%' }])
       });
     </script>
   `,
@@ -363,19 +316,12 @@ export const NoGap: Story = {
         yAxis: {
           name: 'Frequency',
         },
-        series: [
-          {
-            data: [2, 8, 17, 14, 6, 3],
-            type: 'bar',
-            barWidth: undefined,
-            barCategoryGap: -1,
-          },
-        ]
       };
 
       noGapCharts.forEach((noGap) => {
         noGap.config = handle => handle
           .baseConfig(baseConfig)
+          .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3], barWidth: undefined, barCategoryGap: -1 }])
       });
     </script>
   `,
@@ -404,18 +350,12 @@ export const CustomColors: Story = {
           name: 'Frequency',
         },
         color: [getChartColor('SynChartSequential02_70')],
-        series: [
-          {
-            data: [2, 8, 17, 14, 6, 3],
-            type: 'bar',
-            barCategoryGap: 1,
-          },
-        ]
       };
 
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
+          .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3] }])
       });
     </script>
   `,
@@ -467,18 +407,12 @@ export const Tooltip: Story = {
         yAxis: { 
           name: 'Frequency',
         },
-        series: [
-          {
-            data: [2, 8, 17, 14, 6, 3],
-            type: 'bar',
-            barCategoryGap: 1,
-          },
-        ]
       };
 
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
+          .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3] }])
           .tooltipShow({ axisPointer: { type: 'shadow' } })
       });
     </script>
@@ -535,19 +469,12 @@ export const SelectedMode: Story = {
         yAxis: {
           name: 'Frequency',
         },
-        series: [
-          {
-            data: values,
-            type: 'bar',
-            selectedMode: 'single',
-            barCategoryGap: 1,
-          },
-        ]
       };
 
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
+          .seriesHistogram([{ data: values, selectedMode: 'single' }])
 
         const instance = chart.getInstance();
         instance.on('selectchanged', ({ selected }) => {

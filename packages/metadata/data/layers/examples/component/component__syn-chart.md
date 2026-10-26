@@ -1823,7 +1823,7 @@ The gauge series supports custom value formatting using formatter.value, formatt
 
 ## Default
 
-Configure the a histogram with a series of type: 'bar' and set barCategoryGap to 1 to keep the bars close together.
+Configure a histogram with a series of type: 'bar' and set barCategoryGap to 1 to keep adjacent bins close together or use the seriesHistogram preset for the recommended configuration.
 
 ```html
 <syn-chart id="histogram-default"></syn-chart>
@@ -1872,17 +1872,13 @@ A vertical histogram displays value intervals along the x-axis and their frequen
     yAxis: {
       name: "Frequency",
     },
-    series: [
-      {
-        data: [2, 8, 17, 14, 6, 3],
-        type: "bar",
-        barCategoryGap: 1,
-      },
-    ],
   };
 
   charts.forEach((chart) => {
-    chart.config = (handle) => handle.baseConfig(baseConfig);
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3] }]);
   });
 </script>
 ```
@@ -1907,17 +1903,13 @@ A horizontal histogram displays value intervals along the y-axis and their frequ
     xAxis: {
       name: "Frequency",
     },
-    series: [
-      {
-        data: [2, 8, 17, 14, 6, 3],
-        type: "bar",
-        barCategoryGap: 1,
-      },
-    ],
   };
 
   charts.forEach((chart) => {
-    chart.config = (handle) => handle.baseConfig(baseConfig);
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3] }]);
   });
 </script>
 ```
@@ -1944,17 +1936,13 @@ Use min and max on the value axis to set explicit scale boundaries. This ensures
       max: 25,
       name: "Frequency",
     },
-    series: [
-      {
-        data: [2, 8, 17, 14, 6, 3],
-        type: "bar",
-        barCategoryGap: 1,
-      },
-    ],
   };
 
   charts.forEach((chart) => {
-    chart.config = (handle) => handle.baseConfig(baseConfig);
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3] }]);
   });
 </script>
 ```
@@ -1979,17 +1967,13 @@ A histogram can show negative values such as losses, deficits or decreases. Bars
     xAxis: {
       name: "Frequency",
     },
-    series: [
-      {
-        data: [-2, -8, -17, -14, -6, -3],
-        type: "bar",
-        barCategoryGap: 1,
-      },
-    ],
   };
 
   charts.forEach((chart) => {
-    chart.config = (handle) => handle.baseConfig(baseConfig);
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesHistogram([{ data: [-2, -8, -17, -14, -6, -3] }]);
   });
 </script>
 ```
@@ -2014,17 +1998,13 @@ A histogram can be used to visualize the distribution of positive and negative c
     yAxis: {
       name: "Frequency",
     },
-    series: [
-      {
-        data: [-6, -2, 8, 14, 6, 3],
-        type: "bar",
-        barCategoryGap: 1,
-      },
-    ],
   };
 
   charts.forEach((chart) => {
-    chart.config = (handle) => handle.baseConfig(baseConfig);
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesHistogram([{ data: [-6, -2, 8, 14, 6, 3] }]);
   });
 </script>
 ```
@@ -2052,35 +2032,20 @@ Set barWidth to control bar thickness. A number specifies a fixed width in pixel
     yAxis: {
       name: "Frequency",
     },
-    series: [
-      {
-        data: [2, 8, 17, 14, 6, 3],
-        type: "bar",
-        barCategoryGap: 1,
-      },
-    ],
   };
 
   fixedWidthCharts.forEach((fixed) => {
     fixed.config = (handle) =>
-      handle.baseConfig({
-        ...baseConfig,
-        series: baseConfig.series.map((series) => ({
-          ...series,
-          barWidth: 16,
-        })),
-      });
+      handle
+        .baseConfig(baseConfig)
+        .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3], barWidth: 16 }]);
   });
 
   relativeWidthCharts.forEach((relative) => {
     relative.config = (handle) =>
-      handle.baseConfig({
-        ...baseConfig,
-        series: baseConfig.series.map((series) => ({
-          ...series,
-          barWidth: "30%",
-        })),
-      });
+      handle
+        .baseConfig(baseConfig)
+        .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3], barWidth: "30%" }]);
   });
 </script>
 ```
@@ -2104,18 +2069,17 @@ Set barWidth to control bar thickness. A number specifies a fixed width in pixel
     yAxis: {
       name: "Frequency",
     },
-    series: [
-      {
-        data: [2, 8, 17, 14, 6, 3],
-        type: "bar",
-        barWidth: undefined,
-        barCategoryGap: -1,
-      },
-    ],
   };
 
   noGapCharts.forEach((noGap) => {
-    noGap.config = (handle) => handle.baseConfig(baseConfig);
+    noGap.config = (handle) =>
+      handle.baseConfig(baseConfig).seriesHistogram([
+        {
+          data: [2, 8, 17, 14, 6, 3],
+          barWidth: undefined,
+          barCategoryGap: -1,
+        },
+      ]);
   });
 </script>
 ```
@@ -2141,17 +2105,13 @@ Bar series use the chart's categorical palette by default. Use the color option 
       name: "Frequency",
     },
     color: [getChartColor("SynChartSequential02_70")],
-    series: [
-      {
-        data: [2, 8, 17, 14, 6, 3],
-        type: "bar",
-        barCategoryGap: 1,
-      },
-    ],
   };
 
   charts.forEach((chart) => {
-    chart.config = (handle) => handle.baseConfig(baseConfig);
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3] }]);
   });
 </script>
 ```
@@ -2176,19 +2136,13 @@ Enable a tooltip to inspect bar values on hover. For bar series it is recommende
     yAxis: {
       name: "Frequency",
     },
-    series: [
-      {
-        data: [2, 8, 17, 14, 6, 3],
-        type: "bar",
-        barCategoryGap: 1,
-      },
-    ],
   };
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
       handle
         .baseConfig(baseConfig)
+        .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3] }])
         .tooltipShow({ axisPointer: { type: "shadow" } });
   });
 </script>
@@ -2219,18 +2173,13 @@ Selection is disabled by default. Set selectedMode to true or 'single' to select
     yAxis: {
       name: "Frequency",
     },
-    series: [
-      {
-        data: values,
-        type: "bar",
-        selectedMode: "single",
-        barCategoryGap: 1,
-      },
-    ],
   };
 
   charts.forEach((chart) => {
-    chart.config = (handle) => handle.baseConfig(baseConfig);
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesHistogram([{ data: values, selectedMode: "single" }]);
 
     const instance = chart.getInstance();
     instance.on("selectchanged", ({ selected }) => {

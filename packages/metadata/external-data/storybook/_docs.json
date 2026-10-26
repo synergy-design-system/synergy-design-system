@@ -1246,6 +1246,126 @@
           "value": "Use `legendShow()` to display a legend for segment data items. Set the `name` option on each item to provide its legend label.",
           "type": "text"
         }
+      },
+      "histogram-default": {
+        "title": {
+          "value": "Histogram",
+          "type": "text"
+        },
+        "description": {
+          "value": "A histogram visualizes the frequency distribution of numerical values across continuous intervals (bins). It helps identify patterns, spread, clusters and outliers within a dataset. Histograms are best suited for analyzing distributions of continuous data such as response times, measurements and durations. For comparing distinct categories, use a bar chart instead.",
+          "type": "text"
+        }
+      },
+      "histogram-preset": {
+        "title": {
+          "value": "Histogram Configuration",
+          "type": "text"
+        },
+        "description": {
+          "value": "Configure the a histogram with a series of `type: 'bar'` and set `barCategoryGap` to `1` to keep the bars close together.",
+          "type": "text"
+        }
+      },
+      "histogram-vertical": {
+        "title": {
+          "value": "Vertical Histogram",
+          "type": "text"
+        },
+        "description": {
+          "value": "A vertical histogram displays value intervals along the x-axis and their frequencies along the y-axis. This orientation is commonly used when there is sufficient horizontal space and makes it easy to compare the distribution across value ranges.",
+          "type": "text"
+        }
+      },
+      "histogram-horizontal": {
+        "title": {
+          "value": "Horizontal Histogram",
+          "type": "text"
+        },
+        "description": {
+          "value": "A horizontal histogram displays value intervals along the y-axis and their frequencies along the x-axis. This orientation can improve readability when interval labels are long or when vertical space is more limited.",
+          "type": "text"
+        }
+      },
+      "histogram-value-range": {
+        "title": {
+          "value": "Histogram Value Range",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `min` and `max` on the value axis to set explicit scale boundaries. This ensures the axis scale remains consistent across datasets, making it easier to compare multiple charts and monitor changes over time.",
+          "type": "text"
+        }
+      },
+      "histogram-negative": {
+        "title": {
+          "value": "Histogram with Negative Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "A histogram can show negative values such as losses, deficits or decreases. Bars extend below the zero baseline to represent the frequency of values within negative ranges.",
+          "type": "text"
+        }
+      },
+      "histogram-positive-and-negative": {
+        "title": {
+          "value": "Histogram with Positive and Negative Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "A histogram can be used to visualize the distribution of positive and negative changes around a reference value. Negative bars represent decreases or values below the reference, while positive bars indicate increases or values above it.",
+          "type": "text"
+        }
+      },
+      "histogram-custom-width": {
+        "title": {
+          "value": "Histogram Custom Width",
+          "type": "text"
+        },
+        "description": {
+          "value": "Set `barWidth` to control bar thickness. A number specifies a fixed width in pixels, while a percentage string sets the width relative to the available category space and adapts to the chart size. Histograms are typically displayed with little or no gap between bars to emphasize the continuity of the underlying distribution. When `barWidth` is set, `barCategoryGap` is ignored.",
+          "type": "text"
+        }
+      },
+      "histogram-no-gap": {
+        "title": {
+          "value": "Histogram No Gap",
+          "type": "text"
+        },
+        "description": {
+          "value": "Set `barWidth` to `undefined` and `barCategoryGap` to `-1` to remove the gap between bars, emphasizing the continuity of the distribution.",
+          "type": "text"
+        }
+      },
+      "histogram-custom-color": {
+        "title": {
+          "value": "Histogram Custom Color",
+          "type": "text"
+        },
+        "description": {
+          "value": "Bar series use the chart's categorical palette by default. Use the `color` option to apply explicit colors to individual series.",
+          "type": "text"
+        }
+      },
+      "histogram-tooltip": {
+        "title": {
+          "value": "Histogram with Tooltip",
+          "type": "text"
+        },
+        "description": {
+          "value": "Enable a tooltip to inspect bar values on hover. For bar series it is recommended to set `tooltip.axisPointer.type` to `'shadow'` to highlight the corresponding category and compare its values across series.",
+          "type": "text"
+        }
+      },
+      "histogram-selected-mode": {
+        "title": {
+          "value": "Histogram Selection Mode",
+          "type": "text"
+        },
+        "description": {
+          "value": "Selection is disabled by default. Set `selectedMode` to `true` or `'single'` to select one data item at a time, `'multiple'` to select multiple data items, or `'series'` to select an entire series.",
+          "type": "text"
+        }
       }
     },
     "checkbox": {

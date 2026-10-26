@@ -7,6 +7,7 @@ import type { CSSResultGroup, PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { query } from 'lit/decorators/query.js';
 import {
+  BarChart,
   GaugeChart, LineChart,
 } from 'echarts/charts.js';
 import {
@@ -32,6 +33,7 @@ use([
   CanvasRenderer,
   SVGRenderer,
   LineChart,
+  BarChart,
   GaugeChart,
   TitleComponent,
   TooltipComponent,

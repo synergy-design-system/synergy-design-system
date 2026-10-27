@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.22.1
+
+### Patch Changes
+
+- [#1402](https://github.com/synergy-design-system/synergy-design-system/pull/1402) [`749e1c2`](https://github.com/synergy-design-system/synergy-design-system/commit/749e1c2a6d69dfe29be0d649b2ae8e8eda89136e) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-10-26
+  
+  fix: 🐛 dependency updates ([#258](https://github.com/synergy-design-system/synergy-design-system/issues/258))
+  
+  This release upgrades all package dependencies to their latest stable versions.
+- Updated dependencies [[`749e1c2`](https://github.com/synergy-design-system/synergy-design-system/commit/749e1c2a6d69dfe29be0d649b2ae8e8eda89136e)]:
+  - @synergy-design-system/assets@2.3.3
+  - @synergy-design-system/metadata@4.22.1
+
 ## 4.22.0
 
 ### Minor Changes

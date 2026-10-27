@@ -694,6 +694,11 @@ export const SynChartSequentialStatusWarning90: string;
 export const SynChartSequentialStatusWarning100: string;
 
 /**
+ * Maps to the css variable `--syn-chart-tooltip-background-color`
+ */
+export const SynChartTooltipBackgroundColor: string;
+
+/**
  * Maps to the css variable `--syn-chart-tooltip-color`
  */
 export const SynChartTooltipColor: string;

@@ -1,0 +1,3 @@
+<template>
+  <syn-calendar />
+</template>

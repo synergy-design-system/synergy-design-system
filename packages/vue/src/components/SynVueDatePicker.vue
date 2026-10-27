@@ -227,6 +227,11 @@ the same document or shadow root for this to work.
    * An additional synchronous rule receiving a UTC date-only Date, shared with the calendar.
    */
   isDateDisabled?: SynDatePicker['isDateDisabled'];
+
+  /**
+   * Support for two way data binding
+   */
+  modelValue?: SynDatePicker['value'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.
@@ -297,6 +302,11 @@ defineEmits<{
    * Emitted after the calendar is hidden.
    */
   'syn-after-hide': [e: SynAfterHideEvent];
+
+  /**
+   * Support for two way data binding
+   */
+  'update:modelValue': [newValue: SynDatePicker['value']];
 }>();
 </script>
 
@@ -318,7 +328,10 @@ export type { SynAfterHideEvent } from '@synergy-design-system/components';
   <syn-date-picker
     @syn-before-change="$emit('syn-before-change', $event)"
     @syn-clear="$emit('syn-clear', $event)"
-    @syn-input="$emit('syn-input', $event)"
+    @syn-input="
+      $emit('update:modelValue', ($event.target as SynDatePicker).value);
+      $emit('syn-input', $event);
+    "
     @syn-change="$emit('syn-change', $event)"
     @syn-focus="$emit('syn-focus', $event)"
     @syn-blur="$emit('syn-blur', $event)"
@@ -327,6 +340,13 @@ export type { SynAfterHideEvent } from '@synergy-design-system/components';
     @syn-after-show="$emit('syn-after-show', $event)"
     @syn-hide="$emit('syn-hide', $event)"
     @syn-after-hide="$emit('syn-after-hide', $event)"
+    :value="
+      typeof props.modelValue !== 'undefined'
+        ? props.modelValue
+        : typeof props.value !== 'undefined'
+          ? props.value
+          : undefined
+    "
     v-bind="visibleProps"
     ref="nativeElement">
     <slot></slot>

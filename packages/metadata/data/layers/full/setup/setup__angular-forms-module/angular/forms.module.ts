@@ -21,6 +21,7 @@ import { SynergyValidatorsModule } from '@synergy-design-system/angular/directiv
   ],
   selector: `syn-button-group[formControlName], syn-button-group[formControl], syn-button-group[ngModel],
     syn-combobox[formControlName], syn-combobox[formControl], syn-combobox[ngModel],
+    syn-date-picker[formControlName], syn-date-picker[formControl], syn-date-picker[ngModel],
     syn-dropdown[formControlName], syn-dropdown[formControl], syn-dropdown[ngModel],
     syn-input[formControlName], syn-input[formControl], syn-input[ngModel],
     syn-radio-group[formControlName], syn-radio-group[formControl], syn-radio-group[ngModel],

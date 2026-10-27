@@ -4,11 +4,13 @@ import DemoBadge from "./DemoBadge.vue";
 import DemoBreadcrumb from "./DemoBreadcrumb.vue";
 import DemoButton from "./DemoButton.vue";
 import DemoButtonGroup from "./DemoButtonGroup.vue";
+import DemoCalendar from "./DemoCalendar.vue";
 import DemoCard from "./DemoCard.vue";
 import DemoChart from "./DemoChart.vue";
 import DemoCheckbox from "./DemoCheckbox.vue";
 import DemoCheckboxGroup from "./DemoCheckboxGroup.vue";
 import DemoCombobox from "./DemoCombobox.vue";
+import DemoDatePicker from "./DemoDatePicker.vue";
 import DemoDetails from "./DemoDetails.vue";
 import DemoDialog from "./DemoDialog.vue";
 import DemoDivider from "./DemoDivider.vue";
@@ -50,8 +52,10 @@ export {
   DemoBreadcrumb,
   DemoButton,
   DemoButtonGroup,
+  DemoCalendar,
   DemoCard,
   DemoChart,
+  DemoDatePicker,
   DemoGaugeChart,
   DemoLineChart,
   DemoCheckbox,

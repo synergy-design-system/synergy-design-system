@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-27T08:57:23.225Z",
+  "builtAt": "2026-10-27T10:26:24.207Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset__sick2018-icons.json",
@@ -398,6 +398,7 @@
       "id": "component:syn-date-picker",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 7,
         "interface": 2,
         "rules": 1

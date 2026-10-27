@@ -127,6 +127,7 @@ import '@synergy-design-system/components/components/date-picker/date-picker.js'
 export class SynDatePickerComponent {
   public nativeElement: SynDatePicker;
   private _ngZone: NgZone;
+  private modelSignal = new AbortController();
 
   constructor(e: ElementRef, ngZone: NgZone) {
     this.nativeElement = e.nativeElement;
@@ -173,6 +174,30 @@ export class SynDatePickerComponent {
         this.synAfterHideEvent.emit(e);
       },
     );
+    this.ngModelUpdateOn = 'syn-input';
+  }
+
+  /**
+   * The event that will trigger the ngModel update.
+   * By default, this is set to "syn-input".
+   */
+  @Input()
+  set ngModelUpdateOn(v: keyof HTMLElementEventMap) {
+    this.modelSignal.abort();
+    this.modelSignal = new AbortController();
+    const option = v || 'syn-input';
+    this.nativeElement.addEventListener(
+      option,
+      () => {
+        this.valueChange.emit(this.value);
+      },
+      {
+        signal: this.modelSignal.signal,
+      },
+    );
+  }
+  get ngModelUpdateOn(): keyof HTMLElementEventMap {
+    return this.ngModelUpdateOn;
   }
 
   /**
@@ -466,6 +491,11 @@ the same document or shadow root for this to work.
    * Emitted after the calendar is hidden.
    */
   @Output() synAfterHideEvent = new EventEmitter<SynAfterHideEvent>();
+
+  /**
+   * Support for two way data binding
+   */
+  @Output() valueChange = new EventEmitter<SynDatePicker['value']>();
 }
 
 export type { SynBeforeChangeEvent } from '@synergy-design-system/components';

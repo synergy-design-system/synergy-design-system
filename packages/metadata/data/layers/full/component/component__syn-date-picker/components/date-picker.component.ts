@@ -1503,7 +1503,7 @@ export default class SynDatePicker extends SynergyElement implements SynergyForm
                 ? html`
                     <button
                       aria-label=${this.localize.term('clearEntry')}
-                      class="select__clear"
+                      class="input__clear"
                       @click=${this.#handleClearClick}
                       @mousedown=${this.#handleClearMouseDown}
                       part="clear-button"

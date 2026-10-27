@@ -62,12 +62,11 @@
         type="tel"
       ></syn-input>
 
-      <syn-input
+      <syn-date-picker
         id="input-date"
         label="Date of birth"
         name="input-date"
-        type="date"
-      ></syn-input>
+      ></syn-date-picker>
 
       <syn-combobox
         id="input-nationality"

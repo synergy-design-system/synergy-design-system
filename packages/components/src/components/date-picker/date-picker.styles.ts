@@ -77,7 +77,8 @@ export default css`
     outline-offset: var(--syn-focus-ring-offset);
   }
 
-  .select__clear {
+  .input__clear {
+    align-items: center;
     background: none;
     border: none;
     color: var(--syn-input-icon-icon-clearable-color);

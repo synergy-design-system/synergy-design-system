@@ -349,6 +349,7 @@ const resolveFloatValue = (name, value) => {
  * @param {string} modeId
  * @returns {unknown}
  */
+// eslint-disable-next-line complexity
 const resolveColorValue = (variablesData, value, modeId) => {
   if (!value || typeof value !== 'object') return value;
 

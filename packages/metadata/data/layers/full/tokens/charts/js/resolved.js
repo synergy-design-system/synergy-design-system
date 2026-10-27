@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.29.1
+ * @synergy-design-system/tokens version 3.30.0
  * SICK Global UX Foundation
  */
 
@@ -142,6 +142,7 @@ export const ResolvedTokens = {
   SynChartSequentialStatusWarning80: { dark: '#ffe67c', light: '#89540a' },
   SynChartSequentialStatusWarning90: { dark: '#fff5c6', light: '#74450f' },
   SynChartSequentialStatusWarning100: { dark: '#fffbeb', light: '#442404' },
+  SynChartTooltipBackgroundColor: { dark: '#404769', light: '#b2b2b2' },
   SynChartTooltipColor: { dark: '#0e1633', light: '#ffffff' },
   SynChartTrackColor: { dark: '#262f55', light: '#e7e7e7' },
 };

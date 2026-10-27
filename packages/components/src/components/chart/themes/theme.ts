@@ -17,6 +17,14 @@ const getCategoricalColors = (mode: Themes) => PALETTE_TOKENS.categorical.map((t
 export const getSynergyTheme = (mode: Themes = 'light') => ({
   // Remove the starting animation for chart series
   animationDuration: 0,
+  bar: {
+    // We want the bars to be responsive. This is why we do not set a fixed pixel width for `barWidth` as the bars would then no longer be responsive.
+    // By setting only the maximum width, we allow the bars to shrink and grow responsively within the available space.
+    barMaxWidth: styleWithoutUnit('SynSpacingLarge', mode),
+    label: {
+      fontSize: styleWithoutUnit('SynFontSizeXSmall', mode),
+    },
+  },
   categoryAxis: getDefaultAxisStyles(mode),
   // Default color palette for charts, is categorical by default but can be overridden by setting the palette property on the chart component or by directly setting config.color
   color: getCategoricalColors(mode),

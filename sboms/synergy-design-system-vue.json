@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/vue",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-vue-3.29.1-354ffaf6-762e-49b4-ba78-c939e4e7bd8c",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-vue-3.30.0-510cc5e3-1044-4b6a-90d2-f4935e17227d",
   "creationInfo": {
-    "created": "2026-10-26T07:20:53Z",
+    "created": "2026-10-27T13:15:57Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/vue",
-      "versionInfo": "3.29.1",
+      "versionInfo": "3.30.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -25,7 +25,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/vue@3.29.1"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/vue@3.30.0"
         }
       ],
       "description": "Vue3 wrappers for the Synergy Design System",
@@ -33,9 +33,9 @@
       "homepage": "https://github.com/synergy-design-system/synergy-design-system.git"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.29.1-0",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.30.0-0",
       "name": "@synergy-design-system/tokens",
-      "versionInfo": "3.29.1",
+      "versionInfo": "3.30.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "licenseConcluded": "MIT",
@@ -45,7 +45,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.29.1"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.30.0"
         }
       ],
       "description": "Design tokens for Synergy, the SICK Design System",
@@ -53,9 +53,9 @@
       "supplier": "Person: SICK Global UX Foundation"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.29.1-1",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.30.0-1",
       "name": "@synergy-design-system/components",
-      "versionInfo": "3.29.1",
+      "versionInfo": "3.30.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "licenseConcluded": "MIT",
@@ -65,7 +65,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.29.1"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.30.0"
         }
       ],
       "description": "",
@@ -73,10 +73,10 @@
       "supplier": "Person: SICK Global UX Foundation"
     },
     {
-      "SPDXID": "SPDXRef-Package--floating-ui-dom-1.8.0-2",
-      "name": "@floating-ui/dom",
-      "versionInfo": "1.8.0",
-      "downloadLocation": "https://registry.npmjs.org/@floating-ui/dom/-/dom-1.8.0.tgz",
+      "SPDXID": "SPDXRef-Package-composed-offset-position-0.0.6-2",
+      "name": "composed-offset-position",
+      "versionInfo": "0.0.6",
+      "downloadLocation": "https://registry.npmjs.org/composed-offset-position/-/composed-offset-position-0.0.6.tgz",
       "filesAnalyzed": false,
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
@@ -85,16 +85,16 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40floating-ui/dom@1.8.0"
+          "referenceLocator": "pkg:npm/composed-offset-position@0.0.6"
         }
       ],
-      "description": "Floating UI for the web",
-      "homepage": "https://floating-ui.com",
-      "supplier": "Person: atomiks",
+      "description": "This provides a set of ponyfills to achieve the same behavior of `offsetParent`, `offsetLeft` and `offsetTop` before the `offsetParent` spec was changed.",
+      "homepage": "https://github.com/jcfranco/composed-offset-position#readme",
+      "supplier": "Person: jcfranco",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "c974abcde1d905365a74b3a57f28429091cd78b2671d19d1227c1d678d0bed989a02dac1c28625b03ad7defe7307552d93b08b7f370e5675555a85c4932ec27a"
+          "checksumValue": "43b74ba26a48ea553077b2d6c8870febaaf859c4bdbbb00bda1f0769e8a98917c244f2cc5aa471f1f62c8dbe0e1e2e9440589f3bb5ed342d88944275a33205c7"
         }
       ]
     },
@@ -125,7 +125,33 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--floating-ui-core-1.8.0-4",
+      "SPDXID": "SPDXRef-Package--floating-ui-dom-1.8.0-4",
+      "name": "@floating-ui/dom",
+      "versionInfo": "1.8.0",
+      "downloadLocation": "https://registry.npmjs.org/@floating-ui/dom/-/dom-1.8.0.tgz",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40floating-ui/dom@1.8.0"
+        }
+      ],
+      "description": "Floating UI for the web",
+      "homepage": "https://floating-ui.com",
+      "supplier": "Person: atomiks",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "c974abcde1d905365a74b3a57f28429091cd78b2671d19d1227c1d678d0bed989a02dac1c28625b03ad7defe7307552d93b08b7f370e5675555a85c4932ec27a"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--floating-ui-core-1.8.0-5",
       "name": "@floating-ui/core",
       "versionInfo": "1.8.0",
       "downloadLocation": "https://registry.npmjs.org/@floating-ui/core/-/core-1.8.0.tgz",
@@ -151,188 +177,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-lit-3.3.3-5",
-      "name": "lit",
-      "versionInfo": "3.3.3",
-      "downloadLocation": "https://registry.npmjs.org/lit/-/lit-3.3.3.tgz",
-      "filesAnalyzed": false,
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lit@3.3.3"
-        }
-      ],
-      "description": "A library for building fast, lightweight web components",
-      "homepage": "https://lit.dev/",
-      "supplier": "Person: Google LLC",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "7f272ebd983f864a68ccbd34966d691091f99cdfe5afd65777a9892361d2378f81cdcf8b0cd74402927a1c56cf91d14d1cbbcea65208b89bf1912e17531aa2af"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--lit-reactive-element-2.1.2-6",
-      "name": "@lit/reactive-element",
-      "versionInfo": "2.1.2",
-      "downloadLocation": "https://registry.npmjs.org/@lit/reactive-element/-/reactive-element-2.1.2.tgz",
-      "filesAnalyzed": false,
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40lit/reactive-element@2.1.2"
-        }
-      ],
-      "description": "A simple low level base class for creating fast, lightweight web components",
-      "homepage": "https://lit.dev/",
-      "supplier": "Person: Google LLC",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "a5b0838953279ded6561421a60d379c2bc105c3b47698b60ed81053de5be870b3a538ed6785bc84865167a43c629638fd7282bb3479fd28d5524c9357b1a2ce4"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--lit-labs-ssr-dom-shim-1.6.0-7",
-      "name": "@lit-labs/ssr-dom-shim",
-      "versionInfo": "1.6.0",
-      "downloadLocation": "https://registry.npmjs.org/@lit-labs/ssr-dom-shim/-/ssr-dom-shim-1.6.0.tgz",
-      "filesAnalyzed": false,
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40lit-labs/ssr-dom-shim@1.6.0"
-        }
-      ],
-      "description": "DOM shim for Lit Server Side Rendering (SSR)",
-      "homepage": "https://github.com/lit/lit/tree/main/packages/labs/ssr-dom-shim",
-      "supplier": "Person: Google LLC",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "5476f400b3cc4e580a8cceb2231c6840d9e92b250a2c3d3857379076c89790caa4bd89401f1abd82518b9a06dbf3cf7fd46b288523808ef418a22069a5716aad"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-lit-html-3.3.3-8",
-      "name": "lit-html",
-      "versionInfo": "3.3.3",
-      "downloadLocation": "https://registry.npmjs.org/lit-html/-/lit-html-3.3.3.tgz",
-      "filesAnalyzed": false,
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lit-html@3.3.3"
-        }
-      ],
-      "description": "HTML templates literals in JavaScript",
-      "homepage": "https://lit.dev/",
-      "supplier": "Person: Google LLC",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "7a5f0cea32b6a37457067ad21d7dd92abb0df33115eb7a521314ced70609cfb427746619f37e777b66b93cf5fea877b66866b27e7721426900a2369601110e20"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--types-trusted-types-2.0.7-9",
-      "name": "@types/trusted-types",
-      "versionInfo": "2.0.7",
-      "downloadLocation": "https://registry.npmjs.org/@types/trusted-types/-/trusted-types-2.0.7.tgz",
-      "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40types/trusted-types@2.0.7"
-        }
-      ],
-      "description": "TypeScript definitions for trusted-types",
-      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/trusted-types",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "49c68f767d5d41cce06e5d101537933a65471542eddfde17260390368c95859eabdaf2e730b25f04f779dd2079d93ff71b7e95235fe0d8c65a5f47300ee5ec7f"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-lit-element-4.2.2-10",
-      "name": "lit-element",
-      "versionInfo": "4.2.2",
-      "downloadLocation": "https://registry.npmjs.org/lit-element/-/lit-element-4.2.2.tgz",
-      "filesAnalyzed": false,
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lit-element@4.2.2"
-        }
-      ],
-      "description": "A simple base class for creating fast, lightweight web components",
-      "homepage": "https://lit.dev/",
-      "supplier": "Person: Google LLC",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "6852a1353a16c68ca190d0e6599c04bdad9295089afa37c6d1f8c8595fff61e4da5ab5673b10fcf5d3ca7e280252ca571668f3384510a4e91e8c7e4bcbab06d3"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-composed-offset-position-0.0.6-11",
-      "name": "composed-offset-position",
-      "versionInfo": "0.0.6",
-      "downloadLocation": "https://registry.npmjs.org/composed-offset-position/-/composed-offset-position-0.0.6.tgz",
-      "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/composed-offset-position@0.0.6"
-        }
-      ],
-      "description": "This provides a set of ponyfills to achieve the same behavior of `offsetParent`, `offsetLeft` and `offsetTop` before the `offsetParent` spec was changed.",
-      "homepage": "https://github.com/jcfranco/composed-offset-position#readme",
-      "supplier": "Person: jcfranco",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "43b74ba26a48ea553077b2d6c8870febaaf859c4bdbbb00bda1f0769e8a98917c244f2cc5aa471f1f62c8dbe0e1e2e9440589f3bb5ed342d88944275a33205c7"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-echarts-6.1.0-12",
+      "SPDXID": "SPDXRef-Package-echarts-6.1.0-6",
       "name": "echarts",
       "versionInfo": "6.1.0",
       "downloadLocation": "https://registry.npmjs.org/echarts/-/echarts-6.1.0.tgz",
@@ -357,7 +202,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-tslib-2.3.0-13",
+      "SPDXID": "SPDXRef-Package-tslib-2.3.0-7",
       "name": "tslib",
       "versionInfo": "2.3.0",
       "downloadLocation": "https://registry.npmjs.org/tslib/-/tslib-2.3.0.tgz",
@@ -383,7 +228,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-zrender-6.1.0-14",
+      "SPDXID": "SPDXRef-Package-zrender-6.1.0-8",
       "name": "zrender",
       "versionInfo": "6.1.0",
       "downloadLocation": "https://registry.npmjs.org/zrender/-/zrender-6.1.0.tgz",
@@ -405,6 +250,161 @@
           "checksumValue": "a0418c0c1ea938fd92e8ec114783dd56feb5d33ae39c0dc187e267486d767d826504a8ed340a046f97d252808e3883651fde88d9f537f3f03652944ab3aef161"
         }
       ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-lit-3.3.3-9",
+      "name": "lit",
+      "versionInfo": "3.3.3",
+      "downloadLocation": "https://registry.npmjs.org/lit/-/lit-3.3.3.tgz",
+      "filesAnalyzed": false,
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/lit@3.3.3"
+        }
+      ],
+      "description": "A library for building fast, lightweight web components",
+      "homepage": "https://lit.dev/",
+      "supplier": "Person: Google LLC",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "7f272ebd983f864a68ccbd34966d691091f99cdfe5afd65777a9892361d2378f81cdcf8b0cd74402927a1c56cf91d14d1cbbcea65208b89bf1912e17531aa2af"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--lit-reactive-element-2.1.2-10",
+      "name": "@lit/reactive-element",
+      "versionInfo": "2.1.2",
+      "downloadLocation": "https://registry.npmjs.org/@lit/reactive-element/-/reactive-element-2.1.2.tgz",
+      "filesAnalyzed": false,
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40lit/reactive-element@2.1.2"
+        }
+      ],
+      "description": "A simple low level base class for creating fast, lightweight web components",
+      "homepage": "https://lit.dev/",
+      "supplier": "Person: Google LLC",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "a5b0838953279ded6561421a60d379c2bc105c3b47698b60ed81053de5be870b3a538ed6785bc84865167a43c629638fd7282bb3479fd28d5524c9357b1a2ce4"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--lit-labs-ssr-dom-shim-1.6.0-11",
+      "name": "@lit-labs/ssr-dom-shim",
+      "versionInfo": "1.6.0",
+      "downloadLocation": "https://registry.npmjs.org/@lit-labs/ssr-dom-shim/-/ssr-dom-shim-1.6.0.tgz",
+      "filesAnalyzed": false,
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40lit-labs/ssr-dom-shim@1.6.0"
+        }
+      ],
+      "description": "DOM shim for Lit Server Side Rendering (SSR)",
+      "homepage": "https://github.com/lit/lit/tree/main/packages/labs/ssr-dom-shim",
+      "supplier": "Person: Google LLC",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "5476f400b3cc4e580a8cceb2231c6840d9e92b250a2c3d3857379076c89790caa4bd89401f1abd82518b9a06dbf3cf7fd46b288523808ef418a22069a5716aad"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-lit-html-3.3.3-12",
+      "name": "lit-html",
+      "versionInfo": "3.3.3",
+      "downloadLocation": "https://registry.npmjs.org/lit-html/-/lit-html-3.3.3.tgz",
+      "filesAnalyzed": false,
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/lit-html@3.3.3"
+        }
+      ],
+      "description": "HTML templates literals in JavaScript",
+      "homepage": "https://lit.dev/",
+      "supplier": "Person: Google LLC",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "7a5f0cea32b6a37457067ad21d7dd92abb0df33115eb7a521314ced70609cfb427746619f37e777b66b93cf5fea877b66866b27e7721426900a2369601110e20"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--types-trusted-types-2.0.7-13",
+      "name": "@types/trusted-types",
+      "versionInfo": "2.0.7",
+      "downloadLocation": "https://registry.npmjs.org/@types/trusted-types/-/trusted-types-2.0.7.tgz",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40types/trusted-types@2.0.7"
+        }
+      ],
+      "description": "TypeScript definitions for trusted-types",
+      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/trusted-types",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "49c68f767d5d41cce06e5d101537933a65471542eddfde17260390368c95859eabdaf2e730b25f04f779dd2079d93ff71b7e95235fe0d8c65a5f47300ee5ec7f"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-lit-element-4.2.2-14",
+      "name": "lit-element",
+      "versionInfo": "4.2.2",
+      "downloadLocation": "https://registry.npmjs.org/lit-element/-/lit-element-4.2.2.tgz",
+      "filesAnalyzed": false,
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/lit-element@4.2.2"
+        }
+      ],
+      "description": "A simple base class for creating fast, lightweight web components",
+      "homepage": "https://lit.dev/",
+      "supplier": "Person: Google LLC",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "6852a1353a16c68ca190d0e6599c04bdad9295089afa37c6d1f8c8595fff61e4da5ab5673b10fcf5d3ca7e280252ca571668f3384510a4e91e8c7e4bcbab06d3"
+        }
+      ]
     }
   ],
   "relationships": [
@@ -415,107 +415,107 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.29.1-0",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.30.0-0",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.29.1-1",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.30.0-1",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.29.1-1",
-      "relatedSpdxElement": "SPDXRef-Package--floating-ui-dom-1.8.0-2",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.30.0-1",
+      "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-2",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-2",
+      "spdxElementId": "SPDXRef-Package-composed-offset-position-0.0.6-2",
       "relatedSpdxElement": "SPDXRef-Package--floating-ui-utils-0.2.12-3",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-2",
-      "relatedSpdxElement": "SPDXRef-Package--floating-ui-core-1.8.0-4",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.30.0-1",
+      "relatedSpdxElement": "SPDXRef-Package--floating-ui-dom-1.8.0-4",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--floating-ui-core-1.8.0-4",
+      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-4",
       "relatedSpdxElement": "SPDXRef-Package--floating-ui-utils-0.2.12-3",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.29.1-1",
-      "relatedSpdxElement": "SPDXRef-Package-lit-3.3.3-5",
+      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-4",
+      "relatedSpdxElement": "SPDXRef-Package--floating-ui-core-1.8.0-5",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-3.3.3-5",
-      "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-6",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package--lit-reactive-element-2.1.2-6",
-      "relatedSpdxElement": "SPDXRef-Package--lit-labs-ssr-dom-shim-1.6.0-7",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-lit-3.3.3-5",
-      "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-8",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-lit-html-3.3.3-8",
-      "relatedSpdxElement": "SPDXRef-Package--types-trusted-types-2.0.7-9",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-lit-3.3.3-5",
-      "relatedSpdxElement": "SPDXRef-Package-lit-element-4.2.2-10",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-lit-element-4.2.2-10",
-      "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-6",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-lit-element-4.2.2-10",
-      "relatedSpdxElement": "SPDXRef-Package--lit-labs-ssr-dom-shim-1.6.0-7",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-lit-element-4.2.2-10",
-      "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-8",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.29.1-1",
-      "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-11",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-composed-offset-position-0.0.6-11",
+      "spdxElementId": "SPDXRef-Package--floating-ui-core-1.8.0-5",
       "relatedSpdxElement": "SPDXRef-Package--floating-ui-utils-0.2.12-3",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.29.1-1",
-      "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-12",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.30.0-1",
+      "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-6",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-12",
-      "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-13",
+      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-6",
+      "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-7",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-12",
-      "relatedSpdxElement": "SPDXRef-Package-zrender-6.1.0-14",
+      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-6",
+      "relatedSpdxElement": "SPDXRef-Package-zrender-6.1.0-8",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-zrender-6.1.0-14",
-      "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-13",
+      "spdxElementId": "SPDXRef-Package-zrender-6.1.0-8",
+      "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-7",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.30.0-1",
+      "relatedSpdxElement": "SPDXRef-Package-lit-3.3.3-9",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-lit-3.3.3-9",
+      "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-10",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package--lit-reactive-element-2.1.2-10",
+      "relatedSpdxElement": "SPDXRef-Package--lit-labs-ssr-dom-shim-1.6.0-11",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-lit-3.3.3-9",
+      "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-12",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-lit-html-3.3.3-12",
+      "relatedSpdxElement": "SPDXRef-Package--types-trusted-types-2.0.7-13",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-lit-3.3.3-9",
+      "relatedSpdxElement": "SPDXRef-Package-lit-element-4.2.2-14",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-lit-element-4.2.2-14",
+      "relatedSpdxElement": "SPDXRef-Package--lit-labs-ssr-dom-shim-1.6.0-11",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-lit-element-4.2.2-14",
+      "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-10",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-lit-element-4.2.2-14",
+      "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-12",
       "relationshipType": "DEPENDS_ON"
     }
   ]

@@ -1,3 +1,4 @@
+import { getRealValueWithoutUnit as styleWithoutUnit } from '../../../themes/utilities.js';
 import {
   type ConfigModifier,
   getRandomString,
@@ -23,7 +24,7 @@ export const seriesBar = (
 }, { arrayStrategy: 'append' });
 
 /**
- * Appends stacked bar series with shared stack, border, and label defaults.
+ * Appends stacked bar series with shared stack, border and label defaults, including minimum bar width and category spacing for readability.
  *
  * @param {BarSeriesOption[]} options Bar series options to append. Individual options override the defaults.
  * @param {BarStackedOptions} settings Stack and label configuration.
@@ -39,6 +40,9 @@ export const seriesBarStacked = (
 ): ConfigModifier => (config) => {
   const stack = stackName || getRandomString(8, 'stack-');
   const defaultBarOption: BarSeriesOption = {
+    // `barCategoryGap` sets the space between category groups, while `barMinWidth` prevents bars from becoming too narrow to see. Together, they help keep stacked bars and their labels readable as categories get denser, but cannot compensate for too little chart space or long value labels.
+    barCategoryGap: styleWithoutUnit('SynSpacingXLarge'),
+    barMinWidth: styleWithoutUnit('SynSpacingSmall'),
     itemStyle: {
       borderColor: 'transparent',
       borderWidth: 1,

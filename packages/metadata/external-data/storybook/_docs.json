@@ -583,7 +583,7 @@
           "type": "text"
         },
         "description": {
-          "value": "The chart's axes define the visual structure of the data and can be customized to match different visualization needs. \n\n Configuration options include split lines, label visibility and formatting, axis positioning, data range constraints, and support for multiple axes.\n\nFor a full reference of all available options see the ECharts documentation for [xAxis](https://echarts.apache.org/en/option.html#xAxis) and [yAxis](https://echarts.apache.org/en/option.html#yAxis).",
+          "value": "The chart's axes define the visual structure of the data and can be customized to match different visualization needs. \n\n Configuration options include split lines, label visibility and formatting, axis positioning, data range constraints, and support for multiple axes.\n\nFor a full reference of all available options see the ECharts documentation for [xAxis](https://echarts.apache.org/en/option.html#xAxis) and [yAxis](https://echarts.apache.org/en/option.html#yAxis).\n\n**Split lines**\nSplit lines help users relate data points to their corresponding axis values and make values easier to compare across the chart.<ul><li>Use split lines on value axes when comparing or estimating values is important.</li><li>Keep split lines subtle so they provide visual guidance without competing with the data.</li><li>Avoid unnecessary split lines on category axes when categories are already clearly separated and labeled.</li><li>Consider hiding split lines for simple charts where they do not add meaningful orientation.</li></ul>",
           "type": "text"
         }
       },
@@ -837,7 +837,7 @@
           "type": "text"
         }
       },
-      "line-chart-default": {
+      "line-series-default": {
         "title": {
           "value": "Line Chart",
           "type": "text"
@@ -847,7 +847,7 @@
           "type": "text"
         }
       },
-      "line-chart-preset": {
+      "line-series-preset": {
         "title": {
           "value": "Line Chart Preset",
           "type": "text"
@@ -927,7 +927,7 @@
           "type": "text"
         }
       },
-      "line-chart-positive-and-negative-values": {
+      "line-series-positive-and-negative-values": {
         "title": {
           "value": "Line Chart with Positive and Negative Values",
           "type": "text"
@@ -1247,7 +1247,7 @@
           "type": "text"
         }
       },
-      "bar-chart-horizontal": {
+      "bar-series-horizontal": {
         "title": {
           "value": "Horizontal Bar Chart",
           "type": "text"
@@ -1257,7 +1257,7 @@
           "type": "text"
         }
       },
-      "bar-chart-vertical": {
+      "bar-series-vertical": {
         "title": {
           "value": "Vertical Bar Chart",
           "type": "text"
@@ -1267,7 +1267,7 @@
           "type": "text"
         }
       },
-      "bar-chart-value-range": {
+      "bar-series-value-range": {
         "title": {
           "value": "Bar Chart Value Range",
           "type": "text"
@@ -1277,7 +1277,7 @@
           "type": "text"
         }
       },
-      "bar-chart-stacked-value-range": {
+      "bar-series-stacked-value-range": {
         "title": {
           "value": "Stacked Bar Chart Value Range",
           "type": "text"
@@ -1287,7 +1287,7 @@
           "type": "text"
         }
       },
-      "bar-chart-negative": {
+      "bar-series-negative": {
         "title": {
           "value": "Bar Charts with Negative Values",
           "type": "text"
@@ -1297,7 +1297,7 @@
           "type": "text"
         }
       },
-      "bar-chart-stacked-negative": {
+      "bar-series-stacked-negative": {
         "title": {
           "value": "Stacked Bar Charts with Negative Values",
           "type": "text"
@@ -1307,7 +1307,7 @@
           "type": "text"
         }
       },
-      "bar-chart-positive-and-negative": {
+      "bar-series-positive-and-negative": {
         "title": {
           "value": "Bar Charts with Positive and Negative Values",
           "type": "text"
@@ -1317,7 +1317,7 @@
           "type": "text"
         }
       },
-      "bar-chart-stacked-positive-and-negative": {
+      "bar-series-stacked-positive-and-negative": {
         "title": {
           "value": "Stacked Bar Charts with Positive and Negative Values",
           "type": "text"
@@ -1327,7 +1327,7 @@
           "type": "text"
         }
       },
-      "bar-chart-selected-mode": {
+      "bar-series-selected-mode": {
         "title": {
           "value": "Bar Chart Selection Mode",
           "type": "text"
@@ -1337,7 +1337,7 @@
           "type": "text"
         }
       },
-      "bar-chart-tooltip": {
+      "bar-series-tooltip": {
         "title": {
           "value": "Bar Chart with Tooltip",
           "type": "text"
@@ -1347,7 +1347,7 @@
           "type": "text"
         }
       },
-      "bar-chart-palette": {
+      "bar-series-palette": {
         "title": {
           "value": "Bar Chart Palette",
           "type": "text"
@@ -1357,7 +1357,7 @@
           "type": "text"
         }
       },
-      "bar-chart-custom-color": {
+      "bar-series-custom-color": {
         "title": {
           "value": "Bar Chart Custom Colors",
           "type": "text"
@@ -1367,17 +1367,17 @@
           "type": "text"
         }
       },
-      "bar-chart-custom-width": {
+      "bar-series-custom-width": {
         "title": {
           "value": "Bar Chart Custom Width",
           "type": "text"
         },
         "description": {
-          "value": "Set `barWidth` to control bar thickness. A number specifies a fixed width in pixels, while a percentage string sets the width relative to the available category space and adapts to the chart size.",
+          "value": "Set `barWidth` to control bar thickness. A number specifies a fixed width in pixels, while a percentage string sets the width relative to the available category space and adapts to the chart size. By default, bars are responsive but capped at 24 px by the theme's `barMaxWidth` setting. To use bars wider than 24 px, also increase `barMaxWidth` on the series.",
           "type": "text"
         }
       },
-      "bar-chart-legend": {
+      "bar-series-legend": {
         "title": {
           "value": "Bar Chart with Legend",
           "type": "text"
@@ -1387,7 +1387,7 @@
           "type": "text"
         }
       },
-      "bar-chart-grouped-default": {
+      "bar-series-grouped-default": {
         "title": {
           "value": "Grouped Bar Chart",
           "type": "text"
@@ -1397,7 +1397,7 @@
           "type": "text"
         }
       },
-      "bar-chart-grouped-preset": {
+      "bar-series-grouped-preset": {
         "title": {
           "value": "Grouped Bar Chart",
           "type": "text"
@@ -1407,7 +1407,7 @@
           "type": "text"
         }
       },
-      "bar-chart-single-default": {
+      "bar-series-single-default": {
         "title": {
           "value": "Single Bar Chart",
           "type": "text"
@@ -1417,7 +1417,7 @@
           "type": "text"
         }
       },
-      "bar-chart-single-preset": {
+      "bar-series-single-preset": {
         "title": {
           "value": "Single Bar Chart",
           "type": "text"
@@ -1427,7 +1427,7 @@
           "type": "text"
         }
       },
-      "bar-chart-stacked-default": {
+      "bar-series-stacked-default": {
         "title": {
           "value": "Stacked Bar Chart",
           "type": "text"
@@ -1437,13 +1437,13 @@
           "type": "text"
         }
       },
-      "bar-chart-stacked-preset": {
+      "bar-series-stacked-preset": {
         "title": {
           "value": "Stacked Bar Chart",
           "type": "text"
         },
         "description": {
-          "value": "Configure a stacked bar chart with `type: 'bar'` and a shared `stack` identifier or use the `seriesBarStacked` preset function. Showing labels is recommended and their color should inherit the series color. Place labels to the left for vertical bars and above for horizontal bars. A 1 px border is recommended to better distinguish adjacent bar segments. The `seriesBarStacked` preset applies these label and border settings by default.",
+          "value": "Configure a stacked bar chart with `type: 'bar'` and a shared `stack` identifier or use the `seriesBarStacked` preset function. Showing labels is recommended and their color should inherit the series color. Place labels to the left for vertical bars and above for horizontal bars. A 1 px border is recommended to better distinguish adjacent bar segments. The `seriesBarStacked` preset applies these label and border settings by default. It also sets `barCategoryGap` to control the spacing between category groups and `barMinWidth` to keep bars from becoming too narrow. These defaults help maintain readability, but cannot compensate for too little chart space or long value labels.",
           "type": "text"
         }
       }

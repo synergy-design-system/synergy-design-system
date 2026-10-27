@@ -33,7 +33,7 @@ const meta: Meta = {
     },
     docs: {
       description: {
-        component: generateStoryDescription('chart', 'bar-chart-single-default'),
+        component: generateStoryDescription('chart', 'bar-series-single-default'),
       },
       page: () => (
         <>
@@ -57,7 +57,7 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'bar-chart-single-preset'),
+        story: generateStoryDescription('chart', 'bar-series-single-preset'),
       },
     },
   },
@@ -92,7 +92,7 @@ export const Vertical: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'bar-chart-vertical'),
+        story: generateStoryDescription('chart', 'bar-series-vertical'),
       },
     },
   },
@@ -129,7 +129,7 @@ export const Horizontal: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'bar-chart-horizontal'),
+        story: generateStoryDescription('chart', 'bar-series-horizontal'),
       },
     },
   },
@@ -166,7 +166,7 @@ export const FixedValueRange: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'bar-chart-value-range'),
+        story: generateStoryDescription('chart', 'bar-series-value-range'),
       },
     },
   },
@@ -205,7 +205,7 @@ export const NegativeValues: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'bar-chart-negative'),
+        story: generateStoryDescription('chart', 'bar-series-negative'),
       },
     },
   },
@@ -242,7 +242,7 @@ export const PositiveAndNegative: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'bar-chart-positive-and-negative'),
+        story: generateStoryDescription('chart', 'bar-series-positive-and-negative'),
       },
     },
   },
@@ -279,7 +279,7 @@ export const CustomBarWidth: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'bar-chart-custom-width'),
+        story: generateStoryDescription('chart', 'bar-series-custom-width'),
       },
     },
   },
@@ -331,7 +331,7 @@ export const CustomColors: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'bar-chart-custom-color'),
+        story: generateStoryDescription('chart', 'bar-series-custom-color'),
       },
     },
   },
@@ -368,7 +368,7 @@ export const Tooltip: Story = {
     },
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'bar-chart-tooltip'),
+        story: generateStoryDescription('chart', 'bar-series-tooltip'),
       },
     },
   },
@@ -430,7 +430,7 @@ export const SelectedMode: Story = {
     },
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'bar-chart-selected-mode'),
+        story: generateStoryDescription('chart', 'bar-series-selected-mode'),
       },
     },
   },

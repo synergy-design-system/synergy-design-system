@@ -25,7 +25,7 @@ const meta: Meta = {
     },
     docs: {
       description: {
-        component: generateStoryDescription('chart', 'line-chart-default'),
+        component: generateStoryDescription('chart', 'line-series-default'),
       },
       page: () => (
         <>
@@ -49,7 +49,7 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'line-chart-preset'),
+        story: generateStoryDescription('chart', 'line-series-preset'),
       },
     },
   },
@@ -412,7 +412,7 @@ export const PositiveAndNegativeValues: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'line-chart-positive-and-negative-values'),
+        story: generateStoryDescription('chart', 'line-series-positive-and-negative-values'),
       },
     },
   },

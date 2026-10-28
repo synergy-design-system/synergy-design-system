@@ -8,6 +8,7 @@ import {
 import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
 import '../../../dist/synergy.js';
+import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js';
 import type SynCalendar from '../calendar/calendar.js';
 import type SynDatePicker from './date-picker.js';
 
@@ -100,8 +101,8 @@ describe('<syn-date-picker>', () => {
       await elementUpdated(picker);
 
       expect(picker.value).to.equal('2026-10-05 2026-10-20');
-      expect(input).to.not.have.been.called;
-      expect(change).to.not.have.been.called;
+      expect(input.callCount).to.equal(0);
+      expect(change.callCount).to.equal(0);
       expect(picker.shadowRoot!.querySelectorAll('[data-segment="year"]')).to.have.length(3);
     });
 
@@ -177,7 +178,7 @@ describe('<syn-date-picker>', () => {
       expect(getSegment(picker, 'year').textContent).to.equal('2');
       expect(picker.valueAsDates[0].getUTCFullYear()).to.equal(2026);
       expect(picker.checkValidity()).to.be.false;
-      expect(change).to.not.have.been.called;
+      expect(change.callCount).to.equal(0);
     });
 
     it('should keep an explicitly impossible day as an invalid draft rather than clamping it', async () => {
@@ -248,7 +249,7 @@ describe('<syn-date-picker>', () => {
       expect(picker.value).to.equal('2026-10-15');
       expect(getSegment(picker, 'day').textContent).to.equal('15');
       expect(picker.checkValidity()).to.be.true;
-      expect(change).to.not.have.been.called;
+      expect(change.callCount).to.equal(0);
     });
 
     it('should let an application replacement supersede a user proposal without rollback', async () => {
@@ -263,7 +264,7 @@ describe('<syn-date-picker>', () => {
       expect(picker.value).to.equal('2027-03-12');
       expect(getSegment(picker, 'year').textContent).to.equal('2027');
       expect(getSegment(picker, 'day').textContent).to.equal('12');
-      expect(change).to.not.have.been.called;
+      expect(change.callCount).to.equal(0);
     });
 
     it('should reject a proposal when a controlled listener writes back the committed baseline', async () => {
@@ -288,7 +289,7 @@ describe('<syn-date-picker>', () => {
 
       expect(getSegment(picker, 'year').textContent).to.equal('2026');
       expect(picker.checkValidity()).to.be.true;
-      expect(change).to.not.have.been.called;
+      expect(change.callCount).to.equal(0);
     });
   });
 
@@ -311,7 +312,7 @@ describe('<syn-date-picker>', () => {
 
       expect(picker.value).to.equal('2026-10-15');
       expect(picker.checkValidity()).to.be.true;
-      expect(input).to.not.have.been.called;
+      expect(input.callCount).to.equal(0);
     });
 
     it('should retain an impossible pasted date as a repairable draft', async () => {
@@ -338,7 +339,7 @@ describe('<syn-date-picker>', () => {
       await paste(picker, '2026-10-20 2026-10-05');
 
       expect(picker.value).to.equal('2026-10-05 2026-10-20');
-      expect(change).to.have.been.calledOnce;
+      expect(change.callCount).to.equal(1);
     });
 
     it('should not partially publish a pasted list while one date is invalid', async () => {
@@ -351,12 +352,12 @@ describe('<syn-date-picker>', () => {
 
       expect(picker.value).to.equal('2026-10-01');
       expect(picker.checkValidity()).to.be.false;
-      expect(change).to.not.have.been.called;
+      expect(change.callCount).to.equal(0);
 
       await enterField(picker, 'day', '28', 1);
       expect(picker.value).to.equal('2026-02-28 2026-10-05');
       expect(picker.checkValidity()).to.be.true;
-      expect(change).to.have.been.calledOnce;
+      expect(change.callCount).to.equal(1);
     });
 
     it('should preserve unrelated multiple-date drafts when another group commits', async () => {
@@ -399,8 +400,8 @@ describe('<syn-date-picker>', () => {
       await waitUntil(() => !picker.open);
 
       expect(picker.value).to.equal('2026-10-15');
-      expect(input).to.have.been.calledOnce;
-      expect(change).to.have.been.calledOnce;
+      expect(input.callCount).to.equal(1);
+      expect(change.callCount).to.equal(1);
     });
 
     it('should keep a pending range anchor out of form value until the second calendar click', async () => {
@@ -415,12 +416,12 @@ describe('<syn-date-picker>', () => {
       expect(picker.value).to.equal('2026-10-01 2026-10-02');
       expect(picker.open).to.be.true;
       expect(picker.checkValidity()).to.be.false;
-      expect(change).to.not.have.been.called;
+      expect(change.callCount).to.equal(0);
 
       await selectDay(picker, '2026-10-10');
       expect(picker.value).to.equal('2026-10-05 2026-10-10');
       expect(picker.checkValidity()).to.be.true;
-      expect(change).to.have.been.calledOnce;
+      expect(change.callCount).to.equal(1);
     });
 
     it('should let picker listeners veto a calendar selection', async () => {
@@ -434,7 +435,7 @@ describe('<syn-date-picker>', () => {
 
       expect(picker.value).to.equal('2026-10-01');
       expect(getCalendar(picker).value).to.deep.equal(['2026-10-01']);
-      expect(change).to.not.have.been.called;
+      expect(change.callCount).to.equal(0);
     });
 
     it('should preserve typed drafts and remain open when adding a multiple date from the calendar', async () => {
@@ -482,7 +483,7 @@ describe('<syn-date-picker>', () => {
 
       expect(picker.open).to.be.false;
       expect(picker.popup.active).to.be.false;
-      expect(lifecycle).to.not.have.been.called;
+      expect(lifecycle.callCount).to.equal(0);
     });
 
     it('should settle a closing request when reopened before rendering', async () => {
@@ -499,7 +500,7 @@ describe('<syn-date-picker>', () => {
 
       expect(picker.open).to.be.true;
       expect(picker.popup.active).to.be.true;
-      expect(lifecycle).to.not.have.been.called;
+      expect(lifecycle.callCount).to.equal(0);
     });
 
     it('should close on an outside pointerdown', async () => {
@@ -537,7 +538,7 @@ describe('<syn-date-picker>', () => {
       await clear(picker);
 
       expect(picker.value).to.equal('2026-10-15');
-      expect(cleared).to.not.have.been.called;
+      expect(cleared.callCount).to.equal(0);
     });
 
     it('should clear a draft-only selection without emitting change', async () => {
@@ -549,7 +550,7 @@ describe('<syn-date-picker>', () => {
 
       expect(picker.value).to.equal('');
       expect(picker.checkValidity()).to.be.true;
-      expect(change).to.not.have.been.called;
+      expect(change.callCount).to.equal(0);
     });
 
     ['disabled', 'readonly'].forEach(state => {
@@ -608,7 +609,7 @@ describe('<syn-date-picker>', () => {
       picker.remove();
       await Promise.resolve();
 
-      expect(blur).to.not.have.been.called;
+      expect(blur.callCount).to.equal(0);
     });
 
     it('should finish a field without canceling Tab or Shift+Tab', async () => {
@@ -649,7 +650,7 @@ describe('<syn-date-picker>', () => {
       await elementUpdated(picker);
 
       expect(getSegment(picker, 'month').textContent).to.equal('1');
-      expect(keydown).to.not.have.been.called;
+      expect(keydown.callCount).to.equal(0);
     });
 
     it('should keep logical field focus when a locale change reorders segments', async () => {
@@ -724,7 +725,7 @@ describe('<syn-date-picker>', () => {
       await enterField(picker, 'year', '2');
       form.requestSubmit();
 
-      expect(submit).to.not.have.been.called;
+      expect(submit.callCount).to.equal(0);
       expect(new FormData(form).get('date')).to.equal('2026-10-15');
     });
 
@@ -763,7 +764,7 @@ describe('<syn-date-picker>', () => {
       picker.addEventListener('syn-invalid', invalid);
       expect(picker.checkValidity()).to.be.false;
       expect(picker.validity.valueMissing).to.be.true;
-      expect(invalid).to.have.been.calledOnce;
+      expect(invalid.callCount).to.equal(1);
 
       picker.value = '2026-10-15';
       await elementUpdated(picker);
@@ -833,4 +834,6 @@ describe('<syn-date-picker>', () => {
       expect(getSegment(picker, 'year').getAttribute('aria-invalid')).to.equal('true');
     });
   });
+
+  runFormControlBaseTests('syn-date-picker');
 });

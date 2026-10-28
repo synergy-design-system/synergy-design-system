@@ -75,8 +75,8 @@ describe('<syn-calendar>', () => {
       await elementUpdated(calendar);
 
       expect(calendar.value).to.deep.equal(['2026-10-15', '2026-10-25']);
-      expect(input).to.not.have.been.called;
-      expect(change).to.not.have.been.called;
+      expect(input.callCount).to.equal(0);
+      expect(change.callCount).to.equal(0);
     });
 
     it('should convert range endpoints to distinct multiple values without expanding interior dates', async () => {
@@ -128,11 +128,11 @@ describe('<syn-calendar>', () => {
       await clickItem(calendar, 'day', '2026-10-15');
 
       expect(calendar.value).to.deep.equal(['2026-10-15']);
-      expect(before).to.have.been.calledOnce;
+      expect(before.callCount).to.equal(1);
       expect((before.firstCall.args[0] as CustomEvent).cancelable).to.be.true;
       expect(((before.firstCall.args[0] as CustomEvent).target as SynCalendar).value).to.deep.equal(['2026-10-15']);
-      expect(input).to.have.been.calledOnce;
-      expect(change).to.have.been.calledOnce;
+      expect(input.callCount).to.equal(1);
+      expect(change.callCount).to.equal(1);
     });
 
     it('should restore the previous single selection when syn-before-change is canceled', async () => {
@@ -148,8 +148,8 @@ describe('<syn-calendar>', () => {
       await clickItem(calendar, 'day', '2026-10-15');
 
       expect(calendar.value).to.deep.equal(['2026-10-01']);
-      expect(input).to.not.have.been.called;
-      expect(change).to.not.have.been.called;
+      expect(input.callCount).to.equal(0);
+      expect(change.callCount).to.equal(0);
     });
 
     it('should keep the first range endpoint pending until a valid second endpoint is chosen', async () => {
@@ -163,15 +163,15 @@ describe('<syn-calendar>', () => {
 
       await clickItem(calendar, 'day', '2026-10-05');
       expect(calendar.value).to.deep.equal(['2026-10-05']);
-      expect(before).to.not.have.been.called;
-      expect(input).to.have.been.calledOnce;
-      expect(change).to.not.have.been.called;
+      expect(before.callCount).to.equal(0);
+      expect(input.callCount).to.equal(1);
+      expect(change.callCount).to.equal(0);
 
       await clickItem(calendar, 'day', '2026-10-10');
       expect(calendar.value).to.deep.equal(['2026-10-05', '2026-10-10']);
-      expect(before).to.have.been.calledOnce;
-      expect(input).to.have.been.calledTwice;
-      expect(change).to.have.been.calledOnce;
+      expect(before.callCount).to.equal(1);
+      expect(input.callCount).to.equal(2);
+      expect(change.callCount).to.equal(1);
     });
 
     it('should restart a pending range when a new range anchor is chosen', async () => {
@@ -209,7 +209,7 @@ describe('<syn-calendar>', () => {
       await clickItem(calendar, 'day', '2026-10-10');
 
       expect(calendar.value).to.deep.equal(['2026-10-05']);
-      expect(change).to.not.have.been.called;
+      expect(change.callCount).to.equal(0);
     });
 
     it('should expand a too-short min-range endpoint and emit a committed range', async () => {
@@ -224,8 +224,8 @@ describe('<syn-calendar>', () => {
       await clickItem(calendar, 'day', '2026-10-06');
 
       expect(calendar.value).to.deep.equal(['2026-10-05', '2026-10-07']);
-      expect(before).to.have.been.calledOnce;
-      expect(change).to.have.been.calledOnce;
+      expect(before.callCount).to.equal(1);
+      expect(change.callCount).to.equal(1);
     });
 
     it('should restore the pending range when its completion is canceled', async () => {
@@ -242,8 +242,8 @@ describe('<syn-calendar>', () => {
       await clickItem(calendar, 'day', '2026-10-10');
 
       expect(calendar.value).to.deep.equal(['2026-10-05']);
-      expect(input).to.not.have.been.called;
-      expect(change).to.not.have.been.called;
+      expect(input.callCount).to.equal(0);
+      expect(change.callCount).to.equal(0);
     });
 
     it('should suppress custom value and focus events when disabled or readonly', async () => {
@@ -260,7 +260,7 @@ describe('<syn-calendar>', () => {
       calendar.disabled = true;
       await elementUpdated(calendar);
       calendar.focus();
-      expect(focus).to.not.have.been.called;
+      expect(focus.callCount).to.equal(0);
 
       calendar.disabled = false;
       calendar.readonly = true;
@@ -270,10 +270,10 @@ describe('<syn-calendar>', () => {
       calendar.shadowRoot!.querySelector<HTMLButtonElement>('[data-kind="day"][tabindex="0"]')!.blur();
 
       expect(calendar.value).to.deep.equal(['2026-10-15']);
-      expect(focus).to.not.have.been.called;
-      expect(blur).to.not.have.been.called;
-      expect(input).to.not.have.been.called;
-      expect(change).to.not.have.been.called;
+      expect(focus.callCount).to.equal(0);
+      expect(blur.callCount).to.equal(0);
+      expect(input.callCount).to.equal(0);
+      expect(change.callCount).to.equal(0);
     });
 
     it('should toggle and sort dates in multiple mode', async () => {
@@ -303,10 +303,10 @@ describe('<syn-calendar>', () => {
       await elementUpdated(calendar);
 
       expect(calendar.value).to.deep.equal([]);
-      expect(before).to.have.been.calledOnce;
-      expect(clear).to.have.been.calledOnce;
-      expect(input).to.have.been.calledOnce;
-      expect(change).to.have.been.calledOnce;
+      expect(before.callCount).to.equal(1);
+      expect(clear.callCount).to.equal(1);
+      expect(input.callCount).to.equal(1);
+      expect(change.callCount).to.equal(1);
     });
   });
 
@@ -344,7 +344,7 @@ describe('<syn-calendar>', () => {
       await elementUpdated(calendar);
 
       expect(getItem(calendar, 'day', '2026-10-15')!.disabled).to.be.true;
-      expect(predicate).to.have.been.called;
+      expect(predicate.callCount).to.be.greaterThan(0);
       expect(predicate.firstCall.args[0].getUTCHours()).to.equal(0);
     });
 
@@ -358,7 +358,7 @@ describe('<syn-calendar>', () => {
 
         expect(getItem(calendar, 'day', '2026-10-15')!.disabled).to.be.true;
         expect(getItem(calendar, 'day', '2026-10-16')!.disabled).to.be.true;
-        expect(warning).to.have.been.calledOnce;
+        expect(warning.callCount).to.equal(1);
       } finally {
         warning.restore();
       }

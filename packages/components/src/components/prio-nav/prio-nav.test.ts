@@ -51,7 +51,7 @@ describe('<syn-prio-nav>', () => {
       });
 
       await fixture<SynPrioNav>(html`<syn-prio-nav></syn-prio-nav>`);
-      expect(observeStub).to.have.been.called;
+      expect(observeStub.callCount).to.be.greaterThan(0);
     });
 
     it('should unobserve the element on disconnectedCallback', async () => {
@@ -64,7 +64,7 @@ describe('<syn-prio-nav>', () => {
 
       const nav = await fixture<SynPrioNav>(html`<syn-prio-nav></syn-prio-nav>`);
       nav.remove();
-      expect(disconnectStub).to.have.been.called;
+      expect(disconnectStub.callCount).to.be.greaterThan(0);
     });
   });
 

@@ -49,8 +49,8 @@ describe('<syn-side-nav>', () => {
       await waitUntil(() => showHandler.calledOnce);
       await waitUntil(() => afterShowHandler.calledOnce);
 
-      expect(showHandler).to.have.been.calledOnce;
-      expect(afterShowHandler).to.have.been.calledOnce;
+      expect(showHandler.callCount).to.equal(1);
+      expect(afterShowHandler.callCount).to.equal(1);
     });
 
     it('should emit syn-hide and syn-after-hide when calling hide()', async () => {
@@ -69,8 +69,8 @@ describe('<syn-side-nav>', () => {
       await waitUntil(() => hideHandler.calledOnce);
       await waitUntil(() => afterHideHandler.calledOnce);
 
-      expect(hideHandler).to.have.been.calledOnce;
-      expect(afterHideHandler).to.have.been.calledOnce;
+      expect(hideHandler.callCount).to.equal(1);
+      expect(afterHideHandler.callCount).to.equal(1);
     });
   });
 
@@ -91,8 +91,8 @@ describe('<syn-side-nav>', () => {
       await waitUntil(() => showHandler.calledOnce);
       await waitUntil(() => afterShowHandler.calledOnce);
 
-      expect(showHandler).to.have.been.calledOnce;
-      expect(afterShowHandler).to.have.been.calledOnce;
+      expect(showHandler.callCount).to.equal(1);
+      expect(afterShowHandler.callCount).to.equal(1);
     });
 
     it('should emit syn-hide and syn-after-hide when setting open = false', async () => {
@@ -111,8 +111,8 @@ describe('<syn-side-nav>', () => {
       await waitUntil(() => hideHandler.calledOnce);
       await waitUntil(() => afterHideHandler.calledOnce);
 
-      expect(hideHandler).to.have.been.calledOnce;
-      expect(afterHideHandler).to.have.been.calledOnce;
+      expect(hideHandler.callCount).to.equal(1);
+      expect(afterHideHandler.callCount).to.equal(1);
     });
   });
 

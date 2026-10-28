@@ -1,11 +1,14 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { globSync } from 'node:fs';
 import { esbuildPlugin } from '@web/dev-server-esbuild';
+import { summaryReporter } from '@web/test-runner';
 import { playwrightLauncher } from '@web/test-runner-playwright';
 import synTestPlugins from './scripts/tests/index.js';
 
 // Shared browser context configuration for all browsers
 const createBrowserContext = async ({browser}) => browser.newContext({ locale: 'de-DE'});
+
+const concurrency = process.env.CI ? 1 : undefined;
 
 // Always use concurrency of 1 in CI for all browsers to avoid issues
 // @see https://github.com/modernweb-dev/web/issues/2374
@@ -13,7 +16,7 @@ const allBrowsers = [
   // @see https://github.com/modernweb-dev/web/issues/2374
   {
     launcher: playwrightLauncher({
-      concurrency: process.env.CI ? 1 : undefined,
+      concurrency,
       createBrowserContext,
       product: 'chromium',
     }),
@@ -32,7 +35,7 @@ const allBrowsers = [
 
   {
     launcher: playwrightLauncher({
-      concurrency: process.env.CI ? 1 : undefined,
+      concurrency,
       createBrowserContext,
       product: 'webkit',
     }),
@@ -43,7 +46,7 @@ const allBrowsers = [
     ? [
       {
         launcher: playwrightLauncher({
-          concurrency: process.env.CI ? 1 : undefined,
+          concurrency,
           createBrowserContext,
           launchOptions: {
             channel: 'chrome-beta',
@@ -93,6 +96,7 @@ export default {
       ts: true,
     }),
   ],
+  reporters: [summaryReporter()],
   rootDir: '.',
   testFramework: {
     config: {

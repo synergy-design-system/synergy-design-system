@@ -64,7 +64,7 @@ describe('<syn-textarea>', () => {
     (label as HTMLLabelElement).click();
     await waitUntil(() => submitHandler.calledOnce);
 
-    expect(submitHandler).to.have.been.calledOnce;
+    expect(submitHandler.callCount).to.equal(1);
   });
 
   describe('when the value changes', () => {
@@ -80,8 +80,8 @@ describe('<syn-textarea>', () => {
       el.blur();
       await el.updateComplete;
 
-      expect(changeHandler).to.have.been.calledOnce;
-      expect(inputHandler).to.have.been.calledThrice;
+      expect(changeHandler.callCount).to.equal(1);
+      expect(inputHandler.callCount).to.equal(3);
     });
 
     it('should not emit syn-change or syn-input when the value is set programmatically', async () => {

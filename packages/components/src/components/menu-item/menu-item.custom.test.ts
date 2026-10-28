@@ -17,22 +17,22 @@ describe('<syn-menu-item> (custom)', () => {
     el.addEventListener('syn-attributes-changed', listener);
 
     // It should not have been called on load
-    expect(listener).to.not.have.been.called;
+    expect(listener.callCount).to.equal(0);
 
     // Change the loading property
     menuItem.loading = true;
     await menuItem.updateComplete;
-    expect(listener).to.have.been.calledOnce;
+    expect(listener.callCount).to.equal(1);
 
     // Change the type property
     menuItem.type = 'checkbox';
     await menuItem.updateComplete;
-    expect(listener).to.have.been.calledTwice;
+    expect(listener.callCount).to.equal(2);
 
     // Toggle the type again to make sure it does work more than once
     menuItem.type = 'normal';
     await menuItem.updateComplete;
-    expect(listener).to.have.been.calledThrice;
+    expect(listener.callCount).to.equal(3);
 
     // Add a new node and make sure it doesn't trigger the event
     const newNode = document.createElement('syn-menu-item');
@@ -41,6 +41,6 @@ describe('<syn-menu-item> (custom)', () => {
 
     el.appendChild(newNode);
     await newNode.updateComplete;
-    expect(listener).to.have.been.calledThrice;
+    expect(listener.callCount).to.equal(3);
   });
 });

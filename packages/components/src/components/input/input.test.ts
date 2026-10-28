@@ -140,7 +140,7 @@ describe('<syn-input>', () => {
     (label as HTMLLabelElement).click();
     await waitUntil(() => focusHandler.calledOnce);
 
-    expect(focusHandler).to.have.been.calledOnce;
+    expect(focusHandler.callCount).to.equal(1);
   });
 
   describe('when using constraint validation', () => {
@@ -243,7 +243,7 @@ describe('<syn-input>', () => {
       await sendKeys({ press: 'Enter' });
       await waitUntil(() => submitHandler.calledOnce);
 
-      expect(submitHandler).to.have.been.calledOnce;
+      expect(submitHandler.callCount).to.equal(1);
     });
 
     it('should prevent submission when pressing enter in an input and canceling the keydown event', async () => {
@@ -262,8 +262,8 @@ describe('<syn-input>', () => {
       await sendKeys({ press: 'Enter' });
       await waitUntil(() => keydownHandler.calledOnce);
 
-      expect(keydownHandler).to.have.been.calledOnce;
-      expect(submitHandler).to.not.have.been.called;
+      expect(keydownHandler.callCount).to.equal(1);
+      expect(submitHandler.callCount).to.equal(0);
     });
 
     it('should be invalid when setCustomValidity() is called with a non-empty value', async () => {
@@ -382,8 +382,8 @@ describe('<syn-input>', () => {
       el.blur();
       await el.updateComplete;
 
-      expect(changeHandler).to.have.been.calledOnce;
-      expect(inputHandler).to.have.been.calledThrice;
+      expect(changeHandler.callCount).to.equal(1);
+      expect(inputHandler.callCount).to.equal(3);
     });
 
     it('should not emit syn-change or syn-input when the value is set programmatically', async () => {

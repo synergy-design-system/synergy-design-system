@@ -200,12 +200,12 @@ describe('<syn-header>', () => {
       burgerMenuPart?.click();
       await el.updateComplete;
 
-      expect(burgerMenuShowHandler).to.have.been.calledOnce;
+      expect(burgerMenuShowHandler.callCount).to.equal(1);
 
       burgerMenuPart?.click();
       await el.updateComplete;
 
-      expect(burgerMenuHideHandler).to.have.been.calledOnce;
+      expect(burgerMenuHideHandler.callCount).to.equal(1);
     });
 
     ['open', 'closed', 'hidden'].forEach(variant => {
@@ -220,7 +220,7 @@ describe('<syn-header>', () => {
 
         await waitUntil(() => handler.calledOnce);
 
-        expect(handler).to.have.been.calledOnce;
+        expect(handler.callCount).to.equal(1);
       });
     });
 
@@ -241,7 +241,7 @@ describe('<syn-header>', () => {
 
       await waitUntil(() => burgerMenuHideHandler.calledOnce);
 
-      expect(burgerMenuHideHandler).to.have.been.calledOnce;
+      expect(burgerMenuHideHandler.callCount).to.equal(1);
     });
   });
 
@@ -289,7 +289,7 @@ describe('<syn-header>', () => {
       });
 
       await fixture<SynHeader>(html`<syn-header></syn-header>`);
-      expect(observeStub).to.not.have.been.called;
+      expect(observeStub.callCount).to.equal(0);
     });
 
     it('should set up a mutation observer if a side navigation is available', async () => {
@@ -304,7 +304,7 @@ describe('<syn-header>', () => {
         <syn-header></syn-header>
         <syn-side-nav></syn-side-nav>
       `);
-      expect(observeStub).to.have.been.calledOnce;
+      expect(observeStub.callCount).to.equal(1);
     });
 
     it('should disconnect the mutation observer on disconnectedCallback', async () => {
@@ -324,7 +324,7 @@ describe('<syn-header>', () => {
       const header = el.querySelector('syn-header')!;
       header.remove();
 
-      expect(disconnectStub).to.have.been.called;
+      expect(disconnectStub.callCount).to.be.greaterThan(0);
     });
 
     it('should disconnect the mutation observer and reconnect a new one if connectSideNavigation method is used', async () => {
@@ -345,13 +345,13 @@ describe('<syn-header>', () => {
         </div>
       `);
 
-      expect(observeStub).to.have.been.calledOnce;
+      expect(observeStub.callCount).to.equal(1);
 
       const header = el.querySelector('syn-header')!;
       header.connectSideNavigation(el.querySelector('#second'));
 
-      expect(observeStub).to.have.been.calledTwice;
-      expect(disconnectStub).to.have.been.calledTwice;
+      expect(observeStub.callCount).to.equal(2);
+      expect(disconnectStub.callCount).to.equal(2);
     });
   });
 

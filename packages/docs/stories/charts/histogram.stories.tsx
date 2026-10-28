@@ -107,7 +107,7 @@ export const Vertical: Story = {
           type: 'category',
           data: ['0-10', '10-20', '20-30', '30-40', '40-50', '50-60'],
         },
-        yAxis: { 
+        yAxis: {
           name: 'Frequency',
         },
       };
@@ -140,7 +140,7 @@ export const Horizontal: Story = {
           type: 'category',
           data: ['0-10', '10-20', '20-30', '30-40', '40-50', '50-60'],
         },
-        xAxis: { 
+        xAxis: {
           name: 'Frequency',
         },
       };
@@ -173,7 +173,7 @@ export const FixedValueRange: Story = {
           type: 'category',
           data: ['0-10', '10-20', '20-30', '30-40', '40-50', '50-60'],
         },
-        yAxis: { 
+        yAxis: {
           min: 0,
           max: 25,
           name: 'Frequency',
@@ -412,7 +412,7 @@ export const Tooltip: Story = {
           type: 'category',
           data: ['0-10', '10-20', '20-30', '30-40', '40-50', '50-60'],
         },
-        yAxis: { 
+        yAxis: {
           name: 'Frequency',
         },
       };

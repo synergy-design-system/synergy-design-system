@@ -191,7 +191,7 @@ describe('<syn-button>', () => {
       form.addEventListener('submit', handleSubmit);
       button.click();
 
-      expect(handleSubmit).to.have.been.calledOnce;
+      expect(handleSubmit.callCount).to.equal(1);
     });
 
     it('should submit when the button is outside the form and has a form attribute', async () => {
@@ -208,7 +208,7 @@ describe('<syn-button>', () => {
       form.addEventListener('submit', handleSubmit);
       button.click();
 
-      expect(handleSubmit).to.have.been.calledOnce;
+      expect(handleSubmit.callCount).to.equal(1);
     });
 
     it('should override form attributes when formaction, formmethod, formnovalidate, and formtarget are used inside a form', async () => {
@@ -229,7 +229,7 @@ describe('<syn-button>', () => {
       form.addEventListener('submit', handleSubmit);
       button.click();
 
-      expect(handleSubmit).to.have.been.calledOnce;
+      expect(handleSubmit.callCount).to.equal(1);
       expect(submitter.formAction.endsWith('/bar')).to.be.true;
       expect(submitter.formMethod).to.equal('get');
       expect(submitter.formTarget).to.equal('_blank');
@@ -256,7 +256,7 @@ describe('<syn-button>', () => {
       form.addEventListener('submit', handleSubmit);
       button.click();
 
-      expect(handleSubmit).to.have.been.calledOnce;
+      expect(handleSubmit.callCount).to.equal(1);
       expect(submitter.formAction.endsWith('/bar')).to.be.true;
       expect(submitter.formMethod).to.equal('get');
       expect(submitter.formTarget).to.equal('_blank');
@@ -279,8 +279,8 @@ describe('<syn-button>', () => {
       el.blur();
       await waitUntil(() => blurHandler.calledOnce);
 
-      expect(focusHandler).to.have.been.calledOnce;
-      expect(blurHandler).to.have.been.calledOnce;
+      expect(focusHandler.callCount).to.equal(1);
+      expect(blurHandler.callCount).to.equal(1);
     });
 
     it('should emit a click event when calling click()', async () => {
@@ -291,7 +291,7 @@ describe('<syn-button>', () => {
       el.click();
       await waitUntil(() => clickHandler.calledOnce);
 
-      expect(clickHandler).to.have.been.calledOnce;
+      expect(clickHandler.callCount).to.equal(1);
     });
   });
 

@@ -175,8 +175,8 @@ describe('<syn-combobox>', () => {
       el.blur();
       await el.updateComplete;
 
-      expect(changeHandler).to.have.been.calledOnce;
-      expect(inputHandler).to.have.been.calledThrice;
+      expect(changeHandler.callCount).to.equal(1);
+      expect(inputHandler.callCount).to.equal(3);
     });
 
     it('should emit syn-change event once when the user types in the combobox the same value again', async () => {
@@ -202,7 +202,7 @@ describe('<syn-combobox>', () => {
       el.blur();
       await el.updateComplete;
 
-      expect(changeHandler).to.have.been.calledOnce;
+      expect(changeHandler.callCount).to.equal(1);
     });
 
     it('should emit syn-change and syn-input when the value is changed with the mouse', async () => {
@@ -226,8 +226,8 @@ describe('<syn-combobox>', () => {
       await clickOnElement(secondOption);
       await el.updateComplete;
 
-      expect(changeHandler).to.have.been.calledOnce;
-      expect(inputHandler).to.have.been.calledOnce;
+      expect(changeHandler.callCount).to.equal(1);
+      expect(inputHandler.callCount).to.equal(1);
       expect(el.value).to.equal('option-2');
     });
 
@@ -279,8 +279,8 @@ describe('<syn-combobox>', () => {
       await sendKeys({ press: 'Enter' }); // commit the selection
       await el.updateComplete;
 
-      expect(changeHandler).to.have.been.calledOnce;
-      expect(inputHandler).to.have.been.calledOnce;
+      expect(changeHandler.callCount).to.equal(1);
+      expect(inputHandler.callCount).to.equal(1);
       expect(el.value).to.equal('option-3');
     });
 
@@ -1008,7 +1008,7 @@ describe('<syn-combobox>', () => {
       await sendKeys({ press: 'Enter' });
       await waitUntil(() => submitHandler.calledOnce);
 
-      expect(submitHandler).to.have.been.calledOnce;
+      expect(submitHandler.callCount).to.equal(1);
     });
 
     it('should prevent submission when pressing enter in a combobox and canceling the keydown event', async () => {
@@ -1035,8 +1035,8 @@ describe('<syn-combobox>', () => {
       await sendKeys({ press: 'Enter' });
       await waitUntil(() => keydownHandler.calledOnce);
 
-      expect(keydownHandler).to.have.been.calledOnce;
-      expect(submitHandler).to.not.have.been.called;
+      expect(keydownHandler.callCount).to.equal(1);
+      expect(submitHandler.callCount).to.equal(0);
     });
   });
 
@@ -1174,8 +1174,8 @@ describe('<syn-combobox>', () => {
     el.blur();
     await el.updateComplete;
 
-    expect(focusHandler).to.have.been.calledOnce;
-    expect(blurHandler).to.have.been.calledOnce;
+    expect(focusHandler.callCount).to.equal(1);
+    expect(blurHandler.callCount).to.equal(1);
   });
 
   it('should emit syn-clear when the clear button is clicked', async () => {
@@ -1198,9 +1198,9 @@ describe('<syn-combobox>', () => {
     await clickOnElement(clearButton);
     await el.updateComplete;
 
-    expect(clearHandler).to.have.been.calledOnce;
-    expect(inputHandler).to.have.been.calledOnce;
-    expect(changeHandler).to.have.been.calledOnce;
+    expect(clearHandler.callCount).to.equal(1);
+    expect(inputHandler.callCount).to.equal(1);
+    expect(changeHandler.callCount).to.equal(1);
     expect(el.displayInput.value).to.equal('');
   });
 
@@ -1251,12 +1251,12 @@ describe('<syn-combobox>', () => {
     el.addEventListener('syn-after-hide', afterHideHandler);
 
     await el.show();
-    expect(showHandler).to.have.been.calledOnce;
-    expect(afterShowHandler).to.have.been.calledOnce;
+    expect(showHandler.callCount).to.equal(1);
+    expect(afterShowHandler.callCount).to.equal(1);
 
     await el.hide();
-    expect(hideHandler).to.have.been.calledOnce;
-    expect(afterHideHandler).to.have.been.calledOnce;
+    expect(hideHandler.callCount).to.equal(1);
+    expect(afterHideHandler.callCount).to.equal(1);
   });
 
   it('should emit syn-error if show method was called and no appropriate options are available', async () => {
@@ -1276,9 +1276,9 @@ describe('<syn-combobox>', () => {
     el.addEventListener('syn-after-show', afterShowHandler);
 
     await el.show();
-    expect(showHandler).to.not.have.been.called;
-    expect(afterShowHandler).to.not.have.been.called;
-    expect(errorHandler).to.have.been.calledOnce;
+    expect(showHandler.callCount).to.equal(0);
+    expect(afterShowHandler.callCount).to.equal(0);
+    expect(errorHandler.callCount).to.equal(1);
   });
 
   it('should update the filtered list when an option changes', async () => {
@@ -1382,7 +1382,7 @@ describe('<syn-combobox>', () => {
 
     const options = el.querySelectorAll('syn-option');
 
-    expect(filterHandler).to.have.been.calledThrice;
+    expect(filterHandler.callCount).to.equal(3);
     expect(options[0]).to.be.displayed;
     expect(options[1]).not.to.be.displayed;
     expect(options[2]).to.be.displayed;
@@ -1546,7 +1546,7 @@ describe('<syn-combobox>', () => {
       options.forEach((option, index) => {
         expect(option.getTextLabel()).to.equal(`HtmlElement - Option ${index + 1}`);
       });
-      expect(getOptionHandler).to.have.been.calledThrice;
+      expect(getOptionHandler.callCount).to.equal(3);
     });
 
     it('should use the string getOption renderer if the getOption property is used', async () => {
@@ -1597,7 +1597,7 @@ describe('<syn-combobox>', () => {
       options.forEach((option, index) => {
         expect(option.getTextLabel()).to.equal(`Template - Option ${index + 1}`);
       });
-      expect(getOptionHandler).to.have.been.calledThrice;
+      expect(getOptionHandler.callCount).to.equal(3);
     });
 
     it('should use the highlight renderer when the getOption attribute is set to "highlight"', async () => {
@@ -1690,7 +1690,7 @@ describe('<syn-combobox>', () => {
       options.forEach((option, index) => {
         expect(option.getTextLabel()).to.equal(`Option ${index + 1}`);
       });
-      expect(getOptionHandler).to.have.been.calledThrice;
+      expect(getOptionHandler.callCount).to.equal(3);
     });
 
     it('should show selected state of options correctly with highlightOptionRenderer', async () => {
@@ -1925,8 +1925,8 @@ describe('<syn-combobox>', () => {
       await clickOnElement(thirdOption);
       await el.updateComplete;
 
-      expect(inputHandler).to.have.been.calledTwice;
-      expect(changeHandler).to.have.been.calledTwice;
+      expect(inputHandler.callCount).to.equal(2);
+      expect(changeHandler.callCount).to.equal(2);
       expect(options[0].selected).to.be.true;
       expect(options[1].selected).to.be.true;
       expect(options[2].selected).to.be.true;

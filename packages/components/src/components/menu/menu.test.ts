@@ -30,7 +30,7 @@ describe('<syn-menu>', () => {
     menu.addEventListener('syn-select', selectHandler);
     await clickOnElement(item2);
 
-    expect(selectHandler).to.have.been.calledOnce;
+    expect(selectHandler.callCount).to.equal(1);
   });
 
   it('can be selected via keyboard', async () => {
@@ -57,7 +57,7 @@ describe('<syn-menu>', () => {
     await sendKeys({ press: 'ArrowDown' });
     await sendKeys({ press: 'Enter' });
 
-    expect(selectHandler).to.have.been.calledOnce;
+    expect(selectHandler.callCount).to.equal(1);
   });
 
   it('does not select disabled items when clicking', async () => {
@@ -76,7 +76,7 @@ describe('<syn-menu>', () => {
 
     await clickOnElement(item2);
 
-    expect(selectHandler).to.not.have.been.calledOnce;
+    expect(selectHandler.callCount).to.not.equal(1);
   });
 
   it('does not select disabled items when pressing enter', async () => {
@@ -100,7 +100,7 @@ describe('<syn-menu>', () => {
     await sendKeys({ press: 'Enter' });
     await item2.updateComplete;
 
-    expect(selectHandler).to.not.have.been.called;
+    expect(selectHandler.callCount).to.equal(0);
   });
 
   it('should include wrapped menu items in roving tabindex', async () => {
@@ -145,7 +145,7 @@ describe('<syn-menu>', () => {
     const span = menu.querySelector('span')!;
     await clickOnElement(span);
 
-    expect(selectHandler).to.have.been.calledOnce;
+    expect(selectHandler.callCount).to.equal(1);
   });
 
   // @see https://github.com/shoelace-style/shoelace/issues/2115

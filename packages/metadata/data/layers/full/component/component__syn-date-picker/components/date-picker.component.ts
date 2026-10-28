@@ -391,16 +391,19 @@ export default class SynDatePicker extends SynergyElement implements SynergyForm
 
   /** Gets selected dates as UTC date-only Date instances, using the calendar's conversions. */
   get valueAsDates(): Date[] {
+    // Date objects reflect committed selections only; incomplete segment groups stay internal drafts.
     return this.#selectionValues().map(value => toNativeDate(parseIsoDate(value)!));
   }
 
   /** Sets selected UTC date-only Date instances without emitting user value events. */
   set valueAsDates(dates: readonly Date[] | null) {
+    // This is a programmatic assignment: normalize like `value` and do not emit user-edit events.
     const values = dates?.map(fromNativeDate).map(toIsoDate).filter(Boolean) ?? [];
     this.value = normalizeCalendarValue(values, this.mode).join(' ');
   }
 
   connectedCallback() {
+  // A mode change invalidates the old group shape; otherwise rebuild only for a new external selection.
     super.connectedCallback();
     this.#slotObserver = new MutationObserver(() => this.#updateCalendarSlots());
     this.#slotObserver.observe(this, {
@@ -414,6 +417,7 @@ export default class SynDatePicker extends SynergyElement implements SynergyForm
 
   disconnectedCallback() {
     super.disconnectedCallback();
+    this.#hasFocus = false;
     this.#slotObserver?.disconnect();
     this.#removeOpenListeners();
     this.#settlePopup();
@@ -448,6 +452,10 @@ export default class SynDatePicker extends SynergyElement implements SynergyForm
 
   updated(changed: PropertyValues) {
     super.updated(changed);
+    // Coalesced toggles back to the rendered state skip the watcher, but their callers still need to settle.
+    if (changed.has('open') && changed.get('open') === this.open) {
+      this.#settlePopup();
+    }
     this.#updateValidity();
     const pending = this.#pendingSegmentFocus;
     this.#pendingSegmentFocus = undefined;
@@ -602,10 +610,12 @@ export default class SynDatePicker extends SynergyElement implements SynergyForm
   }
 
   #selectionValues() {
+    // Keep form-facing data independent from visible draft groups and temporary before-change proposals.
     return normalizeCalendarValue(parseCalendarValue(this.#committedValue), this.mode);
   }
 
   #newGroup(value = '', fields = isoToSegments(value)): DateInputGroup {
+    // Stable IDs let Lit preserve the logical segment node when groups reorder or locale changes.
     const id = this.#nextGroupId;
     this.#nextGroupId += 1;
     return {
@@ -614,6 +624,7 @@ export default class SynDatePicker extends SynergyElement implements SynergyForm
   }
 
   #syncSegments() {
+    // Reset is authoritative: rebuild every group from committed state and cancel all draft transactions.
     const values = this.#selectionValues();
     this.#groups = values.map(value => this.#newGroup(value));
     if (this.mode === 'range') {
@@ -712,6 +723,7 @@ export default class SynDatePicker extends SynergyElement implements SynergyForm
     if (buffer === undefined) {
       return false;
     }
+    // Incomplete years and impossible explicit fields stay visible drafts; never publish a fabricated date.
     if ((field === 'year' && buffer.length !== 4) || group[field] === null) {
       this.#refreshDraft();
       return false;
@@ -729,10 +741,12 @@ export default class SynDatePicker extends SynergyElement implements SynergyForm
   #reconcileGroups() {
     // Called on whole-picker blur so sorting/deduplication cannot move the field being typed into.
     if (this.mode === 'range') {
+      // Reversed endpoint editing is allowed in place; only completed public values are chronological.
       if (!this.#hasDrafts()) {
         this.#groups.sort((first, second) => first.committed.localeCompare(second.committed));
       }
     } else if (this.mode === 'multiple') {
+      // Merge only committed groups; draft and atomic-paste group identities must survive reconciliation.
       const drafts = this.#groups.filter(group => this.#isDraft(group));
       const unique = new Map<string, DateInputGroup>();
       this.#groups.filter(group => !this.#isDraft(group) && group.committed).forEach(group => {
@@ -835,6 +849,7 @@ export default class SynDatePicker extends SynergyElement implements SynergyForm
     const batch = active.batch === undefined ? undefined : this.#batches.get(active.batch);
     // Ranges and pasted lists commit together; ordinary multiple-date edits commit only their own group.
     const groups = this.mode === 'range' ? this.#groups : this.#groups.filter(group => batch?.ids.includes(group.id) || group === active);
+    // Do not partially publish a range or paste batch while any member is still incomplete or impossible.
     if (groups.some(group => !this.#groupDate(group))) {
       this.#refreshDraft();
       this.emit('syn-input');
@@ -873,6 +888,7 @@ export default class SynDatePicker extends SynergyElement implements SynergyForm
       return;
     }
     const target = this.#groups[group];
+    // Removing one committed multiple value must not commit or erase unrelated draft groups.
     const previous = this.#committedValue;
     const remaining = this.#groups.filter(candidate => candidate !== target).map(candidate => candidate.committed).filter(Boolean);
     const value = normalizeCalendarValue(remaining, this.mode).join(' ');
@@ -928,15 +944,20 @@ export default class SynDatePicker extends SynergyElement implements SynergyForm
   }
 
   #handleSegmentFocus(event: FocusEvent) {
-    const { group, segment } = (event.currentTarget as HTMLElement).dataset;
-    this.#activeGroup = Number(group);
+    const { groupId, segment } = (event.currentTarget as HTMLElement).dataset;
+    const group = this.#groups.findIndex(candidate => candidate.id === Number(groupId));
+    // Replaced nodes can still dispatch focus events while Lit reconciles the old DOM.
+    if (group < 0) {
+      return;
+    }
+    this.#activeGroup = group;
     this.#activeField = segment as DateField;
     this.requestUpdate();
   }
 
   #handleSegmentBlur(event: FocusEvent) {
-    const { group, segment } = (event.currentTarget as HTMLElement).dataset;
-    const target = this.#groups[Number(group)];
+    const { groupId, segment } = (event.currentTarget as HTMLElement).dataset;
+    const target = this.#groups.find(group => group.id === Number(groupId));
     if (target) {
       this.#finishSegment(segment as DateField, target);
     }
@@ -999,6 +1020,7 @@ export default class SynDatePicker extends SynergyElement implements SynergyForm
 
   #handleSegmentNavigation(event: KeyboardEvent, field: DateField) {
     if (event.key === 'Tab') {
+      // Finish the field but leave Tab traversal native, including reverse traversal with Shift.
       this.#finishSegment(field);
       this.requestUpdate();
       return true;
@@ -1007,6 +1029,7 @@ export default class SynDatePicker extends SynergyElement implements SynergyForm
       event.preventDefault();
       event.stopPropagation();
       this.#finishSegment(field);
+      // Keep focus moving in displayed locale order, not hard-coded calendar chronology.
       const direction = event.key === 'ArrowRight' ? 1 : -1;
       this.#moveField(field, this.localize.dir() === 'rtl' ? -direction : direction);
       return true;
@@ -1094,6 +1117,7 @@ export default class SynDatePicker extends SynergyElement implements SynergyForm
   }
 
   #stepSegment(field: DateField, key: string) {
+    // A step is a separate gesture; finish any numeric buffer before applying it.
     this.#finishSegment(field);
     const { max, min } = segmentBounds(field, this.#segments);
     const current = this.#segments[field];
@@ -1128,6 +1152,7 @@ export default class SynDatePicker extends SynergyElement implements SynergyForm
     }
     const start = this.mode === 'range' && fields.length === 2 ? 0 : this.#activeGroup;
     const originals = this.#groups.slice(start, start + (this.mode === 'range' && fields.length === 2 ? 2 : 1));
+    // Treat a recognized list as one repairable operation; keep replaced values as rollback originals.
     const batchId = this.#nextBatchId;
     this.#nextBatchId += 1;
     // Preserve original committed dates behind invalid pasted fields until the entire batch can commit.
@@ -1192,6 +1217,7 @@ export default class SynDatePicker extends SynergyElement implements SynergyForm
     const values = normalizeCalendarValue(this.calendar.value, this.mode);
     // A first calendar range click is a picker draft, not a one-endpoint form value.
     if (this.mode === 'range' && values.length === 1) {
+      // Mirror the anchor into segments for feedback, while keeping it out of committed form data.
       this.#groups = [this.#newGroup('', isoToSegments(values[0])), this.#newGroup()];
       this.#groups[0].edited = [...this.#fields()];
       this.#batches.clear();
@@ -1228,6 +1254,7 @@ export default class SynDatePicker extends SynergyElement implements SynergyForm
   #handleCalendarBeforeChange(event: Event) {
     event.stopPropagation();
     const candidate = normalizeCalendarValue(this.calendar.value, this.mode).join(' ');
+    // Let picker listeners accept or veto the calendar proposal before its input/change notifications arrive.
     if (!this.#requestUserValue(candidate, true, false)) {
       event.preventDefault();
     }
@@ -1272,7 +1299,7 @@ export default class SynDatePicker extends SynergyElement implements SynergyForm
   #handleFocusOut() {
     // Wait for native focus transfer so moving into the nested calendar is not mistaken for leaving the picker.
     queueMicrotask(() => {
-      if (this.#hasFocus && !this.matches(':focus-within')) {
+      if (this.isConnected && this.#hasFocus && !this.matches(':focus-within')) {
         this.#finishSegment();
         this.#showErrors = true;
         this.#reconcileGroups();

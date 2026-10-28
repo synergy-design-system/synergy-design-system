@@ -18,6 +18,7 @@ export * from './Dropdown.js';
 export * from './Fieldset.js';
 export * from './File.js';
 export * from './GaugeChart.js';
+export * from './HistogramChart.js';
 export * from './Icon.js';
 export * from './IconButton.js';
 export * from './Input.js';

@@ -64,3 +64,16 @@ export const barChartConfigObject: BarSeriesOption[] = [
   { data: [40, 35, 60, 52, 45, 58, 63], name: 'Series 2' },
   { data: [22, 50, 46, 38, 44, 53, 49], name: 'Series 3' },
 ];
+
+export const histogramChartBaseConfig: ECConfig = {
+  xAxis: {
+    data: ['0-10', '10-20', '20-30', '30-40', '40-50', '50-60'],
+    name: 'Value Range',
+    type: 'category',
+  },
+  yAxis: { name: 'Frequency', type: 'value' },
+};
+
+export const histogramChartConfigObject: BarSeriesOption[] = [
+  { data: [2, 8, 17, 14, 6, 3], name: 'Frequency' },
+];

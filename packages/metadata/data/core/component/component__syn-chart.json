@@ -978,6 +978,17 @@
         {
           "description": {
             "type": "text",
+            "value": "Set `large: true` to enable optimized rendering when a bar series contains many data points. The optimization is used once the number of items reaches `largeThreshold` (400 by default). Individual data-item styles cannot be customized while large rendering is active, so use it when rendering performance matters more than per-item styling."
+          },
+          "name": "bar-series-large-data",
+          "title": {
+            "type": "text",
+            "value": "Bar Chart with Large Data Set"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
             "value": "Stacked bar charts display multiple series layered within a single bar per category. They are ideal for showing total values across categories while simultaneously breaking down proportional contributions. Choosing between a vertical or horizontal orientation depends on the dataset and visualization goals."
           },
           "name": "bar-series-stacked-default",
@@ -1000,7 +1011,7 @@
         {
           "description": {
             "type": "text",
-            "value": "A histogram visualizes the frequency distribution of numerical values across continuous intervals (bins). It helps identify patterns, spread, clusters and outliers within a dataset. Histograms are best suited for analyzing distributions of continuous data such as response times, measurements and durations. For comparing distinct categories, use a bar chart instead."
+            "value": "A histogram visualizes the frequency distribution of numerical values across continuous intervals (bins). It helps identify patterns, spread, clusters and outliers within a dataset. Histograms are best suited for analyzing distributions of continuous data, such as response times, measurements and durations. Histogram bins follow a meaningful numerical order and should not be reordered. If values represent distinct categories that should be reordered or compared independently, use a bar chart instead."
           },
           "name": "histogram-default",
           "title": {
@@ -1088,7 +1099,7 @@
         {
           "description": {
             "type": "text",
-            "value": "Set `barWidth` to `undefined` and `barCategoryGap` to `-1` to remove the gap between bars, emphasizing the continuity of the distribution."
+            "value": "Set `barWidth` and `barMaxWidth` to `101%` to remove the gap between bars, emphasizing the continuity of the distribution."
           },
           "name": "histogram-no-gap",
           "title": {

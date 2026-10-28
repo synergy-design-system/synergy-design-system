@@ -1275,27 +1275,34 @@ export const findComponentsForTask = async (
       }
 
       const preferred = !!query.constraints?.preferredTargets?.includes(targetId);
+      const pattern = resolveUsagePatternFromRegistry(capability.target, intent.id, phases);
 
       return {
         intentId: intent.id,
         preferred,
+        priority: pattern?.priority,
         snippet,
         targetId,
+        targetRole: pattern?.targetRole,
         why: `Supports category "${intent.category}" and has a registered render pattern.`,
       };
     })
-    .filter((entry): entry is { intentId: string; preferred: boolean; snippet: string; targetId: string; why: string } => entry !== null)
+    .filter((entry) => entry !== null)
     .sort((a, b) => {
       if (a.preferred !== b.preferred) {
         return a.preferred ? -1 : 1;
       }
 
-      return a.targetId.localeCompare(b.targetId);
+      return compareIntentOptions(a, b);
     })
     .slice(0, query.maxAlternatives ?? 5)
     .map((entry, e) => ({
-      ...entry,
+      intentId: entry.intentId,
+      preferred: entry.preferred,
       rank: e + 1,
+      snippet: entry.snippet,
+      targetId: entry.targetId,
+      why: entry.why,
     }));
 
   return {

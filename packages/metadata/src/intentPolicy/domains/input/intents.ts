@@ -111,6 +111,36 @@ export const inputIntents: IntentDefinition[] = [
   },
   {
     category: 'input',
+    description: 'Use when a user should enter the start and end of a continuous date range.',
+    id: 'input.date.range',
+    userGoal: 'Enter or select both endpoints of a period in one date field.',
+  },
+  {
+    category: 'input',
+    description: 'Use when a user should enter several separate dates.',
+    id: 'input.date.multiple',
+    userGoal: 'Enter or select multiple independent dates in one date field.',
+  },
+  {
+    category: 'input',
+    description: 'Use when a user should select one date from a calendar that remains visible.',
+    id: 'input.date.inline.day',
+    userGoal: 'Choose a specific day in the context of surrounding dates without a separate input field.',
+  },
+  {
+    category: 'input',
+    description: 'Use when a user should select a continuous period from a calendar that remains visible.',
+    id: 'input.date.inline.range',
+    userGoal: 'Choose the start and end of a period directly in an inline calendar.',
+  },
+  {
+    category: 'input',
+    description: 'Use when a user should select several independent dates from a calendar that remains visible.',
+    id: 'input.date.inline.multiple',
+    userGoal: 'Choose separate days directly in an inline calendar.',
+  },
+  {
+    category: 'input',
     description: 'Use when a user should pick a time of day.',
     id: 'input.date.time',
     userGoal: 'Select or type a specific time with time-aware validation and picker support.',

@@ -44,6 +44,28 @@ Intent options behavior:
 - By default, results focus on exact renderable target + intent matches.
 - Category-level diagnostics for non-renderable targets are opt-in via `includeDiagnostics: true`.
 
+Recommendation ranking:
+
+- Both recommendation APIs rank renderable targets by role (`standalone`, then `container`, then `item`), descending pattern priority, and target ID as a deterministic tie-breaker.
+- Missing roles count as `standalone`; missing priorities count as zero.
+- `findComponentsForTask` applies `avoidTargets` before ranking and places `preferredTargets` before other candidates. Preferences are a set, not an ordered list; the shared ranking applies within each group.
+- Ranking is applied before `maxAlternatives`, so priority changes can affect both the default and the returned alternatives for existing intents.
+
+Date selection intents:
+
+| Intent | Preferred component | Selection |
+| --- | --- | --- |
+| `input.date.day` | `syn-date-picker` | Single date field |
+| `input.date.range` | `syn-date-picker` | Continuous date-range field |
+| `input.date.multiple` | `syn-date-picker` | Multiple independent dates in a field |
+| `input.date.inline.day` | `syn-calendar` | Single date in a persistent calendar |
+| `input.date.inline.range` | `syn-calendar` | Continuous range in a persistent calendar |
+| `input.date.inline.multiple` | `syn-calendar` | Independent dates in a persistent calendar |
+
+`input.date.day` also supports `syn-input` with `type="date"` at a lower priority. Explicit native-input resolution remains supported; recommending date-picker does not migrate existing applications. Native time and local date-time intents are unchanged.
+
+Inline calendar patterns do not provide form submission or form validation. Use the date-field intents when form integration is required. These definitions follow the input domain's existing experimental phase; include `experimental` in `includePhases` when querying through the developer facade.
+
 ```ts
 import {
   findComponentsForTask,

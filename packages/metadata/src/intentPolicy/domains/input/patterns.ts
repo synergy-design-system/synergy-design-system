@@ -255,14 +255,107 @@ export const inputPatterns: IntentUsagePattern[] = [
     target: { id: 'component:syn-range', kind: 'component', name: 'syn-range' },
   },
   {
-    description: 'Date input field for selecting or entering a calendar date.',
+    description: 'Native date input retained as a supported alternative for existing date fields.',
     intent: 'input.date.day',
+    notes: ['Existing native date inputs remain supported; prefer syn-date-picker for new date-selection fields.'],
     preset: {
       props: {
         type: 'date',
       },
     },
+    priority: 50,
     target: { id: 'component:syn-input', kind: 'component', name: 'syn-input' },
+    targetRole: 'standalone',
+  },
+  {
+    description: 'Preferred date field combining direct date entry with a calendar popup.',
+    intent: 'input.date.day',
+    notes: ['Provide a descriptive label for the date field.'],
+    preset: {
+      props: {
+        mode: 'single',
+      },
+    },
+    priority: 100,
+    target: { id: 'component:syn-date-picker', kind: 'component', name: 'syn-date-picker' },
+    targetRole: 'standalone',
+  },
+  {
+    description: 'Date field for entering or selecting a continuous range with a calendar popup.',
+    intent: 'input.date.range',
+    notes: [
+      'Provide a descriptive label for the period being selected.',
+      'Treat the range as complete only after both endpoints have been chosen.',
+    ],
+    preset: {
+      props: {
+        mode: 'range',
+      },
+    },
+    priority: 100,
+    target: { id: 'component:syn-date-picker', kind: 'component', name: 'syn-date-picker' },
+    targetRole: 'standalone',
+  },
+  {
+    description: 'Date field for entering or selecting several independent dates with a calendar popup.',
+    intent: 'input.date.multiple',
+    notes: ['Explain that users can choose several separate dates rather than one continuous range.'],
+    preset: {
+      props: {
+        mode: 'multiple',
+      },
+    },
+    priority: 100,
+    target: { id: 'component:syn-date-picker', kind: 'component', name: 'syn-date-picker' },
+    targetRole: 'standalone',
+  },
+  {
+    description: 'Persistent inline calendar for selecting one date without a form input.',
+    intent: 'input.date.inline.day',
+    notes: [
+      'Provide a surrounding heading or instruction explaining the selection.',
+      'The calendar does not submit form values or provide form validation; use syn-date-picker when a form field is needed.',
+    ],
+    preset: {
+      props: {
+        mode: 'single',
+      },
+    },
+    priority: 100,
+    target: { id: 'component:syn-calendar', kind: 'component', name: 'syn-calendar' },
+    targetRole: 'standalone',
+  },
+  {
+    description: 'Persistent inline calendar for selecting the endpoints of a continuous date range.',
+    intent: 'input.date.inline.range',
+    notes: [
+      'Wait until both endpoints have been chosen before treating the range as complete.',
+      'The surrounding application manages submission and validation; the calendar is not a form control.',
+    ],
+    preset: {
+      props: {
+        mode: 'range',
+      },
+    },
+    priority: 100,
+    target: { id: 'component:syn-calendar', kind: 'component', name: 'syn-calendar' },
+    targetRole: 'standalone',
+  },
+  {
+    description: 'Persistent inline calendar for selecting several independent dates.',
+    intent: 'input.date.inline.multiple',
+    notes: [
+      'Explain that users can choose several separate dates.',
+      'The surrounding application manages submission and validation; the calendar is not a form control.',
+    ],
+    preset: {
+      props: {
+        mode: 'multiple',
+      },
+    },
+    priority: 100,
+    target: { id: 'component:syn-calendar', kind: 'component', name: 'syn-calendar' },
+    targetRole: 'standalone',
   },
   {
     description: 'Time input field for selecting or entering a time value.',
@@ -288,7 +381,7 @@ export const inputPatterns: IntentUsagePattern[] = [
     description: 'Grouped select options organized through optgroup labels.',
     intent: 'input.selection.grouped-options',
     notes: ['Use syn-optgroup to cluster related syn-option entries under clear labels.'],
-    priority: 90,
+    priority: 80,
     target: { id: 'component:syn-select', kind: 'component', name: 'syn-select' },
     targetRole: 'container',
   },
@@ -296,7 +389,7 @@ export const inputPatterns: IntentUsagePattern[] = [
     description: 'Grouped option container used to label and organize related select options.',
     intent: 'input.selection.grouped-options',
     notes: ['Use syn-optgroup inside syn-select to group related option entries under a shared label.'],
-    priority: 80,
+    priority: 90,
     target: { id: 'component:syn-optgroup', kind: 'component', name: 'syn-optgroup' },
     targetRole: 'container',
   },

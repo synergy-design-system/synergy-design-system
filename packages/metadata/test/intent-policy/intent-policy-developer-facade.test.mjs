@@ -570,6 +570,172 @@ describe('intent policy developer facade', () => {
     }
   });
 
+  [
+    'input.selection.single',
+    'input.selection.multiple',
+    'input.selection.grouped-options',
+  ].forEach((intentId) => {
+    it(`uses the same role and priority ranking in both APIs for ${intentId}`, async () => {
+      const { findComponentsForTask, getIntentOptions } = await loadPublicApi();
+      const fixture = await createFixtureDataDir();
+
+      try {
+        const query = {
+          framework: 'react-web-components',
+          includePhases: ['experimental'],
+          maxAlternatives: 100,
+        };
+        const task = await findComponentsForTask({ ...query, taskId: intentId }, { dataDir: fixture.dataDir });
+        const options = await getIntentOptions({ ...query, intentId }, { dataDir: fixture.dataDir });
+
+        assert.strictEqual(task.errors, undefined);
+        assert.strictEqual(options.errors, undefined);
+        assert.strictEqual(task.data.primaryRecommendation.targetId, options.data.bestDefaultTargetId);
+        assert.deepStrictEqual(
+          task.data.alternatives.map((target) => target.targetId),
+          options.data.renderableTargets.map((target) => target.targetId),
+        );
+        assert.deepStrictEqual(task.data.alternatives.map((target) => target.rank),
+          task.data.alternatives.map((target, index) => index + 1));
+        if (intentId === 'input.selection.grouped-options') {
+          assert.strictEqual(options.data.bestDefaultTargetId, 'component:syn-optgroup');
+          assert.deepStrictEqual(options.data.renderableTargets.map((target) => target.targetId), [
+            'component:syn-optgroup',
+            'component:syn-select',
+          ]);
+        }
+      } finally {
+        await fixture.cleanup();
+      }
+    });
+  });
+
+  [
+    { calendar: 'syn-calendar', framework: 'vanilla', input: 'syn-input', picker: 'syn-date-picker' },
+    { calendar: 'syn-calendar', framework: 'angular', input: 'syn-input', picker: 'syn-date-picker' },
+    { calendar: 'SynCalendar', framework: 'react-wrapper', input: 'SynInput', picker: 'SynDatePicker' },
+    { calendar: 'syn-calendar', framework: 'react-web-components', input: 'syn-input', picker: 'syn-date-picker' },
+    { calendar: 'SynVueCalendar', framework: 'vue', input: 'SynVueInput', picker: 'SynVueDatePicker' },
+    { calendar: 'syn-calendar', framework: 'vue-web-components', input: 'syn-input', picker: 'syn-date-picker' },
+  ].forEach(({ calendar, framework, input, picker }) => {
+    it(`resolves date fields and inline calendars without replacing native input in ${framework}`, async () => {
+      const { findComponentsForTask, getIntentOptions } = await loadPublicApi();
+      const fixture = await createFixtureDataDir();
+
+      try {
+        const cases = [
+          { component: 'syn-date-picker', intentId: 'input.date.day', mode: 'single', symbol: picker },
+          { component: 'syn-date-picker', intentId: 'input.date.range', mode: 'range', symbol: picker },
+          { component: 'syn-date-picker', intentId: 'input.date.multiple', mode: 'multiple', symbol: picker },
+          { component: 'syn-calendar', intentId: 'input.date.inline.day', mode: 'single', symbol: calendar },
+          { component: 'syn-calendar', intentId: 'input.date.inline.range', mode: 'range', symbol: calendar },
+          { component: 'syn-calendar', intentId: 'input.date.inline.multiple', mode: 'multiple', symbol: calendar },
+        ];
+        await Promise.all(cases.map(async ({ component, intentId, mode, symbol }) => {
+          const query = { framework, includePhases: ['experimental'] };
+          const options = await getIntentOptions({ ...query, intentId }, { dataDir: fixture.dataDir });
+          const task = await findComponentsForTask({ ...query, taskId: intentId }, { dataDir: fixture.dataDir });
+          const expectedTargets = [`component:${component}`];
+          if (intentId === 'input.date.day') {
+            expectedTargets.push('component:syn-input');
+          }
+
+          assert.strictEqual(options.errors, undefined);
+          assert.strictEqual(task.errors, undefined);
+          assert.strictEqual(options.data.bestDefaultTargetId, `component:${component}`);
+          assert.strictEqual(task.data.primaryRecommendation.targetId, options.data.bestDefaultTargetId);
+          assert.deepStrictEqual(options.data.renderableTargets.map((target) => target.targetId), expectedTargets);
+          assert.deepStrictEqual(task.data.alternatives.map((target) => target.targetId), expectedTargets);
+          assert.strictEqual(options.data.renderableTargets[0].previewCode, `<${symbol} mode="${mode}">CONTENT</${symbol}>`);
+
+          if (intentId === 'input.date.day') {
+            assert.strictEqual(options.data.renderableTargets[1].previewCode, `<${input} type="date">CONTENT</${input}>`);
+          }
+        }));
+      } finally {
+        await fixture.cleanup();
+      }
+    });
+  });
+
+  [
+    { constraints: { preferredTargets: ['component:syn-input'] }, expected: 'component:syn-input' },
+    { constraints: { avoidTargets: ['component:syn-date-picker'] }, expected: 'component:syn-input' },
+    {
+      constraints: { preferredTargets: ['component:syn-input', 'component:syn-date-picker'] },
+      expected: 'component:syn-date-picker',
+    },
+    {
+      constraints: { avoidTargets: ['component:syn-input'], preferredTargets: ['component:syn-input'] },
+      expected: 'component:syn-date-picker',
+    },
+  ].forEach(({ constraints, expected }) => {
+    it(`preserves caller constraints ${JSON.stringify(constraints)} over date recommendation defaults`, async () => {
+      const { findComponentsForTask } = await loadPublicApi();
+      const fixture = await createFixtureDataDir();
+
+      try {
+        const response = await findComponentsForTask({
+          constraints,
+          framework: 'react-web-components',
+          includePhases: ['experimental'],
+          maxAlternatives: 1,
+          taskId: 'input.date.day',
+        }, { dataDir: fixture.dataDir });
+
+        assert.strictEqual(response.errors, undefined);
+        assert.strictEqual(response.data.primaryRecommendation.targetId, expected);
+        assert.strictEqual(response.data.alternatives.length, 1);
+        assert.strictEqual(response.data.primaryRecommendation.rank, 1);
+      } finally {
+        await fixture.cleanup();
+      }
+    });
+  });
+
+  it('retains explicit native date-input resolution independently of recommendation ranking', async () => {
+    const { resolveIntent } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await resolveIntent({
+        includePhases: ['experimental'],
+        intent: 'input.date.day',
+        target: { id: 'component:syn-input', kind: 'component', name: 'syn-input' },
+      }, { dataDir: fixture.dataDir });
+
+      assert.strictEqual(response.errors, undefined);
+      assert.strictEqual(response.data.pattern.target.id, 'component:syn-input');
+      assert.strictEqual(response.data.pattern.preset.props.type, 'date');
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
+  it('retains native time and local date-time recommendations', async () => {
+    const { getIntentOptions } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      await Promise.all([
+        { intentId: 'input.date.time', type: 'time' },
+        { intentId: 'input.date.datetime-local', type: 'datetime-local' },
+      ].map(async ({ intentId, type }) => {
+        const response = await getIntentOptions({
+          framework: 'vanilla',
+          includePhases: ['experimental'],
+          intentId,
+        }, { dataDir: fixture.dataDir });
+
+        assert.strictEqual(response.errors, undefined);
+        assert.deepStrictEqual(response.data.renderableTargets.map((target) => target.targetId), ['component:syn-input']);
+        assert.strictEqual(response.data.renderableTargets[0].previewCode, `<syn-input type="${type}">CONTENT</syn-input>`);
+      }));
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
   it('returns only renderable options by default for an intent', async () => {
     const { getIntentOptions } = await loadPublicApi();
     const fixture = await createFixtureDataDir();

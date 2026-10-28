@@ -572,3 +572,12 @@ export const getShiftedPoint = (radius: number, angle: number, tangentialOffset:
     y: (radialOffset * Math.sin(angle)) + (safeOffset * Math.cos(angle)),
   };
 };
+
+/**
+ * Generates a pseudo-random base-36 string with a max of 10 characters and prepends the provided prefix.
+ *
+ * @param length Number of random characters to return with a max of 10. Defaults to 8.
+ * @param prefix String to prepend to the random suffix. Defaults to an empty string.
+ * @returns The prefix followed by a pseudo-random base-36 string.
+ */
+export const getRandomString = (length: number = 8, prefix: string = ''): string => prefix + Math.random().toString(36).slice(2, 2 + length);

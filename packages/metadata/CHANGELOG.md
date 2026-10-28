@@ -1,5 +1,20 @@
 # Changelog
 
+## 4.23.0
+
+### Minor Changes
+
+- [#1401](https://github.com/synergy-design-system/synergy-design-system/pull/1401) [`79ca10c`](https://github.com/synergy-design-system/synergy-design-system/commit/79ca10c162ccfaa471bbfb518ae9a7bdfd83c905) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-10-27
+  
+  feat: ✨ Adds bar series support to <syn-chart> ([#1212](https://github.com/synergy-design-system/synergy-design-system/issues/1212))
+  
+  This release adds support for the `bar` series type in `<syn-chart>` to create single, grouped, and stacked bar charts.
+  
+  The chart configuration API now includes two new presets:
+  
+  - `seriesBar` appends bar series while preserving individual series options for single and grouped bar charts.
+  - `seriesBarStacked` appends stacked bar series with a shared stack name and recommendations like borders and label defaults. Optional `stackName` and `orientation` settings customize the stack grouping and label placement. Individual series options override the defaults.
+
 ## 4.22.1
 
 ### Patch Changes

@@ -6,9 +6,7 @@ import { html } from 'lit';
 import type { CSSResultGroup, PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { query } from 'lit/decorators/query.js';
-import {
-  GaugeChart, LineChart,
-} from 'echarts/charts.js';
+import { BarChart, GaugeChart, LineChart } from 'echarts/charts.js';
 import {
   DataZoomComponent,
   GridComponent, LegendComponent, TitleComponent, TooltipComponent,
@@ -41,6 +39,7 @@ use([
   segmentInstall,
   donutInstall,
   gaugeInstall,
+  BarChart,
 ]);
 /**
  * Depending if x-axis or y-axis, the axis name has different positions and alignments. This preprocessor ensures that the correct styles are applied to the axis names based on the axis type.

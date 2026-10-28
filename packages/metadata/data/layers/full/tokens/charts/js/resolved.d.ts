@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.29.1
+ * @synergy-design-system/tokens version 3.30.0
  * SICK Global UX Foundation
  */
 
@@ -149,6 +149,7 @@ export declare const ResolvedTokens: {
   SynChartSequentialStatusWarning80: ResolvedTokenModes;
   SynChartSequentialStatusWarning90: ResolvedTokenModes;
   SynChartSequentialStatusWarning100: ResolvedTokenModes;
+  SynChartTooltipBackgroundColor: ResolvedTokenModes;
   SynChartTooltipColor: ResolvedTokenModes;
   SynChartTrackColor: ResolvedTokenModes;
 };

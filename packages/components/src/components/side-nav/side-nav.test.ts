@@ -461,6 +461,13 @@ describe('<syn-side-nav>', () => {
     const secondNested = sideNav.querySelector('#second') as SynNavItem;
     const thirdNested = sideNav.querySelector('#third') as SynNavItem;
 
+    // Slot assignment and the deferred style read can span animation frames in Firefox.
+    await waitUntil(() => (
+      getComputedStyle(firstNested).getPropertyValue('--indentation') === '0'
+      && getComputedStyle(secondNested).getPropertyValue('--indentation') === '1'
+      && getComputedStyle(thirdNested).getPropertyValue('--indentation') === '2'
+    ));
+
     expect(getComputedStyle(firstNested).getPropertyValue('--indentation')).to.equal('0');
     expect(getComputedStyle(secondNested).getPropertyValue('--indentation')).to.equal('1');
     expect(getComputedStyle(thirdNested).getPropertyValue('--indentation')).to.equal('2');

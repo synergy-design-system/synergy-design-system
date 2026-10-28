@@ -1,5 +1,6 @@
+import { getRealValueWithoutUnit as styleWithoutUnit } from '../../../themes/utilities.js';
 import { type ConfigModifier, mergeConfigs, mergeDeep } from '../../utilities.js';
-import type { BarSeriesOption } from './types.js';
+import type { BarSeriesOption } from '../bar/types.js';
 
 /**
  * Creates histogram series using ECharts bar series and appends them to `series`.
@@ -12,7 +13,8 @@ export const seriesHistogram = (
   options: BarSeriesOption[],
 ): ConfigModifier => (config) => {
   const defaultBarOption: BarSeriesOption = {
-    barCategoryGap: 1,
+    barCategoryGap: styleWithoutUnit('SynSpacing4xSmall'),
+    barMaxWidth: '100%',
     type: 'bar',
   };
   return mergeConfigs(config, {

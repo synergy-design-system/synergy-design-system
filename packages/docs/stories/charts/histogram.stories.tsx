@@ -79,6 +79,7 @@ export const Default: Story = {
               data: [2, 8, 17, 14, 6, 3],
               type: 'bar',
               barCategoryGap: 1,
+              barMaxWidth: '100%',
             },
           ]
         }
@@ -289,7 +290,10 @@ export const CustomBarWidth: Story = {
       relativeWidthCharts.forEach((relative) => {
         relative.config = handle => handle
           .baseConfig(baseConfig)
-          .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3], barWidth: '30%' }])
+          .seriesHistogram([{
+            data: [2, 8, 17, 14, 6, 3],
+            barWidth: '30%',
+          }])
       });
     </script>
   `,
@@ -299,7 +303,7 @@ export const NoGap: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'histogram-custom-width'),
+        story: generateStoryDescription('chart', 'histogram-no-gap'),
       },
     },
   },
@@ -321,7 +325,11 @@ export const NoGap: Story = {
       noGapCharts.forEach((noGap) => {
         noGap.config = handle => handle
           .baseConfig(baseConfig)
-          .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3], barWidth: undefined, barCategoryGap: -1 }])
+          .seriesHistogram([{
+            data: [2, 8, 17, 14, 6, 3],
+            barMaxWidth: '101%',
+            barWidth: '101%',
+          }])
       });
     </script>
   `,
@@ -474,7 +482,10 @@ export const SelectedMode: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .seriesHistogram([{ data: values, selectedMode: 'single' }])
+          .seriesHistogram([{
+            data: values,
+            selectedMode: 'single',
+          }])
 
         const instance = chart.getInstance();
         instance.on('selectchanged', ({ selected }) => {

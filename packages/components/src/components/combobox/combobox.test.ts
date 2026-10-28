@@ -2276,21 +2276,19 @@ describe('<syn-combobox>', () => {
       const el = await fixture<SynCombobox>(html`
         <syn-combobox .value=${'option-1'} ></syn-combobox>
       `);
-      await nextFrame();
+      await waitUntil(() => el.displayLabel === 'option-1', 'Initial property-bound value was not displayed');
 
-      await expect(el.value).to.equal('option-1');
-      await expect(el.displayLabel).to.equal('option-1');
+      expect(el.value).to.equal('option-1');
+      expect(el.displayLabel).to.equal('option-1');
 
-      // wait a short time until adding options dynamically
-      await aTimeout(10);
       const option = document.createElement('syn-option');
       option.value = 'option-1';
       option.textContent = 'Option 1';
       el.appendChild(option);
-      await nextFrame();
+      await waitUntil(() => el.displayLabel === 'Option 1', 'Dynamically added option label was not displayed');
 
-      await expect(el.value).to.equal('option-1');
-      await expect(el.displayLabel).to.equal('Option 1');
+      expect(el.value).to.equal('option-1');
+      expect(el.displayLabel).to.equal('Option 1');
     });
 
     it('should reset the value of the select in a form to the initially set value', async () => {

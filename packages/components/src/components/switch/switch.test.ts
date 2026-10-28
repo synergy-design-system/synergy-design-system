@@ -55,8 +55,8 @@ describe('<syn-switch>', () => {
     el.click();
     await el.updateComplete;
 
-    expect(changeHandler).to.have.been.calledOnce;
-    expect(inputHandler).to.have.been.calledOnce;
+    expect(changeHandler.callCount).to.equal(1);
+    expect(inputHandler.callCount).to.equal(1);
     expect(el.checked).to.be.true;
   });
 
@@ -70,8 +70,8 @@ describe('<syn-switch>', () => {
     el.focus();
     await sendKeys({ press: ' ' });
 
-    expect(changeHandler).to.have.been.calledOnce;
-    expect(inputHandler).to.have.been.calledOnce;
+    expect(changeHandler.callCount).to.equal(1);
+    expect(inputHandler.callCount).to.equal(1);
     expect(el.checked).to.be.true;
   });
 
@@ -86,8 +86,8 @@ describe('<syn-switch>', () => {
     await sendKeys({ press: 'ArrowRight' });
     await el.updateComplete;
 
-    expect(changeHandler).to.have.been.calledOnce;
-    expect(inputHandler).to.have.been.calledOnce;
+    expect(changeHandler.callCount).to.equal(1);
+    expect(inputHandler.callCount).to.equal(1);
     expect(el.checked).to.be.true;
   });
 
@@ -102,8 +102,8 @@ describe('<syn-switch>', () => {
     await sendKeys({ press: 'ArrowLeft' });
     await el.updateComplete;
 
-    expect(changeHandler).to.have.been.calledOnce;
-    expect(inputHandler).to.have.been.calledOnce;
+    expect(changeHandler.callCount).to.equal(1);
+    expect(inputHandler.callCount).to.equal(1);
     expect(el.checked).to.be.false;
   });
 
@@ -194,7 +194,7 @@ describe('<syn-switch>', () => {
       button.click();
       await aTimeout(100);
 
-      expect(submitHandler).to.not.have.been.called;
+      expect(submitHandler.callCount).to.equal(0);
     });
 
     it('should be invalid when required and unchecked', async () => {

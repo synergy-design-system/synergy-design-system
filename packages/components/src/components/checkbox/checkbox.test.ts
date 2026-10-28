@@ -83,8 +83,8 @@ describe('<syn-checkbox>', () => {
     el.click();
     await el.updateComplete;
 
-    expect(changeHandler).to.have.been.calledOnce;
-    expect(inputHandler).to.have.been.calledOnce;
+    expect(changeHandler.callCount).to.equal(1);
+    expect(inputHandler.callCount).to.equal(1);
     expect(el.checked).to.be.true;
   });
 
@@ -96,7 +96,7 @@ describe('<syn-checkbox>', () => {
     el.click();
     await el.updateComplete;
 
-    expect(changeHandler).to.have.not.been.called;
+    expect(changeHandler.callCount).to.equal(0);
     expect(el.checked).to.be.false;
   });
 
@@ -111,8 +111,8 @@ describe('<syn-checkbox>', () => {
     await el.updateComplete;
     await sendKeys({ press: ' ' });
 
-    expect(changeHandler).to.have.been.calledOnce;
-    expect(inputHandler).to.have.been.calledOnce;
+    expect(changeHandler.callCount).to.equal(1);
+    expect(inputHandler.callCount).to.equal(1);
     expect(el.checked).to.be.true;
   });
 

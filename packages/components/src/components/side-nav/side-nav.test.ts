@@ -50,8 +50,8 @@ describe('<syn-side-nav>', () => {
       await waitUntil(() => showHandler.calledOnce);
       await waitUntil(() => afterShowHandler.calledOnce);
 
-      expect(showHandler).to.have.been.calledOnce;
-      expect(afterShowHandler).to.have.been.calledOnce;
+      expect(showHandler.callCount).to.equal(1);
+      expect(afterShowHandler.callCount).to.equal(1);
     });
 
     it('should emit syn-hide and syn-after-hide when calling hide()', async () => {
@@ -70,8 +70,8 @@ describe('<syn-side-nav>', () => {
       await waitUntil(() => hideHandler.calledOnce);
       await waitUntil(() => afterHideHandler.calledOnce);
 
-      expect(hideHandler).to.have.been.calledOnce;
-      expect(afterHideHandler).to.have.been.calledOnce;
+      expect(hideHandler.callCount).to.equal(1);
+      expect(afterHideHandler.callCount).to.equal(1);
     });
   });
 
@@ -92,8 +92,8 @@ describe('<syn-side-nav>', () => {
       await waitUntil(() => showHandler.calledOnce);
       await waitUntil(() => afterShowHandler.calledOnce);
 
-      expect(showHandler).to.have.been.calledOnce;
-      expect(afterShowHandler).to.have.been.calledOnce;
+      expect(showHandler.callCount).to.equal(1);
+      expect(afterShowHandler.callCount).to.equal(1);
     });
 
     it('should emit syn-hide and syn-after-hide when setting open = false', async () => {
@@ -112,8 +112,8 @@ describe('<syn-side-nav>', () => {
       await waitUntil(() => hideHandler.calledOnce);
       await waitUntil(() => afterHideHandler.calledOnce);
 
-      expect(hideHandler).to.have.been.calledOnce;
-      expect(afterHideHandler).to.have.been.calledOnce;
+      expect(hideHandler.callCount).to.equal(1);
+      expect(afterHideHandler.callCount).to.equal(1);
     });
   });
 
@@ -460,6 +460,13 @@ describe('<syn-side-nav>', () => {
     const firstNested = sideNav.querySelector('#first') as SynNavItem;
     const secondNested = sideNav.querySelector('#second') as SynNavItem;
     const thirdNested = sideNav.querySelector('#third') as SynNavItem;
+
+    // Slot assignment and the deferred style read can span animation frames in Firefox.
+    await waitUntil(() => (
+      getComputedStyle(firstNested).getPropertyValue('--indentation') === '0'
+      && getComputedStyle(secondNested).getPropertyValue('--indentation') === '1'
+      && getComputedStyle(thirdNested).getPropertyValue('--indentation') === '2'
+    ));
 
     expect(getComputedStyle(firstNested).getPropertyValue('--indentation')).to.equal('0');
     expect(getComputedStyle(secondNested).getPropertyValue('--indentation')).to.equal('1');

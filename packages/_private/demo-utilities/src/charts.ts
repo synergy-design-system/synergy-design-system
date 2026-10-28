@@ -26,6 +26,11 @@ export const segmentChartConfigCallback: ChartConfigCallback = (handle) => {
 export const barChartConfigCallback: ChartConfigCallback = (handle) => {
   handle
     .baseConfig(mockData('generalChartConfig'))
-    .seriesBar(mockData('barChartConfigObject'))
-    .axesShowYSplitLines();
+    .seriesBar(mockData('barChartConfigObject'));
+};
+
+export const histogramChartConfigCallback: ChartConfigCallback = (handle) => {
+  handle
+    .baseConfig(mockData('histogramChartBaseConfig'))
+    .seriesHistogram(mockData('histogramChartConfigObject'));
 };

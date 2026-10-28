@@ -18,6 +18,7 @@ import DemoDropdown from "./DemoDropdown.vue";
 import DemoFieldset from "./DemoFieldset.vue";
 import DemoFile from "./DemoFile.vue";
 import DemoGaugeChart from "./DemoGaugeChart.vue";
+import DemoHistogramChart from "./DemoHistogramChart.vue";
 import DemoIcon from "./DemoIcon.vue";
 import DemoIconButton from "./DemoIconButton.vue";
 import DemoInput from "./DemoInput.vue";
@@ -55,6 +56,7 @@ export {
   DemoCard,
   DemoChart,
   DemoGaugeChart,
+  DemoHistogramChart,
   DemoLineChart,
   DemoCheckbox,
   DemoCheckboxGroup,

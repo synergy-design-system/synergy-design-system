@@ -289,7 +289,7 @@ describe('<syn-validate>', () => {
       await el.updateComplete;
 
       await expect(el.validationMessage).to.equal('custom message');
-      expect(setValidationMessageSpy).to.have.been.calledOnce;
+      expect(setValidationMessageSpy.callCount).to.equal(1);
     });
   });
 
@@ -361,7 +361,7 @@ describe('<syn-validate>', () => {
       const scrollSpy = sinon.spy(input, 'focus');
 
       expectBrowserValidationMessage(el.validationMessage, input.validationMessage);
-      expect(scrollSpy, 'focus should have been skipped during mount on eager').to.not.have.been.called;
+      expect(scrollSpy.callCount, 'focus should have been skipped during mount on eager').to.equal(0);
 
       // Trigger another validation run to make sure it works
       input.value = 'test';
@@ -371,7 +371,7 @@ describe('<syn-validate>', () => {
       expectBrowserValidationMessage(el.validationMessage, input.validationMessage);
 
       // Focus should have only be called once, because we surpress the first focus event on mount.
-      expect(scrollSpy, 'focus should have been called for the second validation run').to.have.been.calledOnce;
+      expect(scrollSpy.callCount, 'focus should have been called for the second validation run').to.equal(1);
     });
 
     it('should call the reportValidity method for `variant="native"` when the input is invalid and an observed event is called', async () => {
@@ -388,7 +388,7 @@ describe('<syn-validate>', () => {
       input.dispatchEvent(new Event('input'));
       await el.updateComplete;
 
-      expect(reportValiditySpy).to.have.been.calledOnce;
+      expect(reportValiditySpy.callCount).to.equal(1);
     });
 
     it('should not call the reportValidity method for `variant="inline"` when the input is invalid and an observed event is called', async () => {
@@ -405,7 +405,7 @@ describe('<syn-validate>', () => {
       input.dispatchEvent(new Event('input'));
       await el.updateComplete;
 
-      expect(reportValiditySpy).to.not.have.been.called;
+      expect(reportValiditySpy.callCount).to.equal(0);
     });
 
     it('should use the default size attribute for the rendered syn-alert when using variant="inline"', async () => {
@@ -523,7 +523,7 @@ describe('<syn-validate>', () => {
       const scrollSpy = sinon.spy(input, 'focus');
 
       expectBrowserValidationMessage(el.validationMessage, input.validationMessage);
-      expect(scrollSpy, 'focus should have been skipped during mount on eager').to.not.have.been.called;
+      expect(scrollSpy.callCount, 'focus should have been skipped during mount on eager').to.equal(0);
 
       // Trigger another validation run to make sure it works
       input.value = 'test';
@@ -533,7 +533,7 @@ describe('<syn-validate>', () => {
       expectBrowserValidationMessage(el.validationMessage, input.validationMessage);
 
       // Focus should have only be called once, because we surpress the first focus event on mount.
-      expect(scrollSpy, 'focus should have been called for the second validation run').to.have.been.calledOnce;
+      expect(scrollSpy.callCount, 'focus should have been called for the second validation run').to.equal(1);
     });
 
     it('should call the reportValidity method for `variant="native"` when the input is invalid and an observed event is called', async () => {
@@ -550,7 +550,7 @@ describe('<syn-validate>', () => {
       input.dispatchEvent(new Event('syn-input'));
       await input.updateComplete;
       await el.updateComplete;
-      expect(reportValiditySpy).to.have.been.calledOnce;
+      expect(reportValiditySpy.callCount).to.equal(1);
     });
 
     it('should not call the reportValidity method for `variant="tooltip"` when the input is invalid and an observed event is called', async () => {
@@ -567,7 +567,7 @@ describe('<syn-validate>', () => {
       input.dispatchEvent(new Event('syn-input'));
       await el.updateComplete;
 
-      expect(reportValiditySpy).to.not.have.been.called;
+      expect(reportValiditySpy.callCount).to.equal(0);
     });
 
     it('should not call the reportValidity method for `variant="inline"` when the input is invalid and an observed event is called', async () => {
@@ -584,7 +584,7 @@ describe('<syn-validate>', () => {
       input.dispatchEvent(new Event('syn-input'));
       await el.updateComplete;
 
-      expect(reportValiditySpy).to.not.have.been.called;
+      expect(reportValiditySpy.callCount).to.equal(0);
     });
 
     it('should never trigger a reportValidity on blur events', async () => {
@@ -606,7 +606,7 @@ describe('<syn-validate>', () => {
 
       await el.updateComplete;
 
-      expect(reportValiditySpy).to.not.have.been.called;
+      expect(reportValiditySpy.callCount).to.equal(0);
     });
 
     it('should receive the correct data-user-invalid state when invalid', async () => {

@@ -686,6 +686,32 @@ Array merge strategy:
 - `seriesSegment({...})` uses `arrayStrategy: 'append'`.
 - The generated `synSegment` series entry is appended to `series`.
 
+### Histogram series presets
+
+| Preset function   | Options             | Description                                                                                                                |
+| ----------------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `seriesHistogram` | `BarSeriesOption[]` | Adds histogram-style series using ECharts bar series with a narrow category gap. Individual options override the defaults. |
+
+Example:
+
+```ts
+chart.config = handle =>
+  handle
+    .baseConfig({
+      xAxis: {
+        name: "Value Range",
+        type: "category",
+        data: ["0-10", "10-20", "20-30", "30-40", "40-50", "50-60"],
+      },
+      yAxis: {
+        name: "Frequency",
+      },
+    })
+    .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3] }]);
+```
+
+Each entry defaults to `type: 'bar'` and `barCategoryGap: 1`, supplied options override these defaults. The preset uses `arrayStrategy: 'append'`, so its series entries are appended after any existing `series` entries.
+
 ---
 
 ## Formatter Utility Functions

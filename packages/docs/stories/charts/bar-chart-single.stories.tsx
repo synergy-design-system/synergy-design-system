@@ -8,6 +8,7 @@ import {
   Title,
 } from '@storybook/addon-docs/blocks';
 import '../../../components/src/components/chart/chart.js';
+import '../../../components/src/components/switch/switch.js';
 import { ResolvedTokens as ChartTokens } from '@synergy-design-system/tokens/charts/resolved';
 import isChromatic from 'chromatic';
 import {
@@ -498,6 +499,87 @@ export const SelectedMode: Story = {
   `,
 };
 
+export const LargeDataSet: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'bar-series-large-data'),
+      },
+    },
+  },
+  render: () => html`
+    <div style="display: flex; align-items: flex-start; flex-direction: column; gap: var(--syn-spacing-medium); margin-bottom: var(--syn-spacing-small);">
+      <syn-switch id="bar-chart-single-large-toggle" checked>Optimize rendering</syn-switch>
+      <span id="bar-chart-single-large-status" class="syn-body--medium"></span>
+    </div>
+    <syn-chart id="bar-chart-single-large-data"></syn-chart>
+    <script type="module">
+      const charts = document.querySelectorAll('#bar-chart-single-large-data');
+      const largeToggles = document.querySelectorAll('#bar-chart-single-large-toggle');
+      const statuses = document.querySelectorAll('#bar-chart-single-large-status');
+      const length = 4e4;
+      const categories = Array.from({ length }, (_, index) => String(index + 1));
+      let seed = 123456;
+      const random = () => {
+        seed = (seed * 9301 + 49297) % 233280;
+        return seed / 233280;
+      };
+      const segmentSize = 1000;
+      const levels = Array.from(
+        { length: Math.ceil(length / segmentSize) + 1 },
+        () => 1000 + random() * 8000,
+      );
+      const values = Array.from({ length }, (_, index) => {
+        const segment = Math.floor(index / segmentSize);
+        const linearProgress = (index % segmentSize) / segmentSize;
+        const progress = linearProgress * linearProgress * (3 - 2 * linearProgress);
+        const level = levels[segment] + (levels[segment + 1] - levels[segment]) * progress;
+        return Math.max(0, Math.round(level + (random() - 0.5) * 3000));
+      });
+
+      const baseConfig = {
+        xAxis: {
+          data: categories,
+          name: 'Category',
+          type: 'category',
+        },
+        yAxis: {
+          name: 'Values',
+        },
+        dataZoom: [{
+          type: 'slider',
+        }],
+        grid: {
+          bottom: 120,
+        }
+      };
+
+      largeToggles.forEach((largeToggle, index) => {
+        const chart = charts[index];
+        const status = statuses[index];
+        if (!chart || !status) return;
+
+        const updateChart = () => {
+          const large = largeToggle.checked;
+          status.textContent = large
+            ? 'Performance optimization: enabled'
+            : 'Performance optimization: disabled';
+          chart.config = handle => handle
+            .baseConfig(baseConfig)
+            .seriesBar([{
+              data: values,
+              large,
+              largeThreshold: 1000,
+            }]);
+        };
+
+        largeToggle.addEventListener('syn-change', updateChart);
+        updateChart();
+      });
+    </script>
+  `,
+};
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
@@ -508,5 +590,6 @@ export const Screenshot: Story = generateScreenshotStory({
   PositiveAndNegative,
   CustomBarWidth,
   CustomColors,
+  LargeDataSet,
 }, 700);
 /* eslint-enable sort-keys */

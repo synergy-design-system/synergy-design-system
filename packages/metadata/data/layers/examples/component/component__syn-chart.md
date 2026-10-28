@@ -2366,6 +2366,100 @@ Selection is disabled by default. Set selectedMode to true or 'single' to select
 
 ---
 
+## Large Data Set
+
+Set large: true to enable optimized rendering when a bar series contains many data points. The optimization is used once the number of items reaches largeThreshold (400 by default). Individual data-item styles cannot be customized while large rendering is active, so use it when rendering performance matters more than per-item styling.
+
+```html
+<div
+  style="
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--syn-spacing-medium);
+    margin-bottom: var(--syn-spacing-small);
+  "
+>
+  <syn-switch id="bar-chart-single-large-toggle" checked=""
+    >Optimize rendering</syn-switch
+  >
+  <span id="bar-chart-single-large-status" class="syn-body--medium"></span>
+</div>
+<syn-chart id="bar-chart-single-large-data"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#bar-chart-single-large-data");
+  const largeToggles = document.querySelectorAll(
+    "#bar-chart-single-large-toggle",
+  );
+  const statuses = document.querySelectorAll("#bar-chart-single-large-status");
+  const length = 4e4;
+  const categories = Array.from({ length }, (_, index) => String(index + 1));
+  let seed = 123456;
+  const random = () => {
+    seed = (seed * 9301 + 49297) % 233280;
+    return seed / 233280;
+  };
+  const segmentSize = 1000;
+  const levels = Array.from(
+    { length: Math.ceil(length / segmentSize) + 1 },
+    () => 1000 + random() * 8000,
+  );
+  const values = Array.from({ length }, (_, index) => {
+    const segment = Math.floor(index / segmentSize);
+    const linearProgress = (index % segmentSize) / segmentSize;
+    const progress = linearProgress * linearProgress * (3 - 2 * linearProgress);
+    const level =
+      levels[segment] + (levels[segment + 1] - levels[segment]) * progress;
+    return Math.max(0, Math.round(level + (random() - 0.5) * 3000));
+  });
+
+  const baseConfig = {
+    xAxis: {
+      data: categories,
+      name: "Category",
+      type: "category",
+    },
+    yAxis: {
+      name: "Values",
+    },
+    dataZoom: [
+      {
+        type: "slider",
+      },
+    ],
+    grid: {
+      bottom: 120,
+    },
+  };
+
+  largeToggles.forEach((largeToggle, index) => {
+    const chart = charts[index];
+    const status = statuses[index];
+    if (!chart || !status) return;
+
+    const updateChart = () => {
+      const large = largeToggle.checked;
+      status.textContent = large
+        ? "Performance optimization: enabled"
+        : "Performance optimization: disabled";
+      chart.config = (handle) =>
+        handle.baseConfig(baseConfig).seriesBar([
+          {
+            data: values,
+            large,
+            largeThreshold: 1000,
+          },
+        ]);
+    };
+
+    largeToggle.addEventListener("syn-change", updateChart);
+    updateChart();
+  });
+</script>
+```
+
+---
+
 ## Default
 
 Configure a stacked bar chart with type: 'bar' and a shared stack identifier or use the seriesBarStacked preset function. Showing labels is recommended and their color should inherit the series color. Place labels to the left for vertical bars and above for horizontal bars. A 1 px border is recommended to better distinguish adjacent bar segments. The seriesBarStacked preset applies these label and border settings by default. It also sets barCategoryGap to control the spacing between category groups and barMinWidth to keep bars from becoming too narrow. These defaults help maintain readability, but cannot compensate for too little chart space or long value labels.
@@ -3470,6 +3564,392 @@ The gauge series supports custom value formatting using formatter.value, formatt
             ),
         },
       });
+  });
+</script>
+```
+
+---
+
+## Default
+
+Configure a histogram with a series of type: 'bar' and set barCategoryGap to 1 to keep adjacent bins close together or use the seriesHistogram preset for the recommended configuration.
+
+```html
+<syn-chart id="histogram-default"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#histogram-default");
+
+  charts.forEach((chart) => {
+    chart.config = {
+      xAxis: {
+        name: "Value Range",
+        type: "category",
+        data: ["0-10", "10-20", "20-30", "30-40", "40-50", "50-60"],
+      },
+      yAxis: {
+        name: "Frequency",
+      },
+      series: [
+        {
+          data: [2, 8, 17, 14, 6, 3],
+          type: "bar",
+          barCategoryGap: 1,
+          barMaxWidth: "100%",
+        },
+      ],
+    };
+  });
+</script>
+```
+
+---
+
+## Vertical
+
+A vertical histogram displays value intervals along the x-axis and their frequencies along the y-axis. This orientation is commonly used when there is sufficient horizontal space and makes it easy to compare the distribution across value ranges.
+
+```html
+<syn-chart id="histogram-vertical"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#histogram-vertical");
+
+  const baseConfig = {
+    xAxis: {
+      name: "Value Range",
+      type: "category",
+      data: ["0-10", "10-20", "20-30", "30-40", "40-50", "50-60"],
+    },
+    yAxis: {
+      name: "Frequency",
+    },
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3] }]);
+  });
+</script>
+```
+
+---
+
+## Horizontal
+
+A horizontal histogram displays value intervals along the y-axis and their frequencies along the x-axis. This orientation can improve readability when interval labels are long or when vertical space is more limited.
+
+```html
+<syn-chart id="histogram-horizontal"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#histogram-horizontal");
+
+  const baseConfig = {
+    yAxis: {
+      name: "Value Range",
+      type: "category",
+      data: ["0-10", "10-20", "20-30", "30-40", "40-50", "50-60"],
+    },
+    xAxis: {
+      name: "Frequency",
+    },
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3] }]);
+  });
+</script>
+```
+
+---
+
+## Fixed Value Range
+
+Use min and max on the value axis to set explicit scale boundaries. This ensures the axis scale remains consistent across datasets, making it easier to compare multiple charts and monitor changes over time.
+
+```html
+<syn-chart id="histogram-value-range"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#histogram-value-range");
+
+  const baseConfig = {
+    xAxis: {
+      name: "Value Range",
+      type: "category",
+      data: ["0-10", "10-20", "20-30", "30-40", "40-50", "50-60"],
+    },
+    yAxis: {
+      min: 0,
+      max: 25,
+      name: "Frequency",
+    },
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3] }]);
+  });
+</script>
+```
+
+---
+
+## Negative Values
+
+A histogram can show negative values such as losses, deficits or decreases. Bars extend below the zero baseline to represent the frequency of values within negative ranges.
+
+```html
+<syn-chart id="histogram-negative"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#histogram-negative");
+
+  const baseConfig = {
+    yAxis: {
+      name: "Value Range",
+      type: "category",
+      data: ["0-10", "10-20", "20-30", "30-40", "40-50", "50-60"],
+    },
+    xAxis: {
+      name: "Frequency",
+    },
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesHistogram([{ data: [-2, -8, -17, -14, -6, -3] }]);
+  });
+</script>
+```
+
+---
+
+## Positive And Negative
+
+A histogram can be used to visualize the distribution of positive and negative changes around a reference value. Negative bars represent decreases or values below the reference, while positive bars indicate increases or values above it.
+
+```html
+<syn-chart id="histogram-positive-and-negative"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#histogram-positive-and-negative");
+
+  const baseConfig = {
+    xAxis: {
+      name: "Value Range",
+      type: "category",
+      data: ["0-10", "10-20", "20-30", "30-40", "40-50", "50-60"],
+    },
+    yAxis: {
+      name: "Frequency",
+    },
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesHistogram([{ data: [-6, -2, 8, 14, 6, 3] }]);
+  });
+</script>
+```
+
+---
+
+## Custom Bar Width
+
+Set barWidth to control bar thickness. A number specifies a fixed width in pixels, while a percentage string sets the width relative to the available category space and adapts to the chart size. Histograms are typically displayed with little or no gap between bars to emphasize the continuity of the underlying distribution. When barWidth is set, barCategoryGap is ignored.
+
+```html
+<syn-chart id="histogram-fixed-width"></syn-chart>
+<syn-chart id="histogram-relative-width"></syn-chart>
+<script type="module">
+  const fixedWidthCharts = document.querySelectorAll("#histogram-fixed-width");
+  const relativeWidthCharts = document.querySelectorAll(
+    "#histogram-relative-width",
+  );
+  const baseConfig = {
+    xAxis: {
+      name: "Value Range",
+      type: "category",
+      data: ["0-10", "10-20", "20-30", "30-40", "40-50", "50-60"],
+    },
+    yAxis: {
+      name: "Frequency",
+    },
+  };
+
+  fixedWidthCharts.forEach((fixed) => {
+    fixed.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3], barWidth: 16 }]);
+  });
+
+  relativeWidthCharts.forEach((relative) => {
+    relative.config = (handle) =>
+      handle.baseConfig(baseConfig).seriesHistogram([
+        {
+          data: [2, 8, 17, 14, 6, 3],
+          barWidth: "30%",
+        },
+      ]);
+  });
+</script>
+```
+
+---
+
+## No Gap
+
+Set barWidth and barMaxWidth to 101% to remove the gap between bars, emphasizing the continuity of the distribution.
+
+```html
+<syn-chart id="histogram-no-gap"></syn-chart>
+<script type="module">
+  const noGapCharts = document.querySelectorAll("#histogram-no-gap");
+  const baseConfig = {
+    xAxis: {
+      name: "Value Range",
+      type: "category",
+      data: ["0-10", "10-20", "20-30", "30-40", "40-50", "50-60"],
+    },
+    yAxis: {
+      name: "Frequency",
+    },
+  };
+
+  noGapCharts.forEach((noGap) => {
+    noGap.config = (handle) =>
+      handle.baseConfig(baseConfig).seriesHistogram([
+        {
+          data: [2, 8, 17, 14, 6, 3],
+          barMaxWidth: "101%",
+          barWidth: "101%",
+        },
+      ]);
+  });
+</script>
+```
+
+---
+
+## Custom Colors
+
+Bar series use the chart's categorical palette by default. Use the color option to apply explicit colors to individual series.
+
+```html
+<syn-chart id="histogram-custom-color"></syn-chart>
+<script type="module">
+  const getChartColor = (token) => ChartTokens[token]["light"];
+  const charts = document.querySelectorAll("#histogram-custom-color");
+  const baseConfig = {
+    xAxis: {
+      name: "Value Range",
+      type: "category",
+      data: ["0-10", "10-20", "20-30", "30-40", "40-50", "50-60"],
+    },
+    yAxis: {
+      name: "Frequency",
+    },
+    color: [getChartColor("SynChartSequential02_70")],
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3] }]);
+  });
+</script>
+```
+
+---
+
+## Tooltip
+
+Enable a tooltip to inspect bar values on hover. For bar series it is recommended to set tooltip.axisPointer.type to 'shadow' to highlight the corresponding category and compare its values across series.
+
+```html
+<syn-chart id="histogram-tooltip"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#histogram-tooltip");
+
+  const baseConfig = {
+    xAxis: {
+      name: "Value Range",
+      type: "category",
+      data: ["0-10", "10-20", "20-30", "30-40", "40-50", "50-60"],
+    },
+    yAxis: {
+      name: "Frequency",
+    },
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3] }])
+        .tooltipShow({ axisPointer: { type: "shadow" } });
+  });
+</script>
+```
+
+---
+
+## Selected Mode
+
+Selection is disabled by default. Set selectedMode to true or 'single' to select one data item at a time, 'multiple' to select multiple data items, or 'series' to select an entire series.
+
+```html
+<syn-chart id="histogram-selected-mode"></syn-chart>
+<div class="syn-body--medium">
+  Selected range: <span id="histogram-selected-day">-</span>
+</div>
+<script type="module">
+  const charts = document.querySelectorAll("#histogram-selected-mode");
+  const status = document.querySelectorAll("#histogram-selected-day");
+  const values = [2, 8, 17, 14, 6, 3];
+
+  const baseConfig = {
+    xAxis: {
+      name: "Value Range",
+      type: "category",
+      data: ["0-10", "10-20", "20-30", "30-40", "40-50", "50-60"],
+    },
+    yAxis: {
+      name: "Frequency",
+    },
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.baseConfig(baseConfig).seriesHistogram([
+        {
+          data: values,
+          selectedMode: "single",
+        },
+      ]);
+
+    const instance = chart.getInstance();
+    instance.on("selectchanged", ({ selected }) => {
+      const selectedIndex = selected.flatMap((item) => item.dataIndex)[0];
+      status.forEach((el) => {
+        el.textContent =
+          selectedIndex !== undefined
+            ? baseConfig.xAxis.data[selectedIndex] +
+              " (" +
+              values[selectedIndex] +
+              ")"
+            : "-";
+      });
+    });
   });
 </script>
 ```

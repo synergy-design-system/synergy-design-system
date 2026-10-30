@@ -167,7 +167,6 @@ export const buildDocsIndex = async (): Promise<DocsIndexSection[]> => {
     },
     {
       entries: ADDITIONAL_LINKS.map(link => ({
-        aiPath: toAiPath(link.href),
         id: link.id,
         kind: 'additional',
         name: link.name,

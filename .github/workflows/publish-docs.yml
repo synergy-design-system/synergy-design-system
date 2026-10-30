@@ -51,6 +51,7 @@ jobs:
         working-directory: ./synergy-design-system
         env:
           STATIC_DOCS_BASE: /knowledge
+          STATIC_DOCS_SITE_URL: https://synergy-design-system.github.io
         run: pnpm --filter @synergy-design-system/static-docs-page run build
 
       # Copy built docs to the other repo

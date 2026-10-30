@@ -47,7 +47,7 @@ const build = async () => {
     // Write the output file
     await fs.writeFile('dist/sick-intl-inline.css', result.css);
   } catch (error) {
-    throw new Error(`Error during build: ${error.toString()}`);
+    throw new Error(`Error during build: ${error.toString()}`, { cause: error });
   }
 };
 

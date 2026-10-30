@@ -1,6 +1,6 @@
 # @synergy-design-system/eslint-config-syn
 
-Shared ESLint configuration for the Synergy Design System, built for ESLint 9+ flat config.
+Shared ESLint configuration for the Synergy Design System, built for ESLint 10 flat config.
 
 ## Features
 
@@ -9,7 +9,7 @@ Shared ESLint configuration for the Synergy Design System, built for ESLint 9+ f
 - 📦 **TypeScript Support**: Full TypeScript configuration with type-aware linting
 - 🎭 **Playwright Tests**: Built-in test file configuration
 - 🛠️ **Presets**: Reusable configuration presets for common scenarios
-- ⚡ **ESLint 9**: Leverages ESLint's flat config system
+- ⚡ **ESLint 10**: Leverages ESLint's flat config system
 
 ## Installation
 
@@ -151,7 +151,7 @@ Factory function for TypeScript configuration with custom options.
 
 ## Peer Dependencies
 
-- `eslint`: ^9.17.0
+- `eslint`: ^10.13.0
 - `eslint-plugin-playwright`: ^2.1.0 (optional, required for tests preset)
 
 ## Running ESLint
@@ -177,6 +177,36 @@ pnpm eslint . --fix
 ```
 
 ## Troubleshooting
+
+### Airbnb and ESLint 10 Compatibility
+
+Airbnb Base still declares an older ESLint peer range. `FlatCompat` translates its
+legacy configuration, while `@eslint/compat` adapts its plugin rules to ESLint 10.
+The shared import plugin uses the same wrapped instance as the inherited Airbnb
+configuration. The React demo also wraps its React plugin.
+
+These adapters preserve the existing rules; they do not disable unsupported checks.
+The workspace already permits peer-range mismatches, so stale Airbnb, import, and
+React peer warnings remain visible. A successful install alone does not establish
+runtime compatibility.
+
+ESLint 10's recommended preset adds `no-unassigned-vars`, `no-useless-assignment`,
+and `preserve-caught-error`. The upgrade retains those checks, removes dead initial
+assignments, and preserves caught errors as `cause` when rethrowing.
+
+### Compatibility Regression Tests
+
+After installing workspace dependencies, run:
+
+```bash
+pnpm --filter @synergy-design-system/eslint-config-syn test
+```
+
+The tests load actual workspace configurations and check valid and invalid examples
+for import ordering, type-aware TypeScript, React, Vue templates, Lit accessibility,
+Web Components, Playwright, and stylistic autofixes. They run in the quality gate.
+Their TypeScript project setup requires the same build prerequisites as workspace
+linting. Package-local configuration and dependency ownership remain unchanged.
 
 ### TypeScript Type-Aware Rules Not Working
 

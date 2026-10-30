@@ -1,19 +1,5 @@
-import { withBasePath } from '../utils/basePath';
+import { docsUrl } from '../utils/docsUrl';
 import { buildDocsIndex, flattenDocsIndex } from '../utils/docsIndex';
-
-const baseUrl = process.env.STATIC_DOCS_SITE_URL?.replace(/\/+$/, '');
-
-const toAbsoluteUrl = (path: string): string => {
-  if (!baseUrl) {
-    return path;
-  }
-
-  if (path.startsWith('http://') || path.startsWith('https://')) {
-    return path;
-  }
-
-  return `${baseUrl}${path}`;
-};
 
 const escapeXml = (value: string): string => (
   value
@@ -29,12 +15,10 @@ export const GET = async (): Promise<Response> => {
   const entries = flattenDocsIndex(sections);
 
   const urls = [
-    toAbsoluteUrl(withBasePath('/', '/')),
+    docsUrl('/'),
     ...entries.flatMap(entry => {
-      const humanUrl = toAbsoluteUrl(withBasePath(entry.path, '/'));
-      const aiUrl = toAbsoluteUrl(withBasePath(entry.aiPath ?? `${entry.path}/ai.md`, '/'));
-
-      return [humanUrl, aiUrl];
+      const humanUrl = docsUrl(entry.path);
+      return entry.aiPath ? [humanUrl, docsUrl(entry.aiPath)] : [humanUrl];
     }),
   ];
 

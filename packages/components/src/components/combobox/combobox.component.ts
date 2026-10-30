@@ -890,7 +890,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
     const currentOption = this.getCurrentOption();
     const currentIndex = filteredOptions.indexOf(currentOption!);
-    let newIndex = Math.max(0, currentIndex);
+    let newIndex: number;
 
     if (isNext) {
       const nextIndex = currentIndex + 1;
@@ -1031,7 +1031,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     // Make sure to still show the display label if we are in multiple and readonly mode
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.updateComplete.then(() => {
-      let newLabel = this.displayLabel;
+      let newLabel: string;
 
       if (this.multiple && this.readonly) {
         // For multiple and readonly, we want to show the labels of the selected options, otherwise we would just show the value which is not useful in readonly mode and multiple mode
@@ -1483,7 +1483,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       this.selectionChanged();
     }
 
-    let queryString = '';
+    let queryString: string;
     if (this.multiple) {
       queryString = this.displayLabel;
     } else {

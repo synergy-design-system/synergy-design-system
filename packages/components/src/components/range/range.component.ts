@@ -608,7 +608,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const currentValue = this.#rangeValues.get(rangeId);
     if (currentValue === undefined) return;
 
-    let value = currentValue;
+    let value: number;
 
     switch (event.key) {
       case 'ArrowUp':
@@ -795,7 +795,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       const id = `thumb-${rangeId}`;
 
       let ariaLabel = '';
-      let ariaLabeledBy = '';
+      let ariaLabeledBy: string;
 
       if (!isMultiple) {
         ariaLabeledBy = hasLabel ? 'label aria-label-hidden' : '';

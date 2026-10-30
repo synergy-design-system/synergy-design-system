@@ -148,6 +148,21 @@ The layout, navigation component, and all internal cross-links use `import.meta.
 | `/static-docs`  | `/static-docs/`  |
 | `/static-docs/` | `/static-docs/`  |
 
+## `STATIC_DOCS_SITE_URL`
+
+Set this to the deployment origin, without the base path, to generate absolute URLs in `llms.txt`, `llms-full.txt`, and `sitemap.xml`:
+
+```bash
+STATIC_DOCS_SITE_URL=https://synergy-design-system.github.io STATIC_DOCS_BASE=/knowledge pnpm --filter @synergy-design-system/static-docs-page run build
+```
+
+Without this setting, discovery URLs remain root-relative and still include `STATIC_DOCS_BASE`.
+The deployment workflow sets both variables for the published knowledge site.
+
+`llms-full.txt` remains an exhaustive URL index for RAG ingestion, not a consolidated document.
+Entries include an AI markdown URL only when that route exists; guidance pages expose their HTML URL.
+Section paths containing `{id}` in `llms.txt` are route patterns, not links to section landing pages.
+
 ## Package scripts
 
 | Script    | Description                |
@@ -187,4 +202,4 @@ src/
 - All routes are pre-rendered to static HTML; no JavaScript is required to read the content.
 - Metadata-backed rendering ensures docs stay aligned with the current Synergy source packages.
 - Pages are deterministic and suitable for crawling or file-based ingestion pipelines.
-- Next logical steps: sitemap generation, OpenGraph tags, and structured-data markup for richer RAG context.
+- Discovery files include `llms.txt`, the exhaustive `llms-full.txt` URL index, and `sitemap.xml`.

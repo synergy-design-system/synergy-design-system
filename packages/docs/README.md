@@ -8,6 +8,17 @@ This package provides interactive demos for each of the offered component in for
 
 After installing all dependencies and building the project, execute `pnpm start`. A browser window will open on http://localhost:6006/ and show the Storybook instance.
 
+## Machine-readable documentation discovery
+
+`public/llms.txt` is served at `/llms.txt` and copied into the Storybook build.
+It points to the published knowledge base, its documentation guide, and its exhaustive URL index for RAG ingestion.
+The knowledge site's `llms-full.txt` is a URL index, not consolidated documentation content.
+
+Both the Storybook manager and preview HTML include `ai-policy` and plain-text `alternate` links to the discovery file.
+These are supplementary discovery hints; `ai-policy` is nonstandard, and AI tools are not guaranteed to follow either relation.
+The relative links also work when the Storybook build is hosted in a subdirectory.
+Knowledge links always target the published site, including during local Storybook development.
+
 ## Development
 
 Storybook stories are not only used for documentation, but also for visual regression tests via Chromatic screenshots.

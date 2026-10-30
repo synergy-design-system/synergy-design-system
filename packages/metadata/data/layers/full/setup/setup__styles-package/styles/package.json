@@ -44,15 +44,15 @@
   "devDependencies": {
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
-    "@types/node": "^24.13.5",
+    "@types/node": "^24.19.2",
     "eslint": "^9.39.5",
     "ora": "^9.4.1",
-    "postcss": "^8.5.31",
+    "postcss": "^8.5.32",
     "postcss-cli": "^12.0.0",
     "postcss-header": "^3.0.3",
     "postcss-import": "^17.0.1",
-    "prettier": "^3.9.7",
-    "stylelint": "^17.15.0"
+    "prettier": "^3.9.10",
+    "stylelint": "^17.16.0"
   },
   "peerDependencies": {
     "@synergy-design-system/tokens": "workspace:^"

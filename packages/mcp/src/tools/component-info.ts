@@ -53,21 +53,10 @@ export const componentInfoTool = (server: McpServer) => {
         return [aiRules, frameworkRules, await buildComponentRecovery(component, notFoundMessage)];
       }
 
-      let finalContent = [];
-
-      switch (metadata.data.layer) {
-        case 'interface':
-          finalContent = metadata.data.interface?.map((entry) => entry.content) ?? [];
-          break;
-        case 'examples':
-          finalContent = metadata.data.examples?.map((entry) => entry.content) ?? [];
-          break;
-        case 'rules':
-          finalContent = metadata.data.rules?.map((entry) => entry.content) ?? [];
-          break;
-        default:
-          finalContent = [metadata.data];
-      }
+      const { data } = metadata;
+      const finalContent = data.layer === 'full'
+        ? [data]
+        : data[data.layer]?.map(entry => entry.content) ?? [];
 
       const withRules = [aiRules, frameworkRules, ...finalContent];
       return finalContent.length > 0

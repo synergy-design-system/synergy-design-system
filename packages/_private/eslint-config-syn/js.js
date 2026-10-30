@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import { FlatCompat } from '@eslint/eslintrc';
+import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
 import { defineConfig } from 'eslint/config';
 import js from '@eslint/js';
 import { getBaseline } from '@synergy-design-system/browser-baseline';
@@ -20,7 +21,7 @@ const browsers = getBaseline('v3_0_0');
  * consistent code formatting.
  *
  * Key features:
- * - Airbnb base rules via compatibility layer (for ESLint 9)
+ * - Airbnb base rules via compatibility layers for ESLint 10
  * - @stylistic plugin for code style (replacing deprecated ESLint style rules)
  * - Browser compatibility checking via eslint-plugin-compat
  * - Import/export validation
@@ -42,14 +43,14 @@ const compat = new FlatCompat({
  *
  * Architecture:
  * 1. ESLint recommended rules (core JS best practices)
- * 2. Airbnb base style guide (via compatibility layer for ESLint 9)
+ * 2. Airbnb base style guide (via compatibility layers for ESLint 10)
  * 3. Compat plugin (browser compatibility warnings)
  * 4. Custom rule overrides (Synergy-specific conventions)
  * 5. Style rule cleanup (@stylistic migration)
  */
 export default defineConfig([
   js.configs.recommended,
-  ...compat.extends('airbnb-base'),
+  ...fixupConfigRules(compat.extends('airbnb-base')),
   ...compat.plugins('compat'),
   {
     languageOptions: {
@@ -63,7 +64,7 @@ export default defineConfig([
     },
     plugins: {
       '@stylistic': stylistic,
-      import: importPlugin,
+      import: fixupPluginRules(importPlugin),
     },
     rules: {
       // === Code Style Rules ===

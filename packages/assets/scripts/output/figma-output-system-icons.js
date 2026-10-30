@@ -23,13 +23,9 @@ const filterFields = icon => ({
  * @returns {Partial<ComponentNode> & { place: string }} The prepared asset object.
  */
 const prepareAssets = icon => {
-  const {
-    name: originalName,
-    svg: originalSvg,
-  } = icon;
+  let { svg } = icon;
   let place = 'both';
-  let name = originalName;
-  let svg = originalSvg;
+  let name;
 
   // Get the name of the component through the export component path
   const path = icon.figmaExport.pathToComponent;

@@ -7,7 +7,7 @@
   "devDependencies": {
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
-    "eslint": "^9.39.5",
+    "eslint": "^10.13.0",
     "ora": "^9.4.1",
     "postcss": "^8.5.32",
     "postcss-header": "^3.0.3",

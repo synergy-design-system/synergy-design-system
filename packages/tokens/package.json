@@ -15,7 +15,7 @@
     "@tokens-studio/sd-transforms": "^2.0.3",
     "@types/node": "^24.19.2",
     "change-case": "^5.4.4",
-    "eslint": "^9.39.5",
+    "eslint": "^10.13.0",
     "eslint-import-resolver-typescript": "^4.4.5",
     "style-dictionary": "^5.7.1",
     "stylelint": "^17.16.0",

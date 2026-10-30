@@ -4,8 +4,9 @@
     "url": "https://www.sick.com"
   },
   "dependencies": {
+    "@eslint/compat": "^2.1.1",
     "@eslint/eslintrc": "^3.3.7",
-    "@eslint/js": "^9.39.5",
+    "@eslint/js": "^10.0.1",
     "@stylistic/eslint-plugin": "^5.10.0",
     "@synergy-design-system/browser-baseline": "workspace:*",
     "eslint-config-airbnb-base": "^15.0.0",
@@ -17,7 +18,7 @@
   },
   "description": "ESLint core rules used in the Synergy Design System",
   "devDependencies": {
-    "eslint": "^9.39.5"
+    "eslint": "^10.13.0"
   },
   "exports": {
     ".": "./eslint.config.js",
@@ -39,7 +40,7 @@
   "license": "MIT",
   "name": "@synergy-design-system/eslint-config-syn",
   "peerDependencies": {
-    "eslint": "^9.17.0",
+    "eslint": "^10.13.0",
     "eslint-plugin-playwright": "^2.1.0"
   },
   "peerDependenciesMeta": {
@@ -56,7 +57,8 @@
   "scripts": {
     "lint:js": "eslint .",
     "lint": "pnpm run /^lint:.*/",
-    "format.eslint": "eslint . --fix"
+    "format.eslint": "eslint . --fix",
+    "test": "node --test test/*.test.mjs"
   },
   "type": "module",
   "version": "0.1.0"

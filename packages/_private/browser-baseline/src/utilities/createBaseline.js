@@ -50,6 +50,6 @@ export const createBaseline = ({
     return true;
   } catch (e) {
     const error = /** @type {Error} */ (e);
-    throw new Error(`Failed to write baseline to file: ${error.message}`);
+    throw new Error(`Failed to write baseline to file: ${error.message}`, { cause: e });
   }
 };

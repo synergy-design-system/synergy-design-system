@@ -324,6 +324,43 @@ export const LabelPosition: Story = {
   `,
 };
 
+export const NoLabel: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'mark-line-no-label'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-chart id="mark-line-no-label"></syn-chart>
+    <script type="module">
+      const charts = document.querySelectorAll('#mark-line-no-label');
+
+      charts.forEach(chart => {
+        chart.config = handle => handle
+          .baseConfig({
+            xAxis: {
+              data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+              type: 'category', name: 'Days',
+            },
+            yAxis: { type: 'value', name: 'Values' },
+          })
+          .seriesLine([
+            { 
+              data: [150, 230, 224, 218, 135, 147, 260],
+              markLine: {
+                data: [
+                  { yAxis: 180, label: { show: false } },
+                ],
+              }
+            }
+          ])
+      });
+    </script>
+  `,
+};
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   MinAndMax,
@@ -332,5 +369,6 @@ export const Screenshot: Story = generateScreenshotStory({
   CoordinateLine,
   IntentColors,
   LabelPosition,
+  NoLabel,
 }, 700);
 /* eslint-enable sort-keys */

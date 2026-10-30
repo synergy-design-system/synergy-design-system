@@ -1577,6 +1577,16 @@
           "type": "text"
         }
       },
+      "mark-line-no-label": {
+        "title": {
+          "value": "Mark Line No Label",
+          "type": "text"
+        },
+        "description": {
+          "value": "Hide the label for a mark line by setting `label.show` to `false`.",
+          "type": "text"
+        }
+      },
       "mark-area-default": {
         "title": {
           "value": "Mark Areas",

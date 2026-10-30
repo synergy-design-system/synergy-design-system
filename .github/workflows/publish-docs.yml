@@ -18,16 +18,16 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: "main"
           path: "synergy-design-system"
 
       # We cannot use our own action as it interferes with the checkout paths
       - name: Setup pnpm and Node.js
-        uses: pnpm/setup@v2
+        uses: pnpm/setup@v3
         with:
-          package-json-file: synergy-design-system/package.json
+          working-directory: synergy-design-system
           install: false
 
       - name: Install dependencies
@@ -36,7 +36,7 @@ jobs:
 
       # Clone the other repository
       - name: Checkout documentation Repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: "synergy-design-system/synergy-design-system.github.io"
           token: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}

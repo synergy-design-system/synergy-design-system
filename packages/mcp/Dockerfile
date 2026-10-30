@@ -1,5 +1,5 @@
-# syntax=docker/dockerfile:1.7
-FROM node:24-alpine
+# syntax=docker/dockerfile:1.28
+FROM node:26-alpine
 
 WORKDIR /opt/synergy
 

@@ -16,6 +16,7 @@ import {
   generateStoryDescription,
 } from '../../src/helpers/component.js';
 import { chartChromaticConfig } from '../../src/chromatic-config/chromatic-config.js';
+import { ChartSeriesDocumentation } from '../../src/helpers/chart-series-documentation.js';
 
 declare global {
   interface Window {
@@ -39,6 +40,7 @@ const meta: Meta = {
           <Title />
           <Subtitle />
           <Description />
+          <ChartSeriesDocumentation section="Area series presets" />
           <Stories title="" />
         </>
       ),

@@ -8,6 +8,7 @@ import {
   Title,
 } from '@storybook/addon-docs/blocks';
 import '../../../components/src/components/chart/chart.js';
+import { ChartSeriesDocumentation } from '../../src/helpers/chart-series-documentation.js';
 import {
   generateScreenshotStory,
   generateStoryDescription,
@@ -29,6 +30,7 @@ const meta: Meta = {
           <Title />
           <Subtitle />
           <Description />
+          <ChartSeriesDocumentation section="Legend presets" />
           <Stories title="" />
         </>
       ),

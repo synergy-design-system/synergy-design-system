@@ -2394,23 +2394,23 @@ Set large: true to enable optimized rendering when a bar series contains many da
   const statuses = document.querySelectorAll("#bar-chart-single-large-status");
   const length = 4e4;
   const categories = Array.from({ length }, (_, index) => String(index + 1));
-  let seed = 123456;
-  const random = () => {
-    seed = (seed * 9301 + 49297) % 233280;
-    return seed / 233280;
-  };
-  const segmentSize = 1000;
-  const levels = Array.from(
-    { length: Math.ceil(length / segmentSize) + 1 },
-    () => 1000 + random() * 8000,
-  );
+  const segmentSize = 2000;
+  const levels = [
+    5000, 4500, 5300, 6100, 3900, 6800, 7200, 8600, 9000, 7000, 5900, 4500,
+    4100, 5000, 5800, 6500, 6000, 5200, 4200, 3600, 4000,
+  ];
+  // Interpolate the trend levels and add deterministic variation to each data point.
   const values = Array.from({ length }, (_, index) => {
     const segment = Math.floor(index / segmentSize);
-    const linearProgress = (index % segmentSize) / segmentSize;
-    const progress = linearProgress * linearProgress * (3 - 2 * linearProgress);
+    const progress = (index % segmentSize) / segmentSize;
     const level =
       levels[segment] + (levels[segment + 1] - levels[segment]) * progress;
-    return Math.max(0, Math.round(level + (random() - 0.5) * 3000));
+    const variation =
+      Math.sin(index * 0.7548776662) * 700 +
+      Math.sin(index * 1.3247179572 + 0.3) * 800 +
+      Math.sin(index * 2.4142135624 + 0.7) * 300 +
+      Math.sin(index * 4.123105626 + 1.1) * 200;
+    return Math.max(0, Math.round(level + variation));
   });
 
   const baseConfig = {
@@ -3903,28 +3903,34 @@ Enable a tooltip to inspect bar values on hover. For bar series it is recommende
 
 ---
 
-## Selected Mode
+## Large Data Set
 
-Selection is disabled by default. Set selectedMode to true or 'single' to select one data item at a time, 'multiple' to select multiple data items, or 'series' to select an entire series.
+A histogram summarizes large datasets by grouping values into bins. In image processing, the bins can represent grayscale intensities from 0 (black) to 255 (white), and each bar shows the number of pixels at that intensity.
 
 ```html
-<syn-chart id="histogram-selected-mode"></syn-chart>
-<div class="syn-body--medium">
-  Selected range: <span id="histogram-selected-day">-</span>
-</div>
+<syn-chart id="histogram-image-processing"></syn-chart>
 <script type="module">
-  const charts = document.querySelectorAll("#histogram-selected-mode");
-  const status = document.querySelectorAll("#histogram-selected-day");
-  const values = [2, 8, 17, 14, 6, 3];
+  const charts = document.querySelectorAll("#histogram-image-processing");
+  const binCount = 256;
+  const intensities = Array.from({ length: binCount }, (_, intensity) =>
+    String(intensity),
+  );
+  // Model an image with shadow, midtone, and highlight regions.
+  const frequencies = Array.from({ length: binCount }, (_, intensity) => {
+    const shadows = 9000 * Math.exp(-0.5 * ((intensity - 42) / 18) ** 2);
+    const midtones = 14000 * Math.exp(-0.5 * ((intensity - 128) / 30) ** 2);
+    const highlights = 6500 * Math.exp(-0.5 * ((intensity - 214) / 22) ** 2);
+    return Math.round(shadows + midtones + highlights);
+  });
 
   const baseConfig = {
     xAxis: {
-      name: "Value Range",
+      data: intensities,
+      name: "Grayscale intensity (0-255)",
       type: "category",
-      data: ["0-10", "10-20", "20-30", "30-40", "40-50", "50-60"],
     },
     yAxis: {
-      name: "Frequency",
+      name: "Pixel frequency",
     },
   };
 
@@ -3932,24 +3938,11 @@ Selection is disabled by default. Set selectedMode to true or 'single' to select
     chart.config = (handle) =>
       handle.baseConfig(baseConfig).seriesHistogram([
         {
-          data: values,
-          selectedMode: "single",
+          data: frequencies,
+          barMaxWidth: "101%",
+          barWidth: "101%",
         },
       ]);
-
-    const instance = chart.getInstance();
-    instance.on("selectchanged", ({ selected }) => {
-      const selectedIndex = selected.flatMap((item) => item.dataIndex)[0];
-      status.forEach((el) => {
-        el.textContent =
-          selectedIndex !== undefined
-            ? baseConfig.xAxis.data[selectedIndex] +
-              " (" +
-              values[selectedIndex] +
-              ")"
-            : "-";
-      });
-    });
   });
 </script>
 ```

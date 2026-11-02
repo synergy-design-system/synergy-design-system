@@ -519,22 +519,22 @@ export const LargeDataSet: Story = {
       const statuses = document.querySelectorAll('#bar-chart-single-large-status');
       const length = 4e4;
       const categories = Array.from({ length }, (_, index) => String(index + 1));
-      let seed = 123456;
-      const random = () => {
-        seed = (seed * 9301 + 49297) % 233280;
-        return seed / 233280;
-      };
-      const segmentSize = 1000;
-      const levels = Array.from(
-        { length: Math.ceil(length / segmentSize) + 1 },
-        () => 1000 + random() * 8000,
-      );
+      const segmentSize = 2000;
+      const levels = [
+        5000, 4500, 5300, 6100, 3900, 6800, 7200, 8600, 9000, 7000,
+        5900, 4500, 4100, 5000, 5800, 6500, 6000, 5200, 4200, 3600,
+        4000,
+      ];
+      // Interpolate the trend levels and add deterministic variation to each data point.
       const values = Array.from({ length }, (_, index) => {
         const segment = Math.floor(index / segmentSize);
-        const linearProgress = (index % segmentSize) / segmentSize;
-        const progress = linearProgress * linearProgress * (3 - 2 * linearProgress);
+        const progress = (index % segmentSize) / segmentSize;
         const level = levels[segment] + (levels[segment + 1] - levels[segment]) * progress;
-        return Math.max(0, Math.round(level + (random() - 0.5) * 3000));
+        const variation = Math.sin(index * 0.7548776662) * 700
+          + Math.sin(index * 1.3247179572 + 0.3) * 800
+          + Math.sin(index * 2.4142135624 + 0.7) * 300
+          + Math.sin(index * 4.123105626 + 1.1) * 200;
+        return Math.max(0, Math.round(level + variation));
       });
 
       const baseConfig = {

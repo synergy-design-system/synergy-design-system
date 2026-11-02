@@ -427,55 +427,36 @@ export const Tooltip: Story = {
   `,
 };
 
-export const SelectedMode: Story = {
+export const LargeDataSet: Story = {
   parameters: {
-    chromatic: {
-      disableSnapshot: false,
-    },
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'histogram-selected-mode'),
+        story: generateStoryDescription('chart', 'histogram-large-data'),
       },
     },
   },
-  play: async ({ canvasElement }) => {
-    if (isChromatic()) {
-      const chart = canvasElement.querySelector<SynChart>('#histogram-selected-mode');
-      if (!chart) return;
-      const instance = chart.getInstance()!;
-
-      const finishedPromise = new Promise<void>(resolve => {
-        instance.on('finished', () => {
-          instance.dispatchAction({
-            dataIndex: [1, 3],
-            seriesIndex: 0,
-            type: 'select',
-          });
-          resolve();
-        });
-      });
-
-      await finishedPromise;
-    }
-  },
   render: () => html`
-    <syn-chart id="histogram-selected-mode"></syn-chart>
-    <div class="syn-body--medium">
-      Selected range: <span id="histogram-selected-day" >-</span>
-    </div>
+    <syn-chart id="histogram-image-processing"></syn-chart>
     <script type="module">
-      const charts = document.querySelectorAll('#histogram-selected-mode');
-      const status = document.querySelectorAll('#histogram-selected-day');
-      const values = [2, 8, 17, 14, 6, 3];
+      const charts = document.querySelectorAll('#histogram-image-processing');
+      const binCount = 256;
+      const intensities = Array.from({ length: binCount }, (_, intensity) => String(intensity));
+      // Model an image with shadow, midtone, and highlight regions.
+      const frequencies = Array.from({ length: binCount }, (_, intensity) => {
+        const shadows = 9000 * Math.exp(-0.5 * ((intensity - 42) / 18) ** 2);
+        const midtones = 14000 * Math.exp(-0.5 * ((intensity - 128) / 30) ** 2);
+        const highlights = 6500 * Math.exp(-0.5 * ((intensity - 214) / 22) ** 2);
+        return Math.round(shadows + midtones + highlights);
+      });
 
       const baseConfig = {
         xAxis: {
-          name: 'Value Range',
+          data: intensities,
+          name: 'Grayscale intensity (0-255)',
           type: 'category',
-          data: ['0-10', '10-20', '20-30', '30-40', '40-50', '50-60'],
         },
         yAxis: {
-          name: 'Frequency',
+          name: 'Pixel frequency',
         },
       };
 
@@ -483,19 +464,10 @@ export const SelectedMode: Story = {
         chart.config = handle => handle
           .baseConfig(baseConfig)
           .seriesHistogram([{
-            data: values,
-            selectedMode: 'single',
-          }])
-
-        const instance = chart.getInstance();
-        instance.on('selectchanged', ({ selected }) => {
-          const selectedIndex = selected.flatMap(item => item.dataIndex)[0];
-          status.forEach(el => {
-            el.textContent = selectedIndex !== undefined
-              ? baseConfig.xAxis.data[selectedIndex] + ' (' + values[selectedIndex] + ')'
-              : '-';
-          });
-        });
+            data: frequencies,
+            barMaxWidth: '101%',
+            barWidth: '101%',
+          }]);
       });
     </script>
   `,
@@ -512,5 +484,6 @@ export const Screenshot: Story = generateScreenshotStory({
   CustomBarWidth,
   NoGap,
   CustomColors,
+  LargeDataSet,
 }, 700);
 /* eslint-enable sort-keys */

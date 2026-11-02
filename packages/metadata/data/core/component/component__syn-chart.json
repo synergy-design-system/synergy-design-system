@@ -1132,12 +1132,12 @@
         {
           "description": {
             "type": "text",
-            "value": "Selection is disabled by default. Set `selectedMode` to `true` or `'single'` to select one data item at a time, `'multiple'` to select multiple data items, or `'series'` to select an entire series."
+            "value": "A histogram summarizes large datasets by grouping values into bins. In image processing, the bins can represent grayscale intensities from 0 (black) to 255 (white), and each bar shows the number of pixels at that intensity."
           },
-          "name": "histogram-selected-mode",
+          "name": "histogram-large-data",
           "title": {
             "type": "text",
-            "value": "Histogram Selection Mode"
+            "value": "Histogram with Large Data Set"
           }
         }
       ],

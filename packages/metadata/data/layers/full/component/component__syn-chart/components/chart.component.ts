@@ -1,5 +1,5 @@
 import {
-  type EChartsType, init, registerPreprocessor, registerProcessor, registerTheme, registerVisual, use,
+  type EChartsType, PRIORITY, init, registerPreprocessor, registerProcessor, registerTheme, registerVisual, use,
 } from 'echarts/core.js';
 import { CanvasRenderer, SVGRenderer } from 'echarts/renderers.js';
 import { html } from 'lit';
@@ -31,6 +31,7 @@ import { segmentInstall } from './configs/series/segment/install.js';
 import { donutInstall } from './configs/series/donut/install.js';
 import { gaugeInstall } from './configs/series/gauge/install.js';
 import { legendIconVisual, legendVisibilityIconProcessor } from './configs/legend/utilities.js';
+import { emptySymbolColorVisual } from './configs/series/line/utilities.js';
 
 // TODO: Check, should we let the user define the *use* so the bundle size is optimized for their specific use case?
 use([
@@ -58,6 +59,8 @@ registerPreprocessor(applyAxisDefaultsPreprocessor);
 registerProcessor(legendVisibilityIconProcessor);
 // Registrations should only be done once
 registerVisual(legendIconVisual);
+// Register the visual after the legend visuals to ensure empty symbols are handled correctly
+registerVisual(PRIORITY.VISUAL.CHART_ITEM + 1, emptySymbolColorVisual);
 
 /**
  * @summary The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts. The chart component is based on [Apache ECharts](https://echarts.apache.org)

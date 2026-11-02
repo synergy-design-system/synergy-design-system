@@ -6,6 +6,7 @@ import type SynChart from './chart.component.js';
 import { PALETTE_TOKENS } from './chart.palettes.js';
 import type { ChartConfigCallback, ECConfig } from './types.js';
 import { getRealStyleValue } from './themes/utilities.js';
+import type { GlobalModel } from './configs/types.js';
 
 async function createChart(template = html`<syn-chart></syn-chart>`): Promise<SynChart> {
   return fixture<SynChart>(template);
@@ -62,6 +63,37 @@ describe('<syn-chart>', () => {
   });
 
   describe('config property', () => {
+    it('should apply an item-level symbol override ("emptySymbolColorVisual") after ECharts resolves data visuals', async () => {
+      const config: ECConfig = {
+        series: [{
+          data: [{ symbol: 'diamond', value: 820 }, 932],
+          name: 'Revenue',
+          symbol: 'emptyCircle',
+          type: 'line',
+        }],
+        xAxis: { data: ['Mon', 'Tue'], type: 'category' },
+        yAxis: { type: 'value' },
+      };
+      const chart = await createChart(html`<syn-chart .config=${config}></syn-chart>`);
+      await chart.updateComplete;
+
+      // getModel is a private function of ECharts, but we need it to access the model for testing purposes
+      const instance = chart.getInstance()! as unknown as { getModel: () => GlobalModel };
+      const seriesData = instance.getModel().getSeriesByIndex(0).getData();
+
+      expect(seriesData.getItemVisual(0, 'symbol')).to.equal('diamond');
+      expect(seriesData.getItemVisual(1, 'symbol')).to.equal('circle');
+      expect(seriesData.getItemVisual(0, 'style')).to.deep.equal({
+        fill: getRealStyleValue('SynChartCategorical01', 'light'),
+        stroke: undefined,
+      });
+      expect(seriesData.getItemVisual(1, 'style')).to.deep.equal({
+        fill: getRealStyleValue('SynColorNeutral0', 'light'),
+        lineWidth: 2,
+        stroke: getRealStyleValue('SynChartCategorical01', 'light'),
+      });
+    });
+
     it('should apply an config object', async () => {
       const initialConfig: ECConfig = {
         series: [{ data: [100, 200], type: 'line' }],

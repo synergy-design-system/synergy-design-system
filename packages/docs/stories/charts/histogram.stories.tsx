@@ -16,6 +16,7 @@ import {
 } from '../../src/helpers/component.js';
 import { chartChromaticConfig } from '../../src/chromatic-config/chromatic-config.js';
 import type SynChart from '../../../components/src/components/chart/chart.js';
+import { ChartSeriesDocumentation } from '../../src/helpers/chart-series-documentation.js';
 
 declare global {
   interface Window {
@@ -39,6 +40,7 @@ const meta: Meta = {
           <Title />
           <Subtitle />
           <Description />
+          <ChartSeriesDocumentation section="Histogram series presets" />
           <Stories title="" />
         </>
       ),

@@ -1,32 +1,49 @@
-import figma, { html } from '@figma/code-connect/html';
+// url=https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=661-61526
+// source=https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/components/src/components/input/input.component.ts
+// component=SynInput
+import figma from 'figma';
 import type SynInput from '../../src/components/input/input.js';
-import type { ValidProperties } from '../core/types';
+import type { ValidProperties } from '../core/types.js';
+import { renderAttribute } from '../core/template-helpers.js';
 
-// Synergy Web Component Connection
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=661-61526', {
-  example: ({
-    clearable,
-    disabled,
-    helpText,
-    label,
-    size,
-    value,
-    placeholder,
-    prefixSlot,
-    readonly,
-    suffixSlot,
-    type,
-  }) => html`
+const instance = figma.selectedInstance;
+const props = {
+  clearable: instance.getBoolean('clearable'),
+  disabled: instance.getBoolean('disabled'),
+  helpText: instance.getBoolean('help-text') ? instance.getString('\u21B3 content/help-text') : undefined,
+  label: instance.getBoolean('label') ? instance.getString('\u21B3 content/label') : undefined,
+  placeholder: instance.getBoolean('placeholder') ? instance.getString('*value') : undefined,
+  prefixSlot: instance.getBoolean('prefix') ? instance.getInstanceSwap('\u21B3 <slot prefix>')?.executeTemplate().example : undefined,
+  readonly: instance.getBoolean('readonly'),
+  size: instance.getEnum('size', {
+    large: 'large',
+    medium: 'medium',
+    small: 'small',
+  }) ?? 'medium',
+  suffixSlot: instance.getBoolean('suffix') ? instance.getInstanceSwap('\u21B3 <slot suffix>')?.executeTemplate().example : undefined,
+  type: instance.getBoolean('stepper') ? 'number' : 'text',
+  value: instance.getString('*value'),
+} satisfies ValidProperties<SynInput, [
+  'prefix',
+  'suffix',
+  'suffix',
+]>;
+const {
+  clearable, disabled, helpText, label, size, value, placeholder, prefixSlot, readonly, suffixSlot, type,
+} = props;
+
+export default {
+  example: figma.code`
     <syn-input
-      clearable=${clearable}
-      disabled=${disabled}
-      help-text=${helpText}
-      label=${label}
-      size=${size}
-      value=${value}
-      readonly=${readonly}
-      placeholder=${placeholder}
-      type=${type}
+      ${renderAttribute('clearable', clearable)}
+      ${renderAttribute('disabled', disabled)}
+      ${renderAttribute('help-text', helpText)}
+      ${renderAttribute('label', label)}
+      ${renderAttribute('size', size)}
+      ${renderAttribute('value', value)}
+      ${renderAttribute('readonly', readonly)}
+      ${renderAttribute('placeholder', placeholder)}
+      ${renderAttribute('type', type)}
     >
       <span slot="prefix">
         ${prefixSlot}
@@ -36,6 +53,7 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       </span>
     </syn-input>
   `,
+  id: 'syn-input',
   imports: [
     'import { SynInput } from "@synergy-design-system/components";',
   ],
@@ -45,34 +63,4 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       url: 'https://synergy-design-system.github.io/?path=/docs/components-syn-input--docs',
     },
   ],
-  props: {
-    clearable: figma.boolean('clearable'),
-    disabled: figma.boolean('disabled'),
-    helpText: figma.boolean('help-text', {
-      true: figma.string('↳ content/help-text'),
-    }),
-    label: figma.boolean('label', {
-      true: figma.string('↳ content/label'),
-    }),
-    placeholder: figma.boolean('placeholder', {
-      true: figma.string('*value'),
-    }),
-    prefixSlot: figma.boolean('prefix', {
-      true: figma.instance('↳ <slot prefix>'),
-    }),
-    readonly: figma.boolean('readonly'),
-    size: figma.enum('size', {
-      large: 'large',
-      medium: 'medium',
-      small: 'small',
-    }),
-    suffixSlot: figma.boolean('suffix', {
-      true: figma.instance('↳ <slot suffix>'),
-    }),
-    type: figma.boolean('stepper', {
-      false: 'text',
-      true: 'number',
-    }),
-    value: figma.string('*value'),
-  } satisfies ValidProperties<SynInput, ['prefix', 'suffix', 'suffix']>,
-});
+};

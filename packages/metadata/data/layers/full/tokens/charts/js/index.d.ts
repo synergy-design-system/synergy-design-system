@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.29.0
+ * @synergy-design-system/tokens version 3.30.0
  * SICK Global UX Foundation
  */
 
@@ -697,6 +697,11 @@ export const SynChartSequentialStatusWarning90: string;
  * Maps to the css variable `--syn-chart-sequential-status-warning-100`
  */
 export const SynChartSequentialStatusWarning100: string;
+
+/**
+ * Maps to the css variable `--syn-chart-tooltip-background-color`
+ */
+export const SynChartTooltipBackgroundColor: string;
 
 /**
  * Maps to the css variable `--syn-chart-tooltip-color`

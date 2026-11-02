@@ -1,29 +1,43 @@
-import figma, { html } from '@figma/code-connect/html';
+// url=https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=1101-1482
+// source=https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/components/src/components/textarea/textarea.component.ts
+// component=SynTextArea
+import figma from 'figma';
 import type SynTextArea from '../../src/components/textarea/textarea.js';
-import type { ValidProperties } from '../core/types';
+import type { ValidProperties } from '../core/types.js';
+import { renderAttribute } from '../core/template-helpers.js';
 
-// Synergy Web Component Connection
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=1101-1482', {
-  example: ({
-    disabled,
-    helpText,
-    label,
-    size,
-    value,
-    placeholder,
-    readonly,
-  }) => html`
+const instance = figma.selectedInstance;
+const props = {
+  disabled: instance.getBoolean('disabled'),
+  helpText: instance.getBoolean('help-text') ? instance.getString('\u21B3 content/help-text') : undefined,
+  label: instance.getBoolean('label') ? instance.getString('\u21B3 content/label') : undefined,
+  placeholder: instance.getBoolean('placeholder') ? instance.getString('*value') : undefined,
+  readonly: instance.getBoolean('readonly'),
+  size: instance.getEnum('size', {
+    large: 'large',
+    medium: 'medium',
+    small: 'small',
+  }) ?? 'medium',
+  value: instance.getString('*value'),
+} satisfies ValidProperties<SynTextArea>;
+const {
+  disabled, helpText, label, size, value, placeholder, readonly,
+} = props;
+
+export default {
+  example: figma.code`
     <syn-textarea
-      disabled=${disabled}
-      help-text=${helpText}
-      label=${label}
-      size=${size}
-      value=${value}
-      readonly=${readonly}
-      placeholder=${placeholder}
+      ${renderAttribute('disabled', disabled)}
+      ${renderAttribute('help-text', helpText)}
+      ${renderAttribute('label', label)}
+      ${renderAttribute('size', size)}
+      ${renderAttribute('value', value)}
+      ${renderAttribute('readonly', readonly)}
+      ${renderAttribute('placeholder', placeholder)}
     >
     </syn-textarea>
   `,
+  id: 'syn-textarea',
   imports: [
     'import { SynTextarea } from "@synergy-design-system/components";',
   ],
@@ -33,23 +47,4 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       url: 'https://synergy-design-system.github.io/?path=/docs/components-syn-textarea--docs',
     },
   ],
-  props: {
-    disabled: figma.boolean('disabled'),
-    helpText: figma.boolean('help-text', {
-      true: figma.string('↳ content/help-text'),
-    }),
-    label: figma.boolean('label', {
-      true: figma.string('↳ content/label'),
-    }),
-    placeholder: figma.boolean('placeholder', {
-      true: figma.string('*value'),
-    }),
-    readonly: figma.boolean('readonly'),
-    size: figma.enum('size', {
-      large: 'large',
-      medium: 'medium',
-      small: 'small',
-    }),
-    value: figma.string('*value'),
-  } satisfies ValidProperties<SynTextArea>,
-});
+};

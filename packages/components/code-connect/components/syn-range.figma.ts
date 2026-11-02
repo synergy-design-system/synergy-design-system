@@ -1,25 +1,43 @@
-import figma, { html } from '@figma/code-connect/html';
+// url=https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=25215-36015
+// source=https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/components/src/components/range/range.component.ts
+// component=SynRange
+import figma from 'figma';
 import type SynRange from '../../src/components/range/range.js';
-import type { ValidProperties } from '../core/types';
+import type { ValidProperties } from '../core/types.js';
+import { renderAttribute, renderChildren } from '../core/template-helpers.js';
 
-// Synergy Web Component Connection
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=25215-36015', {
-  example: ({
-    disabled,
-    helpText,
-    label,
-    size,
-    ticksSlot,
-    value,
-    prefixSlot,
-    suffixSlot,
-  }) => html`
+const instance = figma.selectedInstance;
+const props = {
+  disabled: instance.getBoolean('disabled'),
+  helpText: instance.getBoolean('help-text') ? instance.getString('\u21B3 content/help-text') : undefined,
+  label: instance.getBoolean('label') ? instance.getString('\u21B3 content/label') : undefined,
+  prefixSlot: instance.getBoolean('prefix') ? instance.getInstanceSwap('\u21B3 <slot prefix>')?.executeTemplate().example : undefined,
+  size: instance.getEnum('size', {
+    large: 'large',
+    medium: 'medium',
+    small: 'small',
+  }) ?? 'medium',
+  suffixSlot: instance.getBoolean('suffix') ? instance.getInstanceSwap('\u21B3 <slot suffix>')?.executeTemplate().example : undefined,
+  ticksSlot: instance.getBoolean('ticks') ? renderChildren(instance, '_helper/syn-range/ticks') : undefined,
+  value: instance.getBoolean('multi-thumb') ? '0 50' : '50',
+} satisfies ValidProperties<SynRange, [
+  'prefix',
+  'suffix',
+  'suffix',
+  'ticks',
+]>;
+const {
+  disabled, helpText, label, size, ticksSlot, value, prefixSlot, suffixSlot,
+} = props;
+
+export default {
+  example: figma.code`
     <syn-range
-      disabled=${disabled}
-      help-text=${helpText}
-      label=${label}
-      size=${size}
-      value=${value}
+      ${renderAttribute('disabled', disabled)}
+      ${renderAttribute('help-text', helpText)}
+      ${renderAttribute('label', label)}
+      ${renderAttribute('size', size)}
+      ${renderAttribute('value', value)}
     >
       <span slot="prefix">
         ${prefixSlot}
@@ -32,6 +50,7 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       </nav>
     </syn-range>
   `,
+  id: 'syn-range',
   imports: [
     'import { SynRange } from "@synergy-design-system/components";',
   ],
@@ -41,31 +60,4 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       url: 'https://synergy-design-system.github.io/?path=/docs/components-syn-range--docs',
     },
   ],
-  props: {
-    disabled: figma.boolean('disabled'),
-    helpText: figma.boolean('help-text', {
-      true: figma.string('↳ content/help-text'),
-    }),
-    label: figma.boolean('label', {
-      true: figma.string('↳ content/label'),
-    }),
-    prefixSlot: figma.boolean('prefix', {
-      true: figma.instance('↳ <slot prefix>'),
-    }),
-    size: figma.enum('size', {
-      large: 'large',
-      medium: 'medium',
-      small: 'small',
-    }),
-    suffixSlot: figma.boolean('suffix', {
-      true: figma.instance('↳ <slot suffix>'),
-    }),
-    ticksSlot: figma.boolean('ticks', {
-      true: figma.children('_helper/syn-range/ticks'),
-    }),
-    value: figma.boolean('multi-thumb', {
-      false: html`50`,
-      true: html`0 50`,
-    }),
-  } satisfies ValidProperties<SynRange, ['prefix', 'suffix', 'suffix', 'ticks']>,
-});
+};

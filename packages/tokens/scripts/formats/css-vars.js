@@ -132,7 +132,6 @@ export const cssVariableFormatter = {
       'chart-stroke-weight-default',
       'chart-stroke-weight-thin',
       'chart-stroke-weight-thick',
-      'chart-tooltip-background-color',
     ].map(v => `${prefix}${v}`);
 
     /**

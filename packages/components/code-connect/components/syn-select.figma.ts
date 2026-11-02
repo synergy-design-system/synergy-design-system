@@ -1,43 +1,51 @@
-import figma, { html } from '@figma/code-connect/html';
-import type SynSelect from '../../src/components/select/select';
-import type { ValidProperties } from '../core/types';
+// url=https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=4825-30354
+// source=https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/components/src/components/select/select.component.ts
+// component=SynSelect
+import figma from 'figma';
+import type SynSelect from '../../src/components/select/select.js';
+import type { ValidProperties } from '../core/types.js';
+import { renderAttribute, renderChildren } from '../core/template-helpers.js';
 
-// Dropdown helper
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=4910-22093&m=dev', {
-  example: ({
-    defaultSlot,
-  }) => html`${defaultSlot}`,
-  props: {
-    defaultSlot: figma.children('*'),
-  },
-});
+const instance = figma.selectedInstance;
+const props = {
+  clearable: instance.getBoolean('clearable'),
+  defaultSlot: renderChildren(instance, '_helper/dropdown/syn-select'),
+  disabled: instance.getBoolean('disabled'),
+  helpText: instance.getBoolean('help-text') ? instance.getString('\u2514\u2500 content/help-text') : undefined,
+  label: instance.getBoolean('label') ? instance.getString('\u2514\u2500 content/label') : undefined,
+  multiple: instance.getBoolean('multiple'),
+  open: instance.getBoolean('open'),
+  placeholder: instance.getBoolean('placeholder') ? instance.getString('*value') : undefined,
+  prefixSlot: instance.getBoolean('prefix') ? instance.getInstanceSwap('\u2514\u2500 <slot prefix>')?.executeTemplate().example : undefined,
+  size: instance.getEnum('size', {
+    large: 'large',
+    medium: 'medium',
+    small: 'small',
+  }) ?? 'medium',
+  suffixSlot: instance.getBoolean('suffix') ? instance.getInstanceSwap('\u2514\u2500 <slot suffix>')?.executeTemplate().example : undefined,
+  value: instance.getString('*value'),
+} satisfies ValidProperties<SynSelect, [
+  'default',
+  'prefix',
+  'suffix',
+  'suffix',
+]>;
+const {
+  clearable, defaultSlot, disabled, helpText, label, multiple, open, prefixSlot, placeholder, size, suffixSlot, value,
+} = props;
 
-// Synergy Web Component Connection
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=4825-30354', {
-  example: ({
-    clearable,
-    defaultSlot,
-    disabled,
-    helpText,
-    label,
-    multiple,
-    open,
-    prefixSlot,
-    placeholder,
-    size,
-    suffixSlot,
-    value,
-  }) => html`
+export default {
+  example: figma.code`
     <syn-select
-      clearable=${clearable}
-      disabled=${disabled}
-      help-text=${helpText}
-      label=${label}
-      multiple=${multiple}
-      open=${open}
-      placeholder=${placeholder}
-      size=${size}
-      value=${value}
+      ${renderAttribute('clearable', clearable)}
+      ${renderAttribute('disabled', disabled)}
+      ${renderAttribute('help-text', helpText)}
+      ${renderAttribute('label', label)}
+      ${renderAttribute('multiple', multiple)}
+      ${renderAttribute('open', open)}
+      ${renderAttribute('placeholder', placeholder)}
+      ${renderAttribute('size', size)}
+      ${renderAttribute('value', value)}
     >
       <span slot="prefix">
         ${prefixSlot}
@@ -48,6 +56,7 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       </span>
     </syn-select>
   `,
+  id: 'syn-select',
   imports: [
     'import { SynSelect } from "@synergy-design-system/components";',
   ],
@@ -57,32 +66,4 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       url: 'https://synergy-design-system.github.io/?path=/docs/components-syn-select--docs',
     },
   ],
-  props: {
-    clearable: figma.boolean('clearable'),
-    defaultSlot: figma.children('_helper/dropdown/syn-select'),
-    disabled: figma.boolean('disabled'),
-    helpText: figma.boolean('help-text', {
-      true: figma.string('└─ content/help-text'),
-    }),
-    label: figma.boolean('label', {
-      true: figma.string('└─ content/label'),
-    }),
-    multiple: figma.boolean('multiple'),
-    open: figma.boolean('open'),
-    placeholder: figma.boolean('placeholder', {
-      true: figma.string('*value'),
-    }),
-    prefixSlot: figma.boolean('prefix', {
-      true: figma.instance('└─ <slot prefix>'),
-    }),
-    size: figma.enum('size', {
-      large: 'large',
-      medium: 'medium',
-      small: 'small',
-    }),
-    suffixSlot: figma.boolean('suffix', {
-      true: figma.instance('└─ <slot suffix>'),
-    }),
-    value: figma.string('*value'),
-  } satisfies ValidProperties<SynSelect, ['default', 'prefix', 'suffix', 'suffix']>,
-});
+};

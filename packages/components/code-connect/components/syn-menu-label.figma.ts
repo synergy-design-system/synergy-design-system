@@ -1,19 +1,27 @@
-import figma, { html } from '@figma/code-connect/html';
+// url=https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=10666-9080
+// source=https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/components/src/components/menu-label/menu-label.component.ts
+// component=SynMenuLabel
+import figma from 'figma';
 import type SynMenuLabel from '../../src/components/menu-label/menu-label.js';
-import type { ValidProperties } from '../core/types';
+import type { ValidProperties } from '../core/types.js';
+import { renderAttribute } from '../core/template-helpers.js';
 
-// Synergy Web Component Connection
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=10666-9080', {
-  example: ({
-    defaultSlot,
-    style,
-  }) => html`
+const instance = figma.selectedInstance;
+const props = {
+  defaultSlot: instance.getString('*value'),
+  style: instance.getBoolean('*divider') ? undefined : '--display-divider: none;',
+} satisfies ValidProperties<SynMenuLabel>;
+const { defaultSlot, style } = props;
+
+export default {
+  example: figma.code`
     <syn-menu-label
-      style=${style}
+      ${renderAttribute('style', style)}
     >
       ${defaultSlot}
     </syn-menu-label>
   `,
+  id: 'syn-menu-label',
   imports: [
     'import { SynMenuLabel } from "@synergy-design-system/components";',
   ],
@@ -23,10 +31,4 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       url: 'https://synergy-design-system.github.io/?path=/docs/components-syn-menu-label--docs',
     },
   ],
-  props: {
-    defaultSlot: figma.string('*value'),
-    style: figma.boolean('*divider', {
-      false: html`--display-divider: none;`,
-    }),
-  } satisfies ValidProperties<SynMenuLabel>,
-});
+};

@@ -1,23 +1,37 @@
-import figma, { html } from '@figma/code-connect/html';
+// url=https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=30345-113913
+// source=https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/components/src/components/option/option.component.ts
+// component=SynOption
+import figma from 'figma';
 import type SynOption from '../../src/components/option/option.js';
-import type { ValidProperties } from '../core/types';
+import type { ValidProperties } from '../core/types.js';
+import { renderAttribute } from '../core/template-helpers.js';
 
-// Synergy Web Component Connection
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=30345-113913', {
-  example: ({
-    defaultSlot,
-    disabled,
-    prefixSlot,
-    suffixSlot,
-  }) => html`
+const instance = figma.selectedInstance;
+const props = {
+  defaultSlot: instance.getString('*value'),
+  disabled: instance.getBoolean('disabled'),
+  prefixSlot: instance.getBoolean('prefix') ? instance.getInstanceSwap('\u21B3 <slot prefix>')?.executeTemplate().example : undefined,
+  suffixSlot: instance.getBoolean('suffix') ? instance.getInstanceSwap('\u21B3 <slot suffix>')?.executeTemplate().example : undefined,
+} satisfies ValidProperties<SynOption, [
+  'default',
+  'prefix',
+  'suffix',
+]>;
+const {
+  defaultSlot, disabled, prefixSlot, suffixSlot,
+} = props;
+
+export default {
+  example: figma.code`
     <syn-option
-      disabled=${disabled}
+      ${renderAttribute('disabled', disabled)}
     >
       <span slot="prefix">${prefixSlot}</span>
       ${defaultSlot}
       <span slot="suffix">${suffixSlot}</span>
     </syn-option>
   `,
+  id: 'syn-option',
   imports: [
     'import { SynOption } from "@synergy-design-system/components";',
   ],
@@ -27,14 +41,4 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       url: 'https://synergy-design-system.github.io/?path=/docs/components-syn-option--docs',
     },
   ],
-  props: {
-    defaultSlot: figma.string('*value'),
-    disabled: figma.boolean('disabled'),
-    prefixSlot: figma.boolean('prefix', {
-      true: figma.instance('↳ <slot prefix>'),
-    }),
-    suffixSlot: figma.boolean('suffix', {
-      true: figma.instance('↳ <slot suffix>'),
-    }),
-  } satisfies ValidProperties<SynOption, ['default', 'prefix', 'suffix']>,
-});
+};

@@ -13,6 +13,7 @@ import {
   generateScreenshotStory,
   generateStoryDescription,
 } from '../../src/helpers/component.js';
+import { ChartSeriesDocumentation } from '../../src/helpers/chart-series-documentation.js';
 import { chartChromaticConfig } from '../../src/chromatic-config/chromatic-config.js';
 
 declare global {
@@ -38,6 +39,7 @@ const meta: Meta = {
           <Title />
           <Subtitle />
           <Description />
+          <ChartSeriesDocumentation section="Gauge series presets" />
           <Stories title="" />
         </>
       ),

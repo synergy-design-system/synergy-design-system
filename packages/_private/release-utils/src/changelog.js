@@ -20,16 +20,9 @@ const synergyChangelog = {
     const today = new Date();
     const formattedDate = today.toISOString().slice(0, 10);
 
-    // Append date to the first line
     const lines = changeset.summary.split('\n');
     if (lines[0].trim() !== '') {
-      // Insert "Released on" line with newlines before and after
-      lines.unshift(''); // newline before
-      lines.unshift(`Released on: ${formattedDate}`);
-      lines.unshift(''); // another newline before
-
-      // Add two empty lines after the "Released on" line
-      lines.splice(3, 0, '', '');
+      lines.unshift(`Released on: ${formattedDate}`, '');
     }
 
     copyWithDate.summary = lines.join('\n');

@@ -15,7 +15,7 @@ jobs:
     timeout-minutes: 45
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.63.0-noble
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
       options: --memory=4g --memory-swap=4g
     env:
       PLAYWRIGHT_FUTURE_BROWSERS: 'true'
@@ -55,7 +55,7 @@ jobs:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.63.0-noble
+      image: mcr.microsoft.com/playwright:v1.64.1-noble
       options: --memory=4g --memory-swap=4g
     env:
       PLAYWRIGHT_FUTURE_BROWSERS: 'true'

@@ -1,22 +1,18 @@
-import figma, { html } from '@figma/code-connect/html';
+// url=https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=45147-41625
+// source=https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/components/src/components/alert/alert.component.ts
+// component=SynAlert
+import figma from 'figma';
 import type SynAlert from '../../src/components/alert/alert.js';
-import type { ValidProperties } from '../core/types';
+import type { ValidProperties } from '../core/types.js';
+import { readNestedProps, renderAttribute, renderChildren } from '../core/template-helpers.js';
 
-/**
- * @todos
- * - variant prop should be sharable with the color helper
- * - icon slot should allow to set instance with slot="icon"
- */
-
-// Variant helper
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=16231-21245&t=uiGCtkXQsyEo930h-4', {
-  example: ({
-    variant,
-  }) => html`${variant}`,
-  imports: [],
-  links: [],
-  props: {
-    variant: figma.enum('variant', {
+const instance = figma.selectedInstance;
+const props = {
+  closable: instance.getBoolean('closable'),
+  defaultSlot: renderChildren(instance, '_helper/syn-alert/content'),
+  iconSlot: instance.getBoolean('icon') ? figma.code`<syn-icon slot="icon" name="info"></syn-icon>` : figma.code`<span slot="icon"></span>`,
+  variant: readNestedProps(instance, '_helper/color/syn-alert', nestedInstance => ({
+    variant: nestedInstance.getEnum('variant', {
       critical: 'critical',
       danger: 'danger',
       error: 'error',
@@ -24,45 +20,27 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       primary: 'primary',
       success: 'success',
       warning: 'warning',
-    }),
-  },
-});
+    }) ?? 'primary',
+  })),
+} satisfies ValidProperties<SynAlert, [
+  'default',
+  'icon',
+]>;
+const {
+  closable, defaultSlot, iconSlot, variant,
+} = props;
 
-// Content Slot
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=16231-21242&t=uiGCtkXQsyEo930h-4', {
-  example: ({
-    headline,
-    text,
-  }) => html`
-    <div>
-      <h3>${headline}</h3>
-      <p>${text}</p>
-    </div>
-  `,
-  imports: [],
-  links: [],
-  props: {
-    headline: figma.string('↳ content/headline'),
-    text: figma.string('text'),
-  },
-});
-
-// Synergy Web Component Connection
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=45147-41625', {
-  example: ({
-    closable,
-    defaultSlot,
-    iconSlot,
-    variant,
-  }) => html`
+export default {
+  example: figma.code`
     <syn-alert
-      closable=${closable}
-      variant=${variant.variant}
+      ${renderAttribute('closable', closable)}
+      ${renderAttribute('variant', variant.variant)}
     >
       ${defaultSlot}
       ${iconSlot}
     </syn-alert>
   `,
+  id: 'syn-alert',
   imports: [
     'import { SynAlert } from "@synergy-design-system/components";',
   ],
@@ -72,25 +50,4 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       url: 'https://synergy-design-system.github.io/?path=/docs/components-syn-alert--docs',
     },
   ],
-  props: {
-    closable: figma.boolean('closable'),
-    defaultSlot: figma.children('_helper/syn-alert/content'),
-    iconSlot: figma.boolean('icon', {
-      false: html`<span slot="icon"></span>`,
-      true: html`<syn-icon slot="icon" name="info"></syn-icon>`,
-      // @todo: Replace with actual icon instance when available via code connect api
-      // true: figma.instance('↳ <icon slot>'),
-    }),
-    variant: figma.nestedProps('_helper/color/syn-alert', {
-      variant: figma.enum('variant', {
-        critical: 'critical',
-        error: 'error',
-        danger: 'danger',
-        neutral: 'neutral',
-        primary: 'primary',
-        success: 'success',
-        warning: 'warning',
-      }),
-    }),
-  } satisfies ValidProperties<SynAlert, ['default', 'icon']>,
-});
+};

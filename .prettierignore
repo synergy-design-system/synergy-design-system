@@ -33,6 +33,10 @@ packages/assets/src
 packages/docs/dist
 packages/docs/storybook-static
 
+# Components
+packages/components/dist
+packages/components/code-connect
+
 # Dont check material metadata, its too heavy
 packages/docs/src/materialSymbolsMetadata.json
 

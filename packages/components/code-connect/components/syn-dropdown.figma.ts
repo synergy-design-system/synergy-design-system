@@ -1,21 +1,24 @@
-import figma, { html } from '@figma/code-connect/html';
+// url=https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=11573-375949
+// source=https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/components/src/components/dropdown/dropdown.component.ts
+// component=SynDropdown
+import figma from 'figma';
 import type SynDropdown from '../../src/components/dropdown/dropdown.js';
-import type { ValidProperties } from '../core/types';
+import type { ValidProperties } from '../core/types.js';
+import { renderChildren } from '../core/template-helpers.js';
 
-/**
- * @todos
- * - Figma divider has no vertical prop
- */
+const instance = figma.selectedInstance;
+const props = {
+  defaultSlot: renderChildren(instance, '*'),
+} satisfies ValidProperties<SynDropdown>;
+const { defaultSlot } = props;
 
-// Synergy Web Component Connection
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=11573-375949', {
-  example: ({
-    defaultSlot,
-  }) => html`
+export default {
+  example: figma.code`
     <syn-dropdown>
       ${defaultSlot}
     </syn-dropdown>
   `,
+  id: 'syn-dropdown',
   imports: [
     'import { SynDropdown } from "@synergy-design-system/components";',
   ],
@@ -25,7 +28,4 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       url: 'https://synergy-design-system.github.io/?path=/docs/components-syn-dropdown--docs',
     },
   ],
-  props: {
-    defaultSlot: figma.children('*'),
-  } satisfies ValidProperties<SynDropdown>,
-});
+};

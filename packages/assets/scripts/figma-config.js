@@ -121,7 +121,7 @@ export const AllIconsConfig2018 = createFigmaExportConfig({
     outputComponentsToCodeConnect({
       fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_2018,
       getBasename: ({ basename = '' }) => basename.replace('name=', ''),
-      output: '../components/code-connect/icons/sick2018.figma.ts',
+      output: '../components/code-connect/icons/sick2018.figma.batch.json',
     }),
     outputComponentsToBundle({
       exportName: 'defaultIcons',
@@ -146,7 +146,7 @@ export const OutlineIconsConfig2025 = createFigmaExportConfig({
     outputComponentsToCodeConnect({
       fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_2025,
       getBasename: ({ basename = '' }) => basename.replace('name=', ''),
-      output: '../components/code-connect/icons/sick2025-outline.figma.ts',
+      output: '../components/code-connect/icons/sick2025-outline.figma.batch.json',
     }),
   ],
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_2025,
@@ -166,7 +166,7 @@ export const FilledIconsConfig2025 = createFigmaExportConfig({
     outputComponentsToCodeConnect({
       fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_2025,
       getBasename: ({ basename = '' }) => basename.replace('name=', ''),
-      output: '../components/code-connect/icons/sick2025-filled.figma.ts',
+      output: '../components/code-connect/icons/sick2025-filled.figma.batch.json',
     }),
   ],
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_2025,

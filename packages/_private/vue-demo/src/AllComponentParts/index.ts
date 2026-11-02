@@ -3,6 +3,7 @@ import DemoAlert from "./DemoAlert.vue";
 import DemoAreaChart from "./DemoAreaChart.vue";
 import DemoAreaRangeChart from "./DemoAreaRangeChart.vue";
 import DemoBadge from "./DemoBadge.vue";
+import DemoBarChart from "./DemoBarChart.vue";
 import DemoBreadcrumb from "./DemoBreadcrumb.vue";
 import DemoButton from "./DemoButton.vue";
 import DemoButtonGroup from "./DemoButtonGroup.vue";
@@ -51,6 +52,7 @@ export {
   DemoAreaChart,
   DemoAreaRangeChart,
   DemoBadge,
+  DemoBarChart,
   DemoBreadcrumb,
   DemoButton,
   DemoButtonGroup,

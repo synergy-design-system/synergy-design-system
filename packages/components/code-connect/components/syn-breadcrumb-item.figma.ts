@@ -1,19 +1,24 @@
-import figma, { html } from '@figma/code-connect/html';
+// url=https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=18458-27218
+// source=https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/components/src/components/breadcrumb-item/breadcrumb-item.component.ts
+// component=SynBreadcrumbItem
+import figma from 'figma';
 import type SynBreadcrumbItem from '../../src/components/breadcrumb-item/breadcrumb-item.js';
-import type { ValidProperties } from '../core/types';
+import type { ValidProperties } from '../core/types.js';
 
-/**
- * @todos
- * - prefix and suffix slots should allow to set instances with slot="prefix" and slot="suffix"
- */
+const instance = figma.selectedInstance;
+const props = {
+  defaultSlot: instance.getString('\u21B3 content/label'),
+  prefixSlot: instance.getBoolean('prefix') ? instance.getInstanceSwap('<slot prefix>')?.executeTemplate().example : undefined,
+  suffixSlot: instance.getBoolean('suffix') ? instance.getInstanceSwap('<slot suffix>')?.executeTemplate().example : undefined,
+} satisfies ValidProperties<SynBreadcrumbItem, [
+  'default',
+  'prefix',
+  'suffix',
+]>;
+const { defaultSlot, prefixSlot, suffixSlot } = props;
 
-// Synergy Web Component Connection
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=18458-27218', {
-  example: ({
-    defaultSlot,
-    prefixSlot,
-    suffixSlot,
-  }) => html`
+export default {
+  example: figma.code`
     <syn-breadcrumb-item
     >
       ${defaultSlot}
@@ -21,6 +26,7 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       <span slot="suffix">${suffixSlot}</span>
     </syn-breadcrumb-item>
   `,
+  id: 'syn-breadcrumb-item',
   imports: [
     'import { SynBreadcrumbItem } from "@synergy-design-system/components";',
   ],
@@ -30,13 +36,4 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       url: 'https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb-item--docs',
     },
   ],
-  props: {
-    defaultSlot: figma.string('↳ content/label'),
-    prefixSlot: figma.boolean('prefix', {
-      true: figma.instance('<slot prefix>'),
-    }),
-    suffixSlot: figma.boolean('suffix', {
-      true: figma.instance('<slot suffix>'),
-    }),
-  } satisfies ValidProperties<SynBreadcrumbItem, ['default', 'prefix', 'suffix']>,
-});
+};

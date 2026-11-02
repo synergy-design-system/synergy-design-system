@@ -3,6 +3,7 @@ export * from './Alert.js';
 export * from './AreaChart.js';
 export * from './AreaRangeChart.js';
 export * from './Badge.js';
+export * from './BarChart.js';
 export * from './Breadcrumb.js';
 export * from './Button.js';
 export * from './ButtonGroup.js';

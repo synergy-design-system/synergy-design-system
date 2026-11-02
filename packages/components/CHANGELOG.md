@@ -1,5 +1,37 @@
 # Changelog
 
+## 3.30.0
+
+### Minor Changes
+
+- [#1401](https://github.com/synergy-design-system/synergy-design-system/pull/1401) [`79ca10c`](https://github.com/synergy-design-system/synergy-design-system/commit/79ca10c162ccfaa471bbfb518ae9a7bdfd83c905) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-10-27
+  
+  feat: ✨ Adds bar series support to <syn-chart> ([#1212](https://github.com/synergy-design-system/synergy-design-system/issues/1212))
+  
+  This release adds support for the `bar` series type in `<syn-chart>` to create single, grouped, and stacked bar charts.
+  
+  The chart configuration API now includes two new presets:
+  
+  - `seriesBar` appends bar series while preserving individual series options for single and grouped bar charts.
+  - `seriesBarStacked` appends stacked bar series with a shared stack name and recommendations like borders and label defaults. Optional `stackName` and `orientation` settings customize the stack grouping and label placement. Individual series options override the defaults.
+
+### Patch Changes
+
+- Updated dependencies [[`79ca10c`](https://github.com/synergy-design-system/synergy-design-system/commit/79ca10c162ccfaa471bbfb518ae9a7bdfd83c905)]:
+  - @synergy-design-system/tokens@3.30.0
+
+## 3.29.1
+
+### Patch Changes
+
+- [#1402](https://github.com/synergy-design-system/synergy-design-system/pull/1402) [`749e1c2`](https://github.com/synergy-design-system/synergy-design-system/commit/749e1c2a6d69dfe29be0d649b2ae8e8eda89136e) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-10-26
+  
+  fix: 🐛 dependency updates ([#258](https://github.com/synergy-design-system/synergy-design-system/issues/258))
+  
+  This release upgrades all package dependencies to their latest stable versions.
+- Updated dependencies [[`749e1c2`](https://github.com/synergy-design-system/synergy-design-system/commit/749e1c2a6d69dfe29be0d649b2ae8e8eda89136e)]:
+  - @synergy-design-system/tokens@3.29.1
+
 ## 3.29.0
 
 ### Minor Changes

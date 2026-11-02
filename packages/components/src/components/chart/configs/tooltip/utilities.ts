@@ -17,6 +17,10 @@ export const getDefaultTooltipStyle = (mode: ThemeMode = 'auto') => ({
       color: style('SynChartPlotLineColor', mode),
       type: 'solid',
     },
+    shadowStyle: {
+      color: style('SynChartTooltipBackgroundColor', mode),
+      opacity: 0.2,
+    },
   },
   backgroundColor: style('SynTooltipColor', mode),
   borderColor: style('SynPanelBorderColor', mode),

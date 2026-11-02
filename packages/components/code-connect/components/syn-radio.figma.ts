@@ -1,23 +1,37 @@
-import figma, { html } from '@figma/code-connect/html';
+// url=https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=1345-21578
+// source=https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/components/src/components/radio/radio.component.ts
+// component=SynRadio
+import figma from 'figma';
 import type SynRadio from '../../src/components/radio/radio.js';
-import type { ValidProperties } from '../core/types';
+import type { ValidProperties } from '../core/types.js';
+import { renderAttribute } from '../core/template-helpers.js';
 
-// Synergy Web Component Connection
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=1345-21578', {
-  example: ({
-    defaultSlot,
-    disabled,
-    readonly,
-    size,
-  }) => html`
+const instance = figma.selectedInstance;
+const props = {
+  defaultSlot: instance.getInstanceSwap('\u21B3 <slot (default)>')?.executeTemplate().example,
+  disabled: instance.getBoolean('disabled'),
+  readonly: instance.getBoolean('readonly'),
+  size: instance.getEnum('size', {
+    large: 'large',
+    medium: 'medium',
+    small: 'small',
+  }) ?? 'medium',
+} satisfies ValidProperties<SynRadio>;
+const {
+  defaultSlot, disabled, readonly, size,
+} = props;
+
+export default {
+  example: figma.code`
     <syn-radio
-      disabled=${disabled}
-      readonly=${readonly}
-      size=${size}
+      ${renderAttribute('disabled', disabled)}
+      ${renderAttribute('readonly', readonly)}
+      ${renderAttribute('size', size)}
     >
       ${defaultSlot}
     </syn-radio>
   `,
+  id: 'syn-radio',
   imports: [
     'import { SynRadio } from "@synergy-design-system/components";',
   ],
@@ -27,14 +41,4 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       url: 'https://synergy-design-system.github.io/?path=/docs/components-syn-radio--docs',
     },
   ],
-  props: {
-    defaultSlot: figma.instance('↳ <slot (default)>'),
-    disabled: figma.boolean('disabled'),
-    readonly: figma.boolean('readonly'),
-    size: figma.enum('size', {
-      large: 'large',
-      medium: 'medium',
-      small: 'small',
-    }),
-  } satisfies ValidProperties<SynRadio>,
-});
+};

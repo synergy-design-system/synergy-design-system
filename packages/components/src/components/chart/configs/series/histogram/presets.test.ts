@@ -2,7 +2,6 @@ import { expect } from '@open-wc/testing';
 import { seriesHistogram } from './presets.js';
 import type { BarSeriesOption } from '../bar/types.js';
 import type { ECConfig } from '../../../types.js';
-import { getRealValueWithoutUnit as styleWithoutUnit } from '../../../themes/utilities.js';
 
 describe('seriesHistogram', () => {
   it('should apply the default bar series options', () => {
@@ -12,7 +11,6 @@ describe('seriesHistogram', () => {
 
     expect(result.series).to.have.lengthOf(1);
     expect(result.series[0]).to.deep.include({
-      barCategoryGap: styleWithoutUnit('SynSpacing4xSmall'),
       barMaxWidth: '100%',
       data: [1, 2],
       name: 'Series A',

@@ -36,6 +36,7 @@ use([
   CanvasRenderer,
   SVGRenderer,
   LineChart,
+  BarChart,
   GaugeChart,
   TitleComponent,
   TooltipComponent,
@@ -48,7 +49,6 @@ use([
   segmentInstall,
   donutInstall,
   gaugeInstall,
-  BarChart,
 ]);
 /**
  * Depending if x-axis or y-axis, the axis name has different positions and alignments. This preprocessor ensures that the correct styles are applied to the axis names based on the axis type.

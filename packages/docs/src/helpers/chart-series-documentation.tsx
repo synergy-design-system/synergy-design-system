@@ -11,7 +11,8 @@ type ChartDocumentationSection =
   | 'Legend presets'
   | 'Gauge series presets'
   | 'Donut series presets'
-  | 'Segment series presets';
+  | 'Segment series presets'
+  | 'Histogram series presets';
 
 const readmeLines = chartingReadme.split('\n');
 

@@ -141,8 +141,8 @@ describe('<syn-select>', () => {
     await clickOnElement(combobox);
     await aTimeout(100);
 
-    expect(showHandler).to.have.been.calledOnce;
-    expect(hideHandler).to.not.have.been.called;
+    expect(showHandler.callCount).to.equal(1);
+    expect(hideHandler.callCount).to.equal(0);
     expect(el.open).to.equal(true);
   });
 
@@ -186,8 +186,8 @@ describe('<syn-select>', () => {
       await clickOnElement(secondOption);
       await el.updateComplete;
 
-      expect(changeHandler).to.have.been.calledOnce;
-      expect(inputHandler).to.have.been.calledOnce;
+      expect(changeHandler.callCount).to.equal(1);
+      expect(inputHandler.callCount).to.equal(1);
       expect(el.value).to.equal('option-2');
     });
 
@@ -217,8 +217,8 @@ describe('<syn-select>', () => {
       await sendKeys({ press: 'Enter' }); // commit the selection
       await el.updateComplete;
 
-      expect(changeHandler).to.have.been.calledOnce;
-      expect(inputHandler).to.have.been.calledOnce;
+      expect(changeHandler.callCount).to.equal(1);
+      expect(inputHandler.callCount).to.equal(1);
       expect(el.value).to.equal('option-3');
     });
 
@@ -590,8 +590,8 @@ describe('<syn-select>', () => {
     el.blur();
     await el.updateComplete;
 
-    expect(focusHandler).to.have.been.calledOnce;
-    expect(blurHandler).to.have.been.calledOnce;
+    expect(focusHandler.callCount).to.equal(1);
+    expect(blurHandler.callCount).to.equal(1);
   });
 
   it('should emit syn-clear when the clear button is clicked', async () => {
@@ -610,7 +610,7 @@ describe('<syn-select>', () => {
     await clickOnElement(clearButton);
     await el.updateComplete;
 
-    expect(clearHandler).to.have.been.calledOnce;
+    expect(clearHandler.callCount).to.equal(1);
   });
 
   it('should emit syn-change and syn-input when a tag is removed', async () => {
@@ -632,8 +632,8 @@ describe('<syn-select>', () => {
     await clickOnElement(removeButton);
     await el.updateComplete;
 
-    expect(changeHandler).to.have.been.calledOnce;
-    expect(inputHandler).to.have.been.calledOnce;
+    expect(changeHandler.callCount).to.equal(1);
+    expect(inputHandler.callCount).to.equal(1);
   });
 
   it('should emit syn-show, syn-after-show, syn-hide, and syn-after-hide events when the listbox opens and closes', async () => {
@@ -655,12 +655,12 @@ describe('<syn-select>', () => {
     el.addEventListener('syn-after-hide', afterHideHandler);
 
     await el.show();
-    expect(showHandler).to.have.been.calledOnce;
-    expect(afterShowHandler).to.have.been.calledOnce;
+    expect(showHandler.callCount).to.equal(1);
+    expect(afterShowHandler.callCount).to.equal(1);
 
     await el.hide();
-    expect(hideHandler).to.have.been.calledOnce;
-    expect(afterHideHandler).to.have.been.calledOnce;
+    expect(hideHandler.callCount).to.equal(1);
+    expect(afterHideHandler.callCount).to.equal(1);
   });
   describe('With lazily loaded options', () => {
     describe('With no existing options', () => {

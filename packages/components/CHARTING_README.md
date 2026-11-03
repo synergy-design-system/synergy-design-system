@@ -381,9 +381,9 @@ chart.config = handle =>
 
 ### Line series presets
 
-| Preset function | Options              | Description                                                         |
-| --------------- | -------------------- | ------------------------------------------------------------------- |
-| `seriesLine`    | `LineSeriesOption[]` | Sets `series` entries as line series and merges each passed option. |
+| Preset function | Options              | Description                                        |
+| --------------- | -------------------- | -------------------------------------------------- |
+| `seriesLine`    | `LineSeriesOption[]` | Appends line series and merges each passed option. |
 
 Example:
 
@@ -428,6 +428,66 @@ chart.config = handle =>
 //   { type: 'line', name: 'Forecast', data: [130, 150, 170] }
 // ]
 ```
+
+### Area series presets
+
+| Preset function | Options              | Description                                                                                                        |
+| --------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `seriesArea`    | `LineSeriesOption[]` | Appends area series with a default `areaStyle.opacity` of `0.2`. Passed `areaStyle` options override the defaults. |
+
+Example:
+
+```ts
+chart.config = handle =>
+  handle
+    .baseConfig({
+      xAxis: { type: "category", data: ["Mon", "Tue", "Wed"] },
+      yAxis: { type: "value" },
+    })
+    .seriesArea([
+      { name: "Revenue", data: [120, 200, 150] },
+      { name: "Forecast", data: [130, 180, 170] },
+    ]);
+```
+
+Array merge strategy:
+
+- `seriesArea([...])` uses `arrayStrategy: 'append'` for the `series` array.
+- Passed entries are appended after existing `baseConfig.series` entries.
+- Existing series entries are not merged by index with the new ones.
+
+### Area range series presets
+
+`seriesAreaRange` accepts one `[lower, upper]` pair per category and an optional `LineSeriesOption` applied to both boundary series. The filled area uses `areaStyle.opacity: 0.2` by default.
+
+| Preset function   | Options                                                    | Description                                                                          |
+| ----------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `seriesAreaRange` | `Array<[number, number]>`, `LineSeriesOption` _(optional)_ | Appends a filled range between lower and upper values using two stacked line series. |
+
+Example:
+
+```ts
+chart.config = handle =>
+  handle
+    .baseConfig({
+      xAxis: { type: "category", data: ["Mon", "Tue", "Wed"] },
+      yAxis: { type: "value" },
+    })
+    .seriesAreaRange(
+      [
+        [120, 180],
+        [140, 210],
+        [130, 190],
+      ],
+      { name: "Range", smooth: true },
+    );
+```
+
+Array merge strategy:
+
+- `seriesAreaRange([...])` uses `arrayStrategy: 'append'` for the `series` array.
+- It appends two series for each area range: one for the lower boundary and one for the filled range above it.
+- Existing series entries are not merged by index with the new ones.
 
 ### Bar series presets
 

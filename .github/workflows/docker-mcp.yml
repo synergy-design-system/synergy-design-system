@@ -18,8 +18,17 @@ on:
       - "packages/assets/**"
       - ".github/workflows/docker-mcp.yml"
   workflow_call:
+    outputs:
+      image:
+        description: 'Published GHCR image pinned by digest; empty when not publishing'
+        value: ${{ jobs.build.outputs.image }}
     inputs:
       push_image:
+        required: false
+        default: false
+        type: boolean
+      dev_image:
+        description: 'Publish only a dev-<commit> tag, leaving release tags unchanged'
         required: false
         default: false
         type: boolean
@@ -42,6 +51,8 @@ jobs:
   build:
     name: Build, test and publish MCP container
     runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.published.outputs.image }}
     env:
       # Promoted to env so steps can check whether the Docker Hub mirror is configured
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -55,21 +66,13 @@ jobs:
       - name: Determine push mode
         id: mode
         env:
-          # Uncomment together with the marker branch below to publish from a feature branch
-          # COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
-          # EVENT_NAME: ${{ github.event_name }}
           PUSH_INPUT: ${{ inputs.push_image }}
+          DEV_INPUT: ${{ inputs.dev_image }}
         run: |
           set -euo pipefail
           if [ "${PUSH_INPUT}" = "true" ]; then
             echo "push=true" >> "$GITHUB_OUTPUT"
-            echo "dev=false" >> "$GITHUB_OUTPUT"
-          # Debug escape hatch: publishes a dev-<sha> tag when the head commit message
-          # contains `[push image]`. Never claims latest/<version>. Re-enable this branch
-          # (and the two env vars above) to test publishing from a feature branch.
-          # elif [ "${EVENT_NAME}" = "push" ] && printf '%s' "${COMMIT_MESSAGE}" | grep -qF '[push image]'; then
-          #   echo "push=true" >> "$GITHUB_OUTPUT"
-          #   echo "dev=true" >> "$GITHUB_OUTPUT"
+            echo "dev=${DEV_INPUT:-false}" >> "$GITHUB_OUTPUT"
           else
             echo "push=false" >> "$GITHUB_OUTPUT"
             echo "dev=false" >> "$GITHUB_OUTPUT"
@@ -84,7 +87,7 @@ jobs:
         id: version
         run: echo "version=$(node -p "require('./packages/mcp/package.json').version")" >> "$GITHUB_OUTPUT"
 
-      # Marker pushes only get a dev-<sha> tag so they cannot claim latest/<version>
+      # Development builds cannot claim latest/<version>
       - name: Resolve image tags
         id: tags
         env:
@@ -93,7 +96,7 @@ jobs:
         run: |
           set -euo pipefail
           if [ "${DEV}" = "true" ]; then
-            echo "list=dev-${GITHUB_SHA:0:7}" >> "$GITHUB_OUTPUT"
+            echo "list=dev-$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           else
             echo "list=${VERSION} latest" >> "$GITHUB_OUTPUT"
           fi
@@ -153,6 +156,22 @@ jobs:
             docker tag "${LOCAL_IMAGE}" "${GHCR_IMAGE}:${tag}"
             docker push "${GHCR_IMAGE}:${tag}"
           done
+
+      - name: Capture published image digest
+        id: published
+        if: steps.mode.outputs.push == 'true'
+        run: |
+          set -euo pipefail
+          image=$(docker image inspect "${LOCAL_IMAGE}" --format '{{json .RepoDigests}}' |
+            jq -er --arg prefix "${GHCR_IMAGE}@" '
+              [.[] | select(startswith($prefix))] |
+              if length == 1 then .[0] else error("Expected exactly one GHCR image digest") end
+            ')
+          if [[ ! "${image}" =~ ^${GHCR_IMAGE}@sha256:[a-f0-9]{64}$ ]]; then
+            echo "::error::Invalid published GHCR image digest"
+            exit 1
+          fi
+          echo "image=${image}" >> "$GITHUB_OUTPUT"
 
       - name: Login to Docker Hub
         id: dockerhub_login

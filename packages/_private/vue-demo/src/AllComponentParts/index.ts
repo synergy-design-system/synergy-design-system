@@ -1,5 +1,7 @@
 import DemoAccordion from "./DemoAccordion.vue";
 import DemoAlert from "./DemoAlert.vue";
+import DemoAreaChart from "./DemoAreaChart.vue";
+import DemoAreaRangeChart from "./DemoAreaRangeChart.vue";
 import DemoBadge from "./DemoBadge.vue";
 import DemoBarChart from "./DemoBarChart.vue";
 import DemoBreadcrumb from "./DemoBreadcrumb.vue";
@@ -48,6 +50,8 @@ import DemoValidate from "./DemoValidate.vue";
 export {
   DemoAccordion,
   DemoAlert,
+  DemoAreaChart,
+  DemoAreaRangeChart,
   DemoBadge,
   DemoBarChart,
   DemoBreadcrumb,

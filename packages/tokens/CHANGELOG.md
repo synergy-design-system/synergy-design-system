@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.31.0
+
+### Minor Changes
+
+- [#1403](https://github.com/synergy-design-system/synergy-design-system/pull/1403) [`f8ca9dd`](https://github.com/synergy-design-system/synergy-design-system/commit/f8ca9dd19217d848bcfc5f8c04d65392410f1242) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-11-03
+  
+  feat: ✨ Add new chart token `--syn-chart-opacity-20` ([#1219](https://github.com/synergy-design-system/synergy-design-system/issues/1219))
+
 ## 3.30.0
 
 ### Minor Changes

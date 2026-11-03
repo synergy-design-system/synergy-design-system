@@ -15,6 +15,9 @@ export type Themes = Exclude<ThemeMode, 'auto'>;
 
 let globalThemeStore: Themes = 'light';
 
+export const SYNERGY_THEMES = ['syn-theme-', 'syn-sick2025-'];
+export const DARK_THEMES = ['syn-theme-dark', 'syn-sick2025-dark'];
+
 export const setGlobalThemeStore = (theme: Themes) => {
   globalThemeStore = theme;
 };
@@ -24,9 +27,14 @@ export const setGlobalThemeStore = (theme: Themes) => {
  *
  * @returns The matching theme class or an empty string when no Synergy theme is active.
  */
-export const getCurrentThemeFromBodyClass = () => {
-  const synergyThemes = ['syn-theme-', 'syn-sick2025-'];
-  return document.body.classList.value.split(' ').find((cls) => synergyThemes.some((theme) => cls.includes(theme))) ?? '';
+export const getCurrentThemeFromBodyClass = () => document.body.classList.value
+  .split(' ')
+  .find((cls) => SYNERGY_THEMES.some((theme) => cls.includes(theme))) ?? '';
+
+/** Returns the active Synergy theme mode, defaulting to light when no dark class is present. */
+export const getThemeModeFromBodyClass = (): Themes => {
+  const currentTheme = getCurrentThemeFromBodyClass();
+  return DARK_THEMES.includes(currentTheme) ? 'dark' : 'light';
 };
 
 /**
@@ -35,9 +43,7 @@ export const getCurrentThemeFromBodyClass = () => {
  * Dark Synergy theme classes set the store to `dark`; all other values default to `light`.
  */
 export const setThemeFromBodyClass = () => {
-  const darkThemes = ['syn-theme-dark', 'syn-sick2025-dark'];
-  const currentTheme = getCurrentThemeFromBodyClass();
-  setGlobalThemeStore(darkThemes.includes(currentTheme) ? 'dark' : 'light');
+  setGlobalThemeStore(getThemeModeFromBodyClass());
 };
 
 /**

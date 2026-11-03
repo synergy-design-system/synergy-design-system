@@ -1,5 +1,24 @@
 # Changelog
 
+## 4.24.0
+
+### Minor Changes
+
+- [#1403](https://github.com/synergy-design-system/synergy-design-system/pull/1403) [`f8ca9dd`](https://github.com/synergy-design-system/synergy-design-system/commit/f8ca9dd19217d848bcfc5f8c04d65392410f1242) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-11-03
+  
+  feat: ✨ Adds area chart support to <syn-chart> ([#1219](https://github.com/synergy-design-system/synergy-design-system/issues/1219))
+  
+  This release adds support for area and area range charts in `<syn-chart>` and adapts the Synergy styling for ECharts `markArea`, `markLine`, and `markPoint` annotations.
+  
+  The chart configuration API now includes two new presets:
+  
+  - `seriesArea` appends area series, while allowing individual series options to override the defaults.
+  - `seriesAreaRange` appends a filled range between lower and upper values using two stacked line series. It supports shared series options and formats tooltip values as the original range.
+  
+  Bugfixes:
+  - The chart now applies the correct Synergy styling when initialized with the dark theme
+  - Fixes hollow line symbols (such as `emptyCircle`) so their inner fill uses the active theme color instead of remaining white in dark mode
+
 ## 4.23.0
 
 ### Minor Changes

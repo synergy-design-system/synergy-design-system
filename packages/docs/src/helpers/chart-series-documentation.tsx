@@ -4,6 +4,8 @@ import chartingReadme from '../../../components/CHARTING_README.md?raw';
 
 type ChartDocumentationSection =
   | 'Axes presets'
+  | 'Area series presets'
+  | 'Area range series presets'
   | 'Line series presets'
   | 'Bar series presets'
   | 'Legend presets'

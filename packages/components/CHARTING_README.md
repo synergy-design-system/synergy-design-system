@@ -688,9 +688,9 @@ Array merge strategy:
 
 ### Histogram series presets
 
-| Preset function   | Options             | Description                                                                                                                |
-| ----------------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `seriesHistogram` | `BarSeriesOption[]` | Adds histogram-style series using ECharts bar series with a narrow category gap. Individual options override the defaults. |
+| Preset function   | Options             | Description                                                                                                      |
+| ----------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `seriesHistogram` | `BarSeriesOption[]` | Appends histogram-style ECharts bar series with `barMaxWidth: '100%'`. Individual options override the defaults. |
 
 Example:
 
@@ -710,7 +710,7 @@ chart.config = handle =>
     .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3] }]);
 ```
 
-Each entry defaults to `type: 'bar'` and `barCategoryGap: 1`, supplied options override these defaults. The preset uses `arrayStrategy: 'append'`, so its series entries are appended after any existing `series` entries.
+Each entry defaults to `type: 'bar'` and `barMaxWidth: '100%'`, supplied options override these defaults. The preset uses `arrayStrategy: 'append'`, so its series entries are appended after any existing `series` entries.
 
 ---
 
@@ -794,13 +794,14 @@ shorthand(0.002); // '2m'
 
 The following chart types are natively supported with Synergy styling:
 
-| Type          | How to use                                                                              |
-| ------------- | --------------------------------------------------------------------------------------- |
-| Line chart    | `series[].type: 'line'` (standard ECharts)                                              |
-| Bar chart     | `series[].type: 'bar'`, `seriesBar(...)`, or `seriesBarStacked(...)` (standard ECharts) |
-| Gauge chart   | `series[].type: 'synGauge'` (custom Synergy)                                            |
-| Donut chart   | `series[].type: 'synDonut'` (custom Synergy)                                            |
-| Segment chart | `series[].type: 'synSegment'` (custom Synergy)                                          |
+| Type          | How to use: ECharts config                                           | How to use: presets                         |
+| ------------- | -------------------------------------------------------------------- | ------------------------------------------- |
+| Line chart    | `series[].type: 'line'` (standard ECharts)                           | `seriesLine(...)`                           |
+| Bar chart     | `series[].type: 'bar'` (standard ECharts)                            | `seriesBar(...)` or `seriesBarStacked(...)` |
+| Histogram     | `series[].type: 'bar'` with `barMaxWidth: '100%'` (standard ECharts) | `seriesHistogram(...)`                      |
+| Gauge chart   | `series[].type: 'synGauge'` (custom Synergy)                         | `seriesGauge(...)`                          |
+| Donut chart   | `series[].type: 'synDonut'` (custom Synergy)                         | `seriesDonut(...)`                          |
+| Segment chart | `series[].type: 'synSegment'` (custom Synergy)                       | `seriesSegment(...)`                        |
 
 If you want to use ECharts features beyond what is listed above, you can register the required plugins yourself.
 But keep in mind that they are not Synergy-approved and do not have Synergy styling. The registration needs to be done **before** the component is initialized.

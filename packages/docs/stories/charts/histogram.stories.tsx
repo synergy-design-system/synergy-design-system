@@ -80,7 +80,6 @@ export const Default: Story = {
             {
               data: [2, 8, 17, 14, 6, 3],
               type: 'bar',
-              barCategoryGap: 1,
               barMaxWidth: '100%',
             },
           ]
@@ -285,7 +284,10 @@ export const CustomBarWidth: Story = {
       fixedWidthCharts.forEach((fixed) => {
         fixed.config = handle => handle
           .baseConfig(baseConfig)
-          .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3], barWidth: 16 }])
+          .seriesHistogram([{
+            data: [2, 8, 17, 14, 6, 3],
+            barWidth: 16,
+          }])
       });
 
 
@@ -329,8 +331,7 @@ export const NoGap: Story = {
           .baseConfig(baseConfig)
           .seriesHistogram([{
             data: [2, 8, 17, 14, 6, 3],
-            barMaxWidth: '101%',
-            barWidth: '101%',
+            barCategoryGap: 0,
           }])
       });
     </script>
@@ -441,7 +442,7 @@ export const LargeDataSet: Story = {
     <syn-chart id="histogram-image-processing"></syn-chart>
     <script type="module">
       const charts = document.querySelectorAll('#histogram-image-processing');
-      const binCount = 256;
+      const binCount = 290;
       const intensities = Array.from({ length: binCount }, (_, intensity) => String(intensity));
       // Model an image with shadow, midtone, and highlight regions.
       const frequencies = Array.from({ length: binCount }, (_, intensity) => {
@@ -467,8 +468,7 @@ export const LargeDataSet: Story = {
           .baseConfig(baseConfig)
           .seriesHistogram([{
             data: frequencies,
-            barMaxWidth: '101%',
-            barWidth: '101%',
+            barCategoryGap: 0,
           }]);
       });
     </script>

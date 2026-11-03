@@ -1022,7 +1022,7 @@
         {
           "description": {
             "type": "text",
-            "value": "Configure a histogram with a series of `type: 'bar'` and set `barCategoryGap` to `1` to keep adjacent bins close together or use the `seriesHistogram` preset for the recommended configuration."
+            "value": "Configure a histogram with a series of `type: 'bar'` and set `barMaxWidth` to `'100%'` to let bars fill the available category space or use the `seriesHistogram` preset for the recommended configuration."
           },
           "name": "histogram-preset",
           "title": {
@@ -1099,7 +1099,7 @@
         {
           "description": {
             "type": "text",
-            "value": "Set `barWidth` and `barMaxWidth` to `101%` to remove the gap between bars, emphasizing the continuity of the distribution."
+            "value": "Set `barCategoryGap` to `0` to remove the gap between histogram bars, emphasizing the continuity of the distribution."
           },
           "name": "histogram-no-gap",
           "title": {

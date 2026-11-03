@@ -1,4 +1,3 @@
-import { getRealValueWithoutUnit as styleWithoutUnit } from '../../../themes/utilities.js';
 import { type ConfigModifier, mergeConfigs, mergeDeep } from '../../utilities.js';
 import type { BarSeriesOption } from '../bar/types.js';
 
@@ -13,7 +12,6 @@ export const seriesHistogram = (
   options: BarSeriesOption[],
 ): ConfigModifier => (config) => {
   const defaultBarOption: BarSeriesOption = {
-    barCategoryGap: styleWithoutUnit('SynSpacing4xSmall'),
     barMaxWidth: '100%',
     type: 'bar',
   };

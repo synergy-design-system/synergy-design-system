@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.25.0
+
+### Minor Changes
+
+- [#1405](https://github.com/synergy-design-system/synergy-design-system/pull/1405) [`48eb9f9`](https://github.com/synergy-design-system/synergy-design-system/commit/48eb9f9c8d67a11da0874701fb43ee1eabb20820) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-11-03
+  
+  feat: ✨ Adds histogram chart support to <syn-chart> ([#1357](https://github.com/synergy-design-system/synergy-design-system/issues/1357))
+  
+  This release adds support for histogram chart in `<syn-chart>` and adds a new preset function `seriesHistogram`
+
 ## 4.24.0
 
 ### Minor Changes

@@ -5,6 +5,7 @@ import {
   getHexWithOpacity,
   getRealStyleValue,
   getRealValueWithoutUnit,
+  getThemeModeFromBodyClass,
   normalizeArray,
   setDefaultValueIfNotAvailable,
   setGlobalThemeStore,
@@ -61,6 +62,17 @@ describe('chart theme utilities', () => {
       document.body.className = 'test';
 
       expect(getCurrentThemeFromBodyClass()).to.equal('');
+    });
+
+    it('returns the active dark or light mode', () => {
+      document.body.className = 'syn-sick2025-dark';
+      expect(getThemeModeFromBodyClass()).to.equal('dark');
+
+      document.body.className = 'syn-theme-light';
+      expect(getThemeModeFromBodyClass()).to.equal('light');
+
+      document.body.className = 'test';
+      expect(getThemeModeFromBodyClass()).to.equal('light');
     });
   });
 

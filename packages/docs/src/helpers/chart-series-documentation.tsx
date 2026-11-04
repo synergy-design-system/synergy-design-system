@@ -2,16 +2,21 @@ import React from 'react';
 import { Markdown } from '@storybook/addon-docs/blocks';
 import chartingReadme from '../../../components/CHARTING_README.md?raw';
 
-type ChartSeriesDocumentationSection =
+type ChartDocumentationSection =
+  | 'Axes presets'
+  | 'Area series presets'
+  | 'Area range series presets'
   | 'Line series presets'
   | 'Bar series presets'
+  | 'Legend presets'
   | 'Gauge series presets'
   | 'Donut series presets'
-  | 'Segment series presets';
+  | 'Segment series presets'
+  | 'Histogram series presets';
 
 const readmeLines = chartingReadme.split('\n');
 
-function getSectionMarkdown(sectionTitle: ChartSeriesDocumentationSection): string {
+function getSectionMarkdown(sectionTitle: ChartDocumentationSection): string {
   const startIndex = readmeLines.findIndex(line => {
     const heading = line.match(/^(#{1,6})\s+(.+?)\s*#*\s*$/);
     return heading?.[2] === sectionTitle;
@@ -35,6 +40,6 @@ function getSectionMarkdown(sectionTitle: ChartSeriesDocumentationSection): stri
   return readmeLines.slice(startIndex, endIndex === -1 ? undefined : endIndex).join('\n');
 }
 
-export function ChartSeriesDocumentation({ section }: { section: ChartSeriesDocumentationSection }) {
+export function ChartSeriesDocumentation({ section }: { section: ChartDocumentationSection }) {
   return <Markdown>{getSectionMarkdown(section)}</Markdown>;
 }

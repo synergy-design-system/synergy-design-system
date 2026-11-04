@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { globSync } from 'node:fs';
 import { esbuildPlugin } from '@web/dev-server-esbuild';
+import { summaryReporter } from '@web/test-runner';
 import { playwrightLauncher } from '@web/test-runner-playwright';
 import synTestPlugins from './scripts/tests/index.js';
 
@@ -93,6 +94,7 @@ export default {
       ts: true,
     }),
   ],
+  reporters: [summaryReporter()],
   rootDir: '.',
   testFramework: {
     config: {

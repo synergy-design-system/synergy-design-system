@@ -10,6 +10,15 @@ export const lineChartSeriesData: LineSeriesOption[] = [
   { data: [80, 120, 100, 134, 90, 110, 200], name: 'Unique', type: 'line' },
 ];
 
+export const areaChartSeriesData: LineSeriesOption[] = [
+  { data: [150, 230, 224, 218, 135, 147, 260], name: 'Visits', type: 'line' },
+  { data: [80, 120, 100, 134, 90, 110, 200], name: 'Unique', type: 'line' },
+];
+
+export const areaRangeChartSeriesData: Array<[number, number]> = [
+  [80, 150], [120, 230], [100, 224], [134, 218], [90, 135], [110, 147], [200, 260],
+];
+
 export const generalChartConfig: ECConfig = {
   xAxis: { data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], type: 'category' },
   yAxis: { type: 'value' },
@@ -63,4 +72,17 @@ export const barChartConfigObject: BarSeriesOption[] = [
   { data: [13, 20, 50, 42, 35, 48, 55], name: 'Series 1' },
   { data: [40, 35, 60, 52, 45, 58, 63], name: 'Series 2' },
   { data: [22, 50, 46, 38, 44, 53, 49], name: 'Series 3' },
+];
+
+export const histogramChartBaseConfig: ECConfig = {
+  xAxis: {
+    data: ['0-10', '10-20', '20-30', '30-40', '40-50', '50-60'],
+    name: 'Value Range',
+    type: 'category',
+  },
+  yAxis: { name: 'Frequency', type: 'value' },
+};
+
+export const histogramChartConfigObject: BarSeriesOption[] = [
+  { data: [2, 8, 17, 14, 6, 3], name: 'Frequency' },
 ];

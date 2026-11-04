@@ -40,8 +40,8 @@ describe('<syn-drawer>', () => {
     await waitUntil(() => showHandler.calledOnce);
     await waitUntil(() => afterShowHandler.calledOnce);
 
-    expect(showHandler).to.have.been.calledOnce;
-    expect(afterShowHandler).to.have.been.calledOnce;
+    expect(showHandler.callCount).to.equal(1);
+    expect(afterShowHandler.callCount).to.equal(1);
     expect(base.hidden).to.be.false;
   });
 
@@ -60,8 +60,8 @@ describe('<syn-drawer>', () => {
     await waitUntil(() => hideHandler.calledOnce);
     await waitUntil(() => afterHideHandler.calledOnce);
 
-    expect(hideHandler).to.have.been.calledOnce;
-    expect(afterHideHandler).to.have.been.calledOnce;
+    expect(hideHandler.callCount).to.equal(1);
+    expect(afterHideHandler.callCount).to.equal(1);
     expect(base.hidden).to.be.true;
   });
 
@@ -80,8 +80,8 @@ describe('<syn-drawer>', () => {
     await waitUntil(() => showHandler.calledOnce);
     await waitUntil(() => afterShowHandler.calledOnce);
 
-    expect(showHandler).to.have.been.calledOnce;
-    expect(afterShowHandler).to.have.been.calledOnce;
+    expect(showHandler.callCount).to.equal(1);
+    expect(afterShowHandler.callCount).to.equal(1);
     expect(base.hidden).to.be.false;
   });
 
@@ -100,8 +100,8 @@ describe('<syn-drawer>', () => {
     await waitUntil(() => hideHandler.calledOnce);
     await waitUntil(() => afterHideHandler.calledOnce);
 
-    expect(hideHandler).to.have.been.calledOnce;
-    expect(afterHideHandler).to.have.been.calledOnce;
+    expect(hideHandler.callCount).to.equal(1);
+    expect(afterHideHandler.callCount).to.equal(1);
     expect(base.hidden).to.be.true;
   });
 
@@ -132,7 +132,7 @@ describe('<syn-drawer>', () => {
 
     await waitUntil(() => initialFocusHandler.calledOnce);
 
-    expect(initialFocusHandler).to.have.been.calledOnce;
+    expect(initialFocusHandler.callCount).to.equal(1);
     expect(document.activeElement).to.equal(input);
   });
 

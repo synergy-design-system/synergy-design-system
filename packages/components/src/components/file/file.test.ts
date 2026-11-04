@@ -91,7 +91,7 @@ describe('<syn-file>', () => {
           const focusEvent = sinon.spy();
           el.addEventListener('syn-focus', focusEvent);
           el.focus();
-          expect(focusEvent).to.have.been.calledOnce;
+          expect(focusEvent.callCount).to.equal(1);
         });
 
         it('should emit a syn-blur event when the blur method is called', async () => {
@@ -100,7 +100,7 @@ describe('<syn-file>', () => {
           el.addEventListener('syn-blur', blurEvent);
           el.focus();
           el.blur();
-          expect(blurEvent).to.have.been.calledOnce;
+          expect(blurEvent.callCount).to.equal(1);
         });
       }
 
@@ -135,7 +135,7 @@ describe('<syn-file>', () => {
         // eslint-disable-next-line compat/compat
         div.dispatchEvent(new DragEvent('drop', { dataTransfer }));
 
-        expect(errorEvent).to.have.been.calledOnce;
+        expect(errorEvent.callCount).to.equal(1);
       });
 
       describe('when using constraint validation', () => {
@@ -317,7 +317,7 @@ describe('<syn-file>', () => {
           el.addEventListener('syn-change', changeHandler);
           await fakeFileUpload(el);
 
-          expect(changeHandler).to.have.been.calledOnce;
+          expect(changeHandler.callCount).to.equal(1);
         });
 
         it('should emit syn-input when the user has uploaded something', async () => {
@@ -327,7 +327,7 @@ describe('<syn-file>', () => {
           el.addEventListener('syn-input', inputHandler);
           await fakeFileUpload(el);
 
-          expect(inputHandler).to.have.been.calledOnce;
+          expect(inputHandler.callCount).to.equal(1);
         });
       });
 

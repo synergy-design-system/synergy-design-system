@@ -28,6 +28,8 @@ To achieve this, we are using some common conventions when contributing features
 
 ## Getting started
 
+- For AI-assisted contributions, start with the [repository agent guide](./AGENTS.md). It links to scoped component, metadata and documentation instructions and the end-to-end change skill.
+
 - Familiarize yourself with the [Principles of the Synergy Design System](https://synergy-design-system.github.io/?path=/docs/principles-and-vision--docs), which serves as a reference for design guidelines, components, and patterns used in this project. Adhering to these principles will help maintain consistency and a cohesive user experience.
 
 - Have a look at the [Storybook demos](https://synergy-design-system.github.io/?path=/docs/components-syn-button--docs) to get a better understanding of Synergy and its components.

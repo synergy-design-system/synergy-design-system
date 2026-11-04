@@ -1,19 +1,5 @@
-import { withBasePath } from '../utils/basePath';
+import { docsUrl } from '../utils/docsUrl';
 import { buildDocsIndex, flattenDocsIndex } from '../utils/docsIndex';
-
-const baseUrl = process.env.STATIC_DOCS_SITE_URL?.replace(/\/+$/, '');
-
-const toAbsoluteUrl = (path: string): string => {
-  if (!baseUrl) {
-    return path;
-  }
-
-  if (path.startsWith('http://') || path.startsWith('https://')) {
-    return path;
-  }
-
-  return `${baseUrl}${path}`;
-};
 
 export const GET = async (): Promise<Response> => {
   const sections = await buildDocsIndex();
@@ -21,15 +7,15 @@ export const GET = async (): Promise<Response> => {
 
   const topSections = sections
     .filter(section => section.id !== 'additional-information')
-    .map(section => `- ${section.name}: ${toAbsoluteUrl(withBasePath(section.rootPath, '/'))}`)
+    .map(section => `- ${section.name}: \`${docsUrl(`${section.rootPath}/{id}`)}\``)
     .join('\n');
 
   const canonicalPairs = entries
     .slice(0, 30)
     .map(entry => {
-      const humanUrl = toAbsoluteUrl(withBasePath(entry.path, '/'));
-      const aiUrl = toAbsoluteUrl(withBasePath(entry.aiPath ?? `${entry.path}.ai.md`, '/'));
-      return `- ${entry.name} (${entry.id})\n  human: ${humanUrl}\n  ai: ${aiUrl}`;
+      const humanUrl = docsUrl(entry.path);
+      const aiLine = entry.aiPath ? `\n  ai: ${docsUrl(entry.aiPath)}` : '';
+      return `- ${entry.name} (${entry.id})\n  human: ${humanUrl}${aiLine}`;
     })
     .join('\n');
 
@@ -48,7 +34,7 @@ export const GET = async (): Promise<Response> => {
     '',
     'This policy applies to all documentation served under:',
     '',
-    '- `/knowledge`',
+    `- ${docsUrl('/')}`,
     '',
     'It does not apply to external sites linked from this documentation.',
     '',
@@ -61,17 +47,17 @@ export const GET = async (): Promise<Response> => {
     '',
     '## Structure and entry points',
     '',
-    '- Site overview and authority declaration: `/`',
-    '- Component specifications (normative): `/component/{id}`',
-    '- Template documentation: `/template/{id}`',
-    '- Style and utility documentation: `/style/{id}`',
-    '- Package changelogs and version history: `/changelog/{id}`',
+    `- Site overview and authority declaration: ${docsUrl('/')}`,
+    `- Component specifications (normative): \`${docsUrl('/component/{id}')}\``,
+    `- Template documentation: \`${docsUrl('/template/{id}')}\``,
+    `- Style and utility documentation: \`${docsUrl('/style/{id}')}\``,
+    `- Package changelogs and version history: \`${docsUrl('/changelog/{id}')}\``,
     '- Concept and guidance pages (non-normative):',
-    '  - Accessibility: `/accessibility`',
-    '  - Brand Version Support: `/brand-support`',
-    '  - Goals and guidelines: `/goals`',
-    '  - Out of scope and non-goals: `/out-of-scope`',
-    '  - Frequently misunderstood topics: `/misconceptions`',
+    `  - Accessibility: ${docsUrl('/accessibility')}`,
+    `  - Brand Version Support: ${docsUrl('/brand-support')}`,
+    `  - Goals and guidelines: ${docsUrl('/goals')}`,
+    `  - Out of scope and non-goals: ${docsUrl('/out-of-scope')}`,
+    `  - Frequently misunderstood topics: ${docsUrl('/misconceptions')}`,
     '',
     '## Content by section',
     '',
@@ -149,8 +135,8 @@ export const GET = async (): Promise<Response> => {
     ...policyText,
     '',
     '## Canonical discovery',
-    `- llms-full.txt: ${toAbsoluteUrl(withBasePath('/llms-full.txt', '/'))}`,
-    `- Home: ${toAbsoluteUrl(withBasePath('/', '/'))}`,
+    `- llms-full.txt: ${docsUrl('/llms-full.txt')}`,
+    `- Home: ${docsUrl('/')}`,
     '',
     '## Top-level sections',
     topSections,

@@ -95,9 +95,9 @@ async function main() {
     console.log(`\nSkill location: ${absolutePath}`);
   } catch (error) {
     if (error instanceof Error && error.message.startsWith('--path')) {
-      throw new Error(`Error: ${error.message}`);
+      throw new Error(`Error: ${error.message}`, { cause: error });
     } else {
-      throw new Error(`Error installing skills: ${error instanceof Error ? error.message : String(error)}`);
+      throw new Error(`Error installing skills: ${error instanceof Error ? error.message : String(error)}`, { cause: error });
     }
   }
 }

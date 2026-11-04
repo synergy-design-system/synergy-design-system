@@ -569,6 +569,30 @@ describe('colorSvgImageUri', () => {
     expect(decodeImageSvgUri(result)).to.not.include('#000000');
   });
 
+  it('replaces stroke attributes when neither currentColor nor fill is present', () => {
+    const svg = '<svg><path stroke="#000000"/><path stroke=\'blue\'/></svg>';
+    const imageUri = `image://data:image/svg+xml,${encodeURIComponent(svg)}`;
+
+    expect(decodeImageSvgUri(colorSvgImageUri(imageUri, '#aabbcc')))
+      .to.equal('<svg><path stroke="#aabbcc"/><path stroke="#aabbcc"/></svg>');
+  });
+
+  it('preserves stroke when fill is present', () => {
+    const svg = '<svg><path fill="#000000" stroke="blue"/></svg>';
+    const imageUri = `image://data:image/svg+xml,${encodeURIComponent(svg)}`;
+
+    expect(decodeImageSvgUri(colorSvgImageUri(imageUri, '#aabbcc')))
+      .to.equal('<svg><path fill="#aabbcc" stroke="blue"/></svg>');
+  });
+
+  it('preserves fixed fill and stroke colors when currentColor is present', () => {
+    const svg = '<svg fill="#000000" stroke="blue"><path stroke="currentColor"/></svg>';
+    const imageUri = `image://data:image/svg+xml,${encodeURIComponent(svg)}`;
+
+    expect(decodeImageSvgUri(colorSvgImageUri(imageUri, '#aabbcc')))
+      .to.equal('<svg fill="#000000" stroke="blue"><path stroke="#aabbcc"/></svg>');
+  });
+
   it('returns the original value for malformed encoded SVG payloads', () => {
     const malformed = 'image://data:image/svg+xml,%%%';
 

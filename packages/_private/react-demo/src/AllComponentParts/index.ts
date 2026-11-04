@@ -1,5 +1,7 @@
 export * from './Accordion.js';
 export * from './Alert.js';
+export * from './AreaChart.js';
+export * from './AreaRangeChart.js';
 export * from './Badge.js';
 export * from './BarChart.js';
 export * from './Breadcrumb.js';
@@ -20,6 +22,7 @@ export * from './Dropdown.js';
 export * from './Fieldset.js';
 export * from './File.js';
 export * from './GaugeChart.js';
+export * from './HistogramChart.js';
 export * from './Icon.js';
 export * from './IconButton.js';
 export * from './Input.js';

@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-28T11:51:03.303Z",
+  "builtAt": "2026-11-04T12:00:31.774Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset__sick2018-icons.json",
@@ -262,28 +262,6 @@
       ]
     },
     {
-      "corePath": "data/core/component/component__syn-calendar.json",
-      "id": "component:syn-calendar",
-      "kind": "component",
-      "layers": {
-        "examples": 1,
-        "full": 10,
-        "interface": 2,
-        "rules": 1
-      },
-      "name": "syn-calendar",
-      "search": [
-        "component:syn-calendar",
-        "syn-calendar",
-        "angular",
-        "calendar",
-        "component",
-        "react",
-        "syn-calendar",
-        "vue"
-      ]
-    },
-    {
       "corePath": "data/core/component/component__syn-card.json",
       "id": "component:syn-card",
       "kind": "component",
@@ -390,28 +368,6 @@
         "component",
         "react",
         "syn-combobox",
-        "vue"
-      ]
-    },
-    {
-      "corePath": "data/core/component/component__syn-date-picker.json",
-      "id": "component:syn-date-picker",
-      "kind": "component",
-      "layers": {
-        "examples": 1,
-        "full": 7,
-        "interface": 2,
-        "rules": 1
-      },
-      "name": "syn-date-picker",
-      "search": [
-        "component:syn-date-picker",
-        "syn-date-picker",
-        "angular",
-        "component",
-        "date-picker",
-        "react",
-        "syn-date-picker",
         "vue"
       ]
     },

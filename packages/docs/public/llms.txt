@@ -1,0 +1,14 @@
+# Synergy Design System
+
+> Web components, styles, and design guidance for SICK applications.
+
+Use the static knowledge base for component specifications, APIs, and usage rules.
+Use Storybook for interactive examples and visual exploration.
+
+## Documentation
+
+- [Knowledge base](https://synergy-design-system.github.io/knowledge/): Static documentation for components, APIs, and usage rules.
+- [Documentation guide](https://synergy-design-system.github.io/knowledge/llms.txt): Scope, interpretation guidance, and documentation entry points.
+- [Full URL index](https://synergy-design-system.github.io/knowledge/llms-full.txt): Exhaustive documentation URL index for RAG ingestion, including HTML and available AI markdown pages; not consolidated documentation content.
+- [Storybook](https://synergy-design-system.github.io/): Interactive component examples.
+- [GitHub repository](https://github.com/synergy-design-system/synergy-design-system): Source code, tests, issue tracking, and contribution guidelines.

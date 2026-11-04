@@ -1,5 +1,16 @@
 # Changelog
 
+## 4.25.1
+
+### Patch Changes
+
+- [#1408](https://github.com/synergy-design-system/synergy-design-system/pull/1408) [`3b54f0f`](https://github.com/synergy-design-system/synergy-design-system/commit/3b54f0ff6b141492454300afcce5c71d02e2c19b) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-11-04
+  
+  fix: 🐛 package updates sprint 81 ([#258](https://github.com/synergy-design-system/synergy-design-system/issues/258))
+- Updated dependencies [[`3b54f0f`](https://github.com/synergy-design-system/synergy-design-system/commit/3b54f0ff6b141492454300afcce5c71d02e2c19b)]:
+  - @synergy-design-system/assets@2.3.4
+  - @synergy-design-system/metadata@4.25.1
+
 ## 4.25.0
 
 ### Minor Changes

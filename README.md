@@ -21,19 +21,20 @@ The code resides on GitHub: https://github.com/synergy-design-system/synergy-des
 
 This repository is comprised of several sub-packages.
 
-| package    | description                                                                                                                                                            |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| angular    | angular wrappers for better DX in Angular (auto generated)                                                                                                             |
-| assets     | icons and logos                                                                                                                                                        |
-| components | user interface components based on custom elements and lit                                                                                                             |
-| docs       | storybook documentation showing all components and their properties in an interative environment                                                                       |
-| fonts      | Font files for Synergy Themes.                                                                                                                                         |
-| metadata   | Metadata gathered from all Synergy packages.                                                                                                                           |
-| mcp        | Source for the synergy MCP server                                                                                                                                      |
-| react      | react wrappers for better DX in React (auto generated)                                                                                                                 |
-| styles     | CSS Helper classes                                                                                                                                                     |
-| tokens     | design tokens which contain basic design variables for colors, spacings, sizes, fonts etc. They are always in sync with the Figma library, and the base for CSS styles |
-| vue        | vue wrappers for better DX in VueJS (auto generated)                                                                                                                   |
+| package          | description                                                                                                                                                            |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| angular          | angular wrappers for better DX in Angular (auto generated)                                                                                                             |
+| assets           | icons and logos                                                                                                                                                        |
+| components       | user interface components based on custom elements and lit                                                                                                             |
+| docs             | storybook documentation showing all components and their properties in an interative environment                                                                       |
+| fonts            | Font files for Synergy Themes.                                                                                                                                         |
+| mcp              | Source for the synergy MCP server                                                                                                                                      |
+| metadata         | Metadata gathered from all Synergy packages.                                                                                                                           |
+| react            | react wrappers for better DX in React (auto generated)                                                                                                                 |
+| static-docs-page | A static documentation generator for llm usage                                                                                                                         |
+| styles           | CSS Helper classes                                                                                                                                                     |
+| tokens           | design tokens which contain basic design variables for colors, spacings, sizes, fonts etc. They are always in sync with the Figma library, and the base for CSS styles |
+| vue              | vue wrappers for better DX in VueJS (auto generated)                                                                                                                   |
 
 ---
 
@@ -41,9 +42,11 @@ This repository is comprised of several sub-packages.
 
 Synergy uses a monorepo setup, using [node.js](https://nodejs.org) as a runtime and [pnpm](https://pnpm.io) for dependency management and build scripts. We also use [corepack](https://pnpm.io/installation#using-corepack) to handle the current required versions of node and pnpm. If not already installed, install and configure these tools.
 
-1. `pnpm install --recursive` installs all dependencies.
-2. `pnpm build` in the root directory forces a build all packages that provide a build job.
-3. `pnpm lint` in the root directory will run all configured lint jobs.
+1. Install the latest `node:lts`
+2. Install corepack `npm install -g corepack` and enable it via `corepack enable`
+3. `pnpm install --recursive` installs all dependencies.
+4. `pnpm build` in the root directory forces a build all packages that provide a build job.
+5. `pnpm lint` in the root directory will run all configured lint jobs.
 
 ## Creating releases
 

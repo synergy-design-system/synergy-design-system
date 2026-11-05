@@ -74,7 +74,7 @@ const getChangedPackages = (
       reason: STATUS_PACKAGES_CHANGED,
     };
   } catch (/** @type {any} */ e) {
-    throw new Error(`Failed to get changeset information: ${e}`);
+    throw new Error(`Failed to get changeset information: ${e}`, { cause: e });
   }
 };
 

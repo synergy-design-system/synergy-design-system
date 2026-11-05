@@ -175,7 +175,7 @@ describe('<syn-radio-group>', () => {
 
       await aTimeout(100);
 
-      expect(submitHandler).to.not.have.been.called;
+      expect(submitHandler.callCount).to.equal(0);
     });
   });
 });
@@ -397,9 +397,9 @@ describe('when handling focus', () => {
           radio.addEventListener('syn-focus', validFocusHandler)
         );
 
-        expect(validFocusHandler).to.not.have.been.called;
+        expect(validFocusHandler.callCount).to.equal(0);
         await doAction(el, actionType);
-        expect(validFocusHandler).to.not.have.been.called;
+        expect(validFocusHandler.callCount).to.equal(0);
       });
 
       it('should focus the first radio that is enabled when the group receives focus', async () => {
@@ -421,13 +421,13 @@ describe('when handling focus', () => {
         disabledRadio.addEventListener('syn-focus', invalidFocusHandler);
         validRadio.addEventListener('syn-focus', validFocusHandler);
 
-        expect(invalidFocusHandler).to.not.have.been.called;
-        expect(validFocusHandler).to.not.have.been.called;
+        expect(invalidFocusHandler.callCount).to.equal(0);
+        expect(validFocusHandler.callCount).to.equal(0);
 
         await doAction(el, actionType);
 
-        expect(invalidFocusHandler).to.not.have.been.called;
-        expect(validFocusHandler).to.have.been.called;
+        expect(invalidFocusHandler.callCount).to.equal(0);
+        expect(validFocusHandler.callCount).to.be.greaterThan(0);
       });
 
       it('should focus the currently enabled radio when the group receives focus', async () => {
@@ -449,13 +449,13 @@ describe('when handling focus', () => {
         disabledRadio.addEventListener('syn-focus', invalidFocusHandler);
         validRadio.addEventListener('syn-focus', validFocusHandler);
 
-        expect(invalidFocusHandler).to.not.have.been.called;
-        expect(validFocusHandler).to.not.have.been.called;
+        expect(invalidFocusHandler.callCount).to.equal(0);
+        expect(validFocusHandler.callCount).to.equal(0);
 
         await doAction(el, actionType);
 
-        expect(invalidFocusHandler).to.not.have.been.called;
-        expect(validFocusHandler).to.have.been.called;
+        expect(invalidFocusHandler.callCount).to.equal(0);
+        expect(validFocusHandler.callCount).to.be.greaterThan(0);
       });
     });
   });
@@ -479,8 +479,8 @@ describe('when the value changes', () => {
     await sendKeys({ press: 'ArrowRight' });
     await radioGroup.updateComplete;
 
-    expect(changeHandler).to.have.been.calledOnce;
-    expect(inputHandler).to.have.been.calledOnce;
+    expect(changeHandler.callCount).to.equal(1);
+    expect(inputHandler.callCount).to.equal(1);
     expect(radioGroup.value).to.equal('2');
   });
 

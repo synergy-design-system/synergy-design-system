@@ -169,8 +169,8 @@ describe('<syn-nav-item>', () => {
       el.blur();
       await waitUntil(() => blurHandler.calledOnce);
 
-      expect(focusHandler).to.have.been.calledOnce;
-      expect(blurHandler).to.have.been.calledOnce;
+      expect(focusHandler.callCount).to.equal(1);
+      expect(blurHandler.callCount).to.equal(1);
     });
 
     it('should emit a blur event when calling blur()', async () => {
@@ -182,7 +182,7 @@ describe('<syn-nav-item>', () => {
       el.blur();
       await waitUntil(() => blurHandler.calledOnce);
 
-      expect(blurHandler).to.have.been.calledOnce;
+      expect(blurHandler.callCount).to.equal(1);
     });
 
     it('should emit a click event when calling click()', async () => {
@@ -193,7 +193,7 @@ describe('<syn-nav-item>', () => {
       el.click();
       await waitUntil(() => clickHandler.calledOnce);
 
-      expect(clickHandler).to.have.been.calledOnce;
+      expect(clickHandler.callCount).to.equal(1);
     });
   });
 

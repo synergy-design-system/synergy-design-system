@@ -58,6 +58,7 @@ export async function createHttpTransport(
     } catch (error) {
       throw new Error(
         `Failed to read TLS files: ${error instanceof Error ? error.message : String(error)}`,
+        { cause: error },
       );
     }
   }

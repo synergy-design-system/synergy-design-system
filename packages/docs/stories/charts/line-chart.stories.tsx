@@ -14,6 +14,7 @@ import {
   generateScreenshotStory,
   generateStoryDescription,
 } from '../../src/helpers/component.js';
+import { ChartSeriesDocumentation } from '../../src/helpers/chart-series-documentation.js';
 import { chartChromaticConfig } from '../../src/chromatic-config/chromatic-config.js';
 
 const meta: Meta = {
@@ -24,13 +25,14 @@ const meta: Meta = {
     },
     docs: {
       description: {
-        component: generateStoryDescription('chart', 'line-chart-default'),
+        component: generateStoryDescription('chart', 'line-series-default'),
       },
       page: () => (
         <>
           <Title />
           <Subtitle />
           <Description />
+          <ChartSeriesDocumentation section="Line series presets" />
           <Stories title="" />
         </>
       ),
@@ -47,7 +49,7 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'line-chart-preset'),
+        story: generateStoryDescription('chart', 'line-series-preset'),
       },
     },
   },
@@ -410,7 +412,7 @@ export const PositiveAndNegativeValues: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'line-chart-positive-and-negative-values'),
+        story: generateStoryDescription('chart', 'line-series-positive-and-negative-values'),
       },
     },
   },

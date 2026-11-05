@@ -254,13 +254,14 @@ export const getAsArray = <T>(value: T | T[]): T[] => (Array.isArray(value) ? va
 /**
  * Colors an `image://` prefixed SVG URI with URL-encoded SVG by replacing `currentColor` with the provided color string.
  * If current color is not available, the value of "fill" attribute will be replaced with the provided color string.
+ * If neither is available, the value of "stroke" attributes will be replaced instead.
  * Returns the original URI unchanged if decoding or re-encoding fails.
  *
  * @param imageUri - An `image://` URI with URL-encoded SVG (e.g., `image://data:image/svg+xml,%3Csvg...%3E`).
  * @param color - The replacement color (e.g. `#ff0000` or `red`).
  * @returns A new `image://` URI with `currentColor` substituted.
  */
-export function colorSvgImageUri(imageUri: string, color: string): string {
+export function colorSvgImageUri(imageUri: string, color: string, withImagePrefix: boolean = true): string {
   try {
     const urlData = imageUri.slice(8); // Remove 'image://' prefix
     const [, encodedSvg] = urlData.split(',');
@@ -268,12 +269,15 @@ export function colorSvgImageUri(imageUri: string, color: string): string {
 
     const decodedSvg = decodeURIComponent(encodedSvg);
     const hasCurrentColor = decodedSvg.includes('currentColor');
+    const fillPattern = /fill=(?:"[^"]*"|'[^']*')/gi;
+    const colorAttributePattern = fillPattern.test(decodedSvg) ? fillPattern : /stroke=(?:"[^"]*"|'[^']*')/gi;
+    const colorAttribute = colorAttributePattern === fillPattern ? 'fill' : 'stroke';
 
     const svg = hasCurrentColor
       ? decodedSvg.replace(/currentColor/gi, color)
-      : decodedSvg.replace(/fill=(?:"[^"]*"|'[^']*')/gi, `fill="${color}"`);
+      : decodedSvg.replace(colorAttributePattern, `${colorAttribute}="${color}"`);
 
-    return `image://data:image/svg+xml,${encodeURIComponent(svg)}`;
+    return `${withImagePrefix ? 'image://' : ''}data:image/svg+xml,${encodeURIComponent(svg)}`;
   } catch {
     return imageUri;
   }
@@ -572,3 +576,12 @@ export const getShiftedPoint = (radius: number, angle: number, tangentialOffset:
     y: (radialOffset * Math.sin(angle)) + (safeOffset * Math.cos(angle)),
   };
 };
+
+/**
+ * Generates a pseudo-random base-36 string with a max of 10 characters and prepends the provided prefix.
+ *
+ * @param length Number of random characters to return with a max of 10. Defaults to 8.
+ * @param prefix String to prepend to the random suffix. Defaults to an empty string.
+ * @returns The prefix followed by a pseudo-random base-36 string.
+ */
+export const getRandomString = (length: number = 8, prefix: string = ''): string => prefix + Math.random().toString(36).slice(2, 2 + length);

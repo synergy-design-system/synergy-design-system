@@ -37,7 +37,7 @@ export const renderStyles = (
 
   // Build a dynamic map of all attributes
   const attributeObj = Object.entries(tagAttributes);
-  let attributeMap = '';
+  let attributeMap: string;
 
   // Add support for classes
   if (attributeObj.length === 0) {

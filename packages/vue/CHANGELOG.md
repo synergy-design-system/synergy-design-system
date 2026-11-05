@@ -1,5 +1,40 @@
 # @synergy-design-system/vue
 
+## 3.32.1
+
+### Patch Changes
+
+- [#1408](https://github.com/synergy-design-system/synergy-design-system/pull/1408) [`3b54f0f`](https://github.com/synergy-design-system/synergy-design-system/commit/3b54f0ff6b141492454300afcce5c71d02e2c19b) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-11-04
+  
+  fix: 🐛 package updates sprint 81 ([#258](https://github.com/synergy-design-system/synergy-design-system/issues/258))
+- Updated dependencies [[`3b54f0f`](https://github.com/synergy-design-system/synergy-design-system/commit/3b54f0ff6b141492454300afcce5c71d02e2c19b)]:
+  - @synergy-design-system/components@3.32.1
+  - @synergy-design-system/tokens@3.32.1
+
+## 3.32.0
+
+### Patch Changes
+
+- Updated dependencies [[`48eb9f9`](https://github.com/synergy-design-system/synergy-design-system/commit/48eb9f9c8d67a11da0874701fb43ee1eabb20820)]:
+  - @synergy-design-system/components@3.32.0
+  - @synergy-design-system/tokens@3.32.0
+
+## 3.31.0
+
+### Patch Changes
+
+- Updated dependencies [[`f8ca9dd`](https://github.com/synergy-design-system/synergy-design-system/commit/f8ca9dd19217d848bcfc5f8c04d65392410f1242), [`f8ca9dd`](https://github.com/synergy-design-system/synergy-design-system/commit/f8ca9dd19217d848bcfc5f8c04d65392410f1242)]:
+  - @synergy-design-system/tokens@3.31.0
+  - @synergy-design-system/components@3.31.0
+
+## 3.30.0
+
+### Patch Changes
+
+- Updated dependencies [[`79ca10c`](https://github.com/synergy-design-system/synergy-design-system/commit/79ca10c162ccfaa471bbfb518ae9a7bdfd83c905), [`79ca10c`](https://github.com/synergy-design-system/synergy-design-system/commit/79ca10c162ccfaa471bbfb518ae9a7bdfd83c905)]:
+  - @synergy-design-system/tokens@3.30.0
+  - @synergy-design-system/components@3.30.0
+
 ## 3.29.1
 
 ### Patch Changes

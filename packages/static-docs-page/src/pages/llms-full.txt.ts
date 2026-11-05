@@ -1,19 +1,5 @@
-import { withBasePath } from '../utils/basePath';
+import { docsUrl } from '../utils/docsUrl';
 import { buildDocsIndex, flattenDocsIndex } from '../utils/docsIndex';
-
-const baseUrl = process.env.STATIC_DOCS_SITE_URL?.replace(/\/+$/, '');
-
-const toAbsoluteUrl = (path: string): string => {
-  if (!baseUrl) {
-    return path;
-  }
-
-  if (path.startsWith('http://') || path.startsWith('https://')) {
-    return path;
-  }
-
-  return `${baseUrl}${path}`;
-};
 
 export const GET = async (): Promise<Response> => {
   const sections = await buildDocsIndex();
@@ -24,9 +10,9 @@ export const GET = async (): Promise<Response> => {
       `## ${section.name}`,
       '',
       ...section.entries.map(entry => {
-        const humanUrl = toAbsoluteUrl(withBasePath(entry.path, '/'));
-        const aiUrl = toAbsoluteUrl(withBasePath(entry.aiPath ?? `${entry.path}.ai.md`, '/'));
-        return `- id: ${entry.id}\n  kind: ${entry.kind}\n  name: ${entry.name}\n  human: ${humanUrl}\n  ai: ${aiUrl}`;
+        const humanUrl = docsUrl(entry.path);
+        const aiLine = entry.aiPath ? `\n  ai: ${docsUrl(entry.aiPath)}` : '';
+        return `- id: ${entry.id}\n  kind: ${entry.kind}\n  name: ${entry.name}\n  human: ${humanUrl}${aiLine}`;
       }),
       '',
     ];
@@ -39,7 +25,7 @@ export const GET = async (): Promise<Response> => {
     '',
     `Total entries: ${entries.length}`,
     '',
-    'This file is the exhaustive machine-readable index of all canonical docs entries, including both their human page and AI page URLs.',
+    'This file is the exhaustive machine-readable index of all canonical docs entries, including their human page URLs and AI page URLs where available.',
     'Use the AI URLs when you need structured markdown content, and use the human URLs when you need a link to give people or cite in rendered documentation.',
     '',
   ].join('\n');

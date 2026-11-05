@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.29.1
+ * @synergy-design-system/tokens version 3.32.1
  * SICK Global UX Foundation
  */
 
@@ -82,6 +82,11 @@ export const SynChartGridLinesColor = 'var(--syn-chart-grid-lines-color)';
  * @type {string}
  */
 export const SynChartGridLinesColorEmphasize = 'var(--syn-chart-grid-lines-color-emphasize)';
+
+/**
+ * @type {string}
+ */
+export const SynChartOpacity20 = 'var(--syn-chart-opacity-20)';
 
 /**
  * @type {string}
@@ -692,6 +697,11 @@ export const SynChartSequentialStatusWarning90 = 'var(--syn-chart-sequential-sta
  * @type {string}
  */
 export const SynChartSequentialStatusWarning100 = 'var(--syn-chart-sequential-status-warning-100)';
+
+/**
+ * @type {string}
+ */
+export const SynChartTooltipBackgroundColor = 'var(--syn-chart-tooltip-background-color)';
 
 /**
  * @type {string}

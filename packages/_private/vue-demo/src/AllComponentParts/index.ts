@@ -1,6 +1,9 @@
 import DemoAccordion from "./DemoAccordion.vue";
 import DemoAlert from "./DemoAlert.vue";
+import DemoAreaChart from "./DemoAreaChart.vue";
+import DemoAreaRangeChart from "./DemoAreaRangeChart.vue";
 import DemoBadge from "./DemoBadge.vue";
+import DemoBarChart from "./DemoBarChart.vue";
 import DemoBreadcrumb from "./DemoBreadcrumb.vue";
 import DemoButton from "./DemoButton.vue";
 import DemoButtonGroup from "./DemoButtonGroup.vue";
@@ -17,6 +20,7 @@ import DemoDropdown from "./DemoDropdown.vue";
 import DemoFieldset from "./DemoFieldset.vue";
 import DemoFile from "./DemoFile.vue";
 import DemoGaugeChart from "./DemoGaugeChart.vue";
+import DemoHistogramChart from "./DemoHistogramChart.vue";
 import DemoIcon from "./DemoIcon.vue";
 import DemoIconButton from "./DemoIconButton.vue";
 import DemoInput from "./DemoInput.vue";
@@ -46,13 +50,17 @@ import DemoValidate from "./DemoValidate.vue";
 export {
   DemoAccordion,
   DemoAlert,
+  DemoAreaChart,
+  DemoAreaRangeChart,
   DemoBadge,
+  DemoBarChart,
   DemoBreadcrumb,
   DemoButton,
   DemoButtonGroup,
   DemoCard,
   DemoChart,
   DemoGaugeChart,
+  DemoHistogramChart,
   DemoLineChart,
   DemoCheckbox,
   DemoCheckboxGroup,

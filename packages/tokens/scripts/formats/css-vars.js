@@ -125,7 +125,6 @@ export const cssVariableFormatter = {
 
       // For now remove all chart tokens, which are not needed in the chart component
       'chart-opacity-10',
-      'chart-opacity-20',
       'chart-opacity-40',
       'chart-pattern-color',
       'chart-pattern-color-inverted',
@@ -133,7 +132,6 @@ export const cssVariableFormatter = {
       'chart-stroke-weight-default',
       'chart-stroke-weight-thin',
       'chart-stroke-weight-thick',
-      'chart-tooltip-background-color',
     ].map(v => `${prefix}${v}`);
 
     /**

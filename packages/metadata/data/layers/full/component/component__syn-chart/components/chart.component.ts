@@ -1,17 +1,15 @@
 import {
-  type EChartsType, init, registerPreprocessor, registerProcessor, registerTheme, registerVisual, use,
+  type EChartsType, PRIORITY, init, registerPreprocessor, registerProcessor, registerTheme, registerVisual, use,
 } from 'echarts/core.js';
 import { CanvasRenderer, SVGRenderer } from 'echarts/renderers.js';
 import { html } from 'lit';
 import type { CSSResultGroup, PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { query } from 'lit/decorators/query.js';
-import {
-  GaugeChart, LineChart,
-} from 'echarts/charts.js';
+import { BarChart, GaugeChart, LineChart } from 'echarts/charts.js';
 import {
   DataZoomComponent,
-  GridComponent, LegendComponent, TitleComponent, TooltipComponent,
+  GridComponent, LegendComponent, MarkAreaComponent, MarkLineComponent, MarkPointComponent, TitleComponent, TooltipComponent,
 } from 'echarts/components.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -20,22 +18,32 @@ import { type ChartPalette, PALETTE_TOKENS } from './chart.palettes.js';
 import { resolveConfigInput } from './configs/config.js';
 import type { ChartConfigType, ECConfig } from './types.js';
 import { applyAxisDefaultsPreprocessor } from './configs/axes/utilities.js';
-import { getCurrentThemeFromBodyClass, getRealStyleValue, setThemeFromBodyClass } from './themes/utilities.js';
+import {
+  SYNERGY_THEMES,
+  getRealStyleValue,
+  getThemeModeFromBodyClass,
+  setThemeFromBodyClass,
+} from './themes/utilities.js';
 import { getSynergyTheme } from './themes/theme.js';
 import { segmentInstall } from './configs/series/segment/install.js';
 import { donutInstall } from './configs/series/donut/install.js';
 import { gaugeInstall } from './configs/series/gauge/install.js';
 import { legendIconVisual, legendVisibilityIconProcessor } from './configs/legend/utilities.js';
+import { emptySymbolColorVisual } from './configs/series/line/utilities.js';
 
 // TODO: Check, should we let the user define the *use* so the bundle size is optimized for their specific use case?
 use([
   CanvasRenderer,
   SVGRenderer,
   LineChart,
+  BarChart,
   GaugeChart,
   TitleComponent,
   TooltipComponent,
   LegendComponent,
+  MarkAreaComponent,
+  MarkLineComponent,
+  MarkPointComponent,
   GridComponent,
   DataZoomComponent,
   segmentInstall,
@@ -50,6 +58,8 @@ registerPreprocessor(applyAxisDefaultsPreprocessor);
 registerProcessor(legendVisibilityIconProcessor);
 // Registrations should only be done once
 registerVisual(legendIconVisual);
+// Register the visual after the legend visuals to ensure empty symbols are handled correctly
+registerVisual(PRIORITY.VISUAL.CHART_ITEM + 1, emptySymbolColorVisual);
 
 /**
  * @summary The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts. The chart component is based on [Apache ECharts](https://echarts.apache.org)
@@ -169,6 +179,10 @@ export default class SynChart extends SynergyElement {
     }
   }
 
+  private applyChartTheme(): void {
+    this.chartInstance.setTheme(getThemeModeFromBodyClass() === 'dark' ? 'dark' : 'default');
+  }
+
   /**
    * Selects the rendering backend based on the configured series types.
    *
@@ -208,16 +222,13 @@ export default class SynChart extends SynergyElement {
     super.connectedCallback();
     registerTheme('default', getSynergyTheme('light'));
     registerTheme('dark', getSynergyTheme('dark'));
-    const synergyThemes = ['syn-theme-', 'syn-sick2025-'];
-    const darkThemes = ['syn-theme-dark', 'syn-sick2025-dark'];
-
     // Add mutation observer to detect changes of light dark mode and get the current mode to apply the correct theme
     // TODO: this is currently only a first prototype for theme switch. We need to add a more robust solution, which might also check if any other parent element has a synergy theme class.
     // Therefore the global theme story might not be the best solution, but maybe a chart instance theme store?
     this.themeObserver = new MutationObserver((entries) => {
       const themeChanged = entries.some((entry) => {
-        const oldTheme = entry.oldValue?.split(' ').find((cls) => synergyThemes.some((theme) => cls.includes(theme)));
-        const newTheme = (entry.target as HTMLElement).classList.value.split(' ').find((cls) => synergyThemes.some((theme) => cls.includes(theme)));
+        const oldTheme = entry.oldValue?.split(' ').find((cls) => SYNERGY_THEMES.some((theme) => cls.includes(theme)));
+        const newTheme = (entry.target as HTMLElement).classList.value.split(' ').find((cls) => SYNERGY_THEMES.some((theme) => cls.includes(theme)));
         return oldTheme !== newTheme;
       });
       if (themeChanged) {
@@ -228,8 +239,7 @@ export default class SynChart extends SynergyElement {
           // We need to reapply the config as otherwise the theme change will not be applied.
           // See caveat section of https://echarts.apache.org/en/api.html#echartsInstance.setTheme
           this.chartInstance.setOption(this.resolvedConfig, { notMerge: true });
-          const currentTheme = getCurrentThemeFromBodyClass();
-          this.chartInstance.setTheme(darkThemes.includes(currentTheme) ? 'dark' : 'default');
+          this.applyChartTheme();
 
           this.applyPalette();
         }
@@ -258,6 +268,8 @@ export default class SynChart extends SynergyElement {
       }
       // Apply palette after config so colors blend in without replacing the full config
       this.applyPalette();
+      // Set initial theme
+      this.applyChartTheme();
     }
   }
 

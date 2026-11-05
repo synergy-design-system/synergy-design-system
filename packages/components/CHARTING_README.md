@@ -369,11 +369,21 @@ chart.config = handle =>
   });
 ```
 
+For bar charts, set `tooltip.axisPointer.type` to `'shadow'` when the category-wide shadow highlight is required.
+
+```ts
+chart.config = handle =>
+  handle
+    .baseConfig(baseConfig)
+    .seriesBar([{ name: "Energy", data: [120, 200, 150] }])
+    .tooltipShow({ axisPointer: { type: "shadow" } });
+```
+
 ### Line series presets
 
-| Preset function | Options              | Description                                                         |
-| --------------- | -------------------- | ------------------------------------------------------------------- |
-| `seriesLine`    | `LineSeriesOption[]` | Sets `series` entries as line series and merges each passed option. |
+| Preset function | Options              | Description                                        |
+| --------------- | -------------------- | -------------------------------------------------- |
+| `seriesLine`    | `LineSeriesOption[]` | Appends line series and merges each passed option. |
 
 Example:
 
@@ -418,6 +428,146 @@ chart.config = handle =>
 //   { type: 'line', name: 'Forecast', data: [130, 150, 170] }
 // ]
 ```
+
+### Area series presets
+
+| Preset function | Options              | Description                                                                                                        |
+| --------------- | -------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `seriesArea`    | `LineSeriesOption[]` | Appends area series with a default `areaStyle.opacity` of `0.2`. Passed `areaStyle` options override the defaults. |
+
+Example:
+
+```ts
+chart.config = handle =>
+  handle
+    .baseConfig({
+      xAxis: { type: "category", data: ["Mon", "Tue", "Wed"] },
+      yAxis: { type: "value" },
+    })
+    .seriesArea([
+      { name: "Revenue", data: [120, 200, 150] },
+      { name: "Forecast", data: [130, 180, 170] },
+    ]);
+```
+
+Array merge strategy:
+
+- `seriesArea([...])` uses `arrayStrategy: 'append'` for the `series` array.
+- Passed entries are appended after existing `baseConfig.series` entries.
+- Existing series entries are not merged by index with the new ones.
+
+### Area range series presets
+
+`seriesAreaRange` accepts one `[lower, upper]` pair per category and an optional `LineSeriesOption` applied to both boundary series. The filled area uses `areaStyle.opacity: 0.2` by default.
+
+| Preset function   | Options                                                    | Description                                                                          |
+| ----------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `seriesAreaRange` | `Array<[number, number]>`, `LineSeriesOption` _(optional)_ | Appends a filled range between lower and upper values using two stacked line series. |
+
+Example:
+
+```ts
+chart.config = handle =>
+  handle
+    .baseConfig({
+      xAxis: { type: "category", data: ["Mon", "Tue", "Wed"] },
+      yAxis: { type: "value" },
+    })
+    .seriesAreaRange(
+      [
+        [120, 180],
+        [140, 210],
+        [130, 190],
+      ],
+      { name: "Range", smooth: true },
+    );
+```
+
+Array merge strategy:
+
+- `seriesAreaRange([...])` uses `arrayStrategy: 'append'` for the `series` array.
+- It appends two series for each area range: one for the lower boundary and one for the filled range above it.
+- Existing series entries are not merged by index with the new ones.
+
+### Bar series presets
+
+| Preset function    | Options                                                      | Description                                                                                                  |
+| ------------------ | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `seriesBar`        | `BarSeriesOption[]`                                          | Sets `series` entries as bar series and merges each passed option.                                           |
+| `seriesBarStacked` | `options: BarSeriesOption[]`, `settings?: BarStackedOptions` | Appends stacked bar series with a shared stack name and recommended stylings like border and label defaults. |
+
+#### Single or grouped bars
+
+Examples:
+
+```ts
+// Single bar - vertical
+chart.config = handle =>
+  handle
+    .baseConfig({
+      xAxis: { type: "category", data: ["Mon", "Tue", "Wed"] },
+      yAxis: { type: "value" },
+    })
+    .seriesBar([{ data: [80, 140, 130] }]);
+
+// Grouped bar - horizontal
+chart.config = handle =>
+  handle
+    .baseConfig({
+      xAxis: { type: "value" },
+      yAxis: { type: "category", data: ["Mon", "Tue", "Wed"] },
+    })
+    .seriesBar([{ data: [120, 200, 150] }, { data: [80, 140, 130] }]);
+```
+
+Array merge strategy:
+
+- `seriesBar([...])` uses `arrayStrategy: 'append'` for the `series` array.
+- Each passed option is added as a bar series, existing `baseConfig.series` entries are preserved.
+
+#### Stacked bars
+
+`seriesBarStacked(options, settings?)` accepts an array of bar series options and optional `BarStackedOptions` settings:
+
+| Setting       | Type                         | Description                                                                                                                          | Default      |
+| ------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ------------ |
+| `stackName`   | `string`                     | Shared stack name for the passed series. An omitted or empty name generates one random name shared by all series in that invocation. | `''`         |
+| `orientation` | `'vertical' \| 'horizontal'` | Determines label defaults only, does not configure the chart axes.                                                                   | `'vertical'` |
+
+Each series receives the following defaults, which could also be overwritten:
+
+- `type: 'bar'` and the shared `stack` name.
+- `itemStyle: { borderColor: 'transparent', borderWidth: 1 }`.
+- `label: { color: 'inherit', show: true }`, with `position: 'left'` for vertical bars or `position: 'top'` for horizontal bars.
+
+Like `seriesBar`, this preset appends entries to the existing `series` array rather than merging them by index. Use the same explicit `stackName` across multiple calls to add series to the same stack.
+
+Example:
+
+```ts
+import type { BarStackedOptions } from "@synergy-design-system/components/components/chart/types.js";
+
+const settings: BarStackedOptions = {
+  stackName: "revenue",
+  orientation: "horizontal",
+};
+
+chart.config = handle =>
+  handle
+    .baseConfig({
+      xAxis: { type: "value" },
+      yAxis: { type: "category", data: ["Mon", "Tue", "Wed"] },
+    })
+    .seriesBarStacked(
+      [
+        { name: "Product A", data: [120, 200, 150] },
+        { name: "Product B", data: [80, 140, 130] },
+      ],
+      settings,
+    );
+```
+
+For vertical bars, use a category x-axis and a value y-axis, and omit `orientation` or set it to `'vertical'`.
 
 ### Gauge series presets
 
@@ -596,6 +746,32 @@ Array merge strategy:
 - `seriesSegment({...})` uses `arrayStrategy: 'append'`.
 - The generated `synSegment` series entry is appended to `series`.
 
+### Histogram series presets
+
+| Preset function   | Options             | Description                                                                                                      |
+| ----------------- | ------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `seriesHistogram` | `BarSeriesOption[]` | Appends histogram-style ECharts bar series with `barMaxWidth: '100%'`. Individual options override the defaults. |
+
+Example:
+
+```ts
+chart.config = handle =>
+  handle
+    .baseConfig({
+      xAxis: {
+        name: "Value Range",
+        type: "category",
+        data: ["0-10", "10-20", "20-30", "30-40", "40-50", "50-60"],
+      },
+      yAxis: {
+        name: "Frequency",
+      },
+    })
+    .seriesHistogram([{ data: [2, 8, 17, 14, 6, 3] }]);
+```
+
+Each entry defaults to `type: 'bar'` and `barMaxWidth: '100%'`, supplied options override these defaults. The preset uses `arrayStrategy: 'append'`, so its series entries are appended after any existing `series` entries.
+
 ---
 
 ## Formatter Utility Functions
@@ -668,7 +844,7 @@ shorthand(0.002); // '2m'
 
 ## Bundle Size
 
-`syn-chart` uses [ECharts tree-shaking](https://echarts.apache.org/en/tutorial.html#Use%20ECharts%20with%20bundler%20and%20NPM) internally. Only the modules that are actually needed (currently `LineChart`, `GaugeChart`, `CanvasRenderer`, `GridComponent`, `LegendComponent`, `TitleComponent`, `TooltipComponent`, `DataZoomComponent`) are imported and registered via ECharts' `use([...])`.)
+`syn-chart` uses [ECharts tree-shaking](https://echarts.apache.org/en/tutorial.html#Use%20ECharts%20with%20bundler%20and%20NPM) internally. Only the modules that are actually needed (including `BarChart`, `LineChart`, `GaugeChart`, `CanvasRenderer`, `GridComponent`, `LegendComponent`, `TitleComponent`, `TooltipComponent`, `DataZoomComponent`) are imported and registered via ECharts' `use([...])`.
 
 > ⚠️ You do **not** need to register anything yourself.
 
@@ -678,12 +854,16 @@ shorthand(0.002); // '2m'
 
 The following chart types are natively supported with Synergy styling:
 
-| Type          | How to use                                     |
-| ------------- | ---------------------------------------------- |
-| Line chart    | `series[].type: 'line'` (standard ECharts)     |
-| Gauge chart   | `series[].type: 'synGauge'` (custom Synergy)   |
-| Donut chart   | `series[].type: 'synDonut'` (custom Synergy)   |
-| Segment chart | `series[].type: 'synSegment'` (custom Synergy) |
+| Type             | How to use: ECharts config                                                                                                                      | How to use: presets                         |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| Line chart       | `series[].type: 'line'` (standard ECharts)                                                                                                      | `seriesLine(...)`                           |
+| Area chart       | `series[].type: 'line'` with `areaStyle` (standard ECharts)                                                                                     | `seriesArea(...)`                           |
+| Area range chart | Two stacked `series[].type: 'line'` series: lower values and upper-minus-lower values, with `areaStyle` on the second series (standard ECharts) | `seriesAreaRange(...)`                      |
+| Bar chart        | `series[].type: 'bar'` (standard ECharts)                                                                                                       | `seriesBar(...)` or `seriesBarStacked(...)` |
+| Histogram        | `series[].type: 'bar'` with `barMaxWidth: '100%'` (standard ECharts)                                                                            | `seriesHistogram(...)`                      |
+| Gauge chart      | `series[].type: 'synGauge'` (custom Synergy)                                                                                                    | `seriesGauge(...)`                          |
+| Donut chart      | `series[].type: 'synDonut'` (custom Synergy)                                                                                                    | `seriesDonut(...)`                          |
+| Segment chart    | `series[].type: 'synSegment'` (custom Synergy)                                                                                                  | `seriesSegment(...)`                        |
 
 If you want to use ECharts features beyond what is listed above, you can register the required plugins yourself.
 But keep in mind that they are not Synergy-approved and do not have Synergy styling. The registration needs to be done **before** the component is initialized.
@@ -692,9 +872,9 @@ To register echarts functionalities do following or have a closer look at the [e
 
 ```js
 import { use } from "echarts/core.js";
-import { BarChart } from "echarts/charts.js";
+import { ScatterChart } from "echarts/charts.js";
 
-use([BarChart]);
+use([ScatterChart]);
 ```
 
 ---

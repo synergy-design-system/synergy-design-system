@@ -1,4 +1,5 @@
 import synergyConfig from '@synergy-design-system/eslint-config-syn/ts';
+import { fixupPluginRules } from '@eslint/compat';
 import reactPlugin from 'eslint-plugin-react';
 import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
@@ -8,7 +9,7 @@ export default [
   // React-specific configuration for demo application
   {
     plugins: {
-      react: reactPlugin,
+      react: fixupPluginRules(reactPlugin),
       'react-hooks': reactHooksPlugin,
       'jsx-a11y': jsxA11yPlugin,
     },

@@ -23,7 +23,7 @@ describe('<syn-input>', () => {
         decrementButton?.dispatchEvent(new PointerEvent('pointerdown'));
         await waitUntil(() => focusHandler.calledOnce);
     
-        expect(focusHandler).to.have.been.calledOnce;
+        expect(focusHandler.callCount).to.equal(1);
       }); 
 
       it('should focus the input when clicking on the increment button', async () => {
@@ -35,7 +35,7 @@ describe('<syn-input>', () => {
         incrementButton?.dispatchEvent(new PointerEvent('pointerdown'));
         await waitUntil(() => focusHandler.calledOnce);
     
-        expect(focusHandler).to.have.been.calledOnce;
+        expect(focusHandler.callCount).to.equal(1);
       });
 
       it('should disable the stepper buttons if element is disabled', async () => {
@@ -123,16 +123,16 @@ describe('<syn-input>', () => {
     
           decrementButton.dispatchEvent(new PointerEvent('pointerdown'));
           document.dispatchEvent(new PointerEvent('pointerup'));
-          expect(inputHandler).to.have.been.calledOnce;
-          expect(changeHandler).to.have.been.calledOnce;
+          expect(inputHandler.callCount).to.equal(1);
+          expect(changeHandler.callCount).to.equal(1);
           
           inputHandler.resetHistory();
           changeHandler.resetHistory();
     
           incrementButton.dispatchEvent(new PointerEvent('pointerdown'));
           document.dispatchEvent(new PointerEvent('pointerup'));
-          expect(inputHandler).to.have.been.calledOnce;
-          expect(changeHandler).to.have.been.calledOnce;
+          expect(inputHandler.callCount).to.equal(1);
+          expect(changeHandler.callCount).to.equal(1);
         });
 
         it('should spin the syn-input event when the user presses the increment button a longer time', async () => {
@@ -145,13 +145,13 @@ describe('<syn-input>', () => {
     
           incrementButton.dispatchEvent(new PointerEvent('pointerdown'));
           await aTimeout(1000);
-          expect(changeHandler).to.have.not.been.called;
+          expect(changeHandler.callCount).to.equal(0);
           expect(inputHandler.callCount).to.be.greaterThan(1);
     
           document.dispatchEvent(new PointerEvent('pointerup'));
     
           // only emit change event after pointer up
-          expect(changeHandler).to.have.been.calledOnce;
+          expect(changeHandler.callCount).to.equal(1);
         });
 
         it('should spin the syn-input event when the user presses the decrement button a longer time', async () => {
@@ -164,13 +164,13 @@ describe('<syn-input>', () => {
     
           decrementButton.dispatchEvent(new PointerEvent('pointerdown'));
           await aTimeout(1000);
-          expect(changeHandler).to.have.not.been.called;
+          expect(changeHandler.callCount).to.equal(0);
           expect(inputHandler.callCount).to.be.greaterThan(1);
     
           document.dispatchEvent(new PointerEvent('pointerup'));
     
           // only emit change event after pointer up
-          expect(changeHandler).to.have.been.calledOnce;
+          expect(changeHandler.callCount).to.equal(1);
         });
 
         it('should decrement if decrement button is clicked after syn-input was removed and added to DOM again ', async () => {

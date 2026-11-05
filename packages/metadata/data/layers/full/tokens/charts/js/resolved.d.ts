@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.29.1
+ * @synergy-design-system/tokens version 3.32.1
  * SICK Global UX Foundation
  */
 
@@ -27,6 +27,7 @@ export declare const ResolvedTokens: {
   SynChartDisabledColor: ResolvedTokenModes;
   SynChartGridLinesColor: ResolvedTokenModes;
   SynChartGridLinesColorEmphasize: ResolvedTokenModes;
+  SynChartOpacity20: ResolvedTokenModes;
   SynChartPlotLineColor: ResolvedTokenModes;
   SynChartRangeSelectionColor: ResolvedTokenModes;
   SynChartSequential01_10: ResolvedTokenModes;
@@ -149,6 +150,7 @@ export declare const ResolvedTokens: {
   SynChartSequentialStatusWarning80: ResolvedTokenModes;
   SynChartSequentialStatusWarning90: ResolvedTokenModes;
   SynChartSequentialStatusWarning100: ResolvedTokenModes;
+  SynChartTooltipBackgroundColor: ResolvedTokenModes;
   SynChartTooltipColor: ResolvedTokenModes;
   SynChartTrackColor: ResolvedTokenModes;
 };

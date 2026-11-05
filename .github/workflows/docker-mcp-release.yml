@@ -1,9 +1,7 @@
 name: Release MCP Docker Image
 
 on:
-  # Temporary pre-merge test route; requires an explicit commit-message marker.
-  push:
-    branches: ["chore/1398-mcp-azure-pipeline"]
+  workflow_dispatch:
   workflow_run:
     workflows: ["Release new version"]
     branches: ["main"]
@@ -20,16 +18,15 @@ concurrency:
 
 jobs:
   publish:
-    # Real releases or explicitly requested branch tests; no manual/dry releases.
+    # Manual runs must target main; automatic runs must be successful main pushes.
     if: >-
-      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push') ||
-      (github.event_name == 'push' && contains(github.event.head_commit.message, '[deploy mcp]'))
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
     # head_sha still points at the pre-bump commit, so build from main HEAD
     uses: ./.github/workflows/docker-mcp.yml
     with:
       push_image: true
-      dev_image: ${{ github.event_name == 'push' }}
-      ref: ${{ github.event_name == 'push' && github.sha || 'main' }}
+      ref: main
     secrets: inherit
 
   deploy_mcp:

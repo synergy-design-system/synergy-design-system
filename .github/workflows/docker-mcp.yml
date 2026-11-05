@@ -27,11 +27,6 @@ on:
         required: false
         default: false
         type: boolean
-      dev_image:
-        description: 'Publish only a dev-<commit> tag, leaving release tags unchanged'
-        required: false
-        default: false
-        type: boolean
       ref:
         description: 'Git ref to build from'
         required: false
@@ -67,15 +62,12 @@ jobs:
         id: mode
         env:
           PUSH_INPUT: ${{ inputs.push_image }}
-          DEV_INPUT: ${{ inputs.dev_image }}
         run: |
           set -euo pipefail
           if [ "${PUSH_INPUT}" = "true" ]; then
             echo "push=true" >> "$GITHUB_OUTPUT"
-            echo "dev=${DEV_INPUT:-false}" >> "$GITHUB_OUTPUT"
           else
             echo "push=false" >> "$GITHUB_OUTPUT"
-            echo "dev=false" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Setup Node.js and pnpm
@@ -87,19 +79,13 @@ jobs:
         id: version
         run: echo "version=$(node -p "require('./packages/mcp/package.json').version")" >> "$GITHUB_OUTPUT"
 
-      # Development builds cannot claim latest/<version>
       - name: Resolve image tags
         id: tags
         env:
-          DEV: ${{ steps.mode.outputs.dev }}
           VERSION: ${{ steps.version.outputs.version }}
         run: |
           set -euo pipefail
-          if [ "${DEV}" = "true" ]; then
-            echo "list=dev-$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
-          else
-            echo "list=${VERSION} latest" >> "$GITHUB_OUTPUT"
-          fi
+          echo "list=${VERSION} latest" >> "$GITHUB_OUTPUT"
 
       - name: Pack release tarballs
         run: pnpm -C packages/mcp run docker:pack

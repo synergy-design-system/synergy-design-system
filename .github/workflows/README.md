@@ -54,7 +54,7 @@ The automatic sequence is:
 3. Only after the entire publish job succeeds, `deploy_mcp` updates the existing Azure Container App using the published GHCR image's digest.
 4. Deployment waits up to 10 minutes for the new revision to become healthy. A failed update or readiness timeout fails the job; no automatic rollback is performed.
 
-The digest identifies the exact pushed image, even if `latest` changes later. Failed or skipped publishing never triggers deployment. Ordinary feature-branch builds and manual runs of `docker-mcp.yml` do not deploy; the explicit pre-merge test route below is the exception. The release workflow serializes publishing and deployment with `cancel-in-progress: false`, so a new release does not cancel an active deployment. GitHub concurrency keeps only one pending run and does not guarantee queue order.
+The digest identifies the exact pushed image, even if `latest` changes later. Failed or skipped publishing never triggers deployment. Automatic runs start only after successful push-triggered runs of "Release new version" on `main`; dry runs do not deploy. A manual run is also available on `main` to rebuild, publish and deploy the current MCP package without starting a package release. The release workflow serializes publishing and deployment with `cancel-in-progress: false`, so a new release does not cancel an active deployment. GitHub concurrency keeps only one pending run and does not guarantee queue order.
 
 ### One-time setup
 
@@ -80,20 +80,6 @@ The Container App must be able to pull from GHCR: public packages require no cre
 
 ### Verify the first deployment
 
-After merging the workflow changes, watch **Actions > Release MCP Docker Image** following a real package release. The publish job must finish before **Deploy MCP to Azure** starts. Its summary records the image digest and healthy revision. In the Azure portal, verify that this revision is active and receiving traffic, then connect an MCP client to `https://<app-hostname>/mcp`.
+After merging the workflow changes, go to **Actions > Release MCP Docker Image > Run workflow** and select `main` to retry the current main version, or watch for a successful push-triggered run of "Release new version" on `main`. A manual run rebuilds and publishes the image before deploying; it does not start a package release. The publish job must finish before **Deploy MCP to Azure** starts. Its summary records the image digest and healthy revision. In the Azure portal, verify that this revision is active and receiving traffic, then connect an MCP client to `https://<app-hostname>/mcp`.
 
 If authentication fails, check the OIDC subject and the three Azure identity variables. Authorization failures indicate missing Azure role assignments. Image pull failures usually indicate GHCR visibility or registry credential issues. For readiness failures, inspect the revision's container logs and ingress/probe settings in Azure.
-
-### Test before merging
-
-The temporary push trigger in `docker-mcp-release.yml` allows deployment from **only** `chore/1398-mcp-azure-pipeline`, and only when the pushed head commit message contains `[deploy mcp]`. This updates the same Azure app as a production release.
-
-1. In **Azure portal > Microsoft Entra ID > App registrations**, find the application matching `AZURE_CLIENT_ID`. Under **Certificates & secrets > Federated credentials**, add a credential for **GitHub Actions deploying Azure resources**, organization `synergy-design-system`, repository `synergy-design-system`, entity type **Branch**, branch `chore/1398-mcp-azure-pipeline`. Keep the existing `main` credential. The new subject must be `repo:synergy-design-system/synergy-design-system:ref:refs/heads/chore/1398-mcp-azure-pipeline`, with the same issuer and audience as above.
-2. Ensure the five repository Actions variables are configured.
-3. Commit the workflow changes on that branch with a message such as `ci: test Azure MCP deployment [deploy mcp]`, then push the branch. Alternatively, after committing the changes, create an empty commit with that marker to request a test.
-4. Watch **Actions > Release MCP Docker Image**. It checks out the exact pushed commit, builds and smoke tests it, publishes only `dev-<full-commit-sha>` tags, and deploys the GHCR digest. Release version tags and `latest` remain unchanged. The optional Docker Hub mirror also receives only the development tag.
-5. Verify the healthy revision and test the public `/mcp` endpoint with an MCP client.
-
-This uses a push trigger because adding `workflow_dispatch` only on a feature branch does not make a new manual workflow trigger available before it exists on the default branch. The separate ordinary **MCP Docker Image** check may also run on this push; it does not publish or deploy.
-
-Before merging, remove the temporary `push` trigger and branch-test condition from `docker-mcp-release.yml`, restore the publish inputs to `ref: main` without `dev_image`, and remove the branch federated credential in Azure. The reusable `dev_image` input can remain for future controlled tests. The test image remains deployed until another deployment replaces it; it does not automatically revert.

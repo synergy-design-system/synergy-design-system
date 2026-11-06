@@ -44,6 +44,7 @@ A date picker component for selecting dates.
 - Keep incomplete or invalid entries visible so users can correct them rather than starting again.
 - Explain what needs to change with a specific message, such as "Choose a date within the next 30 days", rather than only stating "Invalid date".
 - Do not accept an incomplete date or date range as a finished answer when users submit the form.
+- Wrap the date picker in syn-validate for consistent inline or tooltip validation messages, including custom messages.
 
 ## Accessibility
 
@@ -56,3 +57,4 @@ A date picker component for selecting dates.
 ## Related Components
 
 - syn-calendar
+- syn-validate

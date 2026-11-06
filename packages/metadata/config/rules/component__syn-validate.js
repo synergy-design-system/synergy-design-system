@@ -11,6 +11,7 @@ export default {
   related: {
     components: [
       'syn-input',
+      'syn-date-picker',
       'syn-select',
       'syn-textarea',
       'syn-file',
@@ -46,6 +47,14 @@ export default {
       ],
       id: 'timing',
       name: 'Validation Timing',
+    },
+    {
+      content: [
+        'Wrap a single syn-date-picker to display its required, date constraint, or custom validation messages.',
+        'Use inline or tooltip validation to show feedback without the native browser popup. Tooltip feedback is anchored to the visible date entry group.',
+      ],
+      id: 'date_picker',
+      name: 'Date Picker Validation',
     },
   ],
   useCases: [

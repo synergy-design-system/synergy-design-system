@@ -13,6 +13,7 @@ export default {
   related: {
     components: [
       'syn-calendar',
+      'syn-validate',
     ],
   },
   usageGuidelines: [
@@ -60,6 +61,7 @@ export default {
         'Keep incomplete or invalid entries visible so users can correct them rather than starting again.',
         'Explain what needs to change with a specific message, such as "Choose a date within the next 30 days", rather than only stating "Invalid date".',
         'Do not accept an incomplete date or date range as a finished answer when users submit the form.',
+        'Wrap the date picker in syn-validate for consistent inline or tooltip validation messages, including custom messages.',
       ],
       id: 'validation_and_feedback',
       name: 'Validation and Feedback',

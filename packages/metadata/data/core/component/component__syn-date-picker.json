@@ -93,7 +93,8 @@
       "component": "syn-date-picker",
       "related": {
         "components": [
-          "syn-calendar"
+          "syn-calendar",
+          "syn-validate"
         ]
       },
       "usageGuidelines": [
@@ -140,7 +141,8 @@
             "Give users time to finish entering the date before presenting an error. A partially entered date is not necessarily a mistake.",
             "Keep incomplete or invalid entries visible so users can correct them rather than starting again.",
             "Explain what needs to change with a specific message, such as \"Choose a date within the next 30 days\", rather than only stating \"Invalid date\".",
-            "Do not accept an incomplete date or date range as a finished answer when users submit the form."
+            "Do not accept an incomplete date or date range as a finished answer when users submit the form.",
+            "Wrap the date picker in syn-validate for consistent inline or tooltip validation messages, including custom messages."
           ],
           "id": "validation_and_feedback",
           "name": "Validation and Feedback"

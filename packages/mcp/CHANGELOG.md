@@ -1,5 +1,20 @@
 # Changelog
 
+## 4.27.0
+
+### Minor Changes
+
+- [#1414](https://github.com/synergy-design-system/synergy-design-system/pull/1414) [`096a589`](https://github.com/synergy-design-system/synergy-design-system/commit/096a5894a704ef2abdab69628ed1e4ee18bf36e9) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-11-10
+  
+  feat: ✨ Enable stdout logging per default for docker containers ([#1413](https://github.com/synergy-design-system/synergy-design-system/issues/1413))
+  
+  This release enables `--log-stdout` and toon compression per default for the Synergy Docker container.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @synergy-design-system/metadata@4.27.0
+
 ## 4.26.0
 
 ### Minor Changes

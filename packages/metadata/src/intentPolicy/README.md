@@ -53,14 +53,14 @@ Recommendation ranking:
 
 Date selection intents:
 
-| Intent | Preferred component | Selection |
-| --- | --- | --- |
-| `input.date.day` | `syn-date-picker` | Single date field |
-| `input.date.range` | `syn-date-picker` | Continuous date-range field |
-| `input.date.multiple` | `syn-date-picker` | Multiple independent dates in a field |
-| `input.date.inline.day` | `syn-calendar` | Single date in a persistent calendar |
-| `input.date.inline.range` | `syn-calendar` | Continuous range in a persistent calendar |
-| `input.date.inline.multiple` | `syn-calendar` | Independent dates in a persistent calendar |
+| Intent                       | Preferred component | Selection                                  |
+| ---------------------------- | ------------------- | ------------------------------------------ |
+| `input.date.day`             | `syn-date-picker`   | Single date field                          |
+| `input.date.range`           | `syn-date-picker`   | Continuous date-range field                |
+| `input.date.multiple`        | `syn-date-picker`   | Multiple independent dates in a field      |
+| `input.date.inline.day`      | `syn-calendar`      | Single date in a persistent calendar       |
+| `input.date.inline.range`    | `syn-calendar`      | Continuous range in a persistent calendar  |
+| `input.date.inline.multiple` | `syn-calendar`      | Independent dates in a persistent calendar |
 
 `input.date.day` also supports `syn-input` with `type="date"` at a lower priority. Explicit native-input resolution remains supported; recommending date-picker does not migrate existing applications. Native time and local date-time intents are unchanged.
 

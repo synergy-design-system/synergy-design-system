@@ -23,6 +23,16 @@ const translation: Translation = {
   showPassword: 'Şifreyi göster',
 
   // Synergy custom translations start
+  calendarClear: 'Temizle',
+  calendarNextMonth: 'Sonraki ay',
+  calendarNextYear: 'Sonraki yıl',
+  calendarNextYearBlock: 'Sonraki 12 yıl',
+  calendarPreviousMonth: 'Önceki ay',
+  calendarPreviousYear: 'Önceki yıl',
+  calendarPreviousYearBlock: 'Önceki 12 yıl',
+  calendarThisMonth: 'Bu ay',
+  calendarThisYear: 'Bu yıl',
+  calendarToday: 'Bugün',
   closeMenu: 'Menüyü kapat',
   critical: 'Kritik',
   danger: 'Tehlike',

@@ -161,12 +161,11 @@ export const DemoForm = () => {
           type="tel"
         />
 
-        <syn-input
+        <syn-date-picker
           id="input-date"
           label="Date of birth"
           name="date"
           value={formData.date}
-          type="date"
         />
 
         <syn-combobox

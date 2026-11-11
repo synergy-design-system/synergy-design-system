@@ -134,11 +134,10 @@ const synChange = () => {
         v-model="formData.phone"
       />
 
-      <syn-input
+      <syn-date-picker
         id="input-date"
         label="Date of birth"
         name="date"
-        type="date"
         v-model="formData.date"
       />
 

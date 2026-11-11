@@ -330,6 +330,7 @@ export const createFrameworkIndex = (
  */
 export const TWOWAY_BINDING_ENABLED_ELEMENTS = [
   'checkbox',
+  'date-picker',
   'file',
   'input',
   'radio-group',

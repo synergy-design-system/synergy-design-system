@@ -23,6 +23,16 @@ const translation: Translation = {
   showPassword: '顯示密碼',
 
   // Synergy custom translations start
+  calendarClear: '清除',
+  calendarNextMonth: '下個月',
+  calendarNextYear: '下一年',
+  calendarNextYearBlock: '後12年',
+  calendarPreviousMonth: '上個月',
+  calendarPreviousYear: '上一年',
+  calendarPreviousYearBlock: '前12年',
+  calendarThisMonth: '本月',
+  calendarThisYear: '今年',
+  calendarToday: '今天',
   closeMenu: '關閉選單',
   critical: '嚴重',
   danger: '危險',

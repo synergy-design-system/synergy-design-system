@@ -7,6 +7,7 @@
     "component:syn-checkbox",
     "component:syn-checkbox-group",
     "component:syn-combobox",
+    "component:syn-date-picker",
     "component:syn-dropdown",
     "component:syn-file",
     "component:syn-fieldset",

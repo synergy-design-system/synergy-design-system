@@ -235,6 +235,7 @@ describe('<syn-chart>', () => {
       previousBodyClass = document.body.className;
     });
 
+    // eslint-disable-next-line playwright/no-duplicate-hooks -- Mocha's beforeEach/afterEach are distinct hooks.
     afterEach(() => {
       document.body.className = previousBodyClass;
     });

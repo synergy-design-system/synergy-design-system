@@ -34,6 +34,10 @@ export const DEFAULT_SYN_BINDINGS: SynBindingsMap = {
     event: 'syn-input',
     prop: 'value',
   },
+  'syn-date-picker': {
+    event: 'syn-input',
+    prop: 'value',
+  },
   'syn-file': {
     event: 'syn-input',
     prop: 'files',

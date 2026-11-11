@@ -952,6 +952,34 @@
       }
     }
   },
+  "date-picker": {
+    "border-radius": {
+      "type": "sizing",
+      "value": "{border-radius.none}"
+    },
+    "color": {
+      "type": "color",
+      "value": "{color.primary.600}"
+    },
+    "color-range": {
+      "type": "color",
+      "value": "{color.primary.50}"
+    },
+    "gradient_end": {
+      "type": "color",
+      "value": "rgba(255, 255, 255, 0.00)"
+    },
+    "gradient_start": {
+      "type": "color",
+      "value": "{panel.background.color}"
+    },
+    "shadow": {
+      "end": {
+        "type": "color",
+        "value": "rgba(224, 241, 254, 0.00)"
+      }
+    }
+  },
   "details": {
     "open-rotation": {
       "type": "string",

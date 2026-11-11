@@ -53,7 +53,9 @@ export declare const ResolvedTokens: {
   SynBadgeSuccessColorText: ResolvedTokenModes;
   SynBadgeWarningColorBackground: ResolvedTokenModes;
   SynBadgeWarningColorText: ResolvedTokenModes;
+  SynBody2xSmallBold: ResolvedTokenModes;
   SynBody2xSmallRegular: ResolvedTokenModes;
+  SynBody2xSmallSemibold: ResolvedTokenModes;
   SynBodyLargeBold: ResolvedTokenModes;
   SynBodyLargeRegular: ResolvedTokenModes;
   SynBodyLargeSemibold: ResolvedTokenModes;
@@ -235,6 +237,12 @@ export declare const ResolvedTokens: {
   SynColorWarning800: ResolvedTokenModes;
   SynColorWarning900: ResolvedTokenModes;
   SynColorWarning950: ResolvedTokenModes;
+  SynDatePickerBorderRadius: ResolvedTokenModes;
+  SynDatePickerColor: ResolvedTokenModes;
+  SynDatePickerColorRange: ResolvedTokenModes;
+  SynDatePickerGradientEnd: ResolvedTokenModes;
+  SynDatePickerGradientStart: ResolvedTokenModes;
+  SynDatePickerShadowEnd: ResolvedTokenModes;
   SynDetailsOpenRotation: ResolvedTokenModes;
   SynDimensionBase: ResolvedTokenModes;
   SynDurationExtraFast: ResolvedTokenModes;

@@ -23,6 +23,16 @@ const translation: Translation = {
   showPassword: '비밀번호 표시',
 
   // Synergy custom translations start
+  calendarClear: '지우기',
+  calendarNextMonth: '다음 달',
+  calendarNextYear: '다음 해',
+  calendarNextYearBlock: '다음 12년',
+  calendarPreviousMonth: '이전 달',
+  calendarPreviousYear: '이전 해',
+  calendarPreviousYearBlock: '이전 12년',
+  calendarThisMonth: '이번 달',
+  calendarThisYear: '올해',
+  calendarToday: '오늘',
   closeMenu: '메뉴 닫기',
   critical: '심각',
   danger: '위험',

@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import '../../../dist/synergy.js';
 import {
-  aTimeout,
   expect,
   fixture,
   html,
@@ -452,10 +451,6 @@ describe('<syn-side-nav>', () => {
         </syn-nav-item> 
       </syn-side-nav>
     `);
-
-    // For the firefox fix, we needed to move the `handleSlotChange` of the syn-nav-item into
-    // the next update cycle. Therefore we need to wait
-    await aTimeout(0);
 
     const firstNested = sideNav.querySelector('#first') as SynNavItem;
     const secondNested = sideNav.querySelector('#second') as SynNavItem;

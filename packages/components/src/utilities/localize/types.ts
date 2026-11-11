@@ -5,6 +5,16 @@ export interface Translation {
   $name: string; // e.g. English, Español
   $dir: 'ltr' | 'rtl';
 
+  calendarClear: string;
+  calendarNextMonth: string;
+  calendarNextYear: string;
+  calendarNextYearBlock: string;
+  calendarPreviousMonth: string;
+  calendarPreviousYear: string;
+  calendarPreviousYearBlock: string;
+  calendarThisMonth: string;
+  calendarThisYear: string;
+  calendarToday: string;
   closeMenu: string;
   critical: string;
   danger: string;

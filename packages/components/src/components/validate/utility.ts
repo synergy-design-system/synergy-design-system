@@ -104,6 +104,7 @@ export const alertSizeForInput = (element?: HTMLElement) => {
 const ELEMENT_SELECTORS = {
   'syn-checkbox': 'input',
   'syn-combobox': '.combobox__value-input',
+  'syn-date-picker': '.input__control',
   'syn-file': 'input',
   'syn-input': 'input',
   'syn-radio-group': 'input',

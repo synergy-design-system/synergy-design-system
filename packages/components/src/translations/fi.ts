@@ -23,6 +23,16 @@ const translation: Translation = {
   showPassword: 'Näytä salasana',
 
   // Synergy custom translations start
+  calendarClear: 'Tyhjennä',
+  calendarNextMonth: 'Seuraava kuukausi',
+  calendarNextYear: 'Seuraava vuosi',
+  calendarNextYearBlock: 'Seuraavat 12 vuotta',
+  calendarPreviousMonth: 'Edellinen kuukausi',
+  calendarPreviousYear: 'Edellinen vuosi',
+  calendarPreviousYearBlock: 'Edelliset 12 vuotta',
+  calendarThisMonth: 'Tämä kuukausi',
+  calendarThisYear: 'Tämä vuosi',
+  calendarToday: 'Tänään',
   closeMenu: 'Sulje valikko',
   critical: 'Kriittinen',
   danger: 'Vaara',

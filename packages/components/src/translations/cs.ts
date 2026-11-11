@@ -32,6 +32,16 @@ const translation: Translation = {
   showPassword: 'Zobrazit heslo',
 
   // Synergy custom translations start
+  calendarClear: 'Vymazat',
+  calendarNextMonth: 'Další měsíc',
+  calendarNextYear: 'Další rok',
+  calendarNextYearBlock: 'Dalších 12 let',
+  calendarPreviousMonth: 'Předchozí měsíc',
+  calendarPreviousYear: 'Předchozí rok',
+  calendarPreviousYearBlock: 'Předchozích 12 let',
+  calendarThisMonth: 'Tento měsíc',
+  calendarThisYear: 'Tento rok',
+  calendarToday: 'Dnes',
   closeMenu: 'Zavřít menu',
   critical: 'Kritické',
   danger: 'Nebezpečí',

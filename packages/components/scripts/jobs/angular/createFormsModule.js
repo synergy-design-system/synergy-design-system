@@ -19,6 +19,7 @@ const fields = [
  * @var {string[]} defaultSelectors
  */
 const defaultSelectors = [
+  'syn-date-picker',
   'syn-dropdown',
   'syn-input',
   'syn-textarea',

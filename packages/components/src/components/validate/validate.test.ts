@@ -10,6 +10,7 @@ import * as utils from '../../../dist/components/validate/utility.js';
 import type SynValidate from './validate.js';
 import type SynCheckbox from '../checkbox/checkbox.component.js';
 import type SynCombobox from '../combobox/combobox.component.js';
+import type SynDatePicker from '../date-picker/date-picker.component.js';
 import type SynFile from '../file/file.component.js';
 import type SynInput from '../input/input.component.js';
 import type SynRadioGroup from '../radio-group/radio-group.component.js';
@@ -129,6 +130,18 @@ describe('<syn-validate>', () => {
       it('should return the input of the shadow root if a syn-combobox is provided', async () => {
         const el = await fixture<SynCombobox>(html`<syn-combobox></syn-combobox>`);
         expect(utils.getActualInputElement(el)).to.have.class('combobox__value-input');
+      });
+
+      ['single', 'range', 'multiple'].forEach(mode => {
+        it(`should return the visible date entry group for a ${mode} syn-date-picker`, async () => {
+          const el = await fixture<SynDatePicker>(html`<syn-date-picker mode=${mode}></syn-date-picker>`);
+          const anchor = utils.getActualInputElement(el)!;
+
+          expect(anchor).to.equal(el.shadowRoot!.querySelector('.input__control'));
+          expect(anchor).to.have.attribute('role', 'group');
+          expect(anchor.getBoundingClientRect().height).to.be.greaterThan(0);
+          expect(anchor).not.to.equal(el.shadowRoot!.querySelector('.value-input'));
+        });
       });
 
       it('should return the input of the shadow root if a syn-file is provided', async () => {
@@ -660,6 +673,70 @@ describe('<syn-validate>', () => {
       await aTimeout(100);
 
       expect(alert).to.have.attribute('size', 'small');
+    });
+  });
+
+  describe('when using syn-date-picker', () => {
+    ['native', 'inline', 'tooltip'].forEach(variant => {
+      it(`should validate a required date picker with variant="${variant}"`, async () => {
+        const el = await fixture<SynValidate>(html`
+          <syn-validate variant=${variant} on="live">
+            <syn-date-picker label="Delivery date" required></syn-date-picker>
+          </syn-validate>
+        `);
+        const picker = el.querySelector('syn-date-picker')!;
+
+        expect(picker.reportValidity()).to.equal(false);
+        await picker.updateComplete;
+        await el.updateComplete;
+
+        expect(el.getValidity()).to.equal(false);
+        expectBrowserValidationMessage(el.validationMessage, picker.validationMessage);
+        expect(picker.shadowRoot!.activeElement?.getAttribute('role')).to.equal('spinbutton');
+
+        if (variant === 'inline') {
+          const alert = el.shadowRoot!.querySelector('syn-alert')!;
+          expect(alert.open).to.equal(true);
+          expect(alert.textContent).to.contain(picker.validationMessage);
+        } else if (variant === 'tooltip') {
+          const tooltip = el.shadowRoot!.querySelector('syn-tooltip')!;
+          expect(tooltip.anchor === picker.shadowRoot!.querySelector('.input__control')).to.equal(true);
+          expect(tooltip.open).to.equal(true);
+          expect(tooltip.content).to.equal(picker.validationMessage);
+        }
+
+        picker.value = '2026-11-05';
+        await picker.updateComplete;
+        picker.dispatchEvent(new CustomEvent('syn-input', { bubbles: true }));
+        await picker.updateComplete;
+        await el.updateComplete;
+
+        expect(el.getValidity()).to.equal(true);
+        expect(el.validationMessage).to.equal('');
+        expect(el.shadowRoot!.querySelector('syn-alert')).to.equal(null);
+        if (variant === 'tooltip') {
+          expect(el.shadowRoot!.querySelector('syn-tooltip')!.open).to.equal(false);
+        }
+      });
+    });
+
+    it('should forward custom validation messages to the date picker', async () => {
+      const el = await fixture<SynValidate>(html`
+        <syn-validate variant="inline" custom-validation-message="Choose an available delivery date">
+          <syn-date-picker label="Delivery date" value="2026-11-05"></syn-date-picker>
+        </syn-validate>
+      `);
+      const picker = el.querySelector('syn-date-picker')!;
+
+      expect(picker.reportValidity()).to.equal(false);
+      await el.updateComplete;
+      expect(el.validationMessage).to.equal('Choose an available delivery date');
+      expect(picker.validationMessage).to.equal(el.validationMessage);
+
+      el.customValidationMessage = '';
+      await el.updateComplete;
+      expect(picker.validity.valid).to.equal(true);
+      expect(el.validationMessage).to.equal('');
     });
   });
 

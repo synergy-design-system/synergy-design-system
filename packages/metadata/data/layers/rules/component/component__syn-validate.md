@@ -32,6 +32,11 @@ and showing the validation message in a consistent, user defined way.
 - Use submit time validation to reduce interruption in long forms.
 - Support custom validation events when integrating non-standard controls.
 
+### Date Picker Validation
+
+- Wrap a single syn-date-picker to display its required, date constraint, or custom validation messages.
+- Use inline or tooltip validation to show feedback without the native browser popup. Tooltip feedback is anchored to the visible date entry group.
+
 ## Accessibility
 
 - Validation messages must be text based and clearly associated with the target field.
@@ -41,6 +46,7 @@ and showing the validation message in a consistent, user defined way.
 ## Related Components
 
 - syn-input
+- syn-date-picker
 - syn-select
 - syn-textarea
 - syn-file

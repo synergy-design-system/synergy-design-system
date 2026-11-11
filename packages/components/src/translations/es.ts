@@ -31,6 +31,16 @@ const translation: Translation = {
   showPassword: 'Mostrar contraseña',
 
   // Synergy custom translations start
+  calendarClear: 'Borrar',
+  calendarNextMonth: 'Mes siguiente',
+  calendarNextYear: 'Año siguiente',
+  calendarNextYearBlock: 'Próximos 12 años',
+  calendarPreviousMonth: 'Mes anterior',
+  calendarPreviousYear: 'Año anterior',
+  calendarPreviousYearBlock: '12 años anteriores',
+  calendarThisMonth: 'Este mes',
+  calendarThisYear: 'Este año',
+  calendarToday: 'Hoy',
   closeMenu: 'Cerrar menú',
   critical: 'Crítico',
   danger: 'Peligro',

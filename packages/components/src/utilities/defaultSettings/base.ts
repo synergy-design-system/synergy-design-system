@@ -11,9 +11,11 @@ import type SynAlert from "../../components/alert/alert.js";
 import type SynBadge from "../../components/badge/badge.js";
 import type SynButtonGroup from "../../components/button-group/button-group.js";
 import type SynButton from "../../components/button/button.js";
+import type SynCalendar from "../../components/calendar/calendar.js";
 import type SynCheckboxGroup from "../../components/checkbox-group/checkbox-group.js";
 import type SynCheckbox from "../../components/checkbox/checkbox.js";
 import type SynCombobox from "../../components/combobox/combobox.js";
+import type SynDatePicker from "../../components/date-picker/date-picker.js";
 import type SynDetails from "../../components/details/details.js";
 import type SynFile from "../../components/file/file.js";
 import type SynIconButton from "../../components/icon-button/icon-button.js";
@@ -72,9 +74,11 @@ export type ComponentNamesWithDefaultValues =
   | "SynBadge"
   | "SynButton"
   | "SynButtonGroup"
+  | "SynCalendar"
   | "SynCheckbox"
   | "SynCheckboxGroup"
   | "SynCombobox"
+  | "SynDatePicker"
   | "SynDetails"
   | "SynFile"
   | "SynIconButton"
@@ -122,9 +126,11 @@ export type SynDefaultSettings = {
     SynAlert?: AllowedValueForDefaultSetting<SynAlert, "size">;
     SynButton?: AllowedValueForDefaultSetting<SynButton, "size">;
     SynButtonGroup?: AllowedValueForDefaultSetting<SynButtonGroup, "size">;
+    SynCalendar?: AllowedValueForDefaultSetting<SynCalendar, "size">;
     SynCheckbox?: AllowedValueForDefaultSetting<SynCheckbox, "size">;
     SynCheckboxGroup?: AllowedValueForDefaultSetting<SynCheckboxGroup, "size">;
     SynCombobox?: AllowedValueForDefaultSetting<SynCombobox, "size">;
+    SynDatePicker?: AllowedValueForDefaultSetting<SynDatePicker, "size">;
     SynDetails?: AllowedValueForDefaultSetting<SynDetails, "size">;
     SynFile?: AllowedValueForDefaultSetting<SynFile, "size">;
     SynIconButton?: AllowedValueForDefaultSetting<SynIconButton, "size">;
@@ -173,9 +179,11 @@ export const defaultSettings: SynDefaultSettings = {
     SynAlert: "medium",
     SynButton: "medium",
     SynButtonGroup: "medium",
+    SynCalendar: "medium",
     SynCheckbox: "medium",
     SynCheckboxGroup: "medium",
     SynCombobox: "medium",
+    SynDatePicker: "medium",
     SynDetails: "medium",
     SynFile: "medium",
     SynIconButton: "inherit",
@@ -222,9 +230,11 @@ export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
     SynAlert: "medium",
     SynButton: "medium",
     SynButtonGroup: "medium",
+    SynCalendar: "medium",
     SynCheckbox: "medium",
     SynCheckboxGroup: "medium",
     SynCombobox: "medium",
+    SynDatePicker: "medium",
     SynDetails: "medium",
     SynFile: "medium",
     SynIconButton: "inherit",

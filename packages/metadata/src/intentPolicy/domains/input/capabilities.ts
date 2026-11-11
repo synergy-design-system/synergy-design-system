@@ -7,6 +7,14 @@ export const inputCapabilities: IntentCapability[] = [
   },
   {
     categories: ['input'],
+    target: { id: 'component:syn-date-picker', kind: 'component', name: 'syn-date-picker' },
+  },
+  {
+    categories: ['input'],
+    target: { id: 'component:syn-calendar', kind: 'component', name: 'syn-calendar' },
+  },
+  {
+    categories: ['input'],
     target: { id: 'component:syn-textarea', kind: 'component', name: 'syn-textarea' },
   },
   {

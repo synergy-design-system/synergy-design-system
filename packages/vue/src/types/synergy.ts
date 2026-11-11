@@ -11,10 +11,12 @@ import type {
   SynBreadcrumbItem,
   SynButton,
   SynButtonGroup,
+  SynCalendar,
   SynCard,
   SynCheckbox,
   SynCheckboxGroup,
   SynCombobox,
+  SynDatePicker,
   SynDetails,
   SynDialog,
   SynDivider,
@@ -56,6 +58,7 @@ import type {
   SynValidate,
   SynAfterHideEvent,
   SynAfterShowEvent,
+  SynBeforeChangeEvent,
   SynBlurEvent,
   SynBurgerMenuClosedEvent,
   SynBurgerMenuHiddenEvent,
@@ -109,6 +112,15 @@ type SynButtonEvents = [
 
 type SynButtonGroupEvents = [];
 
+type SynCalendarEvents = [
+  ['syn-blur', SynBlurEvent],
+  ['syn-before-change', SynBeforeChangeEvent],
+  ['syn-change', SynChangeEvent],
+  ['syn-clear', SynClearEvent],
+  ['syn-focus', SynFocusEvent],
+  ['syn-input', SynInputEvent],
+];
+
 type SynCardEvents = [];
 
 type SynChartEvents = [];
@@ -136,6 +148,20 @@ type SynComboboxEvents = [
   ['syn-invalid', SynInvalidEvent],
   ['syn-error', SynErrorEvent],
   ['syn-end-reached', SynEndReachedEvent],
+];
+
+type SynDatePickerEvents = [
+  ['syn-before-change', SynBeforeChangeEvent],
+  ['syn-clear', SynClearEvent],
+  ['syn-input', SynInputEvent],
+  ['syn-change', SynChangeEvent],
+  ['syn-focus', SynFocusEvent],
+  ['syn-blur', SynBlurEvent],
+  ['syn-invalid', SynInvalidEvent],
+  ['syn-show', SynShowEvent],
+  ['syn-after-show', SynAfterShowEvent],
+  ['syn-hide', SynHideEvent],
+  ['syn-after-hide', SynAfterHideEvent],
 ];
 
 type SynDetailsEvents = [
@@ -440,6 +466,83 @@ declare module 'vue' {
      * @csspart base - The component's base wrapper.
      */ 'syn-button-group': SynVueElement<SynButtonGroup, SynButtonGroupEvents>;
     /**
+     * @summary Calendars allow users to select dates from a calendar interface.
+     * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-calendar--docs
+     * @status experimental
+     * @since 0.0.0
+     *
+     * @dependency syn-button
+     * @dependency syn-icon-button
+     *
+     * @slot day-YYYY-MM-DD - Dynamic slots replacing a day's label, e.g. day-2026-12-24. The fallback is the two-digit day number.
+     * @slot month-0 - Replaces January's label; the fallback is its localized short month name.
+     * @slot month-1 - Replaces February's label; the fallback is its localized short month name.
+     * @slot month-2 - Replaces March's label; the fallback is its localized short month name.
+     * @slot month-3 - Replaces April's label; the fallback is its localized short month name.
+     * @slot month-4 - Replaces May's label; the fallback is its localized short month name.
+     * @slot month-5 - Replaces June's label; the fallback is its localized short month name.
+     * @slot month-6 - Replaces July's label; the fallback is its localized short month name.
+     * @slot month-7 - Replaces August's label; the fallback is its localized short month name.
+     * @slot month-8 - Replaces September's label; the fallback is its localized short month name.
+     * @slot month-9 - Replaces October's label; the fallback is its localized short month name.
+     * @slot month-10 - Replaces November's label; the fallback is its localized short month name.
+     * @slot month-11 - Replaces December's label; the fallback is its localized short month name.
+     * @slot year-YYYY - Dynamic slots replacing a year's label, e.g. year-2026. The fallback is the year number.
+     *
+     * @csspart base - The component's base wrapper.
+     * @csspart header - The calendar header.
+     * @csspart content - The calendar view content.
+     * @csspart footer - The calendar footer actions.
+     * @csspart day-grid - The day-of-month table.
+     * @csspart day-cell - A day table cell, independent of the button it contains.
+     * @csspart weekdays - The weekday table heading group.
+     * @csspart weekday - An individual localized weekday heading.
+     * @csspart month-grid - The month selection grid.
+     * @csspart year-grid - The year selection grid.
+     * @csspart calendar-item - A day, month, or year button.
+     * @csspart calendar-item-label - The slot containing an item's custom content or fallback label.
+     * @csspart calendar-item-day - A day button.
+     * @csspart calendar-item-month - A month button.
+     * @csspart calendar-item-year - A year button.
+     * @csspart calendar-item-active - An active calendar item.
+     * @csspart calendar-item-today - The item representing today.
+     * @csspart calendar-item-outside - A day item belonging to an adjacent month.
+     * @csspart calendar-item-disabled - A disabled calendar item.
+     * @csspart calendar-item-range-begin - The pending range anchor or completed range start; an alias of calendar-item-range-start.
+     * @csspart calendar-item-range-clipped - A date whose requested endpoint is adjusted by a range length limit.
+     * @csspart calendar-item-range-start - The pending range anchor or completed range start; an alias of calendar-item-range-begin.
+     * @csspart calendar-item-range-end - The completed or adjusted preview endpoint, which may precede the anchor during reverse selection.
+     * @csspart calendar-item-range-interior - A date inside the selected or previewed range.
+     * @csspart calendar-item-range-interior-start - The first interior date of a completed range, excluding its selected endpoints.
+     * @csspart calendar-item-range-interior-end - The last interior date of a completed range, excluding its selected endpoints.
+     * @csspart calendar-item-range-pending - The selected start while waiting for a range end.
+     * @csspart calendar-item-range-preview - A date in the pending range preview driven by pointer or keyboard movement.
+     * @csspart calendar-item-range-preview-start - The first preview date, excluding the selected anchor but including the prospective endpoint.
+     * @csspart calendar-item-range-preview-end - The last preview date, excluding the selected anchor but including the prospective endpoint.
+     * @csspart calendar-item-range-unavailable - A focusable endpoint whose adjusted boundary is disabled or whose range length is invalid.
+     * @csspart month-navigation - The month navigation controls.
+     * @csspart year-navigation - The year navigation controls.
+     * @csspart previous-button - The previous-period syn-icon-button host.
+     * @csspart previous-button__base - The previous-period control's forwarded base part.
+     * @csspart navigation-label - The current month, year, or year range in the navigation header.
+     * @csspart navigation-label__base - The navigation label's forwarded button base when it offers a view switch.
+     * @csspart next-button - The next-period syn-icon-button host.
+     * @csspart next-button__base - The next-period control's forwarded base part.
+     * @csspart current-period-button - The syn-button host for navigating to the current day, month, or year.
+     * @csspart current-period-button__base - The current-period control's forwarded base part.
+     * @csspart clear-button - The syn-button host for clearing the selected value.
+     * @csspart clear-button__base - The Clear control's forwarded base part.
+     *
+     * @cssproperty --syn-calendar-min-width - Overrides the minimum width on the host or base part. Defaults to 298px (small), 390px (medium), or 420px (large), capped to the viewport width.
+     *
+     * @event syn-blur - Emitted when focus leaves the calendar, unless disabled or readonly.
+     * @event syn-before-change - Cancelable, detail-free event before a user commit or Clear. The host exposes the proposed value; synchronous preventDefault restores the previous value and suppresses value events. Not emitted for pending range starts, disabled, or readonly.
+     * @event syn-change - Emitted after an accepted user commit or Clear, unless disabled or readonly. In range mode, choosing only the start emits syn-input but not syn-change.
+     * @event syn-clear - Emitted when the user clears a non-empty date value, unless disabled or readonly.
+     * @event syn-focus - Emitted when focus enters the calendar, unless disabled or readonly.
+     * @event syn-input - Emitted when a user changes the selection, unless disabled or readonly.
+     */ 'syn-calendar': SynVueElement<SynCalendar, SynCalendarEvents>;
+    /**
      * @summary Cards can be used to group related subjects in a container.
      * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-card--docs
      * @status stable
@@ -575,6 +678,99 @@ declare module 'vue' {
      * @animation combobox.show - The animation to use when showing the combobox.
      * @animation combobox.hide - The animation to use when hiding the combobox.
      */ 'syn-combobox': SynVueElement<SynCombobox, SynComboboxEvents>;
+    /**
+     * @summary A date picker component for selecting dates.
+     * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-date-picker--docs
+     * @status experimental
+     * @since 0.0.0
+     *
+     * @dependency syn-calendar
+     * @dependency syn-icon
+     * @dependency syn-popup
+     *
+     * @slot label - The input's label. Alternatively, you can use the `label` attribute.
+     * @slot help-text - The input's help text. Alternatively, you can use the `help-text` attribute.
+     * @slot prefix - Used to prepend a presentational icon or similar element to the date field.
+     * @slot suffix - Used to append a presentational icon or similar element to the date field.
+     * @slot expand-icon - The icon used by the calendar toggle button.
+     * @slot clear-icon - The icon used by the clearable field's Clear button.
+     * @slot day-YYYY-MM-DD - Forwarded to the calendar to replace a date's label.
+     * @slot month-0 - Forwarded to the calendar to replace January's label; month-1 through month-11 replace the other months.
+     * @slot year-YYYY - Forwarded to the calendar to replace a year's label.
+     *
+     * @event syn-before-change - Cancelable event before a user commit or Clear. The picker exposes the proposed value; preventing default restores the previous value. Pending range starts emit only syn-input.
+     * @event syn-clear - Emitted when the calendar clears a non-empty selection.
+     * @event syn-input - Emitted when the user edits a segment or selects a date.
+     * @event syn-change - Emitted when an edit changes the canonical ISO value or a calendar selection is committed.
+     * @event syn-focus - Emitted when focus enters the date picker.
+     * @event syn-blur - Emitted when focus leaves the date picker.
+     * @event syn-invalid - Emitted when constraint validation fails.
+     * @event syn-show - Emitted when the calendar opens.
+     * @event syn-after-show - Emitted after the calendar is visible and positioned.
+     * @event syn-hide - Emitted when the calendar closes.
+     * @event syn-after-hide - Emitted after the calendar is hidden.
+     *
+     * @csspart form-control - The form control that wraps the label, input, and help text.
+     * @csspart form-control-label - The label's wrapper.
+     * @csspart form-control-help-text - The help text's wrapper.
+     * @csspart form-control-input - The input and popup wrapper.
+     * @csspart base - The segmented field's wrapper.
+     * @csspart input - The group containing editable date segments.
+     * @csspart segment - An editable day, month, or year spinbutton.
+     * @csspart segment-literal - A locale-specific separator between fields.
+     * @csspart range-separator - The separator between start and end date groups.
+     * @csspart remove-date-button - A multiple-selection date's remove button.
+     * @csspart expand-button - The calendar toggle button.
+     * @csspart clear-button - The field's Clear button when clearable and a selection or draft is present.
+     * @csspart calendar - The calendar component.
+     * @csspart calendar__base - The calendar's base wrapper.
+     * @csspart calendar__header - The calendar header.
+     * @csspart calendar__content - The calendar view content.
+     * @csspart calendar__footer - The calendar footer actions.
+     * @csspart calendar__day-grid - The day-of-month table.
+     * @csspart calendar__day-cell - A day table cell, independent of its button.
+     * @csspart calendar__weekdays - The weekday table heading group.
+     * @csspart calendar__weekday - An individual localized weekday heading.
+     * @csspart calendar__month-grid - The month selection grid.
+     * @csspart calendar__year-grid - The year selection grid.
+     * @csspart calendar__calendar-item - A day, month, or year button.
+     * @csspart calendar__calendar-item-label - An item's custom content slot or fallback label.
+     * @csspart calendar__calendar-item-day - A day button.
+     * @csspart calendar__calendar-item-month - A month button.
+     * @csspart calendar__calendar-item-year - A year button.
+     * @csspart calendar__calendar-item-active - An active calendar item.
+     * @csspart calendar__calendar-item-today - The item representing today.
+     * @csspart calendar__calendar-item-outside - A day item belonging to an adjacent month.
+     * @csspart calendar__calendar-item-disabled - A disabled calendar item.
+     * @csspart calendar__calendar-item-range-begin - The pending anchor or completed range start; an alias of range-start.
+     * @csspart calendar__calendar-item-range-clipped - A date whose requested endpoint is adjusted by a range length limit.
+     * @csspart calendar__calendar-item-range-start - The pending anchor or completed range start; an alias of range-begin.
+     * @csspart calendar__calendar-item-range-end - The completed or adjusted preview endpoint, including reverse selections.
+     * @csspart calendar__calendar-item-range-interior - A date inside the selected or previewed range.
+     * @csspart calendar__calendar-item-range-interior-start - The first interior date of a completed range, excluding its endpoints.
+     * @csspart calendar__calendar-item-range-interior-end - The last interior date of a completed range, excluding its endpoints.
+     * @csspart calendar__calendar-item-range-pending - The selected start while waiting for a range end.
+     * @csspart calendar__calendar-item-range-preview - A date in the pending pointer or keyboard range preview.
+     * @csspart calendar__calendar-item-range-preview-start - The first preview date, excluding the anchor but including the prospective endpoint.
+     * @csspart calendar__calendar-item-range-preview-end - The last preview date, excluding the anchor but including the prospective endpoint.
+     * @csspart calendar__calendar-item-range-unavailable - An endpoint whose adjusted boundary is disabled or range length invalid.
+     * @csspart calendar__month-navigation - The month navigation controls.
+     * @csspart calendar__year-navigation - The year navigation controls.
+     * @csspart calendar__previous-button - The previous-period icon button host.
+     * @csspart calendar__previous-button__base - The previous-period control's forwarded base part.
+     * @csspart calendar__navigation-label - The current month, year, or year range in the navigation header.
+     * @csspart calendar__navigation-label__base - The navigation label's forwarded button base when it offers a view switch.
+     * @csspart calendar__next-button - The next-period icon button host.
+     * @csspart calendar__next-button__base - The next-period control's forwarded base part.
+     * @csspart calendar__current-period-button - The control for navigating to the current day, month, or year.
+     * @csspart calendar__current-period-button__base - The current-period control's forwarded base part.
+     * @csspart calendar__clear-button - The control for clearing the selected value.
+     * @csspart calendar__clear-button__base - The Clear control's forwarded base part.
+     * @csspart prefix - The container that wraps the prefix slot.
+     * @csspart suffix - The container that wraps the suffix slot.
+     * @csspart expand-icon - The container that wraps the expand icon.
+     * @csspart popup - The popup's exported container.
+     */ 'syn-date-picker': SynVueElement<SynDatePicker, SynDatePickerEvents>;
     /**
      * @summary Details show a brief summary and expand to show additional content.
      * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-details--docs
@@ -1753,6 +1949,83 @@ declare module 'vue' {
       SynButtonGroupEvents
     >;
     /**
+     * @summary Calendars allow users to select dates from a calendar interface.
+     * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-calendar--docs
+     * @status experimental
+     * @since 0.0.0
+     *
+     * @dependency syn-button
+     * @dependency syn-icon-button
+     *
+     * @slot day-YYYY-MM-DD - Dynamic slots replacing a day's label, e.g. day-2026-12-24. The fallback is the two-digit day number.
+     * @slot month-0 - Replaces January's label; the fallback is its localized short month name.
+     * @slot month-1 - Replaces February's label; the fallback is its localized short month name.
+     * @slot month-2 - Replaces March's label; the fallback is its localized short month name.
+     * @slot month-3 - Replaces April's label; the fallback is its localized short month name.
+     * @slot month-4 - Replaces May's label; the fallback is its localized short month name.
+     * @slot month-5 - Replaces June's label; the fallback is its localized short month name.
+     * @slot month-6 - Replaces July's label; the fallback is its localized short month name.
+     * @slot month-7 - Replaces August's label; the fallback is its localized short month name.
+     * @slot month-8 - Replaces September's label; the fallback is its localized short month name.
+     * @slot month-9 - Replaces October's label; the fallback is its localized short month name.
+     * @slot month-10 - Replaces November's label; the fallback is its localized short month name.
+     * @slot month-11 - Replaces December's label; the fallback is its localized short month name.
+     * @slot year-YYYY - Dynamic slots replacing a year's label, e.g. year-2026. The fallback is the year number.
+     *
+     * @csspart base - The component's base wrapper.
+     * @csspart header - The calendar header.
+     * @csspart content - The calendar view content.
+     * @csspart footer - The calendar footer actions.
+     * @csspart day-grid - The day-of-month table.
+     * @csspart day-cell - A day table cell, independent of the button it contains.
+     * @csspart weekdays - The weekday table heading group.
+     * @csspart weekday - An individual localized weekday heading.
+     * @csspart month-grid - The month selection grid.
+     * @csspart year-grid - The year selection grid.
+     * @csspart calendar-item - A day, month, or year button.
+     * @csspart calendar-item-label - The slot containing an item's custom content or fallback label.
+     * @csspart calendar-item-day - A day button.
+     * @csspart calendar-item-month - A month button.
+     * @csspart calendar-item-year - A year button.
+     * @csspart calendar-item-active - An active calendar item.
+     * @csspart calendar-item-today - The item representing today.
+     * @csspart calendar-item-outside - A day item belonging to an adjacent month.
+     * @csspart calendar-item-disabled - A disabled calendar item.
+     * @csspart calendar-item-range-begin - The pending range anchor or completed range start; an alias of calendar-item-range-start.
+     * @csspart calendar-item-range-clipped - A date whose requested endpoint is adjusted by a range length limit.
+     * @csspart calendar-item-range-start - The pending range anchor or completed range start; an alias of calendar-item-range-begin.
+     * @csspart calendar-item-range-end - The completed or adjusted preview endpoint, which may precede the anchor during reverse selection.
+     * @csspart calendar-item-range-interior - A date inside the selected or previewed range.
+     * @csspart calendar-item-range-interior-start - The first interior date of a completed range, excluding its selected endpoints.
+     * @csspart calendar-item-range-interior-end - The last interior date of a completed range, excluding its selected endpoints.
+     * @csspart calendar-item-range-pending - The selected start while waiting for a range end.
+     * @csspart calendar-item-range-preview - A date in the pending range preview driven by pointer or keyboard movement.
+     * @csspart calendar-item-range-preview-start - The first preview date, excluding the selected anchor but including the prospective endpoint.
+     * @csspart calendar-item-range-preview-end - The last preview date, excluding the selected anchor but including the prospective endpoint.
+     * @csspart calendar-item-range-unavailable - A focusable endpoint whose adjusted boundary is disabled or whose range length is invalid.
+     * @csspart month-navigation - The month navigation controls.
+     * @csspart year-navigation - The year navigation controls.
+     * @csspart previous-button - The previous-period syn-icon-button host.
+     * @csspart previous-button__base - The previous-period control's forwarded base part.
+     * @csspart navigation-label - The current month, year, or year range in the navigation header.
+     * @csspart navigation-label__base - The navigation label's forwarded button base when it offers a view switch.
+     * @csspart next-button - The next-period syn-icon-button host.
+     * @csspart next-button__base - The next-period control's forwarded base part.
+     * @csspart current-period-button - The syn-button host for navigating to the current day, month, or year.
+     * @csspart current-period-button__base - The current-period control's forwarded base part.
+     * @csspart clear-button - The syn-button host for clearing the selected value.
+     * @csspart clear-button__base - The Clear control's forwarded base part.
+     *
+     * @cssproperty --syn-calendar-min-width - Overrides the minimum width on the host or base part. Defaults to 298px (small), 390px (medium), or 420px (large), capped to the viewport width.
+     *
+     * @event syn-blur - Emitted when focus leaves the calendar, unless disabled or readonly.
+     * @event syn-before-change - Cancelable, detail-free event before a user commit or Clear. The host exposes the proposed value; synchronous preventDefault restores the previous value and suppresses value events. Not emitted for pending range starts, disabled, or readonly.
+     * @event syn-change - Emitted after an accepted user commit or Clear, unless disabled or readonly. In range mode, choosing only the start emits syn-input but not syn-change.
+     * @event syn-clear - Emitted when the user clears a non-empty date value, unless disabled or readonly.
+     * @event syn-focus - Emitted when focus enters the calendar, unless disabled or readonly.
+     * @event syn-input - Emitted when a user changes the selection, unless disabled or readonly.
+     */ 'syn-calendar': SynIntrinsicElement<SynCalendar, SynCalendarEvents>;
+    /**
      * @summary Cards can be used to group related subjects in a container.
      * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-card--docs
      * @status stable
@@ -1888,6 +2161,102 @@ declare module 'vue' {
      * @animation combobox.show - The animation to use when showing the combobox.
      * @animation combobox.hide - The animation to use when hiding the combobox.
      */ 'syn-combobox': SynIntrinsicElement<SynCombobox, SynComboboxEvents>;
+    /**
+     * @summary A date picker component for selecting dates.
+     * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-date-picker--docs
+     * @status experimental
+     * @since 0.0.0
+     *
+     * @dependency syn-calendar
+     * @dependency syn-icon
+     * @dependency syn-popup
+     *
+     * @slot label - The input's label. Alternatively, you can use the `label` attribute.
+     * @slot help-text - The input's help text. Alternatively, you can use the `help-text` attribute.
+     * @slot prefix - Used to prepend a presentational icon or similar element to the date field.
+     * @slot suffix - Used to append a presentational icon or similar element to the date field.
+     * @slot expand-icon - The icon used by the calendar toggle button.
+     * @slot clear-icon - The icon used by the clearable field's Clear button.
+     * @slot day-YYYY-MM-DD - Forwarded to the calendar to replace a date's label.
+     * @slot month-0 - Forwarded to the calendar to replace January's label; month-1 through month-11 replace the other months.
+     * @slot year-YYYY - Forwarded to the calendar to replace a year's label.
+     *
+     * @event syn-before-change - Cancelable event before a user commit or Clear. The picker exposes the proposed value; preventing default restores the previous value. Pending range starts emit only syn-input.
+     * @event syn-clear - Emitted when the calendar clears a non-empty selection.
+     * @event syn-input - Emitted when the user edits a segment or selects a date.
+     * @event syn-change - Emitted when an edit changes the canonical ISO value or a calendar selection is committed.
+     * @event syn-focus - Emitted when focus enters the date picker.
+     * @event syn-blur - Emitted when focus leaves the date picker.
+     * @event syn-invalid - Emitted when constraint validation fails.
+     * @event syn-show - Emitted when the calendar opens.
+     * @event syn-after-show - Emitted after the calendar is visible and positioned.
+     * @event syn-hide - Emitted when the calendar closes.
+     * @event syn-after-hide - Emitted after the calendar is hidden.
+     *
+     * @csspart form-control - The form control that wraps the label, input, and help text.
+     * @csspart form-control-label - The label's wrapper.
+     * @csspart form-control-help-text - The help text's wrapper.
+     * @csspart form-control-input - The input and popup wrapper.
+     * @csspart base - The segmented field's wrapper.
+     * @csspart input - The group containing editable date segments.
+     * @csspart segment - An editable day, month, or year spinbutton.
+     * @csspart segment-literal - A locale-specific separator between fields.
+     * @csspart range-separator - The separator between start and end date groups.
+     * @csspart remove-date-button - A multiple-selection date's remove button.
+     * @csspart expand-button - The calendar toggle button.
+     * @csspart clear-button - The field's Clear button when clearable and a selection or draft is present.
+     * @csspart calendar - The calendar component.
+     * @csspart calendar__base - The calendar's base wrapper.
+     * @csspart calendar__header - The calendar header.
+     * @csspart calendar__content - The calendar view content.
+     * @csspart calendar__footer - The calendar footer actions.
+     * @csspart calendar__day-grid - The day-of-month table.
+     * @csspart calendar__day-cell - A day table cell, independent of its button.
+     * @csspart calendar__weekdays - The weekday table heading group.
+     * @csspart calendar__weekday - An individual localized weekday heading.
+     * @csspart calendar__month-grid - The month selection grid.
+     * @csspart calendar__year-grid - The year selection grid.
+     * @csspart calendar__calendar-item - A day, month, or year button.
+     * @csspart calendar__calendar-item-label - An item's custom content slot or fallback label.
+     * @csspart calendar__calendar-item-day - A day button.
+     * @csspart calendar__calendar-item-month - A month button.
+     * @csspart calendar__calendar-item-year - A year button.
+     * @csspart calendar__calendar-item-active - An active calendar item.
+     * @csspart calendar__calendar-item-today - The item representing today.
+     * @csspart calendar__calendar-item-outside - A day item belonging to an adjacent month.
+     * @csspart calendar__calendar-item-disabled - A disabled calendar item.
+     * @csspart calendar__calendar-item-range-begin - The pending anchor or completed range start; an alias of range-start.
+     * @csspart calendar__calendar-item-range-clipped - A date whose requested endpoint is adjusted by a range length limit.
+     * @csspart calendar__calendar-item-range-start - The pending anchor or completed range start; an alias of range-begin.
+     * @csspart calendar__calendar-item-range-end - The completed or adjusted preview endpoint, including reverse selections.
+     * @csspart calendar__calendar-item-range-interior - A date inside the selected or previewed range.
+     * @csspart calendar__calendar-item-range-interior-start - The first interior date of a completed range, excluding its endpoints.
+     * @csspart calendar__calendar-item-range-interior-end - The last interior date of a completed range, excluding its endpoints.
+     * @csspart calendar__calendar-item-range-pending - The selected start while waiting for a range end.
+     * @csspart calendar__calendar-item-range-preview - A date in the pending pointer or keyboard range preview.
+     * @csspart calendar__calendar-item-range-preview-start - The first preview date, excluding the anchor but including the prospective endpoint.
+     * @csspart calendar__calendar-item-range-preview-end - The last preview date, excluding the anchor but including the prospective endpoint.
+     * @csspart calendar__calendar-item-range-unavailable - An endpoint whose adjusted boundary is disabled or range length invalid.
+     * @csspart calendar__month-navigation - The month navigation controls.
+     * @csspart calendar__year-navigation - The year navigation controls.
+     * @csspart calendar__previous-button - The previous-period icon button host.
+     * @csspart calendar__previous-button__base - The previous-period control's forwarded base part.
+     * @csspart calendar__navigation-label - The current month, year, or year range in the navigation header.
+     * @csspart calendar__navigation-label__base - The navigation label's forwarded button base when it offers a view switch.
+     * @csspart calendar__next-button - The next-period icon button host.
+     * @csspart calendar__next-button__base - The next-period control's forwarded base part.
+     * @csspart calendar__current-period-button - The control for navigating to the current day, month, or year.
+     * @csspart calendar__current-period-button__base - The current-period control's forwarded base part.
+     * @csspart calendar__clear-button - The control for clearing the selected value.
+     * @csspart calendar__clear-button__base - The Clear control's forwarded base part.
+     * @csspart prefix - The container that wraps the prefix slot.
+     * @csspart suffix - The container that wraps the suffix slot.
+     * @csspart expand-icon - The container that wraps the expand icon.
+     * @csspart popup - The popup's exported container.
+     */ 'syn-date-picker': SynIntrinsicElement<
+      SynDatePicker,
+      SynDatePickerEvents
+    >;
     /**
      * @summary Details show a brief summary and expand to show additional content.
      * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-details--docs

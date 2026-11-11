@@ -1,8 +1,10 @@
 name: Release MCP Docker Image
 
 on:
+  workflow_dispatch:
   workflow_run:
     workflows: ["Release new version"]
+    branches: ["main"]
     types:
       - completed
 
@@ -10,13 +12,85 @@ permissions:
   contents: read
   packages: write
 
+concurrency:
+  group: mcp-production-release
+  cancel-in-progress: false
+
 jobs:
   publish:
-    # Only real releases from main; dispatched (possibly dry) runs are excluded
-    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push'
+    # Manual runs must target main; automatic runs must be successful main pushes.
+    if: >-
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push')
     # head_sha still points at the pre-bump commit, so build from main HEAD
     uses: ./.github/workflows/docker-mcp.yml
     with:
       push_image: true
       ref: main
     secrets: inherit
+
+  deploy_mcp:
+    name: Deploy MCP to Azure
+    needs: publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      AZURE_CORE_OUTPUT: none
+      APP_NAME: ${{ vars.AZURE_CONTAINER_APP_NAME }}
+      RESOURCE_GROUP: ${{ vars.AZURE_CONTAINER_APP_RESOURCE_GROUP }}
+      IMAGE: ${{ needs.publish.outputs.image }}
+    steps:
+      - name: Validate deployment configuration
+        env:
+          AZURE_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
+          AZURE_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
+          AZURE_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+        run: |
+          set -euo pipefail
+          : "${APP_NAME:?Set AZURE_CONTAINER_APP_NAME in repository Actions variables}"
+          : "${RESOURCE_GROUP:?Set AZURE_CONTAINER_APP_RESOURCE_GROUP in repository Actions variables}"
+          : "${AZURE_CLIENT_ID:?Set AZURE_CLIENT_ID in repository Actions variables}"
+          : "${AZURE_TENANT_ID:?Set AZURE_TENANT_ID in repository Actions variables}"
+          : "${AZURE_SUBSCRIPTION_ID:?Set AZURE_SUBSCRIPTION_ID in repository Actions variables}"
+          : "${IMAGE:?The publish job did not return an image digest}"
+
+      - name: Sign in to Azure with GitHub OIDC
+        uses: azure/login@v3
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Update MCP image and wait for a healthy revision
+        run: |
+          set -euo pipefail
+          revision=$(az containerapp update \
+            --name "$APP_NAME" \
+            --resource-group "$RESOURCE_GROUP" \
+            --image "$IMAGE" \
+            --query properties.latestRevisionName --output tsv)
+          : "${revision:?Azure did not return a revision name}"
+
+          for attempt in {1..60}; do
+            health=$(az containerapp revision show \
+              --name "$APP_NAME" \
+              --resource-group "$RESOURCE_GROUP" \
+              --revision "$revision" \
+              --query properties.healthState --output tsv)
+            if [ "$health" = "Healthy" ]; then
+              {
+                echo "### MCP deployed to Azure"
+                echo "- App: \`$APP_NAME\`"
+                echo "- Image: \`$IMAGE\`"
+                echo "- Healthy revision: \`$revision\`"
+              } >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            echo "Revision $revision health: $health (attempt $attempt/60)"
+            sleep 10
+          done
+          echo "::error::Revision $revision did not become healthy within 10 minutes"
+          exit 1

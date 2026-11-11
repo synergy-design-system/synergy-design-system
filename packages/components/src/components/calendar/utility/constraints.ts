@@ -37,6 +37,7 @@ const isDisabledByPredicate = (date: CalendarDate, predicate?: CalendarDateDisab
     // Fail closed for this date, but rate-limit diagnostics without caching the failed eligibility result.
     if (!reportedPredicates.has(predicate)) {
       reportedPredicates.add(predicate);
+      // eslint-disable-next-line no-console
       console.warn('Synergy calendar: isDateDisabled threw; the affected date is unavailable.', error);
     }
     return true;

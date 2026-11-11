@@ -19,6 +19,7 @@ describe('chart theme utilities', () => {
     previousBodyClass = document.body.className;
   });
 
+  // eslint-disable-next-line playwright/no-duplicate-hooks -- Mocha's beforeEach/afterEach are distinct hooks.
   afterEach(() => {
     document.body.className = previousBodyClass;
     setGlobalThemeStore('light');

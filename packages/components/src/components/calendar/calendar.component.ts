@@ -419,7 +419,7 @@ export default class SynCalendar extends SynergyElement {
 
     const valueDate = shouldUpdateView ? parseIsoDate(this.value[0]) : null;
 
-    if (valueDate && this.#isDateSelectable(valueDate)) {
+    if (valueDate) {
       this.#setViewDate(valueDate);
     }
   }

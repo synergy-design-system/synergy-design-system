@@ -153,13 +153,15 @@ describe('<syn-calendar>', () => {
     });
 
     it('should keep the first range endpoint pending until a valid second endpoint is chosen', async () => {
-      const calendar = await fixture<SynCalendar>(html`<syn-calendar mode="range"></syn-calendar>`);
+      const calendar = await fixture<SynCalendar>(html`<syn-calendar mode="range" value="2026-10-01"></syn-calendar>`);
       const before = sinon.spy();
       const input = sinon.spy();
       const change = sinon.spy();
       calendar.addEventListener('syn-before-change', before);
       calendar.addEventListener('syn-input', input);
       calendar.addEventListener('syn-change', change);
+      calendar.value = [];
+      await elementUpdated(calendar);
 
       await clickItem(calendar, 'day', '2026-10-05');
       expect(calendar.value).to.deep.equal(['2026-10-05']);
@@ -277,7 +279,10 @@ describe('<syn-calendar>', () => {
     });
 
     it('should toggle and sort dates in multiple mode', async () => {
-      const calendar = await fixture<SynCalendar>(html`<syn-calendar mode="multiple"></syn-calendar>`);
+      const calendar = await fixture<SynCalendar>(html`<syn-calendar mode="multiple" value="2026-10-01"></syn-calendar>`);
+      calendar.value = [];
+      await elementUpdated(calendar);
+
       await clickItem(calendar, 'day', '2026-10-20');
       await clickItem(calendar, 'day', '2026-10-15');
       expect(calendar.value).to.deep.equal(['2026-10-15', '2026-10-20']);
@@ -333,13 +338,14 @@ describe('<syn-calendar>', () => {
       const calendar = await fixture<SynCalendar>(html`
         <syn-calendar min="2026-10-20" value="2026-10-15"></syn-calendar>
       `);
+      await elementUpdated(calendar);
       expect(calendar.value).to.deep.equal(['2026-10-15']);
       expect(getItem(calendar, 'day', '2026-10-15')!.disabled).to.be.true;
     });
 
     it('should pass UTC date-only Date values to the custom disabled predicate', async () => {
       const predicate = sinon.spy((date: Date) => date.getUTCDate() === 15);
-      const calendar = await fixture<SynCalendar>(html`<syn-calendar></syn-calendar>`);
+      const calendar = await fixture<SynCalendar>(html`<syn-calendar value="2026-10-01"></syn-calendar>`);
       calendar.isDateDisabled = predicate;
       await elementUpdated(calendar);
 
@@ -352,7 +358,7 @@ describe('<syn-calendar>', () => {
       const predicate = () => { throw new Error('test predicate failure'); };
       const warning = sinon.stub(console, 'warn');
       try {
-        const calendar = await fixture<SynCalendar>(html`<syn-calendar></syn-calendar>`);
+        const calendar = await fixture<SynCalendar>(html`<syn-calendar value="2026-10-01"></syn-calendar>`);
         calendar.isDateDisabled = predicate;
         await elementUpdated(calendar);
 

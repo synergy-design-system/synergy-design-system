@@ -17,6 +17,50 @@ declare module 'echarts/lib/processor/dataFilter.js' {
   export default function filter(seriesType: string): StageHandler;
 }
 
+declare module 'echarts/lib/component/tooltip/tooltipMarkup.js' {
+  export {
+    TooltipMarkupStyleCreator,
+    buildTooltipMarkup,
+    createTooltipMarkup,
+  } from 'echarts/types/src/component/tooltip/tooltipMarkup.js';
+
+  import type { SeriesModel } from 'echarts/core.js';
+
+  export function retrieveVisualColorForTooltipMarker(series: SeriesModel, dataIndex: number): string;
+}
+
+declare module 'echarts/lib/util/format.js' {
+  export {
+    convertToColorString,
+    makeValueReadable,
+  } from 'echarts/types/src/util/format.js';
+}
+
+declare module 'echarts/lib/coord/axisBand.js' {
+  import type { Axis } from 'echarts/core.js';
+
+  export function calcBandWidth(
+    axis: Axis,
+    options?: { min?: number },
+  ): { w: number; w2: number };
+}
+
+declare module 'echarts/lib/util/states.js' {
+  import type { Model, graphic } from 'echarts/core.js';
+
+  export function setStatesStylesFromModel(
+    element: InstanceType<typeof graphic.Rect>,
+    model: Model,
+  ): void;
+
+  export function toggleHoverEmphasis(
+    element: InstanceType<typeof graphic.Group>,
+    highlightMode: 'none',
+    coordinateScope: 'coordinateSystem',
+    disabled: boolean,
+  ): void;
+}
+
 declare namespace Chai {
   interface Assertion {
     // chai-a11y-axe returns a promise-like object and should be awaited but the types are incorrect

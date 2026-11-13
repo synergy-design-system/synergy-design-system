@@ -1,4 +1,5 @@
 export * from './bar/presets.js';
+export * from './bullet/presets.js';
 export * from './donut/presets.js';
 export * from './gauge/presets.js';
 export * from './histogram/presets.js';

@@ -1,5 +1,5 @@
 import type {
-  BarSeriesOption,
+  BarSeriesOption, BulletSeriesPresetOptions,
   DonutSeriesPresetOptions, ECConfig, GaugeSeriesPresetOptions, LineSeriesOption,
   SegmentSeriesPresetOptions,
 } from '@synergy-design-system/components/components/chart/types.js';
@@ -86,3 +86,43 @@ export const histogramChartBaseConfig: ECConfig = {
 export const histogramChartConfigObject: BarSeriesOption[] = [
   { data: [2, 8, 17, 14, 6, 3], name: 'Frequency' },
 ];
+
+export const bulletChartConfigObject: BulletSeriesPresetOptions = {
+  data: [
+    {
+      current: 65,
+      end: 80,
+      start: 10,
+    },
+    {
+      current: 55,
+      end: 75,
+      start: 15,
+    },
+    {
+      current: 72,
+      end: 90,
+      start: 20,
+    },
+    {
+      current: 48,
+      end: 70,
+      start: 5,
+    },
+    {
+      current: 83,
+      end: 95,
+      start: 25,
+    },
+    {
+      current: 60,
+      end: 85,
+      start: 15,
+    },
+    {
+      current: 75,
+      end: 100,
+      start: 20,
+    },
+  ],
+};

@@ -10,6 +10,18 @@ import { getDefaultMarkAreaStyle, getDefaultMarkLineStyle, getDefaultMarkPointSt
 const getCategoricalColors = (mode: Themes) => PALETTE_TOKENS.categorical.map((token) => style(token, mode)).filter(Boolean);
 
 /**
+ * Shared width defaults for bar-like series, so `bar` and `synBullet` series size identically.
+ *
+ * @param {Themes} mode Theme mode used to resolve the design tokens.
+ */
+const getBarWidthDefaults = (mode: Themes) => ({
+  barCategoryGap: styleWithoutUnit('SynSpacing3xSmall', mode),
+  // We want the bars to be responsive. This is why we do not set a fixed pixel width for `barWidth` as the bars would then no longer be responsive.
+  // By setting only the maximum width, we allow the bars to shrink and grow responsively within the available space.
+  barMaxWidth: styleWithoutUnit('SynSpacingLarge', mode),
+});
+
+/**
  * Builds the default Synergy ECharts theme for the requested color mode.
  *
  * @param {Themes} mode Theme mode used to resolve the design tokens.
@@ -19,10 +31,7 @@ export const getSynergyTheme = (mode: Themes = 'light') => ({
   // Remove the starting animation for chart series
   animationDuration: 0,
   bar: {
-    barCategoryGap: styleWithoutUnit('SynSpacing3xSmall', mode),
-    // We want the bars to be responsive. This is why we do not set a fixed pixel width for `barWidth` as the bars would then no longer be responsive.
-    // By setting only the maximum width, we allow the bars to shrink and grow responsively within the available space.
-    barMaxWidth: styleWithoutUnit('SynSpacingLarge', mode),
+    ...getBarWidthDefaults(mode),
     itemStyle: {
       // This styling makes sure, that when doing "barCategoryGap: 0", the bars are really touching each other without any gaps.
       borderColor: 'auto',
@@ -58,6 +67,15 @@ export const getSynergyTheme = (mode: Themes = 'light') => ({
   markLine: getDefaultMarkLineStyle(mode),
   // Styling for mark points (annotation points) for series
   markPoint: getDefaultMarkPointStyle(mode),
+  // Bullet series share the bar width defaults so they size like bar series
+  synBullet: {
+    ...getBarWidthDefaults(mode),
+    markerStyle: {
+      borderColor: style('SynChartBackgroundColor', mode),
+      borderWidth: styleWithoutUnit('SynSpacing2xSmall', mode),
+      color: style('SynChartPlotLineColor', mode),
+    },
+  },
   // Global font style
   textStyle: {
     color: style('SynTypographyColorText', mode),

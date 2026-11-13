@@ -55,6 +55,33 @@ const getSeries = (chart: SynChart) => {
 describe('synBullet view', () => {
   describe('marker rendering and layering', () => {
     ['vertical', 'horizontal'].forEach((orientation) => {
+      it(`renders a centered circular ${orientation} marker with a corner radius`, async () => {
+        const isVertical = orientation === 'vertical';
+        const chart = await createChart({
+          series: [{
+            data: [{ current: 4, end: 6, start: 2 }],
+            markerStyle: { borderRadius: 10, height: 20, width: 20 },
+            type: 'synBullet',
+          }],
+          xAxis: isVertical ? { data: ['Pressure'], type: 'category' } : { type: 'value' },
+          yAxis: isVertical ? { type: 'value' } : { data: ['Pressure'], type: 'category' },
+        });
+        const { instance, series } = getSeries(chart);
+        const checkMarker = () => {
+          const group = series.getData().getItemGraphicEl(0) as InstanceType<typeof graphic.Group>;
+          const [, marker] = group.children() as Array<InstanceType<typeof graphic.Rect>>;
+          const center = instance.convertToPixel({ seriesIndex: 0 }, isVertical ? [0, 4] : [4, 0]);
+          expect(marker.shape).to.include({ height: 20, r: 10, width: 20 });
+          expect(marker.shape.x + 10).to.equal(center[0]);
+          expect(marker.shape.y + 10).to.equal(center[1]);
+        };
+        checkMarker();
+        instance.dispatchAction({ dataIndex: 0, seriesIndex: 0, type: 'highlight' });
+        checkMarker();
+        instance.resize({ height: 480, width: 960 });
+        checkMarker();
+      });
+
       it(`applies custom ${orientation} marker dimensions and border without moving the value`, async () => {
         const isVertical = orientation === 'vertical';
         const chart = await createChart({
@@ -76,6 +103,7 @@ describe('synBullet view', () => {
           const center = instance.convertToPixel({ seriesIndex: 0 }, isVertical ? [0, 4] : [4, 0]);
           expect(marker.shape.width).to.equal(36);
           expect(marker.shape.height).to.equal(8);
+          expect(marker.shape.r).to.be.undefined;
           expect(marker.shape.x + (marker.shape.width / 2)).to.equal(center[0]);
           expect(marker.shape.y + (marker.shape.height / 2)).to.equal(center[1]);
           expect(marker.style).to.include({

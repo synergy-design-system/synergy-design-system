@@ -392,7 +392,7 @@ export const CustomMarker: Story = {
 };
 
 /* eslint-disable sort-keys */
-export const CommonOptionsScreenshot: Story = generateScreenshotStory({
+export const Screenshot: Story = generateScreenshotStory({
   Default,
   Vertical,
   Horizontal,

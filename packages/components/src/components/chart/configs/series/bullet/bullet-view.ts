@@ -44,6 +44,7 @@ const getMarkerShape = (seriesModel: SynergyBulletSeriesModel, currentPoint: num
   const height = resolveSize(markerStyle?.height, isVertical ? thickness : rangeWidth);
   return {
     height,
+    r: markerStyle?.borderRadius,
     width,
     x: currentPoint[0] - (width / 2),
     y: currentPoint[1] - (height / 2),

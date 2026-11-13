@@ -17,6 +17,8 @@ export type BulletMarkerStyle = Pick<BulletItemStyle,
     width?: number;
     /** Marker height in pixels, when omitted, it is derived from the range orientation. */
     height?: number;
+    /** Marker corner radius in pixels. */
+    borderRadius?: number;
     /** Marker fill color. */
     color?: ZRColor;
   };
@@ -83,7 +85,7 @@ export type SynergyBulletSeriesOption = Pick<BarSeriesOption, 'id' | 'silent' | 
   barMaxWidth?: number | string;
   /** Category spacing for automatic widths; explicit barWidth takes priority. */
   barCategoryGap?: number | string;
-  /** Marker border and opacity; marker opacity is controlled separately from range opacity. */
+  /** Marker dimensions, corner radius, color, border and opacity, independent of range styling. */
   markerStyle?: BulletMarkerStyle;
   /** Default fill, border, opacity, and shadow styling for the ranges. */
   itemStyle?: BulletItemStyle;

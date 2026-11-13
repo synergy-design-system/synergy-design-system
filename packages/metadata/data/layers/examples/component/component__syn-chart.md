@@ -5229,6 +5229,776 @@ Selection is disabled by default. Set selectedMode to true or 'single' to select
 
 ## Default
 
+Configure a bullet chart via the chart config with type: 'synBullet' or with the seriesBullet preset function. Each data item requires numeric start, end and current values: the range extends from start to end and the marker shows current, which can be inside or outside the range. Range thickness adapts to the available category space and is capped by barMaxWidth by default.
+
+```html
+<syn-chart id="bullet-default"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#bullet-default");
+  charts.forEach((chart) => {
+    chart.config = {
+      xAxis: {
+        data: ["Pressure", "Flow", "Temperature", "Speed"],
+        type: "category",
+      },
+      yAxis: { type: "value" },
+      series: [
+        {
+          type: "synBullet",
+          data: [
+            { start: 10, end: 80, current: 65 },
+            { start: -10, end: 60, current: 48 },
+            { start: 20, end: 100, current: 42 },
+            { start: -15, end: 45, current: -6 },
+          ],
+        },
+      ],
+    };
+  });
+</script>
+```
+
+---
+
+## Vertical
+
+Place categories on the x-axis and values on the y-axis to compare actual values with their reference ranges vertically. This orientation works well for a small number of categories.
+
+```html
+<syn-chart id="bullet-vertical"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#bullet-vertical");
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Pressure", "Flow", "Temperature", "Speed"],
+            type: "category",
+          },
+          yAxis: { type: "value" },
+        })
+        .seriesBullet({
+          data: [
+            { start: 10, end: 80, current: 65 },
+            { start: -10, end: 60, current: 48 },
+            { start: 20, end: 100, current: 42 },
+            { start: -15, end: 45, current: -6 },
+          ],
+        });
+  });
+</script>
+```
+
+---
+
+## Color By
+
+Use colorBy: 'data' to assign range colors by item or colorBy: 'series' to give the items in a series the same color.
+
+```html
+<syn-chart id="bullet-color-by-data"></syn-chart>
+<syn-chart id="bullet-color-by-series"></syn-chart>
+<script type="module">
+  const byData = document.querySelectorAll("#bullet-color-by-data");
+  const bySeries = document.querySelectorAll("#bullet-color-by-series");
+  const baseConfig = {
+    xAxis: {
+      data: ["Pressure", "Flow", "Temperature", "Speed"],
+      type: "category",
+    },
+    yAxis: { type: "value" },
+  };
+  const data = [
+    { start: 10, end: 80, current: 65 },
+    { start: -10, end: 60, current: 48 },
+    { start: 20, end: 100, current: 42 },
+    { start: -15, end: 45, current: -6 },
+  ];
+  byData.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.baseConfig(baseConfig).seriesBullet({ colorBy: "data", data });
+  });
+  bySeries.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.baseConfig(baseConfig).seriesBullet({ colorBy: "series", data });
+  });
+</script>
+```
+
+---
+
+## Horizontal
+
+Place categories on the y-axis and values on the x-axis. Horizontal bullets provide more room for category labels and can be useful for compact KPI dashboards.
+
+```html
+<syn-chart id="bullet-horizontal"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#bullet-horizontal");
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: { type: "value" },
+          yAxis: {
+            data: ["Pressure", "Flow", "Temperature", "Speed"],
+            type: "category",
+          },
+        })
+        .seriesBullet({
+          data: [
+            { start: 10, end: 80, current: 65 },
+            { start: -10, end: 60, current: 48 },
+            { start: 20, end: 100, current: 42 },
+            { start: -15, end: 45, current: -6 },
+          ],
+        });
+  });
+</script>
+```
+
+---
+
+## Palette Colors
+
+Use the palette attribute to apply another Synergy chart color palette to the bullet series.
+
+```html
+<syn-chart id="bullet-palette" palette="sequential-status-success"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#bullet-palette");
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Pressure", "Flow", "Temperature", "Speed"],
+            type: "category",
+          },
+          yAxis: { type: "value" },
+        })
+        .seriesBullet({
+          data: [
+            { start: 10, end: 80, current: 65 },
+            { start: -10, end: 60, current: 48 },
+            { start: 20, end: 100, current: 42 },
+            { start: -15, end: 45, current: -6 },
+          ],
+        });
+  });
+</script>
+```
+
+---
+
+## Custom Style
+
+Set itemStyle on the series or on individual data items to customize range colors, border or shadows. Use Synergy chart tokens and keep the actual-value marker distinguishable from the range.
+
+```html
+<syn-chart id="bullet-custom-colors"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#bullet-custom-colors");
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Pressure", "Flow", "Temperature", "Speed"],
+            type: "category",
+          },
+          yAxis: { type: "value" },
+        })
+        .seriesBullet({
+          itemStyle: {
+            borderColor: ComponentTokens.SynColorNeutral800.light,
+            borderWidth: 2,
+            color: ChartTokens.SynChartSequential02_40.light,
+          },
+          data: [
+            { start: 10, end: 80, current: 65 },
+            { start: -10, end: 60, current: 48 },
+            {
+              start: 20,
+              end: 100,
+              current: 42,
+              itemStyle: {
+                borderColor: ComponentTokens.SynColorWarning600.light,
+                color: ChartTokens.SynChartSequential02_70.light,
+              },
+            },
+            { start: -15, end: 45, current: -6 },
+          ],
+        });
+  });
+</script>
+```
+
+---
+
+## Tooltip
+
+Enable a tooltip to inspect the range and actual value on hover. Set a name on each data item to show it in the tooltip. For axis-triggered tooltips, the category is the heading and the item name appears next to the actual value. For item-triggered tooltips, the item name is the heading; without a name, the category label is used instead. Set tooltip.axisPointer.type to 'shadow' to highlight the corresponding category and compare values across series.
+
+```html
+<syn-chart id="bullet-tooltip"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#bullet-tooltip");
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Pressure", "Flow", "Temperature", "Speed"],
+            type: "category",
+          },
+          yAxis: { type: "value" },
+        })
+        .seriesBullet({
+          data: [
+            { name: "Pressure", start: 10, end: 80, current: 65 },
+            { name: "Flow", start: -10, end: 60, current: 48 },
+            { name: "Temperature", start: 20, end: 100, current: 42 },
+            { name: "Speed", start: -15, end: 45, current: -6 },
+          ],
+        })
+        .tooltipShow({ axisPointer: { type: "shadow" } });
+  });
+</script>
+```
+
+---
+
+## Legend Selection
+
+Show a legend for named bullet items so users can identify ranges and toggle individual items. Provide meaningful category names and do not rely on color alone.
+
+```html
+<syn-chart id="bullet-legend"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#bullet-legend");
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          legend: { show: true },
+          xAxis: { data: ["Pressure", "Flow", "Speed"], type: "category" },
+          yAxis: { min: -20, max: 100, type: "value" },
+        })
+        .seriesBullet({
+          data: [
+            { name: "Pressure", start: 10, end: 80, current: 65 },
+            { name: "Flow", start: -10, end: 60, current: 48 },
+            { name: "Speed", start: -15, end: 45, current: -6 },
+          ],
+        });
+  });
+</script>
+```
+
+---
+
+## Negative Values
+
+Compare negative actual values with negative reference ranges, for example temperature deviations or losses. Both range endpoints and the actual value may be negative.
+
+```html
+<syn-chart id="bullet-negative"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#bullet-negative");
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: { min: -100, max: 0, name: "Deviation", type: "value" },
+          yAxis: { data: ["Line A", "Line B", "Line C"], type: "category" },
+        })
+        .seriesBullet({
+          data: [
+            { name: "Line A", start: -80, end: -40, current: -60 },
+            { name: "Line B", start: -60, end: -20, current: -50 },
+            { name: "Line C", start: -50, end: -10, current: -15 },
+          ],
+        });
+  });
+</script>
+```
+
+---
+
+## Positive And Negative
+
+Ranges and actual values can be positive, negative or cross zero. This helps compare deviations around a baseline.
+
+```html
+<syn-chart id="bullet-positive-negative"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#bullet-positive-negative");
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: {
+            data: ["Negative", "Crosses zero", "Positive"],
+            type: "category",
+          },
+          yAxis: { min: -100, max: 120, type: "value" },
+        })
+        .seriesBullet({
+          data: [
+            { name: "Negative", start: -80, end: -20, current: -45 },
+            { name: "Crosses zero", start: -30, end: 45, current: 12 },
+            { name: "Positive", start: 20, end: 85, current: 75 },
+          ],
+        });
+  });
+</script>
+```
+
+---
+
+## Fixed Axis Range
+
+Set min and max on the value axis to keep the scale consistent across charts or updates. Include the relevant range endpoints and actual values so they remain visible.
+
+```html
+<syn-chart id="bullet-fixed-axis-range"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#bullet-fixed-axis-range");
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: { data: ["Pressure", "Flow", "Speed"], type: "category" },
+          yAxis: { min: -100, max: 100, type: "value" },
+        })
+        .seriesBullet({
+          data: [
+            { name: "Pressure", start: -70, end: 70, current: 55 },
+            { name: "Flow", start: -45, end: 65, current: 50 },
+            { name: "Speed", start: -30, end: 40, current: -20 },
+          ],
+        });
+  });
+</script>
+```
+
+---
+
+## Custom Range Width
+
+Set barWidth to a number for a fixed pixel thickness or to a percentage of the category band. Explicit widths take priority over barCategoryGap and remain subject to barMinWidth and barMaxWidth.
+
+```html
+<syn-chart id="bullet-fixed-width"></syn-chart>
+<syn-chart id="bullet-relative-width"></syn-chart>
+<script type="module">
+  const fixed = document.querySelectorAll("#bullet-fixed-width");
+  const relative = document.querySelectorAll("#bullet-relative-width");
+  const baseConfig = {
+    xAxis: { data: ["Pressure", "Flow", "Speed"], type: "category" },
+    yAxis: { min: -20, max: 100, type: "value" },
+  };
+  const data = [
+    { name: "Pressure", start: 10, end: 80, current: 65 },
+    { name: "Flow", start: -10, end: 60, current: 48 },
+    { name: "Speed", start: -15, end: 45, current: -6 },
+  ];
+  fixed.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesBullet({ barCategoryGap: 8, barWidth: 24, data });
+  });
+  relative.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesBullet({ barCategoryGap: "30%", barWidth: "50%", data });
+  });
+</script>
+```
+
+---
+
+## Range Width Limits
+
+Use barMinWidth and barMaxWidth to constrain the range thickness in pixels or percentages of the category band. The minimum takes priority if the limits conflict and can cause overlap in crowded charts.
+
+```html
+<syn-chart id="bullet-min-width"></syn-chart>
+<syn-chart id="bullet-max-width"></syn-chart>
+<script type="module">
+  const minimum = document.querySelectorAll("#bullet-min-width");
+  const maximum = document.querySelectorAll("#bullet-max-width");
+  const baseConfig = {
+    xAxis: { data: ["Pressure", "Flow", "Speed"], type: "category" },
+    yAxis: { min: -20, max: 100, type: "value" },
+  };
+  const data = [
+    { name: "Pressure", start: 10, end: 80, current: 65 },
+    { name: "Flow", start: -10, end: 60, current: 48 },
+    { name: "Speed", start: -15, end: 45, current: -6 },
+  ];
+  minimum.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesBullet({ barWidth: 8, barMinWidth: 32, data });
+  });
+  maximum.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesBullet({ barWidth: "60%", barMaxWidth: 48, data });
+  });
+</script>
+```
+
+---
+
+## Series Id
+
+Give a series a stable id to target its data when calling setOption. This example updates the actual values after the chart is initialized.
+
+```html
+<syn-chart id="bullet-series-id"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#bullet-series-id");
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: { data: ["Pressure", "Flow"], type: "category" },
+          yAxis: { min: 0, max: 100, type: "value" },
+        })
+        .seriesBullet({
+          id: "operating-ranges",
+          data: [
+            { name: "Pressure", start: 10, end: 80, current: 65 },
+            { name: "Flow", start: 20, end: 60, current: 40 },
+          ],
+        });
+    setTimeout(() => {
+      chart.getInstance().setOption({
+        series: [
+          {
+            id: "operating-ranges",
+            data: [
+              { name: "Pressure", start: 10, end: 80, current: 72 },
+              { name: "Flow", start: 20, end: 60, current: 55 },
+            ],
+          },
+        ],
+      });
+    }, 3000);
+  });
+</script>
+```
+
+---
+
+## Silent
+
+Set silent: true to disable pointer interaction for a bullet series, including pointer-triggered tooltips. The first chart remains interactive; the second is silent.
+
+```html
+<syn-chart id="bullet-interactive"></syn-chart>
+<syn-chart id="bullet-silent"></syn-chart>
+<script type="module">
+  const interactive = document.querySelectorAll("#bullet-interactive");
+  const silent = document.querySelectorAll("#bullet-silent");
+  const baseConfig = {
+    tooltip: { trigger: "item" },
+    xAxis: { data: ["Pressure", "Flow"], type: "category" },
+    yAxis: { min: 0, max: 100, type: "value" },
+  };
+  const data = [
+    { name: "Pressure", start: 10, end: 80, current: 65 },
+    { name: "Flow", start: 20, end: 60, current: 48 },
+  ];
+  interactive.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.baseConfig(baseConfig).seriesBullet({ data });
+  });
+  silent.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.baseConfig(baseConfig).seriesBullet({ silent: true, data });
+  });
+</script>
+```
+
+---
+
+## Z Order
+
+Set z to control drawing order within a canvas layer. The narrow range is drawn above the wider range because it has the higher z value.
+
+```html
+<syn-chart id="bullet-z-order"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#bullet-z-order");
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: { data: ["Pressure", "Flow"], type: "category" },
+          yAxis: { min: 0, max: 100, type: "value" },
+        })
+        .seriesBullet({
+          z: 10,
+          barWidth: 12,
+          itemStyle: { color: ChartTokens.SynChartSequential02_70.light },
+          data: [
+            { name: "Pressure", start: 20, end: 70, current: 50 },
+            { name: "Flow", start: 30, end: 60, current: 45 },
+          ],
+        })
+        .seriesBullet({
+          z: 2,
+          barWidth: 40,
+          barMaxWidth: 40,
+          itemStyle: {
+            color: ChartTokens.SynChartSequentialStatusSuccess70.light,
+          },
+          data: [
+            { name: "Pressure", start: 10, end: 85, current: 75 },
+            { name: "Flow", start: 15, end: 80, current: 70 },
+          ],
+        });
+  });
+</script>
+```
+
+---
+
+## Z Level
+
+Set zlevel to control the rendering layer of a series. Higher layers appear above lower layers regardless of z; prefer z when separate layers are not needed.
+
+```html
+<syn-chart id="bullet-z-level"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#bullet-z-level");
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: { data: ["Pressure", "Flow"], type: "category" },
+          yAxis: { min: 0, max: 100, type: "value" },
+        })
+        .seriesBullet({
+          z: 1,
+          zlevel: 1,
+          barWidth: 12,
+          itemStyle: { color: ChartTokens.SynChartSequential02_70.light },
+          data: [
+            { name: "Pressure", start: 20, end: 70, current: 50 },
+            { name: "Flow", start: 30, end: 60, current: 45 },
+          ],
+        })
+        .seriesBullet({
+          z: 10,
+          zlevel: 0,
+          barWidth: 40,
+          barMaxWidth: 40,
+          itemStyle: {
+            color: ChartTokens.SynChartSequentialStatusSuccess70.light,
+          },
+          data: [
+            { name: "Pressure", start: 10, end: 85, current: 75 },
+            { name: "Flow", start: 15, end: 80, current: 70 },
+          ],
+        });
+  });
+</script>
+```
+
+---
+
+## Item Style
+
+Use itemStyle to configure the range color, border and opacity. Individual items can override series defaults. The marker has its own styling, configured with markerStyle.
+
+```html
+<syn-chart id="bullet-item-style"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#bullet-item-style");
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: { data: ["Pressure", "Flow", "Speed"], type: "category" },
+          yAxis: { min: 0, max: 100, type: "value" },
+        })
+        .seriesBullet({
+          barWidth: 32,
+          barMaxWidth: 32,
+          itemStyle: {
+            color: ChartTokens.SynChartSequential02_70.light,
+            borderColor: ChartTokens.SynChartSequential02_80.light,
+            borderWidth: 2,
+            opacity: 0.2,
+          },
+          data: [
+            { name: "Pressure", start: 10, end: 80, current: 65 },
+            {
+              name: "Flow",
+              start: 20,
+              end: 60,
+              current: 48,
+              itemStyle: {
+                color: ChartTokens.SynChartSequentialStatusSuccess70.light,
+                borderType: "dashed",
+                borderWidth: 3,
+                opacity: 1,
+              },
+            },
+            { name: "Speed", start: 15, end: 45, current: 30 },
+          ],
+        });
+  });
+</script>
+```
+
+---
+
+## Custom Marker
+
+Use markerStyle to set the actual-value marker's color, border, opacity, width and height. Width and height are physical pixel dimensions independent of orientation; the marker remains centered on the actual value.
+
+```html
+<syn-chart id="bullet-custom-marker-vertical"></syn-chart>
+<syn-chart id="bullet-custom-marker-horizontal"></syn-chart>
+<script type="module">
+  const vertical = document.querySelectorAll("#bullet-custom-marker-vertical");
+  const horizontal = document.querySelectorAll(
+    "#bullet-custom-marker-horizontal",
+  );
+  const data = [
+    { name: "Pressure", start: 10, end: 80, current: 65 },
+    { name: "Flow", start: 20, end: 60, current: 48 },
+    { name: "Speed", start: 15, end: 45, current: 30 },
+  ];
+  const categoryAxis = {
+    data: ["Pressure", "Flow", "Speed"],
+    type: "category",
+  };
+  const valueAxis = { min: 0, max: 100, type: "value" };
+  const markerStyle = {
+    borderColor: ChartTokens.SynChartSequential02_80.light,
+    borderWidth: 2,
+    opacity: 1,
+  };
+  vertical.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({ xAxis: categoryAxis, yAxis: valueAxis })
+        .seriesBullet({
+          data,
+          itemStyle: { opacity: 0.6 },
+          markerStyle: {
+            ...markerStyle,
+            color: ChartTokens.SynChartSequential02_70.light,
+            width: 40,
+            height: 8,
+          },
+        });
+  });
+  horizontal.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({ xAxis: valueAxis, yAxis: categoryAxis })
+        .seriesBullet({
+          data,
+          itemStyle: { opacity: 0.6 },
+          markerStyle: {
+            ...markerStyle,
+            color: ChartTokens.SynChartSequentialStatusWarning70.light,
+            width: 8,
+            height: 40,
+            borderType: "dashed",
+          },
+        });
+  });
+</script>
+```
+
+---
+
+## Emphasis
+
+Use emphasis.itemStyle to change the hovered range's appearance. Set emphasis.disabled at series or item level to disable hover styling.
+
+```html
+<syn-chart id="bullet-emphasis"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#bullet-emphasis");
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          xAxis: { data: ["Pressure", "Flow", "Speed"], type: "category" },
+          yAxis: { min: 0, max: 100, type: "value" },
+        })
+        .seriesBullet({
+          emphasis: {
+            itemStyle: {
+              color: ChartTokens.SynChartSequential02_70.light,
+              borderColor: ChartTokens.SynChartSequential02_80.light,
+              borderWidth: 4,
+            },
+          },
+          data: [
+            { name: "Pressure", start: 10, end: 80, current: 65 },
+            { name: "Flow", start: 20, end: 60, current: 48 },
+            { name: "Speed", start: 15, end: 45, current: 30 },
+          ],
+        });
+  });
+</script>
+```
+
+---
+
+## Categorical Vs Sequential
+
+Use the palette attribute to apply another Synergy chart color palette to the bullet series.
+
+```html
+<syn-chart id="bullet-categorical" palette="categorical"></syn-chart>
+<syn-chart
+  id="bullet-sequential"
+  palette="sequential-status-success"
+></syn-chart>
+<script type="module">
+  const categorical = document.querySelectorAll("#bullet-categorical");
+  const sequential = document.querySelectorAll("#bullet-sequential");
+  const baseConfig = {
+    xAxis: { data: ["Pressure", "Flow", "Speed"], type: "category" },
+    yAxis: { min: -20, max: 100, type: "value" },
+  };
+  const data = [
+    { name: "Pressure", start: 10, end: 80, current: 65 },
+    { name: "Flow", start: -10, end: 60, current: 48 },
+    { name: "Speed", start: -15, end: 45, current: -6 },
+  ];
+  categorical.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.baseConfig(baseConfig).seriesBullet({ data });
+  });
+  sequential.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.baseConfig(baseConfig).seriesBullet({ data });
+  });
+</script>
+```
+
+---
+
+## Default
+
 The donut chart can either be configured via config with type: 'synDonut' or with the seriesDonut preset function.
 
 ```html

@@ -26,6 +26,7 @@ import {
 } from './themes/utilities.js';
 import { getSynergyTheme } from './themes/theme.js';
 import { segmentInstall } from './configs/series/segment/install.js';
+import { bulletInstall } from './configs/series/bullet/install.js';
 import { donutInstall } from './configs/series/donut/install.js';
 import { gaugeInstall } from './configs/series/gauge/install.js';
 import { legendIconVisual, legendVisibilityIconProcessor } from './configs/legend/utilities.js';
@@ -47,6 +48,7 @@ use([
   GridComponent,
   DataZoomComponent,
   segmentInstall,
+  bulletInstall,
   donutInstall,
   gaugeInstall,
 ]);
@@ -192,9 +194,9 @@ export default class SynChart extends SynergyElement {
   private setRenderer(): void {
     const allSeriesTypes = Array.isArray(this.resolvedConfig.series)
       ? this.resolvedConfig.series.map(s => s.type) : [this.resolvedConfig.series?.type];
-    const hasLineOrBarSeries = allSeriesTypes.some(type => type === 'line' || type === 'bar');
-    // for line or bar series, we always use the canvas renderer
-    if (hasLineOrBarSeries) {
+    const hasCanvasSeries = allSeriesTypes.some(type => type === 'line' || type === 'bar' || type === 'synBullet');
+    // for line, bar, or bullet series, we always use the canvas renderer
+    if (hasCanvasSeries) {
       return;
     }
 

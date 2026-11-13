@@ -2036,6 +2036,90 @@
           "value": "A histogram summarizes large datasets by grouping values into bins. In image processing, the bins can represent grayscale intensities from 0 (black) to 255 (white), and each bar shows the number of pixels at that intensity.",
           "type": "text"
         }
+      },
+      "bullet-series-default": {
+        "title": { "value": "Bullet Chart", "type": "text" },
+        "description": {
+          "value": "Bullet charts provide a compact comparison of a measured value with a reference range. Use them to monitor operating conditions, production metrics or other KPIs against their expected limits. In this implementation, the bar shows the range and the contrasting marker shows the actual value. Label the metric and its units, and provide a text alternative or data table.",
+          "type": "text"
+        }
+      },
+      "bullet-series-preset": {
+        "title": { "value": "Bullet Chart Configuration", "type": "text" },
+        "description": {
+          "value": "Configure a bullet chart via the chart config with `type: 'synBullet'` or with the `seriesBullet` preset function. Each data item requires numeric `start`, `end` and `current` values: the range extends from `start` to `end` and the marker shows `current`, which can be inside or outside the range. Range thickness adapts to the available category space and is capped by `barMaxWidth` by default.",
+          "type": "text"
+        }
+      },
+      "bullet-series-vertical": {
+        "title": { "value": "Vertical Bullet Chart", "type": "text" },
+        "description": {
+          "value": "Place categories on the x-axis and values on the y-axis to compare actual values with their reference ranges vertically. This orientation works well for a small number of categories.",
+          "type": "text"
+        }
+      },
+      "bullet-series-horizontal": {
+        "title": { "value": "Horizontal Bullet Chart", "type": "text" },
+        "description": {
+          "value": "Place categories on the y-axis and values on the x-axis. Horizontal bullets provide more room for category labels and can be useful for compact KPI dashboards.",
+          "type": "text"
+        }
+      },
+      "bullet-series-color-by": {
+        "title": { "value": "Bullet Chart Color Assignment", "type": "text" },
+        "description": {
+          "value": "Use `colorBy: 'data'` to assign range colors by item or `colorBy: 'series'` to give the items in a series the same color.",
+          "type": "text"
+        }
+      },
+      "bullet-series-palette": {
+        "title": { "value": "Bullet Chart Palette", "type": "text" },
+        "description": {
+          "value": "Use the `palette` attribute to apply another Synergy chart color palette to the bullet series.",
+          "type": "text"
+        }
+      },
+      "bullet-series-custom-color": {
+        "title": { "value": "Bullet Chart Custom Colors", "type": "text" },
+        "description": {
+          "value": "Set `itemStyle` on the series or on individual data items to customize range colors, border or shadows. Use Synergy chart tokens and keep the actual-value marker distinguishable from the range.",
+          "type": "text"
+        }
+      },
+      "bullet-series-tooltip": {
+        "title": { "value": "Bullet Chart Tooltip", "type": "text" },
+        "description": {
+          "value": "Enable a tooltip to inspect the range and actual value on hover. Set a `name` on each data item to show it in the tooltip. Without a name, the category label is used instead. Set `tooltip.axisPointer.type` to `'shadow'` to highlight the corresponding category and compare values across series.",
+          "type": "text"
+        }
+      },
+      "bullet-series-legend": {
+        "title": { "value": "Bullet Chart Legend", "type": "text" },
+        "description": {
+          "value": "Show a legend for named bullet items so users can identify ranges and toggle individual items.",
+          "type": "text"
+        }
+      },
+      "bullet-series-value-range": {
+        "title": { "value": "Bullet Chart Value Range", "type": "text" },
+        "description": {
+          "value": "Set `min` and `max` on the value axis to keep the scale consistent across charts or updates. Include the relevant range endpoints and actual values so they remain visible.",
+          "type": "text"
+        }
+      },
+      "bullet-series-custom-width": {
+        "title": { "value": "Bullet Chart Custom Range Width", "type": "text" },
+        "description": {
+          "value": "Set `barWidth` to control the thickness of the bullet range. A number specifies a fixed width in pixels, while a percentage string sets the width relative to the category band and adapts to the chart size. By default, ranges are responsive but capped at 24 px by the theme's `barMaxWidth` setting. To use ranges wider than 24 px, increase `barMaxWidth` on the series or explicitly set `barMaxWidth: undefined` in the initial series configuration to remove the maximum. Explicit `barWidth` ignores `barCategoryGap` and remains subject to `barMinWidth`.",
+          "type": "text"
+        }
+      },
+      "bullet-series-marker": {
+        "title": { "value": "Bullet Chart Marker Styling", "type": "text" },
+        "description": {
+          "value": "Use `markerStyle` to set the actual-value marker's color, border, opacity, width and height. Width and height are physical pixel dimensions independent of orientation; the marker remains centered on the actual value.",
+          "type": "text"
+        }
       }
     },
     "checkbox": {

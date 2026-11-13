@@ -12,6 +12,7 @@ type ChartDocumentationSection =
   | 'Gauge series presets'
   | 'Donut series presets'
   | 'Segment series presets'
+  | 'Bullet series presets'
   | 'Histogram series presets';
 
 const readmeLines = chartingReadme.split('\n');

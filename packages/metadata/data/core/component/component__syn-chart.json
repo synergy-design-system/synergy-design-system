@@ -1645,6 +1645,138 @@
             "type": "text",
             "value": "Histogram with Large Data Set"
           }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Bullet charts provide a compact comparison of a measured value with a reference range. Use them to monitor operating conditions, production metrics or other KPIs against their expected limits. In this implementation, the bar shows the range and the contrasting marker shows the actual value. Label the metric and its units, and provide a text alternative or data table."
+          },
+          "name": "bullet-series-default",
+          "title": {
+            "type": "text",
+            "value": "Bullet Chart"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Configure a bullet chart via the chart config with `type: 'synBullet'` or with the `seriesBullet` preset function. Each data item requires numeric `start`, `end` and `current` values: the range extends from `start` to `end` and the marker shows `current`, which can be inside or outside the range. Range thickness adapts to the available category space and is capped by `barMaxWidth` by default."
+          },
+          "name": "bullet-series-preset",
+          "title": {
+            "type": "text",
+            "value": "Bullet Chart Configuration"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Place categories on the x-axis and values on the y-axis to compare actual values with their reference ranges vertically. This orientation works well for a small number of categories."
+          },
+          "name": "bullet-series-vertical",
+          "title": {
+            "type": "text",
+            "value": "Vertical Bullet Chart"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Place categories on the y-axis and values on the x-axis. Horizontal bullets provide more room for category labels and can be useful for compact KPI dashboards."
+          },
+          "name": "bullet-series-horizontal",
+          "title": {
+            "type": "text",
+            "value": "Horizontal Bullet Chart"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use `colorBy: 'data'` to assign range colors by item or `colorBy: 'series'` to give the items in a series the same color."
+          },
+          "name": "bullet-series-color-by",
+          "title": {
+            "type": "text",
+            "value": "Bullet Chart Color Assignment"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the `palette` attribute to apply another Synergy chart color palette to the bullet series."
+          },
+          "name": "bullet-series-palette",
+          "title": {
+            "type": "text",
+            "value": "Bullet Chart Palette"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Set `itemStyle` on the series or on individual data items to customize range colors, border or shadows. Use Synergy chart tokens and keep the actual-value marker distinguishable from the range."
+          },
+          "name": "bullet-series-custom-color",
+          "title": {
+            "type": "text",
+            "value": "Bullet Chart Custom Colors"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Enable a tooltip to inspect the range and actual value on hover. Set a `name` on each data item to show it in the tooltip. Without a name, the category label is used instead. Set `tooltip.axisPointer.type` to `'shadow'` to highlight the corresponding category and compare values across series."
+          },
+          "name": "bullet-series-tooltip",
+          "title": {
+            "type": "text",
+            "value": "Bullet Chart Tooltip"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Show a legend for named bullet items so users can identify ranges and toggle individual items."
+          },
+          "name": "bullet-series-legend",
+          "title": {
+            "type": "text",
+            "value": "Bullet Chart Legend"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Set `min` and `max` on the value axis to keep the scale consistent across charts or updates. Include the relevant range endpoints and actual values so they remain visible."
+          },
+          "name": "bullet-series-value-range",
+          "title": {
+            "type": "text",
+            "value": "Bullet Chart Value Range"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Set `barWidth` to control the thickness of the bullet range. A number specifies a fixed width in pixels, while a percentage string sets the width relative to the category band and adapts to the chart size. By default, ranges are responsive but capped at 24 px by the theme's `barMaxWidth` setting. To use ranges wider than 24 px, increase `barMaxWidth` on the series or explicitly set `barMaxWidth: undefined` in the initial series configuration to remove the maximum. Explicit `barWidth` ignores `barCategoryGap` and remains subject to `barMinWidth`."
+          },
+          "name": "bullet-series-custom-width",
+          "title": {
+            "type": "text",
+            "value": "Bullet Chart Custom Range Width"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use `markerStyle` to set the actual-value marker's color, border, opacity, width and height. Width and height are physical pixel dimensions independent of orientation; the marker remains centered on the actual value."
+          },
+          "name": "bullet-series-marker",
+          "title": {
+            "type": "text",
+            "value": "Bullet Chart Marker Styling"
+          }
         }
       ],
       "storySourcePath": "components.chart",
@@ -1668,6 +1800,21 @@
           ],
           "id": "data-and-purpose",
           "name": "Data and Purpose"
+        },
+        {
+          "content": [
+            "Use line charts for trends across ordered data, such as time or sequence; avoid connecting categories that have no meaningful order.",
+            "Use area charts to emphasize magnitude across an ordered sequence. Prefer lines when overlapping filled areas would obscure comparisons.",
+            "Use area-range charts to show lower and upper bounds, such as a minimum-to-maximum range or uncertainty band.",
+            "Use bars to compare discrete categories; group bars for side-by-side series comparisons and stack them when each category total and its parts are meaningful.",
+            "Use histograms to show the distribution of a continuous measure grouped into value intervals, not to compare unrelated categories.",
+            "Use a donut chart to show a small number of categories as proportions of one whole; use bars or a table when precise comparisons between values matter.",
+            "Use a gauge for one current value against a defined scale or thresholds, rather than to show a time trend.",
+            "Use a bullet chart to compare an actual value with its displayed range, such as a target or acceptable range.",
+            "Use a segment chart for several independent radial progress indicators; do not imply that the segments are parts of one whole."
+          ],
+          "id": "chart-type-selection",
+          "name": "Choosing a Chart Type"
         },
         {
           "content": [

@@ -316,7 +316,7 @@ describe('synBullet model', () => {
       const tooltip = chart.shadowRoot!.querySelector('.tooltip')!;
       instance.dispatchAction({ dataIndex: 0, seriesIndex: 0, type: 'showTip' });
       const symbolsBefore = tooltip.querySelectorAll<HTMLSpanElement>('span[style*="background-color"]');
-      expect(symbolsBefore[0].style.backgroundColor).to.equal('rgb(0, 0, 0)');
+      expect(symbolsBefore[0].style.backgroundColor).to.equal('rgb(134, 134, 134)');
       expect(symbolsBefore[1].style.backgroundColor).to.equal('rgb(0, 90, 255)');
       expect(tooltip.textContent).to.equal('Original20-5 - 30');
       instance.setOption({

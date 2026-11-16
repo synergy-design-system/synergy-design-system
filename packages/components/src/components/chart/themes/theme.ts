@@ -18,7 +18,7 @@ const getBarWidthDefaults = (mode: Themes) => ({
   barCategoryGap: styleWithoutUnit('SynSpacing3xSmall', mode),
   // We want the bars to be responsive. This is why we do not set a fixed pixel width for `barWidth` as the bars would then no longer be responsive.
   // By setting only the maximum width, we allow the bars to shrink and grow responsively within the available space.
-  barMaxWidth: styleWithoutUnit('SynSpacingLarge', mode),
+  barMaxWidth: styleWithoutUnit('SynChartBarWidth', mode),
 });
 
 /**

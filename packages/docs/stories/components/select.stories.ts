@@ -285,14 +285,42 @@ export const GroupingOptions: Story = {
     },
   },
   render: () => html`
-    <syn-select placeholder="This is a value">
+    <syn-select placeholder="Small" size="small">
       <syn-optgroup label="Section 1">
-        <syn-option value="1">Option</syn-option>
-        <syn-option value="2">Option</syn-option>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        <syn-icon name="wallpaper" slot="suffix"></syn-icon>
+        <syn-option value="option-1">Option 1</syn-option>
+        <syn-option value="option-2">Option 2</syn-option>
       </syn-optgroup>
       <syn-optgroup label="Section 2">
-        <syn-option value="3">Option</syn-option>
-        <syn-option value="4">Option</syn-option>
+        <syn-option value="option-3">Option 3</syn-option>
+        <syn-option value="option-4">Option 4</syn-option>
+      </syn-optgroup>
+    </syn-select>
+    <br />
+    <syn-select placeholder="Medium" size="medium">
+      <syn-optgroup label="Section 1">
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        <syn-icon name="wallpaper" slot="suffix"></syn-icon>
+        <syn-option value="option-1">Option 1</syn-option>
+        <syn-option value="option-2">Option 2</syn-option>
+      </syn-optgroup>
+      <syn-optgroup label="Section 2">
+        <syn-option value="option-3">Option 3</syn-option>
+        <syn-option value="option-4">Option 4</syn-option>
+      </syn-optgroup>
+    </syn-select>
+    <br />
+    <syn-select placeholder="Large" size="large">
+      <syn-optgroup label="Section 1">
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        <syn-icon name="wallpaper" slot="suffix"></syn-icon>
+        <syn-option value="option-1">Option 1</syn-option>
+        <syn-option value="option-2">Option 2</syn-option>
+      </syn-optgroup>
+      <syn-optgroup label="Section 2">
+        <syn-option value="option-3">Option 3</syn-option>
+        <syn-option value="option-4">Option 4</syn-option>
       </syn-optgroup>
     </syn-select>
   `,

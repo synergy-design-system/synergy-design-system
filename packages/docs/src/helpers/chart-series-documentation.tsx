@@ -42,5 +42,15 @@ function getSectionMarkdown(sectionTitle: ChartDocumentationSection): string {
 }
 
 export function ChartSeriesDocumentation({ section }: { section: ChartDocumentationSection }) {
-  return <Markdown>{getSectionMarkdown(section)}</Markdown>;
+  return (
+    <div className="chart-series-documentation">
+      <style>{`
+        .chart-series-documentation td code {
+          white-space: normal;
+          overflow-wrap: anywhere;
+        }
+      `}</style>
+      <Markdown>{getSectionMarkdown(section)}</Markdown>
+    </div>
+  );
 }

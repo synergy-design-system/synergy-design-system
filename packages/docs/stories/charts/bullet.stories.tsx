@@ -100,7 +100,8 @@ export const Vertical: Story = {
               { start: 20, end: 100, current: 42 },
               { start: -15, end: 45, current: -6 },
             ],
-          });
+          })
+          .axesShowYSplitLines();
       });
     </script>
   `,
@@ -381,8 +382,9 @@ export const CustomMarker: Story = {
             { start: -15, end: 45, current: -6 }
           ],
           markerStyle: {
-            width: 40,
-            height: 8,
+            width: 20,
+            height: 20,
+            borderRadius: 20,
             color: ComponentTokens.SynColorNeutral400.light
           },
         });

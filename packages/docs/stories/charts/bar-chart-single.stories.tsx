@@ -121,6 +121,7 @@ export const Vertical: Story = {
               data: [120, 180, 150, 80, 70, 110, 130],
             },
           ])
+          .axesShowYSplitLines();
       });
     </script>
   `,

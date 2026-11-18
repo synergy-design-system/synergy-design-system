@@ -5,4 +5,6 @@
 
 feat: ✨ Adds bullet chart support to <syn-chart> (#1213)
 
-This release adds support for bullet charts in `<syn-chart>` and adds a new preset function `seriesBullet`.
+**Features**
+- This release adds support for bullet charts via `synBullet` in `<syn-chart>` and adds a new preset function `seriesBullet`.
+- Add item tooltip support for `synSegment` and `synDonut` charts

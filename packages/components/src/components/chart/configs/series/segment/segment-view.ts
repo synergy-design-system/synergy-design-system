@@ -81,7 +81,6 @@ const createSegmentWedge = ({
 
   return new graphic.Polygon({
     shape: { points },
-    silent: true,
     style: {
       fill: wedgeStyle.fill ?? 'none',
       lineWidth,
@@ -197,7 +196,8 @@ const createSegments = (
       if (!range || !(segmentOuterRadius > segmentInnerRadius)) {
         return null;
       }
-      const segments: Array<graphic.Polygon | graphic.Text> = [];
+      const segmentGroup = new graphic.Group();
+      const segments: Array<graphic.Group | graphic.Text> = [segmentGroup];
       const segmentHalfGap = getSafeHalfGap(halfGap, range.endAngle - range.startAngle, segmentInnerRadius);
       const segmentItemModel = data.getItemModel<SegmentDataItem>(index);
 
@@ -208,7 +208,7 @@ const createSegments = (
       const backgroundBorderWidth = backgroundStyle.lineWidth ?? 0;
 
       // Unfilled background, spanning the full radial band.
-      segments.push(createSegmentWedge({
+      segmentGroup.add(createSegmentWedge({
         shape: {
           centerX,
           centerY,
@@ -233,7 +233,7 @@ const createSegments = (
       if (fillRatio > 0) {
         const filledOuterRadius = segmentInnerRadius + (fillRatio * (segmentOuterRadius - segmentInnerRadius));
         const itemStyle = data.getItemVisual(index, 'style');
-        segments.push(createSegmentWedge({
+        segmentGroup.add(createSegmentWedge({
           shape: {
             centerX,
             centerY,
@@ -251,6 +251,8 @@ const createSegments = (
           z: 4,
         }));
       }
+
+      data.setItemGraphicEl(index, segmentGroup);
 
       const label = resolveSegmentLabel(segmentItemModel.option, value);
 

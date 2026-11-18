@@ -9,7 +9,9 @@ import {
 } from '@storybook/addon-docs/blocks';
 import { ResolvedTokens as ChartTokens } from '@synergy-design-system/tokens/charts/resolved';
 import { ResolvedTokens as ComponentTokens } from '@synergy-design-system/tokens/resolved';
+import isChromatic from 'chromatic';
 import '../../../components/src/components/chart/chart.js';
+import type SynChart from '../../../components/src/components/chart/chart.js';
 import { formatter } from '../../../components/src/components/chart/index.js';
 import {
   generateScreenshotStory,
@@ -490,6 +492,40 @@ export const WithLegend: Story = {
         })
         .legendShow()
         ;
+      });
+    </script>
+  `,
+};
+
+export const Tooltip: Story = {
+  parameters: {
+    chromatic: { disableSnapshot: false },
+    docs: { description: { story: generateStoryDescription('chart', 'segment-series-tooltip') } },
+  },
+  play: async ({ canvasElement }) => {
+    if (isChromatic()) {
+      const chart = canvasElement.querySelector<SynChart>('#segment-tooltip');
+      if (!chart) return;
+      // We need to wait until the chart with svg renderer is initialized
+      await new Promise(resolve => { setTimeout(resolve, 200); });
+      chart.getInstance()!.dispatchAction({ dataIndex: 0, seriesIndex: 0, type: 'showTip' });
+    }
+  },
+  render: () => html`
+    <syn-chart id="segment-tooltip"></syn-chart>
+    <script type="module">
+      const charts = document.querySelectorAll('#segment-tooltip');
+
+      charts.forEach(chart => {
+        chart.config = handle => handle
+          .seriesSegment({
+            data: [
+              { name: 'Temperature', value: 70 },
+              { name: 'Pressure', value: 30 },
+              { name: 'Humidity', value: 50 },
+            ],
+          })
+          .tooltipShow();
       });
     </script>
   `,

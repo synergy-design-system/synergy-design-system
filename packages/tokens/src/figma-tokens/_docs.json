@@ -1017,6 +1017,16 @@
           "type": "text"
         }
       },
+      "donut-series-tooltip": {
+        "title": {
+          "value": "Donut Series Tooltip",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `tooltipShow()` to display a segment's value on hover. Set a `name` on each data item to identify it in the tooltip. The `synDonut` series supports only `trigger: 'item'`, which is set by default for the series, `trigger: 'axis'` does not work.",
+          "type": "text"
+        }
+      },
       "donut-series-center": {
         "title": {
           "value": "Donut Series Center",
@@ -1244,6 +1254,16 @@
         },
         "description": {
           "value": "Use `legendShow()` to display a legend for segment data items. Set the `name` option on each item to provide its legend label.",
+          "type": "text"
+        }
+      },
+      "segment-series-tooltip": {
+        "title": {
+          "value": "Segment Chart Tooltip",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `tooltipShow()` to display a segment's value on hover. Set a `name` on each data item to identify it in the tooltip. The `synSegment` series supports only `trigger: 'item'`, which is set by default for the series, `trigger: 'axis'` does not work.",
           "type": "text"
         }
       },

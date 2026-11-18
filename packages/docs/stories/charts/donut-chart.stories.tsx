@@ -10,6 +10,8 @@ import {
 import { ResolvedTokens as ChartTokens } from '@synergy-design-system/tokens/charts/resolved';
 import { ResolvedTokens as ComponentTokens } from '@synergy-design-system/tokens/resolved';
 import '../../../components/src/components/chart/chart.js';
+import isChromatic from 'chromatic';
+import type SynChart from '../../../components/src/components/chart/chart.js';
 import { formatter } from '../../../components/src/components/chart/index.js';
 import {
   generateScreenshotStory,
@@ -322,6 +324,49 @@ export const WithLegend: Story = {
           ],
         })
         .legendShow();
+      });
+    </script>
+  `,
+};
+
+export const Tooltip: Story = {
+  parameters: {
+    chromatic: { disableSnapshot: false },
+    docs: { description: { story: generateStoryDescription('chart', 'donut-series-tooltip') } },
+  },
+  play: async ({ canvasElement }) => {
+    // Only run this code when running in Chromatic, as it is used to show the tooltip for the snapshot.
+    if (isChromatic()) {
+      const chart = canvasElement.querySelector<SynChart>('#donut-tooltip');
+      if (!chart) return;
+      // We need to wait until the chart with svg renderer is initialized
+      await new Promise(resolve => { setTimeout(resolve, 200); });
+      chart.getInstance()!.dispatchAction({ dataIndex: 0, seriesIndex: 0, type: 'showTip' });
+    }
+  },
+  render: () => html`
+    <syn-chart id="donut-tooltip"></syn-chart>
+    <script type="module">
+      const charts = document.querySelectorAll('#donut-tooltip');
+      charts.forEach(chart => {
+        chart.config = handle => handle
+          .seriesDonut({
+            data: [
+              {
+                value: 421,
+                name: 'Angular',
+              },
+              {
+                value: 552,
+                name: 'React',
+              },
+              {
+                value: 36,
+                name: 'Vue',
+              },
+            ],
+          })
+          .tooltipShow();
       });
     </script>
   `,

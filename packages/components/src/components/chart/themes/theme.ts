@@ -76,6 +76,20 @@ export const getSynergyTheme = (mode: Themes = 'light') => ({
       color: style('SynChartPlotLineColor', mode),
     },
   },
+  // Donut series
+  synDonut: {
+    tooltip: {
+      // Tooltip does only work if set to 'item' for donut series
+      trigger: 'item',
+    },
+  },
+  // Segment series
+  synSegment: {
+    tooltip: {
+      // Tooltip does only work if set to 'item' for segment series
+      trigger: 'item',
+    },
+  },
   // Global font style
   textStyle: {
     color: style('SynTypographyColorText', mode),

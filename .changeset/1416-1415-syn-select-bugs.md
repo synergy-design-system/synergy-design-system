@@ -1,5 +1,6 @@
 ---
 "@synergy-design-system/components": patch
+"@synergy-design-system/metadata": patch
 ---
 
 fix: 🐛 New fixes for `<syn-select/>` and `<syn-combobox/>`(#1416) (#1415)

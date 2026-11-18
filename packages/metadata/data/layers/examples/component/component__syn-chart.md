@@ -3540,17 +3540,20 @@ Place categories on the x-axis and values on the y-axis, where bar height repres
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle.baseConfig(baseConfig).seriesBar([
-        {
-          data: [120, 180, 150, 80, 70, 110, 130],
-        },
-        {
-          data: [80, 130, 100, 70, 90, 160, 140],
-        },
-        {
-          data: [90, 120, 140, 100, 110, 70, 60],
-        },
-      ]);
+      handle
+        .baseConfig(baseConfig)
+        .seriesBar([
+          {
+            data: [120, 180, 150, 80, 70, 110, 130],
+          },
+          {
+            data: [80, 130, 100, 70, 90, 160, 140],
+          },
+          {
+            data: [90, 120, 140, 100, 110, 70, 60],
+          },
+        ])
+        .axesShowYSplitLines();
   });
 </script>
 ```
@@ -4155,11 +4158,14 @@ Place categories on the x-axis and values on the y-axis, where bar height repres
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle.baseConfig(baseConfig).seriesBar([
-        {
-          data: [120, 180, 150, 80, 70, 110, 130],
-        },
-      ]);
+      handle
+        .baseConfig(baseConfig)
+        .seriesBar([
+          {
+            data: [120, 180, 150, 80, 70, 110, 130],
+          },
+        ])
+        .axesShowYSplitLines();
   });
 </script>
 ```
@@ -4661,17 +4667,20 @@ Place categories on the x-axis and values on the y-axis, where bar height repres
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle.baseConfig(baseConfig).seriesBarStacked([
-        {
-          data: [120, 180, 150, 80, 70, 110, 130],
-        },
-        {
-          data: [80, 130, 100, 70, 90, 160, 140],
-        },
-        {
-          data: [90, 120, 140, 100, 110, 70, 60],
-        },
-      ]);
+      handle
+        .baseConfig(baseConfig)
+        .seriesBarStacked([
+          {
+            data: [120, 180, 150, 80, 70, 110, 130],
+          },
+          {
+            data: [80, 130, 100, 70, 90, 160, 140],
+          },
+          {
+            data: [90, 120, 140, 100, 110, 70, 60],
+          },
+        ])
+        .axesShowYSplitLines();
   });
 </script>
 ```
@@ -5285,7 +5294,8 @@ Place categories on the x-axis and values on the y-axis to compare actual values
             { start: 20, end: 100, current: 42 },
             { start: -15, end: 45, current: -6 },
           ],
-        });
+        })
+        .axesShowYSplitLines();
   });
 </script>
 ```
@@ -5576,7 +5586,7 @@ Set barWidth to control the thickness of the bullet range. A number specifies a 
 
 ## Custom Marker
 
-Use markerStyle to set the actual-value marker's color, border, opacity, width and height. Width and height are physical pixel dimensions independent of orientation; the marker remains centered on the actual value.
+Use markerStyle to set the actual-value marker's color, border, opacity, width and height. Width and height are physical pixel dimensions independent of orientation, the marker remains centered on the actual value.
 
 ```html
 <syn-chart id="bullet-custom-marker"></syn-chart>
@@ -5601,8 +5611,9 @@ Use markerStyle to set the actual-value marker's color, border, opacity, width a
             { start: -15, end: 45, current: -6 },
           ],
           markerStyle: {
-            width: 40,
-            height: 8,
+            width: 20,
+            height: 20,
+            borderRadius: 20,
             color: ComponentTokens.SynColorNeutral400.light,
           },
         });
@@ -5859,6 +5870,40 @@ Use legendShow() to render legend entries for the donut segments. Segment names 
           ],
         })
         .legendShow();
+  });
+</script>
+```
+
+---
+
+## Tooltip
+
+Use tooltipShow() to display a segment's value on hover. Set a name on each data item to identify it in the tooltip. The synDonut series supports only trigger: 'item', which is set by default for the series, trigger: 'axis' does not work.
+
+```html
+<syn-chart id="donut-tooltip"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#donut-tooltip");
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .seriesDonut({
+          data: [
+            {
+              value: 421,
+              name: "Angular",
+            },
+            {
+              value: 552,
+              name: "React",
+            },
+            {
+              value: 36,
+              name: "Vue",
+            },
+          ],
+        })
+        .tooltipShow();
   });
 </script>
 ```
@@ -7243,6 +7288,32 @@ Use legendShow() to display a legend for segment data items. Set the name option
           top: 20,
         })
         .legendShow();
+  });
+</script>
+```
+
+---
+
+## Tooltip
+
+Use tooltipShow() to display a segment's value on hover. Set a name on each data item to identify it in the tooltip. The synSegment series supports only trigger: 'item', which is set by default for the series, trigger: 'axis' does not work.
+
+```html
+<syn-chart id="segment-tooltip"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#segment-tooltip");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .seriesSegment({
+          data: [
+            { name: "Temperature", value: 70 },
+            { name: "Pressure", value: 30 },
+            { name: "Humidity", value: 50 },
+          ],
+        })
+        .tooltipShow();
   });
 </script>
 ```

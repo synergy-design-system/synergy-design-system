@@ -107,7 +107,7 @@
     "prettier": "^3.10.1",
     "sinon": "^22.1.0",
     "size-limit": "^14.3.0",
-    "stylelint": "^17.16.0",
+    "stylelint": "^18.0.0",
     "typescript": "~6.0.3"
   },
   "dependencies": {

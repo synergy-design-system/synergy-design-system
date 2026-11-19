@@ -210,11 +210,11 @@ export const CustomStyle: Story = {
           yAxis: { type: 'value' },
         })
         .seriesBullet({
-          itemStyle: { borderColor: ComponentTokens.SynColorNeutral800.light, borderWidth: 2, color: ChartTokens.SynChartSequential02_40.light },
+          itemStyle: { borderColor: ComponentTokens.SynColorNeutral700.light, borderWidth: 2, color: ChartTokens.SynChartSequential02_40.light },
           data: [
             { start: 10, end: 80, current: 65, },
             { start: -10, end: 60, current: 48 },
-            { start: 20, end: 100, current: 42, itemStyle: { borderColor: ComponentTokens.SynColorWarning600.light, color: ChartTokens.SynChartSequential02_70.light } },
+            { start: 20, end: 100, current: 42, itemStyle: { borderColor: ComponentTokens.SynColorNeutral1000.light, color: ChartTokens.SynChartSequential02_70.light } },
             { start: -15, end: 45, current: -6 },
           ],
         });

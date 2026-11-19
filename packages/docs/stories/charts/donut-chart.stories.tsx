@@ -9,6 +9,7 @@ import {
 } from '@storybook/addon-docs/blocks';
 import { ResolvedTokens as ChartTokens } from '@synergy-design-system/tokens/charts/resolved';
 import { ResolvedTokens as ComponentTokens } from '@synergy-design-system/tokens/resolved';
+import { expect, waitFor } from 'storybook/test';
 import '../../../components/src/components/chart/chart.js';
 import isChromatic from 'chromatic';
 import type SynChart from '../../../components/src/components/chart/chart.js';
@@ -335,14 +336,26 @@ export const Tooltip: Story = {
     docs: { description: { story: generateStoryDescription('chart', 'donut-series-tooltip') } },
   },
   play: async ({ canvasElement }) => {
-    // Only run this code when running in Chromatic, as it is used to show the tooltip for the snapshot.
-    if (isChromatic()) {
-      const chart = canvasElement.querySelector<SynChart>('#donut-tooltip');
-      if (!chart) return;
-      // We need to wait until the chart with svg renderer is initialized
-      await new Promise(resolve => { setTimeout(resolve, 200); });
-      chart.getInstance()!.dispatchAction({ dataIndex: 0, seriesIndex: 0, type: 'showTip' });
-    }
+    if (!isChromatic()) return;
+
+    const chart = canvasElement.querySelector<SynChart>('#donut-tooltip');
+    if (!chart) return;
+
+    // Wait for the inline module's config and the switch to the SVG instance.
+    await waitFor(async () => {
+      await expect(chart.getInstance()?.getOption()).toMatchObject({
+        series: [{ type: 'synDonut' }],
+      });
+    }, { timeout: 5000 });
+
+    const instance = chart.getInstance()!;
+    const showTooltip = () => {
+      instance.dispatchAction({ dataIndex: 0, seriesIndex: 0, type: 'showTip' });
+    };
+
+    // Storybook applies the theme after play, which redraws the chart and removes the tooltip.
+    instance.on('finished', showTooltip);
+    showTooltip();
   },
   render: () => html`
     <syn-chart id="donut-tooltip"></syn-chart>

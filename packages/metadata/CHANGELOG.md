@@ -1,5 +1,17 @@
 # Changelog
 
+## 4.28.0
+
+### Minor Changes
+
+- [#1424](https://github.com/synergy-design-system/synergy-design-system/pull/1424) [`1d5808f`](https://github.com/synergy-design-system/synergy-design-system/commit/1d5808f465e2282223f8a51ee3ec9d09e3c5ec06) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-11-19
+  
+  feat: ✨ Adds bullet chart support to <syn-chart> ([#1213](https://github.com/synergy-design-system/synergy-design-system/issues/1213))
+  
+  **Features**
+  - This release adds support for bullet charts via `synBullet` in `<syn-chart>` and adds a new preset function `seriesBullet`.
+  - Add item tooltip support for `synSegment` and `synDonut` charts
+
 ## 4.27.0
 
 ### Minor Changes

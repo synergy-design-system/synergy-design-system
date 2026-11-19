@@ -5422,7 +5422,7 @@ Set itemStyle on the series or on individual data items to customize range color
         })
         .seriesBullet({
           itemStyle: {
-            borderColor: ComponentTokens.SynColorNeutral800.light,
+            borderColor: ComponentTokens.SynColorNeutral700.light,
             borderWidth: 2,
             color: ChartTokens.SynChartSequential02_40.light,
           },
@@ -5434,7 +5434,7 @@ Set itemStyle on the series or on individual data items to customize range color
               end: 100,
               current: 42,
               itemStyle: {
-                borderColor: ComponentTokens.SynColorWarning600.light,
+                borderColor: ComponentTokens.SynColorNeutral1000.light,
                 color: ChartTokens.SynChartSequential02_70.light,
               },
             },

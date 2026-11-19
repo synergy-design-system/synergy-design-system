@@ -48,3 +48,9 @@ export const histogramChartConfigCallback: ChartConfigCallback = (handle) => {
     .baseConfig(mockData('histogramChartBaseConfig'))
     .seriesHistogram(mockData('histogramChartConfigObject'));
 };
+
+export const bulletChartConfigCallback: ChartConfigCallback = (handle) => {
+  handle
+    .baseConfig(mockData('generalChartConfig'))
+    .seriesBullet(mockData('bulletChartConfigObject'));
+};

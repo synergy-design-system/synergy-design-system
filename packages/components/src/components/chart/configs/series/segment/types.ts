@@ -61,7 +61,7 @@ export type SegmentDataItem = BackgroundStyle & ItemStyle & {
   /** Numeric value of the segment. Defines the amplitude of a segment. */
   value: number;
   /**
-   * Series item name used for displaying in legend.
+   * Series item name used for displaying in the legend and tooltip.
    */
   name?: string;
   /**

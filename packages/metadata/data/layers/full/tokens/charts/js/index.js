@@ -11,6 +11,11 @@ export const SynChartBackgroundColor = 'var(--syn-chart-background-color)';
 /**
  * @type {string}
  */
+export const SynChartBarWidth = 'var(--syn-chart-bar-width)';
+
+/**
+ * @type {string}
+ */
 export const SynChartCategorical10 = 'var(--syn-chart-categorical-10)';
 
 /**
@@ -82,6 +87,11 @@ export const SynChartGridLinesColor = 'var(--syn-chart-grid-lines-color)';
  * @type {string}
  */
 export const SynChartGridLinesColorEmphasize = 'var(--syn-chart-grid-lines-color-emphasize)';
+
+/**
+ * @type {string}
+ */
+export const SynChartMarkAreaColor = 'var(--syn-chart-mark-area-color)';
 
 /**
  * @type {string}

@@ -8,6 +8,7 @@
   color-scheme: light;
 
   --syn-chart-background-color: var(--syn-color-neutral-0);
+  --syn-chart-bar-width: 24px;
   --syn-chart-categorical-10: var(--syn-color-data-purple-700);
   --syn-chart-categorical-11: var(--syn-color-neutral-500);
   --syn-chart-categorical-12: var(--syn-color-data-magenta-500);
@@ -23,8 +24,9 @@
   --syn-chart-disabled-color: var(--syn-color-neutral-400);
   --syn-chart-grid-lines-color: var(--syn-color-neutral-100);
   --syn-chart-grid-lines-color-emphasize: var(--syn-color-neutral-200);
+  --syn-chart-mark-area-color: var(--syn-color-neutral-200);
   --syn-chart-opacity-20: 0.2;
-  --syn-chart-plot-line-color: var(--syn-color-neutral-1000);
+  --syn-chart-plot-line-color: var(--syn-color-neutral-500);
   --syn-chart-range-selection-color: var(--syn-color-neutral-500);
   --syn-chart-sequential-01-10: var(--syn-color-primary-100);
   --syn-chart-sequential-01-20: var(--syn-color-primary-200);

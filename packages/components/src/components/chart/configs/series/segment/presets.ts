@@ -33,7 +33,7 @@ import type { SegmentSeriesPresetOptions, SynergySegmentSeriesOption } from './t
  * @param {(number|SegmentDataItem)[]} [options.data] Array of segment values or objects containing segment metadata.
  * @param {number} [options.data[].value] Numeric value of the segment. Defines the amplitude of a segment
  * @param {number} [options.data[].weight] Angular width for each segment. Missing entries default to `1`.
- * @param {string} [options.data[].name] Series item name used for displaying in legend.
+ * @param {string} [options.data[].name] Series item name used for displaying in the legend and tooltip.
  * @param {string | ((value: number) => string)} [options.data[].label] Label shown for the segment item. If set to a function, it will be called with the segment value to generate the label. If not set, the value will be used as the label. To remove the label, set this to `undefined`.
  * @param {TextStyle} [options.data[].labelTextStyle] Text style for the segment label rendered outside each segment.
  *

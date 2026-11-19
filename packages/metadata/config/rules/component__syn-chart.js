@@ -20,6 +20,21 @@ export default {
     },
     {
       content: [
+        'Use line charts for trends across ordered data, such as time or sequence; avoid connecting categories that have no meaningful order.',
+        'Use area charts to emphasize magnitude across an ordered sequence. Prefer lines when overlapping filled areas would obscure comparisons.',
+        'Use area-range charts to show lower and upper bounds, such as a minimum-to-maximum range or uncertainty band.',
+        'Use bars to compare discrete categories; group bars for side-by-side series comparisons and stack them when each category total and its parts are meaningful.',
+        'Use histograms to show the distribution of a continuous measure grouped into value intervals, not to compare unrelated categories.',
+        'Use a donut chart to show a small number of categories as proportions of one whole; use bars or a table when precise comparisons between values matter.',
+        'Use a gauge for one current value against a defined scale or thresholds, rather than to show a time trend.',
+        'Use a bullet chart to compare an actual value with its displayed range, such as a target or acceptable range.',
+        'Use a segment chart for several independent radial progress indicators; do not imply that the segments are parts of one whole.',
+      ],
+      id: 'chart-type-selection',
+      name: 'Choosing a Chart Type',
+    },
+    {
+      content: [
         'Use clear axis labels, units, and legends so users can understand the data context immediately.',
         'Limit the number of simultaneously visible series to reduce visual noise.',
         'Choose palettes that maintain sufficient contrast between series and background.',

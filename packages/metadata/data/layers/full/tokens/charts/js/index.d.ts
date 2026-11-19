@@ -9,6 +9,11 @@
 export const SynChartBackgroundColor: string;
 
 /**
+ * Maps to the css variable `--syn-chart-bar-width`
+ */
+export const SynChartBarWidth: string;
+
+/**
  * Maps to the css variable `--syn-chart-categorical-10`
  */
 export const SynChartCategorical10: string;
@@ -82,6 +87,11 @@ export const SynChartGridLinesColor: string;
  * Maps to the css variable `--syn-chart-grid-lines-color-emphasize`
  */
 export const SynChartGridLinesColorEmphasize: string;
+
+/**
+ * Maps to the css variable `--syn-chart-mark-area-color`
+ */
+export const SynChartMarkAreaColor: string;
 
 /**
  * Maps to the css variable `--syn-chart-opacity-20`

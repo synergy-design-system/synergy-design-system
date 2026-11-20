@@ -1,3 +1,5 @@
+import type { TooltipMarkupStyleCreator } from 'echarts/lib/component/tooltip/tooltipMarkup.js';
+
 /**
  * Shared chart layout constants.
  *
@@ -96,6 +98,25 @@ export const SEGMENT_SERIES = {
   /** Constant pixel-width gap rendered between adjacent segments. */
   SEGMENTS_GAP: 2,
   TYPE_NAME: 'synSegment',
+} as const;
+
+/** Synergy bullet chart series implemented with the direct SeriesModel/ChartView pattern. */
+export const BULLET_SERIES = {
+  /** Coordinate system used by the bullet series. */
+  COORDINATE_SYSTEM: 'cartesian2d',
+  /** ECharts fallback category gap for a single bar stack. */
+  DEFAULT_CATEGORY_GAP: '30%',
+  /** Draw the actual-value marker above the range. */
+  MARKER_Z_INDEX: 2,
+  /** Draw the range behind the actual-value marker. */
+  RANGE_Z_INDEX: 1,
+  TYPE_NAME: 'synBullet',
+  /** Height of the bullet current-value marker in the tooltip, in pixels. */
+  VALUE_MARKER_HEIGHT: 2,
+  /** Marker type used for the bullet series current-value tooltip. */
+  VALUE_MARKER_TYPE: 'line' as Parameters< TooltipMarkupStyleCreator['makeTooltipMarker'] >[0],
+  /** Width of the bullet current-value marker in the tooltip, in pixels. */
+  VALUE_MARKER_WIDTH: 10,
 } as const;
 
 /**

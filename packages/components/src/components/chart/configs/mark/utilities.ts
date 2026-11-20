@@ -50,7 +50,7 @@ export const getDefaultMarkAreaStyle = (mode: ThemeMode = 'auto') => ({
   },
   itemStyle: {
     color: {
-      image: colorSvgImageUri(MARK_AREA.BACKGROUND_PATTERN, style('SynChartGridLinesColor', mode), false),
+      image: colorSvgImageUri(MARK_AREA.BACKGROUND_PATTERN, style('SynChartMarkAreaColor', mode), false),
       repeat: 'repeat',
     },
   },

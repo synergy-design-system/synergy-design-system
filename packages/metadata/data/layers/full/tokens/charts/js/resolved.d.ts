@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.32.1
+ * @synergy-design-system/tokens version 3.33.0
  * SICK Global UX Foundation
  */
 
@@ -12,6 +12,7 @@ interface ResolvedTokenModes {
 
 export declare const ResolvedTokens: {
   SynChartBackgroundColor: ResolvedTokenModes;
+  SynChartBarWidth: ResolvedTokenModes;
   SynChartCategorical01: ResolvedTokenModes;
   SynChartCategorical02: ResolvedTokenModes;
   SynChartCategorical03: ResolvedTokenModes;
@@ -27,6 +28,7 @@ export declare const ResolvedTokens: {
   SynChartDisabledColor: ResolvedTokenModes;
   SynChartGridLinesColor: ResolvedTokenModes;
   SynChartGridLinesColorEmphasize: ResolvedTokenModes;
+  SynChartMarkAreaColor: ResolvedTokenModes;
   SynChartOpacity20: ResolvedTokenModes;
   SynChartPlotLineColor: ResolvedTokenModes;
   SynChartRangeSelectionColor: ResolvedTokenModes;

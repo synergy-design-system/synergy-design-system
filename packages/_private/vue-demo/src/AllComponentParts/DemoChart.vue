@@ -3,5 +3,5 @@
 </script>
 
 <template>
-  <syn-chart :config="mockData('lineChartConfig')" />
+  <syn-chart :config="mockData('lineChartConfigObject')" />
 </template>

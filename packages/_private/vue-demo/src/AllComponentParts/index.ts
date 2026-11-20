@@ -4,6 +4,7 @@ import DemoAreaChart from "./DemoAreaChart.vue";
 import DemoAreaRangeChart from "./DemoAreaRangeChart.vue";
 import DemoBadge from "./DemoBadge.vue";
 import DemoBarChart from "./DemoBarChart.vue";
+import DemoBulletChart from "./DemoBulletChart.vue";
 import DemoBreadcrumb from "./DemoBreadcrumb.vue";
 import DemoButton from "./DemoButton.vue";
 import DemoButtonGroup from "./DemoButtonGroup.vue";
@@ -54,6 +55,7 @@ export {
   DemoAreaRangeChart,
   DemoBadge,
   DemoBarChart,
+  DemoBulletChart,
   DemoBreadcrumb,
   DemoButton,
   DemoButtonGroup,

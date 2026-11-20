@@ -83,4 +83,12 @@ export type {
   SynergySegmentSeriesOption,
 } from './configs/series/segment/types.js';
 
+export type {
+  BulletDataItem,
+  BulletMarkerStyle,
+  BulletSeriesPresetOptions,
+  BulletTooltipOption,
+  SynergyBulletSeriesOption,
+} from './configs/series/bullet/types.js';
+
 export type { BarSeriesOption, BarStackedOptions } from './configs/series/bar/types.js';

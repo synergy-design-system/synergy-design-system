@@ -22,7 +22,7 @@ export const getDefaultTooltipStyle = (mode: ThemeMode = 'auto') => ({
       opacity: 0.2,
     },
   },
-  backgroundColor: style('SynTooltipColor', mode),
+  backgroundColor: style('SynChartTooltipColor', mode),
   borderColor: style('SynPanelBorderColor', mode),
   borderWidth: styleWithoutUnit('SynBorderWidthSmall', mode),
   // Overwrite the default box-shadow of the tooltip to use the design token for shadows

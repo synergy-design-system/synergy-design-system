@@ -23,7 +23,7 @@
     "@types/react": "^19.3.0",
     "@wc-toolkit/storybook-helpers": "^10.7.7",
     "change-case": "^5.4.4",
-    "chromatic": "^18.14.6",
+    "chromatic": "^18.15.0",
     "comment-parser": "^1.4.9",
     "custom-elements-manifest": "^2.1.0",
     "eslint": "^10.15.0",

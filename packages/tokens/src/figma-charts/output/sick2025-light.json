@@ -6,6 +6,12 @@
         "value": "{color.neutral.0}"
       }
     },
+    "bar": {
+      "width": {
+        "type": "sizing",
+        "value": "24px"
+      }
+    },
     "categorical": {
       "10": {
         "type": "color",
@@ -72,6 +78,12 @@
         "value": "{color.neutral.200}"
       }
     },
+    "mark-area": {
+      "color": {
+        "type": "color",
+        "value": "{color.neutral.200}"
+      }
+    },
     "opacity": {
       "10": {
         "type": "opacity",
@@ -99,7 +111,7 @@
     "plot-line": {
       "color": {
         "type": "color",
-        "value": "{color.neutral.1000}"
+        "value": "{color.neutral.500}"
       }
     },
     "range-selection": {
@@ -110,6 +122,18 @@
       "number": {
         "type": "opacity",
         "value": "{chart.opacity.20}"
+      }
+    },
+    "select": {
+      "border": {
+        "width": {
+          "type": "sizing",
+          "value": "2px"
+        }
+      },
+      "color": {
+        "type": "color",
+        "value": "{color.neutral.950}"
       }
     },
     "sequential": {

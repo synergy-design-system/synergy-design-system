@@ -1,5 +1,10 @@
-import { expect } from '@open-wc/testing';
+import '../../../../../../dist/components/chart/chart.js';
+import {
+  expect, fixture, html, waitUntil,
+} from '@open-wc/testing';
+import { sendMouse } from '@web/test-runner-commands';
 import type { graphic } from 'echarts';
+import type SynChart from '../../../chart.component.js';
 import { DEGREE_TO_RADIAN, DONUT_SERIES, FULL_CIRCLE_RADIAN } from '../../constants.js';
 import type { SynergyDonutSeriesModel } from './donut-model.js';
 import { SynergyDonutView } from './donut-view.js';
@@ -7,6 +12,7 @@ import type { DonutDataItem, DonutDataValue, SynergyDonutSeriesOption } from './
 import { getRealStyleValue } from '../../../themes/utilities.js';
 import { colorSvgDataUrl } from '../../utilities.js';
 import type { GlobalModel } from '../../types.js';
+import type { ECConfig } from '../../../types.js';
 import {
   createApiStub,
   getImages,
@@ -48,6 +54,7 @@ const createSeriesModelStub = (
         return { fill };
       },
       getRawDataItem: (index: number) => data[index],
+      setItemGraphicEl: () => { },
     }),
     option,
   } as SynergyDonutSeriesModel;
@@ -332,5 +339,50 @@ describe('SynergyDonutView', () => {
 
     expect(view.group.childCount()).to.equal(1);
     expect(getSegmentSectors(view)).to.have.lengthOf(1);
+  });
+
+  it('shows item tooltips when hovering donut segments', async () => {
+    const config: ECConfig = {
+      series: [{
+        data: [{ name: 'Angular', value: 42 }, { name: 'Vue', value: 60 }],
+        radius: 120,
+        type: 'synDonut',
+      }],
+      tooltip: {
+        className: 'tooltip',
+      },
+    };
+    const chart = await fixture<SynChart>(html`<syn-chart style="width: 400px; height: 400px" .config=${config}></syn-chart>`);
+    await chart.updateComplete;
+
+    const instance = chart.getInstance()!;
+    const tooltip = chart.shadowRoot!.querySelector<HTMLElement>('.tooltip')!;
+    const { left, top } = chart.getBoundingClientRect();
+    const hover = (x: number, y: number) => sendMouse({
+      position: [Math.round(left + x), Math.round(top + y)],
+      type: 'move',
+    });
+
+    // Hover over the first segment to show its tooltip.
+    await hover(85, 200);
+    await waitUntil(() => getComputedStyle(tooltip).visibility === 'visible');
+    expect(tooltip.textContent).to.equal('Angular42');
+
+    // Move the mouse away to hide the tooltip
+    await hover(0, 0);
+    await waitUntil(() => getComputedStyle(tooltip).visibility === 'hidden');
+
+    // Hover over the second segment to show its tooltip.
+    await hover(315, 200);
+    await waitUntil(() => getComputedStyle(tooltip).visibility === 'visible');
+    expect(tooltip.textContent).to.equal('Vue60');
+
+    // Move the mouse away to hide the tooltip
+    await hover(0, 0);
+    await waitUntil(() => getComputedStyle(tooltip).visibility === 'hidden');
+
+    instance.dispatchAction({ dataIndex: 0, seriesIndex: 0, type: 'showTip' });
+    await waitUntil(() => getComputedStyle(tooltip).visibility === 'visible');
+    expect(tooltip.textContent).to.equal('Angular42');
   });
 });

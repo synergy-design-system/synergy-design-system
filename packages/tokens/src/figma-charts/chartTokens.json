@@ -151,7 +151,13 @@
         "VariableID:47:1346",
         "VariableID:47:1347",
         "VariableID:47:1348",
+        "VariableID:6687:172390",
+        "VariableID:6687:171963",
+        "VariableID:2859:23918",
+        "VariableID:2267:9230",
         "VariableID:4916:143146",
+        "VariableID:6687:175347",
+        "VariableID:6687:175349",
         "VariableID:27:1310",
         "VariableID:27:1307",
         "VariableID:27:1308",
@@ -177,7 +183,6 @@
         "VariableID:2842:9233",
         "VariableID:2842:9234",
         "VariableID:18:1066",
-        "VariableID:2859:23918",
         "VariableID:2024:28325",
         "VariableID:4523:150073",
         "VariableID:27:1211",
@@ -293,7 +298,6 @@
         "VariableID:2019:530",
         "VariableID:2019:531",
         "VariableID:2019:532",
-        "VariableID:2267:9230",
         "VariableID:2835:266",
         "VariableID:2855:2329",
         "VariableID:2855:2330",
@@ -5034,15 +5038,16 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "STROKE_COLOR"
+        "FRAME_FILL",
+        "SHAPE_FILL"
       ],
       "valuesByMode": {
         "8:2": {
-          "id": "VariableID:d6cfc4f1a2501295a8530a506ba264fb3874c9a6/51257:167",
+          "id": "VariableID:cba999af8e66b6480a5489e60967f90989605d8a/51257:161",
           "type": "VARIABLE_ALIAS"
         },
         "8:3": {
-          "id": "VariableID:d6cfc4f1a2501295a8530a506ba264fb3874c9a6/51257:167",
+          "id": "VariableID:b65b8d8b73410e150981d50867573d55134ec736/51257:163",
           "type": "VARIABLE_ALIAS"
         }
       },
@@ -5190,7 +5195,7 @@
           "type": "VARIABLE_ALIAS"
         },
         "8:3": {
-          "id": "VariableID:cb27f51488bf99970515f997de715cd091e511a3/51257:160",
+          "id": "VariableID:c8bff0f37367f571c323ecb3d5ed3b647e439135/51257:164",
           "type": "VARIABLE_ALIAS"
         }
       },
@@ -5589,6 +5594,90 @@
           "id": "VariableID:27:1371",
           "type": "VARIABLE_ALIAS"
         }
+      },
+      "variableCollectionId": "VariableCollectionId:8:2"
+    },
+    "VariableID:6687:171963": {
+      "codeSyntax": {},
+      "description": "",
+      "hiddenFromPublishing": false,
+      "id": "VariableID:6687:171963",
+      "key": "33eba969f8389605b26c5944debbefbb7b579c46",
+      "name": "chart/semantic/mark-area/color",
+      "remote": false,
+      "resolvedType": "COLOR",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "valuesByMode": {
+        "8:2": {
+          "id": "VariableID:c363bbf820bda779a7bf519893b7c6b471e6d13a/51257:158",
+          "type": "VARIABLE_ALIAS"
+        },
+        "8:3": {
+          "id": "VariableID:cb27f51488bf99970515f997de715cd091e511a3/51257:160",
+          "type": "VARIABLE_ALIAS"
+        }
+      },
+      "variableCollectionId": "VariableCollectionId:8:2"
+    },
+    "VariableID:6687:172390": {
+      "codeSyntax": {},
+      "description": "",
+      "hiddenFromPublishing": false,
+      "id": "VariableID:6687:172390",
+      "key": "15f0defdda849de1a7064316fd4124f1533f7d63",
+      "name": "chart/semantic/bar/width",
+      "remote": false,
+      "resolvedType": "FLOAT",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "valuesByMode": {
+        "8:2": 24,
+        "8:3": 24
+      },
+      "variableCollectionId": "VariableCollectionId:8:2"
+    },
+    "VariableID:6687:175347": {
+      "codeSyntax": {},
+      "description": "",
+      "hiddenFromPublishing": false,
+      "id": "VariableID:6687:175347",
+      "key": "97ae9202bd7196084d71449b2a59aba01cb36206",
+      "name": "chart/semantic/select/color",
+      "remote": false,
+      "resolvedType": "COLOR",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "valuesByMode": {
+        "8:2": {
+          "id": "VariableID:27:1376",
+          "type": "VARIABLE_ALIAS"
+        },
+        "8:3": {
+          "id": "VariableID:27:1377",
+          "type": "VARIABLE_ALIAS"
+        }
+      },
+      "variableCollectionId": "VariableCollectionId:8:2"
+    },
+    "VariableID:6687:175349": {
+      "codeSyntax": {},
+      "description": "",
+      "hiddenFromPublishing": false,
+      "id": "VariableID:6687:175349",
+      "key": "90ae5593ec8cb64d2a45b243b3ad827df90ffe0d",
+      "name": "chart/semantic/select/border/width",
+      "remote": false,
+      "resolvedType": "FLOAT",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "valuesByMode": {
+        "8:2": 2,
+        "8:3": 2
       },
       "variableCollectionId": "VariableCollectionId:8:2"
     },

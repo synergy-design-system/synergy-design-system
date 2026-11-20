@@ -101,7 +101,7 @@ const createSegmentSectors = ({
     // If there is only one segment, we don't need a gap at all.
     const halfGap = isSingleSegment ? 0 : Math.min(DONUT_SERIES.SEGMENT_GAP / 2, sweep / 2);
 
-    sectors.push(createSectorGraphic({
+    const sector = createSectorGraphic({
       centerX,
       centerY,
       color: data.getItemVisual(index, 'style').fill ?? style('SynChartCategorical01'),
@@ -110,7 +110,10 @@ const createSegmentSectors = ({
       outerRadius,
       startAngle: range.startAngle + halfGap,
       z: 2,
-    }));
+    });
+    sector.silent = false;
+    data.setItemGraphicEl(index, sector);
+    sectors.push(sector);
 
     return sectors;
   }, []);

@@ -12,7 +12,7 @@ export type DonutDataItem = {
   /** Numeric value of the segment; determines the slice angle relative to the other values. */
   value: number;
   /**
-   * Series item name used for displaying in legend.
+   * Series item name used for displaying in legend and tooltip.
    */
   name?: string;
   /**
@@ -45,7 +45,7 @@ export type ResolvedDonutDataItem = {
   /** Numeric value of the segment; determines the slice angle relative to the other values. */
   value: number;
   /**
-   * Series item name used for displaying in legend.
+   * Series item name used for displaying in legend and tooltip.
    */
   name?: string;
   /**

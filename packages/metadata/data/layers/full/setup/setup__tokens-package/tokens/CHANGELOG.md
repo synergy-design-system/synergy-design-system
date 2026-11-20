@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.33.0
+
+### Minor Changes
+
+- [#1424](https://github.com/synergy-design-system/synergy-design-system/pull/1424) [`1d5808f`](https://github.com/synergy-design-system/synergy-design-system/commit/1d5808f465e2282223f8a51ee3ec9d09e3c5ec06) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-11-19
+  
+  feat: ✨ Adds new chart tokens `--syn-chart-bar-width` and `--syn-chart-mark-area-color` ([#1213](https://github.com/synergy-design-system/synergy-design-system/issues/1213))
+
 ## 3.32.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
-import { expect } from '@open-wc/testing';
+import '../../../../../../dist/components/chart/chart.js';
+import {
+  expect, fixture, html, waitUntil,
+} from '@open-wc/testing';
+import { sendMouse } from '@web/test-runner-commands';
 import { Model, type graphic } from 'echarts';
+import type SynChart from '../../../chart.component.js';
+import type { ECConfig } from '../../../types.js';
 import { SEGMENT_SERIES } from '../../constants.js';
 import { SynergySegmentSeriesModel } from './segment-model.js';
 import { SynergySegmentView } from './segment-view.js';
@@ -421,5 +427,48 @@ describe('SynergySegmentView', () => {
 
     expect(getSectors(view)).to.have.lengthOf(1);
     expect(getSegmentPolygons(view)).to.have.lengthOf(4);
+  });
+
+  it('shows item tooltips when hovering the fill and background', async () => {
+    const config: ECConfig = {
+      series: [{
+        data: [{ name: 'Pressure', value: 50 }, { name: 'Temperature', value: 20 }],
+        type: 'synSegment',
+      }],
+      tooltip: { className: 'tooltip' },
+    };
+    const chart = await fixture<SynChart>(html`<syn-chart style="width: 400px; height: 400px" .config=${config}></syn-chart>`);
+    await chart.updateComplete;
+
+    const instance = chart.getInstance()!;
+    const tooltip = chart.shadowRoot!.querySelector<HTMLElement>('.tooltip')!;
+    const { left, top } = chart.getBoundingClientRect();
+    const hover = (x: number, y: number) => sendMouse({
+      position: [Math.round(left + x), Math.round(top + y)],
+      type: 'move',
+    });
+
+    // Hover over the filled part of the first segment.
+    await hover(120, 160);
+    await waitUntil(() => getComputedStyle(tooltip).visibility === 'visible');
+    expect(tooltip.textContent).to.equal('Pressure50');
+
+    // Move the mouse away to hide the tooltip
+    await hover(0, 0);
+    await waitUntil(() => getComputedStyle(tooltip).visibility === 'hidden');
+
+    // Hover over the background part of the second segment
+    await hover(320, 140);
+    await waitUntil(() => getComputedStyle(tooltip).visibility === 'visible');
+    expect(tooltip.textContent).to.equal('Temperature20');
+
+    // Move the mouse away to hide the tooltip
+    await hover(0, 0);
+    await waitUntil(() => getComputedStyle(tooltip).visibility === 'hidden');
+
+    instance.dispatchAction({ dataIndex: 0, seriesIndex: 0, type: 'showTip' });
+    await waitUntil(() => getComputedStyle(tooltip).visibility === 'visible');
+
+    expect(tooltip.textContent).to.equal('Pressure50');
   });
 });

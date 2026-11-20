@@ -2,9 +2,9 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    --background-color: none;
+    --background-color: transparent;
     --border-width: var(--syn-border-width-none);
-    --border-color: none;
+    --border-color: transparent;
     --border-radius: var(--syn-border-radius-none);
   }
 

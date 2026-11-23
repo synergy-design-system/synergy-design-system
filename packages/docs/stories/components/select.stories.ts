@@ -609,6 +609,23 @@ const ScreenshotStoryMultiple: Story = {
   `,
 };
 
+const GroupingOptionsWithIcons: Story = {
+  render: () => html`
+    <syn-select placeholder="Small" size="small">
+      <syn-optgroup label="Section 1">
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        <syn-icon name="wallpaper" slot="suffix"></syn-icon>
+        <syn-option value="option-1">Option 1</syn-option>
+        <syn-option value="option-2">Option 2</syn-option>
+      </syn-optgroup>
+      <syn-optgroup label="Section 2">
+        <syn-option value="option-3">Option 3</syn-option>
+        <syn-option value="option-4">Option 4</syn-option>
+      </syn-optgroup>
+    </syn-select>
+  `,
+};
+
 // Bundled screenshot story
 // Note we are not able to screenshot more than the Screenshot story
 // because of the reasons outlined above!
@@ -624,6 +641,16 @@ export const ScreenshotDefault: Story = generateScreenshotStory({
 // because of the reasons outlined above!
 export const ScreenshotMultiple: Story = generateScreenshotStory({
   ScreenshotStoryMultiple,
+}, {
+  afterRender: openSelect('syn-select'),
+  heightPx: 400,
+});
+
+// Bundled screenshot story
+// Note we are not able to screenshot more than the Screenshot story
+// because of the reasons outlined above!
+export const ScreenshotGroupingOptionsWithIcons: Story = generateScreenshotStory({
+  GroupingOptionsWithIcons,
 }, {
   afterRender: openSelect('syn-select'),
   heightPx: 400,

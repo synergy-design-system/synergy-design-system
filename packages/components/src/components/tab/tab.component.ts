@@ -1,15 +1,13 @@
-/* eslint-disable */
 import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
-import { LocalizeController } from '../../utilities/localize.js';
 import { property, query } from 'lit/decorators.js';
+import type { CSSResultGroup } from 'lit';
+import { LocalizeController } from '../../utilities/localize.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIconButton from '../icon-button/icon-button.component.js';
 import styles from './tab.styles.js';
-import customStyles from './tab.custom.styles.js';
-import type { CSSResultGroup } from 'lit';
 
 let id = 0;
 
@@ -30,12 +28,15 @@ let id = 0;
  * @csspart close-button__base - The close button's exported `base` part.
  */
 export default class SynTab extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, styles];
+
   static dependencies = { 'syn-icon-button': SynIconButton };
 
   private readonly localize = new LocalizeController(this);
 
+  // eslint-disable-next-line no-plusplus
   private readonly attrId = ++id;
+
   private readonly componentId = `syn-tab-${this.attrId}`;
 
   @query('.tab') tab: HTMLElement;
@@ -44,19 +45,19 @@ export default class SynTab extends SynergyElement {
   @property({ reflect: true }) panel = '';
 
   /** Draws the tab in an active state. */
-  @property({ type: Boolean, reflect: true }) active = false;
+  @property({ reflect: true, type: Boolean }) active = false;
 
   /** Makes the tab closable and shows a close button. */
-  @property({ type: Boolean, reflect: true }) closable = false;
+  @property({ reflect: true, type: Boolean }) closable = false;
 
   /** Disables the tab and prevents selection. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
+  @property({ reflect: true, type: Boolean }) disabled = false;
 
   /**
    * @internal
    * Need to wrap in a `@property()` otherwise CustomElement throws a "The result must not have attributes" runtime error.
    */
-  @property({ type: Number, reflect: true }) tabIndex = 0;
+  @property({ reflect: true, type: Number }) tabIndex = 0;
 
   connectedCallback() {
     super.connectedCallback();
@@ -84,6 +85,7 @@ export default class SynTab extends SynergyElement {
     }
   }
 
+  /* eslint-disable @typescript-eslint/unbound-method */
   render() {
     // If the user didn't provide an ID, we'll set one so we can link tabs and tab panels with aria labels
     this.id = this.id.length > 0 ? this.id : this.componentId;
@@ -95,7 +97,7 @@ export default class SynTab extends SynergyElement {
           tab: true,
           'tab--active': this.active,
           'tab--closable': this.closable,
-          'tab--disabled': this.disabled
+          'tab--disabled': this.disabled,
         })}
       >
         <slot></slot>
@@ -116,6 +118,7 @@ export default class SynTab extends SynergyElement {
       </div>
     `;
   }
+  /* eslint-enable @typescript-eslint/unbound-method */
 }
 
 declare global {

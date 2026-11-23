@@ -1,8 +1,6 @@
-/* eslint-disable */
 import { css } from 'lit';
 
 export default css`
-	/* stylelint-disable */
   :host {
     --padding: 0;
 
@@ -14,6 +12,7 @@ export default css`
   }
 
   .tab-panel {
+    color: var(--syn-typography-color-text);
     display: block;
     padding: var(--padding);
   }

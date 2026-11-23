@@ -132,10 +132,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component__syn-tab-panel/components/tab-panel.custom.styles.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component__syn-tab-panel/components/tab-panel.styles.ts"
       },
       {
@@ -179,7 +175,6 @@
   "sources": [
     "packages/angular/components/tab-panel/tab-panel.component.ts",
     "packages/components/src/components/tab-panel/tab-panel.component.ts",
-    "packages/components/src/components/tab-panel/tab-panel.custom.styles.ts",
     "packages/components/src/components/tab-panel/tab-panel.styles.ts",
     "packages/components/src/components/tab-panel/tab-panel.ts",
     "packages/react/src/components/tab-panel.ts",

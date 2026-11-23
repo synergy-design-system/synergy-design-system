@@ -1,8 +1,12 @@
-/* eslint-disable */
+/* eslint-disable no-param-reassign */
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import '../../internal/scrollend-polyfill.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { eventOptions, property, query, queryAssignedElements, state } from 'lit/decorators.js';
+import {
+  eventOptions, property, query, queryAssignedElements, state,
+} from 'lit/decorators.js';
 import { html } from 'lit';
+import type { CSSResultGroup } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { scrollIntoView } from '../../internal/scroll.js';
 import { watch } from '../../internal/watch.js';
@@ -11,8 +15,6 @@ import SynergyElement from '../../internal/synergy-element.js';
 import SynIconButton from '../icon-button/icon-button.component.js';
 import SynResizeObserver from '../resize-observer/resize-observer.component.js';
 import styles from './tab-group.styles.js';
-import customStyles from './tab-group.custom.styles.js';
-import type { CSSResultGroup } from 'lit';
 import type SynTab from '../tab/tab.js';
 import type SynTabPanel from '../tab-panel/tab-panel.js';
 
@@ -46,25 +48,36 @@ import type SynTabPanel from '../tab-panel/tab-panel.js';
  * @cssproperty --indicator-width - The width of the active tab indicator.
  */
 export default class SynTabGroup extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, styles];
+
   static dependencies = { 'syn-icon-button': SynIconButton, 'syn-resize-observer': SynResizeObserver };
 
   private activeTab?: SynTab;
+
   private mutationObserver: MutationObserver;
+
   private resizeObserver: ResizeObserver;
-  @queryAssignedElements({ slot: 'nav', selector: 'syn-tab' }) tabs: SynTab[];;
+
+  @queryAssignedElements({ selector: 'syn-tab', slot: 'nav' }) tabs: SynTab[];
+
   private focusableTabs: SynTab[] = [];
-  @queryAssignedElements({ selector: 'syn-tab-panel' }) panels: SynTabPanel[];;
+
+  @queryAssignedElements({ selector: 'syn-tab-panel' }) panels: SynTabPanel[];
+
   private readonly localize = new LocalizeController(this);
 
   @query('.tab-group') tabGroup: HTMLElement;
+
   @query('.tab-group__body') body: HTMLSlotElement;
+
   @query('.tab-group__nav') nav: HTMLElement;
+
   @query('.tab-group__indicator') indicator: HTMLElement;
 
   @state() private hasScrollControls = false;
 
   @state() private shouldHideScrollStartButton = false;
+
   @state() private shouldHideScrollEndButton = false;
 
   /** The placement of the tabs. */
@@ -81,7 +94,7 @@ export default class SynTabGroup extends SynergyElement {
 
   /** Draws the tab group as a contained element. */
   @property({ type: Boolean }) contained = false;
-  
+
   /** Draws the tab group with edges instead of roundings. Takes only effect if used with the 'contained' property */
   @property({ type: Boolean }) sharp = false;
 
@@ -91,7 +104,7 @@ export default class SynTabGroup extends SynergyElement {
   connectedCallback() {
     const whenAllDefined = Promise.all([
       customElements.whenDefined('syn-tab'),
-      customElements.whenDefined('syn-tab-panel')
+      customElements.whenDefined('syn-tab-panel'),
     ]);
 
     super.connectedCallback();
@@ -144,10 +157,10 @@ export default class SynTabGroup extends SynergyElement {
       this.syncTabsAndPanels();
 
       this.mutationObserver.observe(this, {
-        attributes: true,
         attributeFilter: ['active', 'disabled', 'name', 'panel'],
+        attributes: true,
         childList: true,
-        subtree: true
+        subtree: true,
       });
 
       this.resizeObserver.observe(this.nav);
@@ -195,6 +208,7 @@ export default class SynTabGroup extends SynergyElement {
     }
   }
 
+  // eslint-disable-next-line complexity
   private handleKeyDown(event: KeyboardEvent) {
     const target = event.target as HTMLElement;
     const tab = target.closest('syn-tab');
@@ -221,18 +235,19 @@ export default class SynTabGroup extends SynergyElement {
 
       if (activeEl?.tagName.toLowerCase() === 'syn-tab') {
         if (event.key === 'Home') {
-          nextTab = this.focusableTabs[0];
+          const [firstFocusableTab] = this.focusableTabs;
+          nextTab = firstFocusableTab;
         } else if (event.key === 'End') {
           nextTab = this.focusableTabs[this.focusableTabs.length - 1];
         } else if (
-          (['top'].includes(this.placement) && event.key === (isRtl ? 'ArrowRight' : 'ArrowLeft')) ||
-          (['start', 'end'].includes(this.placement) && event.key === 'ArrowUp')
+          (['top'].includes(this.placement) && event.key === (isRtl ? 'ArrowRight' : 'ArrowLeft'))
+          || (['start', 'end'].includes(this.placement) && event.key === 'ArrowUp')
         ) {
           const currentIndex = this.tabs.findIndex(el => el === activeEl);
           nextTab = this.findNextFocusableTab(currentIndex, 'backward');
         } else if (
-          (['top'].includes(this.placement) && event.key === (isRtl ? 'ArrowLeft' : 'ArrowRight')) ||
-          (['start', 'end'].includes(this.placement) && event.key === 'ArrowDown')
+          (['top'].includes(this.placement) && event.key === (isRtl ? 'ArrowLeft' : 'ArrowRight'))
+          || (['start', 'end'].includes(this.placement) && event.key === 'ArrowDown')
         ) {
           const currentIndex = this.tabs.findIndex(el => el === activeEl);
           nextTab = this.findNextFocusableTab(currentIndex, 'forward');
@@ -249,6 +264,7 @@ export default class SynTabGroup extends SynergyElement {
           this.setActiveTab(nextTab, { scrollBehavior: 'smooth' });
         } else {
           this.tabs.forEach(tabEl => {
+            // eslint-disable-next-line no-param-reassign
             tabEl.tabIndex = tabEl === nextTab ? 0 : -1;
           });
         }
@@ -264,21 +280,21 @@ export default class SynTabGroup extends SynergyElement {
 
   private handleScrollToStart() {
     this.nav.scroll({
+      behavior: 'smooth',
       left:
         this.localize.dir() === 'rtl'
           ? this.nav.scrollLeft + this.nav.clientWidth
           : this.nav.scrollLeft - this.nav.clientWidth,
-      behavior: 'smooth'
     });
   }
 
   private handleScrollToEnd() {
     this.nav.scroll({
+      behavior: 'smooth',
       left:
         this.localize.dir() === 'rtl'
           ? this.nav.scrollLeft - this.nav.clientWidth
           : this.nav.scrollLeft + this.nav.clientWidth,
-      behavior: 'smooth'
     });
   }
 
@@ -286,7 +302,7 @@ export default class SynTabGroup extends SynergyElement {
     options = {
       emitEvents: true,
       scrollBehavior: 'auto',
-      ...options
+      ...options,
     };
 
     if (tab !== this.activeTab && !tab.disabled) {
@@ -298,6 +314,7 @@ export default class SynTabGroup extends SynergyElement {
         el.active = el === this.activeTab;
         el.tabIndex = el === this.activeTab ? 0 : -1;
       });
+      // eslint-disable-next-line no-return-assign
       this.panels.forEach(el => (el.active = el.name === this.activeTab?.panel));
       this.syncIndicator();
 
@@ -327,6 +344,7 @@ export default class SynTabGroup extends SynergyElement {
     });
   }
 
+  // eslint-disable-next-line complexity
   private repositionIndicator() {
     const currentTab = this.getActiveTab();
 
@@ -344,23 +362,24 @@ export default class SynTabGroup extends SynergyElement {
     const offset = precedingTabs.reduce(
       (previous, current) => ({
         left: previous.left + current.clientWidth,
-        top: previous.top + current.clientHeight
+        top: previous.top + current.clientHeight,
       }),
-      { left: 0, top: 0 }
+      { left: 0, top: 0 },
     );
 
     switch (this.placement) {
-      case 'top':
-        this.indicator.style.width = `calc(${width}px - ${ (this.contained || this.sharp) ? '2 * var(--syn-spacing-large)' : '0px' })`;
-        this.indicator.style.height = 'auto';
-        this.indicator.style.translate = `calc(${isRtl ? '-' : ''}1 * (${offset.left}px + ${ (this.contained || this.sharp) ? 'var(--syn-spacing-large)' : '0px' }))`;
-        break;
-
       case 'start':
       case 'end':
         this.indicator.style.width = 'auto';
-        this.indicator.style.height = `calc(${height}px - ${ (this.contained || this.sharp) ? '2 * var(--syn-spacing-small)' : '0px' })`;
-        this.indicator.style.translate = `0 calc(${offset.top}px + ${ (this.contained || this.sharp) ? 'var(--syn-spacing-small)' : '0px' })`;
+        this.indicator.style.height = `calc(${height}px - ${(this.contained || this.sharp) ? '2 * var(--syn-spacing-small)' : '0px'})`;
+        this.indicator.style.translate = `0 calc(${offset.top}px + ${(this.contained || this.sharp) ? 'var(--syn-spacing-small)' : '0px'})`;
+        break;
+
+      case 'top':
+      default:
+        this.indicator.style.width = `calc(${width}px - ${(this.contained || this.sharp) ? '2 * var(--syn-spacing-large)' : '0px'})`;
+        this.indicator.style.height = 'auto';
+        this.indicator.style.translate = `calc(${isRtl ? '-' : ''}1 * (${offset.left}px + ${(this.contained || this.sharp) ? 'var(--syn-spacing-large)' : '0px'}))`;
         break;
     }
   }
@@ -385,7 +404,8 @@ export default class SynTabGroup extends SynergyElement {
       if (nextTab === null) {
         // This is where wrapping happens. If we're moving forward and get to the end, then we jump to the beginning. If we're moving backward and get to the start, then we jump to the end.
         if (direction === 'forward') {
-          nextTab = this.focusableTabs[0];
+          const [firstFocusableTab] = this.focusableTabs;
+          nextTab = firstFocusableTab;
         } else {
           nextTab = this.focusableTabs[this.focusableTabs.length - 1];
         }
@@ -434,8 +454,7 @@ export default class SynTabGroup extends SynergyElement {
       // Adding a single pixel to the comparison seems to resolve it.
       //
       // See https://github.com/shoelace-style/shoelace/issues/1839
-      this.hasScrollControls =
-        ['top'].includes(this.placement) && this.nav.scrollWidth > this.nav.clientWidth + 1;
+      this.hasScrollControls = ['top'].includes(this.placement) && this.nav.scrollWidth > this.nav.clientWidth + 1;
     }
 
     this.updateScrollButtons();
@@ -462,10 +481,12 @@ export default class SynTabGroup extends SynergyElement {
     }
   }
 
+  // eslint-disable-next-line class-methods-use-this
   preventFocus(e: MouseEvent) {
     e.preventDefault();
   }
-      
+
+  /* eslint-disable @typescript-eslint/unbound-method */
   render() {
     const isRtl = this.localize.dir() === 'rtl';
 
@@ -474,13 +495,13 @@ export default class SynTabGroup extends SynergyElement {
         part="base"
         class=${classMap({
           'tab-group': true,
-          'tab-group--top': this.placement === 'top',
-          'tab-group--start': this.placement === 'start',
-          'tab-group--end': this.placement === 'end',
-          'tab-group--rtl': this.localize.dir() === 'rtl',
-          'tab-group--has-scroll-controls': this.hasScrollControls,
           'tab-group--contained': this.contained,
+          'tab-group--end': this.placement === 'end',
+          'tab-group--has-scroll-controls': this.hasScrollControls,
+          'tab-group--rtl': this.localize.dir() === 'rtl',
           'tab-group--sharp': this.sharp,
+          'tab-group--start': this.placement === 'start',
+          'tab-group--top': this.placement === 'top',
         })}
         @click=${this.handleClick}
         @keydown=${this.handleKeyDown}
@@ -494,7 +515,7 @@ export default class SynTabGroup extends SynergyElement {
                   class=${classMap({
                     'tab-group__scroll-button': true,
                     'tab-group__scroll-button--start': true,
-                    'tab-group__scroll-button--start--hidden': this.shouldHideScrollStartButton
+                    'tab-group__scroll-button--start--hidden': this.shouldHideScrollStartButton,
                   })}
                   name=${isRtl ? 'tabs-right' : 'tabs-left'}
                   library="system"
@@ -524,7 +545,7 @@ export default class SynTabGroup extends SynergyElement {
                   class=${classMap({
                     'tab-group__scroll-button': true,
                     'tab-group__scroll-button--end': true,
-                    'tab-group__scroll-button--end--hidden': this.shouldHideScrollEndButton
+                    'tab-group__scroll-button--end--hidden': this.shouldHideScrollEndButton,
                   })}
                   name=${isRtl ? 'tabs-left' : 'tabs-right'}
                   library="system"
@@ -542,6 +563,7 @@ export default class SynTabGroup extends SynergyElement {
       </div>
     `;
   }
+  /* eslint-enable @typescript-eslint/unbound-method */
 }
 
 declare global {

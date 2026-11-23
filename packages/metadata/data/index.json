@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-11-23T09:11:06.384Z",
+  "builtAt": "2026-11-23T10:41:09.050Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset__sick2018-icons.json",
@@ -1059,7 +1059,7 @@
       "kind": "component",
       "layers": {
         "examples": 1,
-        "full": 8,
+        "full": 7,
         "interface": 2,
         "rules": 1
       },
@@ -1081,7 +1081,7 @@
       "kind": "component",
       "layers": {
         "examples": 1,
-        "full": 8,
+        "full": 7,
         "interface": 2,
         "rules": 1
       },
@@ -1103,7 +1103,7 @@
       "kind": "component",
       "layers": {
         "examples": 1,
-        "full": 8,
+        "full": 7,
         "interface": 2,
         "rules": 1
       },

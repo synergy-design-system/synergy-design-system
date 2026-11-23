@@ -247,9 +247,9 @@ export const setGlobalDefaultSettings = (
           attribute: key,
           newValue: newValue as unknown,
           oldValue:
-          defaultSettings[key as keyof SynDefaultSettings][
-            component as keyof SynDefaultSettings[keyof SynDefaultSettings]
-          ],
+            defaultSettings[key as keyof SynDefaultSettings][
+              component as keyof SynDefaultSettings[keyof SynDefaultSettings]
+            ],
         });
       });
     }

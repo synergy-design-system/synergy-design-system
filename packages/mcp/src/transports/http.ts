@@ -3,6 +3,8 @@
 import { randomUUID } from 'node:crypto';
 import {
   type Server as HttpServer,
+  type IncomingMessage,
+  type ServerResponse,
   createServer as createHttpServer,
 } from 'node:http';
 import {
@@ -81,7 +83,7 @@ export async function createHttpTransport(
   const sessions = new Map<string, StreamableHTTPServerTransport>();
 
   // Create request handler that routes to the transport
-  nodeServer.on('request', async (req, res) => {
+  nodeServer.on('request', async (req: IncomingMessage, res: ServerResponse) => {
     // Route only /mcp requests to the transport
     const url = req.url || '/';
     if (!url.startsWith('/mcp')) {

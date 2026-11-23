@@ -1,13 +1,11 @@
-/* eslint-disable */
 import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { property } from 'lit/decorators.js';
+import type { CSSResultGroup } from 'lit';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './tab-panel.styles.js';
-import customStyles from './tab-panel.custom.styles.js';
-import type { CSSResultGroup } from 'lit';
 
 let id = 0;
 
@@ -24,16 +22,18 @@ let id = 0;
  * @cssproperty --padding - The tab panel's padding.
  */
 export default class SynTabPanel extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, styles];
 
+  // eslint-disable-next-line no-plusplus
   private readonly attrId = ++id;
+
   private readonly componentId = `syn-tab-panel-${this.attrId}`;
 
   /** The tab panel's name. */
   @property({ reflect: true }) name = '';
 
   /** When true, the tab panel will be shown. */
-  @property({ type: Boolean, reflect: true }) active = false;
+  @property({ reflect: true, type: Boolean }) active = false;
 
   connectedCallback() {
     super.connectedCallback();
@@ -52,7 +52,7 @@ export default class SynTabPanel extends SynergyElement {
         part="base"
         class=${classMap({
           'tab-panel': true,
-          'tab-panel--active': this.active
+          'tab-panel--active': this.active,
         })}
       ></slot>
     `;

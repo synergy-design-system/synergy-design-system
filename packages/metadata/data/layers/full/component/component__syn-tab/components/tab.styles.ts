@@ -13,7 +13,7 @@ export default css`
   .tab {
     align-items: center;
     border-color: transparent;
-    border-radius: var(--border-medium);
+    border-radius: var(--border-radius);
     border-style: solid;
     border-width: var(--border-width);
     color: var(--syn-typography-color-text);

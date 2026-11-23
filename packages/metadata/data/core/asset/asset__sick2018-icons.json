@@ -89029,7 +89029,7 @@
   "name": "sick2018 Icons",
   "package": "assets",
   "relations": [],
-  "since": "2.3.4",
+  "since": "2.3.5",
   "sources": [
     "packages/assets/src/sick2018/js/index.ts"
   ],

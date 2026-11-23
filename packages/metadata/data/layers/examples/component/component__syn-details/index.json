@@ -1,0 +1,44 @@
+[
+  {
+    "description": "Details show a brief summary and expand to show additional content. If you want to group the details, we recommend that you use the syn-accordion component.",
+    "id": "components-syn-details--default",
+    "path": "layers/examples/component/component__syn-details/components-syn-details--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Details show a brief summary and expand to show additional content.",
+    "id": "components-syn-details--open",
+    "path": "layers/examples/component/component__syn-details/components-syn-details--open.md",
+    "title": "Open"
+  },
+  {
+    "description": "To give content more structure, you can use the property contained.",
+    "id": "components-syn-details--contained",
+    "path": "layers/examples/component/component__syn-details/components-syn-details--contained.md",
+    "title": "Contained"
+  },
+  {
+    "description": "The focus event gives the user feedback that the detail has been focused by the keyboard interaction.",
+    "id": "components-syn-details--focus",
+    "path": "layers/examples/component/component__syn-details/components-syn-details--focus.md",
+    "title": "Focus"
+  },
+  {
+    "description": "Use the disable attribute to prevent the details from expanding.",
+    "id": "components-syn-details--disabled",
+    "path": "layers/examples/component/component__syn-details/components-syn-details--disabled.md",
+    "title": "Disabled"
+  },
+  {
+    "description": "Use the size attribute to change a detail’s size.",
+    "id": "components-syn-details--sizes",
+    "path": "layers/examples/component/component__syn-details/components-syn-details--sizes.md",
+    "title": "Sizes"
+  },
+  {
+    "description": "Use the prefix Icon to prepend an icon to the details.",
+    "id": "components-syn-details--prefix-icons",
+    "path": "layers/examples/component/component__syn-details/components-syn-details--prefix-icons.md",
+    "title": "Prefix Icons"
+  }
+]

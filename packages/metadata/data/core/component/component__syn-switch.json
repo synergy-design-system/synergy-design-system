@@ -215,6 +215,42 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-switch.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-switch/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-switch/components-syn-switch--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-switch/components-syn-switch--checked.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-switch/components-syn-switch--focus.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-switch/components-syn-switch--disabled.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-switch/components-syn-switch--readonly.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-switch/components-syn-switch--sizes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-switch/components-syn-switch--help-text.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-switch/components-syn-switch--invalid.md"
       }
     ],
     "full": [

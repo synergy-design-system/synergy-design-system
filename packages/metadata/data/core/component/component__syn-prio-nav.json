@@ -129,6 +129,18 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-prio-nav.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-prio-nav/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-prio-nav/components-syn-prio-nav--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-prio-nav/components-syn-prio-nav--priority-menu.md"
       }
     ],
     "full": [

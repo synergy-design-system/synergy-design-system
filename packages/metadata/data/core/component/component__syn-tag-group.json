@@ -152,6 +152,26 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-tag-group.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tag-group/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tag-group/components-syn-tag-group--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tag-group/components-syn-tag-group--labels.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tag-group/components-syn-tag-group--sizes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tag-group/components-syn-tag-group--label-alignment.md"
       }
     ],
     "full": [

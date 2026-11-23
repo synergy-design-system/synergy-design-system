@@ -159,6 +159,34 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-accordion.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-accordion/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-accordion/components-syn-accordion--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-accordion/components-syn-accordion--contained.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-accordion/components-syn-accordion--grouping-details.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-accordion/components-syn-accordion--focus.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-accordion/components-syn-accordion--disabled.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-accordion/components-syn-accordion--sizes.md"
       }
     ],
     "full": [

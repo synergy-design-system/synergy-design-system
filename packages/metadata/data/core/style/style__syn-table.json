@@ -9,6 +9,30 @@
       {
         "layer": "examples",
         "path": "layers/examples/style/style__syn-table.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-table/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-table/styles-syn-table--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-table/styles-syn-table--atomic-table.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-table/styles-syn-table--auto-default-table.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-table/styles-syn-table--auto-alternating-table.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-table/styles-syn-table--auto-border-table.md"
       }
     ],
     "full": [

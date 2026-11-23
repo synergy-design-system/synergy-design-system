@@ -218,6 +218,38 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-tooltip.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tooltip/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tooltip/components-syn-tooltip--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tooltip/components-syn-tooltip--placement.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tooltip/components-syn-tooltip--click-trigger.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tooltip/components-syn-tooltip--manual-trigger.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tooltip/components-syn-tooltip--removing-arrows.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tooltip/components-syn-tooltip--html-in-tooltips.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tooltip/components-syn-tooltip--setting-a-maximum-width.md"
       }
     ],
     "full": [

@@ -10,6 +10,25 @@ This guide holds the required information for migrating from one major version o
 
 ## Version 5.0 (Upcoming, no release date yet!)
 
+<h3 id="individual-storybook-examples-v5">Deprecated combined Storybook example files</h3>
+
+The combined files at `data/layers/examples/<kind>/<entity-id>.md` remain available for compatibility but are planned for removal in the next major version. Use `listExamples(kind, name)` to discover individual example IDs and `getExample(kind, name, id)` to retrieve one example instead of reading or parsing the combined file. IDs derive from Storybook source identities and can change when stories are renamed.
+
+---
+
+<h3 id="skill-example-layout-v5">Deprecated combined examples in generated skills</h3>
+
+The component and template skills currently retain combined `examples.md` files alongside an `examples/README.md` index and individual example files. The combined content is deprecated.
+
+In version 5, `examples.md` is planned to become the example index instead of containing every example. Its links will point into the `examples/` folder. This applies to `components/<component-name>/examples.md` and `templates/<template-name>/examples.md`; intent skill examples are unaffected.
+
+**Migration Steps**:
+
+- Discover examples using the current `examples/README.md` index and read the individual files.
+- Stop relying on `examples.md` to contain all example markup. After upgrading, use it as an index and follow its links instead.
+
+---
+
 <h3 id="metadata-tool-intent-categories-list-v5">Deprecated tool `intent-categories-list`</h3>
 
 **Associated Ticket(s)**:

@@ -154,6 +154,26 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-range-tick.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range-tick/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range-tick/components-syn-range-tick--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range-tick/components-syn-range-tick--labels.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range-tick/components-syn-range-tick--grouping.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range-tick/components-syn-range-tick--subdivision-ticks.md"
       }
     ],
     "full": [

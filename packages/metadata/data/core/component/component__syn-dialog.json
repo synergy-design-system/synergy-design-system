@@ -208,6 +208,34 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-dialog.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-dialog/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-dialog/components-syn-dialog--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-dialog/components-syn-dialog--custom-width.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-dialog/components-syn-dialog--scrolling.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-dialog/components-syn-dialog--header-actions.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-dialog/components-syn-dialog--preventing-the-dialog-from-closing.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-dialog/components-syn-dialog--customizing-initial-focus.md"
       }
     ],
     "full": [

@@ -317,6 +317,78 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-range.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range/components-syn-range--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range/components-syn-range--labels.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range/components-syn-range--help-text.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range/components-syn-range--disabled.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range/components-syn-range--invalid.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range/components-syn-range--focus.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range/components-syn-range--readonly.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range/components-syn-range--sizes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range/components-syn-range--prefix-suffix-text.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range/components-syn-range--custom-track-colors.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range/components-syn-range--custom-track-offset.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range/components-syn-range--multi-thumb.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range/components-syn-range--multi-thumb-with-restricted-movement.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range/components-syn-range--ticks.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range/components-syn-range--tooltip-placement.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range/components-syn-range--tooltip-disabled.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-range/components-syn-range--tooltip-formatter.md"
       }
     ],
     "full": [

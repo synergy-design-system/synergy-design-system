@@ -7,6 +7,14 @@
       {
         "layer": "examples",
         "path": "layers/examples/template/template__localization.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__localization/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__localization/templates-localization--dynamically-set-localizations.md"
       }
     ]
   },

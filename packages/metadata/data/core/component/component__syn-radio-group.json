@@ -277,6 +277,58 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-radio-group.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-group/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--labels.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--checked.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--help-text.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--focus.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--disabled.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--readonly.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--sizes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--invalid.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--custom-validity.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--radio-buttons.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--horizontal-layout.md"
       }
     ],
     "full": [

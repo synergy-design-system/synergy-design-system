@@ -124,6 +124,42 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-icon.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-icon/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-icon/components-syn-icon--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-icon/components-syn-icon--colors.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-icon/components-syn-icon--sizing.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-icon/components-syn-icon--labels.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-icon/components-syn-icon--custom-icons.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-icon/components-syn-icon--cdn-icon-library.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-icon/components-syn-icon--bundled-icon-library.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-icon/components-syn-icon--sprite-sheet-usage.md"
       }
     ],
     "full": [

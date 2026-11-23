@@ -167,6 +167,30 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-pagination.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-pagination/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-pagination/components-syn-pagination--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-pagination/components-syn-pagination--with-divider.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-pagination/components-syn-pagination--disabled.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-pagination/components-syn-pagination--compact.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-pagination/components-syn-pagination--sizes.md"
       }
     ],
     "full": [

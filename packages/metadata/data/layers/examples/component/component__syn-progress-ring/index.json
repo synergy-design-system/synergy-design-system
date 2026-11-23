@@ -1,0 +1,38 @@
+[
+  {
+    "description": "Progress rings are used to show the progress of a determinate operation in a circular fashion.",
+    "id": "components-syn-progress-ring--default",
+    "path": "layers/examples/component/component__syn-progress-ring/components-syn-progress-ring--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Use the --size custom property to set the diameter of the progress ring.",
+    "id": "components-syn-progress-ring--size",
+    "path": "layers/examples/component/component__syn-progress-ring/components-syn-progress-ring--size.md",
+    "title": "Size"
+  },
+  {
+    "description": "Use the --track-width and --indicator-width custom properties to set the width of the progress ring’s track and indicator.",
+    "id": "components-syn-progress-ring--track-and-indicator-width",
+    "path": "layers/examples/component/component__syn-progress-ring/components-syn-progress-ring--track-and-indicator-width.md",
+    "title": "Track And Indicator Width"
+  },
+  {
+    "description": "To change the color, use the --track-color and --indicator-color custom properties.",
+    "id": "components-syn-progress-ring--colors",
+    "path": "layers/examples/component/component__syn-progress-ring/components-syn-progress-ring--colors.md",
+    "title": "Colors"
+  },
+  {
+    "description": "Use the label attribute to label the progress ring and tell assistive devices how to announce it.",
+    "id": "components-syn-progress-ring--labels",
+    "path": "layers/examples/component/component__syn-progress-ring/components-syn-progress-ring--labels.md",
+    "title": "Labels"
+  },
+  {
+    "description": "Use the default slot to show a label inside the progress ring. To display the value correctly, you should keep to a minimum width of 85 pixels.",
+    "id": "components-syn-progress-ring--showing-values",
+    "path": "layers/examples/component/component__syn-progress-ring/components-syn-progress-ring--showing-values.md",
+    "title": "Showing Values"
+  }
+]

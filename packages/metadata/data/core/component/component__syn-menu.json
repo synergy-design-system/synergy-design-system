@@ -151,6 +151,22 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-menu.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-menu/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-menu/components-syn-menu--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-menu/components-syn-menu--in-dropdowns.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-menu/components-syn-menu--submenus.md"
       }
     ],
     "full": [

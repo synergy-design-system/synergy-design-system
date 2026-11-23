@@ -17,9 +17,26 @@ export async function normalize(
         throw new Error(`Normalized empty storybook artifact for ${document.entityId}`);
       }
 
+      const ids = new Set<string>();
+      const examples = await Promise.all(document.stories.map(async (story) => {
+        if (!/^[a-z0-9][a-z0-9-]*$/.test(story.id) || ids.has(story.id)) {
+          throw new Error(`Invalid or duplicate story ID "${story.id}" for ${document.entityId}`);
+        }
+        ids.add(story.id);
+        return {
+          content: await formatGeneratedMarkdown(
+            scrapingConfigByKind[document.kind].formatContent(document.item, [story]),
+          ),
+          description: story.description,
+          id: story.id,
+          title: story.heading,
+        };
+      }));
+
       return {
         content,
         entityId: document.entityId,
+        examples,
         item: document.item,
         kind: document.kind,
         stories: document.stories,

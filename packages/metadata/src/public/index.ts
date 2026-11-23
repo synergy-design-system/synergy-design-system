@@ -26,6 +26,7 @@ export {
   listComponents,
 } from './domains/components.js';
 export { getFontMetadata, listFonts } from './domains/fonts.js';
+export { getExample, listExamples } from './domains/examples.js';
 export { getMigrations } from './domains/migrations.js';
 export { getDataForSetup } from './domains/setup.js';
 export { getDataForStyle, getStyleMetadata, listStyles } from './domains/styles.js';
@@ -50,6 +51,7 @@ export type {
   ComponentTextLayerContent,
 } from './domains/components.js';
 export type { FontQueryOptions } from './domains/fonts.js';
+export type { ExampleContent, ExampleEntry, ExampleKind } from './domains/examples.js';
 export type {
   IntentPolicyDocument,
   IntentPolicyDocumentOptions,

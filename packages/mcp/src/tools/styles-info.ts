@@ -6,6 +6,7 @@ import {
 import {
   buildStyleRecovery,
   createToolAnnotations,
+  getEntityExample,
   getToolRule,
   toolHandler,
 } from '../utilities/index.js';
@@ -19,15 +20,20 @@ export const stylesInfoTool = (server: McpServer) => {
     'styles-info',
     {
       annotations: createToolAnnotations(),
-      description: 'Get examples and usage documentation for one Synergy CSS utility. Use an exact style name returned by styles-list.',
+      description: 'Get examples and usage documentation for one Synergy CSS utility. Use an exact style name returned by styles-list, and optionally an example ID from styles-list-examples.',
       inputSchema: {
+        exampleId: z.string().optional().describe('Exact ID returned by styles-list-examples. Omit or leave empty to return all examples.'),
         style: z.string().min(1).describe('Exact style name returned by styles-list. Do not guess or construct this value.'),
       },
       title: 'Get style documentation',
     },
     toolHandler('styles-info', async ({
       style,
+      exampleId,
     }) => {
+      if (exampleId !== undefined && exampleId !== '') {
+        return [await getToolRule('styles-info'), await getEntityExample('style', style, exampleId)];
+      }
       const response = await getDataForStyle(style, { layer: 'examples' });
 
       if (!response.data) {

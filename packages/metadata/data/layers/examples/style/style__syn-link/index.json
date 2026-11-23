@@ -1,0 +1,44 @@
+[
+  {
+    "description": "",
+    "id": "styles-syn-link--default",
+    "path": "layers/examples/style/style__syn-link/styles-syn-link--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "If a link is placed within body text, it only breaks if variant without icon is used. If an icon is needed, a line break applies, and the body text is placed above and below the link.",
+    "id": "styles-syn-link--inline",
+    "path": "layers/examples/style/style__syn-link/styles-syn-link--inline.md",
+    "title": "Inline"
+  },
+  {
+    "description": "Use the prefix and suffix slots to add icons.",
+    "id": "styles-syn-link--prefix-suffix-icons",
+    "path": "layers/examples/style/style__syn-link/styles-syn-link--prefix-suffix-icons.md",
+    "title": "Prefix Suffix Icons"
+  },
+  {
+    "description": "Use the Quiet attribute to have a low emphasis variant of a Link. This can be used if the link should not attract too much attention.",
+    "id": "styles-syn-link--quiet",
+    "path": "layers/examples/style/style__syn-link/styles-syn-link--quiet.md",
+    "title": "Quiet"
+  },
+  {
+    "description": "Use the disabled attribute to disable a Link.",
+    "id": "styles-syn-link--disabled",
+    "path": "layers/examples/style/style__syn-link/styles-syn-link--disabled.md",
+    "title": "Disabled"
+  },
+  {
+    "description": "The focus event gives the user feedback that the Link has been focused by the keyboard interaction.",
+    "id": "styles-syn-link--focus",
+    "path": "layers/examples/style/style__syn-link/styles-syn-link--focus.md",
+    "title": "Focus"
+  },
+  {
+    "description": "Use the size attribute to change the Link size.",
+    "id": "styles-syn-link--size",
+    "path": "layers/examples/style/style__syn-link/styles-syn-link--size.md",
+    "title": "Size"
+  }
+]

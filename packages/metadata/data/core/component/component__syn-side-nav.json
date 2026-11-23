@@ -202,6 +202,38 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-side-nav.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-side-nav/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-side-nav/components-syn-side-nav--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-side-nav/components-syn-side-nav--rail.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-side-nav/components-syn-side-nav--sticky.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-side-nav/components-syn-side-nav--footer.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-side-nav/components-syn-side-nav--fixed.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-side-nav/components-syn-side-nav--shrink.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-side-nav/components-syn-side-nav--indentation.md"
       }
     ],
     "full": [

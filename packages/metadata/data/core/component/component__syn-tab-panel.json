@@ -119,6 +119,14 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-tab-panel.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tab-panel/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tab-panel/components-syn-tab-panel--default.md"
       }
     ],
     "full": [

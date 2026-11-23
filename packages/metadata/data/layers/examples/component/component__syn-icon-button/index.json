@@ -1,0 +1,44 @@
+[
+  {
+    "description": "Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.For a full list of icons that come bundled with Synergy, refer to the Assets.Note: To make the icon-button work in development, have a look at the icon documentation for how to set up the assets package.",
+    "id": "components-syn-icon-button--default",
+    "path": "layers/examples/component/component__syn-icon-button/components-syn-icon-button--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Use the size attribute to change a icon-button size.",
+    "id": "components-syn-icon-button--sizes",
+    "path": "layers/examples/component/component__syn-icon-button/components-syn-icon-button--sizes.md",
+    "title": "Sizes"
+  },
+  {
+    "description": "The Icon button can have two color variants, Primary or Neutral Color.",
+    "id": "components-syn-icon-button--colors",
+    "path": "layers/examples/component/component__syn-icon-button/components-syn-icon-button--colors.md",
+    "title": "Colors"
+  },
+  {
+    "description": "It’s often helpful to have a button that works like a link. This is possible by setting the href attribute, which will make the component render an  under the hood. This gives you all the default link behavior the browser provides (e.g. CMD/CTRL/SHIFT + CLICK) and exposes the target and download attributes.",
+    "id": "components-syn-icon-button--link-button",
+    "path": "layers/examples/component/component__syn-icon-button/components-syn-icon-button--link-button.md",
+    "title": "Link Button"
+  },
+  {
+    "description": "Use the disabled attribute to disable the icon button.",
+    "id": "components-syn-icon-button--disabled",
+    "path": "layers/examples/component/component__syn-icon-button/components-syn-icon-button--disabled.md",
+    "title": "Disabled"
+  },
+  {
+    "description": "The focus event gives the user feedback that the icon-button has been focused by the keyboard interaction.",
+    "id": "components-syn-icon-button--focus",
+    "path": "layers/examples/component/component__syn-icon-button/components-syn-icon-button--focus.md",
+    "title": "Focus"
+  },
+  {
+    "description": "A description that gets read by assistive devices. For optimal accessibility, you have to include a label that describes what the icon button does.",
+    "id": "components-syn-icon-button--label",
+    "path": "layers/examples/component/component__syn-icon-button/components-syn-icon-button--label.md",
+    "title": "Label"
+  }
+]

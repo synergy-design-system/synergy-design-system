@@ -1,0 +1,14 @@
+[
+  {
+    "description": "",
+    "id": "templates-footer--footer",
+    "path": "layers/examples/template/template__footer/templates-footer--footer.md",
+    "title": "Footer"
+  },
+  {
+    "description": "",
+    "id": "templates-footer--footer-within-appshell",
+    "path": "layers/examples/template/template__footer/templates-footer--footer-within-appshell.md",
+    "title": "Footer Within Appshell"
+  }
+]

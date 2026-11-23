@@ -1,0 +1,44 @@
+[
+  {
+    "description": "",
+    "id": "templates-table--table-with-header",
+    "path": "layers/examples/template/template__table/templates-table--table-with-header.md",
+    "title": "Table With Header"
+  },
+  {
+    "description": "",
+    "id": "templates-table--table-with-alternating-rows",
+    "path": "layers/examples/template/template__table/templates-table--table-with-alternating-rows.md",
+    "title": "Table With Alternating Rows"
+  },
+  {
+    "description": "",
+    "id": "templates-table--table-with-borders",
+    "path": "layers/examples/template/template__table/templates-table--table-with-borders.md",
+    "title": "Table With Borders"
+  },
+  {
+    "description": "If using a table with borders, sticky row and scrolling mechanism together, the 'border-collapse'\nproperty should be set to 'separate'. Otherwise the table will have some strange behaviors.",
+    "id": "templates-table--table-shadow-left-column",
+    "path": "layers/examples/template/template__table/templates-table--table-shadow-left-column.md",
+    "title": "Table Shadow Left Column"
+  },
+  {
+    "description": "If using a table with borders, sticky row and scrolling mechanism together, the 'border-collapse'\nproperty should be set to 'separate'. Otherwise the table will have some strange behaviors.",
+    "id": "templates-table--table-shadow-right-column",
+    "path": "layers/examples/template/template__table/templates-table--table-shadow-right-column.md",
+    "title": "Table Shadow Right Column"
+  },
+  {
+    "description": "If using a table with borders, sticky row and scrolling mechanism together, the 'border-collapse'\nproperty should be set to 'separate'. Otherwise the table will have some strange behaviors.",
+    "id": "templates-table--table-shadow-top-row",
+    "path": "layers/examples/template/template__table/templates-table--table-shadow-top-row.md",
+    "title": "Table Shadow Top Row"
+  },
+  {
+    "description": "",
+    "id": "templates-table--table-product",
+    "path": "layers/examples/template/template__table/templates-table--table-product.md",
+    "title": "Table Product"
+  }
+]

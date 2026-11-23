@@ -7,6 +7,22 @@
       {
         "layer": "examples",
         "path": "layers/examples/template/template__breadcrumb.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__breadcrumb/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__breadcrumb/templates-breadcrumb--breadcrumb-responsive.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__breadcrumb/templates-breadcrumb--breadcrumb-truncated.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__breadcrumb/templates-breadcrumb--breadcrumb-short.md"
       }
     ]
   },

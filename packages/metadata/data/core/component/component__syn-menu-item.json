@@ -186,6 +186,38 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-menu-item.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-menu-item/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-menu-item/components-syn-menu-item--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-menu-item/components-syn-menu-item--prefix-and-suffix.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-menu-item/components-syn-menu-item--disabled.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-menu-item/components-syn-menu-item--loading.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-menu-item/components-syn-menu-item--focus.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-menu-item/components-syn-menu-item--checkbox-menu-items.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-menu-item/components-syn-menu-item--value-selection.md"
       }
     ],
     "full": [

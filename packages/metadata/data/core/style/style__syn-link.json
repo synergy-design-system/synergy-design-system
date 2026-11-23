@@ -9,6 +9,38 @@
       {
         "layer": "examples",
         "path": "layers/examples/style/style__syn-link.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-link/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-link/styles-syn-link--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-link/styles-syn-link--inline.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-link/styles-syn-link--prefix-suffix-icons.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-link/styles-syn-link--quiet.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-link/styles-syn-link--disabled.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-link/styles-syn-link--focus.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-link/styles-syn-link--size.md"
       }
     ],
     "full": [

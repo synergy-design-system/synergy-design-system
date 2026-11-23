@@ -1,0 +1,62 @@
+[
+  {
+    "description": "Validate offers options for convenient error handling in form elements.",
+    "id": "components-syn-validate--default",
+    "path": "layers/examples/component/component__syn-validate/components-syn-validate--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "When the tooltip variant is chosen, validation errors are displayed in a <syn-tooltip> component that has its center at the invalid element. The native tooltip is suppressed.",
+    "id": "components-syn-validate--tooltip-variant",
+    "path": "layers/examples/component/component__syn-validate/components-syn-validate--tooltip-variant.md",
+    "title": "Tooltip Variant"
+  },
+  {
+    "description": "Set the variant attribute to inline to show the invalid message below the selected element.👨‍💻 Additional developer Information:Per default, syn-validate uses the browser’s built-in validation. This shows only one error at a time and is optimized for accessbility.When using the inline variant, you have to ensure accessibility on your side and have to have in mind it most likely will lead to layout shifts.",
+    "id": "components-syn-validate--inline-variant",
+    "path": "layers/examples/component/component__syn-validate/components-syn-validate--inline-variant.md",
+    "title": "Inline Variant"
+  },
+  {
+    "description": "Use hide-icon to hide the icon in inline style. This is especially useful when showing more than one error at a time.",
+    "id": "components-syn-validate--hide-icon",
+    "path": "layers/examples/component/component__syn-validate/components-syn-validate--hide-icon.md",
+    "title": "Hide Icon"
+  },
+  {
+    "description": "In development use the size attribute of the form element e.g. syn-input to set the size of the inline syn-validate automatically.",
+    "id": "components-syn-validate--sizes",
+    "path": "layers/examples/component/component__syn-validate/components-syn-validate--sizes.md",
+    "title": "Sizes"
+  },
+  {
+    "description": "Use the live value for the on attribute to validate on every input change (e. g. typing a character or checking a checkbox.) instead of form submit. This will automatically bind to the input and blur events.👨‍💻 Additional developer Information:Please ensure, that you really need live validation for your use case as this can have implications on accessibility.",
+    "id": "components-syn-validate--live",
+    "path": "layers/examples/component/component__syn-validate/components-syn-validate--live.md",
+    "title": "Live"
+  },
+  {
+    "description": "Use the custom-validation-message attribute to use whichever error you need as text, overriding the default browser errors.👨‍💻 Additional developer Information:By using the custom-validation-message attribute, you can override the default browser error messages with custom text. However, please note that applying this attribute disables the browser’s native validation functionality. This means the standard error messages will not be displayed until the custom-validation attribute is removed, at which point the native functionality will be restored.",
+    "id": "components-syn-validate--custom-validation-message",
+    "path": "layers/examples/component/component__syn-validate/components-syn-validate--custom-validation-message.md",
+    "title": "Custom Validation Message"
+  },
+  {
+    "description": "Wrap the element around any other form field, that follows browser standards to use all features.",
+    "id": "components-syn-validate--custom-form-field",
+    "path": "layers/examples/component/component__syn-validate/components-syn-validate--custom-form-field.md",
+    "title": "Custom Form Field"
+  },
+  {
+    "description": "Use the on attribute to listen for one or many custom events. This may be useful if you want to validate on keypress or custom events that may be fired by third party web-components.👨‍💻 Additional developer Information:You can provide one or multiple events in the on property. Please use a whitespace separated list of DOM event names. <syn-validate> will make sure to automatically use Synergies custom events. This means <syn-validate on=\"change click\"> will bind to the syn-change and click events for a <syn-input> or change and click events for a regular <input> element.",
+    "id": "components-syn-validate--binding-to-custom-event-names",
+    "path": "layers/examples/component/component__syn-validate/components-syn-validate--binding-to-custom-event-names.md",
+    "title": "Binding To Custom Event Names"
+  },
+  {
+    "description": "Use the eager attribute to validate the field when the component is mounted. This may be used to prefill validation messages, e.g. during page loads. Please be aware that when mixed with a variant of native, this will display the error of the last eager element in your <form> only!",
+    "id": "components-syn-validate--eager",
+    "path": "layers/examples/component/component__syn-validate/components-syn-validate--eager.md",
+    "title": "Eager"
+  }
+]

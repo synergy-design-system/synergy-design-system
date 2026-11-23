@@ -1,7 +1,10 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import type { MetadataStore } from '../types.js';
-import { buildSkillRootMarkdown, readSkillBody } from './shared.js';
+import { getAggregateExampleRef } from '../utils.js';
+import {
+  buildSkillRootMarkdown, formatSkillExamples, readSkillBody, writeSkillExampleFiles,
+} from './shared.js';
 import type { SkillGenerationMetadata } from './types.js';
 
 export const generateTemplateSkill = async (
@@ -34,16 +37,15 @@ export const generateTemplateSkill = async (
     const templateExamplePath = join(templatePath, templateName);
     await mkdir(templateExamplePath, { recursive: true });
 
-    if (!entity.layers?.examples) continue;
-    for (const layerRef of entity.layers.examples) {
-      try {
-        const content = await store.readLayerFile(layerRef);
-        await writeFile(join(templateExamplePath, 'examples.md'), content, 'utf-8');
-        break;
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.warn(`Failed to copy template example for ${templateName}:`, error);
-      }
+    const layerRef = getAggregateExampleRef(entity);
+    if (!layerRef) continue;
+    const hasExampleIndex = await writeSkillExampleFiles(store, entity, templateExamplePath);
+    try {
+      const content = await store.readLayerFile(layerRef);
+      await writeFile(join(templateExamplePath, 'examples.md'), formatSkillExamples(content, hasExampleIndex), 'utf-8');
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.warn(`Failed to copy template example for ${templateName}:`, error);
     }
   }
 };

@@ -9,6 +9,18 @@
       {
         "layer": "examples",
         "path": "layers/examples/style/style__syn-heading.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-heading/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-heading/styles-syn-heading--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-heading/styles-syn-heading--available-headings.md"
       }
     ],
     "full": [

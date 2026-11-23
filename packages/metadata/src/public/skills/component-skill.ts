@@ -1,7 +1,13 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import type { MetadataStore } from '../types.js';
-import { buildSkillRootMarkdown, readSkillBody } from './shared.js';
+import { getAggregateExampleRef } from '../utils.js';
+import {
+  buildSkillRootMarkdown,
+  formatSkillExamples,
+  readSkillBody,
+  writeSkillExampleFiles,
+} from './shared.js';
 import type { SkillGenerationMetadata } from './types.js';
 
 export const generateComponentSkill = async (
@@ -48,12 +54,19 @@ export const generateComponentSkill = async (
       }
     }
 
+    const hasExampleIndex = await writeSkillExampleFiles(store, entity, componentFacetPath);
+    const aggregateRef = getAggregateExampleRef(entity);
     for (const layer of ['rules', 'examples'] as const) {
       if (!entity.layers?.[layer]) continue;
       for (const layerRef of entity.layers[layer]) {
+        if (layer === 'examples' && layerRef !== aggregateRef) continue;
         try {
           const content = await store.readLayerFile(layerRef);
-          await writeFile(join(componentFacetPath, `${layer}.md`), content, 'utf-8');
+          await writeFile(
+            join(componentFacetPath, `${layer}.md`),
+            layer === 'examples' ? formatSkillExamples(content, hasExampleIndex) : content,
+            'utf-8',
+          );
           break;
         } catch (error) {
           // eslint-disable-next-line no-console

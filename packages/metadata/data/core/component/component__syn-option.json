@@ -134,6 +134,22 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-option.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-option/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-option/components-syn-option--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-option/components-syn-option--disabled.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-option/components-syn-option--prefix-and-suffix.md"
       }
     ],
     "full": [

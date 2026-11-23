@@ -7,6 +7,14 @@
       {
         "layer": "examples",
         "path": "layers/examples/template/template__tooltip.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__tooltip/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__tooltip/templates-tooltip--single-instance.md"
       }
     ]
   },

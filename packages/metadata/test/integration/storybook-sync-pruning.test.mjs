@@ -55,6 +55,7 @@ describe('storybook examples sync', () => {
           {
             content: '# syn-alert example\n\n```html\n<syn-alert open>Alert</syn-alert>\n```\n',
             entityId: 'component:syn-alert',
+            examples: [],
             item: 'syn-alert',
             kind: 'component',
             stories: [],

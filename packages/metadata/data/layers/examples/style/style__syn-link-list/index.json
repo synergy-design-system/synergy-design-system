@@ -1,0 +1,26 @@
+[
+  {
+    "description": "",
+    "id": "styles-syn-link-list--default",
+    "path": "layers/examples/style/style__syn-link-list/styles-syn-link-list--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Use the horizontal attribute to indicate that it is used as a horizontal link list.",
+    "id": "styles-syn-link-list--horizontal",
+    "path": "layers/examples/style/style__syn-link-list/styles-syn-link-list--horizontal.md",
+    "title": "Horizontal"
+  },
+  {
+    "description": "The horizontal link list automatically wraps into a new line if there is not enough space available.",
+    "id": "styles-syn-link-list--multiline",
+    "path": "layers/examples/style/style__syn-link-list/styles-syn-link-list--multiline.md",
+    "title": "Multiline"
+  },
+  {
+    "description": "Use the size attribute to change the link list size.",
+    "id": "styles-syn-link-list--size",
+    "path": "layers/examples/style/style__syn-link-list/styles-syn-link-list--size.md",
+    "title": "Size"
+  }
+]

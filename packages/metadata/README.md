@@ -81,6 +81,25 @@ if (component.data) {
 
 Use this flow when you need real file content (for example framework wrappers, styles, or examples), not only layer file paths.
 
+### Individual examples
+
+List examples without loading their markup, then retrieve an exact ID for a component, template, or style:
+
+```ts
+import { getExample, listExamples } from "@synergy-design-system/metadata";
+
+const examples = await listExamples("component", "syn-chart");
+const id = examples.data?.[0]?.id;
+if (id) {
+  const example = await getExample("component", "syn-chart", id);
+  console.log(example.data?.content);
+}
+```
+
+Entries include an ID, title, description, and metadata-relative path. IDs derive from Storybook source identities and can change when stories are renamed; use IDs returned by the list rather than constructing them. A missing individual-example index returns `DATA_NOT_READY`; rebuild the Storybook examples. Existing aggregate example files and APIs remain available.
+
+Entity `layers.examples` references include the combined Markdown file, the example index, and each individual Markdown file. Low-level layer readers therefore return all of those files; use the focused helpers above for selective reads. Existing high-level `getDataForComponent`, `getDataForTemplate`, and `getDataForStyle` example responses continue to return only the combined file.
+
 ### Rules Layer
 
 Component usage guidance is published as a dedicated `rules` layer.
@@ -123,12 +142,16 @@ The command supports both `--path ./dir` and `--path=./dir`, creates missing dir
 - `synergy-component/components/<component-name>/interface.md`
 - `synergy-component/components/<component-name>/rules.md`
 - `synergy-component/components/<component-name>/examples.md`
+- `synergy-component/components/<component-name>/examples/README.md` and individual examples
 - `synergy-templates/SKILL.md`
 - `synergy-templates/templates/<template-name>/examples.md`
+- `synergy-templates/templates/<template-name>/examples/README.md` and individual examples
 - `synergy-intent-policy/SKILL.md`
 - `synergy-intent-policy/intents/<intent-id>/interface.md`
 - `synergy-intent-policy/intents/<intent-id>/rules.md`
 - `synergy-intent-policy/intents/<intent-id>/examples.md`
+
+Combined component and template `examples.md` files link to the individual-example index when available, while retaining their original example content.
 
 By default, all skills are generated. Use `--skills component`, `--skills templates`, or `--skills intents` (including comma-separated combinations) to select the generated skills. After generation, reference them in VS Code with `/synergy-component`, `/synergy-templates`, or `/synergy-intent-policy`.
 

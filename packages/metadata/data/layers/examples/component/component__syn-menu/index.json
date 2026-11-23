@@ -1,0 +1,20 @@
+[
+  {
+    "description": "Menus provide a list of options for the user to choose from.You can use menu items, menu labels, and dividers to compose a menu. Menus support keyboard interactions, including type-to-select an option.",
+    "id": "components-syn-menu--default",
+    "path": "layers/examples/component/component__syn-menu/components-syn-menu--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Menus work really well when used inside dropdowns.",
+    "id": "components-syn-menu--in-dropdowns",
+    "path": "layers/examples/component/component__syn-menu/components-syn-menu--in-dropdowns.md",
+    "title": "In Dropdowns"
+  },
+  {
+    "description": "To create a submenu, nest an <syn-menu slot=\"submenu\"> in any menu item.",
+    "id": "components-syn-menu--submenus",
+    "path": "layers/examples/component/component__syn-menu/components-syn-menu--submenus.md",
+    "title": "Submenus"
+  }
+]

@@ -194,6 +194,38 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-details.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-details/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-details/components-syn-details--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-details/components-syn-details--open.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-details/components-syn-details--contained.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-details/components-syn-details--focus.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-details/components-syn-details--disabled.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-details/components-syn-details--sizes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-details/components-syn-details--prefix-icons.md"
       }
     ],
     "full": [

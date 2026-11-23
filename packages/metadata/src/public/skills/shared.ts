@@ -1,6 +1,11 @@
-import { readFile } from 'node:fs/promises';
+import {
+  mkdir, readFile, readdir, unlink, writeFile,
+} from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { readExampleIndex } from '../domains/examples.js';
+import { getAggregateExampleRef } from '../utils.js';
+import type { MetadataEntity, MetadataStore } from '../types.js';
 import type { SkillGenerationMetadata } from './types.js';
 
 export interface SkillFrontmatterMetadata extends SkillGenerationMetadata {
@@ -23,6 +28,39 @@ export type SkillTemplateContext = {
 
 const packageDirectory = dirname(dirname(dirname(dirname(fileURLToPath(import.meta.url)))));
 const skillBodyCache = new Map<string, string>();
+
+export const writeSkillExampleFiles = async (
+  store: MetadataStore,
+  entity: MetadataEntity,
+  outputPath: string,
+): Promise<boolean> => {
+  const aggregate = getAggregateExampleRef(entity);
+  if (!aggregate) return false;
+  const examples = await readExampleIndex(store, aggregate);
+  if (!examples) return false;
+  const examplesPath = join(outputPath, 'examples');
+  await mkdir(examplesPath, { recursive: true });
+  const expected = new Set(['README.md', ...examples.map(example => `${example.id}.md`)]);
+  const links = await Promise.all(examples.map(async (example) => {
+    const content = await store.readLayerFile({ layer: 'examples', path: example.path });
+    await writeFile(join(examplesPath, `${example.id}.md`), content, 'utf8');
+    const description = example.description.replace(/\s+/g, ' ').trim();
+    const title = example.title.replace(/[[\]\\]/g, '\\$&');
+    return `- [${title}](${example.id}.md) (\`${example.id}\`)${description ? `: ${description}` : ''}`;
+  }));
+  await writeFile(join(examplesPath, 'README.md'), `# Examples\n\n${links.join('\n')}\n`, 'utf8');
+  const files = await readdir(examplesPath, { withFileTypes: true });
+  await Promise.all(files
+    .filter(file => file.isFile() && file.name.endsWith('.md') && !expected.has(file.name))
+    .map(file => unlink(join(examplesPath, file.name))));
+  return true;
+};
+
+export const formatSkillExamples = (content: string, hasIndex: boolean): string => (
+  hasIndex
+    ? `> Browse [individual examples](./examples/README.md) to load only the examples you need.\n\n${content}`
+    : content
+);
 
 export const readPackageVersion = (packageJsonContent: string): string => {
   const parsed: unknown = JSON.parse(packageJsonContent);

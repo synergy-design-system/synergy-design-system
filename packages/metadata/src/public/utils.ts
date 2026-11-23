@@ -1,3 +1,4 @@
+import { encodeEntityIdForPath } from '../internal/core/entity-paths.js';
 import type {
   LayerName,
   MetadataEntity,
@@ -126,6 +127,19 @@ export const readLayerFilesForEntity = async <T>(
       ref,
     })),
   );
+};
+
+export const getAggregateExampleRef = <T>(entity: MetadataEntity<T>): MetadataLayerRef | undefined => {
+  const path = `layers/examples/${entity.kind}/${encodeEntityIdForPath(entity.id)}.md`;
+  return entity.layers?.examples?.find(ref => ref.path.replaceAll('\\', '/') === path);
+};
+
+export const readAggregateExampleForEntity = async <T>(
+  store: MetadataStore,
+  entity: MetadataEntity<T>,
+): Promise<LayerFileContent[]> => {
+  const ref = getAggregateExampleRef(entity);
+  return ref ? [{ content: await store.readLayerFile(ref), ref }] : [];
 };
 
 /**

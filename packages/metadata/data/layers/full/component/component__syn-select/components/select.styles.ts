@@ -75,6 +75,9 @@ export default css`
     appearance: none;
     background: none;
     border: none;
+
+    /* Prevent the misleading caret shown in newer Chrome and Firefox versions (see #1415). */
+    caret-color: transparent;
     color: var(--syn-input-color);
     cursor: inherit;
     font: inherit;

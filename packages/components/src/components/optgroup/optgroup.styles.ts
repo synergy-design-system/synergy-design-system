@@ -52,7 +52,7 @@ export default css`
   .optgroup__prefix,
   .optgroup__suffix {
     color: var(--syn-option-icon-color);
-    font-size: var(--syn-spacing-large);
+    font-size: var(--option-icon-size, var(--syn-spacing-large));
   }
 
   .optgroup__options ::slotted(syn-option[hidden]) {

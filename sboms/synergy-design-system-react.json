@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/react",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-react-3.33.0-6bdc4d05-7136-4eef-b6a1-309367c83427",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-react-3.33.1-9a452350-614b-4fe0-a41b-f23536aadefe",
   "creationInfo": {
-    "created": "2026-11-19T14:07:46Z",
+    "created": "2026-11-23T09:11:16Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/react",
-      "versionInfo": "3.33.0",
+      "versionInfo": "3.33.1",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -25,7 +25,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/react@3.33.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/react@3.33.1"
         }
       ],
       "description": "React wrappers for the Synergy Design System",
@@ -109,29 +109,9 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.33.0-3",
-      "name": "@synergy-design-system/components",
-      "versionInfo": "3.33.0",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.33.0"
-        }
-      ],
-      "description": "",
-      "homepage": "https://synergy-design-system.github.io",
-      "supplier": "Person: SICK Global UX Foundation"
-    },
-    {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.33.0-4",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.33.1-3",
       "name": "@synergy-design-system/tokens",
-      "versionInfo": "3.33.0",
+      "versionInfo": "3.33.1",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "licenseConcluded": "MIT",
@@ -141,7 +121,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.33.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.33.1"
         }
       ],
       "description": "Design tokens for Synergy, the SICK Design System",
@@ -149,10 +129,10 @@
       "supplier": "Person: SICK Global UX Foundation"
     },
     {
-      "SPDXID": "SPDXRef-Package-composed-offset-position-0.0.6-5",
-      "name": "composed-offset-position",
-      "versionInfo": "0.0.6",
-      "downloadLocation": "https://registry.npmjs.org/composed-offset-position/-/composed-offset-position-0.0.6.tgz",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.33.1-4",
+      "name": "@synergy-design-system/components",
+      "versionInfo": "3.33.1",
+      "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
@@ -161,16 +141,36 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/composed-offset-position@0.0.6"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.33.1"
         }
       ],
-      "description": "This provides a set of ponyfills to achieve the same behavior of `offsetParent`, `offsetLeft` and `offsetTop` before the `offsetParent` spec was changed.",
-      "homepage": "https://github.com/jcfranco/composed-offset-position#readme",
-      "supplier": "Person: jcfranco",
+      "description": "",
+      "homepage": "https://synergy-design-system.github.io",
+      "supplier": "Person: SICK Global UX Foundation"
+    },
+    {
+      "SPDXID": "SPDXRef-Package--floating-ui-dom-1.8.0-5",
+      "name": "@floating-ui/dom",
+      "versionInfo": "1.8.0",
+      "downloadLocation": "https://registry.npmjs.org/@floating-ui/dom/-/dom-1.8.0.tgz",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40floating-ui/dom@1.8.0"
+        }
+      ],
+      "description": "Floating UI for the web",
+      "homepage": "https://floating-ui.com",
+      "supplier": "Person: atomiks",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "43b74ba26a48ea553077b2d6c8870febaaf859c4bdbbb00bda1f0769e8a98917c244f2cc5aa471f1f62c8dbe0e1e2e9440589f3bb5ed342d88944275a33205c7"
+          "checksumValue": "c974abcde1d905365a74b3a57f28429091cd78b2671d19d1227c1d678d0bed989a02dac1c28625b03ad7defe7307552d93b08b7f370e5675555a85c4932ec27a"
         }
       ]
     },
@@ -201,33 +201,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--floating-ui-dom-1.8.0-7",
-      "name": "@floating-ui/dom",
-      "versionInfo": "1.8.0",
-      "downloadLocation": "https://registry.npmjs.org/@floating-ui/dom/-/dom-1.8.0.tgz",
-      "filesAnalyzed": false,
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40floating-ui/dom@1.8.0"
-        }
-      ],
-      "description": "Floating UI for the web",
-      "homepage": "https://floating-ui.com",
-      "supplier": "Person: atomiks",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "c974abcde1d905365a74b3a57f28429091cd78b2671d19d1227c1d678d0bed989a02dac1c28625b03ad7defe7307552d93b08b7f370e5675555a85c4932ec27a"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--floating-ui-core-1.8.0-8",
+      "SPDXID": "SPDXRef-Package--floating-ui-core-1.8.0-7",
       "name": "@floating-ui/core",
       "versionInfo": "1.8.0",
       "downloadLocation": "https://registry.npmjs.org/@floating-ui/core/-/core-1.8.0.tgz",
@@ -249,6 +223,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "d02219e62b69b3ff31ec11bc744221b39dc1bc2507d8f0a8a20b5a930453badf80ae6e7cb09a2827402e6612f0d87258211e5c30b34f0524bbdbcb0f868da485"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-composed-offset-position-0.0.6-8",
+      "name": "composed-offset-position",
+      "versionInfo": "0.0.6",
+      "downloadLocation": "https://registry.npmjs.org/composed-offset-position/-/composed-offset-position-0.0.6.tgz",
+      "filesAnalyzed": false,
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/composed-offset-position@0.0.6"
+        }
+      ],
+      "description": "This provides a set of ponyfills to achieve the same behavior of `offsetParent`, `offsetLeft` and `offsetTop` before the `offsetParent` spec was changed.",
+      "homepage": "https://github.com/jcfranco/composed-offset-position#readme",
+      "supplier": "Person: jcfranco",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "43b74ba26a48ea553077b2d6c8870febaaf859c4bdbbb00bda1f0769e8a98917c244f2cc5aa471f1f62c8dbe0e1e2e9440589f3bb5ed342d88944275a33205c7"
         }
       ]
     },
@@ -278,31 +278,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-zrender-6.1.0-10",
-      "name": "zrender",
-      "versionInfo": "6.1.0",
-      "downloadLocation": "https://registry.npmjs.org/zrender/-/zrender-6.1.0.tgz",
-      "filesAnalyzed": false,
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/zrender@6.1.0"
-        }
-      ],
-      "description": "A lightweight graphic library providing 2d draw for Apache ECharts",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "a0418c0c1ea938fd92e8ec114783dd56feb5d33ae39c0dc187e267486d767d826504a8ed340a046f97d252808e3883651fde88d9f537f3f03652944ab3aef161"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-tslib-2.3.0-11",
+      "SPDXID": "SPDXRef-Package-tslib-2.3.0-10",
       "name": "tslib",
       "versionInfo": "2.3.0",
       "downloadLocation": "https://registry.npmjs.org/tslib/-/tslib-2.3.0.tgz",
@@ -324,6 +300,30 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "37cda8a32c55366ea1d6b88b0a8c92f5eddfb89dc0306db3219b3619dd404dc4858d2036dd0d1fce38d97a1d236c9bd65436747094fcc9a34d69a5c7cee78d8e"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-zrender-6.1.0-11",
+      "name": "zrender",
+      "versionInfo": "6.1.0",
+      "downloadLocation": "https://registry.npmjs.org/zrender/-/zrender-6.1.0.tgz",
+      "filesAnalyzed": false,
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/zrender@6.1.0"
+        }
+      ],
+      "description": "A lightweight graphic library providing 2d draw for Apache ECharts",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "a0418c0c1ea938fd92e8ec114783dd56feb5d33ae39c0dc187e267486d767d826504a8ed340a046f97d252808e3883651fde88d9f537f3f03652944ab3aef161"
         }
       ]
     },
@@ -405,10 +405,10 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-lit-element-4.2.2-15",
-      "name": "lit-element",
-      "versionInfo": "4.2.2",
-      "downloadLocation": "https://registry.npmjs.org/lit-element/-/lit-element-4.2.2.tgz",
+      "SPDXID": "SPDXRef-Package--lit-reactive-element-2.1.2-15",
+      "name": "@lit/reactive-element",
+      "versionInfo": "2.1.2",
+      "downloadLocation": "https://registry.npmjs.org/@lit/reactive-element/-/reactive-element-2.1.2.tgz",
       "filesAnalyzed": false,
       "licenseConcluded": "BSD-3-Clause",
       "licenseDeclared": "BSD-3-Clause",
@@ -417,16 +417,16 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lit-element@4.2.2"
+          "referenceLocator": "pkg:npm/%40lit/reactive-element@2.1.2"
         }
       ],
-      "description": "A simple base class for creating fast, lightweight web components",
+      "description": "A simple low level base class for creating fast, lightweight web components",
       "homepage": "https://lit.dev/",
       "supplier": "Person: Google LLC",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "6852a1353a16c68ca190d0e6599c04bdad9295089afa37c6d1f8c8595fff61e4da5ab5673b10fcf5d3ca7e280252ca571668f3384510a4e91e8c7e4bcbab06d3"
+          "checksumValue": "a5b0838953279ded6561421a60d379c2bc105c3b47698b60ed81053de5be870b3a538ed6785bc84865167a43c629638fd7282bb3479fd28d5524c9357b1a2ce4"
         }
       ]
     },
@@ -457,10 +457,10 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--lit-reactive-element-2.1.2-17",
-      "name": "@lit/reactive-element",
-      "versionInfo": "2.1.2",
-      "downloadLocation": "https://registry.npmjs.org/@lit/reactive-element/-/reactive-element-2.1.2.tgz",
+      "SPDXID": "SPDXRef-Package-lit-element-4.2.2-17",
+      "name": "lit-element",
+      "versionInfo": "4.2.2",
+      "downloadLocation": "https://registry.npmjs.org/lit-element/-/lit-element-4.2.2.tgz",
       "filesAnalyzed": false,
       "licenseConcluded": "BSD-3-Clause",
       "licenseDeclared": "BSD-3-Clause",
@@ -469,16 +469,16 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40lit/reactive-element@2.1.2"
+          "referenceLocator": "pkg:npm/lit-element@4.2.2"
         }
       ],
-      "description": "A simple low level base class for creating fast, lightweight web components",
+      "description": "A simple base class for creating fast, lightweight web components",
       "homepage": "https://lit.dev/",
       "supplier": "Person: Google LLC",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "a5b0838953279ded6561421a60d379c2bc105c3b47698b60ed81053de5be870b3a538ed6785bc84865167a43c629638fd7282bb3479fd28d5524c9357b1a2ce4"
+          "checksumValue": "6852a1353a16c68ca190d0e6599c04bdad9295089afa37c6d1f8c8595fff61e4da5ab5673b10fcf5d3ca7e280252ca571668f3384510a4e91e8c7e4bcbab06d3"
         }
       ]
     }
@@ -506,66 +506,66 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.33.0-3",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.33.1-3",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.33.0-4",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.33.1-4",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.33.0-3",
-      "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-5",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.33.1-4",
+      "relatedSpdxElement": "SPDXRef-Package--floating-ui-dom-1.8.0-5",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-composed-offset-position-0.0.6-5",
+      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-5",
       "relatedSpdxElement": "SPDXRef-Package--floating-ui-utils-0.2.12-6",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.33.0-3",
-      "relatedSpdxElement": "SPDXRef-Package--floating-ui-dom-1.8.0-7",
+      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-5",
+      "relatedSpdxElement": "SPDXRef-Package--floating-ui-core-1.8.0-7",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-7",
-      "relatedSpdxElement": "SPDXRef-Package--floating-ui-core-1.8.0-8",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package--floating-ui-core-1.8.0-8",
+      "spdxElementId": "SPDXRef-Package--floating-ui-core-1.8.0-7",
       "relatedSpdxElement": "SPDXRef-Package--floating-ui-utils-0.2.12-6",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-7",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.33.1-4",
+      "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-8",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-composed-offset-position-0.0.6-8",
       "relatedSpdxElement": "SPDXRef-Package--floating-ui-utils-0.2.12-6",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.33.0-3",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.33.1-4",
       "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-9",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-echarts-6.1.0-9",
-      "relatedSpdxElement": "SPDXRef-Package-zrender-6.1.0-10",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-zrender-6.1.0-10",
-      "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-11",
+      "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-10",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-echarts-6.1.0-9",
-      "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-11",
+      "relatedSpdxElement": "SPDXRef-Package-zrender-6.1.0-11",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.33.0-3",
+      "spdxElementId": "SPDXRef-Package-zrender-6.1.0-11",
+      "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-10",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.33.1-4",
       "relatedSpdxElement": "SPDXRef-Package-lit-3.3.3-12",
       "relationshipType": "DEPENDS_ON"
     },
@@ -581,32 +581,32 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-lit-3.3.3-12",
-      "relatedSpdxElement": "SPDXRef-Package-lit-element-4.2.2-15",
+      "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-15",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-element-4.2.2-15",
-      "relatedSpdxElement": "SPDXRef-Package--lit-labs-ssr-dom-shim-1.6.0-16",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-lit-element-4.2.2-15",
-      "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-13",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-lit-element-4.2.2-15",
-      "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-17",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package--lit-reactive-element-2.1.2-17",
+      "spdxElementId": "SPDXRef-Package--lit-reactive-element-2.1.2-15",
       "relatedSpdxElement": "SPDXRef-Package--lit-labs-ssr-dom-shim-1.6.0-16",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-lit-3.3.3-12",
-      "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-17",
+      "relatedSpdxElement": "SPDXRef-Package-lit-element-4.2.2-17",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-lit-element-4.2.2-17",
+      "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-15",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-lit-element-4.2.2-17",
+      "relatedSpdxElement": "SPDXRef-Package--lit-labs-ssr-dom-shim-1.6.0-16",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-lit-element-4.2.2-17",
+      "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-13",
       "relationshipType": "DEPENDS_ON"
     }
   ]

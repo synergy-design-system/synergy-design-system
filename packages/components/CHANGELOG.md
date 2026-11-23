@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.33.1
+
+### Patch Changes
+
+- [#1429](https://github.com/synergy-design-system/synergy-design-system/pull/1429) [`239360c`](https://github.com/synergy-design-system/synergy-design-system/commit/239360c02bdff1d63f79195f0ff40dc87d0e5404) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-11-23
+  
+  fix: 🐛 New fixes for `<syn-select/>` and `<syn-combobox/>`([#1416](https://github.com/synergy-design-system/synergy-design-system/issues/1416)) ([#1415](https://github.com/synergy-design-system/synergy-design-system/issues/1415))
+  
+  **Fixes**
+  - [#1416](https://github.com/synergy-design-system/synergy-design-system/issues/1416): Match syn-optgroup prefix and suffix icon sizes to child options in small and large syn-select / syn-combobox
+  - [#1415](https://github.com/synergy-design-system/synergy-design-system/issues/1415): Hide the caret in the syn-select value in newer Chrome and Firefox versions
+- Updated dependencies []:
+  - @synergy-design-system/tokens@3.33.1
+
 ## 3.33.0
 
 ### Minor Changes

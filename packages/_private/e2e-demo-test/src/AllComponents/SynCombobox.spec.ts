@@ -167,6 +167,7 @@ test.describe('<SynCombobox />', () => {
         await combobox.click();
         const options = await AllComponents.getLocator('combobox813FormOptions');
         await options.last().click();
+        await expect(options.last()).toBeHidden();
 
         const [value, displayedValue] = await combobox.evaluate(
           (ele: SynCombobox) => [ele.value, ele.displayLabel],

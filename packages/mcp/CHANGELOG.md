@@ -1,5 +1,19 @@
 # Changelog
 
+## 4.30.0
+
+### Minor Changes
+
+- [#1432](https://github.com/synergy-design-system/synergy-design-system/pull/1432) [`f190c6c`](https://github.com/synergy-design-system/synergy-design-system/commit/f190c6c7dcabd7a9b8bf40a62916e716871658ac) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-11-27
+  
+  Add discoverable individual Storybook examples for components, styles, and templates while retaining combined examples for compatibility.
+  Empty example IDs in MCP info tools are treated as omitted.
+
+### Patch Changes
+
+- Updated dependencies [[`f190c6c`](https://github.com/synergy-design-system/synergy-design-system/commit/f190c6c7dcabd7a9b8bf40a62916e716871658ac)]:
+  - @synergy-design-system/metadata@4.30.0
+
 ## 4.29.1
 
 ### Patch Changes

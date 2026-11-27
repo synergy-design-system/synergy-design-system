@@ -1,12 +1,16 @@
 {
   "encoding": "o200k_base",
-  "generatedAt": "2026-11-23T12:02:36.794Z",
+  "generatedAt": "2026-11-27T12:59:19.462Z",
   "source": "current-worktree",
   "version": 1,
   "watermarks": [
     {
       "id": "catalog:tools-list",
-      "tokens": 3937
+      "tokens": 4498
+    },
+    {
+      "id": "component-info:example:syn-chart-default",
+      "tokens": 177
     },
     {
       "id": "catalog:resources-list",

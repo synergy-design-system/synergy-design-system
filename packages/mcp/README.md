@@ -628,6 +628,8 @@ The MCP server registers 26 tools by default: 20 core tools and 6 intent policy 
 
 Use `component-list-examples`, `template-list-examples`, or `styles-list-examples` with an exact entity name to discover example IDs, titles, and descriptions. Pass a returned `exampleId` to the corresponding info tool to retrieve only that example. For `component-info`, explicitly set `layer` to `examples` when providing a non-empty `exampleId`; other layers and omitted layers are rejected. Omitting `exampleId` or passing an empty string preserves the existing response for the requested layer. IDs may change when the underlying Storybook story is renamed.
 
+Example-list tools return the available entity catalog for an unknown component, style, or template. Info tools also return the available entity catalog when the name is unknown, and include the available example IDs when an `exampleId` is not found.
+
 Parameter schemas are not duplicated here. Call `tools/list` against a running server for the authoritative input schema of every tool, including defaults resolved from your runtime config.
 
 ### 1. `component-list`

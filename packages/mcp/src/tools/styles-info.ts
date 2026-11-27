@@ -34,6 +34,7 @@ export const stylesInfoTool = (server: McpServer) => {
       if (exampleId !== undefined && exampleId !== '') {
         return [await getToolRule('styles-info'), await getEntityExample('style', style, exampleId)];
       }
+
       const response = await getDataForStyle(style, { layer: 'examples' });
 
       if (!response.data) {

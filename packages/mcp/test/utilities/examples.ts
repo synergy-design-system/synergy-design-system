@@ -62,4 +62,8 @@ export const expectSelectiveExample = async (
   const missingText = missing.content.map(entry => entry.text).join('\n');
   assert.match(missingText, /not found/i);
   assert.ok(missingText.includes(list));
+  const recovery = JSON.parse(missing.content.at(-1)?.text ?? '{}') as {
+    availableExampleIds: string[];
+  };
+  assert.ok(recovery.availableExampleIds.includes(exampleId));
 };

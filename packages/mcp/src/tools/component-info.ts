@@ -51,10 +51,12 @@ export const componentInfoTool = (server: McpServer) => {
       const { tools } = getRuntimeConfig();
       const resolvedFramework = framework ?? tools.componentInfo.framework;
       const resolvedLayer = layer ?? tools.componentInfo.layer;
+      const hasExampleId = exampleId !== undefined && exampleId !== '';
 
-      if (exampleId !== undefined && exampleId !== '') {
-        const aiRules = await getToolRule('component-info');
-        const frameworkRules = resolvedFramework !== 'vanilla' ? await getToolRule(`component-info-${resolvedFramework}`) : undefined;
+      const aiRules = await getToolRule('component-info');
+      const frameworkRules = resolvedFramework !== 'vanilla' ? await getToolRule(`component-info-${resolvedFramework}`) : undefined;
+
+      if (hasExampleId) {
         return [aiRules, frameworkRules, await getEntityExample('component', component, exampleId)];
       }
 
@@ -62,9 +64,6 @@ export const componentInfoTool = (server: McpServer) => {
         framework: resolvedFramework,
         layer: resolvedLayer,
       });
-
-      const aiRules = await getToolRule('component-info');
-      const frameworkRules = resolvedFramework !== 'vanilla' ? await getToolRule(`component-info-${resolvedFramework}`) : undefined;
 
       if (!metadata.data) {
         const notFoundMessage = metadata.errors?.[0]?.message ?? `No metadata found for component ${component}`;

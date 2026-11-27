@@ -34,6 +34,7 @@ export const templateInfoTool = (server: McpServer) => {
       if (exampleId !== undefined && exampleId !== '') {
         return [await getToolRule('template-info'), await getEntityExample('template', template, exampleId)];
       }
+
       const response = await getDataForTemplate(template, { layer: 'examples' });
 
       if (!response.data) {

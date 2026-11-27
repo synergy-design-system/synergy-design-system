@@ -69,6 +69,7 @@ The chart component is shipped as a **separate entrypoint** for all packages and
 > Therefore add these imports at the very beginning of your application entry point.
 
 ### Using Synergy icons
+
 Chart icon options require an SVG data URL. Raw SVG markup and SVG file URLs are not supported.
 
 By default, `getIconDataURL` uses the same icon names and SVG assets as `<syn-icon>`. Make the corresponding SVGs from `@synergy-design-system/assets` available under the configured `assets/icons/` path, as you would for `<syn-icon>`. Use the [icon search](https://synergy-design-system.github.io/?path=/docs/icon-search--docs) to find an icon name. See the [icon documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-icon--docs) for setup, custom libraries and more information.

@@ -1,5 +1,6 @@
 import '../../../components/src/components/icon/icon.js';
 import { type Meta, type StoryObj } from '@storybook/web-components-vite';
+import { waitFor } from 'storybook/test';
 import { html } from 'lit';
 import {
   generateScreenshotStory, storybookDefaults, storybookHelpers, storybookTemplate,
@@ -53,6 +54,18 @@ const meta: Meta = {
 export default meta;
 
 type Story = StoryObj;
+
+const waitForDataUrlImages = async (canvasElement: HTMLElement) => {
+  const images = Array.from(canvasElement.querySelectorAll<HTMLImageElement>('img'));
+
+  await waitFor(() => {
+    if (images.length === 0 || images.some(image => !image.hasAttribute('src'))) {
+      throw new Error('Waiting for icon data URL images to receive their src attributes.');
+    }
+  }, { timeout: 10000 });
+
+  await Promise.all(images.map(image => image.decode()));
+};
 
 /**
  * This shows the syn-icon in its default state
@@ -434,17 +447,20 @@ export const SpriteSheetDataURL: Story = {
 };
 
 /* eslint-disable sort-keys */
-export const Screenshot: Story = generateScreenshotStory({
-  Default,
-  Colors,
-  Sizing,
-  Labels,
-  CustomIcons,
-  CDNIconLibrary,
-  DataUrl,
-  BundledIconLibrary,
-  BundledIconDataURL,
-  SpriteSheetUsage,
-  SpriteSheetDataURL,
-});
+export const Screenshot: Story = {
+  ...generateScreenshotStory({
+    Default,
+    Colors,
+    Sizing,
+    Labels,
+    CustomIcons,
+    CDNIconLibrary,
+    DataUrl,
+    BundledIconLibrary,
+    BundledIconDataURL,
+    SpriteSheetUsage,
+    SpriteSheetDataURL,
+  }),
+  play: async ({ canvasElement }) => waitForDataUrlImages(canvasElement),
+};
 /* eslint-enable sort-keys */

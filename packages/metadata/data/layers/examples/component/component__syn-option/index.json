@@ -1,0 +1,20 @@
+[
+  {
+    "description": "Options define the selectable items within various form controls such as select.",
+    "id": "components-syn-option--default",
+    "path": "layers/examples/component/component__syn-option/components-syn-option--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Use the disabled attribute to disable an option and prevent it from being selected.",
+    "id": "components-syn-option--disabled",
+    "path": "layers/examples/component/component__syn-option/components-syn-option--disabled.md",
+    "title": "Disabled"
+  },
+  {
+    "description": "Add icons to the start and end of menu items using the prefix and suffix slots.",
+    "id": "components-syn-option--prefix-and-suffix",
+    "path": "layers/examples/component/component__syn-option/components-syn-option--prefix-and-suffix.md",
+    "title": "Prefix And Suffix"
+  }
+]

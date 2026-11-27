@@ -194,6 +194,38 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-icon-button.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-icon-button/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-icon-button/components-syn-icon-button--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-icon-button/components-syn-icon-button--sizes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-icon-button/components-syn-icon-button--colors.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-icon-button/components-syn-icon-button--link-button.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-icon-button/components-syn-icon-button--disabled.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-icon-button/components-syn-icon-button--focus.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-icon-button/components-syn-icon-button--label.md"
       }
     ],
     "full": [

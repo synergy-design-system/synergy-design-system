@@ -261,6 +261,58 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-textarea.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-textarea/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--labels.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--help-text.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--rows.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--placeholders.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--readonly-textareas.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--focus.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--disabled.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--sizes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--invalid.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--prevent-resizing.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--expand-with-content.md"
       }
     ],
     "full": [

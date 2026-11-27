@@ -7,6 +7,18 @@
       {
         "layer": "examples",
         "path": "layers/examples/template/template__loading-screen.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__loading-screen/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__loading-screen/templates-loading-screen--loading-screen-light-theme.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__loading-screen/templates-loading-screen--loading-screen-dark-theme.md"
       }
     ]
   },

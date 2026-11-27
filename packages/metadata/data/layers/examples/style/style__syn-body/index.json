@@ -1,0 +1,14 @@
+[
+  {
+    "description": "",
+    "id": "styles-syn-body--default",
+    "path": "layers/examples/style/style__syn-body/styles-syn-body--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "",
+    "id": "styles-syn-body--available-body-text",
+    "path": "layers/examples/style/style__syn-body/styles-syn-body--available-body-text.md",
+    "title": "Available Body Text"
+  }
+]

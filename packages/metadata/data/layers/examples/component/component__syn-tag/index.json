@@ -1,0 +1,26 @@
+[
+  {
+    "description": "Tags are used as labels to organize things or to indicate a selection.",
+    "id": "components-syn-tag--default",
+    "path": "layers/examples/component/component__syn-tag/components-syn-tag--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "",
+    "id": "components-syn-tag--with-icon",
+    "path": "layers/examples/component/component__syn-tag/components-syn-tag--with-icon.md",
+    "title": "With Icon"
+  },
+  {
+    "description": "Use the removable attribute to add a remove button to the tag.",
+    "id": "components-syn-tag--removable",
+    "path": "layers/examples/component/component__syn-tag/components-syn-tag--removable.md",
+    "title": "Removable"
+  },
+  {
+    "description": "Use the size attribute to change a tab’s size.",
+    "id": "components-syn-tag--sizes",
+    "path": "layers/examples/component/component__syn-tag/components-syn-tag--sizes.md",
+    "title": "Sizes"
+  }
+]

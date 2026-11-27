@@ -2,6 +2,7 @@ export * from './config.js';
 export * from './component-discovery.js';
 export * from './content-discovery.js';
 export * from './davinci.js';
+export * from './examples.js';
 export * from './logger.js';
 export * from './logging-context.js';
 export * from './logging-service.js';

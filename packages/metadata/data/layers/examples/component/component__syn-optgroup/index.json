@@ -1,0 +1,20 @@
+[
+  {
+    "description": "Use <syn-optgroup> to group listbox items visually.",
+    "id": "components-syn-optgroup--default",
+    "path": "layers/examples/component/component__syn-optgroup/components-syn-optgroup--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Use the disabled attribute in the <syn-optgroup> to disable the Section and prevent it from being selected.",
+    "id": "components-syn-optgroup--disabled",
+    "path": "layers/examples/component/component__syn-optgroup/components-syn-optgroup--disabled.md",
+    "title": "Disabled"
+  },
+  {
+    "description": "Add icons to the start and end of menu items using the prefix and suffix slots.",
+    "id": "components-syn-optgroup--prefix-and-suffix",
+    "path": "layers/examples/component/component__syn-optgroup/components-syn-optgroup--prefix-and-suffix.md",
+    "title": "Prefix And Suffix"
+  }
+]

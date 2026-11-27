@@ -7,6 +7,18 @@
       {
         "layer": "examples",
         "path": "layers/examples/template/template__tag-group.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__tag-group/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__tag-group/templates-tag-group--tag-group.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__tag-group/templates-tag-group--tag-group-tablet.md"
       }
     ]
   },

@@ -7,6 +7,18 @@
       {
         "layer": "examples",
         "path": "layers/examples/template/template__forms.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__forms/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__forms/templates-forms--contact-form.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__forms/templates-forms--multiple-files-upload-form.md"
       }
     ]
   },

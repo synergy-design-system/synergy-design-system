@@ -298,6 +298,7 @@ export class StorybookScraper {
             description,
             exampleSource,
             heading,
+            id: story.id,
             index,
           };
         }));
@@ -322,6 +323,7 @@ export class StorybookScraper {
             description: storyMeta.description,
             example: storyMeta.exampleSource.trim(),
             heading: storyMeta.heading,
+            id: storyMeta.id.replace(/^anchor--/, ''),
           };
         });
 
@@ -349,6 +351,7 @@ export class StorybookScraper {
             description: story.description,
             example: formattedExample,
             heading: story.heading,
+            id: story.id,
           };
         } catch (error) {
           const errorMessage = error instanceof Error ? error.message : 'Unknown error';

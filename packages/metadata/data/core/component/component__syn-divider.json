@@ -140,6 +140,30 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-divider.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-divider/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-divider/components-syn-divider--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-divider/components-syn-divider--width.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-divider/components-syn-divider--color.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-divider/components-syn-divider--spacing.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-divider/components-syn-divider--vertical.md"
       }
     ],
     "full": [

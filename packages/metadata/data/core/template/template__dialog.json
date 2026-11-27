@@ -7,6 +7,22 @@
       {
         "layer": "examples",
         "path": "layers/examples/template/template__dialog.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__dialog/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__dialog/templates-dialog--confirmation-dialogs.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__dialog/templates-dialog--form-dialogs.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__dialog/templates-dialog--responsive-dialog.md"
       }
     ]
   },

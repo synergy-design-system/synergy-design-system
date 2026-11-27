@@ -180,6 +180,38 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-card.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-card/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-card/components-syn-card--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-card/components-syn-card--basic-card.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-card/components-syn-card--card-with-header.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-card/components-syn-card--card-with-footer.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-card/components-syn-card--images.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-card/components-syn-card--sharp-card.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-card/components-syn-card--card-with-shadow.md"
       }
     ],
     "full": [

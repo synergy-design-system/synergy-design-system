@@ -624,7 +624,11 @@ The MCP server currently registers 6 stable resources by default. Resources expo
 
 ## Available Tools
 
-The MCP server registers 23 tools by default: 17 core tools and 6 intent policy tools.
+The MCP server registers 26 tools by default: 20 core tools and 6 intent policy tools.
+
+Use `component-list-examples`, `template-list-examples`, or `styles-list-examples` with an exact entity name to discover example IDs, titles, and descriptions. Pass a returned `exampleId` to the corresponding info tool to retrieve only that example. For `component-info`, explicitly set `layer` to `examples` when providing a non-empty `exampleId`; other layers and omitted layers are rejected. Omitting `exampleId` or passing an empty string preserves the existing response for the requested layer. IDs may change when the underlying Storybook story is renamed.
+
+Example-list tools return the available entity catalog for an unknown component, style, or template. Info tools also return the available entity catalog when the name is unknown, and include the available example IDs when an `exampleId` is not found.
 
 Parameter schemas are not duplicated here. Call `tools/list` against a running server for the authoritative input schema of every tool, including defaults resolved from your runtime config.
 
@@ -936,6 +940,18 @@ syn-mcp --config ./synergy-mcp.json
 
 ### Programmatic Usage
 
+Individual example-list tools can also be registered on an existing MCP server:
+
+```typescript
+import { componentListExamplesTool } from "@synergy-design-system/mcp/tools/component-list-examples.js";
+import { stylesListExamplesTool } from "@synergy-design-system/mcp/tools/styles-list-examples.js";
+import { templateListExamplesTool } from "@synergy-design-system/mcp/tools/template-list-examples.js";
+
+componentListExamplesTool(server);
+stylesListExamplesTool(server);
+templateListExamplesTool(server);
+```
+
 StdIO transport:
 
 ```typescript
@@ -1059,6 +1075,7 @@ src/
 │   ├── component-cluster-list.ts
 │   ├── component-info.ts
 │   ├── component-list.ts
+│   ├── component-list-examples.ts
 │   ├── create-spritesheet.ts
 │   ├── davinci-migration-info.ts
 │   ├── davinci-migration-list.ts
@@ -1073,8 +1090,10 @@ src/
 │   ├── setup.ts
 │   ├── styles-info.ts
 │   ├── styles-list.ts
+│   ├── styles-list-examples.ts
 │   ├── template-info.ts
 │   ├── template-list.ts
+│   ├── template-list-examples.ts
 │   ├── token-info.ts
 │   ├── tokens-list.ts
 │   └── index.ts

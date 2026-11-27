@@ -1,0 +1,32 @@
+[
+  {
+    "description": "Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy. Breadcrumbs are usually placed before a page’s main content with the current page shown last to indicate the user’s position in the navigation.",
+    "id": "components-syn-breadcrumb--default",
+    "path": "layers/examples/component/component__syn-breadcrumb/components-syn-breadcrumb--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "By default, breadcrumb items are rendered as buttons so you can use them to navigate single-page applications. In this case, you’ll need to add event listeners to handle clicks.For websites, you’ll probably want to use links instead. You can make any breadcrumb item a link by applying an href attribute to it. Now, when the user activates it, they’ll be taken to the corresponding page — no event listeners required.",
+    "id": "components-syn-breadcrumb--breadcrumb-links",
+    "path": "layers/examples/component/component__syn-breadcrumb/components-syn-breadcrumb--breadcrumb-links.md",
+    "title": "Breadcrumb Links"
+  },
+  {
+    "description": "Use the prefix slot to add content before any breadcrumb item.",
+    "id": "components-syn-breadcrumb--prefixes",
+    "path": "layers/examples/component/component__syn-breadcrumb/components-syn-breadcrumb--prefixes.md",
+    "title": "Prefixes"
+  },
+  {
+    "description": "Use the suffix slot to add content after any breadcrumb item.",
+    "id": "components-syn-breadcrumb--suffixes",
+    "path": "layers/examples/component/component__syn-breadcrumb/components-syn-breadcrumb--suffixes.md",
+    "title": "Suffixes"
+  },
+  {
+    "description": "Dropdown menus can be placed in a prefix or suffix slot to provide additional options.",
+    "id": "components-syn-breadcrumb--with-dropdowns",
+    "path": "layers/examples/component/component__syn-breadcrumb/components-syn-breadcrumb--with-dropdowns.md",
+    "title": "With Dropdowns"
+  }
+]

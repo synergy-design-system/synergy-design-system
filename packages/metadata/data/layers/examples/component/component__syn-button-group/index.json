@@ -1,0 +1,44 @@
+[
+  {
+    "description": "Button groups can be used to group related buttons into sections.",
+    "id": "components-syn-button-group--default",
+    "path": "layers/examples/component/component__syn-button-group/components-syn-button-group--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Use the variant attribute to set the button’s variant. Variants can be Filled, Outline. There is no Text variant.",
+    "id": "components-syn-button-group--variants",
+    "path": "layers/examples/component/component__syn-button-group/components-syn-button-group--variants.md",
+    "title": "Variants"
+  },
+  {
+    "description": "All button sizes are supported. The size of the button-group will be used to determine the size of the buttons.",
+    "id": "components-syn-button-group--button-sizes",
+    "path": "layers/examples/component/component__syn-button-group/components-syn-button-group--button-sizes.md",
+    "title": "Button Sizes"
+  },
+  {
+    "description": " Dropdowns can be placed inside button groups as long as the trigger is an <syn-button> element. ",
+    "id": "components-syn-button-group--dropdowns-in-button-groups",
+    "path": "layers/examples/component/component__syn-button-group/components-syn-button-group--dropdowns-in-button-groups.md",
+    "title": "Dropdowns In Button Groups"
+  },
+  {
+    "description": "Create a split button using a button and a dropdown. Use a visually hidden label to ensure the dropdown is accessible to users with assistive devices.",
+    "id": "components-syn-button-group--split-buttons",
+    "path": "layers/examples/component/component__syn-button-group/components-syn-button-group--split-buttons.md",
+    "title": "Split Buttons"
+  },
+  {
+    "description": "Buttons can be wrapped in tooltips to provide more detail when the user interacts with them.",
+    "id": "components-syn-button-group--tooltips-in-button-groups",
+    "path": "layers/examples/component/component__syn-button-group/components-syn-button-group--tooltips-in-button-groups.md",
+    "title": "Tooltips In Button Groups"
+  },
+  {
+    "description": "Create interactive toolbars with button groups.",
+    "id": "components-syn-button-group--toolbar-example",
+    "path": "layers/examples/component/component__syn-button-group/components-syn-button-group--toolbar-example.md",
+    "title": "Toolbar Example"
+  }
+]

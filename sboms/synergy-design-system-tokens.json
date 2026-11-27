@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/tokens",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-tokens-3.33.2-b71ee008-1030-41cf-b34c-3c7b677b4224",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-tokens-3.33.2-e6524fdf-20c2-4238-8b4b-15b6b36e8ef1",
   "creationInfo": {
-    "created": "2026-11-23T12:02:36Z",
+    "created": "2026-11-27T12:59:19Z",
     "creators": [
       "Tool: pnpm"
     ]

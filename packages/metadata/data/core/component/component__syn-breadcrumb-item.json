@@ -95,6 +95,14 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-breadcrumb-item.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-breadcrumb-item/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-breadcrumb-item/components-syn-breadcrumb-item--default.md"
       }
     ],
     "full": [

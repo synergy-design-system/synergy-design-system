@@ -1,0 +1,74 @@
+[
+  {
+    "description": "Textareas collect data from the user and allow multiple lines of text.",
+    "id": "components-syn-textarea--default",
+    "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Use the label attribute to give the textarea an accessible label. For labels that contain HTML, use the label slot instead.",
+    "id": "components-syn-textarea--labels",
+    "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--labels.md",
+    "title": "Labels"
+  },
+  {
+    "description": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.The help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
+    "id": "components-syn-textarea--help-text",
+    "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--help-text.md",
+    "title": "Help Text"
+  },
+  {
+    "description": "Use the rows attribute to change the number of text rows that get shown.",
+    "id": "components-syn-textarea--rows",
+    "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--rows.md",
+    "title": "Rows"
+  },
+  {
+    "description": "Use the placeholder attribute to add a placeholder.",
+    "id": "components-syn-textarea--placeholders",
+    "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--placeholders.md",
+    "title": "Placeholders"
+  },
+  {
+    "description": "Use readonly when users need to review or copy existing text without changing it. Use disabled only when the textarea is unavailable.",
+    "id": "components-syn-textarea--readonly-textareas",
+    "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--readonly-textareas.md",
+    "title": "Readonly Textareas"
+  },
+  {
+    "description": "The focus event gives the user feedback that the Textarea has been focused by the keyboard interaction and that the Textarea component is ready for use.",
+    "id": "components-syn-textarea--focus",
+    "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--focus.md",
+    "title": "Focus"
+  },
+  {
+    "description": "Use disabled only when the textarea is unavailable, and explain when users can edit it. Use readonly to display existing text without allowing edits.",
+    "id": "components-syn-textarea--disabled",
+    "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--disabled.md",
+    "title": "Disabled"
+  },
+  {
+    "description": "Use the size attribute to change a textarea’s size.",
+    "id": "components-syn-textarea--sizes",
+    "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--sizes.md",
+    "title": "Sizes"
+  },
+  {
+    "description": "The invalid status is used to warn the user that the input is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format.",
+    "id": "components-syn-textarea--invalid",
+    "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--invalid.md",
+    "title": "Invalid"
+  },
+  {
+    "description": "By default, textareas can be resized vertically by the user. To prevent resizing, set the resize attribute to none.",
+    "id": "components-syn-textarea--prevent-resizing",
+    "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--prevent-resizing.md",
+    "title": "Prevent Resizing"
+  },
+  {
+    "description": "Textareas will automatically resize to expand to fit their content when resize is set to auto.",
+    "id": "components-syn-textarea--expand-with-content",
+    "path": "layers/examples/component/component__syn-textarea/components-syn-textarea--expand-with-content.md",
+    "title": "Expand With Content"
+  }
+]

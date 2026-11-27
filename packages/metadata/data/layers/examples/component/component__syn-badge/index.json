@@ -1,0 +1,32 @@
+[
+  {
+    "description": "Badges are used to draw attention and display statuses or counts.",
+    "id": "components-syn-badge--default",
+    "path": "layers/examples/component/component__syn-badge/components-syn-badge--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Set the variant attribute to change the badge’s variant.",
+    "id": "components-syn-badge--variants",
+    "path": "layers/examples/component/component__syn-badge/components-syn-badge--variants.md",
+    "title": "Variants"
+  },
+  {
+    "description": "One of the most common use cases for badges is attaching them to buttons. DEV: To make this easier, badges will be automatically positioned at the top-right when they’re a child of a button.",
+    "id": "components-syn-badge--with-buttons",
+    "path": "layers/examples/component/component__syn-badge/components-syn-badge--with-buttons.md",
+    "title": "With Buttons"
+  },
+  {
+    "description": "When including badges in menu items, use the suffix slot to make sure they’re aligned correctly.",
+    "id": "components-syn-badge--with-menu-items",
+    "path": "layers/examples/component/component__syn-badge/components-syn-badge--with-menu-items.md",
+    "title": "With Menu Items"
+  },
+  {
+    "description": "Badges can be used without content to just show an status indicator.",
+    "id": "components-syn-badge--with-empty-content",
+    "path": "layers/examples/component/component__syn-badge/components-syn-badge--with-empty-content.md",
+    "title": "With Empty Content"
+  }
+]

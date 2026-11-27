@@ -260,6 +260,58 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-file.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-file/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-file/components-syn-file--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-file/components-syn-file--label.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-file/components-syn-file--help-text.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-file/components-syn-file--multiple.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-file/components-syn-file--hide-value.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-file/components-syn-file--focus.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-file/components-syn-file--disabled.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-file/components-syn-file--readonly.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-file/components-syn-file--sizes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-file/components-syn-file--invalid.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-file/components-syn-file--droparea.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-file/components-syn-file--directory.md"
       }
     ],
     "full": [

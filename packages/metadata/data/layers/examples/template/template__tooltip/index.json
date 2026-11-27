@@ -1,0 +1,8 @@
+[
+  {
+    "description": "This example demonstrates the usage of a single instance of the <syn-tooltip> component. Tooltips are shared across multiple elements, allowing for more efficient management and consistent behavior.",
+    "id": "templates-tooltip--single-instance",
+    "path": "layers/examples/template/template__tooltip/templates-tooltip--single-instance.md",
+    "title": "Single Instance"
+  }
+]

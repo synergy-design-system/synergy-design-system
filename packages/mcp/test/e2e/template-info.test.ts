@@ -8,6 +8,7 @@ import {
 import {
   type ClientSession,
   createClientSession,
+  expectSelectiveExample,
   toToolResponse,
 } from '../utilities/index.ts';
 
@@ -53,5 +54,22 @@ describe('template-info tool', () => {
     };
     assert.equal(recovery.submittedValue, 'unknown-template');
     assert.ok(recovery.availableNames.length > 0);
+  });
+
+  it('returns a selected example and reports unknown IDs', async () => {
+    await expectSelectiveExample(
+      session,
+      'template-list-examples',
+      'template-info',
+      { template: 'appshell' },
+    );
+  });
+
+  it('treats an empty example ID like an omitted ID', async () => {
+    const args = { template: 'appshell' };
+    const omitted = await session.client.callTool({ arguments: args, name: 'template-info' });
+    const empty = await session.client.callTool({ arguments: { ...args, exampleId: '' }, name: 'template-info' });
+    assert.notEqual(empty.isError, true);
+    assert.deepEqual(empty.content, omitted.content);
   });
 });

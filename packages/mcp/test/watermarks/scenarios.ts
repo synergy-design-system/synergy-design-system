@@ -60,12 +60,28 @@ export const WATERMARK_SCENARIOS: WatermarkScenario[] = [
   {
     args: {},
     budget: {
-      maxRegressionAbs: 400,
-      maxRegressionPct: 10,
+      // Three example discovery tools and their conditional input schema add catalog metadata.
+      maxRegressionAbs: 600,
+      maxRegressionPct: 16,
       maxTokens: 6000,
     },
     id: 'catalog:tools-list',
     kind: 'tools-list',
+  },
+  {
+    args: {
+      component: 'syn-chart',
+      exampleId: 'charts-syn-chart--default',
+      layer: 'examples',
+    },
+    budget: {
+      maxRegressionAbs: 100,
+      maxRegressionPct: 20,
+      maxTokens: 1200,
+    },
+    id: 'component-info:example:syn-chart-default',
+    kind: 'tool',
+    toolName: 'component-info',
   },
   {
     args: {},

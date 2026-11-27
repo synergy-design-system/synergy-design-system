@@ -1,0 +1,74 @@
+[
+  {
+    "description": "File control is a component with which a user can select a local file. It shows the value of the selected file.",
+    "id": "components-syn-file--default",
+    "path": "layers/examples/component/component__syn-file/components-syn-file--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Use the label attribute to give the file selector an accessible label. For labels that contain HTML, use the label slot instead.",
+    "id": "components-syn-file--label",
+    "path": "layers/examples/component/component__syn-file/components-syn-file--label.md",
+    "title": "Label"
+  },
+  {
+    "description": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.The help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
+    "id": "components-syn-file--help-text",
+    "path": "layers/examples/component/component__syn-file/components-syn-file--help-text.md",
+    "title": "Help Text"
+  },
+  {
+    "description": "Use the multiple attribute to allow the selection of multiple files.Figma only: Override the button/droparea and value text directly, to indicate that multiple files are selected (“file” -> “files”)",
+    "id": "components-syn-file--multiple",
+    "path": "layers/examples/component/component__syn-file/components-syn-file--multiple.md",
+    "title": "Multiple"
+  },
+  {
+    "description": "There might be situations, where you don’t want to show the selected value (e. g. when something is automatically uploading).",
+    "id": "components-syn-file--hide-value",
+    "path": "layers/examples/component/component__syn-file/components-syn-file--hide-value.md",
+    "title": "Hide Value"
+  },
+  {
+    "description": "The focus event gives the user feedback that the Dropzone has been focused by the keyboard interaction and that the syn-file component is ready for use.",
+    "id": "components-syn-file--focus",
+    "path": "layers/examples/component/component__syn-file/components-syn-file--focus.md",
+    "title": "Focus"
+  },
+  {
+    "description": "Use disabled only when file selection is unavailable, and explain when users can upload files. Use readonly to show previously selected file names without allowing replacement.",
+    "id": "components-syn-file--disabled",
+    "path": "layers/examples/component/component__syn-file/components-syn-file--disabled.md",
+    "title": "Disabled"
+  },
+  {
+    "description": "Use readonly when users should see previously selected file names but cannot replace them here. Use disabled only when file selection is unavailable.",
+    "id": "components-syn-file--readonly",
+    "path": "layers/examples/component/component__syn-file/components-syn-file--readonly.md",
+    "title": "Readonly"
+  },
+  {
+    "description": "Use the size attribute to change the component's size.",
+    "id": "components-syn-file--sizes",
+    "path": "layers/examples/component/component__syn-file/components-syn-file--sizes.md",
+    "title": "Sizes"
+  },
+  {
+    "description": "The invalid status is used to warn the user that the syn-file is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format.",
+    "id": "components-syn-file--invalid",
+    "path": "layers/examples/component/component__syn-file/components-syn-file--invalid.md",
+    "title": "Invalid"
+  },
+  {
+    "description": "Use the droparea attribute to switch to a full-width button with a drop area.",
+    "id": "components-syn-file--droparea",
+    "path": "layers/examples/component/component__syn-file/components-syn-file--droparea.md",
+    "title": "Droparea"
+  },
+  {
+    "description": "The webkitdirectory setting allows users to select entire directories instead of individual files. When a directory is chosen, all files inside (including those in sub-directories) are selected. Although this feature is not part of the official HTML specification, it is widely supported across major browsers.",
+    "id": "components-syn-file--directory",
+    "path": "layers/examples/component/component__syn-file/components-syn-file--directory.md",
+    "title": "Directory"
+  }
+]

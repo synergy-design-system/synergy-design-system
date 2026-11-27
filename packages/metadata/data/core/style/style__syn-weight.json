@@ -9,6 +9,14 @@
       {
         "layer": "examples",
         "path": "layers/examples/style/style__syn-weight.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-weight/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-weight/styles-syn-weight--default.md"
       }
     ],
     "full": [

@@ -277,6 +277,42 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-alert.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-alert/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-alert/components-syn-alert--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-alert/components-syn-alert--variants.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-alert/components-syn-alert--closable.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-alert/components-syn-alert--without-icons.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-alert/components-syn-alert--sizes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-alert/components-syn-alert--duration.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-alert/components-syn-alert--toast-notifications.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-alert/components-syn-alert--creating-toasts-imperatively.md"
       }
     ],
     "full": [

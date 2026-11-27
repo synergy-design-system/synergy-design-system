@@ -160,6 +160,30 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-progress-bar.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-progress-bar/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-progress-bar/components-syn-progress-bar--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-progress-bar/components-syn-progress-bar--labels.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-progress-bar/components-syn-progress-bar--custom-height.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-progress-bar/components-syn-progress-bar--showing-values.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-progress-bar/components-syn-progress-bar--indeterminate.md"
       }
     ],
     "full": [

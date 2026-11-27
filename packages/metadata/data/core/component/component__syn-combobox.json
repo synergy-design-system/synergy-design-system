@@ -419,6 +419,98 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-combobox.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/components-syn-combobox--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/components-syn-combobox--labels.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/components-syn-combobox--help-text.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/components-syn-combobox--placeholder.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/components-syn-combobox--focus.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/components-syn-combobox--clearable.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/components-syn-combobox--disabled.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/components-syn-combobox--readonly.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/components-syn-combobox--multiple.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/components-syn-combobox--setting-initial-value.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/components-syn-combobox--restricted.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/components-syn-combobox--no-results-found.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/components-syn-combobox--sizes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/components-syn-combobox--invalid.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/components-syn-combobox--prefix-suffix-text-and-icons.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/components-syn-combobox--simple-suggests.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/components-syn-combobox--highlight-query.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/components-syn-combobox--grouping-query.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/components-syn-combobox--suggestion-container-height.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/components-syn-combobox--custom-filter.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/components-syn-combobox--empty-filter.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-combobox/components-syn-combobox--endless-scrolling.md"
       }
     ],
     "full": [

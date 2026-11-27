@@ -1,0 +1,74 @@
+[
+  {
+    "description": "Radio groups are used to group multiple radios or radio buttons so they function as a single form control.",
+    "id": "components-syn-radio-group--default",
+    "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Use the label attribute to give the radio-group an accessible label. For labels that contain HTML, use the label slot instead.",
+    "id": "components-syn-radio-group--labels",
+    "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--labels.md",
+    "title": "Labels"
+  },
+  {
+    "description": "To set the initial value and checked state, use the value attribute on the containing radio group.",
+    "id": "components-syn-radio-group--checked",
+    "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--checked.md",
+    "title": "Checked"
+  },
+  {
+    "description": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.The help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
+    "id": "components-syn-radio-group--help-text",
+    "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--help-text.md",
+    "title": "Help Text"
+  },
+  {
+    "description": "The focus event gives the user feedback that one of the radio buttons has been focused by the keyboard interaction.",
+    "id": "components-syn-radio-group--focus",
+    "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--focus.md",
+    "title": "Focus"
+  },
+  {
+    "description": "Set disabled on individual syn-radio or syn-radio-button options that are unavailable, and explain why they cannot be selected. The group itself has no disabled attribute.",
+    "id": "components-syn-radio-group--disabled",
+    "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--disabled.md",
+    "title": "Disabled"
+  },
+  {
+    "description": "Set readonly on every syn-radio or syn-radio-button in the group when users should inspect the selected choice without changing it. Marking only the selected option readonly leaves other choices available.",
+    "id": "components-syn-radio-group--readonly",
+    "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--readonly.md",
+    "title": "Readonly"
+  },
+  {
+    "description": "The size of Radios and Radio Buttons will be determined by the Radio Group’s size attribute.",
+    "id": "components-syn-radio-group--sizes",
+    "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--sizes.md",
+    "title": "Sizes"
+  },
+  {
+    "description": "The invalid status is used to warn the user that the Radio Group is invalid. For example, if the radio is mandatory and nothing has been checked.",
+    "id": "components-syn-radio-group--invalid",
+    "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--invalid.md",
+    "title": "Invalid"
+  },
+  {
+    "description": "Use the setCustomValidity() method to set a custom validation message. This will prevent the form from submitting and make the browser display the error message you provide. To clear the error, call this function with an empty string.",
+    "id": "components-syn-radio-group--custom-validity",
+    "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--custom-validity.md",
+    "title": "Custom Validity"
+  },
+  {
+    "description": "Radio buttons offer an alternate way to display radio controls. In this case, an internal button group is used to group the buttons into a single, cohesive control.",
+    "id": "components-syn-radio-group--radio-buttons",
+    "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--radio-buttons.md",
+    "title": "Radio Buttons"
+  },
+  {
+    "description": "Use a horizontal layout to display the radios in a row.",
+    "id": "components-syn-radio-group--horizontal-layout",
+    "path": "layers/examples/component/component__syn-radio-group/components-syn-radio-group--horizontal-layout.md",
+    "title": "Horizontal Layout"
+  }
+]

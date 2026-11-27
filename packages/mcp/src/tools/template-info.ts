@@ -6,6 +6,7 @@ import {
 import {
   buildTemplateRecovery,
   createToolAnnotations,
+  getEntityExample,
   getToolRule,
   toolHandler,
 } from '../utilities/index.js';
@@ -19,15 +20,21 @@ export const templateInfoTool = (server: McpServer) => {
     'template-info',
     {
       annotations: createToolAnnotations(),
-      description: 'Get example markup and documentation for one static Synergy template. Use an exact template name returned by template-list.',
+      description: 'Get example markup and documentation for one static Synergy template. Use an exact template name returned by template-list, and optionally an example ID from template-list-examples.',
       inputSchema: {
+        exampleId: z.string().optional().describe('Exact ID returned by template-list-examples. Omit or leave empty to return all examples.'),
         template: z.string().min(1).describe('Exact template name returned by template-list. Do not guess or construct this value.'),
       },
       title: 'Get template details',
     },
     toolHandler('template-info', async ({
       template,
+      exampleId,
     }) => {
+      if (exampleId !== undefined && exampleId !== '') {
+        return [await getToolRule('template-info'), await getEntityExample('template', template, exampleId)];
+      }
+
       const response = await getDataForTemplate(template, { layer: 'examples' });
 
       if (!response.data) {

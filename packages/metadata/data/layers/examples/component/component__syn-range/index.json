@@ -1,0 +1,104 @@
+[
+  {
+    "description": "Use readonly when users need to inspect the current value or interval without moving the thumb(s). Show the value in text as well.",
+    "id": "components-syn-range--default",
+    "path": "layers/examples/component/component__syn-range/components-syn-range--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Use disabled only when adjusting the range is unavailable, and explain when it can be changed. Use readonly to display an existing value without allowing adjustments.",
+    "id": "components-syn-range--labels",
+    "path": "layers/examples/component/component__syn-range/components-syn-range--labels.md",
+    "title": "Labels"
+  },
+  {
+    "description": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.The help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
+    "id": "components-syn-range--help-text",
+    "path": "layers/examples/component/component__syn-range/components-syn-range--help-text.md",
+    "title": "Help Text"
+  },
+  {
+    "description": "Use the disabled attribute to disable a range.",
+    "id": "components-syn-range--disabled",
+    "path": "layers/examples/component/component__syn-range/components-syn-range--disabled.md",
+    "title": "Disabled"
+  },
+  {
+    "description": "The invalid status is used to warn the user that the input is invalid. As range validation is not supported by the browser, you will need to implement your own validation logic.",
+    "id": "components-syn-range--invalid",
+    "path": "layers/examples/component/component__syn-range/components-syn-range--invalid.md",
+    "title": "Invalid"
+  },
+  {
+    "description": "The focus event gives the user feedback that the Range has been focused by the keyboard interaction or active click from the user.",
+    "id": "components-syn-range--focus",
+    "path": "layers/examples/component/component__syn-range/components-syn-range--focus.md",
+    "title": "Focus"
+  },
+  {
+    "description": "Add the readonly attribute to a range to draw it in a readonly state.",
+    "id": "components-syn-range--readonly",
+    "path": "layers/examples/component/component__syn-range/components-syn-range--readonly.md",
+    "title": "Readonly"
+  },
+  {
+    "description": "Use the size attribute to change a range’s size.",
+    "id": "components-syn-range--sizes",
+    "path": "layers/examples/component/component__syn-range/components-syn-range--sizes.md",
+    "title": "Sizes"
+  },
+  {
+    "description": "Add any element to the start and end of range items using the prefix and suffix slots.",
+    "id": "components-syn-range--prefix-suffix-text",
+    "path": "layers/examples/component/component__syn-range/components-syn-range--prefix-suffix-text.md",
+    "title": "Prefix Suffix Text"
+  },
+  {
+    "description": "You can customize the active and inactive portions of the track using the --track-color-active and --track-color-inactive custom properties.",
+    "id": "components-syn-range--custom-track-colors",
+    "path": "layers/examples/component/component__syn-range/components-syn-range--custom-track-colors.md",
+    "title": "Custom Track Colors"
+  },
+  {
+    "description": "You can customize the initial offset of the active track using the --track-active-offset custom property.",
+    "id": "components-syn-range--custom-track-offset",
+    "path": "layers/examples/component/component__syn-range/components-syn-range--custom-track-offset.md",
+    "title": "Custom Track Offset"
+  },
+  {
+    "description": "You can add multiple range-thumbs to your range.",
+    "id": "components-syn-range--multi-thumb",
+    "path": "layers/examples/component/component__syn-range/components-syn-range--multi-thumb.md",
+    "title": "Multi Thumb"
+  },
+  {
+    "description": "Set the restrict-movement attribute to true to prevent the thumbs from overlapping.",
+    "id": "components-syn-range--multi-thumb-with-restricted-movement",
+    "path": "layers/examples/component/component__syn-range/components-syn-range--multi-thumb-with-restricted-movement.md",
+    "title": "Multi Thumb With Restricted Movement"
+  },
+  {
+    "description": "Use the ticks slot to insert ticks or groups with ticks to improve positioning.",
+    "id": "components-syn-range--ticks",
+    "path": "layers/examples/component/component__syn-range/components-syn-range--ticks.md",
+    "title": "Ticks"
+  },
+  {
+    "description": "By default, the tooltip is shown on top. Set tooltip-placement to bottom to show it below the range.",
+    "id": "components-syn-range--tooltip-placement",
+    "path": "layers/examples/component/component__syn-range/components-syn-range--tooltip-placement.md",
+    "title": "Tooltip Placement"
+  },
+  {
+    "description": "To disable the tooltip, set tooltip-placement to none.",
+    "id": "components-syn-range--tooltip-disabled",
+    "path": "layers/examples/component/component__syn-range/components-syn-range--tooltip-disabled.md",
+    "title": "Tooltip Disabled"
+  },
+  {
+    "description": "You can change the tooltip’s content by setting the tooltipFormatter property to a function that accepts the range’s value as an argument.",
+    "id": "components-syn-range--tooltip-formatter",
+    "path": "layers/examples/component/component__syn-range/components-syn-range--tooltip-formatter.md",
+    "title": "Tooltip Formatter"
+  }
+]

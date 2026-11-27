@@ -9,6 +9,12 @@ export type {
 export interface StorybookExampleArtifact {
   content: string;
   entityId: string;
+  examples: Array<{
+    content: string;
+    description: string;
+    id: string;
+    title: string;
+  }>;
   item: string;
   kind: StorybookArtifactKind;
   stories: ScrapedStory[];

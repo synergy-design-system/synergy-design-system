@@ -1,0 +1,32 @@
+[
+  {
+    "description": "The syn-table-cell component offers basic styling for table cells. A table can be created by combining several cell components into columns and rows. DEV: Instead of a component we have multiple classes, to apply the table styling. More complex tables, such as applying the shadow styling and adding scrolling behavior, require additional CSS and JavaScript Code. See the table templates for examples.",
+    "id": "styles-syn-table-cell--default",
+    "path": "layers/examples/style/style__syn-table-cell/styles-syn-table-cell--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Use the cell header attribute to help the user identify the top of the table. Table header can be used as column header and row Header, but not at the same time.",
+    "id": "styles-syn-table-cell--header",
+    "path": "layers/examples/style/style__syn-table-cell/styles-syn-table-cell--header.md",
+    "title": "Header"
+  },
+  {
+    "description": "The alternating attribute helps the user to visually separate the rows, even when scrolling horizontally, and helps to compare the data.",
+    "id": "styles-syn-table-cell--alternating",
+    "path": "layers/examples/style/style__syn-table-cell/styles-syn-table-cell--alternating.md",
+    "title": "Alternating"
+  },
+  {
+    "description": "Use the border attribute to define different borders in a cell. Borders can also be combined.",
+    "id": "styles-syn-table-cell--border",
+    "path": "layers/examples/style/style__syn-table-cell/styles-syn-table-cell--border.md",
+    "title": "Border"
+  },
+  {
+    "description": "If the table contains a scrolling behavior the table cell gets a shadow.",
+    "id": "styles-syn-table-cell--scrolling-behavior",
+    "path": "layers/examples/style/style__syn-table-cell/styles-syn-table-cell--scrolling-behavior.md",
+    "title": "Scrolling Behavior"
+  }
+]

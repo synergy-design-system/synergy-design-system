@@ -16,6 +16,7 @@ export interface ScrapingConfig {
 }
 
 export interface ScrapedStory {
+  id: string;
   heading: string;
   description: string;
   example: string;

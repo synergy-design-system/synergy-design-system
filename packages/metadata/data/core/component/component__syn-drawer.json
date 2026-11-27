@@ -246,6 +246,50 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-drawer.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-drawer/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-drawer/components-syn-drawer--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-drawer/components-syn-drawer--slide-in-from-start.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-drawer/components-syn-drawer--slide-in-from-top.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-drawer/components-syn-drawer--slide-in-from-bottom.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-drawer/components-syn-drawer--contained-to-an-element.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-drawer/components-syn-drawer--custom-size.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-drawer/components-syn-drawer--scrolling.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-drawer/components-syn-drawer--header-actions.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-drawer/components-syn-drawer--preventing-the-drawer-from-closing.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-drawer/components-syn-drawer--customizing-initial-focus.md"
       }
     ],
     "full": [

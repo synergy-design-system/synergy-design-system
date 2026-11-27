@@ -119,6 +119,58 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-popup.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-popup/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-popup/components-syn-popup--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-popup/components-syn-popup--activating.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-popup/components-syn-popup--external-anchors.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-popup/components-syn-popup--placement.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-popup/components-syn-popup--distance.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-popup/components-syn-popup--skidding.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-popup/components-syn-popup--arrows.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-popup/components-syn-popup--syncing-with-the-anchors-dimensions.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-popup/components-syn-popup--flip.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-popup/components-syn-popup--flip-fallbacks.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-popup/components-syn-popup--shift.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-popup/components-syn-popup--virtual-elements.md"
       }
     ],
     "full": [

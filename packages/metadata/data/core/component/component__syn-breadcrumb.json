@@ -159,6 +159,30 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-breadcrumb.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-breadcrumb/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-breadcrumb/components-syn-breadcrumb--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-breadcrumb/components-syn-breadcrumb--breadcrumb-links.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-breadcrumb/components-syn-breadcrumb--prefixes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-breadcrumb/components-syn-breadcrumb--suffixes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-breadcrumb/components-syn-breadcrumb--with-dropdowns.md"
       }
     ],
     "full": [

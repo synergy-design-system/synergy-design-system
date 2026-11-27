@@ -221,6 +221,46 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-header.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-header/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-header/components-syn-header--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-header/components-syn-header--label.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-header/components-syn-header--logo.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-header/components-syn-header--focus.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-header/components-syn-header--meta-navigation.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-header/components-syn-header--meta-navigation-with-dividers.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-header/components-syn-header--navigation.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-header/components-syn-header--burger-menu.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-header/components-syn-header--sticky.md"
       }
     ],
     "full": [

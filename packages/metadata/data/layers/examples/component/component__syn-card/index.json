@@ -1,0 +1,44 @@
+[
+  {
+    "description": "Cards can be used to group related subjects in a container.",
+    "id": "components-syn-card--default",
+    "path": "layers/examples/component/component__syn-card/components-syn-card--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Basic cards aren’t very exciting, but they can display any content you want them to.",
+    "id": "components-syn-card--basic-card",
+    "path": "layers/examples/component/component__syn-card/components-syn-card--basic-card.md",
+    "title": "Basic Card"
+  },
+  {
+    "description": "Headers can be used to display titles and more.",
+    "id": "components-syn-card--card-with-header",
+    "path": "layers/examples/component/component__syn-card/components-syn-card--card-with-header.md",
+    "title": "Card With Header"
+  },
+  {
+    "description": "Footers can be used to display actions, summaries, or other relevant content.",
+    "id": "components-syn-card--card-with-footer",
+    "path": "layers/examples/component/component__syn-card/components-syn-card--card-with-footer.md",
+    "title": "Card With Footer"
+  },
+  {
+    "description": "Cards accept an image slot. The image is displayed atop the card and stretches to fit.",
+    "id": "components-syn-card--images",
+    "path": "layers/examples/component/component__syn-card/components-syn-card--images.md",
+    "title": "Images"
+  },
+  {
+    "description": "Use the sharp variant attribute for the Card to Use a different style.",
+    "id": "components-syn-card--sharp-card",
+    "path": "layers/examples/component/component__syn-card/components-syn-card--sharp-card.md",
+    "title": "Sharp Card"
+  },
+  {
+    "description": "Use the shadow attribute to add a shadow.",
+    "id": "components-syn-card--card-with-shadow",
+    "path": "layers/examples/component/component__syn-card/components-syn-card--card-with-shadow.md",
+    "title": "Card With Shadow"
+  }
+]

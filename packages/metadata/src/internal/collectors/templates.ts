@@ -2,6 +2,7 @@ import { readdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { decodeEntityIdFromPath } from '../core/entity-paths.js';
 import { type CoreEntity } from '../schemas/core-entity.js';
+import { discoverExampleReferences } from './storybook/references.js';
 
 /**
  * Build template metadata entities by scanning template layer files.
@@ -11,34 +12,25 @@ import { type CoreEntity } from '../schemas/core-entity.js';
 export const createTemplateEntities = async (
   outputDir: string,
 ): Promise<CoreEntity[]> => {
-  const templates: CoreEntity[] = [];
-
+  const templateLayerDir = join(outputDir, 'layers', 'examples', 'template');
+  let files: string[];
   try {
-    const templateLayerDir = join(outputDir, 'layers', 'examples', 'template');
-    const files = await readdir(templateLayerDir);
-
-    // Find all template markdown files and create metadata entities
-    files.forEach((file) => {
-      if (!file.endsWith('.md')) {
-        return;
-      }
-
-      const entityId = decodeEntityIdFromPath(file.replace('.md', ''));
-      if (!entityId.startsWith('template:')) {
-        return;
-      }
-
+    files = await readdir(templateLayerDir);
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === 'ENOENT') return [];
+    throw error;
+  }
+  const templates = await Promise.all(files
+    .filter(file => file.endsWith('.md') && decodeEntityIdFromPath(file.slice(0, -3)).startsWith('template:'))
+    .map(async (file): Promise<CoreEntity> => {
+      const entityId = decodeEntityIdFromPath(file.slice(0, -3));
       const templateName = entityId.replace('template:', '');
-
-      const entity: CoreEntity = {
+      return {
         custom: {},
         id: entityId,
         kind: 'template' as const,
         layers: {
-          examples: [{
-            layer: 'examples',
-            path: `layers/examples/template/${file}`,
-          }],
+          examples: await discoverExampleReferences(outputDir, 'template', entityId),
         },
         name: templateName
           .split('-')
@@ -51,12 +43,6 @@ export const createTemplateEntities = async (
         status: 'stable',
         tags: ['template'],
       };
-
-      templates.push(entity);
-    });
-  } catch {
-    // Template layer directory might not exist yet, which is fine
-  }
-
+    }));
   return templates;
 };

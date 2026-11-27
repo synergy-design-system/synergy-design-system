@@ -11,7 +11,9 @@ import { describe, it } from 'node:test';
 import { fileURLToPath } from 'node:url';
 import assert from 'node:assert/strict';
 import { execa } from 'execa';
-import { createMetadataStore } from '../../dist/public/index.js';
+import { createMetadataStore, listExamples } from '../../dist/public/index.js';
+import { generateComponentSkill } from '../../dist/public/skills/component-skill.js';
+import { generateTemplateSkill } from '../../dist/public/skills/template-skill.js';
 import { renderSkillBody } from '../../dist/public/skills/shared.js';
 
 describe('install-skills bin integration', () => {
@@ -153,6 +155,23 @@ describe('install-skills bin integration', () => {
       assert.ok(interfaceContent.includes('syn-button'), 'The syn-button interface facet must contain its component reference');
       assert.ok(rulesContent.includes('syn-button'), 'The syn-button rules facet must contain its component reference');
       assert.ok(examplesContent.includes('syn-button'), 'The syn-button examples facet must contain its component reference');
+      for (const [kind, name, skill, folder] of [
+        ['component', 'syn-button', 'synergy-component', 'components'],
+        ['template', 'appshell', 'synergy-templates', 'templates'],
+      ]) {
+        const examples = await listExamples(kind, name);
+        assert.ok(examples.data?.length);
+        const exampleDir = path.join(tempRoot, skill, folder, name, 'examples');
+        const indexContent = await readFile(path.join(exampleDir, 'README.md'), 'utf8');
+        const example = examples.data[0];
+        assert.ok(indexContent.includes(`${example.id}.md`));
+        assert.match(await readFile(path.join(exampleDir, `${example.id}.md`), 'utf8'), /```html/);
+        const combined = await readFile(path.join(tempRoot, skill, folder, name, 'examples.md'), 'utf8');
+        assert.match(combined, /^> .*\[individual examples\]\(\.\/examples\/README\.md\)/);
+        const entity = await store.getEntity(`${kind}:${name}`);
+        const original = await store.readLayerFile(entity.layers.examples[0]);
+        assert.equal(combined.slice(combined.indexOf('\n\n') + 2), original);
+      }
 
       // Verify other components are present (spot check)
       const inputPath = path.join(
@@ -184,6 +203,41 @@ describe('install-skills bin integration', () => {
       const intentInterface = await readFile(path.join(intentDirectory, 'interface.md'), 'utf-8');
       assert.ok(intentInterface.includes('(./rules.md#target-component:syn-button)'), 'The action.submit interface must link to the syn-button rules anchor');
       assert.ok(intentRules.includes('<a id="target-component:syn-button"></a>'), 'The action.submit rules must define the linked syn-button anchor');
+    } finally {
+      await rm(tempRoot, { recursive: true });
+    }
+  });
+
+  it('keeps combined examples unchanged when an individual-example index is unavailable', async () => {
+    const tempRoot = await mkdtemp(path.join(os.tmpdir(), 'install-skills-legacy-examples-'));
+    const metadata = {
+      dataBuiltAt: '2026-01-01',
+      generatedAt: '2026-01-01',
+      schemaVersion: '1',
+      source: 'test',
+      synergyVersion: '1',
+      version: '1',
+    };
+    try {
+      for (const [kind, name, skill, folder, generate] of [
+        ['component', 'syn-test', 'synergy-component', 'components', generateComponentSkill],
+        ['template', 'test', 'synergy-templates', 'templates', generateTemplateSkill],
+      ]) {
+        const aggregate = `layers/examples/${kind}/${kind}__${name}.md`;
+        const store = {
+          findEntities: async () => [{ id: `${kind}:${name}`, kind, layers: { examples: [{ layer: 'examples', path: aggregate }] } }],
+          readLayerFile: async (ref) => {
+            if (ref.path === aggregate) return 'legacy example\n';
+            const error = new Error('Example index not found');
+            error.code = 'ENOENT';
+            throw error;
+          },
+        };
+        await generate(store, tempRoot, metadata);
+        const output = path.join(tempRoot, skill, folder, name);
+        assert.equal(await readFile(path.join(output, 'examples.md'), 'utf8'), 'legacy example\n');
+        await assert.rejects(access(path.join(output, 'examples', 'README.md')), { code: 'ENOENT' });
+      }
     } finally {
       await rm(tempRoot, { recursive: true });
     }

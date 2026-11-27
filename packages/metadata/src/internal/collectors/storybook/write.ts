@@ -1,9 +1,9 @@
 import {
-  readdir, rename, unlink, writeFile,
+  readdir, rename, rm, unlink, writeFile,
 } from 'node:fs/promises';
-import { dirname, resolve } from 'node:path';
+import { dirname, posix, resolve } from 'node:path';
 import { encodeEntityIdForPath } from '../../core/entity-paths.js';
-import { ensureDir } from '../../writers/fs-utils.js';
+import { ensureDir, writeJsonAtomic } from '../../writers/fs-utils.js';
 import { type StorybookArtifactKind, type StorybookExampleArtifact } from './types.js';
 
 const pruneStaleArtifacts = async (
@@ -16,21 +16,28 @@ const pruneStaleArtifacts = async (
     const kindDir = resolve(workspaceRoot, outputDir, 'layers', 'examples', kind);
     const expected = expectedByKind.get(kind) ?? new Set<string>();
 
-    let entries: string[];
+    let entries;
     try {
-      entries = await readdir(kindDir);
-    } catch {
-      return;
+      entries = await readdir(kindDir, { withFileTypes: true });
+    } catch (error) {
+      if ((error as NodeJS.ErrnoException).code === 'ENOENT') return;
+      throw error;
     }
 
     await Promise.all(entries
-      .filter((entry) => entry.endsWith('.md'))
+      .filter((entry) => (entry.isDirectory() && entry.name.startsWith(`${kind}__`))
+        || (entry.isFile() && entry.name.endsWith('.md')))
       .map(async (entry) => {
-        if (expected.has(entry)) {
+        const aggregateName = entry.isDirectory() ? `${entry.name}.md` : entry.name;
+        if (expected.has(aggregateName)) {
           return;
         }
 
-        await unlink(resolve(kindDir, entry));
+        if (entry.isDirectory()) {
+          await rm(resolve(kindDir, entry.name), { recursive: true });
+        } else {
+          await unlink(resolve(kindDir, entry.name));
+        }
       }));
   }));
 };
@@ -72,6 +79,32 @@ export async function writeStorybookArtifacts(
     await ensureDir(dirname(filePath));
     await writeFile(tempPath, content, 'utf8');
     await rename(tempPath, filePath);
+
+    const exampleDir = filePath.slice(0, -3);
+    await ensureDir(exampleDir);
+    const expectedFiles = new Set(['index.json']);
+    const index = await Promise.all(artifact.examples.map(async (example) => {
+      if (!/^[a-z0-9][a-z0-9-]*$/.test(example.id)) {
+        throw new Error(`Invalid example ID "${example.id}" for ${artifact.entityId}`);
+      }
+      const filename = `${example.id}.md`;
+      if (expectedFiles.has(filename)) {
+        throw new Error(`Duplicate example ID "${example.id}" for ${artifact.entityId}`);
+      }
+      expectedFiles.add(filename);
+      await writeFile(resolve(exampleDir, filename), `${example.content.trimEnd()}\n`, 'utf8');
+      return {
+        description: example.description,
+        id: example.id,
+        path: posix.join('layers', 'examples', artifact.kind, encodeEntityIdForPath(artifact.entityId), filename),
+        title: example.title,
+      };
+    }));
+    await writeJsonAtomic(resolve(exampleDir, 'index.json'), index);
+    const existing = await readdir(exampleDir, { withFileTypes: true });
+    await Promise.all(existing
+      .filter(entry => entry.isFile() && !expectedFiles.has(entry.name))
+      .map(entry => unlink(resolve(exampleDir, entry.name))));
   }));
 
   await pruneStaleArtifacts(workspaceRoot, outputDir, kindsToSync, expectedByKind);

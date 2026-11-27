@@ -123,6 +123,14 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-tab.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tab/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tab/components-syn-tab--default.md"
       }
     ],
     "full": [

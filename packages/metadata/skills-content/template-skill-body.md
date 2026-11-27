@@ -37,6 +37,7 @@ If a known installed version differs from `{{SYNERGY_VERSION}}`:
 Each template has its own folder containing an examples file:
 
 - `templates/<template-name>/examples.md`
+- `templates/<template-name>/examples/README.md` and individual example files
 
 For example, the forms template is located at `templates/forms/examples.md`.
 
@@ -59,7 +60,7 @@ Templates do not override documented APIs or applicable rules. If a template con
 
 1. **Identify the need**: Determine the user's goal, structural regions, interaction model, and explicit project requirements, including grouping, labels, actions, and feedback.
 2. **Find a template**: Inspect the available folders under `templates/` (e.g., `forms/`) and compare their documented purpose and structure with the request. Do not select solely by a similar name or shared component.
-3. **Read the relevant variant**: Open the selected `examples.md` and read the complete relevant variant, including setup and behavior, before generating or adapting code. Review component relationships, not just individual controls; do not load unrelated variants.
+3. **Read the relevant variant**: Use the selected `examples/README.md` to find and open the relevant individual example, or use `examples.md` if the index is unavailable. Read the complete variant, including setup and behavior, before generating or adapting code. Review component relationships, not just individual controls; do not load unrelated variants.
 4. **Check applicable intents when available**: If `synergy-intent-policy` is installed, read its root instructions and relevant intent pages to resolve targets and constraints, including grouping and composition.
 5. **Verify component contracts when available**: If `synergy-component` is installed, verify the interfaces and rules of components used or added. For framework adaptations, verify binding, event, and registration conventions against available integration documentation.
 6. **Adapt the composition**: Prefer documented Synergy components over recreating equivalent behavior with custom markup or styling. Retain template component choices only when suitable for the user's goal, applicable policy, and project requirements; otherwise use supported alternatives. Explain meaningful adaptations.

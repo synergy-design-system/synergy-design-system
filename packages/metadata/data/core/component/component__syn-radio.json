@@ -203,6 +203,38 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-radio.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio/components-syn-radio--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio/components-syn-radio--initial-value.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio/components-syn-radio--focus.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio/components-syn-radio--disabled.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio/components-syn-radio--readonly.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio/components-syn-radio--sizes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio/components-syn-radio--invalid.md"
       }
     ],
     "full": [

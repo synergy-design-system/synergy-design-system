@@ -182,6 +182,34 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-dropdown.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-dropdown/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-dropdown/components-syn-dropdown--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-dropdown/components-syn-dropdown--getting-the-selected-item.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-dropdown/components-syn-dropdown--placement.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-dropdown/components-syn-dropdown--distance.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-dropdown/components-syn-dropdown--skidding.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-dropdown/components-syn-dropdown--submenus.md"
       }
     ],
     "full": [

@@ -194,6 +194,42 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-tab-group.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tab-group/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tab-group/components-syn-tab-group--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tab-group/components-syn-tab-group--tabs-on-start.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tab-group/components-syn-tab-group--tabs-on-end.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tab-group/components-syn-tab-group--closable-tabs.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tab-group/components-syn-tab-group--scrolling-tabs.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tab-group/components-syn-tab-group--visual-hierarchy.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tab-group/components-syn-tab-group--manual-activation.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tab-group/components-syn-tab-group--icons.md"
       }
     ],
     "full": [

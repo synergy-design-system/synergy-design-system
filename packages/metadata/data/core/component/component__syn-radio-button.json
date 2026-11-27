@@ -234,6 +234,46 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-radio-button.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-button/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-button/components-syn-radio-button--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-button/components-syn-radio-button--checked.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-button/components-syn-radio-button--focus.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-button/components-syn-radio-button--disabled.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-button/components-syn-radio-button--readonly.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-button/components-syn-radio-button--sizes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-button/components-syn-radio-button--invalid.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-button/components-syn-radio-button--prefix-and-suffix-icons.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-radio-button/components-syn-radio-button--buttons-with-icons.md"
       }
     ],
     "full": [

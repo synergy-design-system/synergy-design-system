@@ -1,0 +1,62 @@
+[
+  {
+    "description": "Checkboxes allow the user to toggle an option on or off.",
+    "id": "components-syn-checkbox--default",
+    "path": "layers/examples/component/component__syn-checkbox/components-syn-checkbox--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Use the checked attribute to activate the checkbox.",
+    "id": "components-syn-checkbox--checked",
+    "path": "layers/examples/component/component__syn-checkbox/components-syn-checkbox--checked.md",
+    "title": "Checked"
+  },
+  {
+    "description": "Add descriptive help text to a checkbox with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.The help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
+    "id": "components-syn-checkbox--help-text",
+    "path": "layers/examples/component/component__syn-checkbox/components-syn-checkbox--help-text.md",
+    "title": "Help Text"
+  },
+  {
+    "description": "Use the indeterminate attribute to make the checkbox indeterminate.",
+    "id": "components-syn-checkbox--indeterminate",
+    "path": "layers/examples/component/component__syn-checkbox/components-syn-checkbox--indeterminate.md",
+    "title": "Indeterminate"
+  },
+  {
+    "description": "The focus event gives the user feedback that the Checkbox has been focused by the keyboard interaction.",
+    "id": "components-syn-checkbox--focus",
+    "path": "layers/examples/component/component__syn-checkbox/components-syn-checkbox--focus.md",
+    "title": "Focus"
+  },
+  {
+    "description": "Use disabled when this choice is unavailable, and explain why it cannot be selected. Use readonly instead when users should see an existing checked state without changing it.",
+    "id": "components-syn-checkbox--disabled",
+    "path": "layers/examples/component/component__syn-checkbox/components-syn-checkbox--disabled.md",
+    "title": "Disabled"
+  },
+  {
+    "description": "Use readonly when users need to see whether an existing choice is checked but must not change it. Use disabled only when the choice is unavailable.",
+    "id": "components-syn-checkbox--readonly",
+    "path": "layers/examples/component/component__syn-checkbox/components-syn-checkbox--readonly.md",
+    "title": "Readonly"
+  },
+  {
+    "description": "Use the size attribute to change a checkbox’s size.",
+    "id": "components-syn-checkbox--sizes",
+    "path": "layers/examples/component/component__syn-checkbox/components-syn-checkbox--sizes.md",
+    "title": "Sizes"
+  },
+  {
+    "description": "The invalid status is used to warn the user that the Checkbox is invalid. For example, if the check is mandatory and nothing has been checked.",
+    "id": "components-syn-checkbox--invalid",
+    "path": "layers/examples/component/component__syn-checkbox/components-syn-checkbox--invalid.md",
+    "title": "Invalid"
+  },
+  {
+    "description": "Use the setCustomValidity() method to set a custom validation message. This will prevent the form from submitting and make the browser display the error message you provide. To clear the error, call this function with an empty string.",
+    "id": "components-syn-checkbox--custom-validity",
+    "path": "layers/examples/component/component__syn-checkbox/components-syn-checkbox--custom-validity.md",
+    "title": "Custom Validity"
+  }
+]

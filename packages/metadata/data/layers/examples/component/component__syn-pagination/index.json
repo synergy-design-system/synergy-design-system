@@ -1,0 +1,32 @@
+[
+  {
+    "description": "The default pagination offers the most comprehensive controls and is optimized for tables, lists, and complex data views. It is intended for use cases where users need to adjust both the number of displayed rows and the active page. The navigation controls allow switching between pages as well as jumping directly to the first or last page.",
+    "id": "components-syn-pagination--default",
+    "path": "layers/examples/component/component__syn-pagination/components-syn-pagination--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "An optional divider can be shown to provide visual separation depending on the layout needs.",
+    "id": "components-syn-pagination--with-divider",
+    "path": "layers/examples/component/component__syn-pagination/components-syn-pagination--with-divider.md",
+    "title": "With Divider"
+  },
+  {
+    "description": "Use the disabled attribute to disable all interactive elements like syn-select, syn-input, and the previous and next syn-icon-buttons. This can be useful if you want to prevent the user from entering something again immediately after an entry before the first entry has been processed.",
+    "id": "components-syn-pagination--disabled",
+    "path": "layers/examples/component/component__syn-pagination/components-syn-pagination--disabled.md",
+    "title": "Disabled"
+  },
+  {
+    "description": "The compact variant focuses on essential pagination controls and fits tight layouts or mobile environments. Use this variant when space is limited or page size stays fixed.",
+    "id": "components-syn-pagination--compact",
+    "path": "layers/examples/component/component__syn-pagination/components-syn-pagination--compact.md",
+    "title": "Compact"
+  },
+  {
+    "description": "Use the size attribute to change the pagination size.",
+    "id": "components-syn-pagination--sizes",
+    "path": "layers/examples/component/component__syn-pagination/components-syn-pagination--sizes.md",
+    "title": "Sizes"
+  }
+]

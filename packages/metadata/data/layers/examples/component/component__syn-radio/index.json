@@ -1,0 +1,44 @@
+[
+  {
+    "description": "Radios allow the user to select a single option from a group. \\nRadios are designed to be used with radio groups.",
+    "id": "components-syn-radio--default",
+    "path": "layers/examples/component/component__syn-radio/components-syn-radio--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "To set the initial value and checked state, use the value attribute on the radio element.",
+    "id": "components-syn-radio--initial-value",
+    "path": "layers/examples/component/component__syn-radio/components-syn-radio--initial-value.md",
+    "title": "Initial Value"
+  },
+  {
+    "description": "The focus event gives the user feedback that the Radio has been focused by the keyboard interaction.",
+    "id": "components-syn-radio--focus",
+    "path": "layers/examples/component/component__syn-radio/components-syn-radio--focus.md",
+    "title": "Focus"
+  },
+  {
+    "description": "Set disabled on an unavailable radio option and explain why it cannot be selected. Use readonly on every radio in the group when users should inspect the selection without changing it.",
+    "id": "components-syn-radio--disabled",
+    "path": "layers/examples/component/component__syn-radio/components-syn-radio--disabled.md",
+    "title": "Disabled"
+  },
+  {
+    "description": "Set readonly on every syn-radio in the group when users should inspect the selected choice without changing it. Setting it only on the selected radio leaves other choices available.",
+    "id": "components-syn-radio--readonly",
+    "path": "layers/examples/component/component__syn-radio/components-syn-radio--readonly.md",
+    "title": "Readonly"
+  },
+  {
+    "description": "Add the size attribute to the Radio Group to change the radios’ size.",
+    "id": "components-syn-radio--sizes",
+    "path": "layers/examples/component/component__syn-radio/components-syn-radio--sizes.md",
+    "title": "Sizes"
+  },
+  {
+    "description": "The invalid status is used to warn the user that the Radio is invalid. For example, if the radio is mandatory and nothing has been checked.",
+    "id": "components-syn-radio--invalid",
+    "path": "layers/examples/component/component__syn-radio/components-syn-radio--invalid.md",
+    "title": "Invalid"
+  }
+]

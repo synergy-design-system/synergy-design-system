@@ -117,6 +117,14 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-menu-label.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-menu-label/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-menu-label/components-syn-menu-label--default.md"
       }
     ],
     "full": [

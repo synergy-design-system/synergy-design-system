@@ -7,6 +7,42 @@
       {
         "layer": "examples",
         "path": "layers/examples/template/template__appshell.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__appshell/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__appshell/templates-appshell--side-navigation.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__appshell/templates-appshell--side-navigation-shrinking-content.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__appshell/templates-appshell--rail-navigation-desktop.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__appshell/templates-appshell--rail-navigation-mobile.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__appshell/templates-appshell--sticky-navigation-desktop.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__appshell/templates-appshell--sticky-navigation-mobile.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__appshell/templates-appshell--top-navigation.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__appshell/templates-appshell--alternative-background.md"
       }
     ]
   },

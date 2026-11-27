@@ -12,6 +12,7 @@ import {
   mapEntityForResponse,
   matchesEntityNameOrId,
   paginate,
+  readAggregateExampleForEntity,
   readLayerFilesForEntity,
   sortByEntityId,
 } from '../utils.js';
@@ -235,7 +236,9 @@ export const getDataForStyle = async (
   }
 
   const store = createMetadataStore(storeOptions);
-  const layerFiles = await readLayerFilesForEntity(store, metadata.data, metadata.meta.resolvedLayer);
+  const layerFiles = metadata.meta.resolvedLayer === 'examples'
+    ? await readAggregateExampleForEntity(store, metadata.data)
+    : await readLayerFilesForEntity(store, metadata.data, metadata.meta.resolvedLayer);
 
   const textLayerContent = layerFiles
     .filter(({ ref }) => ref.path.endsWith('.md'))

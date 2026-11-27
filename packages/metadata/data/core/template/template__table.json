@@ -7,6 +7,38 @@
       {
         "layer": "examples",
         "path": "layers/examples/template/template__table.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__table/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__table/templates-table--table-with-header.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__table/templates-table--table-with-alternating-rows.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__table/templates-table--table-with-borders.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__table/templates-table--table-shadow-left-column.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__table/templates-table--table-shadow-right-column.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__table/templates-table--table-shadow-top-row.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__table/templates-table--table-product.md"
       }
     ]
   },

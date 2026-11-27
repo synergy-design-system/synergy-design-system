@@ -1,0 +1,14 @@
+[
+  {
+    "description": "",
+    "id": "templates-tag-group--tag-group",
+    "path": "layers/examples/template/template__tag-group/templates-tag-group--tag-group.md",
+    "title": "Tag Group"
+  },
+  {
+    "description": "",
+    "id": "templates-tag-group--tag-group-tablet",
+    "path": "layers/examples/template/template__tag-group/templates-tag-group--tag-group-tablet.md",
+    "title": "↳ Tablet"
+  }
+]

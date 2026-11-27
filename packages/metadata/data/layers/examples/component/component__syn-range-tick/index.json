@@ -1,0 +1,26 @@
+[
+  {
+    "description": "Use the ticks slot to insert ticks or groups with ticks to improve positioning.",
+    "id": "components-syn-range-tick--default",
+    "path": "layers/examples/component/component__syn-range-tick/components-syn-range-tick--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Use the default slot to give the tick a label.",
+    "id": "components-syn-range-tick--labels",
+    "path": "layers/examples/component/component__syn-range-tick/components-syn-range-tick--labels.md",
+    "title": "Labels"
+  },
+  {
+    "description": "Grouping multiple ticks can be used as a scale. This can be used for uneven distributions as well.",
+    "id": "components-syn-range-tick--grouping",
+    "path": "layers/examples/component/component__syn-range-tick/components-syn-range-tick--grouping.md",
+    "title": "Grouping"
+  },
+  {
+    "description": "It is possible to divide the space between major ticks for finer scale readings.",
+    "id": "components-syn-range-tick--subdivision-ticks",
+    "path": "layers/examples/component/component__syn-range-tick/components-syn-range-tick--subdivision-ticks.md",
+    "title": "Subdivision Ticks"
+  }
+]

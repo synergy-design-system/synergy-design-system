@@ -8,6 +8,7 @@ import {
 import {
   type ClientSession,
   createClientSession,
+  expectSelectiveExample,
   toToolResponse,
 } from '../utilities/index.ts';
 
@@ -53,5 +54,22 @@ describe('styles-info tool', () => {
     };
     assert.equal(recovery.submittedValue, 'unknown-style');
     assert.ok(recovery.availableNames.includes('syn-body'));
+  });
+
+  it('returns a selected example and reports unknown IDs', async () => {
+    await expectSelectiveExample(
+      session,
+      'styles-list-examples',
+      'styles-info',
+      { style: 'syn-table' },
+    );
+  });
+
+  it('treats an empty example ID like an omitted ID', async () => {
+    const args = { style: 'syn-table' };
+    const omitted = await session.client.callTool({ arguments: args, name: 'styles-info' });
+    const empty = await session.client.callTool({ arguments: { ...args, exampleId: '' }, name: 'styles-info' });
+    assert.notEqual(empty.isError, true);
+    assert.deepEqual(empty.content, omitted.content);
   });
 });

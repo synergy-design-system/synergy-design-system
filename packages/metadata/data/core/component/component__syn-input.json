@@ -329,6 +329,74 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-input.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-input/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-input/components-syn-input--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-input/components-syn-input--labels.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-input/components-syn-input--help-text.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-input/components-syn-input--placeholders.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-input/components-syn-input--clearable.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-input/components-syn-input--toggle-password.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-input/components-syn-input--readonly-inputs.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-input/components-syn-input--focus.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-input/components-syn-input--disabled.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-input/components-syn-input--sizes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-input/components-syn-input--invalid.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-input/components-syn-input--input-types.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-input/components-syn-input--prefix-suffix-text-and-icons.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-input/components-syn-input--customizing-label-position.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-input/components-syn-input--stepper.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-input/components-syn-input--stepper-input-handling.md"
       }
     ],
     "full": [

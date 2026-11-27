@@ -7,6 +7,18 @@
       {
         "layer": "examples",
         "path": "layers/examples/template/template__footer.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__footer/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__footer/templates-footer--footer.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template__footer/templates-footer--footer-within-appshell.md"
       }
     ]
   },

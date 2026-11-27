@@ -1,0 +1,38 @@
+[
+  {
+    "description": "Accordion is a group of syn-details to show a brief summary and expand to show additional content.",
+    "id": "components-syn-accordion--default",
+    "path": "layers/examples/component/component__syn-accordion/components-syn-accordion--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "To give content more structure, you can use the property contained.",
+    "id": "components-syn-accordion--contained",
+    "path": "layers/examples/component/component__syn-accordion/components-syn-accordion--contained.md",
+    "title": "Contained"
+  },
+  {
+    "description": "Set the close-others property to true to ensure only one detail is open at a time.",
+    "id": "components-syn-accordion--grouping-details",
+    "path": "layers/examples/component/component__syn-accordion/components-syn-accordion--grouping-details.md",
+    "title": "Grouping Details"
+  },
+  {
+    "description": "The focus event gives the user feedback that the detail has been focused by the keyboard interaction.",
+    "id": "components-syn-accordion--focus",
+    "path": "layers/examples/component/component__syn-accordion/components-syn-accordion--focus.md",
+    "title": "Focus"
+  },
+  {
+    "description": "Use the disable attribute to prevent the details from expanding.",
+    "id": "components-syn-accordion--disabled",
+    "path": "layers/examples/component/component__syn-accordion/components-syn-accordion--disabled.md",
+    "title": "Disabled"
+  },
+  {
+    "description": "Use the size attribute to change a detail’s size. The size attribute should not be mixed within an accordion",
+    "id": "components-syn-accordion--sizes",
+    "path": "layers/examples/component/component__syn-accordion/components-syn-accordion--sizes.md",
+    "title": "Sizes"
+  }
+]

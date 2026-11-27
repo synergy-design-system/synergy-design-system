@@ -167,6 +167,34 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-progress-ring.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-progress-ring/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-progress-ring/components-syn-progress-ring--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-progress-ring/components-syn-progress-ring--size.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-progress-ring/components-syn-progress-ring--track-and-indicator-width.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-progress-ring/components-syn-progress-ring--colors.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-progress-ring/components-syn-progress-ring--labels.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-progress-ring/components-syn-progress-ring--showing-values.md"
       }
     ],
     "full": [

@@ -236,6 +236,50 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-nav-item.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-nav-item/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-nav-item/components-syn-nav-item--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-nav-item/components-syn-nav-item--labels.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-nav-item/components-syn-nav-item--current.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-nav-item/components-syn-nav-item--horizontal-navigation.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-nav-item/components-syn-nav-item--focus.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-nav-item/components-syn-nav-item--prefix-and-suffix-slot.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-nav-item/components-syn-nav-item--children-closed-or-open-vertical-only.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-nav-item/components-syn-nav-item--divider.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-nav-item/components-syn-nav-item--indentation.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-nav-item/components-syn-nav-item--disabled.md"
       }
     ],
     "full": [

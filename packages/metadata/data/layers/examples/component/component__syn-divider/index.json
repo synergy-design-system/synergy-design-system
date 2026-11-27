@@ -1,0 +1,32 @@
+[
+  {
+    "description": "Dividers are used to visually separate or group elements.",
+    "id": "components-syn-divider--default",
+    "path": "layers/examples/component/component__syn-divider/components-syn-divider--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Use the --width custom property to change the width of the divider.",
+    "id": "components-syn-divider--width",
+    "path": "layers/examples/component/component__syn-divider/components-syn-divider--width.md",
+    "title": "Width"
+  },
+  {
+    "description": "Use the --color custom property to change the color of the divider.",
+    "id": "components-syn-divider--color",
+    "path": "layers/examples/component/component__syn-divider/components-syn-divider--color.md",
+    "title": "Color"
+  },
+  {
+    "description": "Use the --spacing custom property to change the amount of space between the divider and it’s neighboring elements.",
+    "id": "components-syn-divider--spacing",
+    "path": "layers/examples/component/component__syn-divider/components-syn-divider--spacing.md",
+    "title": "Spacing"
+  },
+  {
+    "description": "Add the vertical attribute to draw the divider in a vertical orientation. The divider will span the full height of its container. Vertical dividers work especially well inside of a flex container.",
+    "id": "components-syn-divider--vertical",
+    "path": "layers/examples/component/component__syn-divider/components-syn-divider--vertical.md",
+    "title": "Vertical"
+  }
+]

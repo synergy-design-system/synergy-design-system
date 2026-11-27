@@ -1,0 +1,26 @@
+[
+  {
+    "description": "A tag group is used to display multiple tags that belong together, often representing selected filters, categories, or user‑generated labels. It arranges tags in flexible rows and supports different sizes and layouts. Tags can be removable, icon based, or purely textual.",
+    "id": "components-syn-tag-group--default",
+    "path": "layers/examples/component/component__syn-tag-group/components-syn-tag-group--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Use the label attribute to give the tag-group an accessible label. For labels that contain HTML, use the label slot instead.",
+    "id": "components-syn-tag-group--labels",
+    "path": "layers/examples/component/component__syn-tag-group/components-syn-tag-group--labels.md",
+    "title": "Labels"
+  },
+  {
+    "description": "Use the size attribute to change a tag group’s size.",
+    "id": "components-syn-tag-group--sizes",
+    "path": "layers/examples/component/component__syn-tag-group/components-syn-tag-group--sizes.md",
+    "title": "Sizes"
+  },
+  {
+    "description": "Use the label-position attribute to change the position of the label. Use 'top' to place the label above the tags, or 'start' to place it to the begin of the tag group.",
+    "id": "components-syn-tag-group--label-alignment",
+    "path": "layers/examples/component/component__syn-tag-group/components-syn-tag-group--label-alignment.md",
+    "title": "Label Alignment"
+  }
+]

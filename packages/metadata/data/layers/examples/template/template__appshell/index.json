@@ -1,0 +1,50 @@
+[
+  {
+    "description": "The side navigation opens when the user clicks on the burger menu. As the side navigation opens, a transparent mask fades in and the navigation overlaps the content area. To close the navigation, the user must either click on the close icon or anywhere on the content area to the right of the side navigation.",
+    "id": "templates-appshell--side-navigation",
+    "path": "layers/examples/template/template__appshell/templates-appshell--side-navigation.md",
+    "title": "Side Navigation"
+  },
+  {
+    "description": "The side navigation opens when the user clicks on the burger menu. As the side navigation opens, the content area shrinks. To close the navigation, the user must click on the close icon.",
+    "id": "templates-appshell--side-navigation-shrinking-content",
+    "path": "layers/examples/template/template__appshell/templates-appshell--side-navigation-shrinking-content.md",
+    "title": "Side Navigation Shrinking Content"
+  },
+  {
+    "description": "The navigation opens when the user hovers over it. As the navigation opens, it overlaps the content area. To close the navigation, the user simply hovers outside of it.",
+    "id": "templates-appshell--rail-navigation-desktop",
+    "path": "layers/examples/template/template__appshell/templates-appshell--rail-navigation-desktop.md",
+    "title": "Rail Navigation (Desktop)"
+  },
+  {
+    "description": "The navigation opens when the user touches it. As the side navigation opens, a transparent mask fades in and the navigation overlaps the content area. To close the navigation, the user must touch anywhere on the content area to the right of the side navigation.",
+    "id": "templates-appshell--rail-navigation-mobile",
+    "path": "layers/examples/template/template__appshell/templates-appshell--rail-navigation-mobile.md",
+    "title": "↳ Tablet"
+  },
+  {
+    "description": "General BehaviourThe navigation maintains its compact width until the user clicks the “show sidebar” icon at the bottom. When the navigation expands, it shifts the content area. To reduce the navigation's width, the user simply clicks “Hide sidebar” again.",
+    "id": "templates-appshell--sticky-navigation-desktop",
+    "path": "layers/examples/template/template__appshell/templates-appshell--sticky-navigation-desktop.md",
+    "title": "Sticky Navigation (Desktop)"
+  },
+  {
+    "description": "General BehaviourThe navigation maintains its compact width until the user clicks the “show sidebar” icon at the bottom. When the navigation expands, it shifts the content area. To reduce the navigation's width, the user simply clicks “Hide sidebar” again.",
+    "id": "templates-appshell--sticky-navigation-mobile",
+    "path": "layers/examples/template/template__appshell/templates-appshell--sticky-navigation-mobile.md",
+    "title": "↳ Tablet"
+  },
+  {
+    "description": "The top navigation can be combined with a light grey background.This variant is suitable, for example, in combination with cards to achieve a dashboard look and feel.",
+    "id": "templates-appshell--top-navigation",
+    "path": "layers/examples/template/template__appshell/templates-appshell--top-navigation.md",
+    "title": "Top Navigation"
+  },
+  {
+    "description": "Additionally the top navigation can be combined with an alternative background.",
+    "id": "templates-appshell--alternative-background",
+    "path": "layers/examples/template/template__appshell/templates-appshell--alternative-background.md",
+    "title": "Alternative Background"
+  }
+]

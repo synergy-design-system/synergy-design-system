@@ -1,0 +1,50 @@
+[
+  {
+    "description": "Switches allow the user to toggle an option on or off.",
+    "id": "components-syn-switch--default",
+    "path": "layers/examples/component/component__syn-switch/components-syn-switch--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Use the checked attribute to activate the switch.",
+    "id": "components-syn-switch--checked",
+    "path": "layers/examples/component/component__syn-switch/components-syn-switch--checked.md",
+    "title": "Checked"
+  },
+  {
+    "description": "The focus event gives the user feedback that the Switch has been focused by the keyboard interaction.",
+    "id": "components-syn-switch--focus",
+    "path": "layers/examples/component/component__syn-switch/components-syn-switch--focus.md",
+    "title": "Focus"
+  },
+  {
+    "description": "Use disabled only when changing the setting is unavailable, and explain what prevents toggling it. Use readonly to show an existing on/off state without allowing changes.",
+    "id": "components-syn-switch--disabled",
+    "path": "layers/examples/component/component__syn-switch/components-syn-switch--disabled.md",
+    "title": "Disabled"
+  },
+  {
+    "description": "Use readonly to display an existing on/off setting that users may inspect but cannot toggle here. Use disabled only when the setting is unavailable.",
+    "id": "components-syn-switch--readonly",
+    "path": "layers/examples/component/component__syn-switch/components-syn-switch--readonly.md",
+    "title": "Readonly"
+  },
+  {
+    "description": "Use the size attribute to change a switch’s size.",
+    "id": "components-syn-switch--sizes",
+    "path": "layers/examples/component/component__syn-switch/components-syn-switch--sizes.md",
+    "title": "Sizes"
+  },
+  {
+    "description": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.The help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
+    "id": "components-syn-switch--help-text",
+    "path": "layers/examples/component/component__syn-switch/components-syn-switch--help-text.md",
+    "title": "Help Text"
+  },
+  {
+    "description": "The invalid status is used to warn the user that the Switch is invalid.",
+    "id": "components-syn-switch--invalid",
+    "path": "layers/examples/component/component__syn-switch/components-syn-switch--invalid.md",
+    "title": "Invalid"
+  }
+]

@@ -196,6 +196,38 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-button-group.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-button-group/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-button-group/components-syn-button-group--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-button-group/components-syn-button-group--variants.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-button-group/components-syn-button-group--button-sizes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-button-group/components-syn-button-group--dropdowns-in-button-groups.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-button-group/components-syn-button-group--split-buttons.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-button-group/components-syn-button-group--tooltips-in-button-groups.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-button-group/components-syn-button-group--toolbar-example.md"
       }
     ],
     "full": [

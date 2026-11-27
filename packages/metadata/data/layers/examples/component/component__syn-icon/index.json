@@ -1,0 +1,50 @@
+[
+  {
+    "description": "This shows the syn-icon in its default state",
+    "id": "components-syn-icon--default",
+    "path": "layers/examples/component/component__syn-icon/components-syn-icon--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Icons inherit their color from the current text color.\nThus, you can set the color property on the <syn-icon> element or an ancestor to change color.",
+    "id": "components-syn-icon--colors",
+    "path": "layers/examples/component/component__syn-icon/components-syn-icon--colors.md",
+    "title": "Colors"
+  },
+  {
+    "description": "Icons are sized relative to the current font size.\nTo change their size, set the font-size property on the icon itself\nor on a parent element as shown below.",
+    "id": "components-syn-icon--sizing",
+    "path": "layers/examples/component/component__syn-icon/components-syn-icon--sizing.md",
+    "title": "Sizing"
+  },
+  {
+    "description": "For non-decorative icons, use the label attribute to announce it to assistive devices.",
+    "id": "components-syn-icon--labels",
+    "path": "layers/examples/component/component__syn-icon/components-syn-icon--labels.md",
+    "title": "Labels"
+  },
+  {
+    "description": "Custom icons can be loaded individually with the src attribute.\nOnly SVGs on a local or CORS-enabled endpoint are supported.\nIf you're using more than one custom icon, it might make sense to register a custom icon library.",
+    "id": "components-syn-icon--custom-icons",
+    "path": "layers/examples/component/component__syn-icon/components-syn-icon--custom-icons.md",
+    "title": "Custom Icons"
+  },
+  {
+    "description": "",
+    "id": "components-syn-icon--cdn-icon-library",
+    "path": "layers/examples/component/component__syn-icon/components-syn-icon--cdn-icon-library.md",
+    "title": "CDN Icon Library"
+  },
+  {
+    "description": "",
+    "id": "components-syn-icon--bundled-icon-library",
+    "path": "layers/examples/component/component__syn-icon/components-syn-icon--bundled-icon-library.md",
+    "title": "Bundled Icon Library"
+  },
+  {
+    "description": "",
+    "id": "components-syn-icon--sprite-sheet-usage",
+    "path": "layers/examples/component/component__syn-icon/components-syn-icon--sprite-sheet-usage.md",
+    "title": "Sprite Sheet Usage"
+  }
+]

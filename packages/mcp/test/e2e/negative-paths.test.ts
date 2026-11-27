@@ -86,6 +86,62 @@ describe('negative paths', () => {
     assert.ok(recovery.availableNames.length > 0);
   });
 
+  it('info tools return entity catalogs before handling unknown example IDs', async () => {
+    const requests = [
+      {
+        arguments: { component: 'syn-does-not-exist', exampleId: 'unknown-example', layer: 'examples' },
+        name: 'component-info',
+      },
+      {
+        arguments: { style: 'syn-does-not-exist', exampleId: 'unknown-example' },
+        name: 'styles-info',
+      },
+      {
+        arguments: { template: 'does-not-exist', exampleId: 'unknown-example' },
+        name: 'template-info',
+      },
+    ];
+
+    for (const request of requests) {
+      const response = toToolResponse(await session.client.callTool(request));
+      const recovery = JSON.parse(response.content.at(-1)?.text ?? '{}') as {
+        availableComponentNames?: string[];
+        availableNames?: string[];
+        operationPerformed: boolean;
+      };
+      assert.equal(recovery.operationPerformed, false);
+      assert.ok((recovery.availableComponentNames ?? recovery.availableNames ?? []).length > 0);
+    }
+  });
+
+  it('example-list tools return catalogs for unknown entity names', async () => {
+    const requests = [
+      {
+        arguments: { component: 'syn-does-not-exist' },
+        name: 'component-list-examples',
+      },
+      {
+        arguments: { style: 'syn-does-not-exist' },
+        name: 'styles-list-examples',
+      },
+      {
+        arguments: { template: 'does-not-exist' },
+        name: 'template-list-examples',
+      },
+    ];
+
+    for (const request of requests) {
+      const response = toToolResponse(await session.client.callTool(request));
+      const recovery = JSON.parse(response.content.at(-1)?.text ?? '{}') as {
+        availableComponentNames?: string[];
+        availableNames?: string[];
+        operationPerformed: boolean;
+      };
+      assert.equal(recovery.operationPerformed, false);
+      assert.ok((recovery.availableComponentNames ?? recovery.availableNames ?? []).length > 0);
+    }
+  });
+
   it('migration-info returns recovery for unknown document', async () => {
     const response = await session.client.callTool({
       arguments: {

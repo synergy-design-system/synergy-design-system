@@ -1,0 +1,98 @@
+[
+  {
+    "description": "Selects allow you to choose items from a menu of predefined options.",
+    "id": "components-syn-select--default",
+    "path": "layers/examples/component/component__syn-select/components-syn-select--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Use the label attribute to give the select an accessible label. For labels that contain HTML, use the label slot instead.",
+    "id": "components-syn-select--labels",
+    "path": "layers/examples/component/component__syn-select/components-syn-select--labels.md",
+    "title": "Labels"
+  },
+  {
+    "description": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.The help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
+    "id": "components-syn-select--help-text",
+    "path": "layers/examples/component/component__syn-select/components-syn-select--help-text.md",
+    "title": "Help Text"
+  },
+  {
+    "description": "Use the placeholder attribute to add a placeholder.",
+    "id": "components-syn-select--placeholder",
+    "path": "layers/examples/component/component__syn-select/components-syn-select--placeholder.md",
+    "title": "Placeholder"
+  },
+  {
+    "description": "Use the clearable attribute to make the control clearable. The clear button only appears when an option is selected.",
+    "id": "components-syn-select--clearable",
+    "path": "layers/examples/component/component__syn-select/components-syn-select--clearable.md",
+    "title": "Clearable"
+  },
+  {
+    "description": "The focus event gives the user feedback that the Select has been focused by the keyboard interaction or active click from the user..",
+    "id": "components-syn-select--focus",
+    "path": "layers/examples/component/component__syn-select/components-syn-select--focus.md",
+    "title": "Focus"
+  },
+  {
+    "description": "Use disabled only when selection is unavailable, and explain when users can choose an option. Use readonly to display the current selection without allowing changes.",
+    "id": "components-syn-select--disabled",
+    "path": "layers/examples/component/component__syn-select/components-syn-select--disabled.md",
+    "title": "Disabled"
+  },
+  {
+    "description": "Use readonly when users need to inspect their current selection without changing it. For multiple selections, keep every selected value visible.",
+    "id": "components-syn-select--readonly",
+    "path": "layers/examples/component/component__syn-select/components-syn-select--readonly.md",
+    "title": "Readonly"
+  },
+  {
+    "description": "To allow multiple options to be selected, use the multiple attribute. It’s a good practice to use clearable when this option is enabled. To set multiple values at once, set value to a space-delimited list of values.",
+    "id": "components-syn-select--multiple",
+    "path": "layers/examples/component/component__syn-select/components-syn-select--multiple.md",
+    "title": "Multiple"
+  },
+  {
+    "description": "Use the value attribute to set the initial selection.When using multiple, the value attribute uses space-delimited values to select more than one option. Because of this, <syn-option> values cannot contain spaces. If you’re accessing the value property through Javascript, it will be an array.",
+    "id": "components-syn-select--setting-initial-values",
+    "path": "layers/examples/component/component__syn-select/components-syn-select--setting-initial-values.md",
+    "title": "Setting Initial Values"
+  },
+  {
+    "description": "Use <syn-optgroup> to group listbox items visually.",
+    "id": "components-syn-select--grouping-options",
+    "path": "layers/examples/component/component__syn-select/components-syn-select--grouping-options.md",
+    "title": "Grouping Options"
+  },
+  {
+    "description": "Use the size attribute to change a select’s size. Note that size does not apply to listbox options.",
+    "id": "components-syn-select--sizes",
+    "path": "layers/examples/component/component__syn-select/components-syn-select--sizes.md",
+    "title": "Sizes"
+  },
+  {
+    "description": "The invalid status is used to warn the user that the Select is invalid. For example, if the entry of text is mandatory and nothing has been entered.",
+    "id": "components-syn-select--invalid",
+    "path": "layers/examples/component/component__syn-select/components-syn-select--invalid.md",
+    "title": "Invalid"
+  },
+  {
+    "description": "Use the prefix and suffix slots to add text and icons.",
+    "id": "components-syn-select--prefix-suffix-icons",
+    "path": "layers/examples/component/component__syn-select/components-syn-select--prefix-suffix-icons.md",
+    "title": "Prefix Suffix Icons"
+  },
+  {
+    "description": "When multiple options can be selected, you can provide custom tags by passing a function to the getTag property. Your function can return a string of HTML, a Lit Template, or an HTMLElement. The getTag() function will be called for each option. The first argument is an <syn-option> element and the second argument is the tag’s index (its position in the tag list).Remember that custom tags are rendered in a shadow root. To style them, you can use the style attribute in your template or you can add your own parts and target them with the ::part() selector.",
+    "id": "components-syn-select--custom-tags",
+    "path": "layers/examples/component/component__syn-select/components-syn-select--custom-tags.md",
+    "title": "Custom Tags"
+  },
+  {
+    "description": "Listen for the syn-end-reached event to load additional options from a paged or async data source as the user scrolls close to the end of the listbox. The event is only emitted once per page: it won't fire again until you append new options, so it's safe to start a new request as soon as you receive it without tracking a loading flag yourself.",
+    "id": "components-syn-select--endless-scrolling",
+    "path": "layers/examples/component/component__syn-select/components-syn-select--endless-scrolling.md",
+    "title": "Endless Scrolling"
+  }
+]

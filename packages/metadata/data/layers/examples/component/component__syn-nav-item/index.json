@@ -1,0 +1,62 @@
+[
+  {
+    "description": "The navigation item is used to trigger page switches.",
+    "id": "components-syn-nav-item--default",
+    "path": "layers/examples/component/component__syn-nav-item/components-syn-nav-item--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Use the label attribute to change the content of a navigation item.",
+    "id": "components-syn-nav-item--labels",
+    "path": "layers/examples/component/component__syn-nav-item/components-syn-nav-item--labels.md",
+    "title": "Labels"
+  },
+  {
+    "description": "The current attribute provides the user feedback about which of the navigation elements is currently selected.",
+    "id": "components-syn-nav-item--current",
+    "path": "layers/examples/component/component__syn-nav-item/components-syn-nav-item--current.md",
+    "title": "Current"
+  },
+  {
+    "description": "Use the horizontal attribute to indicate that an element is used in a horizontal navigation. (The example shows it in combination with the current attribute, to indicate the difference.)",
+    "id": "components-syn-nav-item--horizontal-navigation",
+    "path": "layers/examples/component/component__syn-nav-item/components-syn-nav-item--horizontal-navigation.md",
+    "title": "Horizontal Navigation"
+  },
+  {
+    "description": "The focus event gives the user feedback that the Navigation Item has been focused by the keyboard interaction or active click from the user.",
+    "id": "components-syn-nav-item--focus",
+    "path": "layers/examples/component/component__syn-nav-item/components-syn-nav-item--focus.md",
+    "title": "Focus"
+  },
+  {
+    "description": "Use the prefix and suffix slots to add e. g. icons or tags. If available the prefix slot will be shown in the rail navigation.",
+    "id": "components-syn-nav-item--prefix-and-suffix-slot",
+    "path": "layers/examples/component/component__syn-nav-item/components-syn-nav-item--prefix-and-suffix-slot.md",
+    "title": "Prefix And Suffix Slot"
+  },
+  {
+    "description": "Use the children attribute to indicate that a chevron should be shown. In development this will be handled automatically as soon as an element has children.Note:Since there should be no double use of functionality, a link cannot be mixed with an accordion behavior. The accordion always has priority, which means that if the href attribute is used at the same time as children, the link functionality is ignored and only the accordion behavior is provided.",
+    "id": "components-syn-nav-item--children-closed-or-open-vertical-only",
+    "path": "layers/examples/component/component__syn-nav-item/components-syn-nav-item--children-closed-or-open-vertical-only.md",
+    "title": "Children Closed Or Open Vertical Only"
+  },
+  {
+    "description": "Use the divider attribute to add a border at the top. This should be used for first level elements in vertical navigations.",
+    "id": "components-syn-nav-item--divider",
+    "path": "layers/examples/component/component__syn-nav-item/components-syn-nav-item--divider.md",
+    "title": "Divider"
+  },
+  {
+    "description": "Vertical navigation elements can be indented to indicate deeper navigation levels.",
+    "id": "components-syn-nav-item--indentation",
+    "path": "layers/examples/component/component__syn-nav-item/components-syn-nav-item--indentation.md",
+    "title": "Indentation"
+  },
+  {
+    "description": "Use the disabled attribute to disable a navigation-item.",
+    "id": "components-syn-nav-item--disabled",
+    "path": "layers/examples/component/component__syn-nav-item/components-syn-nav-item--disabled.md",
+    "title": "Disabled"
+  }
+]

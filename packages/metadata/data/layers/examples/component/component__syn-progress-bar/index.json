@@ -1,0 +1,32 @@
+[
+  {
+    "description": "Progress bars are used to show the status of an ongoing operation.",
+    "id": "components-syn-progress-bar--default",
+    "path": "layers/examples/component/component__syn-progress-bar/components-syn-progress-bar--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Use the label attribute to label the progress bar and tell assistive devices how to announce it.",
+    "id": "components-syn-progress-bar--labels",
+    "path": "layers/examples/component/component__syn-progress-bar/components-syn-progress-bar--labels.md",
+    "title": "Labels"
+  },
+  {
+    "description": "Use the --height custom property to set the progress bar’s height.",
+    "id": "components-syn-progress-bar--custom-height",
+    "path": "layers/examples/component/component__syn-progress-bar/components-syn-progress-bar--custom-height.md",
+    "title": "Custom Height"
+  },
+  {
+    "description": "Use the default slot to show a value.",
+    "id": "components-syn-progress-bar--showing-values",
+    "path": "layers/examples/component/component__syn-progress-bar/components-syn-progress-bar--showing-values.md",
+    "title": "Showing Values"
+  },
+  {
+    "description": "The indeterminate attribute can be used to inform the user that the operation is pending, but its status cannot currently be determined. In this state, value is ignored and the label, if present, will not be shown.",
+    "id": "components-syn-progress-bar--indeterminate",
+    "path": "layers/examples/component/component__syn-progress-bar/components-syn-progress-bar--indeterminate.md",
+    "title": "Indeterminate"
+  }
+]

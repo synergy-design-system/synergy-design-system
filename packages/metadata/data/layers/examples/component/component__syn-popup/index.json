@@ -1,0 +1,74 @@
+[
+  {
+    "description": "Popup is a utility that lets you declaratively anchor “popup” containers to another element.This component’s name is inspired by <popup>. It uses Floating UI under the hood to provide a well-tested, lightweight, and fully declarative positioning utility for tooltips, dropdowns, and more.Popup doesn’t provide any styles — just positioning! The popup’s preferred placement, distance, and skidding (offset) can be configured using attributes. An arrow that points to the anchor can be shown and customized to your liking. Additional positioning options are available and described in more detail below.",
+    "id": "components-syn-popup--default",
+    "path": "layers/examples/component/component__syn-popup/components-syn-popup--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Popups are inactive and hidden until the active attribute is applied.\nRemoving the attribute will tear down all positioning logic and listeners,\nmeaning you can have many idle popups on the page without affecting performance.",
+    "id": "components-syn-popup--activating",
+    "path": "layers/examples/component/component__syn-popup/components-syn-popup--activating.md",
+    "title": "Activating"
+  },
+  {
+    "description": "By default, anchors are slotted into the popup using the anchor slot.\nIf your anchor needs to live outside of the popup,\nyou can pass the anchor's id to the anchor attribute.\nAlternatively, you can pass an element reference\nto the anchor property to achieve the same effect without using an id.",
+    "id": "components-syn-popup--external-anchors",
+    "path": "layers/examples/component/component__syn-popup/components-syn-popup--external-anchors.md",
+    "title": "External Anchors"
+  },
+  {
+    "description": "Use the placement attribute to tell the popup the preferred placement of the popup.\nNote that the actual position will vary to ensure the panel remains in the viewport\nif you're using positioning features such as flip and shift.\nSince placement is preferred when using flip, you can observe the popup's current placement\nwhen it's active by looking at the data-current-placement attribute.\nThis attribute will update as the popup flips to find\navailable space and it will be removed when the popup is deactivated.",
+    "id": "components-syn-popup--placement",
+    "path": "layers/examples/component/component__syn-popup/components-syn-popup--placement.md",
+    "title": "Placement"
+  },
+  {
+    "description": "Use the distance attribute to change the distance between the popup and its anchor.\nA positive value will move the popup further away and a negative value will move it closer.",
+    "id": "components-syn-popup--distance",
+    "path": "layers/examples/component/component__syn-popup/components-syn-popup--distance.md",
+    "title": "Distance"
+  },
+  {
+    "description": "The skidding attribute is similar to distance,\nbut instead allows you to offset the popup along the anchor's axis.\nBoth positive and negative values are allowed.",
+    "id": "components-syn-popup--skidding",
+    "path": "layers/examples/component/component__syn-popup/components-syn-popup--skidding.md",
+    "title": "Skidding"
+  },
+  {
+    "description": "Add an arrow to your popup with the arrow attribute.\nIt's usually a good idea to set a distance to make room for the arrow.\nTo adjust the arrow's color and size,\nuse the --arrow-color and --arrow-size custom properties, respectively.\nYou can also target the arrow part to add additional styles such as shadows and borders.\nBy default, the arrow will be aligned as close to\nthe center as possible, considering available space and arrow-padding.\nYou can use the arrow-placement attribute to force\nthe arrow to align to the start, end, or center of the  instead.",
+    "id": "components-syn-popup--arrows",
+    "path": "layers/examples/component/component__syn-popup/components-syn-popup--arrows.md",
+    "title": "Arrows"
+  },
+  {
+    "description": "Use the sync attribute to make the popup the same width or height as the anchor element.\nThis is useful for controls that need the popup to stay the same width or height as the trigger.",
+    "id": "components-syn-popup--syncing-with-the-anchors-dimensions",
+    "path": "layers/examples/component/component__syn-popup/components-syn-popup--syncing-with-the-anchors-dimensions.md",
+    "title": "Syncing With The Anchors Dimensions"
+  },
+  {
+    "description": "When the popup doesn't have enough room in its preferred placement,\nit can automatically flip to keep it in view.\nTo enable this, use the flip attribute.\nBy default, the popup will flip to the opposite placement, but you can configure\npreferred fallback placements using flip-fallback-placement and flip-fallback-strategy.\nAdditional options are available to control the flip behavior's boundary and padding.",
+    "id": "components-syn-popup--flip",
+    "path": "layers/examples/component/component__syn-popup/components-syn-popup--flip.md",
+    "title": "Flip"
+  },
+  {
+    "description": "While using the flip attribute, you can customize the placement\nof the popup when the preferred placement doesn't have room.\nFor this, use flip-fallback-placements and flip-fallback-strategy.\nIf the preferred placement doesn't have room,\nthe first suitable placement found in flip-fallback-placement will be used.\nThe value of this attribute must be a string,\nincluding any number of placements separated by a space, e.g. \"right bottom\".\nIf no fallback placement works, the final placement will be determined by flip-fallback-strategy.\nThis value can be either initial (default),\nwhere the placement reverts to the position in placement,\nor best-fit, where the placement is chosen based on available space.\nScroll the container to see how the popup changes it's fallback placement to prevent clipping.",
+    "id": "components-syn-popup--flip-fallbacks",
+    "path": "layers/examples/component/component__syn-popup/components-syn-popup--flip-fallbacks.md",
+    "title": "Flip Fallbacks"
+  },
+  {
+    "description": "When a popup is longer than its anchor, it risks being clipped by an overflowing container.\nIn this case, use the shift attribute to shift the popup along its axis and back into view.\nYou can customize the shift behavior using shiftBoundary and shift-padding.\nToggle the switch to see the difference.",
+    "id": "components-syn-popup--shift",
+    "path": "layers/examples/component/component__syn-popup/components-syn-popup--shift.md",
+    "title": "Shift"
+  },
+  {
+    "description": "In most cases, popups are anchored to an actual element.\nSometimes, it can be useful to anchor them to a non-element.\nTo do this, you can pass a VirtualElement to the anchor property.\nA virtual element must contain a function called getBoundingClientRect() that returns\na object as shown below.\nThis example anchors a popup to the mouse cursor using a virtual element.\nAs such, a mouse is required to properly view it.",
+    "id": "components-syn-popup--virtual-elements",
+    "path": "layers/examples/component/component__syn-popup/components-syn-popup--virtual-elements.md",
+    "title": "Virtual Elements"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "description": "Spinners are used to show the progress of an indeterminate operation.",
+    "id": "components-syn-spinner--default",
+    "path": "layers/examples/component/component__syn-spinner/components-syn-spinner--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Spinners are sized based on the current font size. To change their size, set the font-size property on the spinner itself or on a parent element as shown below.",
+    "id": "components-syn-spinner--size",
+    "path": "layers/examples/component/component__syn-spinner/components-syn-spinner--size.md",
+    "title": "Size"
+  },
+  {
+    "description": "The width of the spinner’s track can be changed by setting the --track-width custom property.",
+    "id": "components-syn-spinner--track-width",
+    "path": "layers/examples/component/component__syn-spinner/components-syn-spinner--track-width.md",
+    "title": "Track Width"
+  },
+  {
+    "description": "The spinner’s colors can be changed by setting the --indicator-color and --track-color custom properties.",
+    "id": "components-syn-spinner--color",
+    "path": "layers/examples/component/component__syn-spinner/components-syn-spinner--color.md",
+    "title": "Color"
+  }
+]

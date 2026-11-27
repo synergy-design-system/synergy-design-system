@@ -175,6 +175,26 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-fieldset.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-fieldset/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-fieldset/components-syn-fieldset--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-fieldset/components-syn-fieldset--one-column-layout.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-fieldset/components-syn-fieldset--two-column-layout.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-fieldset/components-syn-fieldset--disabled.md"
       }
     ],
     "full": [

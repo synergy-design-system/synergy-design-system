@@ -330,6 +330,74 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-select.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-select/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-select/components-syn-select--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-select/components-syn-select--labels.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-select/components-syn-select--help-text.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-select/components-syn-select--placeholder.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-select/components-syn-select--clearable.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-select/components-syn-select--focus.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-select/components-syn-select--disabled.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-select/components-syn-select--readonly.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-select/components-syn-select--multiple.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-select/components-syn-select--setting-initial-values.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-select/components-syn-select--grouping-options.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-select/components-syn-select--sizes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-select/components-syn-select--invalid.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-select/components-syn-select--prefix-suffix-icons.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-select/components-syn-select--custom-tags.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-select/components-syn-select--endless-scrolling.md"
       }
     ],
     "full": [

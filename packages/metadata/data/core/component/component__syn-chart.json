@@ -1875,6 +1875,642 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-chart.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-syn-chart--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-syn-chart--config.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-syn-chart--palette.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-syn-chart--get-instance.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-syn-chart--multiple-charts-with-different-palettes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-axes--axes-split-lines-hidden.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-axes--axes-split-lines-visible.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-axes--horizontal-split-lines-visible.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-axes--vertical-split-lines-visible.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-axes--axes-labels-hidden.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-axes--axes-lines-visible-with-labels-hidden.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-axes--axes-labels-with-icons.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-axes--axes-positioning.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-axes--min-max-values.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-axes--multiple-y-axes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-axes--multiple-series-per-y-axis.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-axes--axes-label-formatting.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-axes--category-axes-label-greedily.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-axes--category-axes-label-evenly.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-legend--show-legend-top.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-legend--show-legend-left.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-legend--show-legend-right.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-legend--show-legend-bottom.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-legend--non-interactive-legend.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-mark-areas--min-max-and-average.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-mark-areas--value-range.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-mark-areas--category-range.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-mark-areas--label-position.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-mark-areas--intent-colors.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-mark-lines--min-and-max.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-mark-lines--average.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-mark-lines--fixed-thresholds.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-mark-lines--coordinate-line.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-mark-lines--intent-colors.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-mark-lines--label-position.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-mark-lines--no-label.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-mark-points--min-max-and-average.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-mark-points--coordinates.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-mark-points--custom-styling.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-mark-points--long-labels.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-zooming-panning--integrated-zooming.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-features-zooming-panning--slider-zooming.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-chart--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-chart--curved-line.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-chart--hidden-line.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-chart--line-styles-and-widths.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-chart--symbol-styles-and-sizes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-chart--color-palettes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-chart--custom-colors.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-chart--positive-and-negative-values.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-chart--origin.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-chart--stack.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-chart--focus-on-hover.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-chart--tooltip.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-chart--with-legend.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-chart--zoom.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-range-chart--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-range-chart--curved-line.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-range-chart--hidden-line.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-range-chart--line-styles-and-widths.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-range-chart--symbol-styles-and-sizes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-range-chart--color-palettes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-range-chart--custom-colors.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-range-chart--positive-and-negative-values.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-range-chart--tooltip.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-area-range-chart--with-legend.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-grouped--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-grouped--vertical.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-grouped--horizontal.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-grouped--fixed-value-range.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-grouped--negative-values.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-grouped--positive-and-negative.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-grouped--custom-bar-width.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-grouped--custom-colors.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-grouped--categorical-vs-sequential.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-grouped--tooltip.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-grouped--legend.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-grouped--selected-mode.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-single--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-single--vertical.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-single--horizontal.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-single--fixed-value-range.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-single--negative-values.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-single--positive-and-negative.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-single--custom-bar-width.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-single--custom-colors.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-single--tooltip.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-single--selected-mode.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-single--large-data-set.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-stacked--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-stacked--vertical.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-stacked--horizontal.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-stacked--fixed-value-range.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-stacked--negative-values.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-stacked--positive-and-negative.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-stacked--custom-bar-width.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-stacked--custom-colors.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-stacked--categorical-vs-sequential.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-stacked--tooltip.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-stacked--legend.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bar-chart-stacked--selected-mode.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bullet-chart--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bullet-chart--vertical.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bullet-chart--color-by.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bullet-chart--horizontal.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bullet-chart--palette-colors.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bullet-chart--custom-style.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bullet-chart--tooltip.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bullet-chart--legend-selection.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bullet-chart--fixed-axis-range.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bullet-chart--custom-range-width.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-bullet-chart--custom-marker.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-donut-chart--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-donut-chart--custom-colors.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-donut-chart--label-formatting.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-donut-chart--labels-with-icons.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-donut-chart--radius.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-donut-chart--adjust-center-position.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-donut-chart--insets.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-donut-chart--with-legend.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-donut-chart--tooltip.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-donut-chart--status-donut.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-gauge-chart--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-gauge-chart--sections.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-gauge-chart--trend-indicator.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-gauge-chart--icon.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-gauge-chart--value-formatting.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-histogram--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-histogram--vertical.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-histogram--horizontal.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-histogram--fixed-value-range.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-histogram--negative-values.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-histogram--positive-and-negative.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-histogram--custom-bar-width.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-histogram--no-gap.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-histogram--custom-colors.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-histogram--tooltip.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-histogram--large-data-set.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-line-chart--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-line-chart--curved-line.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-line-chart--hidden-line.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-line-chart--multiple-line-styles.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-line-chart--multiple-line-widths-and-symbol-sizes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-line-chart--multiple-symbol-styles.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-line-chart--tooltip.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-line-chart--positive-and-negative-values.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-segment-chart--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-segment-chart--name.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-segment-chart--custom-colors.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-segment-chart--label-formatting.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-segment-chart--gap.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-segment-chart--no-gap.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-segment-chart--min-max.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-segment-chart--weights.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-segment-chart--custom-styling.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-segment-chart--insets.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-segment-chart--with-legend.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart/charts-series-types-segment-chart--tooltip.md"
       }
     ],
     "full": [

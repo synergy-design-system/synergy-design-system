@@ -146,6 +146,26 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-spinner.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-spinner/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-spinner/components-syn-spinner--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-spinner/components-syn-spinner--size.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-spinner/components-syn-spinner--track-width.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-spinner/components-syn-spinner--color.md"
       }
     ],
     "full": [

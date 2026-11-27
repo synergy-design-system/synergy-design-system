@@ -1,0 +1,26 @@
+[
+  {
+    "description": "Fieldset is a component used to group related form controls and labels. It provides a visual and semantic grouping for better accessibility and organization.",
+    "id": "components-syn-fieldset--default",
+    "path": "layers/examples/component/component__syn-fieldset/components-syn-fieldset--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "The one-column layout applies to container widths below 640px and stacks the nested elements within a row. Overall, please make sure that no more than two items are nested within a single row.",
+    "id": "components-syn-fieldset--one-column-layout",
+    "path": "layers/examples/component/component__syn-fieldset/components-syn-fieldset--one-column-layout.md",
+    "title": "One Column Layout"
+  },
+  {
+    "description": "For container widths of 640px or above, the nested elements within each row switch to a horizontal layout.This layout is ideal for forms with multiple fields, as it allows for a more compact and organized presentation of the form controls.Will automatically switch to a one-column layout for container widths below 640px.",
+    "id": "components-syn-fieldset--two-column-layout",
+    "path": "layers/examples/component/component__syn-fieldset/components-syn-fieldset--two-column-layout.md",
+    "title": "Two Column Layout"
+  },
+  {
+    "description": "Use disabled when the entire section is unavailable; it disables contained form controls. Explain how to make the section available. To keep existing values inspectable instead, set readonly on supported child controls.",
+    "id": "components-syn-fieldset--disabled",
+    "path": "layers/examples/component/component__syn-fieldset/components-syn-fieldset--disabled.md",
+    "title": "Disabled"
+  }
+]

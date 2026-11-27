@@ -3,7 +3,7 @@
  * Copies source files to data/layers/full/{kind}/{id}/ and builds layer references.
  */
 import {
-  access, copyFile, mkdir, writeFile,
+  copyFile, mkdir, writeFile,
 } from 'node:fs/promises';
 import {
   basename, dirname, join, relative,
@@ -21,6 +21,7 @@ import { buildFigmaComponentUrl, buildFigmaDocsUrl } from '../../config/figma.js
 import { formatGeneratedMarkdown } from '../core/markdown.js';
 import { encodeEntityIdForPath } from '../core/entity-paths.js';
 import { ensureDir, writeJsonAtomic } from './fs-utils.js';
+import { discoverExampleReferences } from '../collectors/storybook/references.js';
 
 export interface EntityLayers {
   [entityId: string]: Record<string, LayerRef[]>;
@@ -486,6 +487,17 @@ export async function writeLayerAssets(
     const fullLayerRefs: LayerRef[] = [];
     const interfaceLayerRefs: LayerRef[] = [];
     const rulesLayerRefs: LayerRef[] = [];
+    let examplesLayerRefs: LayerRef[];
+    try {
+      examplesLayerRefs = await discoverExampleReferences(outputDir, entity.kind, entity.id);
+    } catch (cause) {
+      return err({
+        details: { cause: String(cause) },
+        kind: 'write',
+        message: `Failed to discover examples for ${entity.id}`,
+        path: join(layersDir, 'examples', entity.kind),
+      });
+    }
 
     try {
       // Token artifact entities are grouped by package path under layers/full/tokens.
@@ -643,20 +655,6 @@ export async function writeLayerAssets(
           path: relative(outputDir, rulesPath),
         });
         ctx.logger?.debug(`Wrote rules markdown: ${relative(outputDir, rulesPath)}`);
-      }
-
-      // Discover generated examples files (from storybook scraper) for this entity
-      const examplesLayerRefs: LayerRef[] = [];
-      const examplesFilePath = join(layersDir, 'examples', entity.kind, `${encodedEntityId}.md`);
-      try {
-        await access(examplesFilePath);
-        examplesLayerRefs.push({
-          layer: 'examples',
-          path: relative(outputDir, examplesFilePath),
-        });
-        ctx.logger?.debug(`Discovered examples file: ${relative(outputDir, examplesFilePath)}`);
-      } catch {
-        // File doesn't exist, which is fine - examples are optional and only generated during build:all
       }
 
       if (fullLayerRefs.length > 0 || interfaceLayerRefs.length > 0 || rulesLayerRefs.length > 0 || examplesLayerRefs.length > 0) {

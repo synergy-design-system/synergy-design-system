@@ -1,0 +1,14 @@
+[
+  {
+    "description": "The loading screen can be displayed in light mode, which is the default theme for all applications.",
+    "id": "templates-loading-screen--loading-screen-light-theme",
+    "path": "layers/examples/template/template__loading-screen/templates-loading-screen--loading-screen-light-theme.md",
+    "title": "Loading Screen Light Theme"
+  },
+  {
+    "description": "The loading screen can be displayed in dark mode, which is suitable for low-light environments or user preferences.",
+    "id": "templates-loading-screen--loading-screen-dark-theme",
+    "path": "layers/examples/template/template__loading-screen/templates-loading-screen--loading-screen-dark-theme.md",
+    "title": "Loading Screen Dark Theme"
+  }
+]

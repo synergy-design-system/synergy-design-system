@@ -1,0 +1,32 @@
+[
+  {
+    "description": "It is possible to achieve different table stylings (default, with border, alternating, ...) \n  either via multiple classes on the table, td and th elements or as a convenient alternative\n  as auto styling class, which is applied on a table element. These auto styling classes will\n  style the td and th elements correctly, without the need to apply further classes.\n     Note: The auto styling table classes work for simple table layouts. For more complex ones or advanced use cases, the table cell classes should be used.",
+    "id": "styles-syn-table--default",
+    "path": "layers/examples/style/style__syn-table/styles-syn-table--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Create table styles using multiple classes attached to table, td and th elements.",
+    "id": "styles-syn-table--atomic-table",
+    "path": "layers/examples/style/style__syn-table/styles-syn-table--atomic-table.md",
+    "title": "Atomic Table"
+  },
+  {
+    "description": "Use default table style with the auto styling class syn-table--default.",
+    "id": "styles-syn-table--auto-default-table",
+    "path": "layers/examples/style/style__syn-table/styles-syn-table--auto-default-table.md",
+    "title": "Auto Default Table"
+  },
+  {
+    "description": "Use alternating table style with the auto styling class syn-table--alternating.",
+    "id": "styles-syn-table--auto-alternating-table",
+    "path": "layers/examples/style/style__syn-table/styles-syn-table--auto-alternating-table.md",
+    "title": "Auto Alternating Table"
+  },
+  {
+    "description": "Use border table style with the auto styling class syn-table--border.",
+    "id": "styles-syn-table--auto-border-table",
+    "path": "layers/examples/style/style__syn-table/styles-syn-table--auto-border-table.md",
+    "title": "Auto Border Table"
+  }
+]

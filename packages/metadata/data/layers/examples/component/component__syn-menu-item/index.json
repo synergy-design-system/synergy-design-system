@@ -1,0 +1,44 @@
+[
+  {
+    "description": "Menu items provide options for the user to pick from in a menu.",
+    "id": "components-syn-menu-item--default",
+    "path": "layers/examples/component/component__syn-menu-item/components-syn-menu-item--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Add content to the start and end of menu items using the prefix and suffix slots.",
+    "id": "components-syn-menu-item--prefix-and-suffix",
+    "path": "layers/examples/component/component__syn-menu-item/components-syn-menu-item--prefix-and-suffix.md",
+    "title": "Prefix And Suffix"
+  },
+  {
+    "description": "Use the disabled attribute to disable an option and prevent it from being selected.",
+    "id": "components-syn-menu-item--disabled",
+    "path": "layers/examples/component/component__syn-menu-item/components-syn-menu-item--disabled.md",
+    "title": "Disabled"
+  },
+  {
+    "description": "Use the loading attribute to indicate that a menu item is busy. Like a disabled menu item, clicks will be suppressed until the loading state is removed.",
+    "id": "components-syn-menu-item--loading",
+    "path": "layers/examples/component/component__syn-menu-item/components-syn-menu-item--loading.md",
+    "title": "Loading"
+  },
+  {
+    "description": "The focus event gives the user feedback that the Menu Item has been focused by the keyboard interaction from the user.",
+    "id": "components-syn-menu-item--focus",
+    "path": "layers/examples/component/component__syn-menu-item/components-syn-menu-item--focus.md",
+    "title": "Focus"
+  },
+  {
+    "description": "Set the type attribute to checkbox to create a menu item that will toggle on and off when selected. You can use the checked attribute to set the initial state.Checkbox menu items are visually indistinguishable from regular menu items. Their ability to be toggled is primarily inferred from context, much like you’d find in the menu of a native app.",
+    "id": "components-syn-menu-item--checkbox-menu-items",
+    "path": "layers/examples/component/component__syn-menu-item/components-syn-menu-item--checkbox-menu-items.md",
+    "title": "Checkbox Menu Items"
+  },
+  {
+    "description": "The value attribute can be used to assign a hidden value, such as a unique identifier, to a menu item. When an item is selected, the syn-select event will be emitted and a reference to the item will be available at event.detail.item. You can use this reference to access the selected item’s value, its checked state, and more.",
+    "id": "components-syn-menu-item--value-selection",
+    "path": "layers/examples/component/component__syn-menu-item/components-syn-menu-item--value-selection.md",
+    "title": "Value Selection"
+  }
+]

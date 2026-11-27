@@ -34,6 +34,7 @@ Each component includes three facets:
 - `components/<component-name>/interface.md`
 - `components/<component-name>/rules.md`
 - `components/<component-name>/examples.md`
+- `components/<component-name>/examples/README.md` and individual example files
 
 ### `interface.md`
 
@@ -50,7 +51,7 @@ Preserve the strength expressed by each statement: requirements and prohibitions
 
 ### `examples.md`
 
-Code samples showing common patterns and variations. Use this for understanding typical usage patterns.
+Code samples showing common patterns and variations. Prefer `examples/README.md` to discover and open individual relevant examples; `examples.md` remains available as a combined reference.
 
 ## How to Use
 
@@ -76,7 +77,7 @@ If an example conflicts with the documented interface or rules, do not follow th
 1. **Identify the request**: If the user names a component, open `components/<component-name>/` directly. If only a higher-level goal is given, consult applicable intent guidance when the companion skill is installed; otherwise use documented component purposes and project requirements. Do not choose based only on a similar component name. State unresolved choices or ask for clarification when they affect the implementation.
 2. **Check usage**: Read the selected components' `rules.md`, including grouping, shared labels, actions, and feedback where relevant. Preserve the distinction between constraints and recommendations.
 3. **Verify APIs**: Read `interface.md` to verify the properties, attributes, slots, events, methods, and types used by the implementation.
-4. **Check examples and composition**: Read only relevant portions of `examples.md`. For multi-component compositions, consult a relevant template when its companion skill is installed, then verify the adapted components against their interfaces and rules.
+4. **Check examples and composition**: Use `examples/README.md` to find and read relevant individual examples, or consult `examples.md` if an index is unavailable. For multi-component compositions, consult a relevant template when its companion skill is installed, then verify the adapted components against their interfaces and rules.
 5. **Verify framework syntax**: Preserve the framework and syntax of an example unless adaptation is required. When adapting to React, Angular, Vue, or another integration, verify property bindings, events, and registration conventions against available local documentation. Do not assume custom-element attributes map directly to framework wrappers; state unverified integration details.
 6. **Review before responding**: Check that used APIs are documented, usage follows the applicable rules, and examples have not been treated as additional API. State unresolved version, selection, or documentation uncertainty.
 

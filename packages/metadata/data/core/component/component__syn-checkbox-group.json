@@ -226,6 +226,50 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-checkbox-group.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-checkbox-group/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-checkbox-group/components-syn-checkbox-group--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-checkbox-group/components-syn-checkbox-group--vertical-layout.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-checkbox-group/components-syn-checkbox-group--horizontal-layout.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-checkbox-group/components-syn-checkbox-group--labels.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-checkbox-group/components-syn-checkbox-group--checked.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-checkbox-group/components-syn-checkbox-group--help-text.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-checkbox-group/components-syn-checkbox-group--focus.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-checkbox-group/components-syn-checkbox-group--disabled.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-checkbox-group/components-syn-checkbox-group--readonly.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-checkbox-group/components-syn-checkbox-group--sizes.md"
       }
     ],
     "full": [

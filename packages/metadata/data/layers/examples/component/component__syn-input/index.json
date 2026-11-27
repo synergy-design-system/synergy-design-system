@@ -1,0 +1,98 @@
+[
+  {
+    "description": "Inputs collect data from the user.",
+    "id": "components-syn-input--default",
+    "path": "layers/examples/component/component__syn-input/components-syn-input--default.md",
+    "title": "Default"
+  },
+  {
+    "description": "Use disabled only when the input is unavailable, and explain how to make it available. Disabled inputs leave the tab order and are not submitted; use readonly to show an existing value instead.",
+    "id": "components-syn-input--labels",
+    "path": "layers/examples/component/component__syn-input/components-syn-input--labels.md",
+    "title": "Labels"
+  },
+  {
+    "description": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.The help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
+    "id": "components-syn-input--help-text",
+    "path": "layers/examples/component/component__syn-input/components-syn-input--help-text.md",
+    "title": "Help Text"
+  },
+  {
+    "description": "Use the placeholder attribute to add a placeholder.",
+    "id": "components-syn-input--placeholders",
+    "path": "layers/examples/component/component__syn-input/components-syn-input--placeholders.md",
+    "title": "Placeholders"
+  },
+  {
+    "description": "Add the clearable attribute to add a clear button when the input has content.",
+    "id": "components-syn-input--clearable",
+    "path": "layers/examples/component/component__syn-input/components-syn-input--clearable.md",
+    "title": "Clearable"
+  },
+  {
+    "description": "Add the password-toggle attribute to add a toggle button that will show the password when activated.",
+    "id": "components-syn-input--toggle-password",
+    "path": "layers/examples/component/component__syn-input/components-syn-input--toggle-password.md",
+    "title": "Toggle Password"
+  },
+  {
+    "description": "Add the readonly attribute to draw a read-only input.",
+    "id": "components-syn-input--readonly-inputs",
+    "path": "layers/examples/component/component__syn-input/components-syn-input--readonly-inputs.md",
+    "title": "Readonly Inputs"
+  },
+  {
+    "description": "The focus attribute provides feedback to the users, informing them that the input component is ready for use.",
+    "id": "components-syn-input--focus",
+    "path": "layers/examples/component/component__syn-input/components-syn-input--focus.md",
+    "title": "Focus"
+  },
+  {
+    "description": "Use the disabled attribute to disable an input.",
+    "id": "components-syn-input--disabled",
+    "path": "layers/examples/component/component__syn-input/components-syn-input--disabled.md",
+    "title": "Disabled"
+  },
+  {
+    "description": "Use the size attribute to change an input's size.",
+    "id": "components-syn-input--sizes",
+    "path": "layers/examples/component/component__syn-input/components-syn-input--sizes.md",
+    "title": "Sizes"
+  },
+  {
+    "description": "The invalid status is used to warn the user that the input is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format.",
+    "id": "components-syn-input--invalid",
+    "path": "layers/examples/component/component__syn-input/components-syn-input--invalid.md",
+    "title": "Invalid"
+  },
+  {
+    "description": "The type attribute controls the type of input the browser renders.",
+    "id": "components-syn-input--input-types",
+    "path": "layers/examples/component/component__syn-input/components-syn-input--input-types.md",
+    "title": "Input Types"
+  },
+  {
+    "description": "Use the prefix and suffix slots to add text and icons.",
+    "id": "components-syn-input--prefix-suffix-text-and-icons",
+    "path": "layers/examples/component/component__syn-input/components-syn-input--prefix-suffix-text-and-icons.md",
+    "title": "Prefix Suffix Text And Icons"
+  },
+  {
+    "description": "Use to customize the way form controls are drawn. This example uses CSS grid to position the label to the left of the control, but the possible orientations are nearly endless. The same technique works for inputs, textareas, radio groups, and similar form controls.",
+    "id": "components-syn-input--customizing-label-position",
+    "path": "layers/examples/component/component__syn-input/components-syn-input--customizing-label-position.md",
+    "title": "Customizing Label Position"
+  },
+  {
+    "description": "The Stepper (Input type number) attribute has additional step buttons at the right side for incrementing and decrementing values. It is ideal for situations where users need to adjust quantities or settings within a range.",
+    "id": "components-syn-input--stepper",
+    "path": "layers/examples/component/component__syn-input/components-syn-input--stepper.md",
+    "title": "Stepper"
+  },
+  {
+    "description": "The numeric-strategy property defines how numeric input is handled during user interaction. It lets you select between the browsers native control and Synergy’s enhanced number-input logic.native: Uses the browser’s built-in number control. Values are not auto-clamped, and stepping/validation can vary across browsers.modern: Provides a more intuitive and predictable behavior by automatically clamping values to the nearest min/max value, including those bounds when stepping, and ignoring the step attribute during validation.",
+    "id": "components-syn-input--stepper-input-handling",
+    "path": "layers/examples/component/component__syn-input/components-syn-input--stepper-input-handling.md",
+    "title": "Stepper Input Handling"
+  }
+]

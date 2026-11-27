@@ -9,6 +9,26 @@
       {
         "layer": "examples",
         "path": "layers/examples/style/style__syn-link-list.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-link-list/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-link-list/styles-syn-link-list--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-link-list/styles-syn-link-list--horizontal.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-link-list/styles-syn-link-list--multiline.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style__syn-link-list/styles-syn-link-list--size.md"
       }
     ],
     "full": [

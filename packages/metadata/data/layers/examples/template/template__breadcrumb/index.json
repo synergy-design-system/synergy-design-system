@@ -1,0 +1,20 @@
+[
+  {
+    "description": "",
+    "id": "templates-breadcrumb--breadcrumb-responsive",
+    "path": "layers/examples/template/template__breadcrumb/templates-breadcrumb--breadcrumb-responsive.md",
+    "title": "Breadcrumb Responsive"
+  },
+  {
+    "description": "",
+    "id": "templates-breadcrumb--breadcrumb-truncated",
+    "path": "layers/examples/template/template__breadcrumb/templates-breadcrumb--breadcrumb-truncated.md",
+    "title": "Breadcrumb Truncated"
+  },
+  {
+    "description": "",
+    "id": "templates-breadcrumb--breadcrumb-short",
+    "path": "layers/examples/template/template__breadcrumb/templates-breadcrumb--breadcrumb-short.md",
+    "title": "Breadcrumb Short"
+  }
+]

@@ -139,6 +139,26 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-tag.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tag/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tag/components-syn-tag--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tag/components-syn-tag--with-icon.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tag/components-syn-tag--removable.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tag/components-syn-tag--sizes.md"
       }
     ],
     "full": [

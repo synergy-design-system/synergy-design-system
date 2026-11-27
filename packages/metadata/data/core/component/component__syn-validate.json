@@ -220,6 +220,50 @@
       {
         "layer": "examples",
         "path": "layers/examples/component/component__syn-validate.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-validate/index.json"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-validate/components-syn-validate--default.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-validate/components-syn-validate--tooltip-variant.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-validate/components-syn-validate--inline-variant.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-validate/components-syn-validate--hide-icon.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-validate/components-syn-validate--sizes.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-validate/components-syn-validate--live.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-validate/components-syn-validate--custom-validation-message.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-validate/components-syn-validate--custom-form-field.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-validate/components-syn-validate--binding-to-custom-event-names.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-validate/components-syn-validate--eager.md"
       }
     ],
     "full": [

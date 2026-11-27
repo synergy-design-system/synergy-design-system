@@ -4,12 +4,20 @@ import { html } from 'lit';
 import {
   generateScreenshotStory, storybookDefaults, storybookHelpers, storybookTemplate,
 } from '../../src/helpers/component.js';
-import { registerIconLibrary } from '../../../components/src/utilities/icon-library.js';
+import { getIconDataURL, registerIconLibrary } from '../../../components/src/utilities/icon-library.js';
 import { defaultIcons } from '../../../assets/src/index.js';
 
 // We use this type of include to have a valid markdown file
 // that can be used by the MCP.
 import iconDocs from '../../src/static/icon-usage.md?raw';
+
+declare global {
+  interface Window {
+    getIconDataURL: typeof getIconDataURL;
+  }
+}
+
+window.getIconDataURL = getIconDataURL;
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-icon');
 const { overrideArgs } = storybookHelpers('syn-icon');
@@ -60,7 +68,7 @@ export const Default: Story = {
 
 /**
  * Icons inherit their color from the current text color.
- * Thus, you can set the color property on the <syn-icon> element or an ancestor to change color.
+ * Thus, you can set the color property on the `<syn-icon>` element or an ancestor to change color.
  */
 export const Colors: Story = {
   render: () => html`<div style="color: var(--syn-color-primary-600);">
@@ -176,6 +184,7 @@ export const CustomIcons: Story = {
 export const CDNIconLibrary: Story = {
   render: () => {
     registerIconLibrary('fa', {
+      mutator: svg => svg.setAttribute('fill', 'currentColor'),
       resolver: name => {
         const filename = name.replace(/^fa[rbs]-/, '');
         let folder = 'regular';
@@ -183,7 +192,6 @@ export const CDNIconLibrary: Story = {
         if (name.substring(0, 4) === 'fab-') folder = 'brands';
         return `https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/svgs/${folder}/${filename}.svg`;
       },
-      mutator: svg => svg.setAttribute('fill', 'currentColor'),
     });
     return html`<div style="font-size: var(--syn-font-size-x-large);">
   <syn-icon library="fa" name="far-bell"></syn-icon>
@@ -199,6 +207,37 @@ export const CDNIconLibrary: Story = {
   <syn-icon library="fa" name="fab-edge"></syn-icon>
 </div>`;
   },
+};
+
+/**
+ * Use `getIconDataURL` to get a base64 SVG data URL for an icon from a registered library.
+ * The library name is optional and defaults to `default`. Await the result before using it as an
+ * image source or in a chart configuration.
+ *
+ * ```ts
+ * import { getIconDataURL } from '@synergy-design-system/components/utilities/icon-library.js';
+ *
+ * const warningIcon = await getIconDataURL('warning');
+ * ```
+ */
+export const DataUrl: Story = {
+  render: () => html`
+    <div id="data-urls" style="display: flex; gap: var(--syn-spacing-medium);">
+      <img width="24" height="24" alt="Warning" />
+      <img width="24" height="24" alt="Inventory" />
+    </div>
+    <script type="module">
+      // To get an svg data url for an icon, use "getIconDataURL" from the components package
+      // import { getIconDataURL }  from '@synergy-design-system/components/utilities/icon-library.js'.
+      const icons = await Promise.all([
+        getIconDataURL('warning'),
+        getIconDataURL('inventory'),
+      ]);
+      document.querySelectorAll('#data-urls img').forEach((image, index) => {
+        image.src = icons[index];
+      });
+    </script>
+  `,
 };
 
 /**
@@ -255,6 +294,57 @@ export const BundledIconLibrary: Story = {
 };
 
 /**
+ * getIconDataURL also works with the bundled-default library registered above.
+ * The returned value can be used as an image source or in a chart configuration.
+ * Importing defaultIcons still bundles the full icon catalogue; the utility does not tree-shake that map.
+ *
+ * ```typescript
+ * import { getIconDataURL, registerIconLibrary } from '@synergy-design-system/components/utilities/icon-library.js';
+ * import { defaultIcons } from '@synergy-design-system/assets';
+ *
+ * registerIconLibrary('bundled-default', {
+ *   mutator: svg => svg.setAttribute('fill', 'currentColor'),
+ *   resolver: name => {
+ *     if (name in defaultIcons) {
+ *       const defaultName = name as keyof typeof defaultIcons;
+ *       return `data:image/svg+xml,${encodeURIComponent(defaultIcons[defaultName])}`;
+ *     }
+ *     return '';
+ *   },
+ * });
+ *
+ * const warningIcon = await getIconDataURL('warning', 'bundled-default');
+ * ```
+ */
+export const BundledIconDataURL: Story = {
+  render: () => {
+    registerIconLibrary('bundled-default', {
+      mutator: svg => svg.setAttribute('fill', 'currentColor'),
+      resolver: name => {
+        if (name in defaultIcons) {
+          const defaultName = name as keyof typeof defaultIcons;
+          return `data:image/svg+xml,${encodeURIComponent(defaultIcons[defaultName])}`;
+        }
+        return '';
+      },
+    });
+    return html`<div style="display: flex; gap: var(--syn-spacing-medium);">
+        <img id="data-url-bundled-warning" width="24" height="24" alt="Warning" />
+        <img id="data-url-bundled-inventory" width="24" height="24" alt="Inventory" />
+      </div>
+      <script type="module">
+        // To get an svg data url for an icon, use "getIconDataURL" from the components package
+        // import { getIconDataURL }  from '@synergy-design-system/components/utilities/icon-library.js'.
+        const warningIcon = await getIconDataURL('warning', 'bundled-default');
+        const inventoryIcon = await getIconDataURL('inventory', 'bundled-default');
+        document.querySelector('#data-url-bundled-warning').src = warningIcon;
+        document.querySelector('#data-url-bundled-inventory').src = inventoryIcon;
+      </script>
+      `;
+  },
+};
+
+/**
 * To improve performance you can use a SVG sprites to avoid multiple trips for each SVG.
 * The browser will load the sprite sheet once and
 * then you reference the particular SVG within the sprite sheet using hash selector.
@@ -301,6 +391,48 @@ export const SpriteSheetUsage: Story = {
   },
 };
 
+/**
+ * For a library registered with `spriteSheet: true`, the resolver must return the sprite URL with
+ * the desired `<symbol>` ID as its fragment, for example `/sprite.svg#settings`. The utility copies
+ * that symbol into a standalone SVG, so include any definitions it needs inside the symbol. The
+ * sprite must be same-origin or CORS-enabled.
+ *
+ * ```typescript
+ * import { getIconDataURL, registerIconLibrary } from '@synergy-design-system/components/utilities/icon-library.js';
+ *
+ * registerIconLibrary('sprite', {
+ *   mutator: svg => svg.setAttribute('fill', 'currentColor'),
+ *   resolver: name => `/sprite.svg#${name}`,
+ *   spriteSheet: true,
+ * });
+ *
+ * const settingsIcon = await getIconDataURL('settings', 'sprite');
+ * ```
+ */
+export const SpriteSheetDataURL: Story = {
+  render: () => {
+    registerIconLibrary('sprite', {
+      mutator: svg => svg.setAttribute('fill', 'currentColor'),
+      resolver: name => `/sprite.svg#${name}`,
+      spriteSheet: true,
+    });
+    return html`<div style="display: flex; gap: var(--syn-spacing-medium);">
+        <img id="data-url-sprite-settings" width="24" height="24" alt="Settings" />
+        <img id="data-url-sprite-refresh" width="24" height="24" alt="Refresh" />
+      </div>
+      <script type="module">
+        // import { getIconDataURL } from '@synergy-design-system/components/utilities/icon-library.js';
+        const icons = await Promise.all([
+          getIconDataURL('settings', 'sprite'),
+          getIconDataURL('refresh', 'sprite'),
+        ]);
+        document.querySelector('#data-url-sprite-settings').src = icons[0];
+        document.querySelector('#data-url-sprite-refresh').src = icons[1];
+      </script>
+    `;
+  },
+};
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
@@ -309,7 +441,10 @@ export const Screenshot: Story = generateScreenshotStory({
   Labels,
   CustomIcons,
   CDNIconLibrary,
+  DataUrl,
   BundledIconLibrary,
+  BundledIconDataURL,
   SpriteSheetUsage,
+  SpriteSheetDataURL,
 });
 /* eslint-enable sort-keys */

@@ -404,47 +404,6 @@ To add icons to axis labels, use the handle methods axesAddXLabelIcons() and axe
 </div>
 <syn-chart id="chart-axis-prefix-icons"></syn-chart>
 <script type="module">
-  const XAXIS_ICONS = [
-    "calendar_today",
-    "event_available",
-    "schedule",
-    "event_note",
-    "event_upcoming",
-    "weekend",
-    "sunny",
-  ];
-  const YAXIS_ICONS = [
-    "wallpaper",
-    "tune",
-    "watch",
-    "format_paint",
-    "brush",
-    "gradient",
-    "format_color_reset",
-  ];
-
-  let yAxisIconUrls = [];
-  let xAxisIconUrls = [];
-
-  const fetchIcons = async () => {
-    xAxisIconUrls = await Promise.all(
-      XAXIS_ICONS.map(async (iconName) => {
-        const svg = await fetch("/assets/sick2025/" + iconName + ".svg").then(
-          (r) => r.text(),
-        );
-        return "data:image/svg+xml;base64," + btoa(svg);
-      }),
-    );
-    yAxisIconUrls = await Promise.all(
-      YAXIS_ICONS.map(async (iconName) => {
-        const svg = await fetch("/assets/sick2025/" + iconName + ".svg").then(
-          (r) => r.text(),
-        );
-        return "data:image/svg+xml;base64," + btoa(svg);
-      }),
-    );
-  };
-
   const xAxisIconPositionSelect = document.querySelector(
     "#x-axis-icon-position",
   );
@@ -452,7 +411,33 @@ To add icons to axis labels, use the handle methods axesAddXLabelIcons() and axe
     "#y-axis-icon-position",
   );
 
-  const setConfig = async () => {
+  // Import getIconDataURL from '@synergy-design-system/components/utilities/icon-library.js'.
+  const [xAxisIconUrls, yAxisIconUrls] = await Promise.all([
+    Promise.all(
+      [
+        "calendar_today",
+        "event_available",
+        "schedule",
+        "event_note",
+        "event_upcoming",
+        "weekend",
+        "sunny",
+      ].map((icon) => getIconDataURL(icon)),
+    ),
+    Promise.all(
+      [
+        "wallpaper",
+        "tune",
+        "watch",
+        "format_paint",
+        "brush",
+        "gradient",
+        "format_color_reset",
+      ].map((icon) => getIconDataURL(icon)),
+    ),
+  ]);
+
+  const setConfig = () => {
     const baseConfig = {
       series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: "line" }],
       xAxis: {
@@ -486,7 +471,7 @@ To add icons to axis labels, use the handle methods axesAddXLabelIcons() and axe
     });
   };
 
-  fetchIcons().then(setConfig);
+  setConfig();
   xAxisIconPositionSelect.addEventListener("syn-change", setConfig);
   yAxisIconPositionSelect.addEventListener("syn-change", setConfig);
 </script>
@@ -5741,6 +5726,31 @@ Use the label option to render a label for each segment, aligned by index with d
 ```html
 <syn-chart id="donut-labels"></syn-chart>
 <script type="module">
+  const frameworkIcons = new Map([
+    [
+      "angular",
+      "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3VycmVudENvbG9yIj48cGF0aCBkPSJNMTIgMkwyIDZsMS42IDEyLjlMMTIgMjJsOC40LTMuMUwyMiA2IDEyIDJ6bTAgMi4yIDcuNiAyLjctMS4yIDEwLjZMMTIgMTkuOGwtNi40LTIuM0w0LjQgNi45IDEyIDQuMnpNMTIgOWwtNCA5aDEuNmwuOC0yaDMuMmwuOCAySDE2bC00LTl6bTAgMi45IDEuMSAyLjdoLTIuMkwxMiAxMS45eiIvPjwvc3ZnPg==",
+    ],
+    [
+      "react",
+      "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMS40Ij48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIyIiBmaWxsPSJjdXJyZW50Q29sb3IiIHN0cm9rZT0ibm9uZSIvPjxlbGxpcHNlIGN4PSIxMiIgY3k9IjEyIiByeD0iMTAiIHJ5PSI0LjIiLz48ZWxsaXBzZSBjeD0iMTIiIGN5PSIxMiIgcng9IjEwIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSg2MCAxMiAxMikiLz48ZWxsaXBzZSBjeD0iMTIiIGN5PSIxMiIgcng9IjEwIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjAgMTIgMTIpIi8+PC9zdmc+",
+    ],
+    [
+      "vue",
+      "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3VycmVudENvbG9yIj48cGF0aCBkPSJNMiAzaDQuMkwxMiAxM2w1LjgtMTBIMjJMMTIgMjEgMiAzeiIvPjxwYXRoIGQ9Ik04LjQgM2gzLjJMMTIgNS4xIDEzLjQgM2gzLjJMMTIgMTIuOSA4LjQgM3oiLz48L3N2Zz4=",
+    ],
+  ]);
+
+  // Register a custom icon library for chart framework icons.
+  registerIconLibrary("chart-frameworks", {
+    resolver: (name) => frameworkIcons.get(name) ?? "",
+  });
+  // Custom icons use a named library registered with the components icon-library utility.
+  const [angularIcon, reactIcon, vueIcon] = await Promise.all([
+    getIconDataURL("angular", "chart-frameworks"),
+    getIconDataURL("react", "chart-frameworks"),
+    getIconDataURL("vue", "chart-frameworks"),
+  ]);
   const charts = document.querySelectorAll("#donut-labels");
 
   charts.forEach((chart) => {
@@ -5750,20 +5760,17 @@ Use the label option to render a label for each segment, aligned by index with d
           {
             value: 421,
             label: "Angular",
-            prefixIcon:
-              "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3VycmVudENvbG9yIj48cGF0aCBkPSJNMTIgMkwyIDZsMS42IDEyLjlMMTIgMjJsOC40LTMuMUwyMiA2IDEyIDJ6bTAgMi4yIDcuNiAyLjctMS4yIDEwLjZMMTIgMTkuOGwtNi40LTIuM0w0LjQgNi45IDEyIDQuMnpNMTIgOWwtNCA5aDEuNmwuOC0yaDMuMmwuOCAySDE2bC00LTl6bTAgMi45IDEuMSAyLjdoLTIuMkwxMiAxMS45eiIvPjwvc3ZnPg==",
+            prefixIcon: angularIcon,
           },
           {
             value: 552,
             label: "React",
-            prefixIcon:
-              "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMS40Ij48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIyIiBmaWxsPSJjdXJyZW50Q29sb3IiIHN0cm9rZT0ibm9uZSIvPjxlbGxpcHNlIGN4PSIxMiIgY3k9IjEyIiByeD0iMTAiIHJ5PSI0LjIiLz48ZWxsaXBzZSBjeD0iMTIiIGN5PSIxMiIgcng9IjEwIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSg2MCAxMiAxMikiLz48ZWxsaXBzZSBjeD0iMTIiIGN5PSIxMiIgcng9IjEwIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjAgMTIgMTIpIi8+PC9zdmc+",
+            prefixIcon: reactIcon,
           },
           {
             value: 36,
             label: "Vue",
-            prefixIcon:
-              "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3VycmVudENvbG9yIj48cGF0aCBkPSJNMiAzaDQuMkwxMiAxM2w1LjgtMTBIMjJMMTIgMjEgMiAzeiIvPjxwYXRoIGQ9Ik04LjQgM2gzLjJMMTIgNS4xIDEzLjQgM2gzLjJMMTIgMTIuOSA4LjQgM3oiLz48L3N2Zz4=",
+            prefixIcon: vueIcon,
           },
         ],
       });
@@ -6047,13 +6054,16 @@ Use the icon option to render an SVG image below the unit label, or below the va
 <script type="module">
   // Import the formatter from the chart utilities
   //import { formatter } from '@synergy-design-system/components/components/chart/index.js';
+  // Import the getIconDataURL utility from the icon-library module.
+  // import { getIconDataURL } from '@synergy-design-system/components/utilities/icon-library.js'.
 
+  const icon = await getIconDataURL("device_thermostat");
   const charts = document.querySelectorAll("#gauge-icon");
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
       handle.seriesGauge({
-        icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMiAyMS41cS0xLjg3MyAwLTMuMTg3LTEuMzE0UTcuNSAxOC44NzQgNy41IDE3cTAtMS4xNDMuNTMtMi4xMTdhNC41NiA0LjU2IDAgMCAxIDEuNDctMS42MTRWNXEwLTEuMDQ4LjcyNi0xLjc3NEEyLjQgMi40IDAgMCAxIDEyIDIuNXExLjA0OCAwIDEuNzc0LjcyNlQxNC41IDV2OC4yN2E0LjU2IDQuNTYgMCAwIDEgMS40NyAxLjYxM3EuNTMuOTc0LjUzIDIuMTE3IDAgMS44NzMtMS4zMTMgMy4xODZRMTMuODczIDIxLjUgMTIgMjEuNW0tMS0xMC4zMDhoMnYtMS4yNWgtMXYtLjg4NGgxVjYuOTQyaC0xdi0uODg0aDFWNWEuOTcuOTcgMCAwIDAtLjI4Ny0uNzEzQS45Ny45NyAwIDAgMCAxMiA0YS45Ny45NyAwIDAgMC0uNzEzLjI4N0EuOTcuOTcgMCAwIDAgMTEgNXoiLz48L3N2Zz4=",
+        icon,
         sections: {
           show: true,
         },
@@ -7036,13 +7046,15 @@ Set gap to 0 to render no gap between the segments. Additionally a custom icon c
 ```html
 <syn-chart id="segment-no-gap"></syn-chart>
 <script type="module">
+  // Import getIconDataURL from '@synergy-design-system/components/utilities/icon-library.js'.
+  const icon = await getIconDataURL("device_thermostat");
   const charts = document.querySelectorAll("#segment-no-gap");
   charts.forEach((chart) => {
     chart.config = (handle) =>
       handle.seriesSegment({
         data: [90, 100, 20, 10, 50, 90, 10, 0, 20, 10, 30, 70, 40, 10, 30, 20],
         gap: 0,
-        icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMiAyMS41cS0xLjg3MyAwLTMuMTg3LTEuMzE0UTcuNSAxOC44NzQgNy41IDE3cTAtMS4xNDMuNTMtMi4xMTdhNC41NiA0LjU2IDAgMCAxIDEuNDctMS42MTRWNXEwLTEuMDQ4LjcyNi0xLjc3NEEyLjQgMi40IDAgMCAxIDEyIDIuNXExLjA0OCAwIDEuNzc0LjcyNlQxNC41IDV2OC4yN2E0LjU2IDQuNTYgMCAwIDEgMS40NyAxLjYxM3EuNTMuOTc0LjUzIDIuMTE3IDAgMS44NzMtMS4zMTMgMy4xODZRMTMuODczIDIxLjUgMTIgMjEuNW0tMS0xMC4zMDhoMnYtMS4yNWgtMXYtLjg4NGgxVjYuOTQyaC0xdi0uODg0aDFWNWEuOTcuOTcgMCAwIDAtLjI4Ny0uNzEzQS45Ny45NyAwIDAgMCAxMiA0YS45Ny45NyAwIDAgMC0uNzEzLjI4N0EuOTcuOTcgMCAwIDAgMTEgNXoiLz48L3N2Zz4=",
+        icon,
       });
   });
 </script>

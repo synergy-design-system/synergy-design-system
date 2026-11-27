@@ -106,6 +106,17 @@
           ],
           "id": "sources",
           "name": "Icon Sources"
+        },
+        {
+          "content": [
+            "getIconDataURL from @synergy-design-system/components/utilities/icon-library.js supports registered spritesheet and bundled icon libraries in browser code, returning a base64 SVG data URL suitable for images or charts.",
+            "For spritesheets, use an SVG file containing <symbol id=\"...\"> elements and a resolver such as /sprite.svg#settings with spriteSheet: true. The helper extracts the selected symbol and applies the library mutator to an independent SVG. Symbol attributes and content are copied, but sheet attributes and content outside the symbol are not; references remain but their targets outside the symbol are not copied. Include the content and definitions the symbol needs for portable output. Missing fragments or symbols reject the promise. The sheet must be same-origin or CORS-enabled.",
+            "For bundled libraries, register the resolver as usual and call getIconDataURL(\"warning\", \"bundled-default\"). Explicitly importing the full defaultIcons map still increases bundle size; the helper does not tree-shake runtime map lookups.",
+            "getIconDataURL runs the registered mutator on a fresh SVG clone for every call and reuses the most recent data URL for a resolved source only when the resulting SVG is unchanged.",
+            "On failure getIconDataURL rejects its promise; use try/catch to handle the error. Network and retryable HTTP failures can be retried, while HTTP 410 and invalid SVG failures remain cached."
+          ],
+          "id": "data-urls",
+          "name": "Spritesheet and Bundled Data URLs"
         }
       ],
       "useCases": [
@@ -169,6 +180,10 @@
       },
       {
         "layer": "full",
+        "path": "layers/full/component/component__syn-icon/components/utility.ts"
+      },
+      {
+        "layer": "full",
         "path": "layers/full/component/component__syn-icon/react/icon.ts"
       },
       {
@@ -212,6 +227,7 @@
     "packages/components/src/components/icon/library.ts",
     "packages/components/src/components/icon/sick2018-system-icons.ts",
     "packages/components/src/components/icon/sick2025-system-icons.ts",
+    "packages/components/src/components/icon/utility.ts",
     "packages/react/src/components/icon.ts",
     "packages/vue/src/components/SynVueIcon.vue"
   ],

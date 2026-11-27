@@ -28,3 +28,9 @@ This is achieved via bundling all non interactive stories of one component into 
 All interactive stories, this are stories with the _play_ functionality (e.g. focus stories or validation stories), need to remain as unique story.
 
 In order to ensure that stories are not accidentally taken as screenshot, the chromatic screenshot ability is disabled globally and needs to be explicitly allowed for each story. If the helper function is used it is not necessary, because it does this by itself.
+
+### Chart icons
+
+Use `getIconDataURL` from the components package's icon-library utility in chart stories. Await the icon before assigning the synchronous chart configuration callback. The Storybook theme decorator already configures the shared `syn-icon` registry; custom icons can use a named library registered with the same utility.
+
+Import from the component sources, as with other story utilities, so the story shares the decorator's registry. Expose the utility on `window` for inline script examples. Do not inject icon data URLs using the Node-only assets helper. Icon stories and their bundled screenshot stories should wait for the images to render in their `play` functions.

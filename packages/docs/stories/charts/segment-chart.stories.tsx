@@ -12,6 +12,7 @@ import { ResolvedTokens as ComponentTokens } from '@synergy-design-system/tokens
 import isChromatic from 'chromatic';
 import '../../../components/src/components/chart/chart.js';
 import { expect, waitFor } from 'storybook/test';
+import { getIconDataURL } from '../../../components/src/utilities/icon-library.js';
 import type SynChart from '../../../components/src/components/chart/chart.js';
 import { formatter } from '../../../components/src/components/chart/index.js';
 import {
@@ -26,12 +27,14 @@ declare global {
     ChartTokens: typeof ChartTokens;
     ComponentTokens: typeof ComponentTokens;
     formatter: typeof formatter;
+    getIconDataURL: typeof getIconDataURL;
   }
 }
 
 window.ChartTokens = ChartTokens;
 window.ComponentTokens = ComponentTokens;
 window.formatter = formatter;
+window.getIconDataURL = getIconDataURL;
 
 const meta: Meta = {
   component: 'syn-chart',
@@ -252,13 +255,15 @@ export const NoGap: Story = {
   render: () => html`
     <syn-chart id="segment-no-gap"></syn-chart>
     <script type="module">
+      // Import getIconDataURL from '@synergy-design-system/components/utilities/icon-library.js'.
+      const icon = await getIconDataURL('device_thermostat');
       const charts = document.querySelectorAll('#segment-no-gap');
       charts.forEach(chart => {
         chart.config = handle => handle
         .seriesSegment({
           data: [90, 100, 20, 10, 50, 90, 10, 0, 20, 10, 30, 70, 40, 10, 30, 20],
           gap: 0,
-          icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMiAyMS41cS0xLjg3MyAwLTMuMTg3LTEuMzE0UTcuNSAxOC44NzQgNy41IDE3cTAtMS4xNDMuNTMtMi4xMTdhNC41NiA0LjU2IDAgMCAxIDEuNDctMS42MTRWNXEwLTEuMDQ4LjcyNi0xLjc3NEEyLjQgMi40IDAgMCAxIDEyIDIuNXExLjA0OCAwIDEuNzc0LjcyNlQxNC41IDV2OC4yN2E0LjU2IDQuNTYgMCAwIDEgMS40NyAxLjYxM3EuNTMuOTc0LjUzIDIuMTE3IDAgMS44NzMtMS4zMTMgMy4xODZRMTMuODczIDIxLjUgMTIgMjEuNW0tMS0xMC4zMDhoMnYtMS4yNWgtMXYtLjg4NGgxVjYuOTQyaC0xdi0uODg0aDFWNWEuOTcuOTcgMCAwIDAtLjI4Ny0uNzEzQS45Ny45NyAwIDAgMCAxMiA0YS45Ny45NyAwIDAgMC0uNzEzLjI4N0EuOTcuOTcgMCAwIDAgMTEgNXoiLz48L3N2Zz4=",
+          icon,
         });
       });
     </script>

@@ -37,14 +37,32 @@
   },
   {
     "description": "",
+    "id": "components-syn-icon--data-url",
+    "path": "layers/examples/component/component__syn-icon/components-syn-icon--data-url.md",
+    "title": "Data Url"
+  },
+  {
+    "description": "",
     "id": "components-syn-icon--bundled-icon-library",
     "path": "layers/examples/component/component__syn-icon/components-syn-icon--bundled-icon-library.md",
     "title": "Bundled Icon Library"
   },
   {
     "description": "",
+    "id": "components-syn-icon--bundled-icon-data-url",
+    "path": "layers/examples/component/component__syn-icon/components-syn-icon--bundled-icon-data-url.md",
+    "title": "Bundled Icon Data URL"
+  },
+  {
+    "description": "",
     "id": "components-syn-icon--sprite-sheet-usage",
     "path": "layers/examples/component/component__syn-icon/components-syn-icon--sprite-sheet-usage.md",
     "title": "Sprite Sheet Usage"
+  },
+  {
+    "description": "",
+    "id": "components-syn-icon--sprite-sheet-data-url",
+    "path": "layers/examples/component/component__syn-icon/components-syn-icon--sprite-sheet-data-url.md",
+    "title": "Sprite Sheet Data URL"
   }
 ]

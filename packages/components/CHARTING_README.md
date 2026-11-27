@@ -68,6 +68,21 @@ The chart component is shipped as a **separate entrypoint** for all packages and
 > Token files must be imported **before** your application is initialized to ensure the default Synergy theme is loaded correctly for the chart component.
 > Therefore add these imports at the very beginning of your application entry point.
 
+### Using Synergy icons
+
+Chart icon options require an SVG data URL. Raw SVG markup and SVG file URLs are not supported.
+
+By default, `getIconDataURL` uses the same icon names and SVG assets as `<syn-icon>`. Make the corresponding SVGs from `@synergy-design-system/assets` available under the configured `assets/icons/` path, as you would for `<syn-icon>`. Use the [icon search](https://synergy-design-system.github.io/?path=/docs/icon-search--docs) to find an icon name. See the [icon documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-icon--docs) for setup, custom libraries and more information.
+
+Resolve the icon before assigning the synchronous chart configuration callback:
+
+```typescript
+import { getIconDataURL } from "@synergy-design-system/components/utilities/icon-library.js";
+
+const icon = await getIconDataURL("thermometer");
+chart.config = handle => handle.seriesGauge({ icon, value: 80 });
+```
+
 ---
 
 ## Usage

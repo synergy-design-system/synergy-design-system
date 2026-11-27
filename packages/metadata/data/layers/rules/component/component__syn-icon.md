@@ -30,6 +30,14 @@ Icons are symbols that can be used to represent various options within an applic
 - Use custom libraries only when required by brand or domain specific assets.
 - Validate fallback behavior when loading icons from CDN or sprite sheets.
 
+### Spritesheet and Bundled Data URLs
+
+- getIconDataURL from @synergy-design-system/components/utilities/icon-library.js supports registered spritesheet and bundled icon libraries in browser code, returning a base64 SVG data URL suitable for images or charts.
+- For spritesheets, use an SVG file containing <symbol id="..."> elements and a resolver such as /sprite.svg#settings with spriteSheet: true. The helper extracts the selected symbol and applies the library mutator to an independent SVG. Symbol attributes and content are copied, but sheet attributes and content outside the symbol are not; references remain but their targets outside the symbol are not copied. Include the content and definitions the symbol needs for portable output. Missing fragments or symbols reject the promise. The sheet must be same-origin or CORS-enabled.
+- For bundled libraries, register the resolver as usual and call getIconDataURL("warning", "bundled-default"). Explicitly importing the full defaultIcons map still increases bundle size; the helper does not tree-shake runtime map lookups.
+- getIconDataURL runs the registered mutator on a fresh SVG clone for every call and reuses the most recent data URL for a resolved source only when the resulting SVG is unchanged.
+- On failure getIconDataURL rejects its promise; use try/catch to handle the error. Network and retryable HTTP failures can be retried, while HTTP 410 and invalid SVG failures remain cached.
+
 ## Accessibility
 
 - Provide a label when the icon conveys meaning or triggers an action.

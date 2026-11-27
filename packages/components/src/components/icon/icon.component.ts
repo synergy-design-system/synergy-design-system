@@ -1,5 +1,6 @@
 /* eslint-disable */
 import { getIconLibrary, type IconLibrary, unwatchIcon, watchIcon } from './library.js';
+import { CACHEABLE_ERROR, RETRYABLE_ERROR, requestIcon, type SVGResult } from './utility.js';
 import { html } from 'lit';
 import { isTemplateResult } from 'lit/directive-helpers.js';
 import { property, state } from 'lit/decorators.js';
@@ -9,12 +10,7 @@ import SynergyElement from '../../internal/synergy-element.js';
 import styles from './icon.styles.js';
 import type { CSSResultGroup, HTMLTemplateResult } from 'lit';
 
-const CACHEABLE_ERROR = Symbol();
-const RETRYABLE_ERROR = Symbol();
-type SVGResult = HTMLTemplateResult | SVGSVGElement | typeof RETRYABLE_ERROR | typeof CACHEABLE_ERROR;
-
-let parser: DOMParser;
-const iconCache = new Map<string, Promise<SVGResult>>();
+const spriteSheetCache = new Map<string, HTMLTemplateResult>();
 
 interface IconSource {
   url?: string;
@@ -39,57 +35,20 @@ export default class SynIcon extends SynergyElement {
   private initialRender = false;
 
   /** Given a URL, this function returns the resulting SVG element or an appropriate error symbol. */
-  private async resolveIcon(url: string, library?: IconLibrary): Promise<SVGResult> {
-    let fileData: Response;
-
+  private async resolveIcon(url: string, library?: IconLibrary): Promise<SVGResult | HTMLTemplateResult> {
     if (library?.spriteSheet) {
-      this.svg = html`<svg part="svg">
-        <use part="use" href="${url}" width="100%" height="100%"></use>
-      </svg>`;
-
-      return this.svg;
-    }
-
-    // #806: Make sure to not fetch system icons
-    // as they are part of the bundle anyways.
-    // This speeds up the loading of the icon.
-    if (this.library === 'system') {
-      // Skip the icon if the URL is empty
-      if (!url) {
-        return CACHEABLE_ERROR;
+      let template = spriteSheetCache.get(url);
+      if (!template) {
+        template = html`<svg part="svg">
+          <use part="use" href="${url}" width="100%" height="100%"></use>
+        </svg>`;
+        spriteSheetCache.set(url, template);
+        this.svg = template;
       }
-
-      // If the URL is a system icon, we can just return it
-      fileData = new Response(url, {
-        status: 200,
-      });
-    } else {
-      try {
-        fileData = await fetch(url, { mode: 'cors' });
-        if (!fileData.ok) return fileData.status === 410 ? CACHEABLE_ERROR : RETRYABLE_ERROR;
-      } catch {
-        return RETRYABLE_ERROR;
-      }
+      return template;
     }
 
-    try {
-      const div = document.createElement('div');
-      div.innerHTML = await fileData.text();
-
-      const svg = div.firstElementChild;
-      if (svg?.tagName?.toLowerCase() !== 'svg') return CACHEABLE_ERROR;
-
-      if (!parser) parser = new DOMParser();
-      const doc = parser.parseFromString(svg.outerHTML, 'text/html');
-
-      const svgEl = doc.body.querySelector('svg');
-      if (!svgEl) return CACHEABLE_ERROR;
-
-      svgEl.part.add('svg');
-      return document.adoptNode(svgEl);
-    } catch {
-      return CACHEABLE_ERROR;
-    }
+    return requestIcon(url, this.library === 'system');
   }
 
   @state() private svg: SVGElement | HTMLTemplateResult | null = null;
@@ -167,11 +126,7 @@ export default class SynIcon extends SynergyElement {
       return;
     }
 
-    let iconResolver = iconCache.get(url);
-    if (!iconResolver) {
-      iconResolver = this.resolveIcon(url, library);
-      iconCache.set(url, iconResolver);
-    }
+    const iconResolver = this.resolveIcon(url, library);
 
     // If we haven't rendered yet, exit early. This avoids unnecessary work due to watching multiple props.
     if (!this.initialRender) {
@@ -179,10 +134,6 @@ export default class SynIcon extends SynergyElement {
     }
 
     const svg = await iconResolver;
-
-    if (svg === RETRYABLE_ERROR) {
-      iconCache.delete(url);
-    }
 
     if (url !== this.getIconSource().url) {
       // If the url has changed while fetching the icon, ignore this request

@@ -107,6 +107,28 @@ If you're using more than one custom icon, it might make sense to register a cus
 
 ---
 
+## Data Url
+
+```html
+<div id="data-urls" style="display: flex; gap: var(--syn-spacing-medium)">
+  <img width="24" height="24" alt="Warning" />
+  <img width="24" height="24" alt="Inventory" />
+</div>
+<script type="module">
+  // To get an svg data url for an icon, use "getIconDataURL" from the components package
+  // import { getIconDataURL }  from '@synergy-design-system/components/utilities/icon-library.js'.
+  const icons = await Promise.all([
+    getIconDataURL("warning"),
+    getIconDataURL("inventory"),
+  ]);
+  document.querySelectorAll("#data-urls img").forEach((image, index) => {
+    image.src = icons[index];
+  });
+</script>
+```
+
+---
+
 ## Bundled Icon Library
 
 ```html
@@ -120,6 +142,25 @@ If you're using more than one custom icon, it might make sense to register a cus
 
 ---
 
+## Bundled Icon Data URL
+
+```html
+<div style="display: flex; gap: var(--syn-spacing-medium)">
+  <img id="data-url-bundled-warning" width="24" height="24" alt="Warning" />
+  <img id="data-url-bundled-inventory" width="24" height="24" alt="Inventory" />
+</div>
+<script type="module">
+  // To get an svg data url for an icon, use "getIconDataURL" from the components package
+  // import { getIconDataURL }  from '@synergy-design-system/components/utilities/icon-library.js'.
+  const warningIcon = await getIconDataURL("warning", "bundled-default");
+  const inventoryIcon = await getIconDataURL("inventory", "bundled-default");
+  document.querySelector("#data-url-bundled-warning").src = warningIcon;
+  document.querySelector("#data-url-bundled-inventory").src = inventoryIcon;
+</script>
+```
+
+---
+
 ## Sprite Sheet Usage
 
 ```html
@@ -127,4 +168,24 @@ If you're using more than one custom icon, it might make sense to register a cus
   <syn-icon library="sprite" name="settings"></syn-icon>
   <syn-icon library="sprite" name="refresh"></syn-icon>
 </div>
+```
+
+---
+
+## Sprite Sheet Data URL
+
+```html
+<div style="display: flex; gap: var(--syn-spacing-medium)">
+  <img id="data-url-sprite-settings" width="24" height="24" alt="Settings" />
+  <img id="data-url-sprite-refresh" width="24" height="24" alt="Refresh" />
+</div>
+<script type="module">
+  // import { getIconDataURL } from '@synergy-design-system/components/utilities/icon-library.js';
+  const icons = await Promise.all([
+    getIconDataURL("settings", "sprite"),
+    getIconDataURL("refresh", "sprite"),
+  ]);
+  document.querySelector("#data-url-sprite-settings").src = icons[0];
+  document.querySelector("#data-url-sprite-refresh").src = icons[1];
+</script>
 ```

@@ -45,7 +45,7 @@
   "name": "syn-table",
   "package": "styles",
   "relations": [],
-  "since": "2.2.4",
+  "since": "2.2.5",
   "sources": [
     "packages/styles/src/tables/table.css"
   ],

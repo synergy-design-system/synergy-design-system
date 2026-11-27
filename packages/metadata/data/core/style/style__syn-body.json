@@ -33,7 +33,7 @@
   "name": "syn-body",
   "package": "styles",
   "relations": [],
-  "since": "2.2.4",
+  "since": "2.2.5",
   "sources": [
     "packages/styles/src/typography/body.css"
   ],

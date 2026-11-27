@@ -16,9 +16,9 @@
     "@figma-export/types": "^6.4.1",
     "@figma/rest-api-spec": "^0.47.0",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
-    "@types/node": "^24.19.2",
+    "@types/node": "^26.6.6",
     "cheerio": "^1.2.0",
-    "eslint": "^10.14.0",
+    "eslint": "^10.15.0",
     "svgo": "^4.1.0",
     "typescript": "^6.0.3"
   },
@@ -93,5 +93,5 @@
   },
   "type": "module",
   "types": "./dist/index.d.ts",
-  "version": "2.3.4"
+  "version": "2.3.5"
 }

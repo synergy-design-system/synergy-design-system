@@ -53,7 +53,7 @@
   "name": "syn-link",
   "package": "styles",
   "relations": [],
-  "since": "2.2.4",
+  "since": "2.2.5",
   "sources": [
     "packages/styles/src/link/index.css"
   ],

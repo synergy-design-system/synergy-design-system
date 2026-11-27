@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.33.2
+
+### Patch Changes
+
+- [#1430](https://github.com/synergy-design-system/synergy-design-system/pull/1430) [`c231439`](https://github.com/synergy-design-system/synergy-design-system/commit/c231439358e2a4d1eabacad222d710824612c424) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-11-23
+  
+  fix: 🐛 dependency updates sprint 82 ([#258](https://github.com/synergy-design-system/synergy-design-system/issues/258))
+- Updated dependencies [[`c231439`](https://github.com/synergy-design-system/synergy-design-system/commit/c231439358e2a4d1eabacad222d710824612c424)]:
+  - @synergy-design-system/tokens@3.33.2
+
 ## 3.33.1
 
 ### Patch Changes

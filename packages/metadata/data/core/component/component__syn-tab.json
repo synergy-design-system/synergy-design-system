@@ -144,10 +144,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component__syn-tab/components/tab.custom.styles.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component__syn-tab/components/tab.styles.ts"
       },
       {
@@ -196,7 +192,6 @@
   "sources": [
     "packages/angular/components/tab/tab.component.ts",
     "packages/components/src/components/tab/tab.component.ts",
-    "packages/components/src/components/tab/tab.custom.styles.ts",
     "packages/components/src/components/tab/tab.styles.ts",
     "packages/components/src/components/tab/tab.ts",
     "packages/react/src/components/tab.ts",

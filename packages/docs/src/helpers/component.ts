@@ -169,10 +169,13 @@ export const storybookTemplate = (customElementTag: string) => ({
 type ComponentPath = 'components' | 'templates' | 'tokens';
 
 export type Component<TPath extends ComponentPath = ComponentPath> =
-  TPath extends 'components' ? keyof typeof docsTokens.components :
-    TPath extends 'templates' ? keyof typeof docsTokens.templates :
-      TPath extends 'tokens' ? keyof typeof docsTokens.tokens :
-        never;
+  TPath extends 'components'
+    ? keyof typeof docsTokens.components
+    : TPath extends 'templates'
+      ? keyof typeof docsTokens.templates
+      : TPath extends 'tokens'
+        ? keyof typeof docsTokens.tokens
+        : never;
 
 type Attribute<TPath extends ComponentPath, TComponent extends Component<TPath>> =
   TPath extends 'components'

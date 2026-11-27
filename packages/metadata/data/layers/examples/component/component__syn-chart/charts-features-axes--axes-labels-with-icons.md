@@ -23,47 +23,6 @@ To add icons to axis labels, use the handle methods axesAddXLabelIcons() and axe
 </div>
 <syn-chart id="chart-axis-prefix-icons"></syn-chart>
 <script type="module">
-  const XAXIS_ICONS = [
-    "calendar_today",
-    "event_available",
-    "schedule",
-    "event_note",
-    "event_upcoming",
-    "weekend",
-    "sunny",
-  ];
-  const YAXIS_ICONS = [
-    "wallpaper",
-    "tune",
-    "watch",
-    "format_paint",
-    "brush",
-    "gradient",
-    "format_color_reset",
-  ];
-
-  let yAxisIconUrls = [];
-  let xAxisIconUrls = [];
-
-  const fetchIcons = async () => {
-    xAxisIconUrls = await Promise.all(
-      XAXIS_ICONS.map(async (iconName) => {
-        const svg = await fetch("/assets/sick2025/" + iconName + ".svg").then(
-          (r) => r.text(),
-        );
-        return "data:image/svg+xml;base64," + btoa(svg);
-      }),
-    );
-    yAxisIconUrls = await Promise.all(
-      YAXIS_ICONS.map(async (iconName) => {
-        const svg = await fetch("/assets/sick2025/" + iconName + ".svg").then(
-          (r) => r.text(),
-        );
-        return "data:image/svg+xml;base64," + btoa(svg);
-      }),
-    );
-  };
-
   const xAxisIconPositionSelect = document.querySelector(
     "#x-axis-icon-position",
   );
@@ -71,7 +30,33 @@ To add icons to axis labels, use the handle methods axesAddXLabelIcons() and axe
     "#y-axis-icon-position",
   );
 
-  const setConfig = async () => {
+  // Import getIconDataURL from '@synergy-design-system/components/utilities/icon-library.js'.
+  const [xAxisIconUrls, yAxisIconUrls] = await Promise.all([
+    Promise.all(
+      [
+        "calendar_today",
+        "event_available",
+        "schedule",
+        "event_note",
+        "event_upcoming",
+        "weekend",
+        "sunny",
+      ].map((icon) => getIconDataURL(icon)),
+    ),
+    Promise.all(
+      [
+        "wallpaper",
+        "tune",
+        "watch",
+        "format_paint",
+        "brush",
+        "gradient",
+        "format_color_reset",
+      ].map((icon) => getIconDataURL(icon)),
+    ),
+  ]);
+
+  const setConfig = () => {
     const baseConfig = {
       series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: "line" }],
       xAxis: {
@@ -105,7 +90,7 @@ To add icons to axis labels, use the handle methods axesAddXLabelIcons() and axe
     });
   };
 
-  fetchIcons().then(setConfig);
+  setConfig();
   xAxisIconPositionSelect.addEventListener("syn-change", setConfig);
   yAxisIconPositionSelect.addEventListener("syn-change", setConfig);
 </script>

@@ -166,11 +166,23 @@
       },
       {
         "layer": "examples",
+        "path": "layers/examples/component/component__syn-icon/components-syn-icon--data-url.md"
+      },
+      {
+        "layer": "examples",
         "path": "layers/examples/component/component__syn-icon/components-syn-icon--bundled-icon-library.md"
       },
       {
         "layer": "examples",
+        "path": "layers/examples/component/component__syn-icon/components-syn-icon--bundled-icon-data-url.md"
+      },
+      {
+        "layer": "examples",
         "path": "layers/examples/component/component__syn-icon/components-syn-icon--sprite-sheet-usage.md"
+      },
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-icon/components-syn-icon--sprite-sheet-data-url.md"
       }
     ],
     "full": [
